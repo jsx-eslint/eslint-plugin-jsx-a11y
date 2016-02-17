@@ -1,6 +1,6 @@
 # eslint-plugin-jsx-a11y
 
-A static analysis linter of React components and their accessibility with screen readers.
+A static analysis linter of jsx components and their accessibility with screen readers.
 
 ## Installation
 
