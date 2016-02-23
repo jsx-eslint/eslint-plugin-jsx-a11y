@@ -39,6 +39,7 @@ ruleTester.run('img-uses-alt', rule, {
     {code: '<img {...this.props} />', parserOptions: parserOptions}
   ],
   invalid: [
-    {code: '<img />;', errors: [expectedError], parserOptions: parserOptions}
+    {code: '<img />;', errors: [expectedError], parserOptions: parserOptions},
+    {code: '<img src="xyz" />', errors: [expectedError], parserOptions: parserOptions}
   ]
 });
