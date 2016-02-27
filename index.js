@@ -2,7 +2,8 @@
 
 module.exports = {
   rules: {
-    'img-uses-alt': require('./lib/rules/img-uses-alt')
+    'img-uses-alt': require('./lib/rules/img-uses-alt'),
+    'onClick-uses-role': require('./lib/rules/onClick-uses-role')
   },
   configs: {
     recommended: {
