@@ -1,3 +1,21 @@
+<p align="center">
+  <a href="https://travis-ci.org/evcohen/eslint-plugin-jsx-a11y">
+    <img src="https://api.travis-ci.org/evcohen/eslint-plugin-jsx-a11y.svg?branch=master"
+         alt="build status">
+  </a>
+  <a href="https://npmjs.org/package/eslint-plugin-jsx-a11y">
+    <img src="https://img.shields.io/npm/v/eslint-plugin-jsx-a11y.svg"
+         alt="npm version">
+  </a>
+  <a href="https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/LICENSE">
+    <img src="https://img.shields.io/npm/l/eslint-plugin-jsx-a11y.svg"
+         alt="license">
+  </a>
+  <a href='https://coveralls.io/github/evcohen/eslint-plugin-jsx-a11y?branch=master'>
+    <img src='https://coveralls.io/repos/github/evcohen/eslint-plugin-jsx-a11y/badge.svg?branch=master' alt='Coverage Status' />
+  </a>
+</p>
+
 # eslint-plugin-jsx-a11y
 
 A static analysis linter of jsx and its accessibility to all users.
