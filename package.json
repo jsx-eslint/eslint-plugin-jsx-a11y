@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jsx-a11y",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A static analysis linter of jsx and their accessibility with screen readers.",
   "keywords": [
     "eslint",
@@ -11,6 +11,10 @@
     "jsx"
   ],
   "author": "Ethan Cohen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evcohen/eslint-plugin-jsx-a11y"
+  },
   "main": "lib/index.js",
   "scripts": {
     "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
