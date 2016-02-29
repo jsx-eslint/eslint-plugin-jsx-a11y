@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce img tags use alt attribute.
+ * @fileoverview Enforce usage of onBlur over onChange for accessibility.
  * @author Ethan Cohen
  */
 

@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce img tags use alt attribute.
+ * @fileoverview Enforce onmouseover/onmouseout are accompanied by onfocus/onblur.
  * @author Ethan Cohen
  */
 

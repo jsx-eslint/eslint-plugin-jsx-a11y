@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce img tags use alt attribute.
+ * @fileoverview Enforce non-interactive elements with click handlers use role attribute.
  * @author Ethan Cohen
  */
 
