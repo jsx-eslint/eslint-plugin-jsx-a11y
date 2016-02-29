@@ -3,7 +3,8 @@
 module.exports = {
   rules: {
     'img-uses-alt': require('./lib/rules/img-uses-alt'),
-    'onClick-uses-role': require('./lib/rules/onClick-uses-role')
+    'onClick-uses-role': require('./lib/rules/onClick-uses-role'),
+    'mouseEvents-require-keyEvents': require('./lib/rules/mouseEvents-require-keyEvents')
   },
   configs: {
     recommended: {
