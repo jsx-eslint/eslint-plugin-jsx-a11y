@@ -5,7 +5,10 @@
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "a11y",
+    "accessibility",
+    "jsx"
   ],
   "author": "Ethan Cohen",
   "main": "lib/index.js",
