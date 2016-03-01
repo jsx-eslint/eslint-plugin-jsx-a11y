@@ -1,5 +1,6 @@
 /**
- * @fileoverview Enforce onmouseover/onmouseout are accompanied by onfocus/onblur.
+ * @fileoverview Enforce onmouseover/onmouseout are accompanied
+ *  by onfocus/onblur.
  * @author Ethan Cohen
  */
 
@@ -9,10 +10,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-var rule = require('../../../lib/rules/mouseEvents-require-keyEvents');
-var RuleTester = require('eslint').RuleTester;
+import rule from '../../../lib/rules/mouseEvents-require-keyEvents';
+import { RuleTester } from 'eslint';
 
-var parserOptions = {
+const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
     jsx: true
@@ -23,25 +24,29 @@ var parserOptions = {
 // Tests
 // -----------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+const ruleTester = new RuleTester();
 
-var mouseOverError = {
+const mouseOverError = {
   message: 'onMouseOver must be accompanied by onFocus for accessibility.',
   type: 'JSXOpeningElement'
 };
-var mouseOutError = {
+const mouseOutError = {
   message: 'onMouseOut must be accompanied by onBlur for accessibility.',
   type: 'JSXOpeningElement'
 };
 
 ruleTester.run('mouseEvents-require-keyEvents', rule, {
   valid: [
-    {code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;', parserOptions: parserOptions},
-    {code: '<div />;', parserOptions: parserOptions},
-    {code: '<div onMouseOut={() => void 0} onBlur={() => void 0} />', parserOptions: parserOptions}
+    { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;', parserOptions },
+    { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;', parserOptions },
+    { code: '<div />;', parserOptions },
+    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} />', parserOptions },
+    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} {...props} />', parserOptions }
   ],
   invalid: [
-    {code: '<div onMouseOver={() => void 0} />;', errors: [mouseOverError], parserOptions: parserOptions},
-    {code: '<div onMouseOut={() => void 0} />', errors: [mouseOutError], parserOptions: parserOptions}
+    { code: '<div onMouseOver={() => void 0} />;', errors: [ mouseOverError ], parserOptions },
+    { code: '<div onMouseOut={() => void 0} />', errors: [ mouseOutError ], parserOptions },
+    { code: '<div onMouseOver={() => void 0} {...props} />', errors: [ mouseOverError ], parserOptions },
+    { code: '<div onMouseOut={() => void 0} {...props} />', errors: [ mouseOutError ], parserOptions }
   ]
 });

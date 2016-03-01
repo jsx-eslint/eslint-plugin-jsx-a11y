@@ -9,10 +9,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-var rule = require('../../../lib/rules/no-access-key');
-var RuleTester = require('eslint').RuleTester;
+import rule from '../../../lib/rules/no-access-key';
+import { RuleTester } from 'eslint';
 
-var parserOptions = {
+const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
     jsx: true
@@ -23,22 +23,24 @@ var parserOptions = {
 // Tests
 // -----------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+const ruleTester = new RuleTester();
 
-var expectedError = {
-  message: 'Inconsistencies between keyboard shortcuts and keyboard commands used by screenreader ' +
-    'and keyboard only users create accessibility complications so to avoid complications, access keys ' +
-    'should not be used.',
+const expectedError = {
+  message: 'No access key attribute allowed. Incosistencies ' +
+  'between keyboard shortcuts and keyboard comments used by screenreader ' +
+  'and keyboard only users create a11y complications.',
   type: 'JSXOpeningElement'
 };
 
 ruleTester.run('no-access-key', rule, {
   valid: [
-    {code: '<div />;', parserOptions: parserOptions}
+    { code: '<div />;', parserOptions },
+    { code: '<div {...props} />', parserOptions }
   ],
   invalid: [
-    {code: '<div accesskey="h" />;', errors: [expectedError], parserOptions: parserOptions},
-    {code: '<div accessKey="h" />', errors: [expectedError], parserOptions: parserOptions},
-    {code: '<section acCesSKeY="y" />', errors: [expectedError], parserOptions: parserOptions}
+    { code: '<div accesskey="h" />', errors: [ expectedError ], parserOptions },
+    { code: '<div accessKey="h" />', errors: [ expectedError ], parserOptions },
+    { code: '<div accessKey="h" {...props} />', errors: [ expectedError ], parserOptions },
+    { code: '<div acCesSKeY="y" />', errors: [ expectedError ], parserOptions }
   ]
 });

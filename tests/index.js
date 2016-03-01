@@ -1,20 +1,18 @@
 /* eslint-env mocha */
 'use strict';
 
-var plugin = require('..');
+import plugin from '../lib';
 
-var assert = require('assert');
-var fs = require('fs');
-var path = require('path');
+import assert from 'assert';
+import fs from 'fs';
+import path from 'path';
 
-var rules = fs.readdirSync(path.resolve(__dirname, '../lib/rules/'))
-  .map(function(f) {
-    return path.basename(f, '.js');
-  });
+const rules = fs.readdirSync(path.resolve(__dirname, '../lib/rules/'))
+  .map(f => path.basename(f, '.js'));
 
-describe('all rule files should be exported by the plugin', function() {
-  rules.forEach(function(ruleName) {
-    it('should export ' + ruleName, function() {
+describe('all rule files should be exported by the plugin', () => {
+  rules.forEach(ruleName => {
+    it(`should export ${ruleName}`, () => {
       assert.equal(
         plugin.rules[ruleName],
         require(path.join('../lib/rules', ruleName))

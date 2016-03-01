@@ -9,10 +9,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-var rule = require('../../../lib/rules/use-onblur-not-onchange');
-var RuleTester = require('eslint').RuleTester;
+import rule from '../../../lib/rules/use-onblur-not-onchange';
+import { RuleTester } from 'eslint';
 
-var parserOptions = {
+const parserOptions =  {
   ecmaVersion: 6,
   ecmaFeatures: {
     jsx: true
@@ -23,9 +23,9 @@ var parserOptions = {
 // Tests
 // -----------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+const ruleTester = new RuleTester();
 
-var expectedError = {
+const expectedError = {
   message: 'onBlur must be used instead of onchange, unless absolutely necessary and it ' +
     'causes no negative consequences for keyboard only or screen reader users.',
   type: 'JSXOpeningElement'
@@ -33,12 +33,14 @@ var expectedError = {
 
 ruleTester.run('use-onblur-not-onchange', rule, {
   valid: [
-    {code: '<div onBlur={() => {}} />;', parserOptions: parserOptions},
-    {code: '<div />;', parserOptions: parserOptions},
-    {code: '<div onBlur={() => {}} onChange={() => {}} />;', parserOptions: parserOptions}
+    { code: '<div onBlur={() => {}} />;', parserOptions },
+    { code: '<div />;', parserOptions },
+    { code: '<div onBlur={() => {}} onChange={() => {}} />;', parserOptions },
+    { code: '<div {...props} />', parserOptions }
   ],
   invalid: [
-    {code: '<div onChange={() => {}} />;', errors: [expectedError], parserOptions: parserOptions},
-    {code: '<input onChange={() => {}} />', errors: [expectedError], parserOptions: parserOptions}
+    { code: '<div onChange={() => {}} />;', errors: [ expectedError ], parserOptions },
+    { code: '<input onChange={() => {}} />', errors: [ expectedError ], parserOptions },
+    { code: '<input onChange={() => {}} {...props} />', errors: [ expectedError ], parserOptions }
   ]
 });

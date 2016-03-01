@@ -9,10 +9,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-var rule = require('../../../lib/rules/img-uses-alt');
-var RuleTester = require('eslint').RuleTester;
+import rule from '../../../lib/rules/img-uses-alt';
+import { RuleTester } from 'eslint';
 
-var parserOptions = {
+const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
     jsx: true
@@ -23,24 +23,24 @@ var parserOptions = {
 // Tests
 // -----------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+const ruleTester = new RuleTester();
 
-var expectedError = {
-  message: 'IMG element must have alt tag.',
+const expectedError = {
+  message: 'img elements must have an alt tag.',
   type: 'JSXOpeningElement'
 };
 
 ruleTester.run('img-uses-alt', rule, {
   valid: [
-    {code: '<img alt="foo" />;', parserOptions: parserOptions},
-    {code: '<img ALT="foo" />;', parserOptions: parserOptions},
-    {code: '<img ALt="foo" />;', parserOptions: parserOptions},
-    {code: '<img {...this.props} alt="foo" />', parserOptions: parserOptions},
-    {code: '<img {...this.props} />', parserOptions: parserOptions},
-    {code: '<a />', parserOptions: parserOptions}
+    { code: '<img alt="foo" />;', parserOptions },
+    { code: '<img ALT="foo" />;', parserOptions },
+    { code: '<img ALt="foo" />;', parserOptions },
+    { code: '<img {...this.props} alt="foo" />', parserOptions },
+    { code: '<a />', parserOptions }
   ],
   invalid: [
-    {code: '<img />;', errors: [expectedError], parserOptions: parserOptions},
-    {code: '<img src="xyz" />', errors: [expectedError], parserOptions: parserOptions}
+    { code: '<img />;', errors: [ expectedError ], parserOptions },
+    { code: '<img src="xyz" />', errors: [ expectedError ], parserOptions },
+    { code: '<img {...this.props} />', errors: [ expectedError ], parserOptions }
   ]
 });
