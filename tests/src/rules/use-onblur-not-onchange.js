@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../lib/rules/use-onblur-not-onchange';
+import rule from '../../../src/rules/use-onblur-not-onchange';
 import { RuleTester } from 'eslint';
 
 const parserOptions =  {

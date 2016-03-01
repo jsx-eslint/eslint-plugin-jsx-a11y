@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../lib/rules/no-access-key';
+import rule from '../../../src/rules/no-access-key';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {

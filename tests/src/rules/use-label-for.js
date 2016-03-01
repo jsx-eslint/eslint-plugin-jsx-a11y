@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../lib/rules/use-label-for';
+import rule from '../../../src/rules/use-label-for';
 import { RuleTester } from 'eslint';
 
 const parserOptions  = {

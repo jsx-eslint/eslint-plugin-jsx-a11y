@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../lib/rules/img-uses-alt';
+import rule from '../../../src/rules/img-uses-alt';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {

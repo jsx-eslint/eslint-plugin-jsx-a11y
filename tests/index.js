@@ -1,13 +1,13 @@
 /* eslint-env mocha */
 'use strict';
 
-import plugin from '../lib';
+import plugin from '../src';
 
 import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
 
-const rules = fs.readdirSync(path.resolve(__dirname, '../lib/rules/'))
+const rules = fs.readdirSync(path.resolve(__dirname, '../src/rules/'))
   .map(f => path.basename(f, '.js'));
 
 describe('all rule files should be exported by the plugin', () => {
@@ -15,7 +15,7 @@ describe('all rule files should be exported by the plugin', () => {
     it(`should export ${ruleName}`, () => {
       assert.equal(
         plugin.rules[ruleName],
-        require(path.join('../lib/rules', ruleName))
+        require(path.join('../src/rules', ruleName))
       );
     });
   });
