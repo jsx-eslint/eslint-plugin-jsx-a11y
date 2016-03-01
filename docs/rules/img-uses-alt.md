@@ -8,7 +8,7 @@ This rule takes no arguments. However, note that passing props as spread attribu
 
 ### Succeed
 ```jsx
-<img src="foo" alt="An image of foo!" />
+<img src="foo" alt="Foo eating a sandwich." />
 ```
 
 ### Fail

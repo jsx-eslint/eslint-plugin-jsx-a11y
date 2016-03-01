@@ -67,6 +67,7 @@ Then configure the rules you want to use under the rules section.
 - [use-onblur-not-onchange](docs/rules/use-onblur-not-onchange.md): Enforce that onBlur is used instead of onChange.
 - [no-access-key](docs/rules/no-access-key.md): Enforce that the accessKey prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
 - [use-label-for](docs/rules/use-label-for.md): Enforce that label elements have the htmlFor attribute
+- [redundant-alt](docs/rules/redundant-alt.md): Enforce img alt attribute does not contain the word image, picture, or photo.
 
 ## License
 
