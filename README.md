@@ -62,11 +62,11 @@ Then configure the rules you want to use under the rules section.
 ## Supported Rules
 
 - [img-uses-alt](docs/rules/img-uses-alt.md): Enforce that img jsx elements use the alt attribute.
-- [onclick-uses-role](docs/rules/onclick-uses-role): Enforce that non-interactive, visible elements (such as div) that have click handlers use the role attribute.
-- [mouse-events-map-to-key-events](docs/rules/mouse-events-map-to-key-events): Enforce that onMouseOver/onMouseOut are accompanied by onFocus/onBlur for strictly keyboard users.
-- [use-onblur-not-onchange](docs/rules/use-onblur-not-onchange): Enforce that onBlur is used instead of onChange.
-- [no-access-key](docs/rules/no-access-key): Enforce that the accessKey prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
-- [use-label-for](docs/rules/use-label-for): Enforce that label elements have the htmlFor attribute
+- [onclick-uses-role](docs/rules/onclick-uses-role.md): Enforce that non-interactive, visible elements (such as div) that have click handlers use the role attribute.
+- [mouse-events-map-to-key-events](docs/rules/mouse-events-map-to-key-events.md): Enforce that onMouseOver/onMouseOut are accompanied by onFocus/onBlur for strictly keyboard users.
+- [use-onblur-not-onchange](docs/rules/use-onblur-not-onchange.md): Enforce that onBlur is used instead of onChange.
+- [no-access-key](docs/rules/no-access-key.md): Enforce that the accessKey prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
+- [use-label-for](docs/rules/use-label-for.md): Enforce that label elements have the htmlFor attribute
 
 ## License
 
