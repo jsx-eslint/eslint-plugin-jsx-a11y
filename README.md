@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/npm/v/eslint-plugin-jsx-a11y.svg"
          alt="npm version">
   </a>
-  <a href="https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/LICENSE">
+  <a href="https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/LICENSE.md">
     <img src="https://img.shields.io/npm/l/eslint-plugin-jsx-a11y.svg"
          alt="license">
   </a>
