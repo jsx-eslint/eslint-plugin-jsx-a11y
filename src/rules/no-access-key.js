@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../hasAttribute';
+import hasAttribute from '../util/hasAttribute';
 
 const errorMessage = 'No access key attribute allowed. Incosistencies ' +
   'between keyboard shortcuts and keyboard comments used by screenreader ' +

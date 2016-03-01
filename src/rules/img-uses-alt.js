@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../hasAttribute';
+import hasAttribute from '../util/hasAttribute';
 
 const errorMessage = 'img elements must have an alt tag.';
 

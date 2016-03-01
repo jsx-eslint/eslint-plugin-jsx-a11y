@@ -9,7 +9,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../hasAttribute';
+import hasAttribute from '../util/hasAttribute';
 
 const mouseOverErrorMessage = 'onMouseOver must be accompanied by onFocus for accessibility.';
 const mouseOutErrorMessage = 'onMouseOut must be accompanied by onBlur for accessibility.';

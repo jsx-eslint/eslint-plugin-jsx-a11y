@@ -10,7 +10,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/mouseEvents-require-keyEvents';
+import rule from '../../../src/rules/mouse-events-map-to-key-events';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {

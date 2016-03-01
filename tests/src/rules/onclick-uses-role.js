@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/onClick-uses-role';
+import rule from '../../../src/rules/onclick-uses-role';
 import { RuleTester } from 'eslint';
 
 const parserOptions  = {

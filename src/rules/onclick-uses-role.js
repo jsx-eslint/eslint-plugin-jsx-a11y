@@ -5,9 +5,9 @@
  */
 'use strict';
 
-import isHiddenFromScreenReader from '../isHiddenFromScreenReader';
-import isInteractiveElement from '../isInteractiveElement';
-import hasAttribute from '../hasAttribute';
+import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
+import isInteractiveElement from '../util/isInteractiveElement';
+import hasAttribute from '../util/hasAttribute';
 
 // ----------------------------------------------------------------------------
 // Rule Definition

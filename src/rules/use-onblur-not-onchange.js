@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../hasAttribute';
+import hasAttribute from '../util/hasAttribute';
 
 const errorMessage = 'onBlur must be used instead of onchange, ' +
   'unless absolutely necessary and it causes no negative consequences ' +

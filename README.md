@@ -61,13 +61,13 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-- img-uses-alt: Enforce that img jsx elements use the alt attribute.
-- onClick-uses-role: Enforce that non-interactive, visible elements (such as div) that have click handlers use the role attribute.
-- mouseEvents-require-keyEvents: Enforce that onMouseOver/onMouseOut are accompanied by onFocus/onBlur for strictly keyboard users.
-- use-onblur-not-onchange: Enforce that onBlur is used instead of onChange.
-- no-access-key: Enforce that the accessKey prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
-- use-label-for: Enforce that label elements have the htmlFor attribute
+- [img-uses-alt](docs/rules/img-uses-alt.md): Enforce that img jsx elements use the alt attribute.
+- [onclick-uses-role](docs/rules/onclick-uses-role): Enforce that non-interactive, visible elements (such as div) that have click handlers use the role attribute.
+- [mouse-events-map-to-key-events](docs/rules/mouse-events-map-to-key-events): Enforce that onMouseOver/onMouseOut are accompanied by onFocus/onBlur for strictly keyboard users.
+- [use-onblur-not-onchange](docs/rules/use-onblur-not-onchange): Enforce that onBlur is used instead of onChange.
+- [no-access-key](docs/rules/no-access-key): Enforce that the accessKey prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
+- [use-label-for](docs/rules/use-label-for): Enforce that label elements have the htmlFor attribute
 
 ## License
 
-MIT License.
+eslint-plugin-jsx-a11y is licensed under the [MIT License](LICENSE.md).

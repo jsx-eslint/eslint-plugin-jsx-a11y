@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../hasAttribute';
+import hasAttribute from '../util/hasAttribute';
 
 const errorMessage = 'Form controls using a label to identify them must be ' +
   'programmatically associated with the control using htmlFor';
