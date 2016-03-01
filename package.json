@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jsx-a11y",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A static analysis linter of jsx and their accessibility with screen readers.",
   "keywords": [
     "eslint",
@@ -15,7 +15,7 @@
     "type": "git",
     "url": "https://github.com/evcohen/eslint-plugin-jsx-a11y"
   },
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --config .webpack.config.js --optimize-minimize",
     "prepublish": "npm run lint && npm run test && npm run build",
