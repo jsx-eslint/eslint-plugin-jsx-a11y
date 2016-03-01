@@ -20,7 +20,7 @@
     "build": "babel src --out-dir lib",
     "prepublish": "npm run lint && npm run test && npm run build",
     "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
-    "lint": "eslint  --config .eslintrc.js ./",
+    "lint": "eslint  --config .eslintrc.js src tests",
     "pretest": "npm run lint",
     "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --compilers js:babel-core/register --reporter nyan"
   },
