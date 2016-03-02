@@ -36,6 +36,7 @@ ruleTester.run('onclick-uses-role', rule, {
     { code: '<div onClick={() => void 0} role="button" />;', parserOptions },
     { code: '<div onClick={() => void 0} role={role} />;', parserOptions },
     { code: '<div onClick={() => void 0} role={"button"} />;', parserOptions },
+    { code: '<div onClick={() => void 0} role={`${role}`} />;', parserOptions },
     { code: '<div onClick={() => void 0} role="button" {...props} />;', parserOptions },
     { code: '<div className="foo" />;', parserOptions },
     { code: '<div onClick={() => void 0} role="button" aria-hidden />;', parserOptions },

@@ -36,6 +36,7 @@ ruleTester.run('use-label-for', rule, {
     { code: '<label htmlFor="foo" />', parserOptions },
     { code: '<label htmlFor={"foo"} />', parserOptions },
     { code: '<label htmlFor={foo} />', parserOptions },
+    { code: '<label htmlFor={`${id}`} />', parserOptions },
     { code: '<div />', parserOptions },
     { code: '<label htmlFor="foo">Test!</label>', parserOptions },
     { code: '<Label />', parserOptions }, // lower-case convention refers to real HTML elements.

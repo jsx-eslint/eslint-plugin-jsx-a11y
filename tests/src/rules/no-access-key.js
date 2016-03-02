@@ -44,6 +44,7 @@ ruleTester.run('no-access-key', rule, {
     { code: '<div accessKey="h" {...props} />', errors: [ expectedError ], parserOptions },
     { code: '<div acCesSKeY="y" />', errors: [ expectedError ], parserOptions },
     { code: '<div accessKey={"y"} />', errors: [ expectedError ], parserOptions },
+    { code: '<div accessKey={`${y}`} />', errors: [ expectedError ], parserOptions },
     { code: '<div accessKey={accessKey} />', errors: [ expectedError ], parserOptions }
   ]
 });

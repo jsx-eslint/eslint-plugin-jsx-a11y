@@ -21,6 +21,9 @@ const getAttributeValue = attribute => {
       switch (expression.type) {
         case 'Literal':
           return expression.value;
+        case 'TemplateLiteral':
+          // hot-fix before actually building out raw string value.
+          return Boolean(expression.quasis) || Boolean(expression.expressions);
         case 'Identifier':
           return expression.name == 'undefined' ? undefined : expression.name;
         case 'ArrowFunctionExpression':

@@ -36,6 +36,7 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<img alt={"foo"} />;', parserOptions },
     { code: '<img alt={alt} />;', parserOptions },
     { code: '<img ALT="foo" />;', parserOptions },
+    { code: '<img ALT={`This is the ${alt} text`} />;', parserOptions },
     { code: '<img ALt="foo" />;', parserOptions },
     { code: '<img alt="foo" salt={undefined} />;', parserOptions },
     { code: '<img {...this.props} alt="foo" />', parserOptions },

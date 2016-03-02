@@ -44,6 +44,7 @@ ruleTester.run('redundant-alt', rule, {
     { code: '<img />', parserOptions },
     { code: '<IMG />', parserOptions },
     { code: '<img alt={undefined} />', parserOptions },
+    { code: '<img alt={`this should pass for ${now}`} />', parserOptions },
     { code: '<img alt={"undefined"} />', parserOptions },
     { code: '<img alt={() => {}} />', parserOptions },
     { code: '<img alt={function(e){}} />', parserOptions },
