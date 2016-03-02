@@ -23,15 +23,15 @@ const errorMessage = 'Redundant alt attribute. Screen-readers already announce `
 module.exports = context => ({
   JSXOpeningElement: node => {
     const type = node.name.name;
-    if (type.toUpperCase() !== 'IMG') {
+    if (type !== 'img') {
       return;
     }
 
-    const hasAltProp = hasAttribute(node.attributes, 'alt');
+    const altProp = hasAttribute(node.attributes, 'alt');
     const isVisible = isHiddenFromScreenReader(node.attributes) === false;
 
-    if (Boolean(hasAltProp) && isVisible) {
-      const hasRedundancy = REDUNDANT_WORDS.some(word => Boolean(hasAltProp.value.value.match(new RegExp(word, 'gi'))));
+    if (Boolean(altProp) && typeof altProp === 'string' && isVisible) {
+      const hasRedundancy = REDUNDANT_WORDS.some(word => Boolean(altProp.match(new RegExp(word, 'gi'))));
 
       if (hasRedundancy === true) {
         context.report({

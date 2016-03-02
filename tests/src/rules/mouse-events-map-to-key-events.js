@@ -35,17 +35,23 @@ const mouseOutError = {
   type: 'JSXOpeningElement'
 };
 
-ruleTester.run('mouseEvents-require-keyEvents', rule, {
+ruleTester.run('mouse-events-map-to-key-events', rule, {
   valid: [
     { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;', parserOptions },
     { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;', parserOptions },
+    { code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} />;', parserOptions },
+    { code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} {...props} />;', parserOptions },
     { code: '<div />;', parserOptions },
     { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} />', parserOptions },
-    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} {...props} />', parserOptions }
+    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} {...props} />', parserOptions },
+    { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} />', parserOptions },
+    { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} {...props} />', parserOptions }
   ],
   invalid: [
     { code: '<div onMouseOver={() => void 0} />;', errors: [ mouseOverError ], parserOptions },
     { code: '<div onMouseOut={() => void 0} />', errors: [ mouseOutError ], parserOptions },
+    { code: '<div onMouseOver={() => void 0} onFocus={undefined} />;', errors: [ mouseOverError ], parserOptions },
+    { code: '<div onMouseOut={() => void 0} onBlur={undefined} />', errors: [ mouseOutError ], parserOptions },
     { code: '<div onMouseOver={() => void 0} {...props} />', errors: [ mouseOverError ], parserOptions },
     { code: '<div onMouseOut={() => void 0} {...props} />', errors: [ mouseOutError ], parserOptions }
   ]

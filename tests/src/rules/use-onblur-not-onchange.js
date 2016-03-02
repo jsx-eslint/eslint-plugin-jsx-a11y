@@ -34,12 +34,14 @@ const expectedError = {
 ruleTester.run('use-onblur-not-onchange', rule, {
   valid: [
     { code: '<div onBlur={() => {}} />;', parserOptions },
+    { code: '<div onBlur={handleOnBlur} />;', parserOptions },
     { code: '<div />;', parserOptions },
     { code: '<div onBlur={() => {}} onChange={() => {}} />;', parserOptions },
     { code: '<div {...props} />', parserOptions }
   ],
   invalid: [
     { code: '<div onChange={() => {}} />;', errors: [ expectedError ], parserOptions },
+    { code: '<div onChange={handleOnChange} />;', errors: [ expectedError ], parserOptions },
     { code: '<input onChange={() => {}} />', errors: [ expectedError ], parserOptions },
     { code: '<input onChange={() => {}} {...props} />', errors: [ expectedError ], parserOptions }
   ]

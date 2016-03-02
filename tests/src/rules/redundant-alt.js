@@ -31,15 +31,22 @@ const expectedError = {
   type: 'JSXOpeningElement'
 };
 
-ruleTester.run('img-uses-alt', rule, {
+ruleTester.run('redundant-alt', rule, {
   valid: [
     { code: '<img alt="foo" />;', parserOptions },
     { code: '<img alt="picture of me taking a photo of an image" aria-hidden />', parserOptions },
     { code: '<img aria-hidden alt="photo of image" />', parserOptions },
     { code: '<img ALt="foo" />;', parserOptions },
     { code: '<img {...this.props} alt="foo" />', parserOptions },
+    { code: '<img {...this.props} alt={"foo"} />', parserOptions },
+    { code: '<img {...this.props} alt={alt} />', parserOptions },
     { code: '<a />', parserOptions },
     { code: '<img />', parserOptions },
+    { code: '<IMG />', parserOptions },
+    { code: '<img alt={undefined} />', parserOptions },
+    { code: '<img alt={"undefined"} />', parserOptions },
+    { code: '<img alt={() => {}} />', parserOptions },
+    { code: '<img alt={function(e){}} />', parserOptions },
     { code: '<img aria-hidden={false} alt="Doing cool things." />', parserOptions }
   ],
   invalid: [
@@ -47,6 +54,7 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<img alt="Picture of friend." />;', errors: [ expectedError ], parserOptions },
     { code: '<img alt="Image of friend." />;', errors: [ expectedError ], parserOptions },
     { code: '<img alt="PhOtO of friend." />;', errors: [ expectedError ], parserOptions },
+    { code: '<img alt={"photo"} />;', errors: [ expectedError ], parserOptions },
     { code: '<img alt="piCTUre of friend." />;', errors: [ expectedError ], parserOptions },
     { code: '<img alt="imAGE of friend." />;', errors: [ expectedError ], parserOptions },
     { code: '<img alt="photo of cool person" aria-hidden={false} />', errors: [ expectedError ], parserOptions },

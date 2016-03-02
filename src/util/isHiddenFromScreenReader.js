@@ -1,16 +1,10 @@
 'use strict';
 
-const isHiddenFromScreenReader = attributes => (
-  attributes.some(attribute => {
-    if (attribute.type === 'JSXSpreadAttribute') {
-      return false;
-    }
+import hasAttribute from './hasAttribute';
 
-    const name = attribute.name.name.toUpperCase();
-    const value = attribute.value && attribute.value.value;
-
-    return name === 'ARIA-HIDDEN' && (value === true || value === null);
-  })
-);
+const isHiddenFromScreenReader = attributes => {
+  const hasAriaHidden = hasAttribute(attributes, 'aria-hidden');
+  return hasAriaHidden && (hasAriaHidden === true || hasAriaHidden === null);
+};
 
 export default isHiddenFromScreenReader;

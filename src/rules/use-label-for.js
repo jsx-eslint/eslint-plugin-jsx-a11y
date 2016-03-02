@@ -16,7 +16,7 @@ const errorMessage = 'Form controls using a label to identify them must be ' +
 module.exports = context => ({
   JSXOpeningElement: node => {
     const type = node.name.name;
-    if (type.toUpperCase() !== 'LABEL') {
+    if (type !== 'label') {
       return;
     }
 

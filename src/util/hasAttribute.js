@@ -1,9 +1,11 @@
 'use strict';
 
-const hasAttribute = (attributes, attribute) => {
-  let idx = 0;
+import getAttributeValue from './getAttributeValue';
 
-  const hasAttr = attributes.some((attr, index) => {
+const hasAttribute = (attributes, attribute) => {
+  let value = false;
+
+  const hasAttr = attributes.some(attr => {
     // If the attributes contain a spread attribute, then skip.
     if (attr.type === 'JSXSpreadAttribute') {
       return false;
@@ -11,14 +13,16 @@ const hasAttribute = (attributes, attribute) => {
 
     // Normalize.
     if (attr.name.name.toUpperCase() === attribute.toUpperCase()) {
-      idx = index; // Keep track of the index.
-      return true;
+      value = getAttributeValue(attr);
+
+      // If the value is undefined, it doesn't really have the attribute.
+      return value !== undefined;
     }
 
     return false;
   });
 
-  return hasAttr ? attributes[idx] : false;
+  return hasAttr ? value : false;
 };
 
 export default hasAttribute;

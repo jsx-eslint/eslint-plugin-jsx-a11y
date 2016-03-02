@@ -31,14 +31,17 @@ const  expectedError  = {
   type: 'JSXOpeningElement'
 };
 
-ruleTester.run('onClick-uses-role', rule, {
+ruleTester.run('onclick-uses-role', rule, {
   valid: [
     { code: '<div onClick={() => void 0} role="button" />;', parserOptions },
+    { code: '<div onClick={() => void 0} role={role} />;', parserOptions },
+    { code: '<div onClick={() => void 0} role={"button"} />;', parserOptions },
     { code: '<div onClick={() => void 0} role="button" {...props} />;', parserOptions },
     { code: '<div className="foo" />;', parserOptions },
     { code: '<div onClick={() => void 0} role="button" aria-hidden />;', parserOptions },
     { code: '<div onClick={() => void 0} role="button" aria-hidden={true} />;', parserOptions },
     { code: '<div onClick={() => void 0} role="button" aria-hidden={false} />;', parserOptions },
+    { code: '<div onClick={() => void 0} role="button" aria-hidden={undefined} />;', parserOptions },
     { code: '<input type="text" onClick={() => void 0} />', parserOptions },
     { code: '<input onClick={() => void 0} />', parserOptions },
     { code: '<button onClick={() => void 0} className="foo" />', parserOptions },
@@ -52,6 +55,7 @@ ruleTester.run('onClick-uses-role', rule, {
   ],
   invalid: [
     { code: '<div onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
+    { code: '<div onClick={() => void 0} role={undefined} />;', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} {...props} />;', errors: [ expectedError ], parserOptions },
     { code: '<section onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<main onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },

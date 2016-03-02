@@ -11,7 +11,7 @@ const interactiveMap = {
   button: () => true,
   input: attributes => {
     const hasTypeAttr = hasAttribute(attributes, 'type');
-    return hasTypeAttr ? hasTypeAttr.value.value.toUpperCase() !== 'HIDDEN' : true;
+    return hasTypeAttr ? hasTypeAttr.toUpperCase() !== 'HIDDEN' : true;
   },
   option: () => true,
   select: () => true,

@@ -15,7 +15,7 @@ const errorMessage = 'img elements must have an alt tag.';
 module.exports = context => ({
   JSXOpeningElement: node => {
     const type = node.name.name;
-    if (type.toUpperCase() !== 'IMG') {
+    if (type !== 'img') {
       return;
     }
 

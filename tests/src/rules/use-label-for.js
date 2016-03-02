@@ -34,11 +34,16 @@ const expectedError = {
 ruleTester.run('use-label-for', rule, {
   valid: [
     { code: '<label htmlFor="foo" />', parserOptions },
+    { code: '<label htmlFor={"foo"} />', parserOptions },
+    { code: '<label htmlFor={foo} />', parserOptions },
     { code: '<div />', parserOptions },
-    { code: '<label htmlFor="foo">Test!</label>', parserOptions }
+    { code: '<label htmlFor="foo">Test!</label>', parserOptions },
+    { code: '<Label />', parserOptions }, // lower-case convention refers to real HTML elements.
+    { code: '<Label htmlFor="foo" />', parserOptions }
   ],
   invalid: [
     { code: '<label id="foo" />', errors: [ expectedError ], parserOptions },
+    { code: '<label htmlFor={undefined} />', errors: [ expectedError ], parserOptions },
     { code: '<label>First Name</label>', errors: [ expectedError ], parserOptions },
     { code: '<label {...props}>Foo</label>', errors: [ expectedError ], parserOptions }
   ]
