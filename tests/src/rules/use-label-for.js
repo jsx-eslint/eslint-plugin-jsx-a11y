@@ -45,6 +45,7 @@ ruleTester.run('use-label-for', rule, {
   invalid: [
     { code: '<label id="foo" />', errors: [ expectedError ], parserOptions },
     { code: '<label htmlFor={undefined} />', errors: [ expectedError ], parserOptions },
+    { code: '<label htmlFor={`${undefined}`} />', errors: [ expectedError ], parserOptions },
     { code: '<label>First Name</label>', errors: [ expectedError ], parserOptions },
     { code: '<label {...props}>Foo</label>', errors: [ expectedError ], parserOptions }
   ]

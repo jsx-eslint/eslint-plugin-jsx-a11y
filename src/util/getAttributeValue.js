@@ -1,5 +1,7 @@
 'use strict';
 
+import buildTemplateLiteral from './buildTemplateLiteral';
+
 /**
  * Returns the value of a given attribute.
  * Different types of attributes have their associated
@@ -14,16 +16,15 @@ const getAttributeValue = attribute => {
   } else if (attribute.type === 'JSXAttribute') {
 
     if (attribute.value.type === 'Literal') {
-      return attribute.value.value;
+      return attribute.value.value === "" ? undefined : attribute.value.value;
     } else if (attribute.value.type === 'JSXExpressionContainer') {
       const expression = attribute.value.expression;
 
       switch (expression.type) {
         case 'Literal':
-          return expression.value;
+          return expression.value === "" ? undefined : expression.value;
         case 'TemplateLiteral':
-          // hot-fix before actually building out raw string value.
-          return Boolean(expression.quasis) || Boolean(expression.expressions);
+          return buildTemplateLiteral(expression);
         case 'Identifier':
           return expression.name == 'undefined' ? undefined : expression.name;
         case 'ArrowFunctionExpression':
