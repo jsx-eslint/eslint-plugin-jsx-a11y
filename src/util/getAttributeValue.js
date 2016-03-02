@@ -1,5 +1,13 @@
 'use strict';
 
+/**
+ * Returns the value of a given attribute.
+ * Different types of attributes have their associated
+ * values in different properties on the object.
+ *
+ * This function should return the most *closely* associated
+ * value with the intention of the JSX.
+ */
 const getAttributeValue = attribute => {
   if (attribute.value === null) {
     return null;

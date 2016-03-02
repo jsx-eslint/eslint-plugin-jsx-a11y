@@ -2,6 +2,14 @@
 
 import getAttributeValue from './getAttributeValue';
 
+/**
+ * Returns the value of the attribute or false, indicating the attribute
+ * is not present on the JSX opening element. This skips over spread attributes
+ * as the purpose of this linter is to do hard checks of explicit JSX props.
+ *
+ * This treats undefined values as missing props, as they will not be used for
+ * rendering on elements that live closest to the DOM (pure html JSX elements).
+ */
 const hasAttribute = (attributes, attribute) => {
   let value = false;
 
