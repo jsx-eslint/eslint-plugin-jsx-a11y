@@ -22,13 +22,13 @@ const buildTemplateLiteral = templateLiteral => {
     if (type === 'TemplateElement') {
       return raw + part.value.raw;
     } else if (type === 'Identifier') {
-      return raw + part.name;
+      return part.name === 'undefined' ? raw : raw + part.name;
     }
 
     return raw;
   }, '');
 
-  return rawString === "undefined" ? undefined : rawString;
+  return rawString === '' ? undefined : rawString;
 };
 
 export default buildTemplateLiteral;

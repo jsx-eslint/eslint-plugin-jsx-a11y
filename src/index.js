@@ -8,7 +8,8 @@ module.exports = {
     'mouse-events-map-to-key-events': require('./rules/mouse-events-map-to-key-events'),
     'use-onblur-not-onchange': require('./rules/use-onblur-not-onchange'),
     'no-access-key': require('./rules/no-access-key'),
-    'use-label-for': require('./rules/use-label-for')
+    'use-label-for': require('./rules/use-label-for'),
+    'no-hash-href': require('./rules/no-hash-href')
   },
   configs: {
     recommended: {

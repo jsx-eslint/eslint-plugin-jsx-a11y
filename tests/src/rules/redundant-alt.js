@@ -63,6 +63,9 @@ ruleTester.run('redundant-alt', rule, {
     { code: '<img alt="image of cool person" aria-hidden={false} />', errors: [ expectedError ], parserOptions },
     { code: '<img alt="photo" {...this.props} />', errors: [ expectedError ], parserOptions },
     { code: '<img alt="image" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="picture" {...this.props} />', errors: [ expectedError ], parserOptions }
+    { code: '<img alt="picture" {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt="{`picture doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt="{`photo doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt="{`image doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions }
   ]
 });
