@@ -21,9 +21,9 @@
 Static AST checker for accessibility rules on JSX elements.
 
 ## Why?
-Ryan Florence built out this awesome runtime-analysis tool called [react-a11y](https://github.com/reactjs/react-a11y). It is pretty awesome. However, this creates more package-bloat and requries initialization in your code. Since you're probably already using linting in your project, this plugin comes for free and closer to actual development. Pairing this plugin with an editor lint plugin, you can bake accessibility standards into your application in real-time.
+Ryan Florence built out this awesome runtime-analysis tool called [react-a11y](https://github.com/reactjs/react-a11y). It is pretty awesome. However, since you're probably already using linting in your project, this plugin comes for free and closer to the actual development process. Pairing this plugin with an editor lint plugin, you can bake accessibility standards into your application in real-time.
 
-Note: This project does not *replace* react-a11y, but can and should be used in conjunction with it. Static analysis tools cannot determine values of variables that are being placed in props before runtime, so linting will not fail if that value is undefined and/or does not pass the lint rule.
+**Note**: This project does not *replace* react-a11y, but can and should be used in conjunction with it. Static analysis tools cannot determine values of variables that are being placed in props before runtime, so linting will not fail if that value is undefined and/or does not pass the lint rule.
 
 ## Installation
 
