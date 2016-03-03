@@ -21,8 +21,8 @@ describe('all rule files should be exported by the plugin', () => {
   });
 });
 
-describe('configurations', function() {
-  it('should export a \'recommended\' configuration', function() {
+describe('configurations', () => {
+  it('should export a \'recommended\' configuration', () => {
     assert(plugin.configs.recommended);
   });
 });
