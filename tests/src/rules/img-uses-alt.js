@@ -48,6 +48,7 @@ ruleTester.run('img-uses-alt', rule, {
   ],
   invalid: [
     { code: '<img />;', errors: [ expectedError ], parserOptions },
+    { code: '<img alt />;', errors: [ expectedError ], parserOptions },
     { code: '<img alt={undefined} />;', errors: [ expectedError ], parserOptions },
     { code: '<img alt={`${undefined}`} />;', errors: [ expectedError ], parserOptions },
     { code: '<img alt="" />;', errors: [ expectedError ], parserOptions },

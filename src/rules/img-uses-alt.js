@@ -22,7 +22,8 @@ module.exports = context => ({
 
     const hasAltProp = hasAttribute(node.attributes, 'alt');
 
-    if (hasAltProp === false) {
+    // alt must have a value.
+    if (hasAltProp === false || hasAltProp === null) {
       context.report({
         node,
         message: errorMessage
