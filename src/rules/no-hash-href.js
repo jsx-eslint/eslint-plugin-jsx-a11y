@@ -14,9 +14,11 @@ const errorMessage = 'Links must not point to "#". Use a more descriptive href o
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const type = node.name.name;
-    // Only check img tags.
-    if (type !== 'a') {
+    const typeCheck = [ 'a' ].concat(context.options[0]);
+    const nodeType = node.name.name;
+
+    // Only check 'a' elements and custom types.
+    if (typeCheck.indexOf(nodeType) === -1) {
       return;
     }
 
@@ -32,5 +34,17 @@ module.exports = context => ({
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  {
+    "oneOf": [
+      { "type": "string" },
+      {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    ]
+  }
 ];

@@ -60,7 +60,7 @@ module.exports = {
       "SwitchCase": 1
     } ],
     "jsx-quotes": [ 2, "prefer-double" ],
-    "max-len": [ 2, 120, 2, {
+    "max-len": [ 2, 125, 2, {
       "ignorePattern": "((^import[^;]+;$)|(^\\s*it\\())",
       "ignoreUrls": true
     } ],

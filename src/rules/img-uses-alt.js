@@ -10,13 +10,15 @@
 
 import hasAttribute from '../util/hasAttribute';
 
-const errorMessage = 'img elements must have an alt tag.';
+const errorMessage = type => `${type} elements must have an alt tag.`;
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const type = node.name.name;
-    // Only check img tags.
-    if (type !== 'img') {
+    const typeCheck = [ 'img' ].concat(context.options[0]);
+    const nodeType = node.name.name;
+
+    // Only check 'img' elements and custom types.
+    if (typeCheck.indexOf(nodeType) === -1) {
       return;
     }
 
@@ -26,12 +28,24 @@ module.exports = context => ({
     if (hasAltProp === false || hasAltProp === null) {
       context.report({
         node,
-        message: errorMessage
+        message: errorMessage(nodeType)
       });
     }
   }
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  {
+    "oneOf": [
+      { "type": "string" },
+      {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    ]
+  }
 ];

@@ -31,7 +31,8 @@ module.exports = context => ({
     const isVisible = isHiddenFromScreenReader(node.attributes) === false;
 
     if (Boolean(altProp) && typeof altProp === 'string' && isVisible) {
-      const hasRedundancy = REDUNDANT_WORDS.some(word => Boolean(altProp.match(new RegExp(word, 'gi'))));
+      const hasRedundancy = REDUNDANT_WORDS
+        .some(word => Boolean(altProp.match(new RegExp(`(?!{)${word}(?!})`, 'gi'))));
 
       if (hasRedundancy === true) {
         context.report({

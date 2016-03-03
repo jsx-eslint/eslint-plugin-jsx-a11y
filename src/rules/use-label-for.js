@@ -15,8 +15,11 @@ const errorMessage = 'Form controls using a label to identify them must be ' +
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const type = node.name.name;
-    if (type !== 'label') {
+    const typeCheck = [ 'label' ].concat(context.options[0]);
+    const nodeType = node.name.name;
+
+    // Only check 'label' elements and custom types.
+    if (typeCheck.indexOf(nodeType) === -1) {
       return;
     }
 
@@ -32,5 +35,17 @@ module.exports = context => ({
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  {
+    "oneOf": [
+      { "type": "string" },
+      {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    ]
+  }
 ];

@@ -22,7 +22,7 @@ const buildTemplateLiteral = templateLiteral => {
     if (type === 'TemplateElement') {
       return raw + part.value.raw;
     } else if (type === 'Identifier') {
-      return part.name === 'undefined' ? raw : raw + part.name;
+      return part.name === 'undefined' ? raw : `${raw}{${part.name}}`;
     }
 
     return raw;

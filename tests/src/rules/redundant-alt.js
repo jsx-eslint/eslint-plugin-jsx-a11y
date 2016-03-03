@@ -45,6 +45,12 @@ ruleTester.run('redundant-alt', rule, {
     { code: '<IMG />', parserOptions },
     { code: '<img alt={undefined} />', parserOptions },
     { code: '<img alt={`this should pass for ${now}`} />', parserOptions },
+    { code: '<img alt={`this should pass for ${photo}`} />', parserOptions },
+    { code: '<img alt={`this should pass for ${image}`} />', parserOptions },
+    { code: '<img alt={`this should pass for ${picture}`} />', parserOptions },
+    { code: '<img alt={`${photo}`} />', parserOptions },
+    { code: '<img alt={`${image}`} />', parserOptions },
+    { code: '<img alt={`${picture}`} />', parserOptions },
     { code: '<img alt={"undefined"} />', parserOptions },
     { code: '<img alt={() => {}} />', parserOptions },
     { code: '<img alt={function(e){}} />', parserOptions },
@@ -66,6 +72,9 @@ ruleTester.run('redundant-alt', rule, {
     { code: '<img alt="picture" {...this.props} />', errors: [ expectedError ], parserOptions },
     { code: '<img alt="{`picture doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
     { code: '<img alt="{`photo doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="{`image doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions }
+    { code: '<img alt="{`image doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt="{`picture doing ${picture}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt="{`photo doing ${photo}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt="{`image doing ${image}`}" {...this.props} />', errors: [ expectedError ], parserOptions }
   ]
 });

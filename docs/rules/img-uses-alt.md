@@ -1,10 +1,47 @@
 # img-uses-alt
 
-Enforce that an `img` element contains the `alt` prop. The alt attribute specifies an alternate text for an image, if the image cannot be displayed.
+Enforce that an `img` element contains the `alt` prop. The `alt` attribute specifies an alternate text for an image, if the image cannot be displayed.
 
 ## Rule details
 
-This rule takes no arguments. However, note that passing props as spread attribute without alt explicitly defined will cause this rule to fail. Explicitly pass down alt prop for rule to pass. Alt must have an actual value to pass.
+This rule takes one optional argument of type string or an array of strings. These strings determine which JSX elements should be checked for the `alt` prop **including** `img` by default. This is a good use case when you have a wrapper component that simply renders an `img` element (like in React):
+
+```js
+// Image.js
+const Image = props => {
+  const {
+    alt,
+    ...otherProps
+  } = props;
+
+  return (
+    <img alt={alt} {...otherProps} />
+  );
+}
+
+...
+
+// Header.js (for example)
+...
+return (
+  <header>
+    <Image alt="Logo" src="logo.jpg" />
+  </header>
+);
+```
+
+To tell this plugin to also check your `Image` element, specify this in your `.eslintrc` file:
+
+```json
+{
+    "rules": {
+        "jsx-a11y/img-uses-alt": [ 2, "Image" ], // OR
+        "jsx-a11y/img-uses-alt": [ 2, [ "Image", "Avatar" ] ]
+    }
+}
+```
+
+Note that passing props as spread attribute without `alt` explicitly defined will cause this rule to fail. Explicitly pass down `alt` prop for rule to pass. The prop must have an actual value to pass. Use `Image` component above as a reference for destructuring and applying the prop. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.**
 
 ### Succeed
 ```jsx

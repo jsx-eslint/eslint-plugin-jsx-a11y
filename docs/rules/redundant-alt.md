@@ -10,6 +10,7 @@ This rule takes no arguments. This rule will first check if `aria-hidden` is tru
 ```jsx
 <img src="foo" alt="Foo eating a sandwich." />
 <img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> // Will pass because it is hidden.
+<img src="baz" alt={`Baz taking a ${photo}`} /> // This is valid since photo is a variable name.
 ```
 
 ### Fail
