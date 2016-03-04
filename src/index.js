@@ -8,8 +8,9 @@ module.exports = {
     'mouse-events-map-to-key-events': require('./rules/mouse-events-map-to-key-events'),
     'use-onblur-not-onchange': require('./rules/use-onblur-not-onchange'),
     'no-access-key': require('./rules/no-access-key'),
-    'use-label-for': require('./rules/use-label-for'),
-    'no-hash-href': require('./rules/no-hash-href')
+    'label-uses-for': require('./rules/label-uses-for'),
+    'no-hash-href': require('./rules/no-hash-href'),
+    'table-uses-caption': require('./rules/table-uses-caption')
   },
   configs: {
     recommended: {
@@ -25,7 +26,7 @@ module.exports = {
         "jsx-a11y/mouse-events-map-to-key-events": 2,
         "jsx-a11y/use-onblur-not-onchange": 2,
         "jsx-a11y/no-access-key": 2,
-        "jsx-a11y/use-label-for": 2,
+        "jsx-a11y/label-uses-for": 2,
         "jsx-a11y/no-hash-href": 2
       }
     }

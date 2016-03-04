@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/use-label-for';
+import rule from '../../../src/rules/label-uses-for';
 import { RuleTester } from 'eslint';
 
 const parserOptions  = {
@@ -34,7 +34,7 @@ const expectedError = {
 const string = [ 'Label' ];
 const array = [ [ 'Label', 'Descriptor' ] ];
 
-ruleTester.run('use-label-for', rule, {
+ruleTester.run('label-uses-for', rule, {
   valid: [
     // DEFAULT ELEMENT 'label' TESTS
     { code: '<label htmlFor="foo" />', parserOptions },
