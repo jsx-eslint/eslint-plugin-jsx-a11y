@@ -9,13 +9,14 @@
 // ----------------------------------------------------------------------------
 
 import hasAttribute from '../util/hasAttribute';
+import getNodeType from '../util/getNodeType';
 
 const errorMessage = 'Links must not point to "#". Use a more descriptive href or use a button instead.';
 
 module.exports = context => ({
   JSXOpeningElement: node => {
     const typeCheck = [ 'a' ].concat(context.options[0]);
-    const nodeType = node.name.name;
+    const nodeType = getNodeType(node);
 
     // Only check 'a' elements and custom types.
     if (typeCheck.indexOf(nodeType) === -1) {

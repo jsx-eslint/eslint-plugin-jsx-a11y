@@ -54,6 +54,7 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<div alt={function(e) {} } />', parserOptions },
     { code: '<img alt={() => void 0} />', parserOptions },
     { code: '<IMG />', parserOptions },
+    { code: '<UX.Layout>test</UX.Layout>', parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR STRING OPTION
     { code: '<Avatar alt="foo" />;', options: string, parserOptions },

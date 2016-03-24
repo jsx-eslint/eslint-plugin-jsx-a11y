@@ -10,6 +10,7 @@
 
 import hasAttribute from '../util/hasAttribute';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
+import getNodeType from '../util/getNodeType';
 
 const REDUNDANT_WORDS = [
   'image',
@@ -22,7 +23,7 @@ const errorMessage = 'Redundant alt attribute. Screen-readers already announce `
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const type = node.name.name;
+    const type = getNodeType(node);
     if (type !== 'img') {
       return;
     }

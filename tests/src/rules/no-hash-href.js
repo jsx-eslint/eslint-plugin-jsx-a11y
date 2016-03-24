@@ -48,6 +48,7 @@ ruleTester.run('no-hash-href', rule, {
     { code: '<a href={`#foo`}/>', parserOptions },
     { code: '<a href={"foo"}/>', parserOptions },
     { code: '<a href="#foo" />', parserOptions },
+    { code: '<UX.Layout>test</UX.Layout>', parserOptions },
 
     // CUSTOM ELEMENT TEST FOR STRING OPTION
     { code: '<Link />;', options: string, parserOptions },

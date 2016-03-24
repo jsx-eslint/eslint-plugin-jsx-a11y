@@ -9,13 +9,14 @@
 // ----------------------------------------------------------------------------
 
 import hasAttribute from '../util/hasAttribute';
+import getNodeType from '../util/getNodeType';
 
 const errorMessage = type => `${type} elements must have an alt tag.`;
 
 module.exports = context => ({
   JSXOpeningElement: node => {
     const typeCheck = [ 'img' ].concat(context.options[0]);
-    const nodeType = node.name.name;
+    const nodeType = getNodeType(node);
 
     // Only check 'img' elements and custom types.
     if (typeCheck.indexOf(nodeType) === -1) {

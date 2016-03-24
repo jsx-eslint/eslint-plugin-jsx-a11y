@@ -45,6 +45,7 @@ ruleTester.run('label-uses-for', rule, {
     { code: '<label htmlFor="foo">Test!</label>', parserOptions },
     { code: '<Label />', parserOptions }, // lower-case convention refers to real HTML elements.
     { code: '<Label htmlFor="foo" />', parserOptions },
+    { code: '<UX.Layout>test</UX.Layout>', parserOptions },
 
     // CUSTOM ELEMENT STRING OPTION TESTS
     { code: '<Label htmlFor="foo" />', options: string, parserOptions },

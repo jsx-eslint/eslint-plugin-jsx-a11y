@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import hasAttribute from '../util/hasAttribute';
+import getNodeType from '../util/getNodeType';
 
 const errorMessage = 'Form controls using a label to identify them must be ' +
   'programmatically associated with the control using htmlFor';
@@ -16,7 +17,7 @@ const errorMessage = 'Form controls using a label to identify them must be ' +
 module.exports = context => ({
   JSXOpeningElement: node => {
     const typeCheck = [ 'label' ].concat(context.options[0]);
-    const nodeType = node.name.name;
+    const nodeType = getNodeType(node);
 
     // Only check 'label' elements and custom types.
     if (typeCheck.indexOf(nodeType) === -1) {

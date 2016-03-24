@@ -1,3 +1,4 @@
 node_modules/**
 reports/**
 index.js
+lib/

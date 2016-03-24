@@ -54,7 +54,8 @@ ruleTester.run('redundant-alt', rule, {
     { code: '<img alt={"undefined"} />', parserOptions },
     { code: '<img alt={() => {}} />', parserOptions },
     { code: '<img alt={function(e){}} />', parserOptions },
-    { code: '<img aria-hidden={false} alt="Doing cool things." />', parserOptions }
+    { code: '<img aria-hidden={false} alt="Doing cool things." />', parserOptions },
+    { code: '<UX.Layout>test</UX.Layout>', parserOptions }
   ],
   invalid: [
     { code: '<img alt="Photo of friend." />;', errors: [ expectedError ], parserOptions },

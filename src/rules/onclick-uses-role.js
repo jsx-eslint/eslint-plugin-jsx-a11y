@@ -8,6 +8,7 @@
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import hasAttribute from '../util/hasAttribute';
+import getNodeType from '../util/getNodeType';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -24,7 +25,7 @@ module.exports = context => ({
     }
 
     const isVisible = isHiddenFromScreenReader(attributes) === false;
-    const isNonInteractive = isInteractiveElement(node.name.name, attributes) === false;
+    const isNonInteractive = isInteractiveElement(getNodeType(node), attributes) === false;
     const noRoleAttribute = hasAttribute(attributes, 'role') === false;
 
     // Visible, non-interactive elements require role attribute.
