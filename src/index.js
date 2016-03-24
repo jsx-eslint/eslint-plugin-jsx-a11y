@@ -9,7 +9,8 @@ module.exports = {
     'use-onblur-not-onchange': require('./rules/use-onblur-not-onchange'),
     'no-access-key': require('./rules/no-access-key'),
     'label-uses-for': require('./rules/label-uses-for'),
-    'no-hash-href': require('./rules/no-hash-href')
+    'no-hash-href': require('./rules/no-hash-href'),
+    'table-uses-caption': require('./rules/table-uses-caption')
   },
   configs: {
     recommended: {
@@ -26,7 +27,8 @@ module.exports = {
         "jsx-a11y/use-onblur-not-onchange": 2,
         "jsx-a11y/no-access-key": 2,
         "jsx-a11y/label-uses-for": 2,
-        "jsx-a11y/no-hash-href": 2
+        "jsx-a11y/no-hash-href": 2,
+        "jsx-a11y/table-uses-caption": 2
       }
     }
   }
