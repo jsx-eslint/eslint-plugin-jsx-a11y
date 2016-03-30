@@ -2,6 +2,34 @@
 
 import buildTemplateLiteral from './buildTemplateLiteral';
 
+const getValue = value => {
+  if (value.type === 'Literal') {
+    return value.value === "" ? undefined : value.value;
+  } else if (value.type === 'Identifier') {
+    return value.name === "" ? undefined : value.name;
+  } else if (value.type === 'JSXExpressionContainer') {
+    const expression = value.expression;
+
+    switch (expression.type) {
+      case 'Literal':
+        return expression.value === "" ? undefined : expression.value;
+      case 'TemplateLiteral':
+        return buildTemplateLiteral(expression);
+      case 'Identifier':
+        return expression.name == 'undefined' ? undefined : expression.name;
+      case 'ArrowFunctionExpression':
+      case 'FunctionExpression':
+        return () => void 0;
+      case 'LogicalExpression':
+        return getValue(expression.left) && getValue(expression.right);
+      default:
+        return undefined;
+    }
+  }
+
+  return undefined;
+};
+
 /**
  * Returns the value of a given attribute.
  * Different types of attributes have their associated
@@ -14,26 +42,7 @@ const getAttributeValue = attribute => {
   if (attribute.value === null) {
     return null;
   } else if (attribute.type === 'JSXAttribute') {
-
-    if (attribute.value.type === 'Literal') {
-      return attribute.value.value === "" ? undefined : attribute.value.value;
-    } else if (attribute.value.type === 'JSXExpressionContainer') {
-      const expression = attribute.value.expression;
-
-      switch (expression.type) {
-        case 'Literal':
-          return expression.value === "" ? undefined : expression.value;
-        case 'TemplateLiteral':
-          return buildTemplateLiteral(expression);
-        case 'Identifier':
-          return expression.name == 'undefined' ? undefined : expression.name;
-        case 'ArrowFunctionExpression':
-        case 'FunctionExpression':
-          return () => void 0;
-        default:
-          return undefined;
-      }
-    }
+    return getValue(attribute.value);
   }
 
   return undefined;
