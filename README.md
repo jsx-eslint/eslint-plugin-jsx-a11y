@@ -76,6 +76,9 @@ Then configure the rules you want to use under the rules section.
 - [no-hash-href](docs/rules/no-hash-href.md): Enforce an anchor element's href prop value is not just #.
 - [valid-aria-role](docs/rules/valid-aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
 
+## Contributing
+Feel free to contribute! I am currently using [Google Chrome's Audit Rules](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules) to map out as rules for this plugin.
+
 ## License
 
 eslint-plugin-jsx-a11y is licensed under the [MIT License](LICENSE.md).
