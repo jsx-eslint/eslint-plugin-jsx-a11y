@@ -55,6 +55,7 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<img alt={() => void 0} />', parserOptions },
     { code: '<IMG />', parserOptions },
     { code: '<UX.Layout>test</UX.Layout>', parserOptions },
+    { code: '<img alt={alt || "Alt text" } />', parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR STRING OPTION
     { code: '<Avatar alt="foo" />;', options: string, parserOptions },
@@ -70,6 +71,7 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<div alt={function(e) {} } />', options: string, parserOptions },
     { code: '<Avatar alt={() => void 0} />', options: string, parserOptions },
     { code: '<AVATAR />', options: string, parserOptions },
+    { code: '<Avatar alt={alt || "foo" } />', options: string, parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     { code: '<Thumbnail alt="foo" />;', options: array, parserOptions },
@@ -85,6 +87,7 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<div alt={function(e) {} } />', options: array, parserOptions },
     { code: '<Thumbnail alt={() => void 0} />', options: array, parserOptions },
     { code: '<THUMBNAIL />', options: array, parserOptions },
+    { code: '<Thumbnail alt={alt || "foo" } />', options: array, parserOptions },
     { code: '<Image alt="foo" />;', options: array, parserOptions },
     { code: '<Image alt={"foo"} />;', options: array, parserOptions },
     { code: '<Image alt={alt} />;', options: array, parserOptions },
@@ -97,7 +100,8 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<Image alt={function(e) {} } />', options: array, parserOptions },
     { code: '<div alt={function(e) {} } />', options: array, parserOptions },
     { code: '<Image alt={() => void 0} />', options: array, parserOptions },
-    { code: '<IMAGE />', options: array, parserOptions }
+    { code: '<IMAGE />', options: array, parserOptions },
+    { code: '<Image alt={alt || "foo" } />', options: array, parserOptions }
   ],
   invalid: [
     // DEFAULT ELEMENT 'img' TESTS
@@ -108,6 +112,7 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<img alt="" />;', errors: [ expectedError ], parserOptions },
     { code: '<img src="xyz" />', errors: [ expectedError ], parserOptions },
     { code: '<img {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt={false || false} />', errors: [ expectedError ], parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR STRING OPTION
     { code: '<Avatar />;', errors: [ customError('Avatar') ], options: string, parserOptions },
