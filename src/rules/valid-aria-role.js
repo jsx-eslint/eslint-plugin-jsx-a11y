@@ -47,14 +47,11 @@ module.exports = context => ({
     }
 
     // If value is a literal.
-    const normalizedValue = attribute.value.value.toUpperCase();
-    const isValid = validRoleTypes.indexOf(normalizedValue) > -1;
+    const normalizedValues = attribute.value.value.toUpperCase().split(" ");
+    const isValid = normalizedValues.every(value => validRoleTypes.indexOf(value) > -1);
 
     if (isValid === false) {
-      context.report({
-        node: attribute,
-        message: errorMessage
-      });
+      report(context, attribute);
     }
   }
 });
