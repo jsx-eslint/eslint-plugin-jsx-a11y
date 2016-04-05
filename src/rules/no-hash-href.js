@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import hasAttribute from '../util/hasAttribute';
+import getAttributeValue from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 
 const errorMessage = 'Links must not point to "#". Use a more descriptive href or use a button instead.';
@@ -24,8 +25,9 @@ module.exports = context => ({
     }
 
     const href = hasAttribute(node.attributes, 'href');
+    const value = getAttributeValue(href);
 
-    if (href === '#') {
+    if (href && value === '#') {
       context.report({
         node,
         message: errorMessage

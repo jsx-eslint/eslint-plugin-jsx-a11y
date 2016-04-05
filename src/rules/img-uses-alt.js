@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import hasAttribute from '../util/hasAttribute';
+import getAttributeValue from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 
 const errorMessage = type => `${type} elements must have an alt tag.`;
@@ -24,9 +25,11 @@ module.exports = context => ({
     }
 
     const hasAltProp = hasAttribute(node.attributes, 'alt');
+    const altProp = hasAltProp ? getAttributeValue(hasAltProp) : undefined;
+    const isInvalid = hasAltProp === false || Boolean(altProp) === false;
 
     // alt must have a value.
-    if (hasAltProp === false || hasAltProp === null) {
+    if (isInvalid) {
       context.report({
         node,
         message: errorMessage(nodeType)

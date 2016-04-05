@@ -1,6 +1,7 @@
 'use strict';
 
 import hasAttribute from './hasAttribute';
+import getAttributeValue from './getAttributeValue';
 
 /**
  * Returns boolean indicating that the aria-hidden prop
@@ -9,8 +10,8 @@ import hasAttribute from './hasAttribute';
  * <div aria-hidden /> is equivalent to the DOM as <div aria-hidden=true />.
  */
 const isHiddenFromScreenReader = attributes => {
-  const hasAriaHidden = hasAttribute(attributes, 'aria-hidden');
-  return hasAriaHidden && (hasAriaHidden === true || hasAriaHidden === null);
+  const ariaHidden = getAttributeValue(hasAttribute(attributes, 'aria-hidden'));
+  return ariaHidden === true || ariaHidden === null;
 };
 
 export default isHiddenFromScreenReader;

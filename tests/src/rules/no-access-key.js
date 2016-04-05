@@ -26,7 +26,7 @@ const parserOptions = {
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'No access key attribute allowed. Incosistencies ' +
+  message: 'No access key attribute allowed. Inconsistencies ' +
   'between keyboard shortcuts and keyboard comments used by screenreader ' +
   'and keyboard only users create a11y complications.',
   type: 'JSXOpeningElement'

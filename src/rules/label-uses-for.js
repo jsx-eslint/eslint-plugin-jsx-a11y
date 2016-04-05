@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import hasAttribute from '../util/hasAttribute';
+import getAttributeValue from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 
 const errorMessage = 'Form controls using a label to identify them must be ' +
@@ -24,9 +25,11 @@ module.exports = context => ({
       return;
     }
 
-    const hasHtmlForAttr = hasAttribute(node.attributes, 'htmlFor');
+    const htmlForAttr = hasAttribute(node.attributes, 'htmlFor');
+    const htmlForValue = getAttributeValue(htmlForAttr);
+    const isInvalid = htmlForAttr === false || htmlForValue === null || htmlForValue === undefined;
 
-    if (hasHtmlForAttr === false) {
+    if (isInvalid) {
       context.report({
         node,
         message: errorMessage

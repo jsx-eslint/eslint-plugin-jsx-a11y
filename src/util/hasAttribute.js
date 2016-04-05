@@ -1,17 +1,14 @@
 'use strict';
 
-import getAttributeValue from './getAttributeValue';
 
 /**
- * Returns the value of the attribute or false, indicating the attribute
- * is not present on the JSX opening element. This skips over spread attributes
+ * Returns the JSXAttribute itself or false, indicating the attribute
+ * is not present on the JSXOpeningElement. This skips over spread attributes
  * as the purpose of this linter is to do hard checks of explicit JSX props.
  *
- * This treats undefined values as missing props, as they will not be used for
- * rendering on elements that live closest to the DOM (pure html JSX elements).
  */
 const hasAttribute = (attributes, attribute) => {
-  let value = false;
+  let nodeAttribute = undefined;
 
   const hasAttr = attributes.some(attr => {
     // If the attributes contain a spread attribute, then skip.
@@ -21,16 +18,14 @@ const hasAttribute = (attributes, attribute) => {
 
     // Normalize.
     if (attr.name.name.toUpperCase() === attribute.toUpperCase()) {
-      value = getAttributeValue(attr);
-
-      // If the value is undefined, it doesn't really have the attribute.
-      return value !== undefined;
+      nodeAttribute = attr;
+      return true;
     }
 
     return false;
   });
 
-  return hasAttr ? value : false;
+  return hasAttr ? nodeAttribute : false;
 };
 
 export default hasAttribute;

@@ -9,16 +9,18 @@
 // ----------------------------------------------------------------------------
 
 import hasAttribute from '../util/hasAttribute';
+import getAttributeValue from '../util/getAttributeValue';
 
-const errorMessage = 'No access key attribute allowed. Incosistencies ' +
+const errorMessage = 'No access key attribute allowed. Inconsistencies ' +
   'between keyboard shortcuts and keyboard comments used by screenreader ' +
   'and keyboard only users create a11y complications.';
 
 module.exports = context => ({
   JSXOpeningElement: node => {
     const hasAccessKey = hasAttribute(node.attributes, 'accesskey');
+    const accessKeyValue = getAttributeValue(hasAccessKey);
 
-    if (Boolean(hasAccessKey) === true) {
+    if (Boolean(hasAccessKey) === true && Boolean(accessKeyValue) === true) {
       context.report({
         node,
         message: errorMessage

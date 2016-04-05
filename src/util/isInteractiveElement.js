@@ -1,6 +1,7 @@
 'use strict';
 
 import hasAttribute from './hasAttribute';
+import getAttributeValue from './getAttributeValue';
 
 const interactiveMap = {
   a: attributes => {
@@ -10,8 +11,8 @@ const interactiveMap = {
   },
   button: () => true,
   input: attributes => {
-    const hasTypeAttr = hasAttribute(attributes, 'type');
-    return hasTypeAttr ? hasTypeAttr.toUpperCase() !== 'HIDDEN' : true;
+    const typeAttr = getAttributeValue(hasAttribute(attributes, 'type'));
+    return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
   },
   option: () => true,
   select: () => true,

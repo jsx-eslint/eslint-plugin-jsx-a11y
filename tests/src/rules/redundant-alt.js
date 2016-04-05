@@ -55,7 +55,8 @@ ruleTester.run('redundant-alt', rule, {
     { code: '<img alt={() => {}} />', parserOptions },
     { code: '<img alt={function(e){}} />', parserOptions },
     { code: '<img aria-hidden={false} alt="Doing cool things." />', parserOptions },
-    { code: '<UX.Layout>test</UX.Layout>', parserOptions }
+    { code: '<UX.Layout>test</UX.Layout>', parserOptions },
+    { code: '<img alt={imageAlt} />', parserOptions }
   ],
   invalid: [
     { code: '<img alt="Photo of friend." />;', errors: [ expectedError ], parserOptions },
@@ -71,11 +72,11 @@ ruleTester.run('redundant-alt', rule, {
     { code: '<img alt="photo" {...this.props} />', errors: [ expectedError ], parserOptions },
     { code: '<img alt="image" {...this.props} />', errors: [ expectedError ], parserOptions },
     { code: '<img alt="picture" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="{`picture doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="{`photo doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="{`image doing ${things}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="{`picture doing ${picture}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="{`photo doing ${photo}`}" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="{`image doing ${image}`}" {...this.props} />', errors: [ expectedError ], parserOptions }
+    { code: '<img alt={`picture doing ${things}`} {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt={`photo doing ${things}`} {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt={`image doing ${things}`} {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt={`picture doing ${picture}`} {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt={`photo doing ${photo}`} {...this.props} />', errors: [ expectedError ], parserOptions },
+    { code: '<img alt={`image doing ${image}`} {...this.props} />', errors: [ expectedError ], parserOptions }
   ]
 });
