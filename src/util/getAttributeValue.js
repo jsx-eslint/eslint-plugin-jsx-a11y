@@ -8,7 +8,7 @@ const getValue = value => {
   } else if (value.type === 'Identifier') {
     return value.name === "" ? undefined : value.name;
   } else if (value.type === 'JSXExpressionContainer') {
-    const expression = value.expression;
+    const { expression } = value;
 
     switch (expression.type) {
       case 'Literal':
@@ -21,7 +21,13 @@ const getValue = value => {
       case 'FunctionExpression':
         return () => void 0;
       case 'LogicalExpression':
-        return getValue(expression.left) && getValue(expression.right);
+        const { operator, left, right } = expression;
+        const leftVal = getValue(left);
+        const rightVal = getValue(right);
+
+        return operator == '&&' ? leftVal && rightVal : leftVal || rightVal;
+      case 'MemberExpression':
+        return `${getValue(expression.object)}.${expression.property}`;
       default:
         return undefined;
     }
