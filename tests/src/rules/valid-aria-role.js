@@ -45,7 +45,8 @@ ruleTester.run('valid-aria-role', rule, {
     { code: '<div></div>', parserOptions },
     { code: '<div role={role} />', parserOptions },
     { code: '<div role={role || "button"} />', parserOptions },
-    { code: '<div role={role || "foobar"} />', parserOptions }
+    { code: '<div role={role || "foobar"} />', parserOptions },
+    { code: '<Bar baz />', parserOptions }
   ].concat(basicValidityTests),
   invalid: [
     { code: '<div role="foobar" />', errors: [ errorMessage ], parserOptions },
@@ -53,6 +54,7 @@ ruleTester.run('valid-aria-role', rule, {
     { code: '<div role="range"></div>', errors: [ errorMessage ], parserOptions },
     { code: '<div role=""></div>', errors: [ errorMessage ], parserOptions },
     { code: '<div role={undefined}></div>', errors: [ errorMessage ], parserOptions },
+    { code: '<div role />', errors: [ errorMessage ], parserOptions },
     { code: '<div role={null}></div>', errors: [ errorMessage ], parserOptions }
   ]
 });
