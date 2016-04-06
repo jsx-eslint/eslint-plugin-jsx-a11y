@@ -25,18 +25,22 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-const expectedError = {
-  message: 'img elements must have an alt tag.',
+const customMissingPropError = type => ({
+  message: `${type} elements must have an alt prop`,
   type: 'JSXOpeningElement'
-};
+});
+
+const customAltValueError = type => ({
+  message: `${type} alt prop must have a value`,
+  type: 'JSXOpeningElement'
+});
+
+const expectedMissingPropError = customMissingPropError('img');
+const expectedAltValueError = customAltValueError('img');
 
 const string = [ 'Avatar' ];
 const array = [ [ 'Thumbnail', 'Image' ] ];
 
-const customError = type => ({
-  message: `${type} elements must have an alt tag.`,
-  type: 'JSXOpeningElement'
-});
 
 ruleTester.run('img-uses-alt', rule, {
   valid: [
@@ -111,38 +115,63 @@ ruleTester.run('img-uses-alt', rule, {
   ],
   invalid: [
     // DEFAULT ELEMENT 'img' TESTS
-    { code: '<img />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={undefined} />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={`${undefined}`} />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="" />;', errors: [ expectedError ], parserOptions },
-    { code: '<img src="xyz" />', errors: [ expectedError ], parserOptions },
-    { code: '<img {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={false || false} />', errors: [ expectedError ], parserOptions },
+    { code: '<img />;', errors: [ expectedMissingPropError ], parserOptions },
+    { code: '<img alt />;', errors: [ expectedAltValueError ], parserOptions },
+    { code: '<img alt={undefined} />;', errors: [ expectedAltValueError ], parserOptions },
+    { code: '<img alt={`${undefined}`} />;', errors: [ expectedAltValueError ], parserOptions },
+    { code: '<img alt="" />;', errors: [ expectedAltValueError ], parserOptions },
+    { code: '<img src="xyz" />', errors: [ expectedMissingPropError ], parserOptions },
+    { code: '<img {...this.props} />', errors: [ expectedMissingPropError ], parserOptions },
+    { code: '<img alt={false || false} />', errors: [ expectedAltValueError ], parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR STRING OPTION
-    { code: '<Avatar />;', errors: [ customError('Avatar') ], options: string, parserOptions },
-    { code: '<Avatar alt />;', errors: [ customError('Avatar') ], options: string, parserOptions },
-    { code: '<Avatar alt={undefined} />;', errors: [ customError('Avatar') ], options: string, parserOptions },
-    { code: '<Avatar alt={`${undefined}`} />;', errors: [ customError('Avatar') ], options: string, parserOptions },
-    { code: '<Avatar alt="" />;', errors: [ customError('Avatar') ], options: string, parserOptions },
-    { code: '<Avatar src="xyz" />', errors: [ customError('Avatar') ], options: string, parserOptions },
-    { code: '<Avatar {...this.props} />', errors: [ customError('Avatar') ], options: string, parserOptions },
+    {
+      code: '<Avatar />;',
+      errors: [ customMissingPropError('Avatar') ],
+      options: string,
+      parserOptions
+    },
+    { code: '<Avatar alt />;', errors: [ customAltValueError('Avatar') ], options: string, parserOptions },
+    { code: '<Avatar alt={undefined} />;', errors: [ customAltValueError('Avatar') ], options: string, parserOptions },
+    {
+      code: '<Avatar alt={`${undefined}`} />;',
+      errors: [ customAltValueError('Avatar') ],
+      options: string,
+      parserOptions
+    },
+    { code: '<Avatar alt="" />;', errors: [ customAltValueError('Avatar') ], options: string, parserOptions },
+    { code: '<Avatar src="xyz" />', errors: [ customMissingPropError('Avatar') ], options: string, parserOptions },
+    { code: '<Avatar {...this.props} />', errors: [ customMissingPropError('Avatar') ], options: string, parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
-    { code: '<Thumbnail />;', errors: [ customError('Thumbnail') ], options: array, parserOptions },
-    { code: '<Thumbnail alt />;', errors: [ customError('Thumbnail') ], options: array, parserOptions },
-    { code: '<Thumbnail alt={undefined} />;', errors: [ customError('Thumbnail') ], options: array, parserOptions },
-    { code: '<Thumbnail alt={`${undefined}`} />;', errors: [ customError('Thumbnail') ], options: array, parserOptions },
-    { code: '<Thumbnail alt="" />;', errors: [ customError('Thumbnail') ], options: array, parserOptions },
-    { code: '<Thumbnail src="xyz" />', errors: [ customError('Thumbnail') ], options: array, parserOptions },
-    { code: '<Thumbnail {...this.props} />', errors: [ customError('Thumbnail') ], options: array, parserOptions },
-    { code: '<Image />;', errors: [ customError('Image') ], options: array, parserOptions },
-    { code: '<Image alt />;', errors: [ customError('Image') ], options: array, parserOptions },
-    { code: '<Image alt={undefined} />;', errors: [ customError('Image') ], options: array, parserOptions },
-    { code: '<Image alt={`${undefined}`} />;', errors: [ customError('Image') ], options: array, parserOptions },
-    { code: '<Image alt="" />;', errors: [ customError('Image') ], options: array, parserOptions },
-    { code: '<Image src="xyz" />', errors: [ customError('Image') ], options: array, parserOptions },
-    { code: '<Image {...this.props} />', errors: [ customError('Image') ], options: array, parserOptions }
+    { code: '<Thumbnail />;', errors: [ customMissingPropError('Thumbnail') ], options: array, parserOptions },
+    { code: '<Thumbnail alt />;', errors: [ customAltValueError('Thumbnail') ], options: array, parserOptions },
+    {
+      code: '<Thumbnail alt={undefined} />;',
+      errors: [ customAltValueError('Thumbnail') ],
+      options: array,
+      parserOptions
+    },
+    {
+      code: '<Thumbnail alt={`${undefined}`} />;',
+      errors: [ customAltValueError('Thumbnail') ],
+      options: array,
+      parserOptions
+    },
+    { code: '<Thumbnail alt="" />;', errors: [ customAltValueError('Thumbnail') ], options: array, parserOptions },
+    { code: '<Thumbnail src="xyz" />', errors: [ customMissingPropError('Thumbnail') ], options: array, parserOptions },
+    {
+      code: '<Thumbnail {...this.props} />',
+      errors: [ customMissingPropError('Thumbnail') ],
+      options: array,
+      parserOptions
+    },
+    { code: '<Image />;', errors: [ customMissingPropError('Image') ], options: array, parserOptions },
+    { code: '<Image alt />;', errors: [ customAltValueError('Image') ], options: array, parserOptions },
+    { code: '<Image alt={undefined} />;', errors: [ customAltValueError('Image') ], options: array, parserOptions },
+    { code: '<Image alt={`${undefined}`} />;', errors: [ customAltValueError('Image') ], options: array, parserOptions },
+    { code: '<Image alt="" />;', errors: [ customAltValueError('Image') ], options: array, parserOptions },
+    { code: '<Image src="xyz" />', errors: [ customMissingPropError('Image') ], options: array, parserOptions },
+    { code: '<Image {...this.props} />', errors: [ customMissingPropError('Image') ], options: array, parserOptions }
   ]
 });
