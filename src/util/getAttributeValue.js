@@ -7,33 +7,38 @@ const getValue = value => {
     return value.value === "" ? undefined : value.value;
   } else if (value.type === 'Identifier') {
     return value.name === "" ? undefined : value.name;
-  } else if (value.type === 'JSXExpressionContainer') {
-    const { expression } = value;
-
-    switch (expression.type) {
-      case 'Literal':
-        return expression.value === "" ? undefined : expression.value;
-      case 'TemplateLiteral':
-        return buildTemplateLiteral(expression);
-      case 'Identifier':
-        return expression.name == 'undefined' ? undefined : expression.name;
-      case 'ArrowFunctionExpression':
-      case 'FunctionExpression':
-        return () => void 0;
-      case 'LogicalExpression':
-        const { operator, left, right } = expression;
-        const leftVal = getValue(left);
-        const rightVal = getValue(right);
-
-        return operator == '&&' ? leftVal && rightVal : leftVal || rightVal;
-      case 'MemberExpression':
-        return `${getValue(expression.object)}.${expression.property}`;
-      default:
-        return undefined;
-    }
+  } else if (value.type === 'JSXElement') {
+    return undefined; // For now, just so things don't break.
   }
 
-  return undefined;
+  const { expression } = value;
+  const type = expression ? expression.type : value.type;
+  const obj = expression || value;
+
+  switch (type) {
+    case 'Literal':
+      return obj.value === "" ? undefined : obj.value;
+    case 'TemplateLiteral':
+      return buildTemplateLiteral(obj);
+    case 'Identifier':
+      return obj.name == 'undefined' ? undefined : obj.name;
+    case 'ArrowFunctionExpression':
+    case 'FunctionExpression':
+      return () => void 0;
+    case 'LogicalExpression':
+      const { operator, left, right } = obj;
+      const leftVal = getValue(left);
+      const rightVal = getValue(right);
+
+      return operator == '&&' ? leftVal && rightVal : leftVal || rightVal;
+    case 'MemberExpression':
+      return `${getValue(obj.object)}.${getValue(obj.property)}`;
+    case 'CallExpression':
+      return getValue(obj.callee);
+    default:
+      return undefined;
+  }
+
 };
 
 /**

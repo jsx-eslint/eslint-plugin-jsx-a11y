@@ -57,6 +57,10 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<UX.Layout>test</UX.Layout>', parserOptions },
     { code: '<img alt={alt || "Alt text" } />', parserOptions },
     { code: '<img alt={photo.caption} />;', parserOptions },
+    { code: '<img alt={bar()} />;', parserOptions },
+    { code: '<img alt={foo.bar || ""} />', parserOptions },
+    { code: '<img alt={bar() || ""} />', parserOptions },
+    { code: '<img alt={foo.bar() || ""} />', parserOptions },
     { code: '<img alt=" " />', parserOptions }, // For decorative images.
 
     // CUSTOM ELEMENT TESTS FOR STRING OPTION
