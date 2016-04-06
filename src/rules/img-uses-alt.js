@@ -24,22 +24,36 @@ module.exports = context => ({
 
     const hasAltProp = hasAttribute(node.attributes, 'alt');
 
+    // Missing alt prop error.
     if (!hasAltProp) {
       context.report({
         node,
-        message: `${nodeType} elements must have an alt prop`
+        message: `${nodeType} elements must have an alt prop.`
       });
       return;
     }
 
-    const altProp = hasAltProp ? getAttributeValue(hasAltProp) : undefined;
-    const isInvalid = hasAltProp === false || Boolean(altProp) === false;
+    // Check if alt prop is undefined.
+    const altProp = getAttributeValue(hasAltProp);
 
-    if (isInvalid) {
+    // Check if alt prop is ""
+    const emptyAlt = hasAltProp && hasAltProp.value
+      && hasAltProp.value.type === 'Literal'
+      && hasAltProp.value.value === "";
+
+    const hasRoleProp = hasAttribute(node.attributes, 'role');
+    const roleProp = getAttributeValue(hasRoleProp);
+
+    // Allow altProp to be "" if `role="presentation"` is present.
+    const isValid = altProp || (emptyAlt && hasRoleProp && roleProp.toUpperCase() === 'PRESENTATION');
+
+    // Undefined alt prop error.
+    if (!isValid) {
       context.report({
         node,
-        message: `${nodeType} alt prop must have a value`
+        message: `${nodeType} alt prop must have a value. You can set alt="" if role="presentation" is applied.`
       });
+      return;
     }
   }
 });

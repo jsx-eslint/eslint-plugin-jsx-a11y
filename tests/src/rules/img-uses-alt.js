@@ -26,12 +26,12 @@ const parserOptions = {
 const ruleTester = new RuleTester();
 
 const customMissingPropError = type => ({
-  message: `${type} elements must have an alt prop`,
+  message: `${type} elements must have an alt prop.`,
   type: 'JSXOpeningElement'
 });
 
 const customAltValueError = type => ({
-  message: `${type} alt prop must have a value`,
+  message: `${type} alt prop must have a value. You can set alt="" if role="presentation" is applied.`,
   type: 'JSXOpeningElement'
 });
 
@@ -65,6 +65,10 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<img alt={foo.bar || ""} />', parserOptions },
     { code: '<img alt={bar() || ""} />', parserOptions },
     { code: '<img alt={foo.bar() || ""} />', parserOptions },
+    { code: '<img alt="" role="presentation" />', parserOptions }, // Allow alt to be undefined if role="presentation"
+    { code: '<img alt="" role={`presentation`} />', parserOptions },
+    { code: '<img alt="" role={"presentation"} />', parserOptions },
+    { code: '<img alt="this is lit..." role="presentation" />', parserOptions },
     { code: '<img alt=" " />', parserOptions }, // For decorative images.
 
     // CUSTOM ELEMENT TESTS FOR STRING OPTION
@@ -120,6 +124,9 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<img alt={undefined} />;', errors: [ expectedAltValueError ], parserOptions },
     { code: '<img alt={`${undefined}`} />;', errors: [ expectedAltValueError ], parserOptions },
     { code: '<img alt="" />;', errors: [ expectedAltValueError ], parserOptions },
+    { code: '<img role="presentation" />;', errors: [ expectedMissingPropError ], parserOptions },
+    { code: '<img alt={undefined} role="presentation" />;', errors: [ expectedAltValueError ], parserOptions },
+    { code: '<img alt role="presentation" />;', errors: [ expectedAltValueError ], parserOptions },
     { code: '<img src="xyz" />', errors: [ expectedMissingPropError ], parserOptions },
     { code: '<img {...this.props} />', errors: [ expectedMissingPropError ], parserOptions },
     { code: '<img alt={false || false} />', errors: [ expectedAltValueError ], parserOptions },

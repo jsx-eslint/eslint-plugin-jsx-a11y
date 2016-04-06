@@ -35,7 +35,7 @@ To tell this plugin to also check your `Image` element, specify this in your `.e
 ```json
 {
     "rules": {
-        "jsx-a11y/img-uses-alt": [ 2, "Image" ], // OR
+        "jsx-a11y/img-uses-alt": [ 2, "Image" ], <!-- OR -->
         "jsx-a11y/img-uses-alt": [ 2, [ "Image", "Avatar" ] ]
     }
 }
@@ -49,6 +49,7 @@ Note that passing props as spread attribute without `alt` explicitly defined wil
 <img src="foo" alt={"Foo eating a sandwich."} />
 <img src="foo" alt={altText} />
 <img src="foo" alt={`${person} smiling`} />
+<img src="foo" alt="" role="presentation" /> <!-- Alt text can be an empty string if `role="presentation"` -->
 ```
 
 ### Fail
