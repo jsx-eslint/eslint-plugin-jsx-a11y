@@ -12,8 +12,6 @@ import hasAttribute from '../util/hasAttribute';
 import getAttributeValue from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 
-const errorMessage = type => `${type} elements must have an alt tag.`;
-
 module.exports = context => ({
   JSXOpeningElement: node => {
     const typeCheck = [ 'img' ].concat(context.options[0]);
@@ -25,14 +23,22 @@ module.exports = context => ({
     }
 
     const hasAltProp = hasAttribute(node.attributes, 'alt');
+
+    if (!hasAltProp) {
+      context.report({
+        node,
+        message: `${nodeType} elements must have an alt prop`
+      });
+      return;
+    }
+
     const altProp = hasAltProp ? getAttributeValue(hasAltProp) : undefined;
     const isInvalid = hasAltProp === false || Boolean(altProp) === false;
 
-    // alt must have a value.
     if (isInvalid) {
       context.report({
         node,
-        message: errorMessage(nodeType)
+        message: `${nodeType} alt prop must have a value`
       });
     }
   }
