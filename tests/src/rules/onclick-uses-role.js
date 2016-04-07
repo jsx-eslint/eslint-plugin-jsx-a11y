@@ -52,7 +52,8 @@ ruleTester.run('onclick-uses-role', rule, {
     { code: '<a tabIndex="0" onClick={() => void 0} />', parserOptions },
     { code: '<a role="button" onClick={() => void 0} />', parserOptions },
     { code: '<a onClick={() => void 0} href="http://x.y.z" />', parserOptions },
-    { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />', parserOptions }
+    { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />', parserOptions },
+    { code: '<TestComponent onClick={doFoo} />', parserOptions }
   ],
   invalid: [
     { code: '<div onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
