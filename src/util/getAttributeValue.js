@@ -4,7 +4,7 @@ import buildTemplateLiteral from './buildTemplateLiteral';
 
 const getValue = value => {
   if (value.type === 'Literal') {
-    return value.value === "" ? undefined : value.value;
+    return value.value;
   } else if (value.type === 'Identifier') {
     return value.name === "" ? undefined : value.name;
   } else if (value.type === 'JSXElement') {
@@ -17,7 +17,7 @@ const getValue = value => {
 
   switch (type) {
     case 'Literal':
-      return obj.value === "" ? undefined : obj.value;
+      return obj.value;
     case 'TemplateLiteral':
       return buildTemplateLiteral(obj);
     case 'Identifier':
