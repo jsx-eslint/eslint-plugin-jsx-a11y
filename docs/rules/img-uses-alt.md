@@ -41,7 +41,7 @@ To tell this plugin to also check your `Image` element, specify this in your `.e
 }
 ```
 
-Note that passing props as spread attribute without `alt` explicitly defined will cause this rule to fail. Explicitly pass down `alt` prop for rule to pass. The prop must have an actual value to pass. Use `Image` component above as a reference for destructuring and applying the prop. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.**
+Note that passing props as spread attribute without `alt` explicitly defined will cause this rule to fail. Explicitly pass down `alt` prop or use `role="presentation"` for rule to pass. Use `Image` component above as a reference for destructuring and applying the prop. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.**
 
 ### Succeed
 ```jsx
@@ -49,7 +49,8 @@ Note that passing props as spread attribute without `alt` explicitly defined wil
 <img src="foo" alt={"Foo eating a sandwich."} />
 <img src="foo" alt={altText} />
 <img src="foo" alt={`${person} smiling`} />
-<img src="foo" alt="" role="presentation" /> <!-- Alt text can be an empty string if `role="presentation"` -->
+<img src="foo" alt="" />
+<img src="foo" role="presentation" />
 ```
 
 ### Fail
