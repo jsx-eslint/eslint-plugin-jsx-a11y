@@ -1,3 +1,8 @@
+0.6.2 / 2016-04-08
+==================
+- [fix] Fix rule details for img-uses-alt: allow alt="" or role="presentation".
+
+
 0.6.1 / 2016-04-07
 ==================
 - [fix] Do not infer interactivity of components that are not low-level DOM elements.
