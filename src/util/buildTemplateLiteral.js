@@ -28,7 +28,7 @@ const buildTemplateLiteral = templateLiteral => {
     return raw;
   }, '');
 
-  return rawString === '' ? undefined : rawString;
+  return rawString;
 };
 
 export default buildTemplateLiteral;
