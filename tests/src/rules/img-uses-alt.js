@@ -63,6 +63,7 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<img alt={bar() || ""} />', parserOptions },
     { code: '<img alt={foo.bar() || ""} />', parserOptions },
     { code: '<img alt="" />', parserOptions },
+    { code: '<img alt={`${undefined}`} />', parserOptions },
     { code: '<img alt=" " />', parserOptions },
     { code: '<img alt="" role="presentation" />', parserOptions },
     { code: '<img alt="" role={`presentation`} />', parserOptions },
@@ -124,7 +125,6 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<img />;', errors: [ missingPropError('img') ], parserOptions },
     { code: '<img alt />;', errors: [ altValueError('img') ], parserOptions },
     { code: '<img alt={undefined} />;', errors: [ altValueError('img') ], parserOptions },
-    { code: '<img alt={`${undefined}`} />;', errors: [ altValueError('img') ], parserOptions },
     { code: '<img src="xyz" />', errors: [ missingPropError('img') ], parserOptions },
     { code: '<img {...this.props} />', errors: [ missingPropError('img') ], parserOptions },
     { code: '<img alt={false || false} />', errors: [ altValueError('img') ], parserOptions },
@@ -138,12 +138,6 @@ ruleTester.run('img-uses-alt', rule, {
     },
     { code: '<Avatar alt />;', errors: [ altValueError('Avatar') ], options: string, parserOptions },
     { code: '<Avatar alt={undefined} />;', errors: [ altValueError('Avatar') ], options: string, parserOptions },
-    {
-      code: '<Avatar alt={`${undefined}`} />;',
-      errors: [ altValueError('Avatar') ],
-      options: string,
-      parserOptions
-    },
     { code: '<Avatar src="xyz" />', errors: [ missingPropError('Avatar') ], options: string, parserOptions },
     { code: '<Avatar {...this.props} />', errors: [ missingPropError('Avatar') ], options: string, parserOptions },
 
@@ -152,12 +146,6 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<Thumbnail alt />;', errors: [ altValueError('Thumbnail') ], options: array, parserOptions },
     {
       code: '<Thumbnail alt={undefined} />;',
-      errors: [ altValueError('Thumbnail') ],
-      options: array,
-      parserOptions
-    },
-    {
-      code: '<Thumbnail alt={`${undefined}`} />;',
       errors: [ altValueError('Thumbnail') ],
       options: array,
       parserOptions
@@ -172,7 +160,6 @@ ruleTester.run('img-uses-alt', rule, {
     { code: '<Image />;', errors: [ missingPropError('Image') ], options: array, parserOptions },
     { code: '<Image alt />;', errors: [ altValueError('Image') ], options: array, parserOptions },
     { code: '<Image alt={undefined} />;', errors: [ altValueError('Image') ], options: array, parserOptions },
-    { code: '<Image alt={`${undefined}`} />;', errors: [ altValueError('Image') ], options: array, parserOptions },
     { code: '<Image src="xyz" />', errors: [ missingPropError('Image') ], options: array, parserOptions },
     { code: '<Image {...this.props} />', errors: [ missingPropError('Image') ], options: array, parserOptions }
   ]

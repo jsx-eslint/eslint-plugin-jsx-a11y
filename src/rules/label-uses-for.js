@@ -27,7 +27,7 @@ module.exports = context => ({
 
     const htmlForAttr = hasAttribute(node.attributes, 'htmlFor');
     const htmlForValue = getAttributeValue(htmlForAttr);
-    const isInvalid = htmlForAttr === false || htmlForValue === null || htmlForValue === undefined;
+    const isInvalid = htmlForAttr === false || !htmlForValue;
 
     if (isInvalid) {
       context.report({
