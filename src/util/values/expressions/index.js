@@ -1,3 +1,4 @@
+import assign from 'object-assign';
 import Literal from '../Literal';
 import Identifier from './Identifier';
 import TemplateLiteral from './TemplateLiteral';
@@ -22,7 +23,7 @@ const TYPES = {
 
 const noop = () => null;
 
-const LITERAL_TYPES = Object.assign({}, TYPES, {
+const LITERAL_TYPES = assign({}, TYPES, {
   Identifier: value => {
     const isUndefined = TYPES.Identifier(value) === undefined;
     return isUndefined ? undefined : null;

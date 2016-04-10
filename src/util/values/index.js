@@ -1,3 +1,4 @@
+import assign from 'object-assign';
 import Literal from './Literal';
 import JSXElement from './JSXElement';
 import JSXExpressionContainer from './expressions';
@@ -9,7 +10,7 @@ const TYPES = {
   JSXExpressionContainer
 };
 
-const LITERAL_TYPES = Object.assign({}, TYPES, {
+const LITERAL_TYPES = assign({}, TYPES, {
   JSXElement: () => null,
   JSXExpressionContainer: extractLiteral
 });
