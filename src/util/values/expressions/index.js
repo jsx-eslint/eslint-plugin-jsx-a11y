@@ -6,6 +6,7 @@ import FunctionExpression from './FunctionExpression';
 import LogicalExpression from './LogicalExpression';
 import MemberExpression from './MemberExpression';
 import CallExpression from './CallExpression';
+import UnaryExpression from './UnaryExpression';
 
 const TYPES = {
   Identifier,
@@ -15,7 +16,8 @@ const TYPES = {
   FunctionExpression,
   LogicalExpression,
   MemberExpression,
-  CallExpression
+  CallExpression,
+  UnaryExpression
 };
 
 const extract = value => {
