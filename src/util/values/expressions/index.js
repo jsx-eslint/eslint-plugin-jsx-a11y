@@ -1,5 +1,5 @@
 import Literal from '../Literal';
-import Identifier from '../Identifier';
+import Identifier from './Identifier';
 import TemplateLiteral from './TemplateLiteral';
 import ArrowFunctionExpression from './FunctionExpression';
 import FunctionExpression from './FunctionExpression';
@@ -20,11 +20,35 @@ const TYPES = {
   UnaryExpression
 };
 
-const extract = value => {
+const noop = () => null;
+
+const LITERAL_TYPES = Object.assign({}, TYPES, {
+  Identifier: value => {
+    const isUndefined = TYPES.Identifier(value) === undefined;
+    return isUndefined ? undefined : null;
+  },
+  ArrowFunctionExpression: noop,
+  FunctionExpression: noop,
+  LogicalExpression: noop,
+  MemberExpression: noop,
+  CallExpression: noop,
+  UnaryExpression: value => {
+    const extractedVal = TYPES.UnaryExpression(value);
+    return extractedVal === undefined ? null : extractedVal;
+  }
+});
+
+export const extract = value => {
   // Value will not have the expression property when we recurse.
   const expression = value.expression || value;
 
   return TYPES[expression.type](expression);
+};
+
+export const extractLiteral = value => {
+  const expression = value.expression || value;
+
+  return LITERAL_TYPES[expression.type](expression);
 };
 
 export default extract;

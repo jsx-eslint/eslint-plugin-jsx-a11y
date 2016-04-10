@@ -1,6 +1,21 @@
 'use strict';
 
-import getValue from './values';
+import { getValue, getLiteralValue } from './values';
+
+const extract = (attribute, extractor) => {
+  if (attribute.type === 'JSXAttribute') {
+    if (attribute.value === null) {
+      // Null valued attributes imply truthiness.
+      // For example: <div aria-hidden />
+      // See: https://facebook.github.io/react/docs/jsx-in-depth.html#boolean-attributes
+      return true;
+    }
+
+    return extractor(attribute.value);
+  }
+
+  return undefined;
+};
 
 /**
  * Returns the value of a given attribute.
@@ -12,19 +27,8 @@ import getValue from './values';
  *
  * @param attribute - The JSXAttribute collected by AST parser.
  */
-const getAttributeValue = attribute => {
-  if (attribute.type === 'JSXAttribute') {
-    if (attribute.value === null) {
-      // Null valued attributes imply truthiness.
-      // For example: <div aria-hidden />
-      // See: https://facebook.github.io/react/docs/jsx-in-depth.html#boolean-attributes
-      return true;
-    }
+const getAttributeValue = attribute => extract(attribute, getValue);
 
-    return getValue(attribute.value);
-  }
-
-  return undefined;
-};
+export const getLiteralAttributeValue = attribute => extract(attribute, getLiteralValue);
 
 export default getAttributeValue;
