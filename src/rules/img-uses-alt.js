@@ -43,8 +43,9 @@ module.exports = context => ({
 
     // Check if alt prop is undefined.
     const altValue = getAttributeValue(hasAltProp);
+    const isNullValued = hasAltProp.value === null; // <img alt />
 
-    if (altValue || altValue === '') {
+    if ((altValue && !isNullValued) || altValue === '') {
       return;
     }
 
