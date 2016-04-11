@@ -30,10 +30,10 @@ const errorMessage = name => ({
   type: 'JSXAttribute'
 });
 
-import validAriaProperties from '../../../src/util/validAriaProperties';
+import ariaAttributes from '../../../src/util/ariaAttributes';
 
 // Create basic test cases using all valid role types.
-const basicValidityTests = validAriaProperties.map(prop => ({
+const basicValidityTests = Object.keys(ariaAttributes).map(prop => ({
   code: `<div ${prop.toLowerCase()}="foobar" />`,
   parserOptions
 }));
