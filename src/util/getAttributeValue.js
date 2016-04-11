@@ -1,44 +1,20 @@
 'use strict';
 
-import buildTemplateLiteral from './buildTemplateLiteral';
+import { getValue, getLiteralValue } from './values';
 
-const getValue = value => {
-  if (value.type === 'Literal') {
-    return value.value === "" ? undefined : value.value;
-  } else if (value.type === 'Identifier') {
-    return value.name === "" ? undefined : value.name;
-  } else if (value.type === 'JSXElement') {
-    return undefined; // For now, just so things don't break.
+const extract = (attribute, extractor) => {
+  if (attribute.type === 'JSXAttribute') {
+    if (attribute.value === null) {
+      // Null valued attributes imply truthiness.
+      // For example: <div aria-hidden />
+      // See: https://facebook.github.io/react/docs/jsx-in-depth.html#boolean-attributes
+      return true;
+    }
+
+    return extractor(attribute.value);
   }
 
-  const { expression } = value;
-  const type = expression ? expression.type : value.type;
-  const obj = expression || value;
-
-  switch (type) {
-    case 'Literal':
-      return obj.value === "" ? undefined : obj.value;
-    case 'TemplateLiteral':
-      return buildTemplateLiteral(obj);
-    case 'Identifier':
-      return obj.name == 'undefined' ? undefined : obj.name;
-    case 'ArrowFunctionExpression':
-    case 'FunctionExpression':
-      return () => void 0;
-    case 'LogicalExpression':
-      const { operator, left, right } = obj;
-      const leftVal = getValue(left);
-      const rightVal = getValue(right);
-
-      return operator == '&&' ? leftVal && rightVal : leftVal || rightVal;
-    case 'MemberExpression':
-      return `${getValue(obj.object)}.${getValue(obj.property)}`;
-    case 'CallExpression':
-      return getValue(obj.callee);
-    default:
-      return undefined;
-  }
-
+  return undefined;
 };
 
 /**
@@ -48,15 +24,11 @@ const getValue = value => {
  *
  * This function should return the most *closely* associated
  * value with the intention of the JSX.
+ *
+ * @param attribute - The JSXAttribute collected by AST parser.
  */
-const getAttributeValue = attribute => {
-  if (attribute.value === null) {
-    return null;
-  } else if (attribute.type === 'JSXAttribute') {
-    return getValue(attribute.value);
-  }
+const getAttributeValue = attribute => extract(attribute, getValue);
 
-  return undefined;
-};
+export const getLiteralAttributeValue = attribute => extract(attribute, getLiteralValue);
 
 export default getAttributeValue;

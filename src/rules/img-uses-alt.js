@@ -22,39 +22,39 @@ module.exports = context => ({
       return;
     }
 
+    const hasRoleProp = hasAttribute(node.attributes, 'role');
+    const roleValue = getAttributeValue(hasRoleProp);
+    const isPresentation = hasRoleProp && roleValue.toLowerCase() === 'presentation';
+
+    if (isPresentation) {
+      return;
+    }
+
     const hasAltProp = hasAttribute(node.attributes, 'alt');
 
     // Missing alt prop error.
     if (!hasAltProp) {
       context.report({
         node,
-        message: `${nodeType} elements must have an alt prop.`
+        message: `${nodeType} elements must have an alt prop or use role="presentation".`
       });
       return;
     }
 
     // Check if alt prop is undefined.
-    const altProp = getAttributeValue(hasAltProp);
+    const altValue = getAttributeValue(hasAltProp);
+    const isNullValued = hasAltProp.value === null; // <img alt />
 
-    // Check if alt prop is ""
-    const emptyAlt = hasAltProp && hasAltProp.value
-      && hasAltProp.value.type === 'Literal'
-      && hasAltProp.value.value === "";
-
-    const hasRoleProp = hasAttribute(node.attributes, 'role');
-    const roleProp = getAttributeValue(hasRoleProp);
-
-    // Allow altProp to be "" if `role="presentation"` is present.
-    const isValid = altProp || (emptyAlt && hasRoleProp && roleProp.toUpperCase() === 'PRESENTATION');
-
-    // Undefined alt prop error.
-    if (!isValid) {
-      context.report({
-        node,
-        message: `${nodeType} alt prop must have a value. You can set alt="" if role="presentation" is applied.`
-      });
+    if ((altValue && !isNullValued) || altValue === '') {
       return;
     }
+
+    // Undefined alt prop error.
+    context.report({
+      node,
+      message:
+        `Invalid alt value for ${nodeType}. Use alt="" or role="presentation" for presentational images.`
+    });
   }
 });
 

@@ -11,7 +11,7 @@ module.exports = {
     'label-uses-for': require('./rules/label-uses-for'),
     'no-hash-href': require('./rules/no-hash-href'),
     'valid-aria-role': require('./rules/valid-aria-role'),
-    'no-invalid-aria': require('./rules/no-invalid-aria')
+    'valid-aria-proptypes': require('./rules/valid-aria-proptypes')
   },
   configs: {
     recommended: {
@@ -30,7 +30,7 @@ module.exports = {
         "jsx-a11y/label-uses-for": 2,
         "jsx-a11y/no-hash-href": 2,
         "jsx-a11y/valid-aria-role": 2,
-        "jsx-a11y/no-invalid-aria": 2
+        "jsx-a11y/valid-aria-proptypes": 2
       }
     }
   }
