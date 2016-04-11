@@ -74,6 +74,7 @@ Then configure the rules you want to use under the rules section.
 - [label-uses-for](docs/rules/label-uses-for.md): Enforce that label elements have the htmlFor attribute
 - [redundant-alt](docs/rules/redundant-alt.md): Enforce img alt attribute does not contain the word image, picture, or photo.
 - [no-hash-href](docs/rules/no-hash-href.md): Enforce an anchor element's href prop value is not just #.
+- [no-invalid-aria](docs/rules/no-invalid-aria.md): Enforce all aria-* properties are valid.
 - [valid-aria-role](docs/rules/valid-aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
 - [valid-aria-proptype](docs/rules/valid-aria-proptype.md): Enforce ARIA state and property values are valid.
 
