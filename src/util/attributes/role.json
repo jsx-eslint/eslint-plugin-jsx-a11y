@@ -18,13 +18,13 @@
     "requiredProps": []
   },
   "CHECKBOX": {
-    "requiredProps": []
+    "requiredProps": [ "ARIA-CHECKED" ]
   },
   "COLUMNHEADER": {
     "requiredProps": []
   },
   "COMBOBOX": {
-    "requiredProps": []
+    "requiredProps": [ "ARIA-EXPANDED" ]
   },
   "COMPLEMENTARY": {
     "requiredProps": []
@@ -135,7 +135,7 @@
     "requiredProps": []
   },
   "SCROLLBAR": {
-    "requiredProps": []
+    "requiredProps": [ "ARIA-CONTROLS", "ARIA-ORIENTATION", "ARIA-VALUEMAX", "ARIA-VALUEMIN", "ARIA-VALUENOW" ]
   },
   "SEARCH": {
     "requiredProps": []
@@ -144,10 +144,10 @@
     "requiredProps": []
   },
   "SLIDER": {
-    "requiredProps": []
+    "requiredProps": [ "ARIA-VALUEMAX", "ARIA-VALUEMIN", "ARIA-VALUENOW" ]
   },
   "SPINBUTTON": {
-    "requiredProps": []
+    "requiredProps": [ "ARIA-VALUEMAX", "ARIA-VALUEMIN", "ARIA-VALUENOW" ]
   },
   "STATUS": {
     "requiredProps": []

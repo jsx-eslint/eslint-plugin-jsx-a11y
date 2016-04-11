@@ -12,7 +12,8 @@ module.exports = {
     'no-hash-href': require('./rules/no-hash-href'),
     'valid-aria-role': require('./rules/valid-aria-role'),
     'valid-aria-proptypes': require('./rules/valid-aria-proptypes'),
-    'no-invalid-aria': require('./rules/no-invalid-aria')
+    'no-invalid-aria': require('./rules/no-invalid-aria'),
+    'role-requires-aria': require('./rules/role-requires-aria')
   },
   configs: {
     recommended: {
@@ -32,7 +33,8 @@ module.exports = {
         "jsx-a11y/no-hash-href": 2,
         "jsx-a11y/valid-aria-role": 2,
         "jsx-a11y/valid-aria-proptypes": 2,
-        "jsx-a11y/no-invalid-aria": 2
+        "jsx-a11y/no-invalid-aria": 2,
+        "jsx-a11y/role-requires-aria": 2
       }
     }
   }

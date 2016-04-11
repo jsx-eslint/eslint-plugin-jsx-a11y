@@ -77,6 +77,7 @@ Then configure the rules you want to use under the rules section.
 - [no-invalid-aria](docs/rules/no-invalid-aria.md): Enforce all aria-* properties are valid.
 - [valid-aria-role](docs/rules/valid-aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
 - [valid-aria-proptype](docs/rules/valid-aria-proptype.md): Enforce ARIA state and property values are valid.
+- [role-requires-aria](docs/rules/role-requires-aria.md): Enforce that elements with ARIA roles must have all required attributes for that role.
 
 ## Contributing
 Feel free to contribute! I am currently using [Google Chrome's Audit Rules](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules) to map out as rules for this plugin.
