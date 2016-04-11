@@ -44,11 +44,13 @@ ruleTester.run('valid-aria-proptypes', rule, {
     { code: '<div aria-hidden={!true} />', parserOptions },
     { code: '<div aria-hidden={!"yes"} />', parserOptions },
     { code: '<div aria-hidden={foo} />', parserOptions },
+    { code: '<div aria-hidden={foo.bar} />', parserOptions },
 
     // STRING
     { code: '<div aria-label="Close" />', parserOptions },
     { code: '<div aria-label={`Close`} />', parserOptions },
     { code: '<div aria-label={foo} />', parserOptions },
+    { code: '<div aria-label={foo.bar} />', parserOptions },
 
     // TRISTATE
     { code: '<div aria-checked={true} />', parserOptions },
@@ -60,6 +62,7 @@ ruleTester.run('valid-aria-proptypes', rule, {
     { code: '<div aria-checked={!true} />', parserOptions },
     { code: '<div aria-checked={!"yes"} />', parserOptions },
     { code: '<div aria-checked={foo} />', parserOptions },
+    { code: '<div aria-checked={foo.bar} />', parserOptions },
     { code: '<div aria-checked="mixed" />', parserOptions },
     { code: '<div aria-checked={`mixed`} />', parserOptions },
 
@@ -72,6 +75,7 @@ ruleTester.run('valid-aria-proptypes', rule, {
     { code: '<div aria-level={`123`} />', parserOptions },
     { code: '<div aria-level="123" />', parserOptions },
     { code: '<div aria-level={foo} />', parserOptions },
+    { code: '<div aria-level={foo.bar} />', parserOptions },
 
     // NUMBER
     { code: '<div aria-valuemax={123} />', parserOptions },
@@ -82,6 +86,7 @@ ruleTester.run('valid-aria-proptypes', rule, {
     { code: '<div aria-valuemax={`123`} />', parserOptions },
     { code: '<div aria-valuemax="123" />', parserOptions },
     { code: '<div aria-valuemax={foo} />', parserOptions },
+    { code: '<div aria-valuemax={foo.bar} />', parserOptions },
 
     // TOKEN
     { code: '<div aria-sort="ascending" />', parserOptions },
@@ -97,6 +102,8 @@ ruleTester.run('valid-aria-proptypes', rule, {
     { code: '<div aria-sort="other" />', parserOptions },
     { code: '<div aria-sort={"other"} />', parserOptions },
     { code: '<div aria-sort={`other`} />', parserOptions },
+    { code: '<div aria-sort={foo} />', parserOptions },
+    { code: '<div aria-sort={foo.bar} />', parserOptions },
 
     // TOKENLIST
     { code: '<div aria-relevant="additions" />', parserOptions },
@@ -111,7 +118,9 @@ ruleTester.run('valid-aria-proptypes', rule, {
     { code: '<div aria-relevant={`additions removals text`} />', parserOptions },
     { code: '<div aria-relevant="additions removals text all" />', parserOptions },
     { code: '<div aria-relevant={"additions removals text all"} />', parserOptions },
-    { code: '<div aria-relevant={`removals additions text all`} />', parserOptions }
+    { code: '<div aria-relevant={`removals additions text all`} />', parserOptions },
+    { code: '<div aria-relevant={foo} />', parserOptions },
+    { code: '<div aria-relevant={foo.bar} />', parserOptions }
   ],
   invalid: [
     // BOOLEAN
