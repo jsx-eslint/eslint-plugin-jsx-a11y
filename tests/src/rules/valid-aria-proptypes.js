@@ -25,15 +25,33 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-import ariaAttributes from '../../../src/util/ariaAttributes';
+import ariaAttributes from '../../../src/util/attributes/ARIA';
 
-const errorMessage = name => ({
-  message: `${name} must be of type ${ariaAttributes[name.toUpperCase()].value}.`,
-  type: 'JSXAttribute'
-});
+const errorMessage = name => {
+  const { type, values: permittedValues } = ariaAttributes[name.toUpperCase()];
+
+  switch (type) {
+    case 'tristate':
+      return `The value for ${name} must be a boolean or the string "mixed".`;
+    case 'token':
+      return `The value for ${name} must be a single token from the following: ${permittedValues}.`;
+    case 'tokenlist':
+      return `The value for ${name} must be a list of one or more tokens from the following: ${permittedValues}.`;
+    case 'boolean':
+    case 'string':
+    case 'integer':
+    case 'number':
+    default:
+      return `The value for ${name} must be a ${type}.`;
+  }
+};
 
 ruleTester.run('valid-aria-proptypes', rule, {
   valid: [
+    // DON'T TEST INVALID ARIA-* PROPS
+    { code: '<div aria-foo="true" />', parserOptions },
+    { code: '<div abcaria-foo="true" />', parserOptions },
+
     // BOOLEAN
     { code: '<div aria-hidden={true} />', parserOptions },
     { code: '<div aria-hidden="true" />', parserOptions },

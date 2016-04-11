@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import validRoleTypes from '../util/validRoleTypes';
+import validRoleTypes from '../util/attributes/role';
 import getAttributeValue from '../util/getAttributeValue';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';

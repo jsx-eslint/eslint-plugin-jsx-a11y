@@ -8,12 +8,27 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import ariaAttributes from '../util/ariaAttributes';
+import ariaAttributes from '../util/attributes/ARIA';
 import { getLiteralAttributeValue } from '../util/getAttributeValue';
 
-const errorMessage = (name, type) => `${name} must be of type ${type}.`;
+const errorMessage = (name, type, permittedValues) => {
+  switch (type) {
+    case 'tristate':
+      return `The value for ${name} must be a boolean or the string "mixed".`;
+    case 'token':
+      return `The value for ${name} must be a single token from the following: ${permittedValues}.`;
+    case 'tokenlist':
+      return `The value for ${name} must be a list of one or more tokens from the following: ${permittedValues}.`;
+    case 'boolean':
+    case 'string':
+    case 'integer':
+    case 'number':
+    default:
+      return `The value for ${name} must be a ${type}.`;
+  }
+};
 
-const validityCheck = (value, expectedType, tokens) => {
+const validityCheck = (value, expectedType, permittedValues) => {
   switch (expectedType) {
     case 'boolean':
       return typeof value === 'boolean';
@@ -26,9 +41,9 @@ const validityCheck = (value, expectedType, tokens) => {
       // Booleans resolve to 0/1 values so hard check that it's not first.
       return typeof value !== 'boolean' && isNaN(Number(value)) === false;
     case 'token':
-      return typeof value === 'string' && tokens.some(token => value.toLowerCase() == token);
+      return typeof value === 'string' && permittedValues.indexOf(value.toLowerCase()) > -1;
     case 'tokenlist':
-      return typeof value === 'string' && value.split(' ').every(token => tokens.indexOf(token.toLowerCase()) > -1);
+      return typeof value === 'string' && value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);
     default:
       return false;
   }
@@ -39,8 +54,8 @@ module.exports = context => ({
     const name = attribute.name.name;
     const normalizedName = name.toUpperCase();
 
-    // Not an aria-* state or property.
-    if (normalizedName.indexOf('ARIA-') === -1) {
+    // Not a valid aria-* state or property.
+    if (normalizedName.indexOf('ARIA-') !== 0 || ariaAttributes[normalizedName] === undefined) {
       return;
     }
 
@@ -53,11 +68,11 @@ module.exports = context => ({
 
     // These are the attributes of the property/state to check against.
     const attributes = ariaAttributes[normalizedName];
-    const permittedType = attributes.value;
+    const permittedType = attributes.type;
     const allowUndefined = attributes.allowUndefined || false;
-    const tokens = attributes.tokens || [];
+    const permittedValues = attributes.values || [];
 
-    const isValid = validityCheck(value, permittedType, tokens) || (allowUndefined && value === undefined);
+    const isValid = validityCheck(value, permittedType, permittedValues) || (allowUndefined && value === undefined);
 
     if (isValid) {
       return;
@@ -65,7 +80,7 @@ module.exports = context => ({
 
     context.report({
       node: attribute,
-      message: errorMessage(name, permittedType)
+      message: errorMessage(name, permittedType, permittedValues)
     });
   }
 });

@@ -30,7 +30,7 @@ const errorMessage = name => ({
   type: 'JSXAttribute'
 });
 
-import ariaAttributes from '../../../src/util/ariaAttributes';
+import ariaAttributes from '../../../src/util/attributes/ARIA';
 
 // Create basic test cases using all valid role types.
 const basicValidityTests = Object.keys(ariaAttributes).map(prop => ({

@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import ariaAttributes from '../util/ariaAttributes';
+import ariaAttributes from '../util/attributes/ARIA';
 
 const errorMessage = name => `${name}: This attribute is an invalid ARIA attribute.`;
 

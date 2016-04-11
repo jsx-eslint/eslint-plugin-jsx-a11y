@@ -30,7 +30,7 @@ const errorMessage = {
   type: 'JSXAttribute'
 };
 
-import validRoleTypes from '../../../src/util/validRoleTypes';
+import validRoleTypes from '../../../src/util/attributes/role';
 
 // Create basic test cases using all valid role types.
 const basicValidityTests = validRoleTypes.map(role => ({
