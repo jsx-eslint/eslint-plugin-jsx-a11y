@@ -29,7 +29,7 @@ const interactiveMap = {
 const isInteractiveElement = (tagName, attributes) => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (DOMElements.indexOf(tagName) === -1) {
+  if (Object.keys(DOMElements).indexOf(tagName.toUpperCase()) === -1) {
     return true;
   }
 
