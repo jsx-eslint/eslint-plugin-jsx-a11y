@@ -24,6 +24,13 @@ const TYPES = {
 const noop = () => null;
 
 const LITERAL_TYPES = assign({}, TYPES, {
+  Literal: value => {
+    const extractedVal = TYPES.Literal(value);
+    const isNull = extractedVal === null;
+    // This will be convention for attributes that have null
+    // value explicitly defined (<div prop={null} /> maps to "null").
+    return isNull ? "null" : extractedVal;
+  },
   Identifier: value => {
     const isUndefined = TYPES.Identifier(value) === undefined;
     return isUndefined ? undefined : null;
