@@ -14,7 +14,8 @@ module.exports = {
     'valid-aria-proptypes': require('./rules/valid-aria-proptypes'),
     'no-invalid-aria': require('./rules/no-invalid-aria'),
     'role-requires-aria': require('./rules/role-requires-aria'),
-    'no-unsupported-elements-use-aria': require('./rules/no-unsupported-elements-use-aria')
+    'no-unsupported-elements-use-aria': require('./rules/no-unsupported-elements-use-aria'),
+    'avoid-positive-tabindex': require('./rules/avoid-positive-tabindex')
   },
   configs: {
     recommended: {
@@ -36,7 +37,8 @@ module.exports = {
         'jsx-a11y/valid-aria-proptypes': 2,
         'jsx-a11y/no-invalid-aria': 2,
         'jsx-a11y/role-requires-aria': 2,
-        'jsx-a11y/no-unsupported-elements-use-aria': 2
+        'jsx-a11y/no-unsupported-elements-use-aria': 2,
+        'jsx-a11y/avoid-positive-tabindex': 2
       }
     }
   }
