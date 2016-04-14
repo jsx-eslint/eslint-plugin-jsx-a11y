@@ -28,7 +28,7 @@ module.exports = context => ({
       return;
     }
 
-    const normalizedValues = `${value}`.toUpperCase().split(" ");
+    const normalizedValues = String(value).toUpperCase().split(' ');
     const isValid = normalizedValues.every(value => Object.keys(validRoleTypes).indexOf(value) > -1);
 
     if (isValid === true) {

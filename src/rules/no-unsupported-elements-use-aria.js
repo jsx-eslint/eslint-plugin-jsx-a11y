@@ -26,11 +26,10 @@ module.exports = context => ({
       return;
     }
 
-    // Check if it has role attribute;
-    const hasRole = hasAttribute(node.attributes, 'role');
-    const hasAria = Object.keys(ARIA).some(prop => hasAttribute(node.attributes, prop.toLowerCase()));
+    const invalidAttributes = Object.keys(ARIA).concat('ROLE');
+    const hasAria = hasAttribute(node.attributes, ...invalidAttributes);
 
-    if (hasRole || hasAria) {
+    if (hasAria) {
       context.report({
         node,
         message: errorMessage

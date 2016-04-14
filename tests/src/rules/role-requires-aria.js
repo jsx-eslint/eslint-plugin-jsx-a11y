@@ -57,6 +57,7 @@ ruleTester.run('role-requires-aria', rule, {
     { code: '<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>', parserOptions },
     { code: '<Bar baz />', parserOptions }
   ].concat(basicValidityTests),
+
   invalid: [
     // SLIDER
     { code: '<div role="slider" />', errors: [ errorMessage('slider') ], parserOptions },

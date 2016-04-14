@@ -45,6 +45,8 @@ ruleTester.run('no-invalid-aria', rule, {
     { code: '<div></div>', parserOptions },
     { code: '<div aria="wee"></div>', parserOptions }, // Needs aria-*
     { code: '<div abcARIAdef="true"></div>', parserOptions },
+    { code: '<div fooaria-foobar="true"></div>', parserOptions },
+    { code: '<div fooaria-hidden="true"></div>', parserOptions },
     { code: '<Bar baz />', parserOptions }
   ].concat(basicValidityTests),
   invalid: [

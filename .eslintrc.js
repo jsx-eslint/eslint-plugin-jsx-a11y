@@ -143,6 +143,7 @@ module.exports = {
     "prefer-const": 2,
     "prefer-spread": 2,
     "prefer-template": 2,
+    'quotes': [2, 'single', 'avoid-escape'],
     "radix": 2,
     "semi": 2,
     "sort-vars": [ 2, {

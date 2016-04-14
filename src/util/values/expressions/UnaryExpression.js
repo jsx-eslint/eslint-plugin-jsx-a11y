@@ -7,7 +7,7 @@ const extract = value => {
     case '-':
       return -getValue(argument);
     case '+':
-      return Number(getValue(argument));
+      return +getValue(argument); // eslint-disable-line no-implicit-coercion
     case '!':
       return !getValue(argument);
     case '~':

@@ -14,7 +14,7 @@ import hasAttribute from '../util/hasAttribute';
 
 const errorMessage = (role, requiredProps) =>
   `Elements with the ARIA role "${role}" must have the following ` +
-  `attributes defined: ${requiredProps.toString().toLowerCase()}`;
+  `attributes defined: ${String(requiredProps).toLowerCase()}`;
 
 module.exports = context => ({
   JSXAttribute: attribute => {
@@ -31,7 +31,7 @@ module.exports = context => ({
       return;
     }
 
-    const normalizedValues = `${value}`.toUpperCase().split(" ");
+    const normalizedValues = String(value).toUpperCase().split(' ');
     const validRoles = normalizedValues.filter(value => Object.keys(validRoleTypes).indexOf(value) > -1);
 
     validRoles.forEach(role => {

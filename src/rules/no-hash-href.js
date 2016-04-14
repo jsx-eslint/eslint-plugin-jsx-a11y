@@ -38,15 +38,15 @@ module.exports = context => ({
 
 module.exports.schema = [
   {
-    "oneOf": [
-      { "type": "string" },
+    'oneOf': [
+      { 'type': 'string' },
       {
-        "type": "array",
-        "items": {
-          "type": "string"
+        'type': 'array',
+        'items': {
+          'type': 'string'
         },
-        "minItems": 1,
-        "uniqueItems": true
+        'minItems': 1,
+        'uniqueItems': true
       }
     ]
   }

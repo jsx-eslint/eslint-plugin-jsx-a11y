@@ -7,17 +7,20 @@
  * as the purpose of this linter is to do hard checks of explicit JSX props.
  *
  */
-const hasAttribute = (attributes, attribute) => {
+const hasAttribute = (attributesOnNode, ...attributesToCheck) => {
   let nodeAttribute = undefined;
 
-  const hasAttr = attributes.some(attr => {
+  // Normalize.
+  const comparators = attributesToCheck.map(attribute => attribute.toUpperCase());
+
+  const hasAttr = attributesOnNode.some(attr => {
     // If the attributes contain a spread attribute, then skip.
     if (attr.type === 'JSXSpreadAttribute') {
       return false;
     }
 
     // Normalize.
-    if (attr.name.name.toUpperCase() === attribute.toUpperCase()) {
+    if (comparators.indexOf(attr.name.name.toUpperCase()) > -1) {
       nodeAttribute = attr;
       return true;
     }
