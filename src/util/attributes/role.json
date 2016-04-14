@@ -1,0 +1,185 @@
+{
+  "ALERT": {
+    "requiredProps": []
+  },
+  "ALERTDIALOG": {
+    "requiredProps": []
+  },
+  "APPLICATION": {
+    "requiredProps": []
+  },
+  "ARTICLE": {
+    "requiredProps": []
+  },
+  "BANNER": {
+    "requiredProps": []
+  },
+  "BUTTON": {
+    "requiredProps": []
+  },
+  "CHECKBOX": {
+    "requiredProps": [ "ARIA-CHECKED" ]
+  },
+  "COLUMNHEADER": {
+    "requiredProps": []
+  },
+  "COMBOBOX": {
+    "requiredProps": [ "ARIA-EXPANDED" ]
+  },
+  "COMPLEMENTARY": {
+    "requiredProps": []
+  },
+  "CONTENTINFO": {
+    "requiredProps": []
+  },
+  "DEFINITION": {
+    "requiredProps": []
+  },
+  "DIALOG": {
+    "requiredProps": []
+  },
+  "DIRECTORY": {
+    "requiredProps": []
+  },
+  "DOCUMENT": {
+    "requiredProps": []
+  },
+  "FORM": {
+    "requiredProps": []
+  },
+  "GRID": {
+    "requiredProps": []
+  },
+  "GRIDCELL": {
+    "requiredProps": []
+  },
+  "GROUP": {
+    "requiredProps": []
+  },
+  "HEADING": {
+    "requiredProps": []
+  },
+  "IMG": {
+    "requiredProps": []
+  },
+  "LINK": {
+    "requiredProps": []
+  },
+  "LIST": {
+    "requiredProps": []
+  },
+  "LISTBOX": {
+    "requiredProps": []
+  },
+  "LISTITEM": {
+    "requiredProps": []
+  },
+  "LOG": {
+    "requiredProps": []
+  },
+  "MAIN": {
+    "requiredProps": []
+  },
+  "MARQUEE": {
+    "requiredProps": []
+  },
+  "MATH": {
+    "requiredProps": []
+  },
+  "MENU": {
+    "requiredProps": []
+  },
+  "MENUBAR": {
+    "requiredProps": []
+  },
+  "MENUITEM": {
+    "requiredProps": []
+  },
+  "MENUITEMCHECKBOX": {
+    "requiredProps": []
+  },
+  "MENUITEMRADIO": {
+    "requiredProps": []
+  },
+  "NAVIGATION": {
+    "requiredProps": []
+  },
+  "NOTE": {
+    "requiredProps": []
+  },
+  "OPTION": {
+    "requiredProps": []
+  },
+  "PRESENTATION": {
+    "requiredProps": []
+  },
+  "PROGRESSBAR": {
+    "requiredProps": []
+  },
+  "RADIO": {
+    "requiredProps": []
+  },
+  "RADIOGROUP": {
+    "requiredProps": []
+  },
+  "REGION": {
+    "requiredProps": []
+  },
+  "ROW": {
+    "requiredProps": []
+  },
+  "ROWGROUP": {
+    "requiredProps": []
+  },
+  "ROWHEADER": {
+    "requiredProps": []
+  },
+  "SCROLLBAR": {
+    "requiredProps": [ "ARIA-CONTROLS", "ARIA-ORIENTATION", "ARIA-VALUEMAX", "ARIA-VALUEMIN", "ARIA-VALUENOW" ]
+  },
+  "SEARCH": {
+    "requiredProps": []
+  },
+  "SEPARATOR": {
+    "requiredProps": []
+  },
+  "SLIDER": {
+    "requiredProps": [ "ARIA-VALUEMAX", "ARIA-VALUEMIN", "ARIA-VALUENOW" ]
+  },
+  "SPINBUTTON": {
+    "requiredProps": [ "ARIA-VALUEMAX", "ARIA-VALUEMIN", "ARIA-VALUENOW" ]
+  },
+  "STATUS": {
+    "requiredProps": []
+  },
+  "TAB": {
+    "requiredProps": []
+  },
+  "TABLIST": {
+    "requiredProps": []
+  },
+  "TABPANEL": {
+    "requiredProps": []
+  },
+  "TEXTBOX": {
+    "requiredProps": []
+  },
+  "TIMER": {
+    "requiredProps": []
+  },
+  "TOOLBAR": {
+    "requiredProps": []
+  },
+  "TOOLTIP": {
+    "requiredProps": []
+  },
+  "TREE": {
+    "requiredProps": []
+  },
+  "TREEGRID": {
+    "requiredProps": []
+  },
+  "TREEITEM": {
+    "requiredProps": []
+  }
+}

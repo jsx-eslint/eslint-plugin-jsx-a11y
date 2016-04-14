@@ -27,7 +27,7 @@ module.exports = context => ({
 
     const htmlForAttr = hasAttribute(node.attributes, 'htmlFor');
     const htmlForValue = getAttributeValue(htmlForAttr);
-    const isInvalid = htmlForAttr === false || htmlForValue === null || htmlForValue === undefined;
+    const isInvalid = htmlForAttr === false || !htmlForValue;
 
     if (isInvalid) {
       context.report({
@@ -40,15 +40,15 @@ module.exports = context => ({
 
 module.exports.schema = [
   {
-    "oneOf": [
-      { "type": "string" },
+    'oneOf': [
+      { 'type': 'string' },
       {
-        "type": "array",
-        "items": {
-          "type": "string"
+        'type': 'array',
+        'items': {
+          'type': 'string'
         },
-        "minItems": 1,
-        "uniqueItems": true
+        'minItems': 1,
+        'uniqueItems': true
       }
     ]
   }

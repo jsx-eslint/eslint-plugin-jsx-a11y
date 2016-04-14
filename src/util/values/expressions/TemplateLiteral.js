@@ -3,19 +3,19 @@
 /**
  * Returns the string value of a template literal object.
  * Tries to build it as best as it can based on the passed
- * prop. For instance `This is a ${prop}` will return 'This is a prop'.
+ * prop. For instance `This is a ${prop}` will return 'This is a {prop}'.
  *
  * If the template literal builds to undefined (`${undefined}`), then
- * this should return undefined.
+ * this should return "".
  */
-const buildTemplateLiteral = templateLiteral => {
+export default function extractValueFromTemplateLiteral(value) {
   const {
     quasis,
     expressions
-  } = templateLiteral;
+  } = value;
   const partitions = quasis.concat(expressions);
 
-  const rawString = partitions.sort((a, b) => a.start - b.start).reduce((raw, part) => {
+  return partitions.sort((a, b) => a.start - b.start).reduce((raw, part) => {
     const {
       type
     } = part;
@@ -27,8 +27,4 @@ const buildTemplateLiteral = templateLiteral => {
 
     return raw;
   }, '');
-
-  return rawString === '' ? undefined : rawString;
-};
-
-export default buildTemplateLiteral;
+}

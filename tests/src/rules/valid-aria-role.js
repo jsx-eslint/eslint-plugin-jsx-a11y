@@ -30,10 +30,10 @@ const errorMessage = {
   type: 'JSXAttribute'
 };
 
-import validRoleTypes from '../../../src/util/validRoleTypes';
+import validRoleTypes from '../../../src/util/attributes/role';
 
 // Create basic test cases using all valid role types.
-const basicValidityTests = validRoleTypes.map(role => ({
+const basicValidityTests = Object.keys(validRoleTypes).map(role => ({
   code: `<div role="${role.toLowerCase()}" />`,
   parserOptions
 }));
@@ -56,7 +56,6 @@ ruleTester.run('valid-aria-role', rule, {
     { code: '<div role=""></div>', errors: [ errorMessage ], parserOptions },
     { code: '<div role="tabpanel row foobar"></div>', errors: [ errorMessage ], parserOptions },
     { code: '<div role="tabpanel row range"></div>', errors: [ errorMessage ], parserOptions },
-    { code: '<div role={undefined}></div>', errors: [ errorMessage ], parserOptions },
     { code: '<div role />', errors: [ errorMessage ], parserOptions },
     { code: '<div role={null}></div>', errors: [ errorMessage ], parserOptions }
   ]

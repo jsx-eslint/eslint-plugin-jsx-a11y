@@ -1,6 +1,9 @@
 'use strict';
 
-const getNodeType = node => {
+/**
+ * Returns the tagName associated with a JSXElement.
+ */
+export default function getNodeType(node) {
   const { name } = node;
 
   if (name.type === 'JSXMemberExpression') {
@@ -9,7 +12,5 @@ const getNodeType = node => {
   }
 
   return node.name.name;
-};
-
-export default getNodeType;
+}
 

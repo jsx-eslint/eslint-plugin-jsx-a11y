@@ -1,0 +1,145 @@
+{
+  "A": {},
+  "ABBR": {},
+  "ADDRESS": {},
+  "AREA": {},
+  "ARTICLE": {},
+  "ASIDE": {},
+  "AUDIO": {},
+  "B": {},
+  "BASE": {
+    "reserved": true
+  },
+  "BDI": {},
+  "BDO": {},
+  "BIG": {},
+  "BLOCKQUOTE": {},
+  "BODY": {},
+  "BR": {},
+  "BUTTON": {},
+  "CANVAS": {},
+  "CAPTION": {},
+  "CITE": {},
+  "CODE": {},
+  "COL": {
+    "reserved": true
+  },
+  "COLGROUP": {
+    "reserved": true
+  },
+  "DATA": {},
+  "DATALIST": {},
+  "DD": {},
+  "DEL": {},
+  "DETAILS": {},
+  "DFN": {},
+  "DIALOG": {},
+  "DIV": {},
+  "DL": {},
+  "DT": {},
+  "EM": {},
+  "EMBED": {},
+  "FIELDSET": {},
+  "FIGCAPTION": {},
+  "FIGURE": {},
+  "FOOTER": {},
+  "FORM": {},
+  "H1": {},
+  "H2": {},
+  "H3": {},
+  "H4": {},
+  "H5": {},
+  "H6": {},
+  "HEAD": {
+    "reserved": true
+  },
+  "HEADER": {},
+  "HGROUP": {},
+  "HR": {},
+  "HTML": {
+    "reserved": true
+  },
+  "I": {},
+  "IFRAME": {},
+  "IMG": {},
+  "INPUT": {},
+  "INS": {},
+  "KBD": {},
+  "KEYGEN": {},
+  "LABEL": {},
+  "LEGEND": {},
+  "LI": {},
+  "LINK": {
+    "reserved": true
+  },
+  "MAIN": {},
+  "MAP": {},
+  "MARK": {},
+  "MENU": {},
+  "MENUITEM": {},
+  "META": {
+    "reserved": true
+  },
+  "METER": {},
+  "NAV": {},
+  "NOSCRIPT": {
+    "reserved": true
+  },
+  "OBJECT": {},
+  "OL": {},
+  "OPTGROUP": {},
+  "OPTION": {},
+  "OUTPUT": {},
+  "P": {},
+  "PARAM": {
+    "reserved": true
+  },
+  "PICTURE": {
+    "reserved": true
+  },
+  "PRE": {},
+  "PROGRESS": {},
+  "Q": {},
+  "RP": {},
+  "RT": {},
+  "RUBY": {},
+  "S": {},
+  "SAMP": {},
+  "SCRIPT": {
+    "reserved": true
+  },
+  "SECTION": {},
+  "SELECT": {},
+  "SMALL": {},
+  "SOURCE": {
+    "reserved": true
+  },
+  "SPAN": {},
+  "STRONG": {},
+  "STYLE": {
+    "reserved": true
+  },
+  "SUB": {},
+  "SUMMARY": {},
+  "SUP": {},
+  "TABLE": {},
+  "TBODY": {},
+  "TD": {},
+  "TEXTAREA": {},
+  "TFOOT": {},
+  "TH": {},
+  "THEAD": {},
+  "TIME": {},
+  "TITLE": {
+    "reserved": true
+  },
+  "TR": {},
+  "TRACK": {
+    "reserved": true
+  },
+  "U": {},
+  "UL": {},
+  "VAR": {},
+  "VIDEO": {},
+  "WBR": {}
+}

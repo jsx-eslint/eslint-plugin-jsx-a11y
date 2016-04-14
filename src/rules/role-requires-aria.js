@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce aria role attribute is valid.
+ * @fileoverview Enforce that elements with ARIA roles must have all required attributes for that role.
  * @author Ethan Cohen
  */
 'use strict';
@@ -10,8 +10,11 @@
 
 import validRoleTypes from '../util/attributes/role';
 import { getLiteralAttributeValue } from '../util/getAttributeValue';
+import hasAttribute from '../util/hasAttribute';
 
-const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
+const errorMessage = (role, requiredProps) =>
+  `Elements with the ARIA role "${role}" must have the following ` +
+  `attributes defined: ${String(requiredProps).toLowerCase()}`;
 
 module.exports = context => ({
   JSXAttribute: attribute => {
@@ -29,16 +32,23 @@ module.exports = context => ({
     }
 
     const normalizedValues = String(value).toUpperCase().split(' ');
-    const isValid = normalizedValues.every(value => Object.keys(validRoleTypes).indexOf(value) > -1);
+    const validRoles = normalizedValues.filter(value => Object.keys(validRoleTypes).indexOf(value) > -1);
 
-    if (isValid === true) {
-      return;
-    }
+    validRoles.forEach(role => {
+      const { requiredProps } = validRoleTypes[role];
 
-    context.report({
-      node: attribute,
-      message: errorMessage
+      if (requiredProps.length > 0) {
+        const hasRequiredProps = requiredProps.every(prop => hasAttribute(attribute.parent.attributes, prop));
+
+        if (hasRequiredProps === false) {
+          context.report({
+            node: attribute,
+            message: errorMessage(role.toLowerCase(), requiredProps)
+          });
+        }
+      }
     });
+
   }
 });
 

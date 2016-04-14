@@ -64,7 +64,6 @@ module.exports = {
       "ignorePattern": "((^import[^;]+;$)|(^\\s*it\\())",
       "ignoreUrls": true
     } ],
-    "new-cap": 2,
     "no-alert": 2,
     "no-confusing-arrow": 2,
     "no-caller": 2,
@@ -144,6 +143,7 @@ module.exports = {
     "prefer-const": 2,
     "prefer-spread": 2,
     "prefer-template": 2,
+    'quotes': [2, 'single', 'avoid-escape'],
     "radix": 2,
     "semi": 2,
     "sort-vars": [ 2, {

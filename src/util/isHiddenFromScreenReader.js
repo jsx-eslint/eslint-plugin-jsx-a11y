@@ -3,6 +3,8 @@
 import hasAttribute from './hasAttribute';
 import getAttributeValue from './getAttributeValue';
 
+
+
 /**
  * Returns boolean indicating that the aria-hidden prop
  * is present or the value is true.
@@ -11,7 +13,7 @@ import getAttributeValue from './getAttributeValue';
  */
 const isHiddenFromScreenReader = attributes => {
   const ariaHidden = getAttributeValue(hasAttribute(attributes, 'aria-hidden'));
-  return ariaHidden === true || ariaHidden === null;
+  return ariaHidden === true;
 };
 
 export default isHiddenFromScreenReader;
