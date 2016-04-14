@@ -3,8 +3,7 @@
 import assign from 'object-assign';
 import Literal from './Literal';
 import JSXElement from './JSXElement';
-import JSXExpressionContainer from './expressions';
-import { extractLiteral } from './expressions';
+import JSXExpressionContainer, { extractLiteral } from './expressions';
 
 
 
@@ -30,9 +29,9 @@ const LITERAL_TYPES = assign({}, TYPES, {
  *
  * @param value - AST Value object on a JSX Attribute.
  */
-const getValue = function getValue(value) {
+export default function getValue(value) {
   return TYPES[value.type](value);
-};
+}
 
 /**
  * This function maps an AST value node
@@ -43,12 +42,6 @@ const getValue = function getValue(value) {
  *
  * @param value - AST Value object on a JSX Attribute.
  */
-const getLiteralValue = function getLiteralValue(value) {
+export function getLiteralValue(value) {
   return LITERAL_TYPES[value.type](value);
-};
-
-export {
-  getValue as default,
-  getLiteralValue
-};
-
+}

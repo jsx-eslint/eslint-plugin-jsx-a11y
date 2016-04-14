@@ -1,9 +1,6 @@
 'use strict';
 
-import {
-  default as getValue,
-  getLiteralValue
-} from './values';
+import getValue, { getLiteralValue } from './values';
 
 
 
