@@ -1,3 +1,5 @@
+'use strict';
+
 import assign from 'object-assign';
 import Literal from '../Literal';
 import Identifier from './Identifier';
@@ -9,6 +11,10 @@ import MemberExpression from './MemberExpression';
 import CallExpression from './CallExpression';
 import UnaryExpression from './UnaryExpression';
 
+
+
+
+// Composition map of types to their extractor functions.
 const TYPES = {
   Identifier,
   Literal,
@@ -23,13 +29,14 @@ const TYPES = {
 
 const noop = () => null;
 
+// Composition map of types to their extractor functions to handle literals.
 const LITERAL_TYPES = assign({}, TYPES, {
   Literal: value => {
     const extractedVal = TYPES.Literal(value);
     const isNull = extractedVal === null;
     // This will be convention for attributes that have null
-    // value explicitly defined (<div prop={null} /> maps to "null").
-    return isNull ? "null" : extractedVal;
+    // value explicitly defined (<div prop={null} /> maps to 'null').
+    return isNull ? 'null' : extractedVal;
   },
   Identifier: value => {
     const isUndefined = TYPES.Identifier(value) === undefined;
@@ -46,17 +53,35 @@ const LITERAL_TYPES = assign({}, TYPES, {
   }
 });
 
-export const extract = value => {
+/**
+ * This function maps an AST value node
+ * to its correct extractor function for its
+ * given type.
+ *
+ * This will map correctly for *all* possible expression types.
+ *
+ * @param - value - AST Value object with type `JSXExpressionContainer`
+ * @returns The extracted value.
+ */
+export default function extract(value) {
   // Value will not have the expression property when we recurse.
   const expression = value.expression || value;
 
   return TYPES[expression.type](expression);
-};
+}
 
-export const extractLiteral = value => {
+/**
+ * This function maps an AST value node
+ * to its correct extractor function for its
+ * given type.
+ *
+ * This will map correctly for *some* possible types that map to literals.
+ *
+ * @param - value - AST Value object with type `JSXExpressionContainer`
+ * @returns The extracted value.
+ */
+export function extractLiteral(value) {
   const expression = value.expression || value;
 
   return LITERAL_TYPES[expression.type](expression);
-};
-
-export default extract;
+}

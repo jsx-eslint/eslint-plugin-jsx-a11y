@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * Returns the JSXAttribute itself or false, indicating the attribute
  * is not present on the JSXOpeningElement. This skips over spread attributes

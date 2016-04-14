@@ -1,8 +1,13 @@
 'use strict';
 
-import { getValue, getLiteralValue } from './values';
+import {
+  default as getValue,
+  getLiteralValue
+} from './values';
 
-const extract = (attribute, extractor) => {
+
+
+const extractValue = (attribute, extractor) => {
   if (attribute.type === 'JSXAttribute') {
     if (attribute.value === null) {
       // Null valued attributes imply truthiness.
@@ -27,8 +32,22 @@ const extract = (attribute, extractor) => {
  *
  * @param attribute - The JSXAttribute collected by AST parser.
  */
-const getAttributeValue = attribute => extract(attribute, getValue);
+export default function getAttributeValue(attribute) {
+  return extractValue(attribute, getValue);
+}
 
-export const getLiteralAttributeValue = attribute => extract(attribute, getLiteralValue);
+/**
+ * Returns the value of a given attribute.
+ * Different types of attributes have their associated
+ * values in different properties on the object.
+ *
+ * This function should return a value only if we can extract
+ * a literal value from its attribute (i.e. values that have generic
+ * types in JavaScript - strings, numbers, booleans, etc.)
+ *
+ * @param attribute - The JSXAttribute collected by AST parser.
+ */
+export const getLiteralAttributeValue = function getLiteralAttributeValue(attribute) {
+  return extractValue(attribute, getLiteralValue);
+};
 
-export default getAttributeValue;

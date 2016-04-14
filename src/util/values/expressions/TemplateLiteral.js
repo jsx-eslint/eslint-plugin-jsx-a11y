@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Returns the string value of a template literal object.
  * Tries to build it as best as it can based on the passed
@@ -6,7 +8,7 @@
  * If the template literal builds to undefined (`${undefined}`), then
  * this should return "".
  */
-const extract = value => {
+export default function extractValueFromTemplateLiteral(value) {
   const {
     quasis,
     expressions
@@ -25,6 +27,4 @@ const extract = value => {
 
     return raw;
   }, '');
-};
-
-export default extract;
+}

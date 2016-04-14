@@ -4,6 +4,9 @@ import hasAttribute from './hasAttribute';
 import getAttributeValue from './getAttributeValue';
 import DOMElements from './attributes/DOM';
 
+
+
+// Map of tagNames to functions that return whether that element is interactive or not.
 const interactiveMap = {
   a: attributes => {
     const hasHref = hasAttribute(attributes, 'href');
