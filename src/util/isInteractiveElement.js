@@ -11,7 +11,12 @@ const interactiveMap = {
   a: attributes => {
     const hasHref = hasAttribute(attributes, 'href');
     const hasTabIndex = hasAttribute(attributes, 'tabIndex');
-    return (Boolean(hasHref) || !hasHref && Boolean(hasTabIndex));
+    return (Boolean(hasHref) || (!hasHref && Boolean(hasTabIndex)));
+  },
+  area: attributes => {
+    const hasHref = hasAttribute(attributes, 'href');
+    const hasTabIndex = hasAttribute(attributes, 'tabIndex');
+    return (Boolean(hasHref) || (!hasHref && Boolean(hasTabIndex)));
   },
   button: () => true,
   input: attributes => {

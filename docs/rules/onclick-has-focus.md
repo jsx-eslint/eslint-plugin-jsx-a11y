@@ -1,0 +1,34 @@
+# onclick-has-focus
+
+Enforce that visible elements with onClick handlers must be focusable. Visible means that it is not hidden from a screen reader. Examples of non-interactive elements are `div`, `section`, and `a` elements without a href prop. Elements which have click handlers but are not focusable can not be used by keyboard-only users.
+
+To make an element focusable, you can either set the tabIndex property, or use an element type which is inherently focusable.
+
+#### References
+1. [AX_FOCUS_02](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_02)
+
+## Rule details
+
+This rule takes no arguments.
+
+### Succeed
+```jsx
+<!-- Good: div with onClick attribute is hidden from screen reader -->
+<div aria-hidden onClick={() => void 0} />
+<!-- Good: span with onClick attribute is in the tab order -->
+<span onclick="doSomething();" tabindex="0">Click me!</span>
+<!-- Good: span with onClick attribute may be focused programmatically -->
+<span onclick="doSomething();" tabindex="-1">Click me too!</span>
+<!-- Good: anchor element with href is inherently focusable -->
+<a href="javascript:void(0);" onclick="doSomething();">Click ALL the things!</a>
+```
+
+### Fail
+```jsx
+<!-- Bad: span with onClick attribute has no tabindex -->
+<span onclick="submitForm();">Submit</span>
+<!-- Bad: anchor element without href is not focusable -->
+<a onclick="showNextPage();">Next page</a>
+<!-- Bad: May not be hidden from screenreader ¯\_(ツ)_/¯ -->
+<input onClick={() => void 0} type="hidden" />
+```
