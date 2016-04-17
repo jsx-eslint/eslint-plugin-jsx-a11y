@@ -1,6 +1,9 @@
 # onclick-uses-role
 
-Enforce visible, non-interactive elements with click handlers use role attribute. Visible means that it is not hidden from a screen reader. Examples of non-interactive elements are `div`, `section`, and `a` elements without a href prop.The purpose of the role attribute is to identify to screenreaders the exact function of an element.
+Enforce visible, non-interactive elements with click handlers use role attribute. Visible means that it is not hidden from a screen reader. Examples of non-interactive elements are `div`, `section`, and `a` elements without a href prop. The purpose of the role attribute is to identify to screenreaders the exact function of an element.
+
+#### References
+1. [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
 
 ## Rule details
 
@@ -21,5 +24,4 @@ This rule takes no arguments.
 <div onClick={() => void 0} {...props} />
 <div onClick={() => void 0} aria-hidden={false} />
 <a onClick={() => void 0} />
-<input onClick={() => void 0} type="hidden" /> // May not be hidden from screenreader ¯\_(ツ)_/¯
 ```

@@ -80,6 +80,7 @@ Then configure the rules you want to use under the rules section.
 - [role-requires-aria](docs/rules/role-requires-aria.md): Enforce that elements with ARIA roles must have all required attributes for that role.
 - [no-unsupported-elements-use-aria](docs/rules/no-unsupported-elements-use-aria.md): Enforce that elements that do not support ARIA roles, states and properties do not have those attributes.
 - [avoid-positive-tabindex](docs/rules/avoid-positive-tabindex.md): Enforce tabIndex value is not greater than zero.
+- [onclick-has-focus](docs/rules/onclick-has-focus.md): Enforce that elements with onClick handlers must be focusable.
 
 ## Contributing
 Feel free to contribute! I am currently using [Google Chrome's Audit Rules](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules) to map out as rules for this plugin.

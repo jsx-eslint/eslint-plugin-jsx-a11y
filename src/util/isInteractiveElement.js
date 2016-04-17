@@ -1,7 +1,7 @@
 'use strict';
 
 import hasAttribute from './hasAttribute';
-import getAttributeValue from './getAttributeValue';
+import { getLiteralAttributeValue } from './getAttributeValue';
 import DOMElements from './attributes/DOM';
 
 
@@ -11,11 +11,13 @@ const interactiveMap = {
   a: attributes => {
     const hasHref = hasAttribute(attributes, 'href');
     const hasTabIndex = hasAttribute(attributes, 'tabIndex');
-    return (Boolean(hasHref) || !hasHref && Boolean(hasTabIndex));
+    return (Boolean(hasHref) || (!hasHref && Boolean(hasTabIndex)));
   },
+  // This is same as `a` interactivity function
+  area: attributes => interactiveMap.a(attributes),
   button: () => true,
   input: attributes => {
-    const typeAttr = getAttributeValue(hasAttribute(attributes, 'type'));
+    const typeAttr = getLiteralAttributeValue(hasAttribute(attributes, 'type'));
     return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
   },
   option: () => true,
