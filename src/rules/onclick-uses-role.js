@@ -25,18 +25,21 @@ module.exports = context => ({
       return;
     }
 
-    const isVisible = isHiddenFromScreenReader(attributes) === false;
-    const isNonInteractive = isInteractiveElement(getNodeType(node), attributes) === false;
-    const roleAttribute = hasAttribute(attributes, 'role');
-    const noRoleAttribute = roleAttribute === false || Boolean(getAttributeValue(roleAttribute)) === false;
+    const type = getNodeType(node);
+
+    if (isHiddenFromScreenReader(type, attributes)) {
+      return;
+    } else if (isInteractiveElement(type, attributes)) {
+      return;
+    } else if (getAttributeValue(hasAttribute(attributes, 'role'))) {
+      return;
+    }
 
     // Visible, non-interactive elements require role attribute.
-    if (isVisible && isNonInteractive && noRoleAttribute) {
-      context.report({
-        node,
-        message: errorMessage
-      });
-    }
+    context.report({
+      node,
+      message: errorMessage
+    });
   }
 });
 

@@ -27,7 +27,8 @@ const ruleTester = new RuleTester();
 
 const  expectedError  = {
   message: 'Elements with onClick handlers must be focusable. ' +
-    'You can either set the tabIndex property, or use an element type which is inherently focusable.',
+    'Either set the tabIndex property (usually 0), or use an element type which ' +
+    'is inherently focusable such as `button`.',
   type: 'JSXOpeningElement'
 };
 
@@ -48,6 +49,7 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<a onClick={() => void 0} href="http://x.y.z" />', parserOptions },
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />', parserOptions },
     { code: '<TestComponent onClick={doFoo} />', parserOptions },
+    { code: '<input onClick={() => void 0} type="hidden" />;', parserOptions },
     { code: '<span onClick="doSomething();" tabIndex="0">Click me!</span>', parserOptions },
     { code: '<span onClick="doSomething();" tabIndex="0">Click me!</span>', parserOptions },
     { code: '<span onClick="doSomething();" tabIndex="-1">Click me too!</span>', parserOptions },
@@ -57,6 +59,7 @@ ruleTester.run('onclick-has-focus', rule, {
 
   invalid: [
     { code: '<span onClick="submitForm();">Submit</span>', errors: [ expectedError ], parserOptions },
+    { code: '<span onClick="submitForm();" tabIndex={undefined}>Submit</span>', errors: [ expectedError ], parserOptions },
     { code: '<a onClick="showNextPage();">Next page</a>', errors: [ expectedError ], parserOptions },
     { code: '<area onClick={() => void 0} className="foo" />', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
@@ -68,7 +71,6 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<header onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<footer onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} aria-hidden={false} />;', errors: [ expectedError ], parserOptions },
-    { code: '<input onClick={() => void 0} type="hidden" />;', errors: [ expectedError ], parserOptions },
     { code: '<a onClick={() => void 0} />', errors: [ expectedError ], parserOptions }
   ]
 });

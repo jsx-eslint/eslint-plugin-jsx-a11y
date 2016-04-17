@@ -50,7 +50,7 @@ module.exports = context => ({
     }
 
     const value = getAttributeValue(altProp);
-    const isVisible = isHiddenFromScreenReader(node.attributes) === false;
+    const isVisible = isHiddenFromScreenReader(type, node.attributes) === false;
 
     if (Boolean(value) && typeof value === 'string' && isVisible) {
       const hasRedundancy = REDUNDANT_WORDS

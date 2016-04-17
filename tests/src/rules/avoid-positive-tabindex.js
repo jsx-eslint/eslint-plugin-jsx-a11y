@@ -34,6 +34,7 @@ ruleTester.run('avoid-positive-tabindex', rule, {
   valid: [
     { code: '<div />;', parserOptions },
     { code: '<div {...props} />', parserOptions },
+    { code: '<div id="main" />', parserOptions },
     { code: '<div tabIndex={undefined} />', parserOptions },
     { code: '<div tabIndex={`${undefined}`} />', parserOptions },
     { code: '<div tabIndex={`${undefined}${undefined}`} />', parserOptions },

@@ -53,6 +53,7 @@ ruleTester.run('onclick-uses-role', rule, {
     { code: '<a role="button" onClick={() => void 0} />', parserOptions },
     { code: '<a onClick={() => void 0} href="http://x.y.z" />', parserOptions },
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />', parserOptions },
+    { code: '<input onClick={() => void 0} type="hidden" />;', parserOptions },
     { code: '<TestComponent onClick={doFoo} />', parserOptions }
   ],
   invalid: [
@@ -65,7 +66,6 @@ ruleTester.run('onclick-uses-role', rule, {
     { code: '<header onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<footer onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} aria-hidden={false} />;', errors: [ expectedError ], parserOptions },
-    { code: '<input onClick={() => void 0} type="hidden" />;', errors: [ expectedError ], parserOptions },
     { code: '<a onClick={() => void 0} />', errors: [ expectedError ], parserOptions }
   ]
 });
