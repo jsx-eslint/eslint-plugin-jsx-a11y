@@ -12,14 +12,6 @@ const interactiveMap = {
     const hasHref = hasAttribute(attributes, 'href');
     const hasTabIndex = hasAttribute(attributes, 'tabIndex');
     return (Boolean(hasHref) || (!hasHref && Boolean(hasTabIndex)));
-<<<<<<< d79b788cef0cf8cc77b61b7e92be4c2824e6b3c9
-=======
-  },
-  area: attributes => {
-    const hasHref = hasAttribute(attributes, 'href');
-    const hasTabIndex = hasAttribute(attributes, 'tabIndex');
-    return (Boolean(hasHref) || (!hasHref && Boolean(hasTabIndex)));
->>>>>>> [new] - Implement onclick-has-focus
   },
   // This is same as `a` interactivity function
   area: attributes => interactiveMap.a(attributes),

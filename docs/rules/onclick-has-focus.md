@@ -21,7 +21,6 @@ This rule takes no arguments.
 <!-- Good: div with onClick attribute is hidden from screen reader -->
 <div aria-hidden onClick={() => void 0} />
 <!-- Good: span with onClick attribute is in the tab order -->
-<<<<<<< d79b788cef0cf8cc77b61b7e92be4c2824e6b3c9
 <span onClick="doSomething();" tabIndex="0">Click me!</span>
 <!-- Good: span with onClick attribute may be focused programmatically -->
 <span onClick="doSomething();" tabIndex="-1">Click me too!</span>
