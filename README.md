@@ -51,9 +51,9 @@ Add `jsx-a11y` to the plugins section of your `.eslintrc` configuration file. Yo
 
 ```json
 {
-    "plugins": [
-        "jsx-a11y"
-    ]
+  "plugins": [
+    "jsx-a11y"
+  ]
 }
 ```
 
@@ -62,9 +62,9 @@ Then configure the rules you want to use under the rules section.
 
 ```json
 {
-    "rules": {
-        "jsx-a11y/rule-name": 2
-    }
+  "rules": {
+    "jsx-a11y/rule-name": 2
+  }
 }
 ```
 
