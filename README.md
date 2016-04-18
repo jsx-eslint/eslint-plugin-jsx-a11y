@@ -33,13 +33,13 @@ Ryan Florence built out this awesome runtime-analysis tool called [react-a11y](h
 
 You'll first need to install [ESLint](http://eslint.org):
 
-```
+```sh
 $ npm i eslint --save-dev
 ```
 
 Next, install `eslint-plugin-jsx-a11y`:
 
-```
+```sh
 $ npm install eslint-plugin-jsx-a11y --save-dev
 ```
 
