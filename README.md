@@ -14,6 +14,10 @@
   <a href='https://coveralls.io/github/evcohen/eslint-plugin-jsx-a11y?branch=master'>
     <img src='https://coveralls.io/repos/github/evcohen/eslint-plugin-jsx-a11y/badge.svg?branch=master' alt='Coverage Status' />
   </a>
+  <a href='https://npmjs.org/package/eslint-plugin-jsx-a11y'>
+    <img src='https://img.shields.io/npm/dt/eslint-plugin-jsx-a11y.svg?maxAge=2592000'
+    alt='Total npm downloads' />
+  </a>
 </p>
 
 # eslint-plugin-jsx-a11y
