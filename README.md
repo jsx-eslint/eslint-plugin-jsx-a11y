@@ -86,9 +86,6 @@ Then configure the rules you want to use under the rules section.
 - [avoid-positive-tabindex](docs/rules/avoid-positive-tabindex.md): Enforce tabIndex value is not greater than zero.
 - [onclick-has-focus](docs/rules/onclick-has-focus.md): Enforce that elements with onClick handlers must be focusable.
 
-## Contributing
-Feel free to contribute! I am currently using [Google Chrome's Audit Rules](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules) to map out as rules for this plugin.
-
 ## License
 
 eslint-plugin-jsx-a11y is licensed under the [MIT License](LICENSE.md).
