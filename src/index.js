@@ -16,7 +16,8 @@ module.exports = {
     'role-requires-aria': require('./rules/role-requires-aria'),
     'no-unsupported-elements-use-aria': require('./rules/no-unsupported-elements-use-aria'),
     'avoid-positive-tabindex': require('./rules/avoid-positive-tabindex'),
-    'onclick-has-focus': require('./rules/onclick-has-focus')
+    'onclick-has-focus': require('./rules/onclick-has-focus'),
+    'aria-role-supports-attribute': require('./rules/aria-role-supports-attribute')
   },
   configs: {
     recommended: {
