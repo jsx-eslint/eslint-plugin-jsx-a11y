@@ -9,7 +9,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getAttributeValue from '../util/getAttributeValue';
 
 const mouseOverErrorMessage = 'onMouseOver must be accompanied by onFocus for accessibility.';
@@ -20,11 +20,11 @@ module.exports = context => ({
     const attributes = node.attributes;
 
     // Check onmouseover / onfocus pairing.
-    const hasOnMouseOver = hasAttribute(attributes, 'onMouseOver');
-    const onMouseOverValue = getAttributeValue(hasOnMouseOver);
+    const onMouseOver = getAttribute(attributes, 'onMouseOver');
+    const onMouseOverValue = getAttributeValue(onMouseOver);
 
-    if (Boolean(hasOnMouseOver) === true && (onMouseOverValue !== null || onMouseOverValue !== undefined)) {
-      const hasOnFocus = hasAttribute(attributes, 'onFocus');
+    if (onMouseOver && (onMouseOverValue !== null || onMouseOverValue !== undefined)) {
+      const hasOnFocus = getAttribute(attributes, 'onFocus');
       const onFocusValue = getAttributeValue(hasOnFocus);
 
       if (hasOnFocus === false || onFocusValue === null || onFocusValue === undefined) {
@@ -36,10 +36,10 @@ module.exports = context => ({
     }
 
     // Checkout onmouseout / onblur pairing
-    const hasOnMouseOut = hasAttribute(attributes, 'onMouseOut');
-    const onMouseOutValue = getAttributeValue(hasOnMouseOut);
-    if (Boolean(hasOnMouseOut) === true && (onMouseOutValue !== null || onMouseOutValue !== undefined)) {
-      const hasOnBlur = hasAttribute(attributes, 'onBlur');
+    const onMouseOut = getAttribute(attributes, 'onMouseOut');
+    const onMouseOutValue = getAttributeValue(onMouseOut);
+    if (onMouseOut && (onMouseOutValue !== null || onMouseOutValue !== undefined)) {
+      const hasOnBlur = getAttribute(attributes, 'onBlur');
       const onBlurValue = getAttributeValue(hasOnBlur);
 
       if (hasOnBlur === false || onBlurValue === null || onBlurValue === undefined) {

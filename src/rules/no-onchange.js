@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 
 const errorMessage = 'onBlur must be used instead of onchange, ' +
   'unless absolutely necessary and it causes no negative consequences ' +
@@ -16,10 +16,10 @@ const errorMessage = 'onBlur must be used instead of onchange, ' +
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const hasOnChange = hasAttribute(node.attributes, 'onChange');
-    const hasOnBlur = hasAttribute(node.attributes, 'onBlur');
+    const onChange = getAttribute(node.attributes, 'onChange');
+    const hasOnBlur = getAttribute(node.attributes, 'onBlur') !== undefined;
 
-    if (Boolean(hasOnChange) === true && hasOnBlur === false) {
+    if (onChange && !hasOnBlur) {
       context.report({
         node,
         message: errorMessage

@@ -1,10 +1,10 @@
-import hasAttribute from '../hasAttribute';
+import getAttribute from '../getAttribute';
 
 /**
  * Returns the implicit role for an area tag.
  */
 export default function getImplicitRoleForArea(attributes) {
-  if (hasAttribute(attributes, 'href')) {
+  if (getAttribute(attributes, 'href')) {
     return 'link';
   }
 

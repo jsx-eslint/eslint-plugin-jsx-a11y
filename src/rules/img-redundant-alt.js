@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getAttributeValue from '../util/getAttributeValue';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import getNodeType from '../util/getNodeType';
@@ -34,9 +34,9 @@ module.exports = context => ({
       return;
     }
 
-    const altProp = hasAttribute(node.attributes, 'alt');
+    const altProp = getAttribute(node.attributes, 'alt');
     // Return if alt prop is not present.
-    if (altProp === false) {
+    if (altProp === undefined) {
       return;
     }
 

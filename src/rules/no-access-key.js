@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getAttributeValue from '../util/getAttributeValue';
 
 const errorMessage = 'No access key attribute allowed. Inconsistencies ' +
@@ -17,10 +17,10 @@ const errorMessage = 'No access key attribute allowed. Inconsistencies ' +
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const hasAccessKey = hasAttribute(node.attributes, 'accesskey');
-    const accessKeyValue = getAttributeValue(hasAccessKey);
+    const accessKey = getAttribute(node.attributes, 'accesskey');
+    const accessKeyValue = getAttributeValue(accessKey);
 
-    if (Boolean(hasAccessKey) === true && Boolean(accessKeyValue) === true) {
+    if (accessKey && accessKeyValue) {
       context.report({
         node,
         message: errorMessage

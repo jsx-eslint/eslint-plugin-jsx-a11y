@@ -10,7 +10,7 @@
 
 import DOM from '../util/attributes/DOM';
 import ARIA from '../util/attributes/ARIA';
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getNodeType from '../util/getNodeType';
 
 const errorMessage = 'This element does not support ARIA roles, states and properties.';
@@ -27,9 +27,9 @@ module.exports = context => ({
     }
 
     const invalidAttributes = Object.keys(ARIA).concat('ROLE');
-    const hasAria = hasAttribute(node.attributes, ...invalidAttributes);
+    const hasInvalidAttribute = getAttribute(node.attributes, ...invalidAttributes) !== undefined;
 
-    if (hasAria) {
+    if (hasInvalidAttribute) {
       context.report({
         node,
         message: errorMessage

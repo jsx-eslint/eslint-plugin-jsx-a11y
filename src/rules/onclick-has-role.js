@@ -7,7 +7,7 @@
 
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getAttributeValue from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 
@@ -21,7 +21,7 @@ const errorMessage = 'Visible, non-interactive elements with click handlers must
 module.exports = context => ({
   JSXOpeningElement: node => {
     const attributes = node.attributes;
-    if (hasAttribute(attributes, 'onclick') === false) {
+    if (getAttribute(attributes, 'onclick') === undefined) {
       return;
     }
 
@@ -31,7 +31,7 @@ module.exports = context => ({
       return;
     } else if (isInteractiveElement(type, attributes)) {
       return;
-    } else if (getAttributeValue(hasAttribute(attributes, 'role'))) {
+    } else if (getAttributeValue(getAttribute(attributes, 'role'))) {
       return;
     }
 
