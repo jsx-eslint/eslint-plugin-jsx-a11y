@@ -1,4 +1,4 @@
-# label-uses-for
+# label-has-for
 
 Enforce label tags have htmlFor attribute. Form controls using a label to identify them must have only one label that is programmatically associated with the control using: label htmlFor=[ID of control].
 
@@ -36,8 +36,8 @@ To tell this plugin to also check your `Label` element, specify this in your `.e
 ```json
 {
     "rules": {
-        "jsx-a11y/label-uses-for": [ 2, "Label" ], // OR
-        "jsx-a11y/label-uses-for": [ 2, [ "Label", "InputDescriptor" ] ]
+        "jsx-a11y/label-has-for": [ 2, "Label" ], // OR
+        "jsx-a11y/label-has-for": [ 2, [ "Label", "InputDescriptor" ] ]
     }
 }
 ```

@@ -1,4 +1,4 @@
-# img-uses-alt
+# img-has-alt
 
 Enforce that an `img` element contains the `alt` prop. The `alt` attribute specifies an alternate text for an image, if the image cannot be displayed.
 
@@ -35,8 +35,8 @@ To tell this plugin to also check your `Image` element, specify this in your `.e
 ```json
 {
     "rules": {
-        "jsx-a11y/img-uses-alt": [ 2, "Image" ], <!-- OR -->
-        "jsx-a11y/img-uses-alt": [ 2, [ "Image", "Avatar" ] ]
+        "jsx-a11y/img-has-alt": [ 2, "Image" ], <!-- OR -->
+        "jsx-a11y/img-has-alt": [ 2, [ "Image", "Avatar" ] ]
     }
 }
 ```

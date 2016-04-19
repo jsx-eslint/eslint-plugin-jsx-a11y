@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/no-hash-href';
+import rule from '../../../src/rules/href-no-hash';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -33,7 +33,7 @@ const expectedError = {
 const string = [ 'Link' ];
 const array = [ [ 'Anchor', 'Link' ] ];
 
-ruleTester.run('no-hash-href', rule, {
+ruleTester.run('href-no-hash', rule, {
   valid: [
     // DEFAULT ELEMENT 'a' TESTS
     { code: '<a />;', parserOptions },

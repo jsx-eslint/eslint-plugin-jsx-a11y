@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/redundant-alt';
+import rule from '../../../src/rules/img-redundant-alt';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -31,7 +31,7 @@ const expectedError = {
   type: 'JSXOpeningElement'
 };
 
-ruleTester.run('redundant-alt', rule, {
+ruleTester.run('img-redundant-alt', rule, {
   valid: [
     { code: '<img alt="foo" />;', parserOptions },
     { code: '<img alt="picture of me taking a photo of an image" aria-hidden />', parserOptions },
