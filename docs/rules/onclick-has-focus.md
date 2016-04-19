@@ -33,7 +33,7 @@ This rule takes no arguments.
 ### Fail
 ```jsx
 <!-- Bad: span with onClick attribute has no tabindex -->
-<span onclick="submitForm();">Submit</span>
+<span onClick="submitForm();">Submit</span>
 <!-- Bad: anchor element without href is not focusable -->
-<a onclick="showNextPage();">Next page</a>
+<a onClick="showNextPage();">Next page</a>g
 ```
