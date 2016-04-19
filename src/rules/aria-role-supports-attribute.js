@@ -15,8 +15,13 @@ import ROLES from '../util/attributes/role';
 import ARIA from '../util/attributes/ARIA';
 import getImplicitRole from '../util/getImplicitRole';
 
-const errorMessage = (attr, role, tag) =>
-  `The attribute ${attr} is not supported by the role ${role}. This role may be implicit based on the tag ${tag}.`;
+const errorMessage = (attr, role, tag, isImplicit) => {
+  if (isImplicit) {
+    return `The attribute ${attr} is not supported by the role ${role}. This role is implicit on the element ${tag}.`;
+  }
+
+  return `The attribute ${attr} is not supported by the role ${role}.`;
+};
 
 module.exports = context => ({
   JSXOpeningElement: node => {
@@ -24,6 +29,7 @@ module.exports = context => ({
     const type = getNodeType(node);
     const hasRole = hasAttribute(node.attributes, 'role');
     const role = hasRole ? getLiteralAttributeValue(hasRole) : getImplicitRole(type, node.attributes);
+    const isImplicit = role && !hasRole;
 
     // If there is no explicit or implicit role, then assume that the element
     // can handle the global set of aria-* properties.
@@ -43,7 +49,7 @@ module.exports = context => ({
 
     context.report({
       node,
-      message: errorMessage(invalidAttr.name.name.toLowerCase(), role.toLowerCase(), type.toLowerCase())
+      message: errorMessage(invalidAttr.name.name, role, type, isImplicit)
     });
 
   }

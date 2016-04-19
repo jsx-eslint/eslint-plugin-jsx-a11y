@@ -1,5 +1,4 @@
 import implicitRoles from './implicitRoles';
-import DOM from './attributes/DOM';
 
 /**
  * Returns an element's implicit role given its attributes and type.
@@ -14,8 +13,6 @@ export default function getImplicitRole(type, attributes) {
 
   if (implicitRoles[normalizedType]) {
     return implicitRoles[normalizedType](attributes);
-  } else if (DOM[normalizedType] && DOM[normalizedType].role) {
-    return DOM[normalizedType].role;
   }
 
   return '';

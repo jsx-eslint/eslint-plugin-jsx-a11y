@@ -25,8 +25,16 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-const errorMessage = (attr, role, tag) => ({
-  message: `The attribute ${attr} is not supported by the role ${role}. This role may be implicit based on the tag ${tag}.`,
+const generateErrorMessage = (attr, role, tag, isImplicit) => {
+  if (isImplicit) {
+    return `The attribute ${attr} is not supported by the role ${role}. This role is implicit on the element ${tag}.`;
+  }
+
+  return `The attribute ${attr} is not supported by the role ${role}.`;
+};
+
+const errorMessage = (attr, role, tag, isImplicit) => ({
+  message: generateErrorMessage(attr, role, tag, isImplicit),
   type: 'JSXOpeningElement'
 });
 
@@ -48,7 +56,7 @@ const createTests = roles => roles.reduce((tests, role) => {
   tests[1] = tests[1].concat(invalidPropsForRole.map(prop => ({
     code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
     parserOptions,
-    errors: [ errorMessage(prop.toLowerCase(), normalRole, 'div') ]
+    errors: [ errorMessage(prop.toLowerCase(), normalRole, 'div', false) ]
   })));
 
   return tests;
@@ -384,21 +392,71 @@ ruleTester.run('aria-role-supports-attribute', rule, {
     { code: '<input type="url" aria-disabled />', parserOptions },
     { code: '<input aria-disabled />', parserOptions },
 
-    // ASIDE TEST
-    { code: '<aside aria-expanded />', parserOptions }
+    // OTHER TESTS
+    { code: '<aside aria-expanded />', parserOptions },
+    { code: '<article aria-expanded />', parserOptions },
+    { code: '<body aria-expanded />', parserOptions },
+    { code: '<button aria-pressed />', parserOptions },
+    { code: '<datalist aria-expanded />', parserOptions },
+    { code: '<details aria-expanded />', parserOptions },
+    { code: '<dialog aria-expanded />', parserOptions },
+    { code: '<dl aria-expanded />', parserOptions },
+    { code: '<form aria-hidden />', parserOptions },
+    { code: '<h1 aria-hidden />', parserOptions },
+    { code: '<h2 aria-hidden />', parserOptions },
+    { code: '<h3 aria-hidden />', parserOptions },
+    { code: '<h4 aria-hidden />', parserOptions },
+    { code: '<h5 aria-hidden />', parserOptions },
+    { code: '<h6 aria-hidden />', parserOptions },
+    { code: '<hr aria-hidden />', parserOptions },
+    { code: '<li aria-expanded />', parserOptions },
+    { code: '<meter aria-atomic />', parserOptions },
+    { code: '<nav aria-expanded />', parserOptions },
+    { code: '<ol aria-expanded />', parserOptions },
+    { code: '<option aria-atomic />', parserOptions },
+    { code: '<output aria-expanded />', parserOptions },
+    { code: '<progress aria-atomic />', parserOptions },
+    { code: '<section aria-expanded />', parserOptions },
+    { code: '<select aria-expanded />', parserOptions },
+    { code: '<tbody aria-expanded />', parserOptions },
+    { code: '<textarea aria-hidden />', parserOptions },
+    { code: '<tfoot aria-expanded />', parserOptions },
+    { code: '<thead aria-expanded />', parserOptions },
+    { code: '<ul aria-expanded />', parserOptions }
+
   ].concat(validTests),
 
   invalid: [
     // implicit basic checks
-    { code: '<a href="#" aria-checked />', errors: [ errorMessage('aria-checked', 'link', 'a') ], parserOptions },
-    { code: '<area href="#" aria-checked />', errors: [ errorMessage('aria-checked', 'link', 'area') ], parserOptions },
-    { code: '<link href="#" aria-checked />', errors: [ errorMessage('aria-checked', 'link', 'link') ], parserOptions },
-    { code: '<img alt="" aria-checked />', errors: [ errorMessage('aria-checked', 'presentation', 'img') ], parserOptions },
     {
-      code: '<menu type="toolbar" aria-checked />',
-      errors: [ errorMessage('aria-checked', 'toolbar', 'menu') ],
+      code: '<a href="#" aria-checked />',
+      errors: [ errorMessage('aria-checked', 'link', 'a', true) ],
       parserOptions
     },
-    { code: '<aside aria-checked />', errors: [ errorMessage('aria-checked', 'complementary', 'aside') ], parserOptions }
+    {
+      code: '<area href="#" aria-checked />',
+      errors: [ errorMessage('aria-checked', 'link', 'area', true) ],
+      parserOptions
+    },
+    {
+      code: '<link href="#" aria-checked />',
+      errors: [ errorMessage('aria-checked', 'link', 'link', true) ],
+      parserOptions
+    },
+    {
+      code: '<img alt="" aria-checked />',
+      errors: [ errorMessage('aria-checked', 'presentation', 'img', true) ],
+      parserOptions
+    },
+    {
+      code: '<menu type="toolbar" aria-checked />',
+      errors: [ errorMessage('aria-checked', 'toolbar', 'menu', true) ],
+      parserOptions
+    },
+    {
+      code: '<aside aria-checked />',
+      errors: [ errorMessage('aria-checked', 'complementary', 'aside', true) ],
+      parserOptions
+    }
   ].concat(invalidTests)
 });
