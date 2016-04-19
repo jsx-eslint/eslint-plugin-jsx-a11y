@@ -35,8 +35,8 @@ To tell this plugin to also check your `Image` element, specify this in your `.e
 ```json
 {
     "rules": {
-        "jsx-a11y/img-uses-alt": [ 2, "Image" ], <!-- OR -->
-        "jsx-a11y/img-uses-alt": [ 2, [ "Image", "Avatar" ] ]
+        "jsx-a11y/img-has-alt": [ 2, "Image" ], <!-- OR -->
+        "jsx-a11y/img-has-alt": [ 2, [ "Image", "Avatar" ] ]
     }
 }
 ```

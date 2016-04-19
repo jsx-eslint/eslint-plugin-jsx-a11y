@@ -1,4 +1,4 @@
-# no-hash-href
+# href-no-hash
 
 Enforce an anchor element's href prop value is not just #. You should use something more descriptive, or use a button instead.
 
@@ -26,8 +26,8 @@ To tell this plugin to also check your `Link` element, specify this in your `.es
 ```json
 {
     "rules": {
-        "jsx-a11y/no-hash-href": [ 2, "Link" ], // OR
-        "jsx-a11y/no-hash-href": [ 2, [ "Link", "Anchor" ] ]
+        "jsx-a11y/href-no-hash": [ 2, "Link" ], // OR
+        "jsx-a11y/href-no-hash": [ 2, [ "Link", "Anchor" ] ]
     }
 }
 ```
