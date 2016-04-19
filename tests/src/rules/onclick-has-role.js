@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/onclick-uses-role';
+import rule from '../../../src/rules/onclick-has-role';
 import { RuleTester } from 'eslint';
 
 const parserOptions  = {
@@ -31,7 +31,7 @@ const  expectedError  = {
   type: 'JSXOpeningElement'
 };
 
-ruleTester.run('onclick-uses-role', rule, {
+ruleTester.run('onclick-has-role', rule, {
   valid: [
     { code: '<div onClick={() => void 0} role="button" />;', parserOptions },
     { code: '<div onClick={() => void 0} role={role} />;', parserOptions },
