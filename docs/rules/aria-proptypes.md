@@ -1,4 +1,4 @@
-# valid-aria-proptype
+# aria-proptypes
 
 ARIA state and property values must be valid.
 

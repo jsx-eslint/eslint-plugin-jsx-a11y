@@ -84,7 +84,7 @@ Then configure the rules you want to use under the rules section.
 - [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
 - [role-requires-aria](docs/rules/role-requires-aria.md): Enforce that elements with ARIA roles must have all required attributes for that role.
 - [no-onchange](docs/rules/no-onchange.md): Enforce that `onBlur` is used instead of `onChange`.
-- [valid-aria-proptype](docs/rules/valid-aria-proptype.md): Enforce ARIA state and property values are valid.
+- [aria-proptypes](docs/rules/aria-proptypes.md): Enforce ARIA state and property values are valid.
 - [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
 
 ## License

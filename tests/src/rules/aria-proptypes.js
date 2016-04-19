@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/valid-aria-proptypes';
+import rule from '../../../src/rules/aria-proptypes';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -46,7 +46,7 @@ const errorMessage = name => {
   }
 };
 
-ruleTester.run('valid-aria-proptypes', rule, {
+ruleTester.run('aria-proptypes', rule, {
   valid: [
     // DON'T TEST INVALID ARIA-* PROPS
     { code: '<div aria-foo="true" />', parserOptions },
