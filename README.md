@@ -73,7 +73,7 @@ Then configure the rules you want to use under the rules section.
 - [role-supports-aria-props](docs/rules/role-supports-aria-props.md): Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.
 - [tabindex-no-positive](docs/rules/tabindex-no-positive.md): Enforce `tabIndex` value is not greater than zero.
 - [img-has-alt](docs/rules/img-has-alt.md): Enforce that `<img>` JSX elements use the `alt` prop.
-- [label-uses-for](docs/rules/label-uses-for.md): Enforce that `<label>` elements have the `htmlFor` prop.
+- [label-has-for](docs/rules/label-has-for.md): Enforce that `<label>` elements have the `htmlFor` prop.
 - [mouse-events-map-to-key-events](docs/rules/mouse-events-map-to-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
 - [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
 - [no-hash-href](docs/rules/no-hash-href.md): Enforce an anchor element's `href` prop value is not just `#`.

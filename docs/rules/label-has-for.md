@@ -1,4 +1,4 @@
-# label-uses-for
+# label-has-for
 
 Enforce label tags have htmlFor attribute. Form controls using a label to identify them must have only one label that is programmatically associated with the control using: label htmlFor=[ID of control].
 
