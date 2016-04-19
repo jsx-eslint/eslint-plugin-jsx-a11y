@@ -85,7 +85,7 @@ Then configure the rules you want to use under the rules section.
 - [role-requires-aria](docs/rules/role-requires-aria.md): Enforce that elements with ARIA roles must have all required attributes for that role.
 - [no-onchange](docs/rules/no-onchange.md): Enforce that `onBlur` is used instead of `onChange`.
 - [valid-aria-proptype](docs/rules/valid-aria-proptype.md): Enforce ARIA state and property values are valid.
-- [valid-aria-role](docs/rules/valid-aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
+- [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
 
 ## License
 
