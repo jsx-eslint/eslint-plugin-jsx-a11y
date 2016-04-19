@@ -1,4 +1,4 @@
-# redundant-alt
+# img-redundant-alt
 
 Enforce img alt attribute does not contain the word image, picture, or photo. Screenreaders already announce `img` elements as an image. There is no need to use words such as *image*, *photo*, and/or *picture*.
 

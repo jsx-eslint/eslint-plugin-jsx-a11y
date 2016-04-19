@@ -3,7 +3,7 @@
 module.exports = {
   rules: {
     'img-has-alt': require('./rules/img-has-alt'),
-    'redundant-alt': require('./rules/redundant-alt'),
+    'img-redundant-alt': require('./rules/img-redundant-alt'),
     'onclick-has-role': require('./rules/onclick-has-role'),
     'mouse-events-have-key-events': require('./rules/mouse-events-have-key-events'),
     'use-onblur-not-onchange': require('./rules/use-onblur-not-onchange'),
@@ -28,7 +28,7 @@ module.exports = {
       },
       rules: {
         'jsx-a11y/img-has-alt': 2,
-        'jsx-a11y/redundant-alt': 2,
+        'jsx-a11y/img-redundant-alt': 2,
         'jsx-a11y/onclick-has-role': 2,
         'jsx-a11y/mouse-events-have-key-events': 2,
         'jsx-a11y/use-onblur-not-onchange': 2,
