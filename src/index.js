@@ -13,7 +13,7 @@ module.exports = {
     'aria-role': require('./rules/aria-role'),
     'aria-proptypes': require('./rules/aria-proptypes'),
     'aria-props': require('./rules/aria-props'),
-    'role-requires-aria': require('./rules/role-requires-aria'),
+    'role-has-required-aria-props': require('./rules/role-has-required-aria-props'),
     'aria-unsupported-elements': require('./rules/aria-unsupported-elements'),
     'tabindex-no-positive': require('./rules/tabindex-no-positive'),
     'onclick-has-focus': require('./rules/onclick-has-focus'),
@@ -38,7 +38,7 @@ module.exports = {
         'jsx-a11y/aria-role': 2,
         'jsx-a11y/aria-proptypes': 2,
         'jsx-a11y/aria-props': 2,
-        'jsx-a11y/role-requires-aria': 2,
+        'jsx-a11y/role-has-required-aria-props': 2,
         'jsx-a11y/aria-unsupported-elements': 2,
         'jsx-a11y/tabindex-no-positive': 2,
         'jsx-a11y/role-supports-aria-props': 2
