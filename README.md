@@ -77,7 +77,7 @@ Then configure the rules you want to use under the rules section.
 - [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
 - [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
 - [href-no-hash](docs/rules/href-no-hash.md): Enforce an anchor element's `href` prop value is not just `#`.
-- [no-invalid-aria](docs/rules/no-invalid-aria.md): Enforce all `aria-*` props are valid.
+- [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
 - [no-unsupported-elements-use-aria](docs/rules/no-unsupported-elements-use-aria.md): Enforce that elements that do not support ARIA roles, states, and properties do not have those attributes.
 - [onclick-has-focus](docs/rules/onclick-has-focus.md): Enforce that elements with `onClick` handlers must be focusable.
 - [onclick-uses-role](docs/rules/onclick-uses-role.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
