@@ -1,145 +1,356 @@
 {
-  "A": {},
-  "ABBR": {},
-  "ADDRESS": {},
-  "AREA": {},
-  "ARTICLE": {},
-  "ASIDE": {},
-  "AUDIO": {},
-  "B": {},
-  "BASE": {
-    "reserved": true
+  "A": {
+    "role": ""
   },
-  "BDI": {},
-  "BDO": {},
-  "BIG": {},
-  "BLOCKQUOTE": {},
-  "BODY": {},
-  "BR": {},
-  "BUTTON": {},
-  "CANVAS": {},
-  "CAPTION": {},
-  "CITE": {},
-  "CODE": {},
+  "ABBR": {
+    "role": ""
+  },
+  "ADDRESS": {
+    "role": ""
+  },
+  "AREA": {
+    "role": ""
+  },
+  "ARTICLE": {
+    "role": "article"
+  },
+  "ASIDE": {
+    "role": "complementary"
+  },
+  "AUDIO": {
+    "role": ""
+  },
+  "B": {
+    "role": ""
+  },
+  "BASE": {
+    "reserved": true,
+    "role": ""
+  },
+  "BDI": {
+    "role": ""
+  },
+  "BDO": {
+    "role": ""
+  },
+  "BIG": {
+    "role": ""
+  },
+  "BLOCKQUOTE": {
+    "role": ""
+  },
+  "BODY": {
+    "role": "document"
+  },
+  "BR": {
+    "role": ""
+  },
+  "BUTTON": {
+    "role": "button"
+  },
+  "CANVAS": {
+    "role": ""
+  },
+  "CAPTION": {
+    "role": ""
+  },
+  "CITE": {
+    "role": ""
+  },
+  "CODE": {
+    "role": ""
+  },
   "COL": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
   "COLGROUP": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "DATA": {},
-  "DATALIST": {},
-  "DD": {},
-  "DEL": {},
-  "DETAILS": {},
-  "DFN": {},
-  "DIALOG": {},
-  "DIV": {},
-  "DL": {},
-  "DT": {},
-  "EM": {},
-  "EMBED": {},
-  "FIELDSET": {},
-  "FIGCAPTION": {},
-  "FIGURE": {},
-  "FOOTER": {},
-  "FORM": {},
-  "H1": {},
-  "H2": {},
-  "H3": {},
-  "H4": {},
-  "H5": {},
-  "H6": {},
+  "DATA": {
+    "role": ""
+  },
+  "DATALIST": {
+    "role": "listbox"
+  },
+  "DD": {
+    "role": ""
+  },
+  "DEL": {
+    "role": ""
+  },
+  "DETAILS": {
+    "role": "group"
+  },
+  "DFN": {
+    "role": ""
+  },
+  "DIALOG": {
+    "role": "dialog"
+  },
+  "DIV": {
+    "role": ""
+  },
+  "DL": {
+    "role": "list"
+  },
+  "DT": {
+    "role": ""
+  },
+  "EM": {
+    "role": ""
+  },
+  "EMBED": {
+    "role": ""
+  },
+  "FIELDSET": {
+    "role": ""
+  },
+  "FIGCAPTION": {
+    "role": ""
+  },
+  "FIGURE": {
+    "role": ""
+  },
+  "FOOTER": {
+    "role": ""
+  },
+  "FORM": {
+    "role": "form"
+  },
+  "H1": {
+    "role": "heading"
+  },
+  "H2": {
+    "role": "heading"
+  },
+  "H3": {
+    "role": "heading"
+  },
+  "H4": {
+    "role": "heading"
+  },
+  "H5": {
+    "role": "heading"
+  },
+  "H6": {
+    "role": "heading"
+  },
   "HEAD": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "HEADER": {},
-  "HGROUP": {},
-  "HR": {},
+  "HEADER": {
+    "role": ""
+  },
+  "HGROUP": {
+    "role": ""
+  },
+  "HR": {
+    "role": "separator"
+  },
   "HTML": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "I": {},
-  "IFRAME": {},
-  "IMG": {},
-  "INPUT": {},
-  "INS": {},
-  "KBD": {},
-  "KEYGEN": {},
-  "LABEL": {},
-  "LEGEND": {},
-  "LI": {},
+  "I": {
+    "role": ""
+  },
+  "IFRAME": {
+    "role": ""
+  },
+  "IMG": {
+    "role": "img"
+  },
+  "INPUT": {
+    "role": "textbox"
+  },
+  "INS": {
+    "role": ""
+  },
+  "KBD": {
+    "role": ""
+  },
+  "KEYGEN": {
+    "role": ""
+  },
+  "LABEL": {
+    "role": ""
+  },
+  "LEGEND": {
+    "role": ""
+  },
+  "LI": {
+    "role": "listitem"
+  },
   "LINK": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "MAIN": {},
-  "MAP": {},
-  "MARK": {},
-  "MENU": {},
-  "MENUITEM": {},
+  "MAIN": {
+    "role": ""
+  },
+  "MAP": {
+    "role": ""
+  },
+  "MARK": {
+    "role": ""
+  },
+  "MENU": {
+    "role": ""
+  },
+  "MENUITEM": {
+    "role": ""
+  },
   "META": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "METER": {},
-  "NAV": {},
+  "METER": {
+    "role": "progressbar"
+  },
+  "NAV": {
+    "role": "navigation"
+  },
   "NOSCRIPT": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "OBJECT": {},
-  "OL": {},
-  "OPTGROUP": {},
-  "OPTION": {},
-  "OUTPUT": {},
-  "P": {},
+  "OBJECT": {
+    "role": ""
+  },
+  "OL": {
+    "role": "list"
+  },
+  "OPTGROUP": {
+    "role": ""
+  },
+  "OPTION": {
+    "role": "option"
+  },
+  "OUTPUT": {
+    "role": "status"
+  },
+  "P": {
+    "role": ""
+  },
   "PARAM": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
   "PICTURE": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "PRE": {},
-  "PROGRESS": {},
-  "Q": {},
-  "RP": {},
-  "RT": {},
-  "RUBY": {},
-  "S": {},
-  "SAMP": {},
+  "PRE": {
+    "role": ""
+  },
+  "PROGRESS": {
+    "role": "progressbar"
+  },
+  "Q": {
+    "role": ""
+  },
+  "RP": {
+    "role": ""
+  },
+  "RT": {
+    "role": ""
+  },
+  "RUBY": {
+    "role": ""
+  },
+  "S": {
+    "role": ""
+  },
+  "SAMP": {
+    "role": ""
+  },
   "SCRIPT": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "SECTION": {},
-  "SELECT": {},
-  "SMALL": {},
+  "SECTION": {
+    "role": "region"
+  },
+  "SELECT": {
+    "role": "listbox"
+  },
+  "SMALL": {
+    "role": ""
+  },
   "SOURCE": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "SPAN": {},
-  "STRONG": {},
+  "SPAN": {
+    "role": ""
+  },
+  "STRONG": {
+    "role": ""
+  },
   "STYLE": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "SUB": {},
-  "SUMMARY": {},
-  "SUP": {},
-  "TABLE": {},
-  "TBODY": {},
-  "TD": {},
-  "TEXTAREA": {},
-  "TFOOT": {},
-  "TH": {},
-  "THEAD": {},
-  "TIME": {},
+  "SUB": {
+    "role": ""
+  },
+  "SUMMARY": {
+    "role": ""
+  },
+  "SUP": {
+    "role": ""
+  },
+  "TABLE": {
+    "role": ""
+  },
+  "TBODY": {
+    "role": "rowgroup"
+  },
+  "TD": {
+    "role": ""
+  },
+  "TEXTAREA": {
+    "role": "textbox"
+  },
+  "TFOOT": {
+    "role": "rowgroup"
+  },
+  "TH": {
+    "role": ""
+  },
+  "THEAD": {
+    "role": "rowgroup"
+  },
+  "TIME": {
+    "role": ""
+  },
   "TITLE": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "TR": {},
+  "TR": {
+    "role": ""
+  },
   "TRACK": {
-    "reserved": true
+    "reserved": true,
+    "role": ""
   },
-  "U": {},
-  "UL": {},
-  "VAR": {},
-  "VIDEO": {},
-  "WBR": {}
+  "U": {
+    "role": ""
+  },
+  "UL": {
+    "role": "list"
+  },
+  "VAR": {
+    "role": ""
+  },
+  "VIDEO": {
+    "role": ""
+  },
+  "WBR": {
+    "role": ""
+  }
 }

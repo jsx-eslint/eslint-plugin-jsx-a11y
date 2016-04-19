@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import validRoleTypes from '../util/attributes/role';
+import roles from '../util/attributes/role';
 import { getLiteralAttributeValue } from '../util/getAttributeValue';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
@@ -29,7 +29,8 @@ module.exports = context => ({
     }
 
     const normalizedValues = String(value).toUpperCase().split(' ');
-    const isValid = normalizedValues.every(value => Object.keys(validRoleTypes).indexOf(value) > -1);
+    const validRoles = Object.keys(roles).filter(role => roles[role].abstract === false);
+    const isValid = normalizedValues.every(value => validRoles.indexOf(value) > -1);
 
     if (isValid === true) {
       return;
