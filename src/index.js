@@ -17,7 +17,7 @@ module.exports = {
     'no-unsupported-elements-use-aria': require('./rules/no-unsupported-elements-use-aria'),
     'avoid-positive-tabindex': require('./rules/avoid-positive-tabindex'),
     'onclick-has-focus': require('./rules/onclick-has-focus'),
-    'aria-role-supports-attribute': require('./rules/aria-role-supports-attribute')
+    'role-supports-aria-props': require('./rules/role-supports-aria-props')
   },
   configs: {
     recommended: {
@@ -40,7 +40,8 @@ module.exports = {
         'jsx-a11y/no-invalid-aria': 2,
         'jsx-a11y/role-requires-aria': 2,
         'jsx-a11y/no-unsupported-elements-use-aria': 2,
-        'jsx-a11y/avoid-positive-tabindex': 2
+        'jsx-a11y/avoid-positive-tabindex': 2,
+        'jsx-a11y/role-supports-aria-props': 2
       }
     }
   }
