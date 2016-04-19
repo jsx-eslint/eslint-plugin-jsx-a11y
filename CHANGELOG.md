@@ -1,3 +1,23 @@
+1.0.0 / 2016-04-19
+==================
+- [breaking] Change `img-uses-alt` to `img-has-alt`
+- [breaking] Change `onlick-uses-role` to `onclick-has-role`
+- [breaking] Change `mouse-events-map-to-key-events` to `mouse-events-have-key-events`
+- [breaking] Change `use-onblur-not-onchange` to `no-onchange`
+- [breaking] Change `label-uses-for` to `label-has-for`
+- [breaking] Change `redundant-alt` to `img-redundant-alt`
+- [breaking] Change `no-hash-href` to `href-no-hash`
+- [breaking] Change `valid-aria-role` to `aria-role`
+
+- [new] Implement `aria-props` rule
+- [new] Implement `aria-proptypes` rule
+- [new] Implement `aria-unsupported-elements` rule
+- [new] Implement `onclick-has-focus` rule
+- [new] Implement `role-has-required-aria-props` rule
+- [new] Implement `role-supports-aria-props` rule
+- [new] Implement `tabindex-no-positive` rule
+
+
 0.6.2 / 2016-04-08
 ==================
 - [fix] Fix rule details for img-uses-alt: allow alt="" or role="presentation".
