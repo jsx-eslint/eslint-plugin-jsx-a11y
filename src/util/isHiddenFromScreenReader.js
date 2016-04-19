@@ -1,6 +1,6 @@
 'use strict';
 
-import hasAttribute from './hasAttribute';
+import getAttribute from './getAttribute';
 import getAttributeValue, { getLiteralAttributeValue } from './getAttributeValue';
 
 
@@ -14,14 +14,14 @@ import getAttributeValue, { getLiteralAttributeValue } from './getAttributeValue
  */
 const isHiddenFromScreenReader = (type, attributes) => {
   if (type.toUpperCase() === 'INPUT') {
-    const hidden = getLiteralAttributeValue(hasAttribute(attributes, 'type'));
+    const hidden = getLiteralAttributeValue(getAttribute(attributes, 'type'));
 
     if (hidden && hidden.toUpperCase() == 'HIDDEN') {
       return true;
     }
   }
 
-  const ariaHidden = getAttributeValue(hasAttribute(attributes, 'aria-hidden'));
+  const ariaHidden = getAttributeValue(getAttribute(attributes, 'aria-hidden'));
   return ariaHidden === true;
 };
 

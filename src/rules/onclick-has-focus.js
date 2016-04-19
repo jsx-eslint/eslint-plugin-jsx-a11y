@@ -6,7 +6,7 @@
 
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getNodeType from '../util/getNodeType';
 import getAttributeValue from '../util/getAttributeValue';
 
@@ -21,7 +21,7 @@ const errorMessage = 'Elements with onClick handlers must be focusable. ' +
 module.exports = context => ({
   JSXOpeningElement: node => {
     const { attributes } = node;
-    if (hasAttribute(attributes, 'onClick') === false) {
+    if (getAttribute(attributes, 'onClick') === undefined) {
       return;
     }
 
@@ -31,7 +31,7 @@ module.exports = context => ({
       return;
     } else if (isInteractiveElement(type, attributes)) {
       return;
-    } else if (getAttributeValue(hasAttribute(attributes, 'tabIndex'))) {
+    } else if (getAttributeValue(getAttribute(attributes, 'tabIndex'))) {
       return;
     }
 

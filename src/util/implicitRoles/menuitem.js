@@ -1,15 +1,16 @@
-import hasAttribute from '../hasAttribute';
+import getAttribute from '../getAttribute';
 import { getLiteralAttributeValue } from '../getAttributeValue';
 
 /**
  * Returns the implicit role for a menuitem tag.
  */
 export default function getImplicitRoleForMenuitem(attributes) {
-  const hasType = hasAttribute(attributes, 'type');
-  const type = getLiteralAttributeValue(hasType);
+  const type = getAttribute(attributes, 'type');
 
-  if (hasType && type) {
-    switch (type.toUpperCase()) {
+  if (type) {
+    const value = getLiteralAttributeValue(type) || '';
+
+    switch (value.toUpperCase()) {
       case 'COMMAND':
         return 'menuitem';
       case 'CHECKBOX':

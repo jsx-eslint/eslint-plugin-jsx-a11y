@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getAttributeValue from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 
@@ -25,7 +25,7 @@ module.exports = context => ({
       return;
     }
 
-    const htmlForAttr = hasAttribute(node.attributes, 'htmlFor');
+    const htmlForAttr = getAttribute(node.attributes, 'htmlFor');
     const htmlForValue = getAttributeValue(htmlForAttr);
     const isInvalid = htmlForAttr === false || !htmlForValue;
 

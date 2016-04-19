@@ -1,4 +1,4 @@
-import hasAttribute from '../hasAttribute';
+import getAttribute from '../getAttribute';
 import { getLiteralAttributeValue } from '../getAttributeValue';
 
 
@@ -7,12 +7,12 @@ import { getLiteralAttributeValue } from '../getAttributeValue';
  * Returns the implicit role for an input tag.
  */
 export default function getImplicitRoleForInput(attributes) {
-  const hasType = hasAttribute(attributes, 'type');
+  const type = getAttribute(attributes, 'type');
 
-  if (hasType) {
-    const type = getLiteralAttributeValue(hasType);
+  if (type) {
+    const value = getLiteralAttributeValue(type) || '';
 
-    switch (type.toUpperCase()) {
+    switch (value.toUpperCase()) {
       case 'BUTTON':
       case 'IMAGE':
       case 'RESET':

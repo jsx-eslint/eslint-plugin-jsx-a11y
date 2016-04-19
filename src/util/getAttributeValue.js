@@ -5,7 +5,7 @@ import getValue, { getLiteralValue } from './values';
 
 
 const extractValue = (attribute, extractor) => {
-  if (attribute.type === 'JSXAttribute') {
+  if (attribute && attribute.type === 'JSXAttribute') {
     if (attribute.value === null) {
       // Null valued attributes imply truthiness.
       // For example: <div aria-hidden />
