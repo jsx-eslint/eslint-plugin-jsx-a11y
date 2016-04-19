@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/avoid-positive-tabindex';
+import rule from '../../../src/rules/tabindex-no-positive';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -30,7 +30,7 @@ const expectedError = {
   type: 'JSXAttribute'
 };
 
-ruleTester.run('avoid-positive-tabindex', rule, {
+ruleTester.run('tabindex-no-positive', rule, {
   valid: [
     { code: '<div />;', parserOptions },
     { code: '<div {...props} />', parserOptions },

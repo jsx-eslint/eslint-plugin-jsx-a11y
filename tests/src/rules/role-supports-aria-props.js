@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/aria-role-supports-attribute';
+import rule from '../../../src/rules/role-supports-aria-props';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -65,7 +65,7 @@ const createTests = roles => roles.reduce((tests, role) => {
 
 const [ validTests, invalidTests ] = createTests(nonAbstractRoles);
 
-ruleTester.run('aria-role-supports-attribute', rule, {
+ruleTester.run('role-supports-aria-props', rule, {
   valid: [
     { code: '<Foo bar />', parserOptions },
     { code: '<div />', parserOptions },

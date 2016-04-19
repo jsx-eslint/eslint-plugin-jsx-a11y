@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/no-unsupported-elements-use-aria';
+import rule from '../../../src/rules/aria-unsupported-elements';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -70,7 +70,7 @@ const invalidAriaValidityTests = Object.keys(DOM)
     parserOptions
   }));
 
-ruleTester.run('no-unsupported-elements-use-aria', rule, {
+ruleTester.run('aria-unsupported-elements', rule, {
   valid: roleValidityTests.concat(ariaValidityTests),
   invalid: invalidRoleValidityTests.concat(invalidAriaValidityTests)
 });

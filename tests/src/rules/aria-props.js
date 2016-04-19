@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/no-invalid-aria';
+import rule from '../../../src/rules/aria-props';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -38,7 +38,7 @@ const basicValidityTests = Object.keys(ariaAttributes).map(prop => ({
   parserOptions
 }));
 
-ruleTester.run('no-invalid-aria', rule, {
+ruleTester.run('aria-props', rule, {
   valid: [
     // Variables should pass, as we are only testing literals.
     { code: '<div />', parserOptions },

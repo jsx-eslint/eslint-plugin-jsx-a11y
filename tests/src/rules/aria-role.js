@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/valid-aria-role';
+import rule from '../../../src/rules/aria-role';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -46,7 +46,7 @@ const invalidTests = createTests(invalidRoles).map(test => {
   return test;
 });
 
-ruleTester.run('valid-aria-role', rule, {
+ruleTester.run('aria-role', rule, {
   valid: [
     // Variables should pass, as we are only testing literals.
     { code: '<div />', parserOptions },

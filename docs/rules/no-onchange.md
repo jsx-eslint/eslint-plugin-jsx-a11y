@@ -1,4 +1,4 @@
-# use-onblur-not-onchange
+# no-onchange
 
 Enforce usage of `onBlur` over/in parallel with `onChange` for accessibility. `onBlur` **should** be used instead of `onChange`, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users. `onBlur` is a more declarative action by the user: for instance in a dropdown, using the arrow keys to toggle between options will trigger the `onChange` event in some browsers. Regardless, when a change of context results from an `onBlur` event or an `onChange` event, the user should be notified of the change unless it occurs below the currently focused element.
 

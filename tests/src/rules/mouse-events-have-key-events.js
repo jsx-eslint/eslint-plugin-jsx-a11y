@@ -10,7 +10,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/mouse-events-map-to-key-events';
+import rule from '../../../src/rules/mouse-events-have-key-events';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -35,7 +35,7 @@ const mouseOutError = {
   type: 'JSXOpeningElement'
 };
 
-ruleTester.run('mouse-events-map-to-key-events', rule, {
+ruleTester.run('mouse-events-have-key-events', rule, {
   valid: [
     { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;', parserOptions },
     { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;', parserOptions },

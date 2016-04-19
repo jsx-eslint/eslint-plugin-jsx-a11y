@@ -1,4 +1,4 @@
-# valid-aria-role
+# aria-role
 
 Elements with ARIA roles must use a valid, non-abstract ARIA role. A reference to all role defintions can be found at [WAI-ARIA](https://www.w3.org/TR/wai-aria/roles#role_definitions) site.
 

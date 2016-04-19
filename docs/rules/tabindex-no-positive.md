@@ -1,4 +1,4 @@
-# avoid-positive-tabindex
+# tabindex-no-positive
 
 Avoid positive tabIndex property values to synchronize the flow of the page with keyboard tab order.
 
