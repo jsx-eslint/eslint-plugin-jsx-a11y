@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import validAriaProperties from '../util/validAriaProperties';
+import ariaAttributes from '../util/attributes/ARIA';
 
 const errorMessage = name => `${name}: This attribute is an invalid ARIA attribute.`;
 
@@ -22,7 +22,7 @@ module.exports = context => ({
       return;
     }
 
-    const isValid = validAriaProperties.indexOf(normalizedName) > -1;
+    const isValid = Object.keys(ariaAttributes).indexOf(normalizedName) > -1;
 
     if (isValid === false) {
       context.report({

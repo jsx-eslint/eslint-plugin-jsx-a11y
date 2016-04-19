@@ -30,10 +30,10 @@ const errorMessage = name => ({
   type: 'JSXAttribute'
 });
 
-import validAriaProperties from '../../../src/util/validAriaProperties';
+import ariaAttributes from '../../../src/util/attributes/ARIA';
 
 // Create basic test cases using all valid role types.
-const basicValidityTests = validAriaProperties.map(prop => ({
+const basicValidityTests = Object.keys(ariaAttributes).map(prop => ({
   code: `<div ${prop.toLowerCase()}="foobar" />`,
   parserOptions
 }));
@@ -45,6 +45,8 @@ ruleTester.run('no-invalid-aria', rule, {
     { code: '<div></div>', parserOptions },
     { code: '<div aria="wee"></div>', parserOptions }, // Needs aria-*
     { code: '<div abcARIAdef="true"></div>', parserOptions },
+    { code: '<div fooaria-foobar="true"></div>', parserOptions },
+    { code: '<div fooaria-hidden="true"></div>', parserOptions },
     { code: '<Bar baz />', parserOptions }
   ].concat(basicValidityTests),
   invalid: [

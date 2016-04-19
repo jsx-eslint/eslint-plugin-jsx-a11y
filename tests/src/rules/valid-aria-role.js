@@ -30,13 +30,21 @@ const errorMessage = {
   type: 'JSXAttribute'
 };
 
-import validRoleTypes from '../../../src/util/validRoleTypes';
+import ROLES from '../../../src/util/attributes/role';
 
-// Create basic test cases using all valid role types.
-const basicValidityTests = validRoleTypes.map(role => ({
+const validRoles = Object.keys(ROLES).filter(role => ROLES[role].abstract === false);
+const invalidRoles = Object.keys(ROLES).filter(role => ROLES[role].abstract === true);
+
+const createTests = roles => roles.map(role => ({
   code: `<div role="${role.toLowerCase()}" />`,
   parserOptions
 }));
+
+const validTests = createTests(validRoles);
+const invalidTests = createTests(invalidRoles).map(test => {
+  test.errors = [ errorMessage ];
+  return test;
+});
 
 ruleTester.run('valid-aria-role', rule, {
   valid: [
@@ -48,7 +56,8 @@ ruleTester.run('valid-aria-role', rule, {
     { code: '<div role={role || "foobar"} />', parserOptions },
     { code: '<div role="tabpanel row" />', parserOptions },
     { code: '<Bar baz />', parserOptions }
-  ].concat(basicValidityTests),
+  ].concat(validTests),
+
   invalid: [
     { code: '<div role="foobar" />', errors: [ errorMessage ], parserOptions },
     { code: '<div role="datepicker"></div>', errors: [ errorMessage ], parserOptions },
@@ -56,8 +65,7 @@ ruleTester.run('valid-aria-role', rule, {
     { code: '<div role=""></div>', errors: [ errorMessage ], parserOptions },
     { code: '<div role="tabpanel row foobar"></div>', errors: [ errorMessage ], parserOptions },
     { code: '<div role="tabpanel row range"></div>', errors: [ errorMessage ], parserOptions },
-    { code: '<div role={undefined}></div>', errors: [ errorMessage ], parserOptions },
     { code: '<div role />', errors: [ errorMessage ], parserOptions },
     { code: '<div role={null}></div>', errors: [ errorMessage ], parserOptions }
-  ]
+  ].concat(invalidTests)
 });

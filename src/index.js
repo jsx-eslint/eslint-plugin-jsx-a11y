@@ -11,7 +11,13 @@ module.exports = {
     'label-uses-for': require('./rules/label-uses-for'),
     'no-hash-href': require('./rules/no-hash-href'),
     'valid-aria-role': require('./rules/valid-aria-role'),
-    'no-invalid-aria': require('./rules/no-invalid-aria')
+    'valid-aria-proptypes': require('./rules/valid-aria-proptypes'),
+    'no-invalid-aria': require('./rules/no-invalid-aria'),
+    'role-requires-aria': require('./rules/role-requires-aria'),
+    'no-unsupported-elements-use-aria': require('./rules/no-unsupported-elements-use-aria'),
+    'avoid-positive-tabindex': require('./rules/avoid-positive-tabindex'),
+    'onclick-has-focus': require('./rules/onclick-has-focus'),
+    'aria-role-supports-attribute': require('./rules/aria-role-supports-attribute')
   },
   configs: {
     recommended: {
@@ -21,16 +27,20 @@ module.exports = {
         }
       },
       rules: {
-        "jsx-a11y/img-uses-alt": 2,
-        "jsx-a11y/redundant-alt": 2,
-        "jsx-a11y/onclick-uses-role": 2,
-        "jsx-a11y/mouse-events-map-to-key-events": 2,
-        "jsx-a11y/use-onblur-not-onchange": 2,
-        "jsx-a11y/no-access-key": 2,
-        "jsx-a11y/label-uses-for": 2,
-        "jsx-a11y/no-hash-href": 2,
-        "jsx-a11y/valid-aria-role": 2,
-        "jsx-a11y/no-invalid-aria": 2
+        'jsx-a11y/img-uses-alt': 2,
+        'jsx-a11y/redundant-alt': 2,
+        'jsx-a11y/onclick-uses-role': 2,
+        'jsx-a11y/mouse-events-map-to-key-events': 2,
+        'jsx-a11y/use-onblur-not-onchange': 2,
+        'jsx-a11y/no-access-key': 2,
+        'jsx-a11y/label-uses-for': 2,
+        'jsx-a11y/no-hash-href': 2,
+        'jsx-a11y/valid-aria-role': 2,
+        'jsx-a11y/valid-aria-proptypes': 2,
+        'jsx-a11y/no-invalid-aria': 2,
+        'jsx-a11y/role-requires-aria': 2,
+        'jsx-a11y/no-unsupported-elements-use-aria': 2,
+        'jsx-a11y/avoid-positive-tabindex': 2
       }
     }
   }

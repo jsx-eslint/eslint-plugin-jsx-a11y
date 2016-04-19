@@ -20,9 +20,9 @@
     "build": "rimraf lib && babel src --out-dir lib",
     "prepublish": "npm run lint && npm run test && npm run build",
     "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
-    "lint": "eslint  --config .eslintrc.js src tests",
+    "lint": "eslint  --config .eslintrc.js .",
     "pretest": "npm run lint",
-    "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --compilers js:babel-core/register --reporter nyan"
+    "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --compilers js:babel-core/register --reporter dot"
   },
   "devDependencies": {
     "babel-cli": "^6.6.0",
@@ -38,5 +38,8 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "object-assign": "^4.0.1"
+  }
 }
