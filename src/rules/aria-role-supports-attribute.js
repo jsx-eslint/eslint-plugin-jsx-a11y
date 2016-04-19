@@ -1,5 +1,6 @@
 /**
- * @fileoverview Enforce that an element does not have an unsupported ARIA attribute.
+ * @fileoverview Enforce that elements with explicit or implicit roles defined contain only
+ * `aria-*` properties supported by that `role`.
  * @author Ethan Cohen
  */
 'use strict';
