@@ -1,4 +1,4 @@
-# img-uses-alt
+# img-has-alt
 
 Enforce that an `img` element contains the `alt` prop. The `alt` attribute specifies an alternate text for an image, if the image cannot be displayed.
 

@@ -2,7 +2,7 @@
 
 module.exports = {
   rules: {
-    'img-uses-alt': require('./rules/img-uses-alt'),
+    'img-has-alt': require('./rules/img-has-alt'),
     'redundant-alt': require('./rules/redundant-alt'),
     'onclick-uses-role': require('./rules/onclick-uses-role'),
     'mouse-events-map-to-key-events': require('./rules/mouse-events-map-to-key-events'),

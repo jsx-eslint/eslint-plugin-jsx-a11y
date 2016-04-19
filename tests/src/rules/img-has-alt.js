@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/img-uses-alt';
+import rule from '../../../src/rules/img-has-alt';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -39,7 +39,7 @@ const string = [ 'Avatar' ];
 const array = [ [ 'Thumbnail', 'Image' ] ];
 
 
-ruleTester.run('img-uses-alt', rule, {
+ruleTester.run('img-has-alt', rule, {
   valid: [
     // DEFAULT ELEMENT 'img' TESTS
     { code: '<img alt="foo" />;', parserOptions },
