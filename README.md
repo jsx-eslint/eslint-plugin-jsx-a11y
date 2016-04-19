@@ -83,7 +83,7 @@ Then configure the rules you want to use under the rules section.
 - [onclick-has-role](docs/rules/onclick-has-role.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
 - [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
 - [role-requires-aria](docs/rules/role-requires-aria.md): Enforce that elements with ARIA roles must have all required attributes for that role.
-- [use-onblur-not-onchange](docs/rules/use-onblur-not-onchange.md): Enforce that `onBlur` is used instead of `onChange`.
+- [no-onchange](docs/rules/no-onchange.md): Enforce that `onBlur` is used instead of `onChange`.
 - [valid-aria-proptype](docs/rules/valid-aria-proptype.md): Enforce ARIA state and property values are valid.
 - [valid-aria-role](docs/rules/valid-aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
 

@@ -9,7 +9,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/use-onblur-not-onchange';
+import rule from '../../../src/rules/no-onchange';
 import { RuleTester } from 'eslint';
 
 const parserOptions =  {
@@ -31,7 +31,7 @@ const expectedError = {
   type: 'JSXOpeningElement'
 };
 
-ruleTester.run('use-onblur-not-onchange', rule, {
+ruleTester.run('no-onchange', rule, {
   valid: [
     { code: '<div onBlur={() => {}} />;', parserOptions },
     { code: '<div onBlur={handleOnBlur} />;', parserOptions },
