@@ -1,16 +1,16 @@
-import hasAttribute from '../hasAttribute';
+import getAttribute from '../getAttribute';
 import { getLiteralAttributeValue } from '../getAttributeValue';
 
 /**
  * Returns the implicit role for a menu tag.
  */
 export default function getImplicitRoleForMenu(attributes) {
-  const hasType = hasAttribute(attributes, 'type');
+  const type = getAttribute(attributes, 'type');
 
-  if (hasType) {
-    const type = getLiteralAttributeValue(hasType);
+  if (type) {
+    const value = getLiteralAttributeValue(type);
 
-    return (type && type.toUpperCase() === 'TOOLBAR') ? 'toolbar' : '';
+    return (value && value.toUpperCase() === 'TOOLBAR') ? 'toolbar' : '';
   }
 
   return '';

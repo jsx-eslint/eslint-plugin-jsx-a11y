@@ -9,7 +9,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import { getLiteralAttributeValue } from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 import ROLES from '../util/attributes/role';
@@ -28,29 +28,29 @@ module.exports = context => ({
   JSXOpeningElement: node => {
     // If role is not explicitly defined, then try and get its implicit role.
     const type = getNodeType(node);
-    const hasRole = hasAttribute(node.attributes, 'role');
-    const role = hasRole ? getLiteralAttributeValue(hasRole) : getImplicitRole(type, node.attributes);
-    const isImplicit = role && !hasRole;
+    const role = getAttribute(node.attributes, 'role');
+    const roleValue = role ? getLiteralAttributeValue(role) : getImplicitRole(type, node.attributes);
+    const isImplicit = roleValue && role === undefined;
 
     // If there is no explicit or implicit role, then assume that the element
     // can handle the global set of aria-* properties.
     // This actually isn't true - should fix in future release.
-    if (!role || ROLES[role.toUpperCase()] === undefined) {
+    if (!roleValue || ROLES[roleValue.toUpperCase()] === undefined) {
       return;
     }
 
     // Make sure it has no aria-* properties defined outside of its property set.
-    const propertySet = ROLES[role.toUpperCase()].props;
+    const propertySet = ROLES[roleValue.toUpperCase()].props;
     const invalidAriaPropsForRole = Object.keys(ARIA).filter(attribute => propertySet.indexOf(attribute) === -1);
-    const invalidAttr = hasAttribute(node.attributes, ...invalidAriaPropsForRole);
+    const invalidAttr = getAttribute(node.attributes, ...invalidAriaPropsForRole);
 
-    if (invalidAttr === false) {
+    if (invalidAttr === undefined) {
       return;
     }
 
     context.report({
       node,
-      message: errorMessage(invalidAttr.name.name, role, type, isImplicit)
+      message: errorMessage(invalidAttr.name.name, roleValue, type, isImplicit)
     });
 
   }

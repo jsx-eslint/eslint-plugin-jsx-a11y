@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getAttributeValue from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 
@@ -22,18 +22,18 @@ module.exports = context => ({
       return;
     }
 
-    const hasRoleProp = hasAttribute(node.attributes, 'role');
-    const roleValue = getAttributeValue(hasRoleProp);
-    const isPresentation = hasRoleProp && roleValue.toLowerCase() === 'presentation';
+    const roleProp = getAttribute(node.attributes, 'role');
+    const roleValue = getAttributeValue(roleProp);
+    const isPresentation = roleProp && roleValue.toLowerCase() === 'presentation';
 
     if (isPresentation) {
       return;
     }
 
-    const hasAltProp = hasAttribute(node.attributes, 'alt');
+    const altProp = getAttribute(node.attributes, 'alt');
 
     // Missing alt prop error.
-    if (!hasAltProp) {
+    if (altProp === undefined) {
       context.report({
         node,
         message: `${nodeType} elements must have an alt prop or use role="presentation".`
@@ -42,8 +42,8 @@ module.exports = context => ({
     }
 
     // Check if alt prop is undefined.
-    const altValue = getAttributeValue(hasAltProp);
-    const isNullValued = hasAltProp.value === null; // <img alt />
+    const altValue = getAttributeValue(altProp);
+    const isNullValued = altProp.value === null; // <img alt />
 
     if ((altValue && !isNullValued) || altValue === '') {
       return;

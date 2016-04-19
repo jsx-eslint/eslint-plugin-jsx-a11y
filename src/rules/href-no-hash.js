@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 import getAttributeValue from '../util/getAttributeValue';
 import getNodeType from '../util/getNodeType';
 
@@ -24,7 +24,7 @@ module.exports = context => ({
       return;
     }
 
-    const href = hasAttribute(node.attributes, 'href');
+    const href = getAttribute(node.attributes, 'href');
     const value = getAttributeValue(href);
 
     if (href && value === '#') {

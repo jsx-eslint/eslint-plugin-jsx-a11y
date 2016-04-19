@@ -10,7 +10,7 @@
 
 import validRoleTypes from '../util/attributes/role';
 import { getLiteralAttributeValue } from '../util/getAttributeValue';
-import hasAttribute from '../util/hasAttribute';
+import getAttribute from '../util/getAttribute';
 
 const errorMessage = (role, requiredProps) =>
   `Elements with the ARIA role "${role}" must have the following ` +
@@ -38,7 +38,7 @@ module.exports = context => ({
       const { requiredProps } = validRoleTypes[role];
 
       if (requiredProps.length > 0) {
-        const hasRequiredProps = requiredProps.every(prop => hasAttribute(attribute.parent.attributes, prop));
+        const hasRequiredProps = requiredProps.every(prop => getAttribute(attribute.parent.attributes, prop));
 
         if (hasRequiredProps === false) {
           context.report({

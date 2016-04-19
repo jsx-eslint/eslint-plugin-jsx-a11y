@@ -1,12 +1,12 @@
 'use strict';
 
 /**
- * Returns the JSXAttribute itself or false, indicating the attribute
+ * Returns the JSXAttribute itself or undefined, indicating the attribute
  * is not present on the JSXOpeningElement. This skips over spread attributes
  * as the purpose of this linter is to do hard checks of explicit JSX props.
  *
  */
-const hasAttribute = (attributesOnNode, ...attributesToCheck) => {
+const getAttribute = (attributesOnNode, ...attributesToCheck) => {
   let nodeAttribute = undefined;
 
   // Normalize.
@@ -27,7 +27,7 @@ const hasAttribute = (attributesOnNode, ...attributesToCheck) => {
     return false;
   });
 
-  return hasAttr ? nodeAttribute : false;
+  return hasAttr ? nodeAttribute : undefined;
 };
 
-export default hasAttribute;
+export default getAttribute;
