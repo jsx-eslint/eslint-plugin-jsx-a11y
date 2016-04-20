@@ -10,7 +10,7 @@ import LogicalExpression from './LogicalExpression';
 import MemberExpression from './MemberExpression';
 import CallExpression from './CallExpression';
 import UnaryExpression from './UnaryExpression';
-
+import ThisExpression from './ThisExpression';
 
 
 
@@ -24,7 +24,8 @@ const TYPES = {
   LogicalExpression,
   MemberExpression,
   CallExpression,
-  UnaryExpression
+  UnaryExpression,
+  ThisExpression
 };
 
 const noop = () => null;
@@ -50,7 +51,8 @@ const LITERAL_TYPES = assign({}, TYPES, {
   UnaryExpression: value => {
     const extractedVal = TYPES.UnaryExpression(value);
     return extractedVal === undefined ? null : extractedVal;
-  }
+  },
+  ThisExpression: noop
 });
 
 /**
