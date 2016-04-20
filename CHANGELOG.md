@@ -1,3 +1,8 @@
+1.0.2 / 2016-04-20
+==================
+- [fix] Add expression value handler for `ThisExpression` type.
+
+
 1.0.1 / 2016-04-19
 ==================
 - [fix] Fix build to copy source JSON files to build output.
