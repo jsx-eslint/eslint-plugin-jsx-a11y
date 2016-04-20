@@ -1,3 +1,8 @@
+1.0.1 / 2016-04-19
+==================
+- [fix] Fix build to copy source JSON files to build output.
+
+
 1.0.0 / 2016-04-19
 ==================
 - [breaking] Rename `img-uses-alt` to `img-has-alt`
