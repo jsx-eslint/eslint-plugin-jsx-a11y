@@ -25,10 +25,21 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-const errorMessage = name => ({
-  message: `${name}: This attribute is an invalid ARIA attribute.`,
-  type: 'JSXAttribute'
-});
+import getSuggestion from '../../../src/util/getSuggestion';
+
+const errorMessage = name => {
+  const suggestions = getSuggestion(name);
+  const message = `${name}: This attribute is an invalid ARIA attribute.`;
+
+  if (suggestions.length > 0) {
+    return `${message} Did you mean to use ${suggestions}?`;
+  }
+
+  return {
+    type: 'JSXAttribute',
+    message
+  };
+};
 
 import ariaAttributes from '../../../src/util/attributes/ARIA';
 
