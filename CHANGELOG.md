@@ -1,3 +1,8 @@
+1.0.3 / 2016-04-25
+==================
+- [fix] Fix typo in recommended rules for `onclick-has-focus`.
+
+
 1.0.2 / 2016-04-20
 ==================
 - [fix] Add expression value handler for `ThisExpression` type.
