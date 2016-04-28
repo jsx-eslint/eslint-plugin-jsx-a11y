@@ -72,6 +72,8 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt={undefined} role="presentation" />;', parserOptions },
     { code: '<img alt role="presentation" />;', parserOptions },
     { code: '<img alt="this is lit..." role="presentation" />', parserOptions },
+    { code: '<img alt={error ? "not working": "working"} />', parserOptions },
+    { code: '<img alt={undefined ? "working": "not working"} />', parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR STRING OPTION
     { code: '<Avatar alt="foo" />;', options: string, parserOptions },

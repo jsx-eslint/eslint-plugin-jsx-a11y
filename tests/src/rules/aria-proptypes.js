@@ -69,6 +69,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-label={`Close`} />', parserOptions },
     { code: '<div aria-label={foo} />', parserOptions },
     { code: '<div aria-label={foo.bar} />', parserOptions },
+    { code: '<input aria-invalid={error ? "true" : "false"} />', parserOptions },
+    { code: '<input aria-invalid={undefined ? "true" : "false"} />', parserOptions },
 
     // TRISTATE
     { code: '<div aria-checked={true} />', parserOptions },

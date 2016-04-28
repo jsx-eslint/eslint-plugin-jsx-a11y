@@ -11,6 +11,7 @@ import MemberExpression from './MemberExpression';
 import CallExpression from './CallExpression';
 import UnaryExpression from './UnaryExpression';
 import ThisExpression from './ThisExpression';
+import ConditionalExpression from './ConditionalExpression';
 
 
 
@@ -25,7 +26,8 @@ const TYPES = {
   MemberExpression,
   CallExpression,
   UnaryExpression,
-  ThisExpression
+  ThisExpression,
+  ConditionalExpression
 };
 
 const noop = () => null;
@@ -52,7 +54,8 @@ const LITERAL_TYPES = assign({}, TYPES, {
     const extractedVal = TYPES.UnaryExpression(value);
     return extractedVal === undefined ? null : extractedVal;
   },
-  ThisExpression: noop
+  ThisExpression: noop,
+  ConditionalExpression: noop
 });
 
 /**
