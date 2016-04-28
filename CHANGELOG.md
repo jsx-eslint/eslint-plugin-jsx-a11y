@@ -1,3 +1,8 @@
+1.0.4 / 2016-04-28
+==================
+- [fix] Add expression value handler for `ConditionalExpression` type.
+
+
 1.0.3 / 2016-04-25
 ==================
 - [fix] Fix typo in recommended rules for `onclick-has-focus`.
