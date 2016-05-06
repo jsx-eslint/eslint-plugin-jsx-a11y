@@ -1,3 +1,8 @@
+1.2.0 / 2016-05-06
+==================
+- [new] Import all roles from DPUB-ARIA.
+
+
 1.1.0 / 2016-05-06
 ==================
 - [new] Add expression value handler for `BinaryExpression` type.
