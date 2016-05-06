@@ -1,3 +1,12 @@
+1.1.0 / 2016-05-06
+==================
+- [new] Add expression value handler for `BinaryExpression` type.
+- [new] Add expression value handler for `NewExpression` type.
+- [new] Add expression value handler for `ObjectExpression` type.
+- [fix] Throws error when getting an expression of type without a handler function.
+	- This is for more graceful error handling and better issue reporting.
+
+
 1.0.4 / 2016-04-28
 ==================
 - [fix] Add expression value handler for `ConditionalExpression` type.
