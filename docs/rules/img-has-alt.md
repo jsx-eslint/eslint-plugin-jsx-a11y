@@ -41,7 +41,31 @@ To tell this plugin to also check your `Image` element, specify this in your `.e
 }
 ```
 
-Note that passing props as spread attribute without `alt` explicitly defined will cause this rule to fail. Explicitly pass down `alt` prop or use `role="presentation"` for rule to pass. Use `Image` component above as a reference for destructuring and applying the prop. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.**
+Note that passing props as spread attribute without `alt` explicitly defined will cause this rule to fail. Explicitly pass down `alt` prop or use `role="presentation"` for rule to pass. Use `Image` component above as a reference for destructuring and applying the prop. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.** For example:
+#### Bad
+```jsx
+function Foo(props) {
+  return <img {...props} />
+}
+```
+
+#### Good
+```jsx
+function Foo({ alt, ...props}) {
+    return <img alt={alt} {...props} />
+}
+
+// OR
+
+function Foo(props) {
+    const {
+        alt,
+        ...otherProps
+    } = props;
+
+   return <img alt={alt} {...otherProps} />
+}
+```
 
 ### Succeed
 ```jsx

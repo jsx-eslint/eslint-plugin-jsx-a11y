@@ -42,7 +42,31 @@ To tell this plugin to also check your `Label` element, specify this in your `.e
 }
 ```
 
-Note that passing props as spread attribute without `htmlFor` explicitly defined will cause this rule to fail. Explicitly pass down `htmlFor` prop for rule to pass. The prop must have an actual value to pass. Use `Label` component above as a reference. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.**
+Note that passing props as spread attribute without `htmlFor` explicitly defined will cause this rule to fail. Explicitly pass down `htmlFor` prop for rule to pass. The prop must have an actual value to pass. Use `Label` component above as a reference. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.** For example:
+#### Bad
+```jsx
+function Foo(props) {
+  return <label {...props} />
+}
+```
+
+#### Good
+```jsx
+function Foo({ htmlFor, ...props}) {
+    return <label htmlFor={htmlFor} {...props} />
+}
+
+// OR
+
+function Foo(props) {
+    const {
+        htmlFor,
+        ...otherProps
+    } = props;
+
+   return <label htmlFor={htmlFor} {...otherProps} />
+}
+```
 
 ### Succeed
 ```jsx
