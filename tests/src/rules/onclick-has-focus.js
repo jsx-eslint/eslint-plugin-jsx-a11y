@@ -62,7 +62,8 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<span onClick="doSomething();" tabIndex="0">Click me!</span>', parserOptions },
     { code: '<span onClick="doSomething();" tabIndex="-1">Click me too!</span>', parserOptions },
     { code: '<a href="javascript:void(0);" onClick="doSomething();">Click ALL the things!</a>', parserOptions },
-    { code: '<Foo.Bar onClick={() => void 0} aria-hidden={false} />;', parserOptions }
+    { code: '<Foo.Bar onClick={() => void 0} aria-hidden={false} />;', parserOptions },
+    { code: '<Input onClick={() => void 0} type="hidden" />;', parserOptions }
   ],
 
   invalid: [
