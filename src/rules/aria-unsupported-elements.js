@@ -18,7 +18,7 @@ const errorMessage = 'This element does not support ARIA roles, states and prope
 module.exports = context => ({
   JSXOpeningElement: node => {
     const nodeType = getNodeType(node);
-    const nodeAttrs = DOM[nodeType.toUpperCase()];
+    const nodeAttrs = DOM[nodeType];
     const isReservedNodeType = nodeAttrs && nodeAttrs.reserved || false;
 
     // If it's not reserved, then it can have ARIA-* roles, states, and properties

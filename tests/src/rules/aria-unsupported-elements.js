@@ -38,7 +38,7 @@ const roleValidityTests = Object.keys(DOM).map(element => {
   const role = isReserved ? '' : 'role';
 
   return {
-    code: `<${element.toLowerCase()} ${role} />`,
+    code: `<${element} ${role} />`,
     parserOptions
   };
 });
@@ -48,7 +48,7 @@ const ariaValidityTests = Object.keys(DOM).map(element => {
   const aria = isReserved ? '' : 'aria-hidden';
 
   return {
-    code: `<${element.toLowerCase()} ${aria} />`,
+    code: `<${element} ${aria} />`,
     parserOptions
   };
 });
@@ -57,7 +57,7 @@ const ariaValidityTests = Object.keys(DOM).map(element => {
 const invalidRoleValidityTests = Object.keys(DOM)
   .filter(element => Boolean(DOM[element].reserved))
   .map(reservedElem => ({
-    code: `<${reservedElem.toLowerCase()} role />`,
+    code: `<${reservedElem} role />`,
     errors: [ errorMessage ],
     parserOptions
   }));
@@ -65,7 +65,7 @@ const invalidRoleValidityTests = Object.keys(DOM)
 const invalidAriaValidityTests = Object.keys(DOM)
   .filter(element => Boolean(DOM[element].reserved))
   .map(reservedElem => ({
-    code: `<${reservedElem.toLowerCase()} aria-hidden />`,
+    code: `<${reservedElem} aria-hidden />`,
     errors: [ errorMessage ],
     parserOptions
   }));

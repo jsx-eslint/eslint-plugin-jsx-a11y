@@ -8,6 +8,8 @@ Elements that are inherently focusable are as follows:
 - `<input>`, `<button>`, `<select>` and `<textarea>` elements which are not disabled
 - `<a>` or `<area>` elements with an `href` attribute.
 
+This rule will only test low-level DOM components, as we can not deterministically map wrapper JSX components to their correct DOM element.
+
 #### References
 1. [AX_FOCUS_02](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_02)
 2. [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
