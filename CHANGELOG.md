@@ -1,3 +1,9 @@
+1.2.1 / 2016-05-19
+==================
+- [fix] Avoid testing interactivity of wrapper components with same name but different casing
+as DOM elements (such as `Button` vs `button`).
+
+
 1.2.0 / 2016-05-06
 ==================
 - [new] Import all roles from DPUB-ARIA.
