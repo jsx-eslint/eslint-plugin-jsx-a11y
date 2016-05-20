@@ -1,7 +1,7 @@
 'use strict';
 
 import getAttribute from './getAttribute';
-import { getLiteralAttributeValue } from './getAttributeValue';
+import getAttributeValue, { getLiteralAttributeValue } from './getAttributeValue';
 import DOMElements from './attributes/DOM';
 
 
@@ -9,9 +9,9 @@ import DOMElements from './attributes/DOM';
 // Map of tagNames to functions that return whether that element is interactive or not.
 const interactiveMap = {
   a: attributes => {
-    const href = getAttribute(attributes, 'href');
-    const tabIndex = getAttribute(attributes, 'tabIndex');
-    return (Boolean(href) || (!href && Boolean(tabIndex)));
+    const href = getAttributeValue(getAttribute(attributes, 'href'));
+    const tabIndex = getAttributeValue(getAttribute(attributes, 'tabIndex'));
+    return Boolean(href) || !isNaN(Number(tabIndex));
   },
   // This is same as `a` interactivity function
   area: attributes => interactiveMap.a(attributes),
