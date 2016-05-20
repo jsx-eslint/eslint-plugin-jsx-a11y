@@ -1,3 +1,8 @@
+1.2.2 / 2016-05-20
+==================
+- [fix] Fix checks involving the tabIndex attribute that do not account for integer literals
+
+
 1.2.1 / 2016-05-19
 ==================
 - [fix] Avoid testing interactivity of wrapper components with same name but different casing
