@@ -76,18 +76,18 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<a onClick="showNextPage();">Next page</a>', errors: [ expectedError ], parserOptions },
     { code: '<a onClick="showNextPage();" tabIndex={undefined}>Next page</a>', errors: [ expectedError ], parserOptions },
     { code: '<a onClick="showNextPage();" tabIndex="bad">Next page</a>', errors: [ expectedError ], parserOptions },
+    { code: '<a onClick={() => void 0} />', errors: [ expectedError ], parserOptions },
     { code: '<area onClick={() => void 0} className="foo" />', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} tabIndex={undefined} />;', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} tabIndex="bad" />;', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} role={undefined} />;', errors: [ expectedError ], parserOptions },
+    { code: '<div onClick={() => void 0} aria-hidden={false} />;', errors: [ expectedError ], parserOptions },
     { code: '<div onClick={() => void 0} {...props} />;', errors: [ expectedError ], parserOptions },
     { code: '<section onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<main onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<article onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
     { code: '<header onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<footer onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} aria-hidden={false} />;', errors: [ expectedError ], parserOptions },
-    { code: '<a onClick={() => void 0} />', errors: [ expectedError ], parserOptions }
+    { code: '<footer onClick={() => void 0} />;', errors: [ expectedError ], parserOptions }
   ]
 });
