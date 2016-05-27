@@ -29,7 +29,7 @@ This rule takes no arguments.
 <!-- Good: anchor element with href is inherently focusable -->
 <a href="javascript:void(0);" onClick="doSomething();">Click ALL the things!</a>
 <!-- Good: buttons are inherently focusable -->
-<button onClick="doSomething();">Click the button :)</a>
+<button onClick="doSomething();">Click the button :)</button>
 ```
 
 ### Fail
