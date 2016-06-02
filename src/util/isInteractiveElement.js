@@ -1,7 +1,8 @@
 'use strict';
 
 import getAttribute from './getAttribute';
-import { getLiteralAttributeValue } from './getAttributeValue';
+import getAttributeValue, { getLiteralAttributeValue } from './getAttributeValue';
+import getTabIndex from './getTabIndex';
 import DOMElements from './attributes/DOM';
 
 
@@ -9,9 +10,9 @@ import DOMElements from './attributes/DOM';
 // Map of tagNames to functions that return whether that element is interactive or not.
 const interactiveMap = {
   a: attributes => {
-    const href = getAttribute(attributes, 'href');
-    const tabIndex = getAttribute(attributes, 'tabIndex');
-    return (Boolean(href) || (!href && Boolean(tabIndex)));
+    const href = getAttributeValue(getAttribute(attributes, 'href'));
+    const tabIndex = getTabIndex(getAttribute(attributes, 'tabIndex'));
+    return href !== undefined || tabIndex !== undefined;
   },
   // This is same as `a` interactivity function
   area: attributes => interactiveMap.a(attributes),
@@ -34,7 +35,7 @@ const interactiveMap = {
 const isInteractiveElement = (tagName, attributes) => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (Object.keys(DOMElements).indexOf(tagName.toUpperCase()) === -1) {
+  if (Object.keys(DOMElements).indexOf(tagName) === -1) {
     return true;
   }
 

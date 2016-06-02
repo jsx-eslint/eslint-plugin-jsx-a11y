@@ -8,15 +8,15 @@ import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import getAttribute from '../util/getAttribute';
 import getNodeType from '../util/getNodeType';
-import getAttributeValue from '../util/getAttributeValue';
+import getTabIndex from '../util/getTabIndex';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
 // ----------------------------------------------------------------------------
 
 const errorMessage = 'Elements with onClick handlers must be focusable. ' +
-  'Either set the tabIndex property (usually 0), or use an element type which ' +
-  'is inherently focusable such as `button`.';
+  'Either set the tabIndex property to a valid value (usually 0), or use ' +
+  'an element type which is inherently focusable such as `button`.';
 
 module.exports = context => ({
   JSXOpeningElement: node => {
@@ -31,7 +31,7 @@ module.exports = context => ({
       return;
     } else if (isInteractiveElement(type, attributes)) {
       return;
-    } else if (getAttributeValue(getAttribute(attributes, 'tabIndex'))) {
+    } else if (getTabIndex(getAttribute(attributes, 'tabIndex')) !== undefined) {
       return;
     }
 

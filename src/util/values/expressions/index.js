@@ -11,6 +11,10 @@ import MemberExpression from './MemberExpression';
 import CallExpression from './CallExpression';
 import UnaryExpression from './UnaryExpression';
 import ThisExpression from './ThisExpression';
+import ConditionalExpression from './ConditionalExpression';
+import BinaryExpression from './BinaryExpression';
+import ObjectExpression from './ObjectExpression';
+import NewExpression from './NewExpression';
 
 
 
@@ -25,7 +29,11 @@ const TYPES = {
   MemberExpression,
   CallExpression,
   UnaryExpression,
-  ThisExpression
+  ThisExpression,
+  ConditionalExpression,
+  BinaryExpression,
+  ObjectExpression,
+  NewExpression
 };
 
 const noop = () => null;
@@ -52,8 +60,16 @@ const LITERAL_TYPES = assign({}, TYPES, {
     const extractedVal = TYPES.UnaryExpression(value);
     return extractedVal === undefined ? null : extractedVal;
   },
-  ThisExpression: noop
+  ThisExpression: noop,
+  ConditionalExpression: noop,
+  BinaryExpression: noop,
+  ObjectExpression: noop,
+  NewExpression: noop
 });
+
+const ERROR_MESSAGE = expression =>
+  `The prop value with an expression type of ${expression} could not be resolved.
+  Please file issue to get this fixed immediately.`;
 
 /**
  * This function maps an AST value node
@@ -68,8 +84,13 @@ const LITERAL_TYPES = assign({}, TYPES, {
 export default function extract(value) {
   // Value will not have the expression property when we recurse.
   const expression = value.expression || value;
+  const { type } = expression;
 
-  return TYPES[expression.type](expression);
+  if (TYPES[type] === undefined) {
+    throw new Error(ERROR_MESSAGE(type));
+  }
+
+  return TYPES[type](expression);
 }
 
 /**
@@ -83,7 +104,13 @@ export default function extract(value) {
  * @returns The extracted value.
  */
 export function extractLiteral(value) {
+  // Value will not have the expression property when we recurse.
   const expression = value.expression || value;
+  const { type } = expression;
 
-  return LITERAL_TYPES[expression.type](expression);
+  if (LITERAL_TYPES[type] === undefined) {
+    throw new Error(ERROR_MESSAGE(type));
+  }
+
+  return LITERAL_TYPES[type](expression);
 }

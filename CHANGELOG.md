@@ -1,3 +1,43 @@
+1.2.3 / 2016-06-02
+==================
+- [fix] Handle dynamic tabIndex expression values, but still retain validation logic for literal tabIndex values.
+
+
+1.2.2 / 2016-05-20
+==================
+- [fix] Fix checks involving the tabIndex attribute that do not account for integer literals
+
+
+1.2.1 / 2016-05-19
+==================
+- [fix] Avoid testing interactivity of wrapper components with same name but different casing
+as DOM elements (such as `Button` vs `button`).
+
+
+1.2.0 / 2016-05-06
+==================
+- [new] Import all roles from DPUB-ARIA.
+
+
+1.1.0 / 2016-05-06
+==================
+- [new] Add expression value handler for `BinaryExpression` type.
+- [new] Add expression value handler for `NewExpression` type.
+- [new] Add expression value handler for `ObjectExpression` type.
+- [fix] Throws error when getting an expression of type without a handler function.
+	- This is for more graceful error handling and better issue reporting.
+
+
+1.0.4 / 2016-04-28
+==================
+- [fix] Add expression value handler for `ConditionalExpression` type.
+
+
+1.0.3 / 2016-04-25
+==================
+- [fix] Fix typo in recommended rules for `onclick-has-focus`.
+
+
 1.0.2 / 2016-04-20
 ==================
 - [fix] Add expression value handler for `ThisExpression` type.
