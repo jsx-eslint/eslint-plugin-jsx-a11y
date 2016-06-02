@@ -1,3 +1,8 @@
+1.2.3 / 2016-06-02
+==================
+- [fix] Handle dynamic tabIndex expression values, but still retain validation logic for literal tabIndex values.
+
+
 1.2.2 / 2016-05-20
 ==================
 - [fix] Fix checks involving the tabIndex attribute that do not account for integer literals
