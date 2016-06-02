@@ -8,7 +8,7 @@ import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import getAttribute from '../util/getAttribute';
 import getNodeType from '../util/getNodeType';
-import getAttributeValue from '../util/getAttributeValue';
+import getTabIndex from '../util/getTabIndex';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -31,7 +31,7 @@ module.exports = context => ({
       return;
     } else if (isInteractiveElement(type, attributes)) {
       return;
-    } else if (!isNaN(Number(getAttributeValue(getAttribute(attributes, 'tabIndex'))))) {
+    } else if (getTabIndex(getAttribute(attributes, 'tabIndex')) !== undefined) {
       return;
     }
 

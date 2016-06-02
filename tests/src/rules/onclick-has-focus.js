@@ -54,6 +54,7 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<area href="#" onClick={() => void 0} className="foo" />', parserOptions },
     { code: '<textarea onClick={() => void 0} className="foo" />', parserOptions },
     { code: '<a tabIndex="0" onClick={() => void 0} />', parserOptions },
+    { code: '<a tabIndex={dynamicTabIndex} onClick={() => void 0} />', parserOptions },
     { code: '<a tabIndex={0} onClick={() => void 0} />', parserOptions },
     { code: '<a role="button" href="#" onClick={() => void 0} />', parserOptions },
     { code: '<a onClick={() => void 0} href="http://x.y.z" />', parserOptions },

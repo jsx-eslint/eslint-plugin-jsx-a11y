@@ -2,6 +2,7 @@
 
 import getAttribute from './getAttribute';
 import getAttributeValue, { getLiteralAttributeValue } from './getAttributeValue';
+import getTabIndex from './getTabIndex';
 import DOMElements from './attributes/DOM';
 
 
@@ -10,8 +11,8 @@ import DOMElements from './attributes/DOM';
 const interactiveMap = {
   a: attributes => {
     const href = getAttributeValue(getAttribute(attributes, 'href'));
-    const tabIndex = getAttributeValue(getAttribute(attributes, 'tabIndex'));
-    return Boolean(href) || !isNaN(Number(tabIndex));
+    const tabIndex = getTabIndex(getAttribute(attributes, 'tabIndex'));
+    return href !== undefined || tabIndex !== undefined;
   },
   // This is same as `a` interactivity function
   area: attributes => interactiveMap.a(attributes),
