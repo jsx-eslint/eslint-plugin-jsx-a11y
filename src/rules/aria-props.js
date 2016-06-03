@@ -9,8 +9,19 @@
 // ----------------------------------------------------------------------------
 
 import ariaAttributes from '../util/attributes/ARIA';
+import getSuggestion from '../util/getSuggestion';
 
-const errorMessage = name => `${name}: This attribute is an invalid ARIA attribute.`;
+const errorMessage = name => {
+  const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
+  const suggestions = getSuggestion(name, dictionary);
+  const message = `${name}: This attribute is an invalid ARIA attribute.`;
+
+  if (suggestions.length > 0) {
+    return `${message} Did you mean to use ${suggestions}?`;
+  }
+
+  return message;
+};
 
 module.exports = context => ({
   JSXAttribute: attribute => {

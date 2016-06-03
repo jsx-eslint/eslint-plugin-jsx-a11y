@@ -10,6 +10,8 @@
 // -----------------------------------------------------------------------------
 
 import rule from '../../../src/rules/aria-props';
+import ariaAttributes from '../../../src/util/attributes/ARIA';
+import getSuggestion from '../../../src/util/getSuggestion';
 import { RuleTester } from 'eslint';
 
 const parserOptions = {
@@ -25,12 +27,23 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-const errorMessage = name => ({
-  message: `${name}: This attribute is an invalid ARIA attribute.`,
-  type: 'JSXAttribute'
-});
+const errorMessage = name => {
+  const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
+  const suggestions = getSuggestion(name, dictionary);
+  const message = `${name}: This attribute is an invalid ARIA attribute.`;
 
-import ariaAttributes from '../../../src/util/attributes/ARIA';
+  if (suggestions.length > 0) {
+    return {
+      type: 'JSXAttribute',
+      message: `${message} Did you mean to use ${suggestions}?`
+    };
+  }
+
+  return {
+    type: 'JSXAttribute',
+    message
+  };
+};
 
 // Create basic test cases using all valid role types.
 const basicValidityTests = Object.keys(ariaAttributes).map(prop => ({
