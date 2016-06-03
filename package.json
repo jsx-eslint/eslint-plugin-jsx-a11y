@@ -40,6 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "damerau-levenshtein": "^1.0.0",
     "object-assign": "^4.0.1"
   }
 }

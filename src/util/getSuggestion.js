@@ -1,27 +1,23 @@
 'use strict';
 
-import ARIA from './attributes/ARIA';
-import levenshtein from './suggestions/levenshtein';
+import editDistance from 'damerau-levenshtein';
 
 
+// Minimum edit distance to be considered a good suggestion.
+const THRESHOLD = 2;
 
-const DICTIONARY = [].concat(Object.keys(ARIA));
-// Max distance away from value to be considered a decent suggestion.
-const THRESHOLD = 3;
-// Number of suggestions to return.
-const LIMIT = 2;
-
-export default function getSuggestion(value, dictionary = DICTIONARY, threshold = THRESHOLD, limit = LIMIT) {
-  const normalizedValue = value.toUpperCase();
-
-  const distances = DICTIONARY.reduce((suggestions, word) => {
-    suggestions[word] = levenshtein(normalizedValue, word);
+/**
+ * Returns an array of suggestions given a word and a dictionary and limit of suggestions
+ * to return.
+ */
+export default function getSuggestion(word, dictionary = [], limit = 2) {
+  const distances = dictionary.reduce((suggestions, dictionaryWord) => {
+    suggestions[dictionaryWord] = editDistance(word.toUpperCase(), dictionaryWord.toUpperCase()).steps;
     return suggestions;
   }, {});
 
   return Object.keys(distances)
-    .filter(suggestion => distances[suggestion] <= threshold)
+    .filter(suggestion => distances[suggestion] <= THRESHOLD)
     .sort((a, b) => distances[a] - distances[b]) // Sort by distance
-    .slice(0, limit)
-    .map(suggestion => suggestion.toLowerCase());
+    .slice(0, limit);
 }

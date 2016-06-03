@@ -12,7 +12,8 @@ import ariaAttributes from '../util/attributes/ARIA';
 import getSuggestion from '../util/getSuggestion';
 
 const errorMessage = name => {
-  const suggestions = getSuggestion(name);
+  const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
+  const suggestions = getSuggestion(name, dictionary);
   const message = `${name}: This attribute is an invalid ARIA attribute.`;
 
   if (suggestions.length > 0) {
