@@ -24,7 +24,7 @@ module.exports = context => ({
 
     const roleProp = getAttribute(node.attributes, 'role');
     const roleValue = getAttributeValue(roleProp);
-    const isPresentation = roleProp && roleValue.toLowerCase() === 'presentation';
+    const isPresentation = roleProp && typeof roleValue === 'string' && roleValue.toLowerCase() === 'presentation';
 
     if (isPresentation) {
       return;
