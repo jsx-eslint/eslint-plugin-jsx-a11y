@@ -129,6 +129,7 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt />;', errors: [ altValueError('img') ], parserOptions },
     { code: '<img alt={undefined} />;', errors: [ altValueError('img') ], parserOptions },
     { code: '<img src="xyz" />', errors: [ missingPropError('img') ], parserOptions },
+    { code: '<img role />', errors: [ missingPropError('img') ], parserOptions },
     { code: '<img {...this.props} />', errors: [ missingPropError('img') ], parserOptions },
     { code: '<img alt={false || false} />', errors: [ altValueError('img') ], parserOptions },
 
