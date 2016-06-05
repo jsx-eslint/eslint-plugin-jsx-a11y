@@ -1,6 +1,12 @@
+1.3.0 / 2016-06-05
+==================
+- [new] Spelling suggestions for incorrect `aria-*` props
+- [fix] Ensure `role` value is a string before converting to lowercase in `img-has-alt` rule.
+
+
 1.2.3 / 2016-06-02
 ==================
-- [fix] Handle dynamic tabIndex expression values, but still retain validation logic for literal tabIndex values.
+- [fix] Handle dynamic `tabIndex` expression values, but still retain validation logic for literal `tabIndex` values.
 
 
 1.2.2 / 2016-05-20
