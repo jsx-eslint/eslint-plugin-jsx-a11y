@@ -9,7 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import ariaAttributes from '../util/attributes/ARIA';
-import { getLiteralAttributeValue } from '../util/getAttributeValue';
+import { getLiteralPropValue } from 'jsx-ast-utils';
 
 const errorMessage = (name, type, permittedValues) => {
   switch (type) {
@@ -59,7 +59,7 @@ module.exports = context => ({
       return;
     }
 
-    const value = getLiteralAttributeValue(attribute);
+    const value = getLiteralPropValue(attribute);
 
     // We only want to check literal prop values, so just pass if it's null.
     if (value === null) {

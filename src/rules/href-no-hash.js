@@ -8,24 +8,22 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import getAttribute from '../util/getAttribute';
-import getAttributeValue from '../util/getAttributeValue';
-import getNodeType from '../util/getNodeType';
+import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 
 const errorMessage = 'Links must not point to "#". Use a more descriptive href or use a button instead.';
 
 module.exports = context => ({
   JSXOpeningElement: node => {
     const typeCheck = [ 'a' ].concat(context.options[0]);
-    const nodeType = getNodeType(node);
+    const nodeType = elementType(node);
 
     // Only check 'a' elements and custom types.
     if (typeCheck.indexOf(nodeType) === -1) {
       return;
     }
 
-    const href = getAttribute(node.attributes, 'href');
-    const value = getAttributeValue(href);
+    const href = getProp(node.attributes, 'href');
+    const value = getPropValue(href);
 
     if (href && value === '#') {
       context.report({

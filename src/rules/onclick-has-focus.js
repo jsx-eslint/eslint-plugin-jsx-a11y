@@ -6,8 +6,7 @@
 
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
-import getAttribute from '../util/getAttribute';
-import getNodeType from '../util/getNodeType';
+import { getProp, elementType } from 'jsx-ast-utils';
 import getTabIndex from '../util/getTabIndex';
 
 // ----------------------------------------------------------------------------
@@ -21,17 +20,17 @@ const errorMessage = 'Elements with onClick handlers must be focusable. ' +
 module.exports = context => ({
   JSXOpeningElement: node => {
     const { attributes } = node;
-    if (getAttribute(attributes, 'onClick') === undefined) {
+    if (getProp(attributes, 'onClick') === undefined) {
       return;
     }
 
-    const type = getNodeType(node);
+    const type = elementType(node);
 
     if (isHiddenFromScreenReader(type, attributes)) {
       return;
     } else if (isInteractiveElement(type, attributes)) {
       return;
-    } else if (getTabIndex(getAttribute(attributes, 'tabIndex')) !== undefined) {
+    } else if (getTabIndex(getProp(attributes, 'tabIndex')) !== undefined) {
       return;
     }
 

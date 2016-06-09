@@ -8,10 +8,8 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import getAttribute from '../util/getAttribute';
-import getAttributeValue from '../util/getAttributeValue';
+import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
-import getNodeType from '../util/getNodeType';
 
 const REDUNDANT_WORDS = [
   'image',
@@ -29,12 +27,12 @@ const validTypes = [
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const type = getNodeType(node);
+    const type = elementType(node);
     if (type !== 'img') {
       return;
     }
 
-    const altProp = getAttribute(node.attributes, 'alt');
+    const altProp = getProp(node.attributes, 'alt');
     // Return if alt prop is not present.
     if (altProp === undefined) {
       return;
@@ -49,7 +47,7 @@ module.exports = context => ({
       return;
     }
 
-    const value = getAttributeValue(altProp);
+    const value = getPropValue(altProp);
     const isVisible = isHiddenFromScreenReader(type, node.attributes) === false;
 
     if (Boolean(value) && typeof value === 'string' && isVisible) {

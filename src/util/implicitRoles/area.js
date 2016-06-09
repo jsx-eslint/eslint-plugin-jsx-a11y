@@ -1,10 +1,10 @@
-import getAttribute from '../getAttribute';
+import { getProp } from 'jsx-ast-utils';
 
 /**
  * Returns the implicit role for an area tag.
  */
 export default function getImplicitRoleForArea(attributes) {
-  if (getAttribute(attributes, 'href')) {
+  if (getProp(attributes, 'href')) {
     return 'link';
   }
 

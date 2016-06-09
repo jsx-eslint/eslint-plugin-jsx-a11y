@@ -8,8 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import getAttribute from '../util/getAttribute';
-import getAttributeValue from '../util/getAttributeValue';
+import { getProp, getPropValue } from 'jsx-ast-utils';
 
 const errorMessage = 'No access key attribute allowed. Inconsistencies ' +
   'between keyboard shortcuts and keyboard comments used by screenreader ' +
@@ -17,8 +16,8 @@ const errorMessage = 'No access key attribute allowed. Inconsistencies ' +
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const accessKey = getAttribute(node.attributes, 'accesskey');
-    const accessKeyValue = getAttributeValue(accessKey);
+    const accessKey = getProp(node.attributes, 'accesskey');
+    const accessKeyValue = getPropValue(accessKey);
 
     if (accessKey && accessKeyValue) {
       context.report({

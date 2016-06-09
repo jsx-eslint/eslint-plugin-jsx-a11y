@@ -1,14 +1,13 @@
-import getAttribute from '../getAttribute';
-import { getLiteralAttributeValue } from '../getAttributeValue';
+import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
 /**
  * Returns the implicit role for a menuitem tag.
  */
 export default function getImplicitRoleForMenuitem(attributes) {
-  const type = getAttribute(attributes, 'type');
+  const type = getProp(attributes, 'type');
 
   if (type) {
-    const value = getLiteralAttributeValue(type) || '';
+    const value = getLiteralPropValue(type) || '';
 
     switch (value.toUpperCase()) {
       case 'COMMAND':

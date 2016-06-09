@@ -1,9 +1,6 @@
 'use strict';
 
-import getAttribute from './getAttribute';
-import getAttributeValue, { getLiteralAttributeValue } from './getAttributeValue';
-
-
+import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
 
 /**
  * Returns boolean indicating that the aria-hidden prop
@@ -14,14 +11,14 @@ import getAttributeValue, { getLiteralAttributeValue } from './getAttributeValue
  */
 const isHiddenFromScreenReader = (type, attributes) => {
   if (type.toUpperCase() === 'INPUT') {
-    const hidden = getLiteralAttributeValue(getAttribute(attributes, 'type'));
+    const hidden = getLiteralPropValue(getProp(attributes, 'type'));
 
     if (hidden && hidden.toUpperCase() == 'HIDDEN') {
       return true;
     }
   }
 
-  const ariaHidden = getAttributeValue(getAttribute(attributes, 'aria-hidden'));
+  const ariaHidden = getPropValue(getProp(attributes, 'aria-hidden'));
   return ariaHidden === true;
 };
 
