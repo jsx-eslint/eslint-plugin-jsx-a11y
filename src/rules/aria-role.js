@@ -8,13 +8,15 @@
 // ----------------------------------------------------------------------------
 
 import roles from '../util/attributes/role';
-import { getLiteralPropValue } from 'jsx-ast-utils';
+import { getLiteralPropValue, propName } from 'jsx-ast-utils';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
 
 module.exports = context => ({
   JSXAttribute: attribute => {
-    const normalizedName = attribute.name.name.toUpperCase();
+    const name = propName(attribute);
+    const normalizedName = name ? name.toUpperCase() : '';
+
     if (normalizedName !== 'ROLE') {
       return;
     }

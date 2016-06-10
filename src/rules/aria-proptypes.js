@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import ariaAttributes from '../util/attributes/ARIA';
-import { getLiteralPropValue } from 'jsx-ast-utils';
+import { getLiteralPropValue, propName } from 'jsx-ast-utils';
 
 const errorMessage = (name, type, permittedValues) => {
   switch (type) {
@@ -52,8 +52,8 @@ const validityCheck = (value, expectedType, permittedValues) => {
 
 module.exports = context => ({
   JSXAttribute: attribute => {
-    const name = attribute.name.name;
-    const normalizedName = name.toUpperCase();
+    const name = propName(attribute);
+    const normalizedName = name ? name.toUpperCase() : '';
 
     // Not a valid aria-* state or property.
     if (normalizedName.indexOf('ARIA-') !== 0 || ariaAttributes[normalizedName] === undefined) {

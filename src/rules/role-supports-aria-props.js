@@ -11,7 +11,7 @@
 import ROLES from '../util/attributes/role';
 import ARIA from '../util/attributes/ARIA';
 import getImplicitRole from '../util/getImplicitRole';
-import { getProp, getLiteralPropValue, elementType } from 'jsx-ast-utils';
+import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
   if (isImplicit) {
@@ -47,10 +47,13 @@ module.exports = context => ({
         return;
       }
 
-      if (invalidAriaPropsForRole.indexOf(prop.name.name.toUpperCase()) > -1) {
+      const name = propName(prop);
+      const normalizedName = name ? name.toUpperCase() : '';
+
+      if (invalidAriaPropsForRole.indexOf(normalizedName) > -1) {
         context.report({
           node,
-          message: errorMessage(prop.name.name, roleValue, type, isImplicit),
+          message: errorMessage(name, roleValue, type, isImplicit),
         });
       }
     });

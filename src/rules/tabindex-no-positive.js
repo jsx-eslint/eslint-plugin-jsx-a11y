@@ -7,14 +7,14 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getLiteralPropValue } from 'jsx-ast-utils';
+import { getLiteralPropValue, propName } from 'jsx-ast-utils';
 
 const errorMessage = 'Avoid positive integer values for tabIndex.';
 
 module.exports = context => ({
   JSXAttribute: attribute => {
-    const name = attribute.name.name;
-    const normalizedName = name.toUpperCase();
+    const name = propName(attribute);
+    const normalizedName = name ? name.toUpperCase() : '';
 
     // Check if tabIndex is the attribute
     if (normalizedName !== 'TABINDEX') {

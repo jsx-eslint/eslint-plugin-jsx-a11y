@@ -10,7 +10,7 @@
 
 import DOM from '../util/attributes/DOM';
 import ARIA from '../util/attributes/ARIA';
-import { elementType } from 'jsx-ast-utils';
+import { elementType, propName } from 'jsx-ast-utils';
 
 const errorMessage = invalidProp =>
   `This element does not support ARIA roles, states and properties. \
@@ -34,10 +34,13 @@ module.exports = context => ({
         return;
       }
 
-      if (invalidAttributes.indexOf(prop.name.name.toUpperCase()) > -1) {
+      const name = propName(prop);
+      const normalizedName = name ? name.toUpperCase() : '';
+
+      if (invalidAttributes.indexOf(normalizedName) > -1) {
         context.report({
           node,
-          message: errorMessage(prop.name.name),
+          message: errorMessage(name),
         });
       }
     });

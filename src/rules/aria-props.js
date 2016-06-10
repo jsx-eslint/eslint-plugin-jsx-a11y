@@ -9,6 +9,7 @@
 
 import ariaAttributes from '../util/attributes/ARIA';
 import getSuggestion from '../util/getSuggestion';
+import { propName } from 'jsx-ast-utils';
 
 const errorMessage = name => {
   const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
@@ -24,8 +25,8 @@ const errorMessage = name => {
 
 module.exports = context => ({
   JSXAttribute: attribute => {
-    const name = attribute.name.name;
-    const normalizedName = name.toUpperCase();
+    const name = propName(attribute);
+    const normalizedName = name ? name.toUpperCase() : '';
 
     // `aria` needs to be prefix of property.
     if (normalizedName.indexOf('ARIA-') !== 0) {

@@ -9,7 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import validRoleTypes from '../util/attributes/role';
-import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import { getProp, getLiteralPropValue, propName } from 'jsx-ast-utils';
 
 
 const errorMessage = (role, requiredProps) =>
@@ -18,7 +18,9 @@ const errorMessage = (role, requiredProps) =>
 
 module.exports = context => ({
   JSXAttribute: attribute => {
-    const normalizedName = attribute.name.name.toUpperCase();
+    const name = propName(attribute);
+    const normalizedName = name ? name.toUpperCase() : '';
+
     if (normalizedName !== 'ROLE') {
       return;
     }
