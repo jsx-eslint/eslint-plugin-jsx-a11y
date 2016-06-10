@@ -10,9 +10,10 @@
 
 import DOM from '../util/attributes/DOM';
 import ARIA from '../util/attributes/ARIA';
-import { hasAnyProp, elementType } from 'jsx-ast-utils';
+import { elementType } from 'jsx-ast-utils';
 
-const errorMessage = 'This element does not support ARIA roles, states and properties.';
+const errorMessage = invalidProp =>
+  `This element does not support ARIA roles, states and properties. Try removing the prop '${invalidProp}'.`;
 
 module.exports = context => ({
   JSXOpeningElement: node => {
@@ -26,14 +27,15 @@ module.exports = context => ({
     }
 
     const invalidAttributes = Object.keys(ARIA).concat('ROLE');
-    const hasInvalidAttribute = hasAnyProp(node.attributes, invalidAttributes);
 
-    if (hasInvalidAttribute) {
-      context.report({
-        node,
-        message: errorMessage
-      });
-    }
+    node.attributes.forEach(prop => {
+      if (invalidAttributes.indexOf(prop.name.name.toUpperCase()) > -1) {
+        context.report({
+          node,
+          message: errorMessage(prop.name.name)
+        });
+      }
+    });
   }
 });
 

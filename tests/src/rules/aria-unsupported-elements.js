@@ -27,10 +27,10 @@ const ruleTester = new RuleTester();
 
 import DOM from '../../../src/util/attributes/DOM';
 
-const errorMessage = {
-  message: 'This element does not support ARIA roles, states and properties.',
+const errorMessage = invalidProp => ({
+  message: `This element does not support ARIA roles, states and properties. Try removing the prop '${invalidProp}'.`,
   type: 'JSXOpeningElement'
-};
+});
 
 // Generate valid test cases
 const roleValidityTests = Object.keys(DOM).map(element => {
@@ -58,7 +58,7 @@ const invalidRoleValidityTests = Object.keys(DOM)
   .filter(element => Boolean(DOM[element].reserved))
   .map(reservedElem => ({
     code: `<${reservedElem} role />`,
-    errors: [ errorMessage ],
+    errors: [ errorMessage('role') ],
     parserOptions
   }));
 
@@ -66,7 +66,7 @@ const invalidAriaValidityTests = Object.keys(DOM)
   .filter(element => Boolean(DOM[element].reserved))
   .map(reservedElem => ({
     code: `<${reservedElem} aria-hidden />`,
-    errors: [ errorMessage ],
+    errors: [ errorMessage('aria-hidden') ],
     parserOptions
   }));
 
