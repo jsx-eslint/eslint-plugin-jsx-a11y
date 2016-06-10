@@ -3,7 +3,6 @@
  *  accompanied by onfocus/onblur.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -30,7 +29,7 @@ module.exports = context => ({
       if (hasOnFocus === false || onFocusValue === null || onFocusValue === undefined) {
         context.report({
           node,
-          message: mouseOverErrorMessage
+          message: mouseOverErrorMessage,
         });
       }
     }
@@ -45,13 +44,13 @@ module.exports = context => ({
       if (hasOnBlur === false || onBlurValue === null || onBlurValue === undefined) {
         context.report({
           node,
-          message: mouseOutErrorMessage
+          message: mouseOutErrorMessage,
         });
       }
     }
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

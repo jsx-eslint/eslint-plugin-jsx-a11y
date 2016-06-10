@@ -2,7 +2,6 @@
  * @fileoverview Enforce all aria-* properties are valid.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -38,12 +37,12 @@ module.exports = context => ({
     if (isValid === false) {
       context.report({
         node: attribute,
-        message: errorMessage(name)
+        message: errorMessage(name),
       });
     }
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

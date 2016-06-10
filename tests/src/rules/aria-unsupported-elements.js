@@ -1,9 +1,8 @@
 /**
- * @fileoverview Enforce that elements that do not support ARIA roles, states and properties do not have those attributes.
+ * @fileoverview Enforce that elements that do not support ARIA roles,
+ *  states and properties do not have those attributes.
  * @author Ethan Cohen
  */
-
-'use strict';
 
 // -----------------------------------------------------------------------------
 // Requirements
@@ -15,8 +14,8 @@ import { RuleTester } from 'eslint';
 const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -28,8 +27,9 @@ const ruleTester = new RuleTester();
 import DOM from '../../../src/util/attributes/DOM';
 
 const errorMessage = invalidProp => ({
-  message: `This element does not support ARIA roles, states and properties. Try removing the prop '${invalidProp}'.`,
-  type: 'JSXOpeningElement'
+  message: `This element does not support ARIA roles, states and properties. \
+Try removing the prop '${invalidProp}'.`,
+  type: 'JSXOpeningElement',
 });
 
 // Generate valid test cases
@@ -39,7 +39,7 @@ const roleValidityTests = Object.keys(DOM).map(element => {
 
   return {
     code: `<${element} ${role} />`,
-    parserOptions
+    parserOptions,
   };
 });
 
@@ -49,7 +49,7 @@ const ariaValidityTests = Object.keys(DOM).map(element => {
 
   return {
     code: `<${element} ${aria} />`,
-    parserOptions
+    parserOptions,
   };
 });
 
@@ -58,19 +58,19 @@ const invalidRoleValidityTests = Object.keys(DOM)
   .filter(element => Boolean(DOM[element].reserved))
   .map(reservedElem => ({
     code: `<${reservedElem} role />`,
-    errors: [ errorMessage('role') ],
-    parserOptions
+    errors: [errorMessage('role')],
+    parserOptions,
   }));
 
 const invalidAriaValidityTests = Object.keys(DOM)
   .filter(element => Boolean(DOM[element].reserved))
   .map(reservedElem => ({
     code: `<${reservedElem} aria-hidden />`,
-    errors: [ errorMessage('aria-hidden') ],
-    parserOptions
+    errors: [errorMessage('aria-hidden')],
+    parserOptions,
   }));
 
 ruleTester.run('aria-unsupported-elements', rule, {
   valid: roleValidityTests.concat(ariaValidityTests),
-  invalid: invalidRoleValidityTests.concat(invalidAriaValidityTests)
+  invalid: invalidRoleValidityTests.concat(invalidAriaValidityTests),
 });

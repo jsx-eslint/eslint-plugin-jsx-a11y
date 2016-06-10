@@ -2,7 +2,6 @@
  * @fileoverview Enforce img tag uses alt attribute.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -12,7 +11,7 @@ import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const typeCheck = [ 'img' ].concat(context.options[0]);
+    const typeCheck = ['img'].concat(context.options[0]);
     const nodeType = elementType(node);
 
     // Only check 'img' elements and custom types.
@@ -22,7 +21,8 @@ module.exports = context => ({
 
     const roleProp = getProp(node.attributes, 'role');
     const roleValue = getPropValue(roleProp);
-    const isPresentation = roleProp && typeof roleValue === 'string' && roleValue.toLowerCase() === 'presentation';
+    const isPresentation = roleProp && typeof roleValue === 'string'
+      && roleValue.toLowerCase() === 'presentation';
 
     if (isPresentation) {
       return;
@@ -34,7 +34,7 @@ module.exports = context => ({
     if (altProp === undefined) {
       context.report({
         node,
-        message: `${nodeType} elements must have an alt prop or use role="presentation".`
+        message: `${nodeType} elements must have an alt prop or use role="presentation".`,
       });
       return;
     }
@@ -51,23 +51,24 @@ module.exports = context => ({
     context.report({
       node,
       message:
-        `Invalid alt value for ${nodeType}. Use alt="" or role="presentation" for presentational images.`
+        `Invalid alt value for ${nodeType}. \
+Use alt="" or role="presentation" for presentational images.`,
     });
-  }
+  },
 });
 
 module.exports.schema = [
   {
-    'oneOf': [
-      { 'type': 'string' },
+    oneOf: [
+      { type: 'string' },
       {
-        'type': 'array',
-        'items': {
-          'type': 'string'
+        type: 'array',
+        items: {
+          type: 'string',
         },
-        'minItems': 1,
-        'uniqueItems': true
-      }
-    ]
-  }
+        minItems: 1,
+        uniqueItems: true,
+      },
+    ],
+  },
 ];

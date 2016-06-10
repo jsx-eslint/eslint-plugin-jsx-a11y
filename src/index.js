@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable global-require */
 
 module.exports = {
   rules: {
@@ -17,14 +17,14 @@ module.exports = {
     'onclick-has-role': require('./rules/onclick-has-role'),
     'role-has-required-aria-props': require('./rules/role-has-required-aria-props'),
     'role-supports-aria-props': require('./rules/role-supports-aria-props'),
-    'tabindex-no-positive': require('./rules/tabindex-no-positive')
+    'tabindex-no-positive': require('./rules/tabindex-no-positive'),
   },
   configs: {
     recommended: {
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
+          jsx: true,
+        },
       },
       rules: {
         'jsx-a11y/aria-props': 2,
@@ -42,8 +42,8 @@ module.exports = {
         'jsx-a11y/onclick-has-role': 2,
         'jsx-a11y/role-has-required-aria-props': 2,
         'jsx-a11y/role-supports-aria-props': 2,
-        'jsx-a11y/tabindex-no-positive': 2
-      }
-    }
-  }
+        'jsx-a11y/tabindex-no-positive': 2,
+      },
+    },
+  },
 };

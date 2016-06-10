@@ -1,8 +1,8 @@
 /**
- * @fileoverview Enforce that elements that do not support ARIA roles, states and properties do not have those attributes.
+ * @fileoverview Enforce that elements that do not support ARIA roles,
+ *  states and properties do not have those attributes.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -13,7 +13,8 @@ import ARIA from '../util/attributes/ARIA';
 import { elementType } from 'jsx-ast-utils';
 
 const errorMessage = invalidProp =>
-  `This element does not support ARIA roles, states and properties. Try removing the prop '${invalidProp}'.`;
+  `This element does not support ARIA roles, states and properties. \
+Try removing the prop '${invalidProp}'.`;
 
 module.exports = context => ({
   JSXOpeningElement: node => {
@@ -32,13 +33,13 @@ module.exports = context => ({
       if (invalidAttributes.indexOf(prop.name.name.toUpperCase()) > -1) {
         context.report({
           node,
-          message: errorMessage(prop.name.name)
+          message: errorMessage(prop.name.name),
         });
       }
     });
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

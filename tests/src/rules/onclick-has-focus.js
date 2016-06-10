@@ -3,8 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -12,11 +10,11 @@
 import rule from '../../../src/rules/onclick-has-focus';
 import { RuleTester } from 'eslint';
 
-const parserOptions  = {
+const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -25,11 +23,11 @@ const parserOptions  = {
 
 const ruleTester = new RuleTester();
 
-const  expectedError  = {
+const expectedError = {
   message: 'Elements with onClick handlers must be focusable. ' +
     'Either set the tabIndex property to a valid value (usually 0), ' +
     'or use an element type which is inherently focusable such as `button`.',
-  type: 'JSXOpeningElement'
+  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('onclick-has-focus', rule, {
@@ -65,30 +63,73 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<span onClick="doSomething();" tabIndex="0">Click me!</span>', parserOptions },
     { code: '<span onClick="doSomething();" tabIndex={0}>Click me!</span>', parserOptions },
     { code: '<span onClick="doSomething();" tabIndex="-1">Click me too!</span>', parserOptions },
-    { code: '<a href="javascript:void(0);" onClick="doSomething();">Click ALL the things!</a>', parserOptions },
+    {
+      code: '<a href="javascript:void(0);" onClick="doSomething();">Click ALL the things!</a>',
+      parserOptions,
+    },
     { code: '<Foo.Bar onClick={() => void 0} aria-hidden={false} />;', parserOptions },
-    { code: '<Input onClick={() => void 0} type="hidden" />;', parserOptions }
+    { code: '<Input onClick={() => void 0} type="hidden" />;', parserOptions },
   ],
 
   invalid: [
-    { code: '<span onClick="submitForm();">Submit</span>', errors: [ expectedError ], parserOptions },
-    { code: '<span onClick="submitForm();" tabIndex={undefined}>Submit</span>', errors: [ expectedError ], parserOptions },
-    { code: '<span onClick="submitForm();" tabIndex="bad">Submit</span>', errors: [ expectedError ], parserOptions },
-    { code: '<a onClick="showNextPage();">Next page</a>', errors: [ expectedError ], parserOptions },
-    { code: '<a onClick="showNextPage();" tabIndex={undefined}>Next page</a>', errors: [ expectedError ], parserOptions },
-    { code: '<a onClick="showNextPage();" tabIndex="bad">Next page</a>', errors: [ expectedError ], parserOptions },
-    { code: '<a onClick={() => void 0} />', errors: [ expectedError ], parserOptions },
-    { code: '<area onClick={() => void 0} className="foo" />', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} tabIndex={undefined} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} tabIndex="bad" />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} role={undefined} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} aria-hidden={false} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} {...props} />;', errors: [ expectedError ], parserOptions },
-    { code: '<section onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<main onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<article onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<header onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<footer onClick={() => void 0} />;', errors: [ expectedError ], parserOptions }
-  ]
+    { code: '<span onClick="submitForm();">Submit</span>', errors: [expectedError], parserOptions },
+    {
+      code: '<span onClick="submitForm();" tabIndex={undefined}>Submit</span>',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<span onClick="submitForm();" tabIndex="bad">Submit</span>',
+      errors: [expectedError],
+      parserOptions,
+    },
+    { code: '<a onClick="showNextPage();">Next page</a>', errors: [expectedError], parserOptions },
+    {
+      code: '<a onClick="showNextPage();" tabIndex={undefined}>Next page</a>',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<a onClick="showNextPage();" tabIndex="bad">Next page</a>',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<a onClick={() => void 0} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<area onClick={() => void 0} className="foo" />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    { code: '<div onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    {
+      code: '<div onClick={() => void 0} tabIndex={undefined} />;',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<div onClick={() => void 0} tabIndex="bad" />;',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<div onClick={() => void 0} role={undefined} />;',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<div onClick={() => void 0} aria-hidden={false} />;',
+      errors: [expectedError],
+      parserOptions,
+    },
+    { code: '<div onClick={() => void 0} {...props} />;', errors: [expectedError], parserOptions },
+    { code: '<section onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    { code: '<main onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    { code: '<article onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    { code: '<header onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    { code: '<footer onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+  ],
 });

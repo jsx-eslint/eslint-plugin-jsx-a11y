@@ -1,5 +1,3 @@
-'use strict';
-
 import { getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
 
 /**

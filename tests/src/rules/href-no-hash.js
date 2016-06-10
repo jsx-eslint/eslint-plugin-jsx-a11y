@@ -3,8 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -15,8 +13,8 @@ import { RuleTester } from 'eslint';
 const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -27,11 +25,11 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Links must not point to "#". Use a more descriptive href or use a button instead.',
-  type: 'JSXOpeningElement'
+  type: 'JSXOpeningElement',
 };
 
-const string = [ 'Link' ];
-const array = [ [ 'Anchor', 'Link' ] ];
+const string = ['Link'];
+const array = [['Anchor', 'Link']];
 
 ruleTester.run('href-no-hash', rule, {
   valid: [
@@ -89,25 +87,40 @@ ruleTester.run('href-no-hash', rule, {
     { code: '<Link href={`#${undefined}foo`}/>', options: array, parserOptions },
     { code: '<Link href={`#foo`}/>', options: array, parserOptions },
     { code: '<Link href={"foo"}/>', options: array, parserOptions },
-    { code: '<Link href="#foo" />', options: array, parserOptions }
+    { code: '<Link href="#foo" />', options: array, parserOptions },
   ],
   invalid: [
     // DEFAULT ELEMENT 'a' TESTS
-    { code: '<a href="#" />', errors: [ expectedError ], parserOptions },
-    { code: '<a href={"#"} />', errors: [ expectedError ], parserOptions },
-    { code: '<a href={`#${undefined}`} />', errors: [ expectedError ], parserOptions },
+    { code: '<a href="#" />', errors: [expectedError], parserOptions },
+    { code: '<a href={"#"} />', errors: [expectedError], parserOptions },
+    { code: '<a href={`#${undefined}`} />', errors: [expectedError], parserOptions },
 
     // CUSTOM ELEMENT TEST FOR STRING OPTION
-    { code: '<Link href="#" />', errors: [ expectedError ], options: string, parserOptions },
-    { code: '<Link href={"#"} />', errors: [ expectedError ], options: string, parserOptions },
-    { code: '<Link href={`#${undefined}`} />', errors: [ expectedError ], options: string, parserOptions },
+    { code: '<Link href="#" />', errors: [expectedError], options: string, parserOptions },
+    { code: '<Link href={"#"} />', errors: [expectedError], options: string, parserOptions },
+    {
+      code: '<Link href={`#${undefined}`} />',
+      errors: [expectedError],
+      options: string,
+      parserOptions,
+    },
 
     // CUSTOM ELEMENT TEST FOR ARRAY OPTION
-    { code: '<Link href="#" />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Link href={"#"} />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Link href={`#${undefined}`} />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Anchor href="#" />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Anchor href={"#"} />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Anchor href={`#${undefined}`} />', errors: [ expectedError ], options: array, parserOptions }
-  ]
+    { code: '<Link href="#" />', errors: [expectedError], options: array, parserOptions },
+    { code: '<Link href={"#"} />', errors: [expectedError], options: array, parserOptions },
+    {
+      code: '<Link href={`#${undefined}`} />',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+    { code: '<Anchor href="#" />', errors: [expectedError], options: array, parserOptions },
+    { code: '<Anchor href={"#"} />', errors: [expectedError], options: array, parserOptions },
+    {
+      code: '<Anchor href={`#${undefined}`} />',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+  ],
 });

@@ -3,8 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -15,8 +13,8 @@ import { RuleTester } from 'eslint';
 const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -27,7 +25,7 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Avoid positive integer values for tabIndex.',
-  type: 'JSXAttribute'
+  type: 'JSXAttribute',
 };
 
 ruleTester.run('tabindex-no-positive', rule, {
@@ -49,14 +47,14 @@ ruleTester.run('tabindex-no-positive', rule, {
     { code: '<div tabIndex="-5" />', parserOptions },
     { code: '<div tabIndex="-5.5" />', parserOptions },
     { code: '<div tabIndex={-5.5} />', parserOptions },
-    { code: '<div tabIndex={-5} />', parserOptions }
+    { code: '<div tabIndex={-5} />', parserOptions },
   ],
 
   invalid: [
-    { code: '<div tabIndex="1" />', errors: [ expectedError ], parserOptions },
-    { code: '<div tabIndex={1} />', errors: [ expectedError ], parserOptions },
-    { code: '<div tabIndex={"1"} />', errors: [ expectedError ], parserOptions },
-    { code: '<div tabIndex={`1`} />', errors: [ expectedError ], parserOptions },
-    { code: '<div tabIndex={1.589} />', errors: [ expectedError ], parserOptions }
-  ]
+    { code: '<div tabIndex="1" />', errors: [expectedError], parserOptions },
+    { code: '<div tabIndex={1} />', errors: [expectedError], parserOptions },
+    { code: '<div tabIndex={"1"} />', errors: [expectedError], parserOptions },
+    { code: '<div tabIndex={`1`} />', errors: [expectedError], parserOptions },
+    { code: '<div tabIndex={1.589} />', errors: [expectedError], parserOptions },
+  ],
 });

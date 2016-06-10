@@ -2,7 +2,6 @@
  * @fileoverview Enforce no accesskey attribute on element.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -22,12 +21,12 @@ module.exports = context => ({
     if (accessKey && accessKeyValue) {
       context.report({
         node,
-        message: errorMessage
+        message: errorMessage,
       });
     }
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

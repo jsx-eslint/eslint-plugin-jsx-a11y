@@ -3,8 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -15,8 +13,8 @@ import { RuleTester } from 'eslint';
 const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -29,7 +27,7 @@ const expectedError = {
   message: 'No access key attribute allowed. Inconsistencies ' +
   'between keyboard shortcuts and keyboard comments used by screenreader ' +
   'and keyboard only users create a11y complications.',
-  type: 'JSXOpeningElement'
+  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('no-access-key', rule, {
@@ -38,17 +36,21 @@ ruleTester.run('no-access-key', rule, {
     { code: '<div {...props} />', parserOptions },
     { code: '<div accessKey={undefined} />', parserOptions },
     { code: '<div accessKey={`${undefined}`} />', parserOptions },
-    { code: '<div accessKey={`${undefined}${undefined}`} />', parserOptions }
+    { code: '<div accessKey={`${undefined}${undefined}`} />', parserOptions },
   ],
   invalid: [
-    { code: '<div accesskey="h" />', errors: [ expectedError ], parserOptions },
-    { code: '<div accessKey="h" />', errors: [ expectedError ], parserOptions },
-    { code: '<div accessKey="h" {...props} />', errors: [ expectedError ], parserOptions },
-    { code: '<div acCesSKeY="y" />', errors: [ expectedError ], parserOptions },
-    { code: '<div accessKey={"y"} />', errors: [ expectedError ], parserOptions },
-    { code: '<div accessKey={`${y}`} />', errors: [ expectedError ], parserOptions },
-    { code: '<div accessKey={`${undefined}y${undefined}`} />', errors: [ expectedError ], parserOptions },
-    { code: '<div accessKey={`This is ${bad}`} />', errors: [ expectedError ], parserOptions },
-    { code: '<div accessKey={accessKey} />', errors: [ expectedError ], parserOptions }
-  ]
+    { code: '<div accesskey="h" />', errors: [expectedError], parserOptions },
+    { code: '<div accessKey="h" />', errors: [expectedError], parserOptions },
+    { code: '<div accessKey="h" {...props} />', errors: [expectedError], parserOptions },
+    { code: '<div acCesSKeY="y" />', errors: [expectedError], parserOptions },
+    { code: '<div accessKey={"y"} />', errors: [expectedError], parserOptions },
+    { code: '<div accessKey={`${y}`} />', errors: [expectedError], parserOptions },
+    {
+      code: '<div accessKey={`${undefined}y${undefined}`} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    { code: '<div accessKey={`This is ${bad}`} />', errors: [expectedError], parserOptions },
+    { code: '<div accessKey={accessKey} />', errors: [expectedError], parserOptions },
+  ],
 });

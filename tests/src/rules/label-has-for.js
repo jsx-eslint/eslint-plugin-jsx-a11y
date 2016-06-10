@@ -3,8 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -12,11 +10,11 @@
 import rule from '../../../src/rules/label-has-for';
 import { RuleTester } from 'eslint';
 
-const parserOptions  = {
+const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -28,11 +26,11 @@ const ruleTester = new RuleTester();
 const expectedError = {
   message: 'Form controls using a label to identify them must be ' +
   'programmatically associated with the control using htmlFor',
-  type: 'JSXOpeningElement'
+  type: 'JSXOpeningElement',
 };
 
-const string = [ 'Label' ];
-const array = [ [ 'Label', 'Descriptor' ] ];
+const string = ['Label'];
+const array = [['Label', 'Descriptor']];
 
 ruleTester.run('label-has-for', rule, {
   valid: [
@@ -67,33 +65,83 @@ ruleTester.run('label-has-for', rule, {
     { code: '<Descriptor htmlFor={foo} />', options: array, parserOptions },
     { code: '<Descriptor htmlFor={`${id}`} />', options: array, parserOptions },
     { code: '<div />', options: array, parserOptions },
-    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: array, parserOptions }
+    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: array, parserOptions },
   ],
   invalid: [
     // DEFAULT ELEMENT 'label' TESTS
-    { code: '<label id="foo" />', errors: [ expectedError ], parserOptions },
-    { code: '<label htmlFor={undefined} />', errors: [ expectedError ], parserOptions },
-    { code: '<label htmlFor={`${undefined}`} />', errors: [ expectedError ], parserOptions },
-    { code: '<label>First Name</label>', errors: [ expectedError ], parserOptions },
-    { code: '<label {...props}>Foo</label>', errors: [ expectedError ], parserOptions },
+    { code: '<label id="foo" />', errors: [expectedError], parserOptions },
+    { code: '<label htmlFor={undefined} />', errors: [expectedError], parserOptions },
+    { code: '<label htmlFor={`${undefined}`} />', errors: [expectedError], parserOptions },
+    { code: '<label>First Name</label>', errors: [expectedError], parserOptions },
+    { code: '<label {...props}>Foo</label>', errors: [expectedError], parserOptions },
 
     // CUSTOM ELEMENT STRING OPTION TESTS
-    { code: '<Label id="foo" />', errors: [ expectedError ], options: string, parserOptions },
-    { code: '<Label htmlFor={undefined} />', errors: [ expectedError ], options: string, parserOptions },
-    { code: '<Label htmlFor={`${undefined}`} />', errors: [ expectedError ], options: string, parserOptions },
-    { code: '<Label>First Name</Label>', errors: [ expectedError ], options: string, parserOptions },
-    { code: '<Label {...props}>Foo</Label>', errors: [ expectedError ], options: string, parserOptions },
+    { code: '<Label id="foo" />', errors: [expectedError], options: string, parserOptions },
+    {
+      code: '<Label htmlFor={undefined} />',
+      errors: [expectedError],
+      options: string,
+      parserOptions,
+    },
+    {
+      code: '<Label htmlFor={`${undefined}`} />',
+      errors: [expectedError],
+      options: string,
+      parserOptions,
+    },
+    { code: '<Label>First Name</Label>', errors: [expectedError], options: string, parserOptions },
+    {
+      code: '<Label {...props}>Foo</Label>',
+      errors: [expectedError],
+      options: string,
+      parserOptions,
+    },
 
     // CUSTOM ELEMENT ARRAY OPTION TESTS
-    { code: '<Label id="foo" />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Label htmlFor={undefined} />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Label htmlFor={`${undefined}`} />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Label>First Name</Label>', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Label {...props}>Foo</Label>', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Descriptor id="foo" />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Descriptor htmlFor={undefined} />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Descriptor htmlFor={`${undefined}`} />', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Descriptor>First Name</Descriptor>', errors: [ expectedError ], options: array, parserOptions },
-    { code: '<Descriptor {...props}>Foo</Descriptor>', errors: [ expectedError ], options: array, parserOptions }
-  ]
+    { code: '<Label id="foo" />', errors: [expectedError], options: array, parserOptions },
+    {
+      code: '<Label htmlFor={undefined} />',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+    {
+      code: '<Label htmlFor={`${undefined}`} />',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+    { code: '<Label>First Name</Label>', errors: [expectedError], options: array, parserOptions },
+    {
+      code: '<Label {...props}>Foo</Label>',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+    { code: '<Descriptor id="foo" />', errors: [expectedError], options: array, parserOptions },
+    {
+      code: '<Descriptor htmlFor={undefined} />',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+    {
+      code: '<Descriptor htmlFor={`${undefined}`} />',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+    {
+      code: '<Descriptor>First Name</Descriptor>',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+    {
+      code: '<Descriptor {...props}>Foo</Descriptor>',
+      errors: [expectedError],
+      options: array,
+      parserOptions,
+    },
+  ],
 });

@@ -1,5 +1,3 @@
-'use strict';
-
 import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
 
 /**
@@ -13,7 +11,7 @@ const isHiddenFromScreenReader = (type, attributes) => {
   if (type.toUpperCase() === 'INPUT') {
     const hidden = getLiteralPropValue(getProp(attributes, 'type'));
 
-    if (hidden && hidden.toUpperCase() == 'HIDDEN') {
+    if (hidden && hidden.toUpperCase() === 'HIDDEN') {
       return true;
     }
   }

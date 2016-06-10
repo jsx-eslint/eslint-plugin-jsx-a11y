@@ -2,7 +2,6 @@
  * @fileoverview Enforce label tags have htmlFor attribute.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -15,7 +14,7 @@ const errorMessage = 'Form controls using a label to identify them must be ' +
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const typeCheck = [ 'label' ].concat(context.options[0]);
+    const typeCheck = ['label'].concat(context.options[0]);
     const nodeType = elementType(node);
 
     // Only check 'label' elements and custom types.
@@ -30,24 +29,24 @@ module.exports = context => ({
     if (isInvalid) {
       context.report({
         node,
-        message: errorMessage
+        message: errorMessage,
       });
     }
-  }
+  },
 });
 
 module.exports.schema = [
   {
-    'oneOf': [
-      { 'type': 'string' },
+    oneOf: [
+      { type: 'string' },
       {
-        'type': 'array',
-        'items': {
-          'type': 'string'
+        type: 'array',
+        items: {
+          type: 'string',
         },
-        'minItems': 1,
-        'uniqueItems': true
-      }
-    ]
-  }
+        minItems: 1,
+        uniqueItems: true,
+      },
+    ],
+  },
 ];

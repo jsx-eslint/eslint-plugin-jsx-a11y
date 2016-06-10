@@ -3,20 +3,20 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
 
 import rule from '../../../src/rules/role-supports-aria-props';
 import { RuleTester } from 'eslint';
+import ROLES from '../../../src/util/attributes/role';
+import ARIA from '../../../src/util/attributes/ARIA';
 
 const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -27,7 +27,8 @@ const ruleTester = new RuleTester();
 
 const generateErrorMessage = (attr, role, tag, isImplicit) => {
   if (isImplicit) {
-    return `The attribute ${attr} is not supported by the role ${role}. This role is implicit on the element ${tag}.`;
+    return `The attribute ${attr} is not supported by the role ${role}. \
+This role is implicit on the element ${tag}.`;
   }
 
   return `The attribute ${attr} is not supported by the role ${role}.`;
@@ -35,35 +36,34 @@ const generateErrorMessage = (attr, role, tag, isImplicit) => {
 
 const errorMessage = (attr, role, tag, isImplicit) => ({
   message: generateErrorMessage(attr, role, tag, isImplicit),
-  type: 'JSXOpeningElement'
+  type: 'JSXOpeningElement',
 });
-
-import ROLES from '../../../src/util/attributes/role';
-import ARIA from '../../../src/util/attributes/ARIA';
 
 const nonAbstractRoles = Object.keys(ROLES).filter(role => ROLES[role].abstract === false);
 
 const createTests = roles => roles.reduce((tests, role) => {
   const validPropsForRole = ROLES[role.toUpperCase()].props;
-  const invalidPropsForRole = Object.keys(ARIA).filter(attribute => validPropsForRole.indexOf(attribute) === -1);
+  const invalidPropsForRole = Object.keys(ARIA)
+    .filter(attribute => validPropsForRole.indexOf(attribute) === -1);
   const normalRole = role.toLowerCase();
 
-  tests[0] = tests[0].concat(validPropsForRole.map(prop => ({
-    code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
-    parserOptions
-  })));
+  const allTests = [];
 
-  tests[1] = tests[1].concat(invalidPropsForRole.map(prop => ({
+  allTests[0] = tests[0].concat(validPropsForRole.map(prop => ({
     code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
     parserOptions,
-    errors: [ errorMessage(prop.toLowerCase(), normalRole, 'div', false) ]
   })));
 
-  return tests;
+  allTests[1] = tests[1].concat(invalidPropsForRole.map(prop => ({
+    code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
+    parserOptions,
+    errors: [errorMessage(prop.toLowerCase(), normalRole, 'div', false)],
+  })));
 
-}, [ [], [] ]);
+  return allTests;
+}, [[], []]);
 
-const [ validTests, invalidTests ] = createTests(nonAbstractRoles);
+const [validTests, invalidTests] = createTests(nonAbstractRoles);
 
 ruleTester.run('role-supports-aria-props', rule, {
   valid: [
@@ -140,22 +140,22 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<link aria-checked />', parserOptions },
 
     // IMG TESTS - implicit role is `presentation`
-    { code: '<img alt="" aria-atomic />',  parserOptions },
-    { code: '<img alt="" aria-busy />',  parserOptions },
-    { code: '<img alt="" aria-controls />',  parserOptions },
-    { code: '<img alt="" aria-describedby />',  parserOptions },
-    { code: '<img alt="" aria-disabled />',  parserOptions },
-    { code: '<img alt="" aria-dropeffect />',  parserOptions },
-    { code: '<img alt="" aria-flowto />',  parserOptions },
-    { code: '<img alt="" aria-grabbed />',  parserOptions },
-    { code: '<img alt="" aria-haspopup />',  parserOptions },
-    { code: '<img alt="" aria-hidden />',  parserOptions },
-    { code: '<img alt="" aria-invalid />',  parserOptions },
-    { code: '<img alt="" aria-label />',  parserOptions },
-    { code: '<img alt="" aria-labelledby />',  parserOptions },
-    { code: '<img alt="" aria-live />',  parserOptions },
-    { code: '<img alt="" aria-owns />',  parserOptions },
-    { code: '<img alt="" aria-relevant />',  parserOptions },
+    { code: '<img alt="" aria-atomic />', parserOptions },
+    { code: '<img alt="" aria-busy />', parserOptions },
+    { code: '<img alt="" aria-controls />', parserOptions },
+    { code: '<img alt="" aria-describedby />', parserOptions },
+    { code: '<img alt="" aria-disabled />', parserOptions },
+    { code: '<img alt="" aria-dropeffect />', parserOptions },
+    { code: '<img alt="" aria-flowto />', parserOptions },
+    { code: '<img alt="" aria-grabbed />', parserOptions },
+    { code: '<img alt="" aria-haspopup />', parserOptions },
+    { code: '<img alt="" aria-hidden />', parserOptions },
+    { code: '<img alt="" aria-invalid />', parserOptions },
+    { code: '<img alt="" aria-label />', parserOptions },
+    { code: '<img alt="" aria-labelledby />', parserOptions },
+    { code: '<img alt="" aria-live />', parserOptions },
+    { code: '<img alt="" aria-owns />', parserOptions },
+    { code: '<img alt="" aria-relevant />', parserOptions },
 
     // this will have role of `img`
     { code: '<img alt="foobar" aria-busy />', parserOptions },
@@ -422,7 +422,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<textarea aria-hidden />', parserOptions },
     { code: '<tfoot aria-expanded />', parserOptions },
     { code: '<thead aria-expanded />', parserOptions },
-    { code: '<ul aria-expanded />', parserOptions }
+    { code: '<ul aria-expanded />', parserOptions },
 
   ].concat(validTests),
 
@@ -430,33 +430,33 @@ ruleTester.run('role-supports-aria-props', rule, {
     // implicit basic checks
     {
       code: '<a href="#" aria-checked />',
-      errors: [ errorMessage('aria-checked', 'link', 'a', true) ],
-      parserOptions
+      errors: [errorMessage('aria-checked', 'link', 'a', true)],
+      parserOptions,
     },
     {
       code: '<area href="#" aria-checked />',
-      errors: [ errorMessage('aria-checked', 'link', 'area', true) ],
-      parserOptions
+      errors: [errorMessage('aria-checked', 'link', 'area', true)],
+      parserOptions,
     },
     {
       code: '<link href="#" aria-checked />',
-      errors: [ errorMessage('aria-checked', 'link', 'link', true) ],
-      parserOptions
+      errors: [errorMessage('aria-checked', 'link', 'link', true)],
+      parserOptions,
     },
     {
       code: '<img alt="" aria-checked />',
-      errors: [ errorMessage('aria-checked', 'presentation', 'img', true) ],
-      parserOptions
+      errors: [errorMessage('aria-checked', 'presentation', 'img', true)],
+      parserOptions,
     },
     {
       code: '<menu type="toolbar" aria-checked />',
-      errors: [ errorMessage('aria-checked', 'toolbar', 'menu', true) ],
-      parserOptions
+      errors: [errorMessage('aria-checked', 'toolbar', 'menu', true)],
+      parserOptions,
     },
     {
       code: '<aside aria-checked />',
-      errors: [ errorMessage('aria-checked', 'complementary', 'aside', true) ],
-      parserOptions
-    }
-  ].concat(invalidTests)
+      errors: [errorMessage('aria-checked', 'complementary', 'aside', true)],
+      parserOptions,
+    },
+  ].concat(invalidTests),
 });

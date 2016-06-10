@@ -2,7 +2,6 @@
  * @fileoverview Enforce ARIA state and property values are valid.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -18,7 +17,8 @@ const errorMessage = (name, type, permittedValues) => {
     case 'token':
       return `The value for ${name} must be a single token from the following: ${permittedValues}.`;
     case 'tokenlist':
-      return `The value for ${name} must be a list of one or more tokens from the following: ${permittedValues}.`;
+      return `The value for ${name} must be a list of one or more \
+tokens from the following: ${permittedValues}.`;
     case 'boolean':
     case 'string':
     case 'integer':
@@ -35,7 +35,7 @@ const validityCheck = (value, expectedType, permittedValues) => {
     case 'string':
       return typeof value === 'string';
     case 'tristate':
-      return typeof value === 'boolean' || value == 'mixed';
+      return typeof value === 'boolean' || value === 'mixed';
     case 'integer':
     case 'number':
       // Booleans resolve to 0/1 values so hard check that it's not first.
@@ -43,7 +43,8 @@ const validityCheck = (value, expectedType, permittedValues) => {
     case 'token':
       return typeof value === 'string' && permittedValues.indexOf(value.toLowerCase()) > -1;
     case 'tokenlist':
-      return typeof value === 'string' && value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);
+      return typeof value === 'string' &&
+        value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);
     default:
       return false;
   }
@@ -72,7 +73,8 @@ module.exports = context => ({
     const allowUndefined = attributes.allowUndefined || false;
     const permittedValues = attributes.values || [];
 
-    const isValid = validityCheck(value, permittedType, permittedValues) || (allowUndefined && value === undefined);
+    const isValid = validityCheck(value, permittedType, permittedValues) ||
+      (allowUndefined && value === undefined);
 
     if (isValid) {
       return;
@@ -80,11 +82,11 @@ module.exports = context => ({
 
     context.report({
       node: attribute,
-      message: errorMessage(name, permittedType, permittedValues)
+      message: errorMessage(name, permittedType, permittedValues),
     });
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

@@ -2,7 +2,6 @@
  * @fileoverview Enforce links may not point to just #.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -10,11 +9,12 @@
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 
-const errorMessage = 'Links must not point to "#". Use a more descriptive href or use a button instead.';
+const errorMessage = 'Links must not point to "#". ' +
+  'Use a more descriptive href or use a button instead.';
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const typeCheck = [ 'a' ].concat(context.options[0]);
+    const typeCheck = ['a'].concat(context.options[0]);
     const nodeType = elementType(node);
 
     // Only check 'a' elements and custom types.
@@ -28,24 +28,24 @@ module.exports = context => ({
     if (href && value === '#') {
       context.report({
         node,
-        message: errorMessage
+        message: errorMessage,
       });
     }
-  }
+  },
 });
 
 module.exports.schema = [
   {
-    'oneOf': [
-      { 'type': 'string' },
+    oneOf: [
+      { type: 'string' },
       {
-        'type': 'array',
-        'items': {
-          'type': 'string'
+        type: 'array',
+        items: {
+          type: 'string',
         },
-        'minItems': 1,
-        'uniqueItems': true
-      }
-    ]
-  }
+        minItems: 1,
+        uniqueItems: true,
+      },
+    ],
+  },
 ];

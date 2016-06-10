@@ -1,5 +1,3 @@
-'use strict';
-
 import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
 import getTabIndex from './getTabIndex';
 import DOMElements from './attributes/DOM';
@@ -20,7 +18,7 @@ const interactiveMap = {
   },
   option: () => true,
   select: () => true,
-  textarea: () => true
+  textarea: () => true,
 };
 
 /**

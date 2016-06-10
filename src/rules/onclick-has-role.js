@@ -3,7 +3,6 @@
  *  click handlers use role attribute.
  * @author Ethan Cohen
  */
-'use strict';
 
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -36,11 +35,11 @@ module.exports = context => ({
     // Visible, non-interactive elements require role attribute.
     context.report({
       node,
-      message: errorMessage
+      message: errorMessage,
     });
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

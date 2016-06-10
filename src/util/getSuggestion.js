@@ -1,7 +1,4 @@
-'use strict';
-
 import editDistance from 'damerau-levenshtein';
-
 
 // Minimum edit distance to be considered a good suggestion.
 const THRESHOLD = 2;
@@ -12,7 +9,9 @@ const THRESHOLD = 2;
  */
 export default function getSuggestion(word, dictionary = [], limit = 2) {
   const distances = dictionary.reduce((suggestions, dictionaryWord) => {
-    suggestions[dictionaryWord] = editDistance(word.toUpperCase(), dictionaryWord.toUpperCase()).steps;
+    const distance = editDistance(word.toUpperCase(), dictionaryWord.toUpperCase());
+    const { steps } = distance;
+    suggestions[dictionaryWord] = steps; // eslint-disable-line
     return suggestions;
   }, {});
 
