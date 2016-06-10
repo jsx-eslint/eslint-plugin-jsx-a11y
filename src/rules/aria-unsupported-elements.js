@@ -10,14 +10,13 @@
 
 import DOM from '../util/attributes/DOM';
 import ARIA from '../util/attributes/ARIA';
-import getAttribute from '../util/getAttribute';
-import getNodeType from '../util/getNodeType';
+import { hasAnyProp, elementType } from 'jsx-ast-utils';
 
 const errorMessage = 'This element does not support ARIA roles, states and properties.';
 
 module.exports = context => ({
   JSXOpeningElement: node => {
-    const nodeType = getNodeType(node);
+    const nodeType = elementType(node);
     const nodeAttrs = DOM[nodeType];
     const isReservedNodeType = nodeAttrs && nodeAttrs.reserved || false;
 
@@ -27,7 +26,7 @@ module.exports = context => ({
     }
 
     const invalidAttributes = Object.keys(ARIA).concat('ROLE');
-    const hasInvalidAttribute = getAttribute(node.attributes, ...invalidAttributes) !== undefined;
+    const hasInvalidAttribute = hasAnyProp(node.attributes, invalidAttributes);
 
     if (hasInvalidAttribute) {
       context.report({

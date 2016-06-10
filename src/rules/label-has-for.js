@@ -8,9 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import getAttribute from '../util/getAttribute';
-import getAttributeValue from '../util/getAttributeValue';
-import getNodeType from '../util/getNodeType';
+import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 
 const errorMessage = 'Form controls using a label to identify them must be ' +
   'programmatically associated with the control using htmlFor';
@@ -18,15 +16,15 @@ const errorMessage = 'Form controls using a label to identify them must be ' +
 module.exports = context => ({
   JSXOpeningElement: node => {
     const typeCheck = [ 'label' ].concat(context.options[0]);
-    const nodeType = getNodeType(node);
+    const nodeType = elementType(node);
 
     // Only check 'label' elements and custom types.
     if (typeCheck.indexOf(nodeType) === -1) {
       return;
     }
 
-    const htmlForAttr = getAttribute(node.attributes, 'htmlFor');
-    const htmlForValue = getAttributeValue(htmlForAttr);
+    const htmlForAttr = getProp(node.attributes, 'htmlFor');
+    const htmlForValue = getPropValue(htmlForAttr);
     const isInvalid = htmlForAttr === false || !htmlForValue;
 
     if (isInvalid) {

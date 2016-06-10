@@ -1,10 +1,10 @@
-import getAttribute from '../getAttribute';
+import { getProp } from 'jsx-ast-utils';
 
 /**
  * Returns the implicit role for an anchor tag.
  */
 export default function getImplicitRoleForAnchor(attributes) {
-  if (getAttribute(attributes, 'href')) {
+  if (getProp(attributes, 'href')) {
     return 'link';
   }
 

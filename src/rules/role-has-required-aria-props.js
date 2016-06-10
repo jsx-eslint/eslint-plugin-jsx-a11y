@@ -9,8 +9,8 @@
 // ----------------------------------------------------------------------------
 
 import validRoleTypes from '../util/attributes/role';
-import { getLiteralAttributeValue } from '../util/getAttributeValue';
-import getAttribute from '../util/getAttribute';
+import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
+
 
 const errorMessage = (role, requiredProps) =>
   `Elements with the ARIA role "${role}" must have the following ` +
@@ -23,7 +23,7 @@ module.exports = context => ({
       return;
     }
 
-    const value = getLiteralAttributeValue(attribute);
+    const value = getLiteralPropValue(attribute);
 
     // If value is undefined, then the role attribute will be dropped in the DOM.
     // If value is null, then getLiteralAttributeValue is telling us that the value isn't in the form of a literal.
@@ -38,7 +38,7 @@ module.exports = context => ({
       const { requiredProps } = validRoleTypes[role];
 
       if (requiredProps.length > 0) {
-        const hasRequiredProps = requiredProps.every(prop => getAttribute(attribute.parent.attributes, prop));
+        const hasRequiredProps = requiredProps.every(prop => getProp(attribute.parent.attributes, prop));
 
         if (hasRequiredProps === false) {
           context.report({

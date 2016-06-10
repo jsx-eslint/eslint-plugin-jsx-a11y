@@ -9,7 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import roles from '../util/attributes/role';
-import { getLiteralAttributeValue } from '../util/getAttributeValue';
+import { getLiteralPropValue } from 'jsx-ast-utils';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
 
@@ -20,7 +20,7 @@ module.exports = context => ({
       return;
     }
 
-    const value = getLiteralAttributeValue(attribute);
+    const value = getLiteralPropValue(attribute);
 
     // If value is undefined, then the role attribute will be dropped in the DOM.
     // If value is null, then getLiteralAttributeValue is telling us that the value isn't in the form of a literal.

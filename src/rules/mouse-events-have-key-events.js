@@ -9,8 +9,8 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import getAttribute from '../util/getAttribute';
-import getAttributeValue from '../util/getAttributeValue';
+import { getProp, getPropValue } from 'jsx-ast-utils';
+
 
 const mouseOverErrorMessage = 'onMouseOver must be accompanied by onFocus for accessibility.';
 const mouseOutErrorMessage = 'onMouseOut must be accompanied by onBlur for accessibility.';
@@ -20,12 +20,12 @@ module.exports = context => ({
     const attributes = node.attributes;
 
     // Check onmouseover / onfocus pairing.
-    const onMouseOver = getAttribute(attributes, 'onMouseOver');
-    const onMouseOverValue = getAttributeValue(onMouseOver);
+    const onMouseOver = getProp(attributes, 'onMouseOver');
+    const onMouseOverValue = getPropValue(onMouseOver);
 
     if (onMouseOver && (onMouseOverValue !== null || onMouseOverValue !== undefined)) {
-      const hasOnFocus = getAttribute(attributes, 'onFocus');
-      const onFocusValue = getAttributeValue(hasOnFocus);
+      const hasOnFocus = getProp(attributes, 'onFocus');
+      const onFocusValue = getPropValue(hasOnFocus);
 
       if (hasOnFocus === false || onFocusValue === null || onFocusValue === undefined) {
         context.report({
@@ -36,11 +36,11 @@ module.exports = context => ({
     }
 
     // Checkout onmouseout / onblur pairing
-    const onMouseOut = getAttribute(attributes, 'onMouseOut');
-    const onMouseOutValue = getAttributeValue(onMouseOut);
+    const onMouseOut = getProp(attributes, 'onMouseOut');
+    const onMouseOutValue = getPropValue(onMouseOut);
     if (onMouseOut && (onMouseOutValue !== null || onMouseOutValue !== undefined)) {
-      const hasOnBlur = getAttribute(attributes, 'onBlur');
-      const onBlurValue = getAttributeValue(hasOnBlur);
+      const hasOnBlur = getProp(attributes, 'onBlur');
+      const onBlurValue = getPropValue(hasOnBlur);
 
       if (hasOnBlur === false || onBlurValue === null || onBlurValue === undefined) {
         context.report({

@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getLiteralAttributeValue } from '../util/getAttributeValue';
+import { getLiteralPropValue } from 'jsx-ast-utils';
 
 const errorMessage = 'Avoid positive integer values for tabIndex.';
 
@@ -23,7 +23,7 @@ module.exports = context => ({
     }
 
     // Only check literals because we can't infer values from certain expressions.
-    const value = Number(getLiteralAttributeValue(attribute));
+    const value = Number(getLiteralPropValue(attribute));
 
     if (isNaN(value) || value <= 0) {
       return;

@@ -7,9 +7,7 @@
 
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
-import getAttribute from '../util/getAttribute';
-import getAttributeValue from '../util/getAttributeValue';
-import getNodeType from '../util/getNodeType';
+import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -21,17 +19,17 @@ const errorMessage = 'Visible, non-interactive elements with click handlers must
 module.exports = context => ({
   JSXOpeningElement: node => {
     const attributes = node.attributes;
-    if (getAttribute(attributes, 'onclick') === undefined) {
+    if (getProp(attributes, 'onclick') === undefined) {
       return;
     }
 
-    const type = getNodeType(node);
+    const type = elementType(node);
 
     if (isHiddenFromScreenReader(type, attributes)) {
       return;
     } else if (isInteractiveElement(type, attributes)) {
       return;
-    } else if (getAttributeValue(getAttribute(attributes, 'role'))) {
+    } else if (getPropValue(getProp(attributes, 'role'))) {
       return;
     }
 

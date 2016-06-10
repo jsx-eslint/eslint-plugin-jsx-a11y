@@ -9,12 +9,10 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import getAttribute from '../util/getAttribute';
-import { getLiteralAttributeValue } from '../util/getAttributeValue';
-import getNodeType from '../util/getNodeType';
 import ROLES from '../util/attributes/role';
 import ARIA from '../util/attributes/ARIA';
 import getImplicitRole from '../util/getImplicitRole';
+import { getProp, getLiteralPropValue, elementType, hasAnyProp } from 'jsx-ast-utils';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
   if (isImplicit) {
@@ -27,9 +25,9 @@ const errorMessage = (attr, role, tag, isImplicit) => {
 module.exports = context => ({
   JSXOpeningElement: node => {
     // If role is not explicitly defined, then try and get its implicit role.
-    const type = getNodeType(node);
-    const role = getAttribute(node.attributes, 'role');
-    const roleValue = role ? getLiteralAttributeValue(role) : getImplicitRole(type, node.attributes);
+    const type = elementType(node);
+    const role = getProp(node.attributes, 'role');
+    const roleValue = role ? getLiteralPropValue(role) : getImplicitRole(type, node.attributes);
     const isImplicit = roleValue && role === undefined;
 
     // If there is no explicit or implicit role, then assume that the element
@@ -42,17 +40,15 @@ module.exports = context => ({
     // Make sure it has no aria-* properties defined outside of its property set.
     const propertySet = ROLES[roleValue.toUpperCase()].props;
     const invalidAriaPropsForRole = Object.keys(ARIA).filter(attribute => propertySet.indexOf(attribute) === -1);
-    const invalidAttr = getAttribute(node.attributes, ...invalidAriaPropsForRole);
 
-    if (invalidAttr === undefined) {
-      return;
-    }
-
-    context.report({
-      node,
-      message: errorMessage(invalidAttr.name.name, roleValue, type, isImplicit)
+    node.attributes.forEach(prop => {
+      if (invalidAriaPropsForRole.indexOf(prop.name.name.toUpperCase()) > -1) {
+        context.report({
+          node,
+          message: errorMessage(prop.name.name, roleValue, type, isImplicit)
+        });
+      }
     });
-
   }
 });
 

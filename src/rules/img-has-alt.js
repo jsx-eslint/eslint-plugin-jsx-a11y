@@ -8,29 +8,27 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import getAttribute from '../util/getAttribute';
-import getAttributeValue from '../util/getAttributeValue';
-import getNodeType from '../util/getNodeType';
+import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 
 module.exports = context => ({
   JSXOpeningElement: node => {
     const typeCheck = [ 'img' ].concat(context.options[0]);
-    const nodeType = getNodeType(node);
+    const nodeType = elementType(node);
 
     // Only check 'img' elements and custom types.
     if (typeCheck.indexOf(nodeType) === -1) {
       return;
     }
 
-    const roleProp = getAttribute(node.attributes, 'role');
-    const roleValue = getAttributeValue(roleProp);
+    const roleProp = getProp(node.attributes, 'role');
+    const roleValue = getPropValue(roleProp);
     const isPresentation = roleProp && typeof roleValue === 'string' && roleValue.toLowerCase() === 'presentation';
 
     if (isPresentation) {
       return;
     }
 
-    const altProp = getAttribute(node.attributes, 'alt');
+    const altProp = getProp(node.attributes, 'alt');
 
     // Missing alt prop error.
     if (altProp === undefined) {
@@ -42,7 +40,7 @@ module.exports = context => ({
     }
 
     // Check if alt prop is undefined.
-    const altValue = getAttributeValue(altProp);
+    const altValue = getPropValue(altProp);
     const isNullValued = altProp.value === null; // <img alt />
 
     if ((altValue && !isNullValued) || altValue === '') {
