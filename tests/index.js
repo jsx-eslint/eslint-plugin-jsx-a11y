@@ -1,6 +1,4 @@
 /* eslint-env mocha */
-'use strict';
-
 import plugin from '../src';
 
 import assert from 'assert';
@@ -15,7 +13,7 @@ describe('all rule files should be exported by the plugin', () => {
     it(`should export ${ruleName}`, () => {
       assert.equal(
         plugin.rules[ruleName],
-        require(path.join('../src/rules', ruleName))
+        require(path.join('../src/rules', ruleName)) // eslint-disable-line global-require
       );
     });
   });

@@ -36,8 +36,6 @@ import TFOOT from './tfoot';
 import THEAD from './thead';
 import UL from './ul';
 
-
-
 export default {
   A,
   AREA,
@@ -75,5 +73,5 @@ export default {
   TEXTAREA,
   TFOOT,
   THEAD,
-  UL
+  UL,
 };

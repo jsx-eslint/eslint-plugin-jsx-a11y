@@ -3,7 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
 
 // -----------------------------------------------------------------------------
 // Requirements
@@ -12,11 +11,11 @@
 import rule from '../../../src/rules/no-onchange';
 import { RuleTester } from 'eslint';
 
-const parserOptions =  {
+const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -28,7 +27,7 @@ const ruleTester = new RuleTester();
 const expectedError = {
   message: 'onBlur must be used instead of onchange, unless absolutely necessary and it ' +
     'causes no negative consequences for keyboard only or screen reader users.',
-  type: 'JSXOpeningElement'
+  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('no-onchange', rule, {
@@ -37,12 +36,12 @@ ruleTester.run('no-onchange', rule, {
     { code: '<div onBlur={handleOnBlur} />;', parserOptions },
     { code: '<div />;', parserOptions },
     { code: '<div onBlur={() => {}} onChange={() => {}} />;', parserOptions },
-    { code: '<div {...props} />', parserOptions }
+    { code: '<div {...props} />', parserOptions },
   ],
   invalid: [
-    { code: '<div onChange={() => {}} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onChange={handleOnChange} />;', errors: [ expectedError ], parserOptions },
-    { code: '<input onChange={() => {}} />', errors: [ expectedError ], parserOptions },
-    { code: '<input onChange={() => {}} {...props} />', errors: [ expectedError ], parserOptions }
-  ]
+    { code: '<div onChange={() => {}} />;', errors: [expectedError], parserOptions },
+    { code: '<div onChange={handleOnChange} />;', errors: [expectedError], parserOptions },
+    { code: '<input onChange={() => {}} />', errors: [expectedError], parserOptions },
+    { code: '<input onChange={() => {}} {...props} />', errors: [expectedError], parserOptions },
+  ],
 });

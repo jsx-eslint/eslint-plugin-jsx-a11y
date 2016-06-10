@@ -3,8 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -17,8 +15,8 @@ import { RuleTester } from 'eslint';
 const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -35,20 +33,20 @@ const errorMessage = name => {
   if (suggestions.length > 0) {
     return {
       type: 'JSXAttribute',
-      message: `${message} Did you mean to use ${suggestions}?`
+      message: `${message} Did you mean to use ${suggestions}?`,
     };
   }
 
   return {
     type: 'JSXAttribute',
-    message
+    message,
   };
 };
 
 // Create basic test cases using all valid role types.
 const basicValidityTests = Object.keys(ariaAttributes).map(prop => ({
   code: `<div ${prop.toLowerCase()}="foobar" />`,
-  parserOptions
+  parserOptions,
 }));
 
 ruleTester.run('aria-props', rule, {
@@ -60,11 +58,19 @@ ruleTester.run('aria-props', rule, {
     { code: '<div abcARIAdef="true"></div>', parserOptions },
     { code: '<div fooaria-foobar="true"></div>', parserOptions },
     { code: '<div fooaria-hidden="true"></div>', parserOptions },
-    { code: '<Bar baz />', parserOptions }
+    { code: '<Bar baz />', parserOptions },
   ].concat(basicValidityTests),
   invalid: [
-    { code: '<div aria-="foobar" />', errors: [ errorMessage('aria-') ], parserOptions },
-    { code: '<div aria-labeledby="foobar" />', errors: [ errorMessage('aria-labeledby') ], parserOptions },
-    { code: '<div aria-skldjfaria-klajsd="foobar" />', errors: [ errorMessage('aria-skldjfaria-klajsd') ], parserOptions }
-  ]
+    { code: '<div aria-="foobar" />', errors: [errorMessage('aria-')], parserOptions },
+    {
+      code: '<div aria-labeledby="foobar" />',
+      errors: [errorMessage('aria-labeledby')],
+      parserOptions,
+    },
+    {
+      code: '<div aria-skldjfaria-klajsd="foobar" />',
+      errors: [errorMessage('aria-skldjfaria-klajsd')],
+      parserOptions,
+    },
+  ],
 });

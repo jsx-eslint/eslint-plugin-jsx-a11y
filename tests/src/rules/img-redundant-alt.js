@@ -3,8 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -15,8 +13,8 @@ import { RuleTester } from 'eslint';
 const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -28,7 +26,7 @@ const ruleTester = new RuleTester();
 const expectedError = {
   message: 'Redundant alt attribute. Screen-readers already announce `img` tags as an image. ' +
     'You don\'t need to use the words `image`, `photo,` or `picture` in the alt prop.',
-  type: 'JSXOpeningElement'
+  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('img-redundant-alt', rule, {
@@ -56,27 +54,63 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img alt={function(e){}} />', parserOptions },
     { code: '<img aria-hidden={false} alt="Doing cool things." />', parserOptions },
     { code: '<UX.Layout>test</UX.Layout>', parserOptions },
-    { code: '<img alt={imageAlt} />', parserOptions }
+    { code: '<img alt={imageAlt} />', parserOptions },
   ],
   invalid: [
-    { code: '<img alt="Photo of friend." />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="Picture of friend." />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="Image of friend." />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="PhOtO of friend." />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={"photo"} />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="piCTUre of friend." />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="imAGE of friend." />;', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="photo of cool person" aria-hidden={false} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="picture of cool person" aria-hidden={false} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="image of cool person" aria-hidden={false} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="photo" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="image" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt="picture" {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={`picture doing ${things}`} {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={`photo doing ${things}`} {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={`image doing ${things}`} {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={`picture doing ${picture}`} {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={`photo doing ${photo}`} {...this.props} />', errors: [ expectedError ], parserOptions },
-    { code: '<img alt={`image doing ${image}`} {...this.props} />', errors: [ expectedError ], parserOptions }
-  ]
+    { code: '<img alt="Photo of friend." />;', errors: [expectedError], parserOptions },
+    { code: '<img alt="Picture of friend." />;', errors: [expectedError], parserOptions },
+    { code: '<img alt="Image of friend." />;', errors: [expectedError], parserOptions },
+    { code: '<img alt="PhOtO of friend." />;', errors: [expectedError], parserOptions },
+    { code: '<img alt={"photo"} />;', errors: [expectedError], parserOptions },
+    { code: '<img alt="piCTUre of friend." />;', errors: [expectedError], parserOptions },
+    { code: '<img alt="imAGE of friend." />;', errors: [expectedError], parserOptions },
+    {
+      code: '<img alt="photo of cool person" aria-hidden={false} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<img alt="picture of cool person" aria-hidden={false} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<img alt="image of cool person" aria-hidden={false} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    { code: '<img alt="photo" {...this.props} />', errors: [expectedError], parserOptions },
+    { code: '<img alt="image" {...this.props} />', errors: [expectedError], parserOptions },
+    { code: '<img alt="picture" {...this.props} />', errors: [expectedError], parserOptions },
+    {
+      code: '<img alt={`picture doing ${things}`} {...this.props} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<img alt={`photo doing ${things}`} {...this.props} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<img alt={`image doing ${things}`} {...this.props} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<img alt={`picture doing ${picture}`} {...this.props} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<img alt={`photo doing ${photo}`} {...this.props} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<img alt={`image doing ${image}`} {...this.props} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+  ],
 });

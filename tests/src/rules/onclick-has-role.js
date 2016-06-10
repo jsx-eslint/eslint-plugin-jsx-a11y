@@ -3,8 +3,6 @@
  * @author Ethan Cohen
  */
 
-'use strict';
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -12,11 +10,11 @@
 import rule from '../../../src/rules/onclick-has-role';
 import { RuleTester } from 'eslint';
 
-const parserOptions  = {
+const parserOptions = {
   ecmaVersion: 6,
   ecmaFeatures: {
-    jsx: true
-  }
+    jsx: true,
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -25,10 +23,10 @@ const parserOptions  = {
 
 const ruleTester = new RuleTester();
 
-const  expectedError  = {
+const expectedError = {
   message: 'Visible, non-interactive elements with click ' +
   'handlers must have role attribute.',
-  type: 'JSXOpeningElement'
+  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('onclick-has-role', rule, {
@@ -42,7 +40,10 @@ ruleTester.run('onclick-has-role', rule, {
     { code: '<div onClick={() => void 0} role="button" aria-hidden />;', parserOptions },
     { code: '<div onClick={() => void 0} role="button" aria-hidden={true} />;', parserOptions },
     { code: '<div onClick={() => void 0} role="button" aria-hidden={false} />;', parserOptions },
-    { code: '<div onClick={() => void 0} role="button" aria-hidden={undefined} />;', parserOptions },
+    {
+      code: '<div onClick={() => void 0} role="button" aria-hidden={undefined} />;',
+      parserOptions,
+    },
     { code: '<input type="text" onClick={() => void 0} />', parserOptions },
     { code: '<input onClick={() => void 0} />', parserOptions },
     { code: '<button onClick={() => void 0} className="foo" />', parserOptions },
@@ -55,18 +56,26 @@ ruleTester.run('onclick-has-role', rule, {
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />', parserOptions },
     { code: '<input onClick={() => void 0} type="hidden" />;', parserOptions },
     { code: '<TestComponent onClick={doFoo} />', parserOptions },
-    { code: '<Button onClick={doFoo} />', parserOptions }
+    { code: '<Button onClick={doFoo} />', parserOptions },
   ],
   invalid: [
-    { code: '<div onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} role={undefined} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} {...props} />;', errors: [ expectedError ], parserOptions },
-    { code: '<section onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<main onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<article onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<header onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<footer onClick={() => void 0} />;', errors: [ expectedError ], parserOptions },
-    { code: '<div onClick={() => void 0} aria-hidden={false} />;', errors: [ expectedError ], parserOptions },
-    { code: '<a onClick={() => void 0} />', errors: [ expectedError ], parserOptions }
-  ]
+    { code: '<div onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    {
+      code: '<div onClick={() => void 0} role={undefined} />;',
+      errors: [expectedError],
+      parserOptions,
+    },
+    { code: '<div onClick={() => void 0} {...props} />;', errors: [expectedError], parserOptions },
+    { code: '<section onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    { code: '<main onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    { code: '<article onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    { code: '<header onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    { code: '<footer onClick={() => void 0} />;', errors: [expectedError], parserOptions },
+    {
+      code: '<div onClick={() => void 0} aria-hidden={false} />;',
+      errors: [expectedError],
+      parserOptions,
+    },
+    { code: '<a onClick={() => void 0} />', errors: [expectedError], parserOptions },
+  ],
 });

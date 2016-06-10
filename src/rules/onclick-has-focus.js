@@ -2,7 +2,6 @@
  * @fileoverview Enforce that elements with onClick handlers must be focusable.
  * @author Ethan Cohen
  */
-'use strict';
 
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -36,11 +35,11 @@ module.exports = context => ({
 
     context.report({
       node,
-      message: errorMessage
+      message: errorMessage,
     });
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

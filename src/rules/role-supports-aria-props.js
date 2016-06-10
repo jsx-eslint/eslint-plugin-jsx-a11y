@@ -3,7 +3,6 @@
  * `aria-*` properties supported by that `role`.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -16,7 +15,8 @@ import { getProp, getLiteralPropValue, elementType } from 'jsx-ast-utils';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
   if (isImplicit) {
-    return `The attribute ${attr} is not supported by the role ${role}. This role is implicit on the element ${tag}.`;
+    return `The attribute ${attr} is not supported by the role ${role}. \
+This role is implicit on the element ${tag}.`;
   }
 
   return `The attribute ${attr} is not supported by the role ${role}.`;
@@ -39,19 +39,20 @@ module.exports = context => ({
 
     // Make sure it has no aria-* properties defined outside of its property set.
     const propertySet = ROLES[roleValue.toUpperCase()].props;
-    const invalidAriaPropsForRole = Object.keys(ARIA).filter(attribute => propertySet.indexOf(attribute) === -1);
+    const invalidAriaPropsForRole = Object.keys(ARIA)
+      .filter(attribute => propertySet.indexOf(attribute) === -1);
 
     node.attributes.forEach(prop => {
       if (invalidAriaPropsForRole.indexOf(prop.name.name.toUpperCase()) > -1) {
         context.report({
           node,
-          message: errorMessage(prop.name.name, roleValue, type, isImplicit)
+          message: errorMessage(prop.name.name, roleValue, type, isImplicit),
         });
       }
     });
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

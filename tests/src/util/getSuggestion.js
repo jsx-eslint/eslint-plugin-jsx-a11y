@@ -1,6 +1,4 @@
 /* eslint-env mocha */
-'use strict';
-
 import assert from 'assert';
 import getSuggestion from '../../../src/util/getSuggestion';
 
@@ -23,8 +21,8 @@ describe('spell check suggestion API', () => {
 
   it('should return correct suggestion given real word and a dictionary', () => {
     const word = 'fo';
-    const dictionary = [ 'foo', 'bar', 'baz' ];
-    const expected = [ 'foo' ];
+    const dictionary = ['foo', 'bar', 'baz'];
+    const expected = ['foo'];
     const actual = getSuggestion(word, dictionary);
 
     assert.deepEqual(expected, actual);
@@ -32,18 +30,19 @@ describe('spell check suggestion API', () => {
 
   it('should return multiple correct suggestions given real word and a dictionary', () => {
     const word = 'theer';
-    const dictionary = [ 'there', 'their', 'foo', 'bar' ];
-    const expected = [ 'their', 'there' ];
+    const dictionary = ['there', 'their', 'foo', 'bar'];
+    const expected = ['their', 'there'];
     const actual = getSuggestion(word, dictionary);
 
     assert.deepEqual(expected, actual);
   });
 
-  it('should return one correct suggestion given real word and a dictionary and a limit of 1', () => {
+  it('should return correct # of suggestions given the limit argument', () => {
     const word = 'theer';
-    const dictionary = [ 'there', 'their', 'foo', 'bar' ];
-    const expected = [ 'their' ];
-    const actual = getSuggestion(word, dictionary, 1);
+    const dictionary = ['there', 'their', 'foo', 'bar'];
+    const limit = 1;
+    const expected = 1;
+    const actual = getSuggestion(word, dictionary, limit).length;
 
     assert.deepEqual(expected, actual);
   });

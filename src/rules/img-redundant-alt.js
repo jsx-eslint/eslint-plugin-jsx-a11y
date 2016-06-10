@@ -2,7 +2,6 @@
  * @fileoverview Enforce img alt attribute does not have the word image, picture, or photo.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -14,15 +13,16 @@ import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 const REDUNDANT_WORDS = [
   'image',
   'photo',
-  'picture'
+  'picture',
 ];
 
-const errorMessage = 'Redundant alt attribute. Screen-readers already announce `img` tags as an image. ' +
-  'You don\'t need to use the words `image`, `photo,` or `picture` in the alt prop.';
+const errorMessage = 'Redundant alt attribute. Screen-readers already announce ' +
+  '`img` tags as an image. You don\'t need to use the words `image`, ' +
+  '`photo,` or `picture` in the alt prop.';
 
 const validTypes = [
   'LITERAL',
-  'TEMPLATELITERAL'
+  'TEMPLATELITERAL',
 ];
 
 module.exports = context => ({
@@ -39,7 +39,8 @@ module.exports = context => ({
     }
 
     // Only check literals, as we should not enforce variable names :P
-    const normalizedType = altProp.value && altProp.value.type.toUpperCase() === 'JSXEXPRESSIONCONTAINER' ?
+    const normalizedType = altProp.value &&
+      altProp.value.type.toUpperCase() === 'JSXEXPRESSIONCONTAINER' ?
       altProp.value.expression.type.toUpperCase() :
       altProp.value.type.toUpperCase();
 
@@ -57,15 +58,15 @@ module.exports = context => ({
       if (hasRedundancy === true) {
         context.report({
           node,
-          message: errorMessage
+          message: errorMessage,
         });
       }
 
       return;
     }
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

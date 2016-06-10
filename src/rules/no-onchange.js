@@ -2,7 +2,6 @@
  * @fileoverview Enforce usage of onBlur over onChange for accessibility.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -22,12 +21,12 @@ module.exports = context => ({
     if (onChange && !hasOnBlur) {
       context.report({
         node,
-        message: errorMessage
+        message: errorMessage,
       });
     }
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];

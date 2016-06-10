@@ -2,7 +2,6 @@
  * @fileoverview Enforce tabIndex value is not greater than zero.
  * @author Ethan Cohen
  */
-'use strict';
 
 // ----------------------------------------------------------------------------
 // Rule Definition
@@ -31,11 +30,11 @@ module.exports = context => ({
 
     context.report({
       node: attribute,
-      message: errorMessage
+      message: errorMessage,
     });
-  }
+  },
 });
 
 module.exports.schema = [
-  { type: 'object' }
+  { type: 'object' },
 ];
