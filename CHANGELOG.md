@@ -1,3 +1,8 @@
+1.4.2 / 2016-06-10
+==================
+- [new] Integrate with latest `jsx-ast-utils` to use `propName` function. More support for namespaced names on attributes and elements.
+
+
 1.4.1 / 2016-06-10
 ==================
 - [fix] Handle spread props in `aria-unsupported-elements` and `role-supports-aria-props` when reporting.
