@@ -12,7 +12,7 @@
 import ROLES from '../util/attributes/role';
 import ARIA from '../util/attributes/ARIA';
 import getImplicitRole from '../util/getImplicitRole';
-import { getProp, getLiteralPropValue, elementType, hasAnyProp } from 'jsx-ast-utils';
+import { getProp, getLiteralPropValue, elementType } from 'jsx-ast-utils';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
   if (isImplicit) {

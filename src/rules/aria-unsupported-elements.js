@@ -13,7 +13,7 @@ import ARIA from '../util/attributes/ARIA';
 import { elementType } from 'jsx-ast-utils';
 
 const errorMessage = invalidProp =>
-  `This element does not support ARIA roles, states and properties: ${invalidProp}`;
+  `This element does not support ARIA roles, states and properties. Try removing the prop '${invalidProp}'.`;
 
 module.exports = context => ({
   JSXOpeningElement: node => {

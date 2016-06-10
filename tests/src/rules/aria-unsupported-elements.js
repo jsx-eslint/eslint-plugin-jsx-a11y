@@ -28,7 +28,7 @@ const ruleTester = new RuleTester();
 import DOM from '../../../src/util/attributes/DOM';
 
 const errorMessage = invalidProp => ({
-  message: `This element does not support ARIA roles, states and properties: ${invalidProp}`,
+  message: `This element does not support ARIA roles, states and properties. Try removing the prop '${invalidProp}'.`,
   type: 'JSXOpeningElement'
 });
 
