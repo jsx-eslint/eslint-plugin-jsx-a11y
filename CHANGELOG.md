@@ -1,3 +1,8 @@
+1.4.1 / 2016-06-10
+==================
+- [fix] Handle spread props in `aria-unsupported-elements` and `role-supports-aria-props` when reporting.
+
+
 1.4.0 / 2016-06-10
 ==================
 - [dependency] Integrate [jsx-ast-utils](https://github.com/evcohen/jsx-ast-utils)
