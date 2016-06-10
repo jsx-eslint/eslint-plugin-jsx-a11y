@@ -1,7 +1,6 @@
 1.4.0 / 2016-06-10
 ==================
-- [dependency] Integrate `jsx-ast-utils` (extracted JSX core module)
-		1. [jsx-ast-utils](https://github.com/evcohen/jsx-ast-utils)
+- [dependency] Integrate [jsx-ast-utils](https://github.com/evcohen/jsx-ast-utils)
 - [fix] Better error reporting for aria-unsupported-elements indicating which prop to remove.
 
 
