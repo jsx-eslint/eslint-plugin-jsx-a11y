@@ -43,6 +43,10 @@ module.exports = context => ({
       .filter(attribute => propertySet.indexOf(attribute) === -1);
 
     node.attributes.forEach(prop => {
+      if (prop.type === 'JSXSpreadAttribute') {
+        return;
+      }
+
       if (invalidAriaPropsForRole.indexOf(prop.name.name.toUpperCase()) > -1) {
         context.report({
           node,

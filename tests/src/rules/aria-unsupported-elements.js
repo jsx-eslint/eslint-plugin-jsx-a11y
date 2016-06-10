@@ -57,7 +57,7 @@ const ariaValidityTests = Object.keys(DOM).map(element => {
 const invalidRoleValidityTests = Object.keys(DOM)
   .filter(element => Boolean(DOM[element].reserved))
   .map(reservedElem => ({
-    code: `<${reservedElem} role />`,
+    code: `<${reservedElem} role {...props} />`,
     errors: [errorMessage('role')],
     parserOptions,
   }));
@@ -65,7 +65,7 @@ const invalidRoleValidityTests = Object.keys(DOM)
 const invalidAriaValidityTests = Object.keys(DOM)
   .filter(element => Boolean(DOM[element].reserved))
   .map(reservedElem => ({
-    code: `<${reservedElem} aria-hidden />`,
+    code: `<${reservedElem} aria-hidden {...props} />`,
     errors: [errorMessage('aria-hidden')],
     parserOptions,
   }));

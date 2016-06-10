@@ -30,6 +30,10 @@ module.exports = context => ({
     const invalidAttributes = Object.keys(ARIA).concat('ROLE');
 
     node.attributes.forEach(prop => {
+      if (prop.type === 'JSXSpreadAttribute') {
+        return;
+      }
+
       if (invalidAttributes.indexOf(prop.name.name.toUpperCase()) > -1) {
         context.report({
           node,
