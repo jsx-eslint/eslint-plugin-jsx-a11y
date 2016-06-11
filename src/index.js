@@ -8,6 +8,7 @@ module.exports = {
     'aria-unsupported-elements': require('./rules/aria-unsupported-elements'),
     'heading-has-content': require('./rules/heading-has-content'),
     'href-no-hash': require('./rules/href-no-hash'),
+    'html-has-lang': require('./rules/html-has-lang'),
     'img-has-alt': require('./rules/img-has-alt'),
     'img-redundant-alt': require('./rules/img-redundant-alt'),
     'label-has-for': require('./rules/label-has-for'),
