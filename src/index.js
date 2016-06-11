@@ -20,6 +20,7 @@ module.exports = {
     'onclick-has-role': require('./rules/onclick-has-role'),
     'role-has-required-aria-props': require('./rules/role-has-required-aria-props'),
     'role-supports-aria-props': require('./rules/role-supports-aria-props'),
+    scope: require('./rules/scope'),
     'tabindex-no-positive': require('./rules/tabindex-no-positive'),
   },
   configs: {
@@ -36,6 +37,7 @@ module.exports = {
         'jsx-a11y/aria-unsupported-elements': 2,
         'jsx-a11y/heading-has-content': 2,
         'jsx-a11y/href-no-hash': 2,
+        'jsx-a11y/html-has-lang': 2,
         'jsx-a11y/img-has-alt': 2,
         'jsx-a11y/img-redundant-alt': 2,
         'jsx-a11y/label-has-for': 2,
@@ -46,6 +48,7 @@ module.exports = {
         'jsx-a11y/onclick-has-role': 2,
         'jsx-a11y/role-has-required-aria-props': 2,
         'jsx-a11y/role-supports-aria-props': 2,
+        'jsx-a11y/scope': 2,
         'jsx-a11y/tabindex-no-positive': 2,
       },
     },
