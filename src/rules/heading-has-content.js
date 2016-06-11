@@ -42,7 +42,7 @@ module.exports = context => ({
             child.openingElement.attributes
           );
         case 'JSXExpressionContainer':
-          return true;
+          return child.expression.type === 'Identifier' && child.expression.name !== 'undefined';
         default:
           return false;
       }

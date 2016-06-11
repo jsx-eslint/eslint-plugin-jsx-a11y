@@ -44,5 +44,6 @@ ruleTester.run('heading-has-content', rule, {
   invalid: [
     { code: '<h1 />', errors: [expectedError], parserOptions },
     { code: '<h1><Bar aria-hidden /></h1>', errors: [expectedError], parserOptions },
+    { code: '<h1>{undefined}</h1>', errors: [expectedError], parserOptions },
   ],
 });
