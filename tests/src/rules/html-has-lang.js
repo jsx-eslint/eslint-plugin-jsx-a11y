@@ -28,7 +28,7 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-ruleTester.run('lang', rule, {
+ruleTester.run('html-has-lang', rule, {
   valid: [
     { code: '<div />;', parserOptions },
     { code: '<html lang="en" />', parserOptions },
