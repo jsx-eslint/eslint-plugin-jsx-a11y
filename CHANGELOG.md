@@ -1,3 +1,8 @@
+1.5.3 / 2016-06-16
+==================
+- [fix] Fix crash when ``<ELEMENT role />`` for `role-supports-aria-props`.
+
+
 1.5.2 / 2016-06-16
 ==================
 - [fix] Fix `img-redundant-alt` rule to use `getLiteralPropValue` from `jsx-ast-utils`.
