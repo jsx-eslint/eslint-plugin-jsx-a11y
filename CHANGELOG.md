@@ -1,3 +1,8 @@
+1.5.2 / 2016-06-16
+==================
+- [fix] Fix `img-redundant-alt` rule to use `getLiteralPropValue` from `jsx-ast-utils`.
+
+
 1.5.1 / 2016-06-16
 ==================
 - [fix] Fix checking for undefined in `heading-has-content` for children content.
