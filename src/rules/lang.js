@@ -22,7 +22,7 @@ module.exports = context => ({
 
     const { parent } = node;
     const type = elementType(parent);
-    if (type && type.toUpperCase() !== 'HTML') {
+    if (type && type !== 'html') {
       return;
     }
 

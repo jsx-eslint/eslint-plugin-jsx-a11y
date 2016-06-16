@@ -15,7 +15,7 @@ module.exports = context => ({
   JSXOpeningElement: node => {
     const type = elementType(node);
 
-    if (type && type.toUpperCase() !== 'HTML') {
+    if (type && type !== 'html') {
       return;
     }
 

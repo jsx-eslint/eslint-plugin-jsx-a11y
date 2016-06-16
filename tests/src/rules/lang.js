@@ -36,6 +36,8 @@ ruleTester.run('lang', rule, {
     { code: '<html lang="en" />', parserOptions },
     { code: '<html lang="en-US" />', parserOptions },
     { code: '<html lang={foo} />', parserOptions },
+    { code: '<HTML lang="foo" />', parserOptions },
+    { code: '<Foo lang="bar" />', parserOptions },
   ],
   invalid: [
     { code: '<html lang="foo" />', errors: [expectedError], parserOptions },
