@@ -33,7 +33,7 @@ module.exports = context => ({
     // If there is no explicit or implicit role, then assume that the element
     // can handle the global set of aria-* properties.
     // This actually isn't true - should fix in future release.
-    if (!roleValue || ROLES[roleValue.toUpperCase()] === undefined) {
+    if (typeof roleValue !== 'string' || ROLES[roleValue.toUpperCase()] === undefined) {
       return;
     }
 

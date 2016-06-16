@@ -70,6 +70,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<Foo bar />', parserOptions },
     { code: '<div />', parserOptions },
     { code: '<div id="main" />', parserOptions },
+    { code: '<div role />', parserOptions },
     { code: '<div role="presentation" {...props} />', parserOptions },
     { code: '<Foo.Bar baz={true} />', parserOptions },
 
