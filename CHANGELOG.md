@@ -1,3 +1,12 @@
+1.5.0 / 2016-06-16
+==================
+- [new] Add [heading-has-content](docs/rules/heading-has-content.md) rule.
+- [new] Add [html-has-lang](docs/rules/html-has-lang.md) rule.
+- [new] Add [lang](docs/rules/lang.md) rule.
+- [new] Add [no-marquee](docs/rules/no-marquee.md) rule.
+- [new] Add [scope](docs/rules/scope.md) rule.
+
+
 1.4.2 / 2016-06-10
 ==================
 - [new] Integrate with latest `jsx-ast-utils` to use `propName` function. More support for namespaced names on attributes and elements.
