@@ -1,3 +1,8 @@
+1.5.1 / 2016-06-16
+==================
+- [fix] Fix checking for undefined in `heading-has-content` for children content.
+
+
 1.5.0 / 2016-06-16
 ==================
 - [new] Add [heading-has-content](docs/rules/heading-has-content.md) rule.
