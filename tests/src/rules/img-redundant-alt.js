@@ -55,6 +55,7 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img aria-hidden={false} alt="Doing cool things." />', parserOptions },
     { code: '<UX.Layout>test</UX.Layout>', parserOptions },
     { code: '<img alt={imageAlt} />', parserOptions },
+    { code: '<img alt />', parserOptions },
   ],
   invalid: [
     { code: '<img alt="Photo of friend." />;', errors: [expectedError], parserOptions },
