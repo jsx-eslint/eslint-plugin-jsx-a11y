@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType } from 'jsx-ast-utils';
+import DOMElements from '../util/attributes/DOM';
 
 const errorMessage = 'The scope prop can only be used on <th> elements.';
 
@@ -19,8 +20,13 @@ module.exports = context => ({
     }
 
     const { parent } = node;
-    const type = elementType(parent);
-    if (type && type.toUpperCase() === 'TH') {
+    const tagName = elementType(parent);
+
+    // Do not test higher level JSX components, as we do not know what
+    // low-level DOM element this maps to.
+    if (Object.keys(DOMElements).indexOf(tagName) === -1) {
+      return;
+    } else if (tagName && tagName.toUpperCase() === 'TH') {
       return;
     }
 

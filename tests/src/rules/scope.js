@@ -36,6 +36,7 @@ ruleTester.run('scope', rule, {
     { code: '<th scope="row" />', parserOptions },
     { code: '<th scope={foo} />', parserOptions },
     { code: '<th scope={"col"} {...props} />', parserOptions },
+    { code: '<Foo scope="bar" {...props} />', parserOptions },
   ],
   invalid: [
     { code: '<div scope />', errors: [expectedError], parserOptions },
