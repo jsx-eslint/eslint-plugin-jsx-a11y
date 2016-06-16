@@ -40,6 +40,7 @@ ruleTester.run('heading-has-content', rule, {
     { code: '<h6>123</h6>', parserOptions },
     { code: '<h1><Bar /></h1>', parserOptions },
     { code: '<h1>{foo}</h1>', parserOptions },
+    { code: '<h1>{foo.bar}</h1>', parserOptions },
   ],
   invalid: [
     { code: '<h1 />', errors: [expectedError], parserOptions },
