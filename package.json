@@ -47,6 +47,6 @@
     "object-assign": "^4.0.1"
   },
   "peerDependencies": {
-    "eslint": "^2.10.2"
+    "eslint": "^2.10.2 || 3.x"
   }
 }

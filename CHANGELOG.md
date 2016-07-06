@@ -1,3 +1,8 @@
+1.5.5 / 2016-07-05
+==================
+- [fix] Add `eslint` v3 as a `peerDependency`.
+
+
 1.5.4 / 2016-07-05
 ==================
 - [fix] Add `eslint` as a `peerDependency`.
