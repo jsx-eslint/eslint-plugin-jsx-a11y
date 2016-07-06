@@ -1,3 +1,8 @@
+1.5.4 / 2016-07-05
+==================
+- [fix] Add `eslint` as a `peerDependency`.
+
+
 1.5.3 / 2016-06-16
 ==================
 - [fix] Fix crash when ``<ELEMENT role />`` for `role-supports-aria-props`.
