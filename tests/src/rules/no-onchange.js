@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce usage of onBlur over onChange for accessibility.
+ * @fileoverview Enforce usage of onBlur over onChange on select menus for accessibility.
  * @author Ethan Cohen
  */
 
@@ -32,16 +32,21 @@ const expectedError = {
 
 ruleTester.run('no-onchange', rule, {
   valid: [
-    { code: '<div onBlur={() => {}} />;', parserOptions },
-    { code: '<div onBlur={handleOnBlur} />;', parserOptions },
-    { code: '<div />;', parserOptions },
-    { code: '<div onBlur={() => {}} onChange={() => {}} />;', parserOptions },
-    { code: '<div {...props} />', parserOptions },
+    { code: '<select onBlur={() => {}} />;', parserOptions },
+    { code: '<select onBlur={handleOnBlur} />;', parserOptions },
+    { code: '<option />;', parserOptions },
+    { code: '<option onBlur={() => {}} onChange={() => {}} />;', parserOptions },
+    { code: '<option {...props} />', parserOptions },
+    { code: '<input onChange={() => {}} />;', parserOptions },
+    { code: '<input onChange={handleOnChange} />;', parserOptions },
+    { code: '<input />;', parserOptions },
+    { code: '<input onChange={() => {}} onChange={() => {}} />;', parserOptions },
+    { code: '<input {...props} />', parserOptions },
   ],
   invalid: [
-    { code: '<div onChange={() => {}} />;', errors: [expectedError], parserOptions },
-    { code: '<div onChange={handleOnChange} />;', errors: [expectedError], parserOptions },
-    { code: '<input onChange={() => {}} />', errors: [expectedError], parserOptions },
-    { code: '<input onChange={() => {}} {...props} />', errors: [expectedError], parserOptions },
+    { code: '<select onChange={() => {}} />;', errors: [expectedError], parserOptions },
+    { code: '<select onChange={handleOnChange} />;', errors: [expectedError], parserOptions },
+    { code: '<option onChange={() => {}} />', errors: [expectedError], parserOptions },
+    { code: '<option onChange={() => {}} {...props} />', errors: [expectedError], parserOptions },
   ],
 });

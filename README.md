@@ -84,7 +84,7 @@ Then configure the rules you want to use under the rules section.
 - [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
 - [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
 - [no-marquee](docs/rules/no-marquee.md): Enforce `<marquee>` elements are not used.
-- [no-onchange](docs/rules/no-onchange.md): Enforce that `onBlur` is used instead of `onChange`.
+- [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
 - [onclick-has-focus](docs/rules/onclick-has-focus.md): Enforce that elements with `onClick` handlers must be focusable.
 - [onclick-has-role](docs/rules/onclick-has-role.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
 - [role-has-required-aria-props](docs/rules/role-has-required-aria-props.md): Enforce that elements with ARIA roles must have all required attributes for that role.
