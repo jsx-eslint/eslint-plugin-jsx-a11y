@@ -1,3 +1,8 @@
+2.0.0 / 2016-07-12
+==================
+- [breaking] - scope `no-onchange` rule to select menu elements only.
+
+
 1.5.5 / 2016-07-05
 ==================
 - [fix] Add `eslint` v3 as a `peerDependency`.
