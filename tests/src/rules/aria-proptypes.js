@@ -62,6 +62,7 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-hidden={!"yes"} />', parserOptions },
     { code: '<div aria-hidden={foo} />', parserOptions },
     { code: '<div aria-hidden={foo.bar} />', parserOptions },
+    { code: '<div aria-hidden={<div />} />', parserOptions },
 
     // STRING
     { code: '<div aria-label="Close" />', parserOptions },
