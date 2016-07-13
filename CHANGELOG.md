@@ -1,6 +1,12 @@
+2.0.1 / 2016-07-13
+==================
+- [fix] JSXElement support in expression handlers for prop types.
+- [fix] `heading-has-content`: dangerouslySetInnerHTML will pass.
+
+
 2.0.0 / 2016-07-12
 ==================
-- [breaking] - scope `no-onchange` rule to select menu elements only.
+- [breaking] Scope `no-onchange` rule to select menu elements only.
 
 
 1.5.5 / 2016-07-05
