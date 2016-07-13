@@ -49,6 +49,7 @@ function Foo(props) {
 ```jsx
 <h1>Heading Content!</h1>
 <h1><TextWrapper /><h1>
+<h1 dangerouslySetInnerHTML={{ __html: 'foo' }} />
 ```
 
 ### Fail
