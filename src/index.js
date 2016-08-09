@@ -2,6 +2,7 @@
 
 module.exports = {
   rules: {
+    'anchor-has-content': require('./rules/anchor-has-content'),
     'aria-props': require('./rules/aria-props'),
     'aria-proptypes': require('./rules/aria-proptypes'),
     'aria-role': require('./rules/aria-role'),
@@ -32,6 +33,7 @@ module.exports = {
         },
       },
       rules: {
+        'jsx-a11y/anchor-has-content': 2,
         'jsx-a11y/aria-props': 2,
         'jsx-a11y/aria-proptypes': 2,
         'jsx-a11y/aria-role': 2,
