@@ -16,37 +16,43 @@ const errorMessage = invalidProp =>
   `This element does not support ARIA roles, states and properties. \
 Try removing the prop '${invalidProp}'.`;
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    const nodeType = elementType(node);
-    const nodeAttrs = DOM[nodeType];
-    const isReservedNodeType = nodeAttrs && nodeAttrs.reserved || false;
+module.exports = {
+  meta: {
+    docs: {},
 
-    // If it's not reserved, then it can have ARIA-* roles, states, and properties
-    if (isReservedNodeType === false) {
-      return;
-    }
+    schema: [
+      { type: 'object' },
+    ],
+  },
 
-    const invalidAttributes = Object.keys(ARIA).concat('ROLE');
+  create: context => ({
+    JSXOpeningElement: node => {
+      const nodeType = elementType(node);
+      const nodeAttrs = DOM[nodeType];
+      const isReservedNodeType = nodeAttrs && nodeAttrs.reserved || false;
 
-    node.attributes.forEach(prop => {
-      if (prop.type === 'JSXSpreadAttribute') {
+      // If it's not reserved, then it can have ARIA-* roles, states, and properties
+      if (isReservedNodeType === false) {
         return;
       }
 
-      const name = propName(prop);
-      const normalizedName = name ? name.toUpperCase() : '';
+      const invalidAttributes = Object.keys(ARIA).concat('ROLE');
 
-      if (invalidAttributes.indexOf(normalizedName) > -1) {
-        context.report({
-          node,
-          message: errorMessage(name),
-        });
-      }
-    });
-  },
-});
+      node.attributes.forEach(prop => {
+        if (prop.type === 'JSXSpreadAttribute') {
+          return;
+        }
 
-module.exports.schema = [
-  { type: 'object' },
-];
+        const name = propName(prop);
+        const normalizedName = name ? name.toUpperCase() : '';
+
+        if (invalidAttributes.indexOf(normalizedName) > -1) {
+          context.report({
+            node,
+            message: errorMessage(name),
+          });
+        }
+      });
+    },
+  }),
+};

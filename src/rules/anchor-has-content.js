@@ -18,58 +18,64 @@ const anchors = [
   'Link',
 ];
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    const typeCheck = anchors.concat(context.options[0]);
-    const nodeType = elementType(node);
+module.exports = {
+  meta: {
+    docs: {},
 
-    // Only check anchor elements and custom types.
-    if (typeCheck.indexOf(nodeType) === -1) {
-      return;
-    }
-    const isAccessible = node.parent.children.some(child => {
-      switch (child.type) {
-        case 'Literal':
-          return Boolean(child.value);
-        case 'JSXElement':
-          return !isHiddenFromScreenReader(
-              elementType(child.openingElement),
-              child.openingElement.attributes
-          );
-        case 'JSXExpressionContainer':
-          if (child.expression.type === 'Identifier') {
-            return child.expression.name !== 'undefined';
-          }
-          return true;
-        default:
-          return false;
-      }
-    }) || hasProp(node.attributes, 'dangerouslySetInnerHTML');
-
-
-    if (isAccessible) {
-      return;
-    }
-
-    context.report({
-      node,
-      message: errorMessage,
-    });
-  },
-});
-
-module.exports.schema = [
-  {
-    oneOf: [
-      { type: 'string' },
+    schema: [
       {
-        type: 'array',
-        items: {
-          type: 'string',
-        },
-        minItems: 1,
-        uniqueItems: true,
+        oneOf: [
+          { type: 'string' },
+          {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+            minItems: 1,
+            uniqueItems: true,
+          },
+        ],
       },
     ],
   },
-];
+
+  create: context => ({
+    JSXOpeningElement: node => {
+      const typeCheck = anchors.concat(context.options[0]);
+      const nodeType = elementType(node);
+
+      // Only check anchor elements and custom types.
+      if (typeCheck.indexOf(nodeType) === -1) {
+        return;
+      }
+      const isAccessible = node.parent.children.some(child => {
+        switch (child.type) {
+          case 'Literal':
+            return Boolean(child.value);
+          case 'JSXElement':
+            return !isHiddenFromScreenReader(
+                elementType(child.openingElement),
+                child.openingElement.attributes
+            );
+          case 'JSXExpressionContainer':
+            if (child.expression.type === 'Identifier') {
+              return child.expression.name !== 'undefined';
+            }
+            return true;
+          default:
+            return false;
+        }
+      }) || hasProp(node.attributes, 'dangerouslySetInnerHTML');
+
+
+      if (isAccessible) {
+        return;
+      }
+
+      context.report({
+        node,
+        message: errorMessage,
+      });
+    },
+  }),
+};

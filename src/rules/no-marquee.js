@@ -12,19 +12,25 @@ import { elementType } from 'jsx-ast-utils';
 const errorMessage =
   'Do not use <marquee> elements as they create accessibility issues and are deprecated.';
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    const isMarquee = elementType(node) === 'marquee';
+module.exports = {
+  meta: {
+    docs: {},
 
-    if (isMarquee) {
-      context.report({
-        node,
-        message: errorMessage,
-      });
-    }
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXOpeningElement: node => {
+      const isMarquee = elementType(node) === 'marquee';
+
+      if (isMarquee) {
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      }
+    },
+  }),
+};

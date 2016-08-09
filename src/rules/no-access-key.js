@@ -13,20 +13,26 @@ const errorMessage = 'No access key attribute allowed. Inconsistencies ' +
   'between keyboard shortcuts and keyboard comments used by screenreader ' +
   'and keyboard only users create a11y complications.';
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    const accessKey = getProp(node.attributes, 'accesskey');
-    const accessKeyValue = getPropValue(accessKey);
+module.exports = {
+  meta: {
+    docs: {},
 
-    if (accessKey && accessKeyValue) {
-      context.report({
-        node,
-        message: errorMessage,
-      });
-    }
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXOpeningElement: node => {
+      const accessKey = getProp(node.attributes, 'accesskey');
+      const accessKeyValue = getPropValue(accessKey);
+
+      if (accessKey && accessKeyValue) {
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      }
+    },
+  }),
+};

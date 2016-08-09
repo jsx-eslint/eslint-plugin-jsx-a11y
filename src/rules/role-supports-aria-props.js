@@ -22,44 +22,50 @@ This role is implicit on the element ${tag}.`;
   return `The attribute ${attr} is not supported by the role ${role}.`;
 };
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    // If role is not explicitly defined, then try and get its implicit role.
-    const type = elementType(node);
-    const role = getProp(node.attributes, 'role');
-    const roleValue = role ? getLiteralPropValue(role) : getImplicitRole(type, node.attributes);
-    const isImplicit = roleValue && role === undefined;
+module.exports = {
+  meta: {
+    docs: {},
 
-    // If there is no explicit or implicit role, then assume that the element
-    // can handle the global set of aria-* properties.
-    // This actually isn't true - should fix in future release.
-    if (typeof roleValue !== 'string' || ROLES[roleValue.toUpperCase()] === undefined) {
-      return;
-    }
+    schema: [
+      { type: 'object' },
+    ],
+  },
 
-    // Make sure it has no aria-* properties defined outside of its property set.
-    const propertySet = ROLES[roleValue.toUpperCase()].props;
-    const invalidAriaPropsForRole = Object.keys(ARIA)
-      .filter(attribute => propertySet.indexOf(attribute) === -1);
+  create: context => ({
+    JSXOpeningElement: node => {
+      // If role is not explicitly defined, then try and get its implicit role.
+      const type = elementType(node);
+      const role = getProp(node.attributes, 'role');
+      const roleValue = role ? getLiteralPropValue(role) : getImplicitRole(type, node.attributes);
+      const isImplicit = roleValue && role === undefined;
 
-    node.attributes.forEach(prop => {
-      if (prop.type === 'JSXSpreadAttribute') {
+      // If there is no explicit or implicit role, then assume that the element
+      // can handle the global set of aria-* properties.
+      // This actually isn't true - should fix in future release.
+      if (typeof roleValue !== 'string' || ROLES[roleValue.toUpperCase()] === undefined) {
         return;
       }
 
-      const name = propName(prop);
-      const normalizedName = name ? name.toUpperCase() : '';
+      // Make sure it has no aria-* properties defined outside of its property set.
+      const propertySet = ROLES[roleValue.toUpperCase()].props;
+      const invalidAriaPropsForRole = Object.keys(ARIA)
+        .filter(attribute => propertySet.indexOf(attribute) === -1);
 
-      if (invalidAriaPropsForRole.indexOf(normalizedName) > -1) {
-        context.report({
-          node,
-          message: errorMessage(name, roleValue, type, isImplicit),
-        });
-      }
-    });
-  },
-});
+      node.attributes.forEach(prop => {
+        if (prop.type === 'JSXSpreadAttribute') {
+          return;
+        }
 
-module.exports.schema = [
-  { type: 'object' },
-];
+        const name = propName(prop);
+        const normalizedName = name ? name.toUpperCase() : '';
+
+        if (invalidAriaPropsForRole.indexOf(normalizedName) > -1) {
+          context.report({
+            node,
+            message: errorMessage(name, roleValue, type, isImplicit),
+          });
+        }
+      });
+    },
+  }),
+};
