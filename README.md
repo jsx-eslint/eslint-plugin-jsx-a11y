@@ -70,6 +70,7 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
+- [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
 - [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
 - [aria-proptypes](docs/rules/aria-proptypes.md): Enforce ARIA state and property values are valid.
 - [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.

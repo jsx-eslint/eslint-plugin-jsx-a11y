@@ -15,6 +15,7 @@ const errorMessage =
 
 const anchors = [
   'a',
+  'Link',
 ];
 
 module.exports = context => ({
