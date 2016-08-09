@@ -73,7 +73,7 @@ module.exports = {
         node,
         message:
           `Invalid alt value for ${nodeType}. \
-  Use alt="" or role="presentation" for presentational images.`,
+Use alt="" or role="presentation" for presentational images.`,
       });
     },
   }),
