@@ -1816,7 +1816,9 @@
     ]
   },
   "MENUITEMCHECKBOX": {
-    "requiredProps": [],
+    "requiredProps": [
+      "ARIA-CHECKED"
+    ],
     "abstract": false,
     "props": [
       "ARIA-CHECKED",
@@ -1839,7 +1841,9 @@
     ]
   },
   "MENUITEMRADIO": {
-    "requiredProps": [],
+    "requiredProps": [
+      "ARIA-CHECKED"
+    ],
     "abstract": false,
     "props": [
       "ARIA-CHECKED",
@@ -1985,7 +1989,9 @@
     ]
   },
   "RADIO": {
-    "requiredProps": [],
+    "requiredProps": [
+      "ARIA-CHECKED"
+    ],
     "abstract": false,
     "props": [
       "ARIA-CHECKED",
