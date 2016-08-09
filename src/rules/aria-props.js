@@ -23,27 +23,33 @@ const errorMessage = name => {
   return message;
 };
 
-module.exports = context => ({
-  JSXAttribute: attribute => {
-    const name = propName(attribute);
-    const normalizedName = name ? name.toUpperCase() : '';
+module.exports = {
+  meta: {
+    docs: {},
 
-    // `aria` needs to be prefix of property.
-    if (normalizedName.indexOf('ARIA-') !== 0) {
-      return;
-    }
-
-    const isValid = Object.keys(ariaAttributes).indexOf(normalizedName) > -1;
-
-    if (isValid === false) {
-      context.report({
-        node: attribute,
-        message: errorMessage(name),
-      });
-    }
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXAttribute: attribute => {
+      const name = propName(attribute);
+      const normalizedName = name ? name.toUpperCase() : '';
+
+      // `aria` needs to be prefix of property.
+      if (normalizedName.indexOf('ARIA-') !== 0) {
+        return;
+      }
+
+      const isValid = Object.keys(ariaAttributes).indexOf(normalizedName) > -1;
+
+      if (isValid === false) {
+        context.report({
+          node: attribute,
+          message: errorMessage(name),
+        });
+      }
+    },
+  }),
+};

@@ -11,30 +11,36 @@ import { getLiteralPropValue, propName } from 'jsx-ast-utils';
 
 const errorMessage = 'Avoid positive integer values for tabIndex.';
 
-module.exports = context => ({
-  JSXAttribute: attribute => {
-    const name = propName(attribute);
-    const normalizedName = name ? name.toUpperCase() : '';
+module.exports = {
+  meta: {
+    docs: {},
 
-    // Check if tabIndex is the attribute
-    if (normalizedName !== 'TABINDEX') {
-      return;
-    }
-
-    // Only check literals because we can't infer values from certain expressions.
-    const value = Number(getLiteralPropValue(attribute));
-
-    if (isNaN(value) || value <= 0) {
-      return;
-    }
-
-    context.report({
-      node: attribute,
-      message: errorMessage,
-    });
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXAttribute: attribute => {
+      const name = propName(attribute);
+      const normalizedName = name ? name.toUpperCase() : '';
+
+      // Check if tabIndex is the attribute
+      if (normalizedName !== 'TABINDEX') {
+        return;
+      }
+
+      // Only check literals because we can't infer values from certain expressions.
+      const value = Number(getLiteralPropValue(attribute));
+
+      if (isNaN(value) || value <= 0) {
+        return;
+      }
+
+      context.report({
+        node: attribute,
+        message: errorMessage,
+      });
+    },
+  }),
+};

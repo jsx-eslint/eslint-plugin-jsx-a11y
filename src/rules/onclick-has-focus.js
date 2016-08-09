@@ -16,30 +16,36 @@ const errorMessage = 'Elements with onClick handlers must be focusable. ' +
   'Either set the tabIndex property to a valid value (usually 0), or use ' +
   'an element type which is inherently focusable such as `button`.';
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    const { attributes } = node;
-    if (getProp(attributes, 'onClick') === undefined) {
-      return;
-    }
+module.exports = {
+  meta: {
+    docs: {},
 
-    const type = elementType(node);
-
-    if (isHiddenFromScreenReader(type, attributes)) {
-      return;
-    } else if (isInteractiveElement(type, attributes)) {
-      return;
-    } else if (getTabIndex(getProp(attributes, 'tabIndex')) !== undefined) {
-      return;
-    }
-
-    context.report({
-      node,
-      message: errorMessage,
-    });
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXOpeningElement: node => {
+      const { attributes } = node;
+      if (getProp(attributes, 'onClick') === undefined) {
+        return;
+      }
+
+      const type = elementType(node);
+
+      if (isHiddenFromScreenReader(type, attributes)) {
+        return;
+      } else if (isInteractiveElement(type, attributes)) {
+        return;
+      } else if (getTabIndex(getProp(attributes, 'tabIndex')) !== undefined) {
+        return;
+      }
+
+      context.report({
+        node,
+        message: errorMessage,
+      });
+    },
+  }),
+};

@@ -18,26 +18,32 @@ const applicableTypes = [
   'option',
 ];
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    const nodeType = elementType(node);
+module.exports = {
+  meta: {
+    docs: {},
 
-    if (applicableTypes.indexOf(nodeType) === -1) {
-      return;
-    }
-
-    const onChange = getProp(node.attributes, 'onChange');
-    const hasOnBlur = getProp(node.attributes, 'onBlur') !== undefined;
-
-    if (onChange && !hasOnBlur) {
-      context.report({
-        node,
-        message: errorMessage,
-      });
-    }
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXOpeningElement: node => {
+      const nodeType = elementType(node);
+
+      if (applicableTypes.indexOf(nodeType) === -1) {
+        return;
+      }
+
+      const onChange = getProp(node.attributes, 'onChange');
+      const hasOnBlur = getProp(node.attributes, 'onBlur') !== undefined;
+
+      if (onChange && !hasOnBlur) {
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      }
+    },
+  }),
+};

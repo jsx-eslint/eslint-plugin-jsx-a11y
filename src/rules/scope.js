@@ -12,31 +12,37 @@ import DOMElements from '../util/attributes/DOM';
 
 const errorMessage = 'The scope prop can only be used on <th> elements.';
 
-module.exports = context => ({
-  JSXAttribute: node => {
-    const name = propName(node);
-    if (name && name.toUpperCase() !== 'SCOPE') {
-      return;
-    }
+module.exports = {
+  meta: {
+    docs: {},
 
-    const { parent } = node;
-    const tagName = elementType(parent);
-
-    // Do not test higher level JSX components, as we do not know what
-    // low-level DOM element this maps to.
-    if (Object.keys(DOMElements).indexOf(tagName) === -1) {
-      return;
-    } else if (tagName && tagName.toUpperCase() === 'TH') {
-      return;
-    }
-
-    context.report({
-      node,
-      message: errorMessage,
-    });
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXAttribute: node => {
+      const name = propName(node);
+      if (name && name.toUpperCase() !== 'SCOPE') {
+        return;
+      }
+
+      const { parent } = node;
+      const tagName = elementType(parent);
+
+      // Do not test higher level JSX components, as we do not know what
+      // low-level DOM element this maps to.
+      if (Object.keys(DOMElements).indexOf(tagName) === -1) {
+        return;
+      } else if (tagName && tagName.toUpperCase() === 'TH') {
+        return;
+      }
+
+      context.report({
+        node,
+        message: errorMessage,
+      });
+    },
+  }),
+};

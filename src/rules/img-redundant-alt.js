@@ -20,38 +20,44 @@ const errorMessage = 'Redundant alt attribute. Screen-readers already announce '
   '`img` tags as an image. You don\'t need to use the words `image`, ' +
   '`photo,` or `picture` in the alt prop.';
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    const type = elementType(node);
-    if (type !== 'img') {
-      return;
-    }
+module.exports = {
+  meta: {
+    docs: {},
 
-    const altProp = getProp(node.attributes, 'alt');
-    // Return if alt prop is not present.
-    if (altProp === undefined) {
-      return;
-    }
+    schema: [
+      { type: 'object' },
+    ],
+  },
 
-    const value = getLiteralPropValue(altProp);
-    const isVisible = isHiddenFromScreenReader(type, node.attributes) === false;
-
-    if (typeof value === 'string' && isVisible) {
-      const hasRedundancy = REDUNDANT_WORDS
-        .some(word => Boolean(value.match(new RegExp(`(?!{)${word}(?!})`, 'gi'))));
-
-      if (hasRedundancy === true) {
-        context.report({
-          node,
-          message: errorMessage,
-        });
+  create: context => ({
+    JSXOpeningElement: node => {
+      const type = elementType(node);
+      if (type !== 'img') {
+        return;
       }
 
-      return;
-    }
-  },
-});
+      const altProp = getProp(node.attributes, 'alt');
+      // Return if alt prop is not present.
+      if (altProp === undefined) {
+        return;
+      }
 
-module.exports.schema = [
-  { type: 'object' },
-];
+      const value = getLiteralPropValue(altProp);
+      const isVisible = isHiddenFromScreenReader(type, node.attributes) === false;
+
+      if (typeof value === 'string' && isVisible) {
+        const hasRedundancy = REDUNDANT_WORDS
+          .some(word => Boolean(value.match(new RegExp(`(?!{)${word}(?!})`, 'gi'))));
+
+        if (hasRedundancy === true) {
+          context.report({
+            node,
+            message: errorMessage,
+          });
+        }
+
+        return;
+      }
+    },
+  }),
+};
