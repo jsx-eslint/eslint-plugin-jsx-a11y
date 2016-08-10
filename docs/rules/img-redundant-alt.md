@@ -4,6 +4,7 @@ Enforce img alt attribute does not contain the word image, picture, or photo. Sc
 
 ## Rule details
 This rule takes one optional argument of type string or array of strings. These strings can be used to specify custom words that should be checked for in the alt prop. Useful for specifying words in other languages.
+
 The rule will first check if `aria-hidden` is true to determine whether to enforce the rule. If the image is hidden, then rule will always succeed.
 
 To tell this plugin to also check for custom words , specify this in your `.eslintrc` file:
