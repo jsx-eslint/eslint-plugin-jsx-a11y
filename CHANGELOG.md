@@ -1,3 +1,11 @@
+2.1.0 / 2016-08-10
+==================
+- [fix] Require `aria-checked` for roles that are subclasses of `checkbox`
+- [new] Add `anchor-has-content` rule.
+- [refactor] Use new eslint rule syntax
+- [new] Add support for custom words in `img-redundant-alt` (mainly for i18n).
+
+
 2.0.1 / 2016-07-13
 ==================
 - [fix] JSXElement support in expression handlers for prop types.
