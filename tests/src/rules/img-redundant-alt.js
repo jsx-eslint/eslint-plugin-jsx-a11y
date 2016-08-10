@@ -21,11 +21,15 @@ const parserOptions = {
 // Tests
 // -----------------------------------------------------------------------------
 
+const string = ['Word'];
+const array = [['Word1', 'Word2']];
+
 const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Redundant alt attribute. Screen-readers already announce `img` tags as an image. ' +
-    'You don\'t need to use the words `image`, `photo,` or `picture` in the alt prop.',
+    'You don\'t need to use the words `image`, `photo,` or `picture` ' +
+    '(or any specified custom words) in the alt prop.',
   type: 'JSXOpeningElement',
 };
 
@@ -113,5 +117,12 @@ ruleTester.run('img-redundant-alt', rule, {
       errors: [expectedError],
       parserOptions,
     },
+
+    // TESTS FOR STRING OPTION
+    { code: '<img alt="Word" />;', options: string, errors: [expectedError], parserOptions },
+
+    // TESTS FOR ARRAY OPTION TESTS
+    { code: '<img alt="Word1" />;', options: array, errors: [expectedError], parserOptions },
+    { code: '<img alt="Word2" />;', options: array, errors: [expectedError], parserOptions },
   ],
 });
