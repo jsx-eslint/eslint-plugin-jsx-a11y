@@ -11,27 +11,33 @@ import { elementType, getProp, getPropValue } from 'jsx-ast-utils';
 
 const errorMessage = '<html> elements must have the lang prop.';
 
-module.exports = context => ({
-  JSXOpeningElement: node => {
-    const type = elementType(node);
+module.exports = {
+  meta: {
+    docs: {},
 
-    if (type && type !== 'html') {
-      return;
-    }
-
-    const lang = getPropValue(getProp(node.attributes, 'lang'));
-
-    if (lang) {
-      return;
-    }
-
-    context.report({
-      node,
-      message: errorMessage,
-    });
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXOpeningElement: node => {
+      const type = elementType(node);
+
+      if (type && type !== 'html') {
+        return;
+      }
+
+      const lang = getPropValue(getProp(node.attributes, 'lang'));
+
+      if (lang) {
+        return;
+      }
+
+      context.report({
+        node,
+        message: errorMessage,
+      });
+    },
+  }),
+};

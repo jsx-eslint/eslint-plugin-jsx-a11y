@@ -50,43 +50,49 @@ const validityCheck = (value, expectedType, permittedValues) => {
   }
 };
 
-module.exports = context => ({
-  JSXAttribute: attribute => {
-    const name = propName(attribute);
-    const normalizedName = name ? name.toUpperCase() : '';
+module.exports = {
+  meta: {
+    docs: {},
 
-    // Not a valid aria-* state or property.
-    if (normalizedName.indexOf('ARIA-') !== 0 || ariaAttributes[normalizedName] === undefined) {
-      return;
-    }
-
-    const value = getLiteralPropValue(attribute);
-
-    // We only want to check literal prop values, so just pass if it's null.
-    if (value === null) {
-      return;
-    }
-
-    // These are the attributes of the property/state to check against.
-    const attributes = ariaAttributes[normalizedName];
-    const permittedType = attributes.type;
-    const allowUndefined = attributes.allowUndefined || false;
-    const permittedValues = attributes.values || [];
-
-    const isValid = validityCheck(value, permittedType, permittedValues) ||
-      (allowUndefined && value === undefined);
-
-    if (isValid) {
-      return;
-    }
-
-    context.report({
-      node: attribute,
-      message: errorMessage(name, permittedType, permittedValues),
-    });
+    schema: [
+      { type: 'object' },
+    ],
   },
-});
 
-module.exports.schema = [
-  { type: 'object' },
-];
+  create: context => ({
+    JSXAttribute: attribute => {
+      const name = propName(attribute);
+      const normalizedName = name ? name.toUpperCase() : '';
+
+      // Not a valid aria-* state or property.
+      if (normalizedName.indexOf('ARIA-') !== 0 || ariaAttributes[normalizedName] === undefined) {
+        return;
+      }
+
+      const value = getLiteralPropValue(attribute);
+
+      // We only want to check literal prop values, so just pass if it's null.
+      if (value === null) {
+        return;
+      }
+
+      // These are the attributes of the property/state to check against.
+      const attributes = ariaAttributes[normalizedName];
+      const permittedType = attributes.type;
+      const allowUndefined = attributes.allowUndefined || false;
+      const permittedValues = attributes.values || [];
+
+      const isValid = validityCheck(value, permittedType, permittedValues) ||
+        (allowUndefined && value === undefined);
+
+      if (isValid) {
+        return;
+      }
+
+      context.report({
+        node: attribute,
+        message: errorMessage(name, permittedType, permittedValues),
+      });
+    },
+  }),
+};
