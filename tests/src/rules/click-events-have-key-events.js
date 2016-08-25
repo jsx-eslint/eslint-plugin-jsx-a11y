@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce clickable non-interactive elements have keyboard listener.
+ * @fileoverview Enforce a clickable non-interactive element has at least 1 keyboard event listener.
  * @author Ethan Cohen
  */
 
