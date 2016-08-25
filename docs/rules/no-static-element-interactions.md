@@ -8,12 +8,12 @@ This rule takes no arguments.
 
 ### Succeed
 ```jsx
-<button onClick={() => void 0} className="foo" />
+<button onClick={() => {}} className="foo" />
 <div className="foo" {...props} />
-<input type="text" onClick={() => void 0} />
+<input type="text" onClick={() => {}} />
 ```
 
 ### Fail
 ```jsx
-<div onClick={() => void 0} />
+<div onClick={() => {}} />
 ```
