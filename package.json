@@ -21,8 +21,8 @@
     "prepublish": "npm run lint && npm run test && npm run build",
     "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
     "lint": "eslint  --config .eslintrc src tests",
-    "lint:fix": "npm run lint -- fix",
-    "pretest": "npm run lint",
+    "lint:fix": "npm run lint -- --fix",
+    "pretest": "npm run lint:fix",
     "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --compilers js:babel-core/register --reporter dot"
   },
   "devDependencies": {
@@ -39,7 +39,7 @@
     "rimraf": "^2.5.2"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.0"
   },
   "license": "MIT",
   "dependencies": {
