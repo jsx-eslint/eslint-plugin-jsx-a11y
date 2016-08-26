@@ -1,3 +1,12 @@
+2.2.0 / 2016-08-26
+==================
+- [new] Add `click-events-have-key-events` rule.
+- [new] Add `no-static-element-interactions` rule.
+- [devDependencies] Upgrade `eslint`, `eslint-config-airbnb`, `mocha` to latest.
+- [lint] Fix all new linting errors with upgrade
+- [nit] Use `error` syntax over `2` syntax in recommended config.
+
+
 2.1.0 / 2016-08-10
 ==================
 - [fix] Require `aria-checked` for roles that are subclasses of `checkbox`
