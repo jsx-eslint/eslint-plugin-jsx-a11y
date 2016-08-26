@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/onclick-has-role';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/onclick-has-role';
 
 const parserOptions = {
   ecmaVersion: 6,

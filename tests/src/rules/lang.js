@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/lang';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/lang';
 
 const parserOptions = {
   ecmaVersion: 6,

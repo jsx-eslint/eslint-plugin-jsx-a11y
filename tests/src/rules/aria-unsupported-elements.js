@@ -8,8 +8,9 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/aria-unsupported-elements';
 import { RuleTester } from 'eslint';
+import DOM from '../../../src/util/attributes/DOM';
+import rule from '../../../src/rules/aria-unsupported-elements';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -23,8 +24,6 @@ const parserOptions = {
 // -----------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
-
-import DOM from '../../../src/util/attributes/DOM';
 
 const errorMessage = invalidProp => ({
   message: `This element does not support ARIA roles, states and properties. \

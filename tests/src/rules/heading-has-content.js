@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/heading-has-content';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/heading-has-content';
 
 const parserOptions = {
   ecmaVersion: 6,

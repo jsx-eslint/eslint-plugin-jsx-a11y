@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/aria-role';
 import { RuleTester } from 'eslint';
-import ROLES from '../../../src/util/attributes/role';
 import assign from 'object-assign';
+import rule from '../../../src/rules/aria-role';
+import ROLES from '../../../src/util/attributes/role';
 
 const parserOptions = {
   ecmaVersion: 6,

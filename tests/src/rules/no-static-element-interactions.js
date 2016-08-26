@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/no-static-element-interactions';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/no-static-element-interactions';
 
 const parserOptions = {
   ecmaVersion: 6,

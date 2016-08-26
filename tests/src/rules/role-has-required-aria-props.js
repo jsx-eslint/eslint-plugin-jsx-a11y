@@ -8,8 +8,9 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/role-has-required-aria-props';
 import { RuleTester } from 'eslint';
+import validRoleTypes from '../../../src/util/attributes/role';
+import rule from '../../../src/rules/role-has-required-aria-props';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -23,8 +24,6 @@ const parserOptions = {
 // -----------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
-
-import validRoleTypes from '../../../src/util/attributes/role';
 
 const errorMessage = role => {
   const requiredProps = validRoleTypes[role.toUpperCase()].requiredProps.toString().toLowerCase();

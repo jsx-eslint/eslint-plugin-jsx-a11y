@@ -8,8 +8,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/no-onchange';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/no-onchange';
 
 const parserOptions = {
   ecmaVersion: 6,

@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/href-no-hash';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/href-no-hash';
 
 const parserOptions = {
   ecmaVersion: 6,

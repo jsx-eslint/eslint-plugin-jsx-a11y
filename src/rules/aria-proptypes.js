@@ -7,8 +7,8 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import ariaAttributes from '../util/attributes/ARIA';
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
+import ariaAttributes from '../util/attributes/ARIA';
 
 const errorMessage = (name, type, permittedValues) => {
   switch (type) {

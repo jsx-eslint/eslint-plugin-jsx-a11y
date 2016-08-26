@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/img-has-alt';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/img-has-alt';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -149,7 +149,8 @@ ruleTester.run('img-has-alt', rule, {
     {
       code: '<Avatar src="xyz" />',
       errors: [missingPropError('Avatar')],
-      options: string, parserOptions,
+      options: string,
+      parserOptions,
     },
     {
       code: '<Avatar {...this.props} />',

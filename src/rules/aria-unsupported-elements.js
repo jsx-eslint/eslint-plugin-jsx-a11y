@@ -8,9 +8,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { elementType, propName } from 'jsx-ast-utils';
 import DOM from '../util/attributes/DOM';
 import ARIA from '../util/attributes/ARIA';
-import { elementType, propName } from 'jsx-ast-utils';
 
 const errorMessage = invalidProp =>
   `This element does not support ARIA roles, states and properties. \
@@ -28,8 +28,10 @@ module.exports = {
   create: context => ({
     JSXOpeningElement: node => {
       const nodeType = elementType(node);
-      const nodeAttrs = DOM[nodeType];
-      const isReservedNodeType = nodeAttrs && nodeAttrs.reserved || false;
+      const nodeAttrs = DOM[nodeType] || {};
+      const {
+        reserved: isReservedNodeType = false,
+      } = nodeAttrs;
 
       // If it's not reserved, then it can have ARIA-* roles, states, and properties
       if (isReservedNodeType === false) {

@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/tabindex-no-positive';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/tabindex-no-positive';
 
 const parserOptions = {
   ecmaVersion: 6,

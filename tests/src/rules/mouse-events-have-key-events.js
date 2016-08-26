@@ -8,8 +8,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/mouse-events-have-key-events';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/mouse-events-have-key-events';
 
 const parserOptions = {
   ecmaVersion: 6,

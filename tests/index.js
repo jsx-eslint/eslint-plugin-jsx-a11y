@@ -1,9 +1,9 @@
 /* eslint-env mocha */
-import plugin from '../src';
 
 import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
+import plugin from '../src';
 
 const rules = fs.readdirSync(path.resolve(__dirname, '../src/rules/'))
   .map(f => path.basename(f, '.js'));

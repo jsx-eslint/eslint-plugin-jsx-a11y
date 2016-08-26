@@ -3,9 +3,9 @@
  * @author Ethan Cohen
  */
 
+import { getProp, elementType } from 'jsx-ast-utils';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
-import { getProp, elementType } from 'jsx-ast-utils';
 import getTabIndex from '../util/getTabIndex';
 
 // ----------------------------------------------------------------------------

@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/no-marquee';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/no-marquee';
 
 const parserOptions = {
   ecmaVersion: 6,

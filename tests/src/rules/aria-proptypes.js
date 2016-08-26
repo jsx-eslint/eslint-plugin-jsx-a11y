@@ -7,8 +7,9 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/aria-proptypes';
 import { RuleTester } from 'eslint';
+import ariaAttributes from '../../../src/util/attributes/ARIA';
+import rule from '../../../src/rules/aria-proptypes';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -22,8 +23,6 @@ const parserOptions = {
 // -----------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
-
-import ariaAttributes from '../../../src/util/attributes/ARIA';
 
 const errorMessage = name => {
   const { type, values: permittedValues } = ariaAttributes[name.toUpperCase()];

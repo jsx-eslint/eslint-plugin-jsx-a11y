@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/onclick-has-focus';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/onclick-has-focus';
 
 const parserOptions = {
   ecmaVersion: 6,

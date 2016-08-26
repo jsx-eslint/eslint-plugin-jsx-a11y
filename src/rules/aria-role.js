@@ -7,8 +7,8 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import roles from '../util/attributes/role';
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
+import roles from '../util/attributes/role';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
 

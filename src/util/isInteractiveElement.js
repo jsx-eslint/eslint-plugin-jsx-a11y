@@ -34,7 +34,7 @@ const isInteractiveElement = (tagName, attributes) => {
     return true;
   }
 
-  if (interactiveMap.hasOwnProperty(tagName) === false) {
+  if ({}.hasOwnProperty.call(interactiveMap, tagName) === false) {
     return false;
   }
 

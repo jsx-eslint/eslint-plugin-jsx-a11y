@@ -7,9 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { propName } from 'jsx-ast-utils';
 import ariaAttributes from '../util/attributes/ARIA';
 import getSuggestion from '../util/getSuggestion';
-import { propName } from 'jsx-ast-utils';
 
 const errorMessage = name => {
   const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());

@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/role-supports-aria-props';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/role-supports-aria-props';
 import ROLES from '../../../src/util/attributes/role';
 import ARIA from '../../../src/util/attributes/ARIA';
 

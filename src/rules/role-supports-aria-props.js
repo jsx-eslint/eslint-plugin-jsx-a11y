@@ -8,10 +8,10 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
 import ROLES from '../util/attributes/role';
 import ARIA from '../util/attributes/ARIA';
 import getImplicitRole from '../util/getImplicitRole';
-import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
   if (isImplicit) {

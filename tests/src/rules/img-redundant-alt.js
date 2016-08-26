@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/img-redundant-alt';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/img-redundant-alt';
 
 const parserOptions = {
   ecmaVersion: 6,

@@ -7,8 +7,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import rule from '../../../src/rules/label-has-for';
 import { RuleTester } from 'eslint';
+import rule from '../../../src/rules/label-has-for';
 
 const parserOptions = {
   ecmaVersion: 6,

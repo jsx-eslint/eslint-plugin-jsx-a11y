@@ -4,9 +4,9 @@
  * @author Ethan Cohen
  */
 
+import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
-import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 
 // ----------------------------------------------------------------------------
 // Rule Definition

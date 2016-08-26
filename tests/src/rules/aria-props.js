@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
+import { RuleTester } from 'eslint';
 import rule from '../../../src/rules/aria-props';
 import ariaAttributes from '../../../src/util/attributes/ARIA';
 import getSuggestion from '../../../src/util/getSuggestion';
-import { RuleTester } from 'eslint';
 
 const parserOptions = {
   ecmaVersion: 6,
