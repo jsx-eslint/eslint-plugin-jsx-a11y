@@ -18,9 +18,22 @@ module.exports = {
 
     schema: [
       {
-        oneOf: [
-          { type: 'string' },
-          {
+        type: 'object',
+        properties: {
+          components: {
+            oneOf: [
+              { type: 'string' },
+              {
+                type: 'array',
+                items: {
+                  type: 'string',
+                },
+                minItems: 1,
+                uniqueItems: true,
+              },
+            ],
+          },
+          props: {
             type: 'array',
             items: {
               type: 'string',
@@ -28,30 +41,37 @@ module.exports = {
             minItems: 1,
             uniqueItems: true,
           },
-        ],
+        },
       },
     ],
   },
 
   create: context => ({
     JSXOpeningElement: node => {
-      const typeCheck = ['a'].concat(context.options[0]);
+      const options = context.options[0];
+      const componentOptions = options && options.components;
+      const typesToValidate = ['a'].concat(componentOptions);
       const nodeType = elementType(node);
 
       // Only check 'a' elements and custom types.
-      if (typeCheck.indexOf(nodeType) === -1) {
+      if (typesToValidate.indexOf(nodeType) === -1) {
         return;
       }
 
-      const href = getProp(node.attributes, 'href');
-      const value = getPropValue(href);
+      const propOptions = options && options.props;
+      const propsToValidate = ['href'].concat(propOptions);
+      const values = propsToValidate
+        .map(prop => getProp(node.attributes, prop))
+        .map(prop => getPropValue(prop));
 
-      if (href && value === '#') {
-        context.report({
-          node,
-          message: errorMessage,
-        });
-      }
+      values.forEach(value => {
+        if (value === '#') {
+          context.report({
+            node,
+            message: errorMessage,
+          });
+        }
+      });
     },
   }),
 };

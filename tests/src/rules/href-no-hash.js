@@ -28,8 +28,15 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-const string = ['Link'];
-const array = [['Anchor', 'Link']];
+const string = [{
+  components: 'Link',
+}];
+const array = [{
+  components: ['Anchor', 'Link'],
+}];
+const props = [{
+  props: ['hrefLeft', 'hrefRight'],
+}];
 
 ruleTester.run('href-no-hash', rule, {
   valid: [
@@ -88,6 +95,36 @@ ruleTester.run('href-no-hash', rule, {
     { code: '<Link href={`#foo`}/>', options: array, parserOptions },
     { code: '<Link href={"foo"}/>', options: array, parserOptions },
     { code: '<Link href="#foo" />', options: array, parserOptions },
+
+    // CUSTOM PROP TESTS
+    { code: '<a />;', options: props, parserOptions },
+    { code: '<a {...props} />', options: props, parserOptions },
+    { code: '<a hrefLeft="foo" />', options: props, parserOptions },
+    { code: '<a hrefLeft={foo} />', options: props, parserOptions },
+    { code: '<a hrefLeft="/foo" />', options: props, parserOptions },
+    { code: '<a hrefLeft={`${undefined}`} />', options: props, parserOptions },
+    { code: '<div hrefLeft="foo" />', options: props, parserOptions },
+    { code: '<a hrefLeft={`${undefined}foo`}/>', options: props, parserOptions },
+    { code: '<a hrefLeft={`#${undefined}foo`}/>', options: props, parserOptions },
+    { code: '<a hrefLeft={`#foo`}/>', options: props, parserOptions },
+    { code: '<a hrefLeft={"foo"}/>', options: props, parserOptions },
+    { code: '<a hrefLeft="#foo" />', options: props, parserOptions },
+    { code: '<UX.Layout>test</UX.Layout>', options: props, parserOptions },
+    { code: '<a hrefRight={this} />', options: props, parserOptions },
+    { code: '<a />;', options: props, parserOptions },
+    { code: '<a {...props} />', options: props, parserOptions },
+    { code: '<a hrefRight="foo" />', options: props, parserOptions },
+    { code: '<a hrefRight={foo} />', options: props, parserOptions },
+    { code: '<a hrefRight="/foo" />', options: props, parserOptions },
+    { code: '<a hrefRight={`${undefined}`} />', options: props, parserOptions },
+    { code: '<div hrefRight="foo" />', options: props, parserOptions },
+    { code: '<a hrefRight={`${undefined}foo`}/>', options: props, parserOptions },
+    { code: '<a hrefRight={`#${undefined}foo`}/>', options: props, parserOptions },
+    { code: '<a hrefRight={`#foo`}/>', options: props, parserOptions },
+    { code: '<a hrefRight={"foo"}/>', options: props, parserOptions },
+    { code: '<a hrefRight="#foo" />', options: props, parserOptions },
+    { code: '<UX.Layout>test</UX.Layout>', options: props, parserOptions },
+    { code: '<a hrefRight={this} />', options: props, parserOptions },
   ],
   invalid: [
     // DEFAULT ELEMENT 'a' TESTS
@@ -120,6 +157,24 @@ ruleTester.run('href-no-hash', rule, {
       code: '<Anchor href={`#${undefined}`} />',
       errors: [expectedError],
       options: array,
+      parserOptions,
+    },
+
+    // CUSTOM PROP TESTS
+    { code: '<a hrefLeft="#" />', errors: [expectedError], options: props, parserOptions },
+    { code: '<a hrefLeft={"#"} />', errors: [expectedError], options: props, parserOptions },
+    {
+      code: '<a hrefLeft={`#${undefined}`} />',
+      errors: [expectedError],
+      options: props,
+      parserOptions,
+    },
+    { code: '<a hrefRight="#" />', errors: [expectedError], options: props, parserOptions },
+    { code: '<a hrefRight={"#"} />', errors: [expectedError], options: props, parserOptions },
+    {
+      code: '<a hrefRight={`#${undefined}`} />',
+      errors: [expectedError],
+      options: props,
       parserOptions,
     },
   ],
