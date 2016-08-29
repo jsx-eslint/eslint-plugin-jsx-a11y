@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
+import { componentAndPropSchema } from '../util/schemas';
 
 const errorMessage = 'Links must not point to "#". ' +
   'Use a more descriptive href or use a button instead.';
@@ -15,41 +16,13 @@ const errorMessage = 'Links must not point to "#". ' +
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      {
-        type: 'object',
-        properties: {
-          components: {
-            oneOf: [
-              { type: 'string' },
-              {
-                type: 'array',
-                items: {
-                  type: 'string',
-                },
-                minItems: 1,
-                uniqueItems: true,
-              },
-            ],
-          },
-          props: {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            minItems: 1,
-            uniqueItems: true,
-          },
-        },
-      },
-    ],
+    schema: [componentAndPropSchema],
   },
 
   create: context => ({
     JSXOpeningElement: node => {
-      const options = context.options[0];
-      const componentOptions = options && options.components;
+      const options = context.options[0] || {};
+      const componentOptions = options.components || [];
       const typesToValidate = ['a'].concat(componentOptions);
       const nodeType = elementType(node);
 
@@ -58,7 +31,7 @@ module.exports = {
         return;
       }
 
-      const propOptions = options && options.props;
+      const propOptions = options.props || [];
       const propsToValidate = ['href'].concat(propOptions);
       const values = propsToValidate
         .map(prop => getProp(node.attributes, prop))

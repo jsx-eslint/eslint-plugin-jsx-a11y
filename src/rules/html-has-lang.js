@@ -8,16 +8,14 @@
 // ----------------------------------------------------------------------------
 
 import { elementType, getProp, getPropValue } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 
 const errorMessage = '<html> elements must have the lang prop.';
 
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

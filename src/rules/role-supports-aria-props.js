@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import ROLES from '../util/attributes/role';
 import ARIA from '../util/attributes/ARIA';
 import getImplicitRole from '../util/getImplicitRole';
@@ -25,10 +26,7 @@ This role is implicit on the element ${tag}.`;
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

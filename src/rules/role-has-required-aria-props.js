@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue, propName } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import validRoleTypes from '../util/attributes/role';
 
 const errorMessage = (role, requiredProps) =>
@@ -18,10 +19,7 @@ const errorMessage = (role, requiredProps) =>
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

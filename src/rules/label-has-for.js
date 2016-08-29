@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
+import { componentSchema } from '../util/schemas';
 
 const errorMessage = 'Form controls using a label to identify them must be ' +
   'programmatically associated with the control using htmlFor';
@@ -15,31 +16,18 @@ const errorMessage = 'Form controls using a label to identify them must be ' +
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      {
-        oneOf: [
-          { type: 'string' },
-          {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            minItems: 1,
-            uniqueItems: true,
-          },
-        ],
-      },
-    ],
+    schema: [componentSchema],
   },
 
   create: context => ({
     JSXOpeningElement: node => {
-      const typeCheck = ['label'].concat(context.options[0]);
+      const options = context.options[0] || {};
+      const componentOptions = options.components || [];
+      const typesToValidate = ['label'].concat(componentOptions);
       const nodeType = elementType(node);
 
       // Only check 'label' elements and custom types.
-      if (typeCheck.indexOf(nodeType) === -1) {
+      if (typesToValidate.indexOf(nodeType) === -1) {
         return;
       }
 

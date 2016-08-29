@@ -4,6 +4,7 @@
  */
 
 import { getProp, elementType } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import getTabIndex from '../util/getTabIndex';
@@ -19,10 +20,7 @@ const errorMessage = 'Elements with onClick handlers must be focusable. ' +
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

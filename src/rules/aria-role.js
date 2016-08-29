@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import roles from '../util/attributes/role';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
@@ -15,10 +16,7 @@ const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract AR
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

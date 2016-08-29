@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, hasAnyProp, elementType } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 
@@ -17,10 +18,7 @@ const errorMessage = 'Visible, non-interactive elements with click handlers' +
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

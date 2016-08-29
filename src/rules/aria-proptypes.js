@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import ariaAttributes from '../util/attributes/ARIA';
 
 const errorMessage = (name, type, permittedValues) => {
@@ -53,10 +54,7 @@ const validityCheck = (value, expectedType, permittedValues) => {
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

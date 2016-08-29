@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, elementType } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 
 const errorMessage = 'onBlur must be used instead of onchange, ' +
   'unless absolutely necessary and it causes no negative consequences ' +
@@ -21,10 +22,7 @@ const applicableTypes = [
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

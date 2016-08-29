@@ -8,16 +8,14 @@
 // ----------------------------------------------------------------------------
 
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 
 const errorMessage = 'Avoid positive integer values for tabIndex.';
 
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

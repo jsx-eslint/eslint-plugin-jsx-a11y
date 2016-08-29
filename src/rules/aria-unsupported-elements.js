@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import { elementType, propName } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import DOM from '../util/attributes/DOM';
 import ARIA from '../util/attributes/ARIA';
 
@@ -19,10 +20,7 @@ Try removing the prop '${invalidProp}'.`;
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

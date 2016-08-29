@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType, getLiteralPropValue } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import ISO_CODES from '../util/attributes/ISO';
 
 const errorMessage =
@@ -16,10 +17,7 @@ const errorMessage =
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

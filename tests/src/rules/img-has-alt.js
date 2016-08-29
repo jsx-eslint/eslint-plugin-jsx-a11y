@@ -34,8 +34,12 @@ Use alt="" or role="presentation" for presentational images.`,
   type: 'JSXOpeningElement',
 });
 
-const string = ['Avatar'];
-const array = [['Thumbnail', 'Image']];
+const string = [{
+  components: 'Avatar',
+}];
+const array = [{
+  components: ['Thumbnail', 'Image'],
+}];
 
 
 ruleTester.run('img-has-alt', rule, {

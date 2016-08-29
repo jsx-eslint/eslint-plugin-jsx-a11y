@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType } from 'jsx-ast-utils';
+import { noSchema } from '../util/schemas';
 import DOMElements from '../util/attributes/DOM';
 
 const errorMessage = 'The scope prop can only be used on <th> elements.';
@@ -15,10 +16,7 @@ const errorMessage = 'The scope prop can only be used on <th> elements.';
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({

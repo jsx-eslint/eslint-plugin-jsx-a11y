@@ -29,8 +29,12 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-const string = ['Label'];
-const array = [['Label', 'Descriptor']];
+const string = [{
+  components: 'Label',
+}];
+const array = [{
+  components: ['Label', 'Descriptor'],
+}];
 
 ruleTester.run('label-has-for', rule, {
   valid: [

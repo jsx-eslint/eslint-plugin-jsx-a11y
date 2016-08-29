@@ -9,7 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue } from 'jsx-ast-utils';
-
+import { noSchema } from '../util/schemas';
 
 const mouseOverErrorMessage = 'onMouseOver must be accompanied by onFocus for accessibility.';
 const mouseOutErrorMessage = 'onMouseOut must be accompanied by onBlur for accessibility.';
@@ -17,10 +17,7 @@ const mouseOutErrorMessage = 'onMouseOut must be accompanied by onBlur for acces
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [noSchema],
   },
 
   create: context => ({
