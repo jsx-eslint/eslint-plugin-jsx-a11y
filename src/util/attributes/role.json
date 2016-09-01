@@ -2475,6 +2475,7 @@
     "abstract": false,
     "props": [
       "ARIA-LEVEL",
+      "ARIA-MULTISELECTABLE",
       "ARIA-ACTIVEDESCENDANT",
       "ARIA-ATOMIC",
       "ARIA-BUSY",

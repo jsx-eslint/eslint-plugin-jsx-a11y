@@ -1,3 +1,8 @@
+2.2.1 / 2016-08-31
+==================
+- [fix] Update `tablist` role to include missing property `aria-multiselectable`.
+
+
 2.2.0 / 2016-08-26
 ==================
 - [new] Add `click-events-have-key-events` rule.
