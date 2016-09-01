@@ -14,11 +14,6 @@ import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 const errorMessage =
     'Anchors must have content and the content must be accessible by a screen reader.';
 
-const anchors = [
-  'a',
-  'Link',
-];
-
 module.exports = {
   meta: {
     docs: {},
@@ -27,13 +22,16 @@ module.exports = {
 
   create: context => ({
     JSXOpeningElement: node => {
-      const typeCheck = anchors.concat(context.options[0]);
+      const options = context.options[0] || {};
+      const componentOptions = options.components || [];
+      const typeCheck = ['a'].concat(componentOptions);
       const nodeType = elementType(node);
 
       // Only check anchor elements and custom types.
       if (typeCheck.indexOf(nodeType) === -1) {
         return;
       }
+
       const isAccessible = node.parent.children.some(child => {
         switch (child.type) {
           case 'Literal':
