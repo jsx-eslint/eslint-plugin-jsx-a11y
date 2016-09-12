@@ -1,3 +1,8 @@
+2.2.2 / 2016-09-12
+==================
+- [fix] `x-has-content` rules now pass with children prop set.
+
+
 2.2.1 / 2016-08-31
 ==================
 - [fix] Update `tablist` role to include missing property `aria-multiselectable`.
