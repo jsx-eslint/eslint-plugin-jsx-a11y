@@ -25,7 +25,7 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-const errorMessage = name => {
+const errorMessage = (name) => {
   const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
   const suggestions = getSuggestion(name, dictionary);
   const message = `${name}: This attribute is an invalid ARIA attribute.`;

@@ -21,7 +21,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const type = elementType(node);
 
       if (type && type !== 'html') {

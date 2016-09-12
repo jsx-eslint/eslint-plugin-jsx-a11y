@@ -9,7 +9,7 @@ const rules = fs.readdirSync(path.resolve(__dirname, '../src/rules/'))
   .map(f => path.basename(f, '.js'));
 
 describe('all rule files should be exported by the plugin', () => {
-  rules.forEach(ruleName => {
+  rules.forEach((ruleName) => {
     it(`should export ${ruleName}`, () => {
       assert.equal(
         plugin.rules[ruleName],

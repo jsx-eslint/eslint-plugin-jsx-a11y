@@ -11,7 +11,7 @@ import { propName } from 'jsx-ast-utils';
 import ariaAttributes from '../util/attributes/ARIA';
 import getSuggestion from '../util/getSuggestion';
 
-const errorMessage = name => {
+const errorMessage = (name) => {
   const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
   const suggestions = getSuggestion(name, dictionary);
   const message = `${name}: This attribute is an invalid ARIA attribute.`;
@@ -33,7 +33,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXAttribute: attribute => {
+    JSXAttribute: (attribute) => {
       const name = propName(attribute);
       const normalizedName = name ? name.toUpperCase() : '';
 

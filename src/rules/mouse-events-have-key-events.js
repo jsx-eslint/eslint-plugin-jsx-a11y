@@ -24,7 +24,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const attributes = node.attributes;
 
       // Check onmouseover / onfocus pairing.

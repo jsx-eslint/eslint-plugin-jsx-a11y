@@ -32,7 +32,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       // If role is not explicitly defined, then try and get its implicit role.
       const type = elementType(node);
       const role = getProp(node.attributes, 'role');
@@ -51,7 +51,7 @@ module.exports = {
       const invalidAriaPropsForRole = Object.keys(ARIA)
         .filter(attribute => propertySet.indexOf(attribute) === -1);
 
-      node.attributes.forEach(prop => {
+      node.attributes.forEach((prop) => {
         if (prop.type === 'JSXSpreadAttribute') {
           return;
         }

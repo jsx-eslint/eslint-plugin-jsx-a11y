@@ -42,7 +42,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       let REDUNDANT_WORDS_EXTENDED;
 
       if (context.options[0]) {

@@ -25,7 +25,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXAttribute: attribute => {
+    JSXAttribute: (attribute) => {
       const name = propName(attribute);
       const normalizedName = name ? name.toUpperCase() : '';
 
@@ -46,7 +46,7 @@ module.exports = {
       const validRoles = normalizedValues
         .filter(val => Object.keys(validRoleTypes).indexOf(val) > -1);
 
-      validRoles.forEach(role => {
+      validRoles.forEach((role) => {
         const { requiredProps } = validRoleTypes[role];
 
         if (requiredProps.length > 0) {

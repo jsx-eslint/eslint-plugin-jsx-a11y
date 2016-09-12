@@ -44,7 +44,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const typeCheck = headings.concat(context.options[0]);
       const nodeType = elementType(node);
 
@@ -53,7 +53,7 @@ module.exports = {
         return;
       }
 
-      const isAccessible = node.parent.children.some(child => {
+      const isAccessible = node.parent.children.some((child) => {
         switch (child.type) {
           case 'Literal':
             return Boolean(child.value);
