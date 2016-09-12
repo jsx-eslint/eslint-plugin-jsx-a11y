@@ -24,7 +24,7 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-const errorMessage = name => {
+const errorMessage = (name) => {
   const { type, values: permittedValues } = ariaAttributes[name.toUpperCase()];
 
   switch (type) {

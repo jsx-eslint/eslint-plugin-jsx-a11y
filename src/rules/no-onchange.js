@@ -28,7 +28,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const nodeType = elementType(node);
 
       if (applicableTypes.indexOf(nodeType) === -1) {

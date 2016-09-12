@@ -42,6 +42,7 @@ ruleTester.run('heading-has-content', rule, {
     { code: '<h1>{foo}</h1>', parserOptions },
     { code: '<h1>{foo.bar}</h1>', parserOptions },
     { code: '<h1 dangerouslySetInnerHTML={{ __html: "foo" }} />', parserOptions },
+    { code: '<h1 children={children} />', parserOptions },
   ],
   invalid: [
     { code: '<h1 />', errors: [expectedError], parserOptions },

@@ -26,7 +26,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const nodeType = elementType(node);
       const nodeAttrs = DOM[nodeType] || {};
       const {
@@ -40,7 +40,7 @@ module.exports = {
 
       const invalidAttributes = Object.keys(ARIA).concat('ROLE');
 
-      node.attributes.forEach(prop => {
+      node.attributes.forEach((prop) => {
         if (prop.type === 'JSXSpreadAttribute') {
           return;
         }

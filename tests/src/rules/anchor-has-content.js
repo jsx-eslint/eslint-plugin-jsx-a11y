@@ -37,6 +37,7 @@ ruleTester.run('anchor-has-content', rule, {
     { code: '<a>{foo}</a>', parserOptions },
     { code: '<a>{foo.bar}</a>', parserOptions },
     { code: '<a dangerouslySetInnerHTML={{ __html: "foo" }} />', parserOptions },
+    { code: '<a children={children} />', parserOptions },
   ],
   invalid: [
     { code: '<a />', errors: [expectedError], parserOptions },

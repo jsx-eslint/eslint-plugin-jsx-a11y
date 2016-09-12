@@ -7,7 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType, hasProp } from 'jsx-ast-utils';
+import { elementType, hasAnyProp } from 'jsx-ast-utils';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage =
@@ -44,7 +44,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const typeCheck = headings.concat(context.options[0]);
       const nodeType = elementType(node);
 
@@ -53,7 +53,7 @@ module.exports = {
         return;
       }
 
-      const isAccessible = node.parent.children.some(child => {
+      const isAccessible = node.parent.children.some((child) => {
         switch (child.type) {
           case 'Literal':
             return Boolean(child.value);
@@ -70,7 +70,7 @@ module.exports = {
           default:
             return false;
         }
-      }) || hasProp(node.attributes, 'dangerouslySetInnerHTML');
+      }) || hasAnyProp(node.attributes, ['dangerouslySetInnerHTML', 'children']);
 
 
       if (isAccessible) {

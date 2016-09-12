@@ -60,7 +60,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXAttribute: attribute => {
+    JSXAttribute: (attribute) => {
       const name = propName(attribute);
       const normalizedName = name ? name.toUpperCase() : '';
 

@@ -32,7 +32,7 @@ Try removing the prop '${invalidProp}'.`,
 });
 
 // Generate valid test cases
-const roleValidityTests = Object.keys(DOM).map(element => {
+const roleValidityTests = Object.keys(DOM).map((element) => {
   const isReserved = DOM[element].reserved || false;
   const role = isReserved ? '' : 'role';
 
@@ -42,7 +42,7 @@ const roleValidityTests = Object.keys(DOM).map(element => {
   };
 });
 
-const ariaValidityTests = Object.keys(DOM).map(element => {
+const ariaValidityTests = Object.keys(DOM).map((element) => {
   const isReserved = DOM[element].reserved || false;
   const aria = isReserved ? '' : 'aria-hidden';
 

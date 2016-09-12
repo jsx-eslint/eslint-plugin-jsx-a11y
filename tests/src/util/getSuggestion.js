@@ -31,7 +31,7 @@ describe('spell check suggestion API', () => {
   it('should return multiple correct suggestions given real word and a dictionary', () => {
     const word = 'theer';
     const dictionary = ['there', 'their', 'foo', 'bar'];
-    const expected = ['their', 'there'];
+    const expected = ['there', 'their'];
     const actual = getSuggestion(word, dictionary);
 
     assert.deepEqual(expected, actual);

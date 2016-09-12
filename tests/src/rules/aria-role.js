@@ -39,7 +39,7 @@ const createTests = roles => roles.map(role => ({
 }));
 
 const validTests = createTests(validRoles);
-const invalidTests = createTests(invalidRoles).map(test => {
+const invalidTests = createTests(invalidRoles).map((test) => {
   const invalidTest = assign({}, test);
   invalidTest.errors = [errorMessage];
   return invalidTest;

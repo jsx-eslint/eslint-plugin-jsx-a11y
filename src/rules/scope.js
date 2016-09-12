@@ -22,7 +22,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXAttribute: node => {
+    JSXAttribute: (node) => {
       const name = propName(node);
       if (name && name.toUpperCase() !== 'SCOPE') {
         return;

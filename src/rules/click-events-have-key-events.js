@@ -24,7 +24,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const props = node.attributes;
       if (getProp(props, 'onclick') === undefined) {
         return;

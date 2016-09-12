@@ -34,7 +34,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const typeCheck = ['label'].concat(context.options[0]);
       const nodeType = elementType(node);
 
