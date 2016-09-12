@@ -7,7 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType, hasProp } from 'jsx-ast-utils';
+import { elementType, hasAnyProp } from 'jsx-ast-utils';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage =
@@ -65,7 +65,7 @@ module.exports = {
           default:
             return false;
         }
-      }) || hasProp(node.attributes, 'dangerouslySetInnerHTML');
+      }) || hasAnyProp(node.attributes, ['dangerouslySetInnerHTML', 'children']);
 
 
       if (isAccessible) {
