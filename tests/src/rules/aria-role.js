@@ -54,6 +54,7 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role={role || "button"} />', parserOptions },
     { code: '<div role={role || "foobar"} />', parserOptions },
     { code: '<div role="tabpanel row" />', parserOptions },
+    { code: '<div role="switch" />', parserOptions },
     { code: '<div role="doc-abstract" />', parserOptions },
     { code: '<div role="doc-appendix doc-bibliography" />', parserOptions },
     { code: '<Bar baz />', parserOptions },
