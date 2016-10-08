@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jsx-a11y",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "A static analysis linter of jsx and their accessibility with screen readers.",
   "keywords": [
     "eslint",
