@@ -1,6 +1,6 @@
 import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
 import getTabIndex from './getTabIndex';
-import DOMElements from './attributes/DOM';
+import DOMElements from './attributes/DOM.json';
 
 // Map of tagNames to functions that return whether that element is interactive or not.
 const interactiveMap = {

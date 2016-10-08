@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { propName } from 'jsx-ast-utils';
-import ariaAttributes from '../util/attributes/ARIA';
+import ariaAttributes from '../util/attributes/ARIA.json';
 import getSuggestion from '../util/getSuggestion';
 
 const errorMessage = (name) => {

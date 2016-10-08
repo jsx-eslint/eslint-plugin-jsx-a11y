@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType } from 'jsx-ast-utils';
-import DOMElements from '../util/attributes/DOM';
+import DOMElements from '../util/attributes/DOM.json';
 
 const errorMessage = 'The scope prop can only be used on <th> elements.';
 

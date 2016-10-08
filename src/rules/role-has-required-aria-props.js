@@ -9,7 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue, propName } from 'jsx-ast-utils';
-import validRoleTypes from '../util/attributes/role';
+import validRoleTypes from '../util/attributes/role.json';
 
 const errorMessage = (role, requiredProps) =>
   `Elements with the ARIA role "${role}" must have the following ` +

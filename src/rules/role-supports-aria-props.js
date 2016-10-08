@@ -9,8 +9,8 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
-import ROLES from '../util/attributes/role';
-import ARIA from '../util/attributes/ARIA';
+import ROLES from '../util/attributes/role.json';
+import ARIA from '../util/attributes/ARIA.json';
 import getImplicitRole from '../util/getImplicitRole';
 
 const errorMessage = (attr, role, tag, isImplicit) => {

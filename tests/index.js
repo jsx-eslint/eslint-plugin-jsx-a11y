@@ -13,7 +13,7 @@ describe('all rule files should be exported by the plugin', () => {
     it(`should export ${ruleName}`, () => {
       assert.equal(
         plugin.rules[ruleName],
-        require(path.join('../src/rules', ruleName)) // eslint-disable-line global-require
+        require(path.join('../src/rules', ruleName)) // eslint-disable-line
       );
     });
   });

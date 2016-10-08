@@ -9,7 +9,7 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import DOM from '../../../src/util/attributes/DOM';
+import DOM from '../../../src/util/attributes/DOM.json';
 import rule from '../../../src/rules/aria-unsupported-elements';
 
 const parserOptions = {

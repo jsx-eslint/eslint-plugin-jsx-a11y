@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType, getLiteralPropValue } from 'jsx-ast-utils';
-import ISO_CODES from '../util/attributes/ISO';
+import ISO_CODES from '../util/attributes/ISO.json';
 
 const errorMessage =
   'lang attribute must have a valid value.';
