@@ -76,7 +76,6 @@ function Foo(props) {
 <img src="foo" alt={altText} />
 <img src="foo" alt={`${person} smiling`} />
 <img src="foo" alt="" />
-<img src="foo" role="presentation" />
 ```
 
 ### Fail
