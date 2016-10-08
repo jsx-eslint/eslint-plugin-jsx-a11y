@@ -1,3 +1,9 @@
+2.2.3 / 2016-10-08
+==================
+- [fix] - Add `switch` aria role.
+- [devDependencies] - Updgrade dev dependencies and fix linting issues.
+
+
 2.2.2 / 2016-09-12
 ==================
 - [fix] `x-has-content` rules now pass with children prop set.
