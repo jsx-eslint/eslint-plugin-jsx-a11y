@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
-import ariaAttributes from '../util/attributes/ARIA';
+import ariaAttributes from '../util/attributes/ARIA.json';
 
 const errorMessage = (name, type, permittedValues) => {
   switch (type) {

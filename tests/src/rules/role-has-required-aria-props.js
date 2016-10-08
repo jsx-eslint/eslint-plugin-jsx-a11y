@@ -9,7 +9,7 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import validRoleTypes from '../../../src/util/attributes/role';
+import validRoleTypes from '../../../src/util/attributes/role.json';
 import rule from '../../../src/rules/role-has-required-aria-props';
 
 const parserOptions = {

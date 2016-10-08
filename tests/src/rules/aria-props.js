@@ -9,7 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import rule from '../../../src/rules/aria-props';
-import ariaAttributes from '../../../src/util/attributes/ARIA';
+import ariaAttributes from '../../../src/util/attributes/ARIA.json';
 import getSuggestion from '../../../src/util/getSuggestion';
 
 const parserOptions = {

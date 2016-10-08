@@ -9,8 +9,8 @@
 // ----------------------------------------------------------------------------
 
 import { elementType, propName } from 'jsx-ast-utils';
-import DOM from '../util/attributes/DOM';
-import ARIA from '../util/attributes/ARIA';
+import DOM from '../util/attributes/DOM.json';
+import ARIA from '../util/attributes/ARIA.json';
 
 const errorMessage = invalidProp =>
   `This element does not support ARIA roles, states and properties. \

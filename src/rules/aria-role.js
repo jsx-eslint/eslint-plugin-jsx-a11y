@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
-import roles from '../util/attributes/role';
+import roles from '../util/attributes/role.json';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
 

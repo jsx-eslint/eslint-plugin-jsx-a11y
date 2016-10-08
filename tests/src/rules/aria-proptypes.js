@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import ariaAttributes from '../../../src/util/attributes/ARIA';
+import ariaAttributes from '../../../src/util/attributes/ARIA.json';
 import rule from '../../../src/rules/aria-proptypes';
 
 const parserOptions = {
