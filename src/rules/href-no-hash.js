@@ -16,7 +16,7 @@ const errorMessage = 'Links must not point to "#". ' +
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentAndPropSchema({ propsKey: 'SpecialLink' })],
+    schema: [componentAndPropSchema({ propsKey: 'specialLink' })],
   },
 
   create: context => ({
@@ -31,7 +31,7 @@ module.exports = {
         return;
       }
 
-      const propOptions = options.SpecialLink || [];
+      const propOptions = options.specialLink || [];
       const propsToValidate = ['href'].concat(propOptions);
       const values = propsToValidate
         .map(prop => getProp(node.attributes, prop))
