@@ -33,7 +33,7 @@
     "coveralls": "^2.11.8",
     "eslint": "^3.0.0",
     "eslint-config-airbnb-base": "^8.0.0",
-    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-import": "^2.0.1",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^3.0.0",
     "rimraf": "^2.5.2"
