@@ -17,7 +17,7 @@ const errorMessage =
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentSchema],
+    schema: [componentSchema()],
   },
 
   create: context => ({

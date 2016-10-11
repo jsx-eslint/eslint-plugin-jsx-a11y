@@ -16,7 +16,7 @@ const errorMessage = 'Form controls using a label to identify them must be ' +
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentSchema],
+    schema: [componentSchema()],
   },
 
   create: context => ({

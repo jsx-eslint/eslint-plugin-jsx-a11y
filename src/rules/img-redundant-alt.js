@@ -22,7 +22,8 @@ const errorMessage = 'Redundant alt attribute. Screen-readers already announce '
   '`img` tags as an image. You don\'t need to use the words `image`, ' +
   '`photo,` or `picture` (or any specified custom words) in the alt prop.';
 
-const properties = assign({}, componentSchema.properties, {
+const componentObjSchema = componentSchema();
+const properties = assign({}, componentObjSchema.properties, {
   words: {
     oneOf: [
      { type: 'string' },
@@ -37,7 +38,7 @@ const properties = assign({}, componentSchema.properties, {
     ],
   },
 });
-const schema = assign({}, componentSchema, { properties });
+const schema = assign({}, componentObjSchema, { properties });
 
 module.exports = {
   meta: {

@@ -15,7 +15,7 @@ const errorMessage = 'Avoid positive integer values for tabIndex.';
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

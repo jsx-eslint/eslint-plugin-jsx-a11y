@@ -20,7 +20,7 @@ const errorMessage = 'Elements with onClick handlers must be focusable. ' +
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

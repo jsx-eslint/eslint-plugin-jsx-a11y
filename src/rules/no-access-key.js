@@ -17,7 +17,7 @@ const errorMessage = 'No access key attribute allowed. Inconsistencies ' +
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

@@ -54,7 +54,7 @@ const validityCheck = (value, expectedType, permittedValues) => {
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

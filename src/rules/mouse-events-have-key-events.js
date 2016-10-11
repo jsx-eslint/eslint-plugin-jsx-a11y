@@ -17,7 +17,7 @@ const mouseOutErrorMessage = 'onMouseOut must be accompanied by onBlur for acces
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

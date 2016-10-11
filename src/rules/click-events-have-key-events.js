@@ -18,7 +18,7 @@ const errorMessage = 'Visible, non-interactive elements with click handlers' +
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

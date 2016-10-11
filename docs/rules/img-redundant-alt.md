@@ -17,7 +17,7 @@ This rule takes one optional object argument of type object:
 }
 ```
 
-For the `components` option, these strings determine which JSX elements (**including** `<img>` by default) should be checked for having redundant words in the `alt` prop value . This is a good use case when you have a wrapper component that simply renders an `img` element (like in React).
+For the `components` option, these strings determine which JSX elements (**always including** `<img>`) should be checked for having redundant words in the `alt` prop value . This is a good use case when you have a wrapper component that simply renders an `img` element (like in React).
 
 For the `words` option, these strings can be used to specify custom words that should be checked for in the alt prop, including `image`, `photo`, and `picture`. Useful for specifying words in other languages.
 

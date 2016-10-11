@@ -19,7 +19,7 @@ This rule takes one optional object argument of type object:
 }
 ```
 
-For the `components` option, these strings determine which JSX elements (**including** `<h1>` thru `<h6>` by default) should be checked for having content. This is a good use case when you have a wrapper component that simply renders an `h1` element (like in React):
+For the `components` option, these strings determine which JSX elements (**always including** `<h1>` thru `<h6>`) should be checked for having content. This is a good use case when you have a wrapper component that simply renders an `h1` element (like in React):
 
 
 ```js

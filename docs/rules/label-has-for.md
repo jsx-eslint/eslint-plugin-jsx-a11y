@@ -16,7 +16,7 @@ This rule takes one optional object argument of type object:
 }
 ```
 
-For the `components` option, these strings determine which JSX elements (**including** `<label>` by default) should be checked for having `htmlFor` prop. This is a good use case when you have a wrapper component that simply renders a `label` element (like in React):
+For the `components` option, these strings determine which JSX elements (**always including** `<label>`) should be checked for having `htmlFor` prop. This is a good use case when you have a wrapper component that simply renders a `label` element (like in React):
 
 ```js
 // Label.js

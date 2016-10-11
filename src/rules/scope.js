@@ -16,7 +16,7 @@ const errorMessage = 'The scope prop can only be used on <th> elements.';
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

@@ -26,7 +26,7 @@ This role is implicit on the element ${tag}.`;
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

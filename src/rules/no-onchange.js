@@ -22,7 +22,7 @@ const applicableTypes = [
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

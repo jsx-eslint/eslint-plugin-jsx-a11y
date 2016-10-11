@@ -26,7 +26,7 @@ const headings = [
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentSchema],
+    schema: [componentSchema()],
   },
 
   create: context => ({

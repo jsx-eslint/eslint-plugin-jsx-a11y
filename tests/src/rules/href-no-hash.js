@@ -35,7 +35,7 @@ const array = [{
   components: ['Anchor', 'Link'],
 }];
 const props = [{
-  props: ['hrefLeft', 'hrefRight'],
+  SpecialLink: ['hrefLeft', 'hrefRight'],
 }];
 
 ruleTester.run('href-no-hash', rule, {

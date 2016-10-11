@@ -15,7 +15,7 @@ const errorMessage = '<html> elements must have the lang prop.';
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

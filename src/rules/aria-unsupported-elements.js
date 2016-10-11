@@ -20,7 +20,7 @@ Try removing the prop '${invalidProp}'.`;
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

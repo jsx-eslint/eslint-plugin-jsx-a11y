@@ -19,7 +19,7 @@ const errorMessage = (role, requiredProps) =>
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

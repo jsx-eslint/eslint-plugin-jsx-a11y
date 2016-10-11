@@ -16,7 +16,7 @@ const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract AR
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema],
+    schema: [noSchema()],
   },
 
   create: context => ({

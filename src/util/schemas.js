@@ -32,38 +32,38 @@
  /**
   * JSON schema to accept an object that really does nothing.
   */
- export const noSchema = {
+ export const noSchema = () => ({
    type: 'object',
- };
+ });
 
  /**
   * JSON schema to accept an object with components properties.
   */
- export const componentSchema = {
+ export const componentSchema = (key = 'components') => ({
    type: 'object',
    properties: {
-     components: componentListSchema,
+     [key]: componentListSchema,
    },
- };
+ });
 
  /**
   * JSON schema to accept an object with props properties.
   */
- export const propSchema = {
+ export const propSchema = (key = 'props') => ({
    type: 'object',
    properties: {
-     props: propListSchema,
+     [key]: propListSchema,
    },
- };
+ });
 
 /**
  * JSON schema to accept an object with components and props properties
  * that have the schemas defined above.
  */
- export const componentAndPropSchema = {
+ export const componentAndPropSchema = ({ componentsKey = 'components', propsKey = 'props' } = {}) => ({
    type: 'object',
    properties: {
-     components: componentListSchema,
-     props: propListSchema,
+     [componentsKey]: componentListSchema,
+     [propsKey]: propListSchema,
    },
- };
+ });
