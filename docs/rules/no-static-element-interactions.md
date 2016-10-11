@@ -2,6 +2,8 @@
 
 Enforce non-interactive DOM elements have no interactive handlers. Static elements such as `<div>` and `<span>` should not have mouse/keyboard event listeners. Instead use something more semantic, such as a button or a link.
 
+Valid interactive elements are: `<a>`, `<area>`, `<button>`, `<input>`, `<option>`, `<select>`, or `<textarea>`.
+
 ## Rule details
 
 This rule takes no arguments.
