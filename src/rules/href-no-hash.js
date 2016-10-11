@@ -20,7 +20,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const options = context.options[0] || {};
       const componentOptions = options.components || [];
       const typesToValidate = ['a'].concat(componentOptions);
@@ -37,7 +37,7 @@ module.exports = {
         .map(prop => getProp(node.attributes, prop))
         .map(prop => getPropValue(prop));
 
-      values.forEach(value => {
+      values.forEach((value) => {
         if (value === '#') {
           context.report({
             node,

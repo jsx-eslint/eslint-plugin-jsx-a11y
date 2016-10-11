@@ -20,7 +20,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const isMarquee = elementType(node) === 'marquee';
 
       if (isMarquee) {

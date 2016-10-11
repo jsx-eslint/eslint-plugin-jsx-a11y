@@ -10,8 +10,8 @@
 
 import { elementType, propName } from 'jsx-ast-utils';
 import { noSchema } from '../util/schemas';
-import DOM from '../util/attributes/DOM';
-import ARIA from '../util/attributes/ARIA';
+import DOM from '../util/attributes/DOM.json';
+import ARIA from '../util/attributes/ARIA.json';
 
 const errorMessage = invalidProp =>
   `This element does not support ARIA roles, states and properties. \
@@ -24,7 +24,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const nodeType = elementType(node);
       const nodeAttrs = DOM[nodeType] || {};
       const {
@@ -38,7 +38,7 @@ module.exports = {
 
       const invalidAttributes = Object.keys(ARIA).concat('ROLE');
 
-      node.attributes.forEach(prop => {
+      node.attributes.forEach((prop) => {
         if (prop.type === 'JSXSpreadAttribute') {
           return;
         }

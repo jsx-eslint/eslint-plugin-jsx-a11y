@@ -9,7 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import rule from '../../../src/rules/aria-props';
-import ariaAttributes from '../../../src/util/attributes/ARIA';
+import ariaAttributes from '../../../src/util/attributes/ARIA.json';
 import getSuggestion from '../../../src/util/getSuggestion';
 
 const parserOptions = {
@@ -25,7 +25,7 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-const errorMessage = name => {
+const errorMessage = (name) => {
   const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
   const suggestions = getSuggestion(name, dictionary);
   const message = `${name}: This attribute is an invalid ARIA attribute.`;

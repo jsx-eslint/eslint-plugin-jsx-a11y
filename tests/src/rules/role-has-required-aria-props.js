@@ -9,7 +9,7 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import validRoleTypes from '../../../src/util/attributes/role';
+import validRoleTypes from '../../../src/util/attributes/role.json';
 import rule from '../../../src/rules/role-has-required-aria-props';
 
 const parserOptions = {
@@ -25,7 +25,7 @@ const parserOptions = {
 
 const ruleTester = new RuleTester();
 
-const errorMessage = role => {
+const errorMessage = (role) => {
   const requiredProps = validRoleTypes[role.toUpperCase()].requiredProps.toString().toLowerCase();
 
   return {
@@ -37,7 +37,7 @@ const errorMessage = role => {
 
 
 // Create basic test cases using all valid role types.
-const basicValidityTests = Object.keys(validRoleTypes).map(role => {
+const basicValidityTests = Object.keys(validRoleTypes).map((role) => {
   const { requiredProps } = validRoleTypes[role];
   const propChain = requiredProps.join(' ').toLowerCase();
 

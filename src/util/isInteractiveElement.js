@@ -1,10 +1,10 @@
 import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
 import getTabIndex from './getTabIndex';
-import DOMElements from './attributes/DOM';
+import DOMElements from './attributes/DOM.json';
 
 // Map of tagNames to functions that return whether that element is interactive or not.
 const interactiveMap = {
-  a: attributes => {
+  a: (attributes) => {
     const href = getPropValue(getProp(attributes, 'href'));
     const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
     return href !== undefined || tabIndex !== undefined;
@@ -12,7 +12,7 @@ const interactiveMap = {
   // This is same as `a` interactivity function
   area: attributes => interactiveMap.a(attributes),
   button: () => true,
-  input: attributes => {
+  input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
     return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
   },

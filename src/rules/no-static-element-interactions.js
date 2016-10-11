@@ -22,7 +22,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const props = node.attributes;
       const type = elementType(node);
 

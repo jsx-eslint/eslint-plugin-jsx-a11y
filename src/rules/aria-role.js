@@ -9,7 +9,7 @@
 
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
 import { noSchema } from '../util/schemas';
-import roles from '../util/attributes/role';
+import roles from '../util/attributes/role.json';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
 
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXAttribute: attribute => {
+    JSXAttribute: (attribute) => {
       const name = propName(attribute);
       const normalizedName = name ? name.toUpperCase() : '';
 

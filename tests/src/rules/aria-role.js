@@ -10,7 +10,7 @@
 import { RuleTester } from 'eslint';
 import assign from 'object-assign';
 import rule from '../../../src/rules/aria-role';
-import ROLES from '../../../src/util/attributes/role';
+import ROLES from '../../../src/util/attributes/role.json';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -39,7 +39,7 @@ const createTests = roles => roles.map(role => ({
 }));
 
 const validTests = createTests(validRoles);
-const invalidTests = createTests(invalidRoles).map(test => {
+const invalidTests = createTests(invalidRoles).map((test) => {
   const invalidTest = assign({}, test);
   invalidTest.errors = [errorMessage];
   return invalidTest;
@@ -54,6 +54,7 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role={role || "button"} />', parserOptions },
     { code: '<div role={role || "foobar"} />', parserOptions },
     { code: '<div role="tabpanel row" />', parserOptions },
+    { code: '<div role="switch" />', parserOptions },
     { code: '<div role="doc-abstract" />', parserOptions },
     { code: '<div role="doc-appendix doc-bibliography" />', parserOptions },
     { code: '<Bar baz />', parserOptions },

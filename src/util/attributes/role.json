@@ -2446,6 +2446,31 @@
     "requiredProps": [],
     "abstract": true
   },
+  "SWITCH": {
+    "requiredProps": [
+      "ARIA-CHECKED"
+    ],
+    "props": [
+      "ARIA-CHECKED",
+      "ARIA-ATOMIC",
+      "ARIA-BUSY",
+      "ARIA-CONTROLS",
+      "ARIA-DESCRIBEDBY",
+      "ARIA-DISABLED",
+      "ARIA-DROPEFFECT",
+      "ARIA-FLOWTO",
+      "ARIA-GRABBED",
+      "ARIA-HASPOPUP",
+      "ARIA-HIDDEN",
+      "ARIA-INVALID",
+      "ARIA-LABEL",
+      "ARIA-LABELLEDBY",
+      "ARIA-LIVE",
+      "ARIA-OWNS",
+      "ARIA-RELEVANT"
+    ],
+    "abstract": false
+  },
   "TAB": {
     "requiredProps": [],
     "abstract": false,

@@ -21,7 +21,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       const accessKey = getProp(node.attributes, 'accesskey');
       const accessKeyValue = getPropValue(accessKey);
 

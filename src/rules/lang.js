@@ -9,7 +9,7 @@
 
 import { propName, elementType, getLiteralPropValue } from 'jsx-ast-utils';
 import { noSchema } from '../util/schemas';
-import ISO_CODES from '../util/attributes/ISO';
+import ISO_CODES from '../util/attributes/ISO.json';
 
 const errorMessage =
   'lang attribute must have a valid value.';
@@ -21,7 +21,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXAttribute: node => {
+    JSXAttribute: (node) => {
       const name = propName(node);
       if (name && name.toUpperCase() !== 'LANG') {
         return;

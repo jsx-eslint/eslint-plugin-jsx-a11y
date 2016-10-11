@@ -10,8 +10,8 @@
 
 import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
 import { noSchema } from '../util/schemas';
-import ROLES from '../util/attributes/role';
-import ARIA from '../util/attributes/ARIA';
+import ROLES from '../util/attributes/role.json';
+import ARIA from '../util/attributes/ARIA.json';
 import getImplicitRole from '../util/getImplicitRole';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
@@ -30,7 +30,7 @@ module.exports = {
   },
 
   create: context => ({
-    JSXOpeningElement: node => {
+    JSXOpeningElement: (node) => {
       // If role is not explicitly defined, then try and get its implicit role.
       const type = elementType(node);
       const role = getProp(node.attributes, 'role');
@@ -49,7 +49,7 @@ module.exports = {
       const invalidAriaPropsForRole = Object.keys(ARIA)
         .filter(attribute => propertySet.indexOf(attribute) === -1);
 
-      node.attributes.forEach(prop => {
+      node.attributes.forEach((prop) => {
         if (prop.type === 'JSXSpreadAttribute') {
           return;
         }
