@@ -8,18 +8,18 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType, getLiteralPropValue } from 'jsx-ast-utils';
+import { generateObjSchema } from '../util/schemas';
 import ISO_CODES from '../util/attributes/ISO.json';
 
 const errorMessage =
   'lang attribute must have a valid value.';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [schema],
   },
 
   create: context => ({

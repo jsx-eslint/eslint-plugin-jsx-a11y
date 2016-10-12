@@ -8,50 +8,48 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
+import { generateObjSchema, arraySchema } from '../util/schemas';
 
 const errorMessage = 'Links must not point to "#". ' +
   'Use a more descriptive href or use a button instead.';
 
+const schema = generateObjSchema({
+  components: arraySchema,
+  specialLink: arraySchema,
+});
+
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      {
-        oneOf: [
-          { type: 'string' },
-          {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            minItems: 1,
-            uniqueItems: true,
-          },
-        ],
-      },
-    ],
+    schema: [schema],
   },
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      const typeCheck = ['a'].concat(context.options[0]);
+      const options = context.options[0] || {};
+      const componentOptions = options.components || [];
+      const typesToValidate = ['a'].concat(componentOptions);
       const nodeType = elementType(node);
 
       // Only check 'a' elements and custom types.
-      if (typeCheck.indexOf(nodeType) === -1) {
+      if (typesToValidate.indexOf(nodeType) === -1) {
         return;
       }
 
-      const href = getProp(node.attributes, 'href');
-      const value = getPropValue(href);
+      const propOptions = options.specialLink || [];
+      const propsToValidate = ['href'].concat(propOptions);
+      const values = propsToValidate
+        .map(prop => getProp(node.attributes, prop))
+        .map(prop => getPropValue(prop));
 
-      if (href && value === '#') {
-        context.report({
-          node,
-          message: errorMessage,
-        });
-      }
+      values.forEach((value) => {
+        if (value === '#') {
+          context.report({
+            node,
+            message: errorMessage,
+          });
+        }
+      });
     },
   }),
 };

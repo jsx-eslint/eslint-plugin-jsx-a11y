@@ -8,19 +8,19 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, hasAnyProp, elementType } from 'jsx-ast-utils';
+import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 
 const errorMessage = 'Visible, non-interactive elements with click handlers' +
 ' must have at least one keyboard listener.';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [schema],
   },
 
   create: context => ({

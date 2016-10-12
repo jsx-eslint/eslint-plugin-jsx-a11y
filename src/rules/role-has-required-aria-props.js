@@ -9,19 +9,19 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue, propName } from 'jsx-ast-utils';
+import { generateObjSchema } from '../util/schemas';
 import validRoleTypes from '../util/attributes/role.json';
 
 const errorMessage = (role, requiredProps) =>
   `Elements with the ARIA role "${role}" must have the following ` +
   `attributes defined: ${String(requiredProps).toLowerCase()}`;
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [schema],
   },
 
   create: context => ({

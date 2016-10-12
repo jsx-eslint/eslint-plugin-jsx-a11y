@@ -8,35 +8,25 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
+import { generateObjSchema, arraySchema } from '../util/schemas';
+
+const schema = generateObjSchema({ components: arraySchema });
 
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      {
-        oneOf: [
-          { type: 'string' },
-          {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            minItems: 1,
-            uniqueItems: true,
-          },
-        ],
-      },
-    ],
+    schema: [schema],
   },
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      const typeCheck = ['img'].concat(context.options[0]);
+      const options = context.options[0] || {};
+      const componentOptions = options.components || [];
+      const typesToValidate = ['img'].concat(componentOptions);
       const nodeType = elementType(node);
 
       // Only check 'img' elements and custom types.
-      if (typeCheck.indexOf(nodeType) === -1) {
+      if (typesToValidate.indexOf(nodeType) === -1) {
         return;
       }
 

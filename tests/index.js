@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+/* eslint global-require: 0 */
 
 import assert from 'assert';
 import fs from 'fs';
@@ -22,5 +23,17 @@ describe('all rule files should be exported by the plugin', () => {
 describe('configurations', () => {
   it('should export a \'recommended\' configuration', () => {
     assert(plugin.configs.recommended);
+  });
+});
+
+describe('schemas', () => {
+  rules.forEach((ruleName) => {
+    it(`${ruleName} should export a schema with type object`, () => {
+      const rule = require(path.join('../src/rules', ruleName)); // eslint-disable-line
+      const schema = rule.meta && rule.meta.schema && rule.meta.schema[0];
+      const { type } = schema;
+
+      assert.deepEqual(type, 'object');
+    });
   });
 });

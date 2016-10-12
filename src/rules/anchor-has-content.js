@@ -8,40 +8,25 @@
 // ----------------------------------------------------------------------------
 
 import { elementType, hasAnyProp } from 'jsx-ast-utils';
+import { arraySchema, generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage =
     'Anchors must have content and the content must be accessible by a screen reader.';
 
-const anchors = [
-  'a',
-  'Link',
-];
+const schema = generateObjSchema({ components: arraySchema });
 
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      {
-        oneOf: [
-          { type: 'string' },
-          {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            minItems: 1,
-            uniqueItems: true,
-          },
-        ],
-      },
-    ],
+    schema: [schema],
   },
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      const typeCheck = anchors.concat(context.options[0]);
+      const options = context.options[0] || {};
+      const componentOptions = options.components || [];
+      const typeCheck = ['a'].concat(componentOptions);
       const nodeType = elementType(node);
 
       // Only check anchor elements and custom types.

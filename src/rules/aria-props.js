@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { propName } from 'jsx-ast-utils';
+import { generateObjSchema } from '../util/schemas';
 import ariaAttributes from '../util/attributes/ARIA.json';
 import getSuggestion from '../util/getSuggestion';
 
@@ -23,13 +24,12 @@ const errorMessage = (name) => {
   return message;
 };
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      { type: 'object' },
-    ],
+    schema: [schema],
   },
 
   create: context => ({

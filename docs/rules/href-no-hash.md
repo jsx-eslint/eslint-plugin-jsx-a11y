@@ -4,7 +4,20 @@ Enforce an anchor element's href prop value is not just #. You should use someth
 
 ## Rule details
 
-This rule takes one optional argument of type string or an array of strings. These strings determine which JSX elements should be checked for the `href` prop **including** `a` by default. This is a good use case when you have a wrapper component that simply renders an `a` element (like in React):
+This rule takes one optional object argument of type object:
+
+```json
+{
+    "rules": {
+        "jsx-a11y/href-no-hash": [ 2, {
+            "components": [ "Link" ],
+            "specialLink": [ "hrefLeft", "hrefRight" ]
+          }],
+    }
+}
+```
+
+For the `components` option, these strings determine which JSX elements (**always including** `<a>`) should be checked for the props designated in the `specialLink` options (**always including** `href`). This is a good use case when you have a wrapper component that simply renders an `a` element (like in React):
 
 ```js
 // Link.js
@@ -21,16 +34,6 @@ return (
 );
 ```
 
-To tell this plugin to also check your `Link` element, specify this in your `.eslintrc` file:
-
-```json
-{
-    "rules": {
-        "jsx-a11y/href-no-hash": [ 2, "Link" ], // OR
-        "jsx-a11y/href-no-hash": [ 2, [ "Link", "Anchor" ] ]
-    }
-}
-```
 
 ### Succeed
 ```jsx

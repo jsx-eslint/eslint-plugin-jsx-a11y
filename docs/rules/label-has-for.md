@@ -4,7 +4,19 @@ Enforce label tags have htmlFor attribute. Form controls using a label to identi
 
 ## Rule details
 
-This rule takes one optional argument of type string or array of strings. These strings determine which JSX elements should be checked for the `htmlFor` prop including `label` by default. This is a good use case when you have a wrapper component that simply renders an `label` element (like in React):
+This rule takes one optional object argument of type object:
+
+```json
+{
+    "rules": {
+        "jsx-a11y/label-has-for": [ 2, {
+            "components": [ "Label" ],
+          }],
+    }
+}
+```
+
+For the `components` option, these strings determine which JSX elements (**always including** `<label>`) should be checked for having `htmlFor` prop. This is a good use case when you have a wrapper component that simply renders a `label` element (like in React):
 
 ```js
 // Label.js
@@ -31,18 +43,8 @@ return (
 );
 ```
 
-To tell this plugin to also check your `Label` element, specify this in your `.eslintrc` file:
-
-```json
-{
-    "rules": {
-        "jsx-a11y/label-has-for": [ 2, "Label" ], // OR
-        "jsx-a11y/label-has-for": [ 2, [ "Label", "InputDescriptor" ] ]
-    }
-}
-```
-
 Note that passing props as spread attribute without `htmlFor` explicitly defined will cause this rule to fail. Explicitly pass down `htmlFor` prop for rule to pass. The prop must have an actual value to pass. Use `Label` component above as a reference. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.** For example:
+
 #### Bad
 ```jsx
 function Foo(props) {

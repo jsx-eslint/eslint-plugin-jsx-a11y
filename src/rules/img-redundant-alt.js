@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue, elementType } from 'jsx-ast-utils';
+import { generateObjSchema, arraySchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const REDUNDANT_WORDS = [
@@ -20,38 +21,26 @@ const errorMessage = 'Redundant alt attribute. Screen-readers already announce '
   '`img` tags as an image. You don\'t need to use the words `image`, ' +
   '`photo,` or `picture` (or any specified custom words) in the alt prop.';
 
+const schema = generateObjSchema({
+  components: arraySchema,
+  words: arraySchema,
+});
+
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      {
-        oneOf: [
-          { type: 'string' },
-          {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            minItems: 1,
-            uniqueItems: true,
-          },
-        ],
-      },
-    ],
+    schema: [schema],
   },
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      let REDUNDANT_WORDS_EXTENDED;
+      const options = context.options[0] || {};
+      const componentOptions = options.components || [];
+      const typesToValidate = ['img'].concat(componentOptions);
+      const nodeType = elementType(node);
 
-      if (context.options[0]) {
-        REDUNDANT_WORDS_EXTENDED = REDUNDANT_WORDS.concat(context.options[0]);
-      } else {
-        REDUNDANT_WORDS_EXTENDED = REDUNDANT_WORDS;
-      }
-      const type = elementType(node);
-      if (type !== 'img') {
+      // Only check 'label' elements and custom types.
+      if (typesToValidate.indexOf(nodeType) === -1) {
         return;
       }
 
@@ -62,10 +51,15 @@ module.exports = {
       }
 
       const value = getLiteralPropValue(altProp);
-      const isVisible = isHiddenFromScreenReader(type, node.attributes) === false;
+      const isVisible = isHiddenFromScreenReader(nodeType, node.attributes) === false;
+
+      const {
+        words = [],
+      } = options;
+      const redundantWords = REDUNDANT_WORDS.concat(words);
 
       if (typeof value === 'string' && isVisible) {
-        const hasRedundancy = REDUNDANT_WORDS_EXTENDED
+        const hasRedundancy = redundantWords
           .some(word => Boolean(value.match(new RegExp(`(?!{)${word}(?!})`, 'gi'))));
 
         if (hasRedundancy === true) {

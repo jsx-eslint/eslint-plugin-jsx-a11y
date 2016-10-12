@@ -29,8 +29,9 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-const string = ['Label'];
-const array = [['Label', 'Descriptor']];
+const array = [{
+  components: ['Label', 'Descriptor'],
+}];
 
 ruleTester.run('label-has-for', rule, {
   valid: [
@@ -44,14 +45,6 @@ ruleTester.run('label-has-for', rule, {
     { code: '<Label />', parserOptions }, // lower-case convention refers to real HTML elements.
     { code: '<Label htmlFor="foo" />', parserOptions },
     { code: '<UX.Layout>test</UX.Layout>', parserOptions },
-
-    // CUSTOM ELEMENT STRING OPTION TESTS
-    { code: '<Label htmlFor="foo" />', options: string, parserOptions },
-    { code: '<Label htmlFor={"foo"} />', options: string, parserOptions },
-    { code: '<Label htmlFor={foo} />', options: string, parserOptions },
-    { code: '<Label htmlFor={`${id}`} />', options: string, parserOptions },
-    { code: '<div />', options: string, parserOptions },
-    { code: '<Label htmlFor="foo">Test!</Label>', options: string, parserOptions },
 
     // CUSTOM ELEMENT ARRAY OPTION TESTS
     { code: '<Label htmlFor="foo" />', options: array, parserOptions },
@@ -74,28 +67,6 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label htmlFor={`${undefined}`} />', errors: [expectedError], parserOptions },
     { code: '<label>First Name</label>', errors: [expectedError], parserOptions },
     { code: '<label {...props}>Foo</label>', errors: [expectedError], parserOptions },
-
-    // CUSTOM ELEMENT STRING OPTION TESTS
-    { code: '<Label id="foo" />', errors: [expectedError], options: string, parserOptions },
-    {
-      code: '<Label htmlFor={undefined} />',
-      errors: [expectedError],
-      options: string,
-      parserOptions,
-    },
-    {
-      code: '<Label htmlFor={`${undefined}`} />',
-      errors: [expectedError],
-      options: string,
-      parserOptions,
-    },
-    { code: '<Label>First Name</Label>', errors: [expectedError], options: string, parserOptions },
-    {
-      code: '<Label {...props}>Foo</Label>',
-      errors: [expectedError],
-      options: string,
-      parserOptions,
-    },
 
     // CUSTOM ELEMENT ARRAY OPTION TESTS
     { code: '<Label id="foo" />', errors: [expectedError], options: array, parserOptions },

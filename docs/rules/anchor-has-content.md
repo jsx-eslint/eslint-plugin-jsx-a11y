@@ -7,7 +7,19 @@ Enforce that anchors have content and that the content is accessible to screen r
 
 ## Rule details
 
-This rule takes one optional argument of type string or array of strings. These strings determine which JSX elements should be checked including `a` and `Link` (react-router) by default. This is a good use case when you have a wrapper component that simply renders a anchor element (like in React):
+This rule takes one optional object argument of type object:
+
+```json
+{
+    "rules": {
+        "jsx-a11y/anchor-has-content": [ 2, {
+            "components": [ "Anchor" ],
+          }],
+    }
+}
+```
+
+For the `components` option, these strings determine which JSX elements (**always including** `<a>`) should be checked for having content. This is a good use case when you have a wrapper component that simply renders an `a` element (like in React):
 
 ```js
 // Anchor.js
@@ -24,17 +36,6 @@ const Anchor = props => {
 return (
   <Anchor>Create Account</Anchor>
 );
-```
-
-To tell this plugin to also check your `Anchor` element, specify this in your `.eslintrc` file:
-
-```json
-{
-    "rules": {
-        "jsx-a11y/anchor-has-content": [ 2, "Anchor" ], // OR
-        "jsx-a11y/anchor-has-content": [ 2, [ "AnchorOne", "AnchorTwo" ] ]
-    }
-}
 ```
 
 

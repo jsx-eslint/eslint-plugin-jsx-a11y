@@ -32,7 +32,6 @@ ruleTester.run('anchor-has-content', rule, {
   valid: [
     { code: '<div />;', parserOptions },
     { code: '<a>Foo</a>', parserOptions },
-    { code: '<Link>Foo</Link>', parserOptions },
     { code: '<a><Bar /></a>', parserOptions },
     { code: '<a>{foo}</a>', parserOptions },
     { code: '<a>{foo.bar}</a>', parserOptions },
@@ -41,7 +40,6 @@ ruleTester.run('anchor-has-content', rule, {
   ],
   invalid: [
     { code: '<a />', errors: [expectedError], parserOptions },
-    { code: '<Link />', errors: [expectedError], parserOptions },
     { code: '<a><Bar aria-hidden /></a>', errors: [expectedError], parserOptions },
     { code: '<a>{undefined}</a>', errors: [expectedError], parserOptions },
   ],

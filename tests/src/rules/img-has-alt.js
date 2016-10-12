@@ -34,8 +34,9 @@ Use alt="" or role="presentation" for presentational images.`,
   type: 'JSXOpeningElement',
 });
 
-const string = ['Avatar'];
-const array = [['Thumbnail', 'Image']];
+const array = [{
+  components: ['Thumbnail', 'Image'],
+}];
 
 
 ruleTester.run('img-has-alt', rule, {
@@ -74,23 +75,6 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt={error ? "not working": "working"} />', parserOptions },
     { code: '<img alt={undefined ? "working": "not working"} />', parserOptions },
     { code: '<img alt={plugin.name + " Logo"} />', parserOptions },
-
-    // CUSTOM ELEMENT TESTS FOR STRING OPTION
-    { code: '<Avatar alt="foo" />;', options: string, parserOptions },
-    { code: '<Avatar alt={"foo"} />;', options: string, parserOptions },
-    { code: '<Avatar alt={alt} />;', options: string, parserOptions },
-    { code: '<Avatar ALT="foo" />;', options: string, parserOptions },
-    { code: '<Avatar ALT={`This is the ${alt} text`} />;', options: string, parserOptions },
-    { code: '<Avatar ALt="foo" />;', options: string, parserOptions },
-    { code: '<Avatar alt="foo" salt={undefined} />;', options: string, parserOptions },
-    { code: '<Avatar {...this.props} alt="foo" />', options: string, parserOptions },
-    { code: '<avatar />', options: string, parserOptions },
-    { code: '<Avatar alt={function(e) {} } />', options: string, parserOptions },
-    { code: '<div alt={function(e) {} } />', options: string, parserOptions },
-    { code: '<Avatar alt={() => void 0} />', options: string, parserOptions },
-    { code: '<AVATAR />', options: string, parserOptions },
-    { code: '<Avatar alt={alt || "foo" } />', options: string, parserOptions },
-    { code: '<Avatar alt="" />', options: string, parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     { code: '<Thumbnail alt="foo" />;', options: array, parserOptions },
@@ -131,33 +115,6 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img role />', errors: [missingPropError('img')], parserOptions },
     { code: '<img {...this.props} />', errors: [missingPropError('img')], parserOptions },
     { code: '<img alt={false || false} />', errors: [altValueError('img')], parserOptions },
-
-    // CUSTOM ELEMENT TESTS FOR STRING OPTION
-    {
-      code: '<Avatar />;',
-      errors: [missingPropError('Avatar')],
-      options: string,
-      parserOptions,
-    },
-    { code: '<Avatar alt />;', errors: [altValueError('Avatar')], options: string, parserOptions },
-    {
-      code: '<Avatar alt={undefined} />;',
-      errors: [altValueError('Avatar')],
-      options: string,
-      parserOptions,
-    },
-    {
-      code: '<Avatar src="xyz" />',
-      errors: [missingPropError('Avatar')],
-      options: string,
-      parserOptions,
-    },
-    {
-      code: '<Avatar {...this.props} />',
-      errors: [missingPropError('Avatar')],
-      options: string,
-      parserOptions,
-    },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     {

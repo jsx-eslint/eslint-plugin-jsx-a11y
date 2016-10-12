@@ -21,8 +21,10 @@ const parserOptions = {
 // Tests
 // -----------------------------------------------------------------------------
 
-const string = ['Word'];
-const array = [['Word1', 'Word2']];
+const array = [{
+  components: ['Image'],
+  words: ['Word1', 'Word2'],
+}];
 
 const ruleTester = new RuleTester();
 
@@ -118,11 +120,10 @@ ruleTester.run('img-redundant-alt', rule, {
       parserOptions,
     },
 
-    // TESTS FOR STRING OPTION
-    { code: '<img alt="Word" />;', options: string, errors: [expectedError], parserOptions },
-
     // TESTS FOR ARRAY OPTION TESTS
     { code: '<img alt="Word1" />;', options: array, errors: [expectedError], parserOptions },
     { code: '<img alt="Word2" />;', options: array, errors: [expectedError], parserOptions },
+    { code: '<Image alt="Word1" />;', options: array, errors: [expectedError], parserOptions },
+    { code: '<Image alt="Word2" />;', options: array, errors: [expectedError], parserOptions },
   ],
 });

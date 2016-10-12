@@ -8,6 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { elementType, hasAnyProp } from 'jsx-ast-utils';
+import { generateObjSchema, arraySchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage =
@@ -22,25 +23,12 @@ const headings = [
   'h6',
 ];
 
+const schema = generateObjSchema({ components: arraySchema });
+
 module.exports = {
   meta: {
     docs: {},
-
-    schema: [
-      {
-        oneOf: [
-          { type: 'string' },
-          {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            minItems: 1,
-            uniqueItems: true,
-          },
-        ],
-      },
-    ],
+    schema: [schema],
   },
 
   create: context => ({
