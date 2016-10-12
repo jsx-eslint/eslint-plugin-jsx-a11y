@@ -9,7 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
-import { noSchema } from '../util/schemas';
+import { generateObjSchema } from '../util/schemas';
 import ROLES from '../util/attributes/role.json';
 import ARIA from '../util/attributes/ARIA.json';
 import getImplicitRole from '../util/getImplicitRole';
@@ -23,10 +23,12 @@ This role is implicit on the element ${tag}.`;
   return `The attribute ${attr} is not supported by the role ${role}.`;
 };
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema()],
+    schema: [schema],
   },
 
   create: context => ({

@@ -5,7 +5,7 @@
  */
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
-import { noSchema } from '../util/schemas';
+import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 
@@ -16,10 +16,12 @@ import isInteractiveElement from '../util/isInteractiveElement';
 const errorMessage = 'Visible, non-interactive elements with click handlers must ' +
   'have role attribute.';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema()],
+    schema: [schema],
   },
 
   create: context => ({

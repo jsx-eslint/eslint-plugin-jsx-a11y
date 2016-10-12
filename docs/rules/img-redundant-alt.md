@@ -10,7 +10,7 @@ This rule takes one optional object argument of type object:
 {
     "rules": {
         "jsx-a11y/img-redundant-alt": [ 2, {
-            "components": "Image",
+            "components": [ "Image" ],
             "words": [ "Bild", "Foto" ],
           }],
     }

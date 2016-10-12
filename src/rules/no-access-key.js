@@ -8,16 +8,18 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue } from 'jsx-ast-utils';
-import { noSchema } from '../util/schemas';
+import { generateObjSchema } from '../util/schemas';
 
 const errorMessage = 'No access key attribute allowed. Inconsistencies ' +
   'between keyboard shortcuts and keyboard comments used by screenreader ' +
   'and keyboard only users create a11y complications.';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema()],
+    schema: [schema],
   },
 
   create: context => ({

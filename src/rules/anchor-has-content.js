@@ -8,16 +8,18 @@
 // ----------------------------------------------------------------------------
 
 import { elementType, hasAnyProp } from 'jsx-ast-utils';
-import { componentSchema } from '../util/schemas';
+import { arraySchema, generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage =
     'Anchors must have content and the content must be accessible by a screen reader.';
 
+const schema = generateObjSchema({ components: arraySchema });
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentSchema()],
+    schema: [schema],
   },
 
   create: context => ({

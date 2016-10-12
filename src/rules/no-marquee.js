@@ -8,15 +8,17 @@
 // ----------------------------------------------------------------------------
 
 import { elementType } from 'jsx-ast-utils';
-import { noSchema } from '../util/schemas';
+import { generateObjSchema } from '../util/schemas';
 
 const errorMessage =
   'Do not use <marquee> elements as they create accessibility issues and are deprecated.';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema()],
+    schema: [schema],
   },
 
   create: context => ({

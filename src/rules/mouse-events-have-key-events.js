@@ -9,15 +9,17 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue } from 'jsx-ast-utils';
-import { noSchema } from '../util/schemas';
+import { generateObjSchema } from '../util/schemas';
 
 const mouseOverErrorMessage = 'onMouseOver must be accompanied by onFocus for accessibility.';
 const mouseOutErrorMessage = 'onMouseOut must be accompanied by onBlur for accessibility.';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema()],
+    schema: [schema],
   },
 
   create: context => ({

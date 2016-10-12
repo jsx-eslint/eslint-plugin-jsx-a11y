@@ -8,17 +8,19 @@
 // ----------------------------------------------------------------------------
 
 import { hasAnyProp, elementType } from 'jsx-ast-utils';
-import { noSchema } from '../util/schemas';
+import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 
 const errorMessage =
   'Visible, non-interactive elements should not have mouse or keyboard event listeners';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema()],
+    schema: [schema],
   },
 
   create: context => ({

@@ -8,15 +8,17 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
-import { componentSchema } from '../util/schemas';
+import { generateObjSchema, arraySchema } from '../util/schemas';
 
 const errorMessage = 'Form controls using a label to identify them must be ' +
   'programmatically associated with the control using htmlFor';
 
+const schema = generateObjSchema({ components: arraySchema });
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentSchema()],
+    schema: [schema],
   },
 
   create: context => ({

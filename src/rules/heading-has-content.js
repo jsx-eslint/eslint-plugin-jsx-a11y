@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { elementType, hasAnyProp } from 'jsx-ast-utils';
-import { componentSchema } from '../util/schemas';
+import { generateObjSchema, arraySchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage =
@@ -23,10 +23,12 @@ const headings = [
   'h6',
 ];
 
+const schema = generateObjSchema({ components: arraySchema });
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentSchema()],
+    schema: [schema],
   },
 
   create: context => ({

@@ -1,15 +1,16 @@
 /* eslint-env mocha */
 import assert from 'assert';
-import * as schemas from '../../../src/util/schemas';
+import { generateObjSchema, arraySchema } from '../../../src/util/schemas';
 
 describe('schemas', () => {
-  it('should export only schemas with type `Object`', () => {
-    const actual = Object.keys(schemas).every((schema) => {
-      const schemaObj = schemas[schema]();
-      return schemaObj && schemaObj.type === 'object';
+  it('should generate an object schema with correct properties', () => {
+    const schema = generateObjSchema({
+      foo: 'bar',
+      baz: arraySchema,
     });
-    const expected = true;
+    const properties = schema.properties || {};
 
-    assert.deepEqual(actual, expected);
+    assert.deepEqual(properties.foo, 'bar');
+    assert.deepEqual(properties.baz.type, 'array');
   });
 });

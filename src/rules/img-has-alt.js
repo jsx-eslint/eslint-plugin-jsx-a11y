@@ -8,12 +8,14 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
-import { componentSchema } from '../util/schemas';
+import { generateObjSchema, arraySchema } from '../util/schemas';
+
+const schema = generateObjSchema({ components: arraySchema });
 
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentSchema()],
+    schema: [schema],
   },
 
   create: context => ({

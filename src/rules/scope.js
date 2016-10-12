@@ -8,15 +8,17 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType } from 'jsx-ast-utils';
-import { noSchema } from '../util/schemas';
+import { generateObjSchema } from '../util/schemas';
 import DOMElements from '../util/attributes/DOM.json';
 
 const errorMessage = 'The scope prop can only be used on <th> elements.';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema()],
+    schema: [schema],
   },
 
   create: context => ({

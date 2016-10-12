@@ -4,7 +4,7 @@
  */
 
 import { getProp, elementType } from 'jsx-ast-utils';
-import { noSchema } from '../util/schemas';
+import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import getTabIndex from '../util/getTabIndex';
@@ -17,10 +17,12 @@ const errorMessage = 'Elements with onClick handlers must be focusable. ' +
   'Either set the tabIndex property to a valid value (usually 0), or use ' +
   'an element type which is inherently focusable such as `button`.';
 
+const schema = generateObjSchema();
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [noSchema()],
+    schema: [schema],
   },
 
   create: context => ({

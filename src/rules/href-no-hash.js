@@ -8,15 +8,20 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
-import { componentAndPropSchema } from '../util/schemas';
+import { generateObjSchema, arraySchema } from '../util/schemas';
 
 const errorMessage = 'Links must not point to "#". ' +
   'Use a more descriptive href or use a button instead.';
 
+const schema = generateObjSchema({
+  components: arraySchema,
+  specialLink: arraySchema,
+});
+
 module.exports = {
   meta: {
     docs: {},
-    schema: [componentAndPropSchema({ propsKey: 'specialLink' })],
+    schema: [schema],
   },
 
   create: context => ({
