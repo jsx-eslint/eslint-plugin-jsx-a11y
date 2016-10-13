@@ -3,6 +3,7 @@
 - [breaking] - Update all rule schemas to accept objects. This allows a future schema expansion to not be a breaking change.
 - [breaking] - All rules with schemas that accepted a string OR array, now only allows an array.
 - [new] - `href-no-hash` accepts new schema property `specialLink` to check for custom `href` properties on elements. (fixes [#76](https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/76))
+- [breaking][fix] - `img-has-alt` now prefers `alt=""` over `role="presentation"`. You can set both, but not just `role="presentiation"` by itself to ensure a11y across all devices.
 
 Note - see [rule documentation](https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules) for updated schemas.
 
