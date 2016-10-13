@@ -24,13 +24,18 @@ const parserOptions = {
 const ruleTester = new RuleTester();
 
 const missingPropError = type => ({
-  message: `${type} elements must have an alt prop or use role="presentation".`,
+  message: `${type} elements must have an alt prop, either with meaningful text, or an empty string for decorative images.`,
   type: 'JSXOpeningElement',
 });
 
 const altValueError = type => ({
   message: `Invalid alt value for ${type}. \
-Use alt="" or role="presentation" for presentational images.`,
+Use alt="" for presentational images.`,
+  type: 'JSXOpeningElement',
+});
+
+const preferAltError = () => ({
+  message: 'Prefer alt="" over role="presentation". First rule of aria is to not use aria if it can be achieved via native HTML.',
   type: 'JSXOpeningElement',
 });
 
@@ -68,9 +73,6 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt="" role="presentation" />', parserOptions },
     { code: '<img alt="" role={`presentation`} />', parserOptions },
     { code: '<img alt="" role={"presentation"} />', parserOptions },
-    { code: '<img role="presentation" />;', parserOptions },
-    { code: '<img alt={undefined} role="presentation" />;', parserOptions },
-    { code: '<img alt role="presentation" />;', parserOptions },
     { code: '<img alt="this is lit..." role="presentation" />', parserOptions },
     { code: '<img alt={error ? "not working": "working"} />', parserOptions },
     { code: '<img alt={undefined ? "working": "not working"} />', parserOptions },
@@ -115,6 +117,9 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img role />', errors: [missingPropError('img')], parserOptions },
     { code: '<img {...this.props} />', errors: [missingPropError('img')], parserOptions },
     { code: '<img alt={false || false} />', errors: [altValueError('img')], parserOptions },
+    { code: '<img alt={undefined} role="presentation" />;', errors: [altValueError('img')], parserOptions },
+    { code: '<img alt role="presentation" />;', errors: [altValueError('img')], parserOptions },
+    { code: '<img role="presentation" />;', errors: [preferAltError()], parserOptions },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     {

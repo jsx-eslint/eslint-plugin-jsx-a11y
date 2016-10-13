@@ -35,17 +35,20 @@ module.exports = {
       const isPresentation = roleProp && typeof roleValue === 'string'
         && roleValue.toLowerCase() === 'presentation';
 
-      if (isPresentation) {
-        return;
-      }
-
       const altProp = getProp(node.attributes, 'alt');
 
       // Missing alt prop error.
       if (altProp === undefined) {
+        if (isPresentation) {
+          context.report({
+            node,
+            message: 'Prefer alt="" over role="presentation". First rule of aria is to not use aria if it can be achieved via native HTML.',
+          });
+          return;
+        }
         context.report({
           node,
-          message: `${nodeType} elements must have an alt prop or use role="presentation".`,
+          message: `${nodeType} elements must have an alt prop, either with meaningful text, or an empty string for decorative images.`,
         });
         return;
       }
@@ -63,7 +66,7 @@ module.exports = {
         node,
         message:
           `Invalid alt value for ${nodeType}. \
-Use alt="" or role="presentation" for presentational images.`,
+Use alt="" for presentational images.`,
       });
     },
   }),
