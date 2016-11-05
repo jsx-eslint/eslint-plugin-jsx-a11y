@@ -68,6 +68,18 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
+
+You can also enable all the recommended rules at once. Replace `jsx-a11y` in `plugins`:
+
+```json
+{
+  "plugins": {
+    "plugin:jsx-a11y/recommended"
+  }
+}
+```
+
+
 ## Supported Rules
 
 - [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
