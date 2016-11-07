@@ -68,8 +68,6 @@ module.exports = {
             message: errorMessage,
           });
         }
-
-        return;
       }
     },
   }),

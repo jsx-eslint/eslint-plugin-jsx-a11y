@@ -48,8 +48,7 @@ module.exports = {
           case 'JSXElement':
             return !isHiddenFromScreenReader(
               elementType(child.openingElement),
-              child.openingElement.attributes
-            );
+              child.openingElement.attributes);
           case 'JSXExpressionContainer':
             if (child.expression.type === 'Identifier') {
               return child.expression.name !== 'undefined';
