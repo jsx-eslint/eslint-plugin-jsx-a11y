@@ -69,11 +69,11 @@ Then configure the rules you want to use under the rules section.
 ```
 
 
-You can also enable all the recommended rules at once. Replace `jsx-a11y` in `plugins`:
+You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/recommended` in `extends`:
 
 ```json
 {
-  "plugins": {
+  "extends": {
     "plugin:jsx-a11y/recommended"
   }
 }
