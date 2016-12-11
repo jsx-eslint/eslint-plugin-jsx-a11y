@@ -2,7 +2,7 @@ import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import DOMElements from './attributes/DOM.json';
 
 // Map of tagNames to functions that return whether that element is interactive or not.
-const interactiveSet = [
+export const interactiveRoles = [
   'button',
   'checkbox',
   'link',
@@ -14,6 +14,59 @@ const interactiveSet = [
   'spinbutton',
   'tab',
   'textbox',
+];
+
+export const nonInteractiveRoles = [
+  'alert',
+  'alertdialog',
+  'dialog',
+  'gridcell',
+  'log',
+  'marquee',
+  'progressbar',
+  'scrollbar',
+  'slider',
+  'status',
+  'tabpanel',
+  'timer',
+  'tooltip',
+  'treeitem',
+  'combobox',
+  'grid',
+  'listbox',
+  'menu',
+  'menubar',
+  'radiogroup',
+  'tablist',
+  'tree',
+  'treegrid',
+  'article',
+  'columnheader',
+  'definition',
+  'directory',
+  'document',
+  'group',
+  'heading',
+  'img',
+  'list',
+  'listitem',
+  'math',
+  'note',
+  'presentation',
+  'region',
+  'row',
+  'rowgroup',
+  'rowheader',
+  'separator',
+  'toolbar',
+  'application',
+  'banner',
+  'complementary',
+  'contentinfo',
+  'form',
+  'main',
+  'navigation',
+  'search',
 ];
 
 /**
@@ -28,7 +81,7 @@ const isInteractiveRole = (tagName, attributes) => {
   if (Object.keys(DOMElements).indexOf(tagName) === -1) {
     return true;
   }
-  return (interactiveSet.indexOf(
+  return (interactiveRoles.indexOf(
     (getLiteralPropValue(getProp(attributes, 'role')) || '').toLowerCase(),
   ) > -1);
 };
