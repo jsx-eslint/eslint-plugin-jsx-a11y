@@ -7,6 +7,7 @@ import { getProp, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
+import isInteractiveRole from '../util/isInteractiveRole';
 import getTabIndex from '../util/getTabIndex';
 
 // ----------------------------------------------------------------------------
@@ -37,6 +38,8 @@ module.exports = {
       if (isHiddenFromScreenReader(type, attributes)) {
         return;
       } else if (isInteractiveElement(type, attributes)) {
+        return;
+      } else if (isInteractiveRole(type, attributes)) {
         return;
       } else if (getTabIndex(getProp(attributes, 'tabIndex')) !== undefined) {
         return;
