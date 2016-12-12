@@ -1,44 +1,39 @@
 /* eslint-env mocha */
 import assert from 'assert';
 import { elementType } from 'jsx-ast-utils';
-import isInteractiveRole from '../../../src/util/isInteractiveRole';
+import isInteractiveElement from '../../../src/util/isInteractiveElement';
 import {
-  genInteractiveRoleElements,
-  genNonInteractiveRoleElements,
+  genInteractiveElements,
+  genNonInteractiveElements,
 } from '../../../__mocks__/genInteractives';
 
-describe('isInteractiveRole', () => {
+describe('isInteractiveElement', () => {
   describe('JSX Components (no tagName)', () => {
     it('should identify them as interactive elements', () => {
-      expect(isInteractiveRole(undefined, []))
+      expect(isInteractiveElement(undefined, []))
         .toBe(true);
     });
   });
-  describe('elements with a non-interactive role', () => {
+  describe('non-interactive elements', () => {
     it('should not identify them as interactive elements', () => {
-      genNonInteractiveRoleElements().forEach(
+      genNonInteractiveElements().forEach(
         ({
           type,
           openingElement,
-        }) => expect(isInteractiveRole(
+        }) => expect(isInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
         )).toBe(false)
       );
     });
   });
-  describe('elements without a role', () => {
-    it('should not identify them as interactive elements', () => {
-      expect(isInteractiveRole('div', [])).toBe(false);
-    });
-  });
-  describe('elements with an interactive role', () => {
+  describe('interactive elements', () => {
     it('should identify them as interactive elements', () => {
-      genInteractiveRoleElements().forEach(
+      genInteractiveElements().forEach(
         ({
           type,
           openingElement,
-        }) => expect(isInteractiveRole(
+        }) => expect(isInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
         )).toBe(true)
