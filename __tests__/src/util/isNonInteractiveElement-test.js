@@ -15,7 +15,7 @@ describe('isNonInteractiveElement', () => {
     });
   });
   describe('non-interactive elements', () => {
-    it('should not identify them as interactive elements', () => {
+    it('should identify them as interactive elements', () => {
       genNonInteractiveElements().forEach(
         ({
           type,
@@ -28,7 +28,7 @@ describe('isNonInteractiveElement', () => {
     });
   });
   describe('interactive elements', () => {
-    it('should identify them as interactive elements', () => {
+    it('should not identify them as interactive elements', () => {
       genInteractiveElements().forEach(
         ({
           type,
