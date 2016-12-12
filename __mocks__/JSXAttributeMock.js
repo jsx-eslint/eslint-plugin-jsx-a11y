@@ -1,4 +1,4 @@
-export default function attrMock (prop, value) {
+export default function JSXAttributeMock (prop, value) {
   return {
     type: 'JSXAttribute',
     name: {
