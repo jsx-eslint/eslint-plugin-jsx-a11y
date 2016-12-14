@@ -1,4 +1,8 @@
- 3.0.0 / 2016-10-11
+3.0.1 / 2016-12-14
+==================
+- [fix] - make `aria-invalid` values true and false pass for rule `aria-proptypes`
+
+3.0.0 / 2016-10-11
 ==================
 - [breaking] - Update all rule schemas to accept objects. This allows a future schema expansion to not be a breaking change.
 - [breaking] - All rules with schemas that accepted a string OR array, now only allows an array.
