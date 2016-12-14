@@ -42,7 +42,7 @@ const validityCheck = (value, expectedType, permittedValues) => {
       // Booleans resolve to 0/1 values so hard check that it's not first.
       return typeof value !== 'boolean' && isNaN(Number(value)) === false;
     case 'token':
-      return typeof value === 'string' && permittedValues.indexOf(value.toLowerCase()) > -1;
+      return permittedValues.indexOf(typeof value === 'string' ? value.toLowerCase() : value) > -1;
     case 'tokenlist':
       return typeof value === 'string' &&
         value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);

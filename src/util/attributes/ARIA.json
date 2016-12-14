@@ -47,7 +47,7 @@
   },
   "ARIA-INVALID": {
     "type": "token",
-    "values": [ "grammar", "false", "spelling", "true" ]
+    "values": [ "grammar", false, "spelling", true ]
   },
   "ARIA-LABEL": {
     "type": "string"
