@@ -9,13 +9,13 @@ import {
 
 describe('isInteractiveRole', () => {
   describe('JSX Components (no tagName)', () => {
-    it('should identify them as interactive elements', () => {
+    it('should identify them as interactive role elements', () => {
       expect(isInteractiveRole(undefined, []))
         .toBe(true);
     });
   });
   describe('elements with a non-interactive role', () => {
-    it('should not identify them as interactive elements', () => {
+    it('should not identify them as interactive role elements', () => {
       genNonInteractiveRoleElements().forEach(
         ({
           type,
@@ -28,12 +28,12 @@ describe('isInteractiveRole', () => {
     });
   });
   describe('elements without a role', () => {
-    it('should not identify them as interactive elements', () => {
+    it('should not identify them as interactive role elements', () => {
       expect(isInteractiveRole('div', [])).toBe(false);
     });
   });
   describe('elements with an interactive role', () => {
-    it('should identify them as interactive elements', () => {
+    it('should identify them as interactive role elements', () => {
       genInteractiveRoleElements().forEach(
         ({
           type,

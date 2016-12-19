@@ -3,7 +3,7 @@
  * @author Ethan Cohen
  */
 
-import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
+import { getProp, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
