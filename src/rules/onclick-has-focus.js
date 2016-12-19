@@ -3,7 +3,7 @@
  * @author Ethan Cohen
  */
 
-import { getProp, elementType } from 'jsx-ast-utils';
+import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -39,7 +39,12 @@ module.exports = {
         return;
       } else if (isInteractiveElement(type, attributes)) {
         return;
-      } else if (isInteractiveRole(type, attributes)) {
+      } else if (!isInteractiveRole(type, attributes)) {
+        // A non-interactive element or an element without an interactive
+        // role might have a click hanlder attached to it in order to catch
+        // bubbled click events. In this case, the author should apply a role
+        // of presentation to the element to indicate that it is not meant to
+        // be interactive.
         return;
       } else if (getTabIndex(getProp(attributes, 'tabIndex')) !== undefined) {
         return;
