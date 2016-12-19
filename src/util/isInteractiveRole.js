@@ -1,5 +1,6 @@
 import { getProp, getPropValue } from 'jsx-ast-utils';
 import DOMElements from './attributes/DOM.json';
+import isInteractiveElement from '../util/isInteractiveElement';
 
 // ARIA roles that denote user interaction support.
 export const interactiveRoles = [
