@@ -25,9 +25,10 @@ const parserOptions = {
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'Interactive elements with onClick handlers must be focusable. ' +
-    'Either set the tabIndex property to a valid value (usually 0), ' +
-    'or use an element type which is inherently focusable such as `button`.',
+  message: 'An non-interactive element with an onClick handler and an ' +
+    'interactive role must be focusable. Either set the tabIndex property to ' +
+    'a valid value (usually 0) or use an element type which is inherently ' +
+    'focusable such as `button`.',
   type: 'JSXOpeningElement',
 };
 
@@ -54,6 +55,7 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<input type="hidden" onClick={() => void 0} tabIndex="-1" />', parserOptions },
     { code: '<input type="hidden" onClick={() => void 0} tabIndex={-1} />', parserOptions },
     { code: '<input onClick={() => void 0} />', parserOptions },
+    { code: '<input onClick={() => void 0} role="combobox" />', parserOptions },
     { code: '<button onClick={() => void 0} className="foo" />', parserOptions },
     { code: '<option onClick={() => void 0} className="foo" />', parserOptions },
     { code: '<select onClick={() => void 0} className="foo" />', parserOptions },
@@ -71,6 +73,7 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<a onClick={() => void 0} href="http://x.y.z" />', parserOptions },
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />', parserOptions },
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex={0} />', parserOptions },
+    { code: '<a onClick={() => void 0} href="http://x.y.z" role="button" />', parserOptions },
     { code: '<TestComponent onClick={doFoo} />', parserOptions },
     { code: '<input onClick={() => void 0} type="hidden" />;', parserOptions },
     { code: '<span onClick="submitForm();">Submit</span>', errors: [expectedError], parserOptions },
