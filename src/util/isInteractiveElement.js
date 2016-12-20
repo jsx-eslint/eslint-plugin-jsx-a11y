@@ -3,7 +3,16 @@ import getTabIndex from './getTabIndex';
 import DOMElements from './attributes/DOM.json';
 
 // Map of tagNames to functions that return whether that element is interactive or not.
+
+const pureInteractiveElements = {};
+Object.keys(DOMElements)
+  .filter(name => DOMElements[name].interactive === true)
+  .forEach((name) => {
+    pureInteractiveElements[name] = () => true;
+  });
+
 export const interactiveElementsMap = {
+  ...pureInteractiveElements,
   a: (attributes) => {
     const href = getPropValue(getProp(attributes, 'href'));
     const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
@@ -11,14 +20,10 @@ export const interactiveElementsMap = {
   },
   // This is same as `a` interactivity function
   area: attributes => interactiveElementsMap.a(attributes),
-  button: () => true,
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
     return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
   },
-  option: () => true,
-  select: () => true,
-  textarea: () => true,
 };
 
 /**

@@ -20,7 +20,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "ALERTDIALOG": {
     "requiredProps": [],
@@ -43,7 +44,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "APPLICATION": {
     "requiredProps": [],
@@ -66,7 +68,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "ARTICLE": {
     "requiredProps": [],
@@ -89,7 +92,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "BANNER": {
     "requiredProps": [],
@@ -112,7 +116,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "BUTTON": {
     "requiredProps": [],
@@ -136,7 +141,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": true
   },
   "CHECKBOX": {
     "requiredProps": [
@@ -161,7 +167,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": true
   },
   "COLUMNHEADER": {
     "requiredProps": [],
@@ -188,7 +195,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "COMBOBOX": {
     "requiredProps": [
@@ -216,7 +224,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "COMMAND": {
     "props": [
@@ -238,7 +247,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "COMPLEMENTARY": {
     "requiredProps": [],
@@ -261,7 +271,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "COMPOSITE": {
     "props": [
@@ -284,7 +295,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "CONTENTINFO": {
     "requiredProps": [],
@@ -307,7 +319,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DEFINITION": {
     "requiredProps": [],
@@ -330,7 +343,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DIALOG": {
     "requiredProps": [],
@@ -353,11 +367,13 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DIRECTORY": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -401,7 +417,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-ACKNOWLEDGMENTS": {
     "props": [
@@ -426,7 +443,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-AFTERWORD": {
     "props": [
@@ -451,7 +469,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-APPENDIX": {
     "props": [
@@ -476,7 +495,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-BACKLINK": {
     "props": [
@@ -501,7 +521,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-BIBLIOENTRY": {
     "props": [
@@ -529,7 +550,8 @@
       "ARIA-SETSIZE"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-BIBLIOGRAPHY": {
     "props": [
@@ -554,7 +576,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-BIBLIOREF": {
     "props": [
@@ -579,7 +602,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-CHAPTER": {
     "props": [
@@ -604,7 +628,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-COLOPHON": {
     "props": [
@@ -629,7 +654,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-CONCLUSION": {
     "props": [
@@ -654,7 +680,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-COVER": {
     "props": [
@@ -679,7 +706,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-CREDIT": {
     "props": [
@@ -704,7 +732,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-CREDITS": {
     "props": [
@@ -729,7 +758,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-DEDICATION": {
     "props": [
@@ -754,7 +784,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-ENDNOTE": {
     "props": [
@@ -782,7 +813,8 @@
       "ARIA-SETSIZE"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-ENDNOTES": {
     "props": [
@@ -807,7 +839,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-EPIGRAPH": {
     "props": [
@@ -832,7 +865,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-EPILOGUE": {
     "props": [
@@ -857,7 +891,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-ERRATA": {
     "props": [
@@ -882,7 +917,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-EXAMPLE": {
     "props": [
@@ -907,7 +943,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-FOOTNOTE": {
     "props": [
@@ -932,7 +969,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-FOREWORD": {
     "props": [
@@ -957,7 +995,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-GLOSSARY": {
     "props": [
@@ -982,7 +1021,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-GLOSSREF": {
     "props": [
@@ -1007,7 +1047,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-INDEX": {
     "props": [
@@ -1032,7 +1073,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-INTRODUCTION": {
     "props": [
@@ -1057,7 +1099,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-NOTEREF": {
     "props": [
@@ -1082,7 +1125,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-NOTICE": {
     "props": [
@@ -1107,7 +1151,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-PAGEBREAK": {
     "props": [
@@ -1133,7 +1178,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-PAGELIST": {
     "props": [
@@ -1158,7 +1204,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-PART": {
     "props": [
@@ -1183,7 +1230,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-PREFACE": {
     "props": [
@@ -1208,7 +1256,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-PROLOGUE": {
     "props": [
@@ -1233,12 +1282,14 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-PULLQUOTE": {
     "props": [],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-QNA": {
     "props": [
@@ -1263,7 +1314,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-SUBTITLE": {
     "props": [
@@ -1288,7 +1340,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-TIP": {
     "props": [
@@ -1313,7 +1366,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOC-TOC": {
     "props": [
@@ -1338,11 +1392,13 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": false
+    "abstract": false,
+    "interactive": false
   },
   "DOCUMENT": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1366,6 +1422,7 @@
   "FORM": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1389,6 +1446,7 @@
   "GRID": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-LEVEL",
       "ARIA-MULTISELECTABLE",
@@ -1416,6 +1474,7 @@
   "GRIDCELL": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-READONLY",
       "ARIA-REQUIRED",
@@ -1442,6 +1501,7 @@
   "GROUP": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-ACTIVEDESCENDANT",
       "ARIA-EXPANDED",
@@ -1466,6 +1526,7 @@
   "HEADING": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-LEVEL",
       "ARIA-EXPANDED",
@@ -1490,6 +1551,7 @@
   "IMG": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1530,7 +1592,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "LANDMARK": {
     "props": [
@@ -1553,11 +1616,13 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "LINK": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1581,6 +1646,7 @@
   "LIST": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1604,6 +1670,7 @@
   "LISTBOX": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-MULTISELECTABLE",
       "ARIA-REQUIRED",
@@ -1630,6 +1697,7 @@
   "LISTITEM": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-LEVEL",
       "ARIA-POSINSET",
@@ -1656,6 +1724,7 @@
   "LOG": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1679,6 +1748,7 @@
   "MAIN": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1702,6 +1772,7 @@
   "MARQUEE": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1725,6 +1796,7 @@
   "MATH": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1748,7 +1820,7 @@
   "MENU": {
     "requiredProps": [],
     "abstract": false,
-    "props": [
+    "interactive": false, "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
       "ARIA-BUSY",
@@ -1772,6 +1844,7 @@
   "MENUBAR": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1796,6 +1869,7 @@
   "MENUITEM": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-ATOMIC",
       "ARIA-BUSY",
@@ -1820,6 +1894,7 @@
       "ARIA-CHECKED"
     ],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-CHECKED",
       "ARIA-ATOMIC",
@@ -1845,6 +1920,7 @@
       "ARIA-CHECKED"
     ],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-CHECKED",
       "ARIA-ATOMIC",
@@ -1871,6 +1947,7 @@
   "NAVIGATION": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1894,6 +1971,7 @@
   "NOTE": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -1917,6 +1995,7 @@
   "OPTION": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-CHECKED",
       "ARIA-POSINSET",
@@ -1943,6 +2022,7 @@
   "PRESENTATION": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-ATOMIC",
       "ARIA-BUSY",
@@ -1965,6 +2045,7 @@
   "PROGRESSBAR": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-VALUEMAX",
       "ARIA-VALUEMIN",
@@ -1993,6 +2074,7 @@
       "ARIA-CHECKED"
     ],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-CHECKED",
       "ARIA-ATOMIC",
@@ -2019,6 +2101,7 @@
   "RADIOGROUP": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-REQUIRED",
       "ARIA-ACTIVEDESCENDANT",
@@ -2065,11 +2148,13 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "REGION": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -2110,11 +2195,13 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "ROW": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-LEVEL",
       "ARIA-SELECTED",
@@ -2141,6 +2228,7 @@
   "ROWGROUP": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-ACTIVEDESCENDANT",
       "ARIA-EXPANDED",
@@ -2165,6 +2253,7 @@
   "ROWHEADER": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-SORT",
       "ARIA-READONLY",
@@ -2192,6 +2281,7 @@
   "SEARCH": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -2233,7 +2323,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "SECTIONHEAD": {
     "props": [
@@ -2256,7 +2347,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "SELECT": {
     "props": [
@@ -2280,11 +2372,13 @@
       "ARIA-EXPANDED"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "SEPARATOR": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ORIENTATION",
@@ -2315,6 +2409,7 @@
       "ARIA-VALUENOW"
     ],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-CONTROLS",
       "ARIA-ORIENTATION",
@@ -2346,6 +2441,7 @@
       "ARIA-VALUENOW"
     ],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-VALUEMAX",
       "ARIA-VALUEMIN",
@@ -2377,6 +2473,7 @@
       "ARIA-VALUENOW"
     ],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-VALUEMAX",
       "ARIA-VALUEMIN",
@@ -2404,6 +2501,7 @@
   "STATUS": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -2444,7 +2542,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "SWITCH": {
     "requiredProps": [
@@ -2469,11 +2568,13 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT"
     ],
-    "abstract": false
+    "abstract": false,
+    "interactive": true
   },
   "TAB": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-SELECTED",
       "ARIA-EXPANDED",
@@ -2498,6 +2599,7 @@
   "TABLIST": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-LEVEL",
       "ARIA-MULTISELECTABLE",
@@ -2524,6 +2626,7 @@
   "TABPANEL": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -2547,6 +2650,7 @@
   "TEXTBOX": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": true,
     "props": [
       "ARIA-ACTIVEDESCENDANT",
       "ARIA-AUTOCOMPLETE",
@@ -2574,6 +2678,7 @@
   "TIMER": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -2597,6 +2702,7 @@
   "TOOLBAR": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-ACTIVEDESCENDANT",
       "ARIA-EXPANDED",
@@ -2621,6 +2727,7 @@
   "TOOLTIP": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
@@ -2644,6 +2751,7 @@
   "TREE": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-MULTISELECTABLE",
       "ARIA-REQUIRED",
@@ -2670,6 +2778,7 @@
   "TREEGRID": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-LEVEL",
       "ARIA-MULTISELECTABLE",
@@ -2698,6 +2807,7 @@
   "TREEITEM": {
     "requiredProps": [],
     "abstract": false,
+    "interactive": false,
     "props": [
       "ARIA-LEVEL",
       "ARIA-POSINSET",
@@ -2743,7 +2853,8 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   },
   "WINDOW": {
     "props": [
@@ -2766,6 +2877,7 @@
       "ARIA-RELEVANT"
     ],
     "requiredProps": [],
-    "abstract": true
+    "abstract": true,
+    "interactive": false
   }
 }
