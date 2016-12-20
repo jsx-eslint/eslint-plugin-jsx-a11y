@@ -14,9 +14,11 @@ import getTabIndex from '../util/getTabIndex';
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-const errorMessage = 'Interactive elements with onClick handlers must be ' +
-  'focusable. Either set the tabIndex property to a valid value (usually 0), ' +
-  'or use an element type which is inherently focusable such as `button`.';
+const errorMessage =
+  'An non-interactive element with an onClick handler and an ' +
+  'interactive role must be focusable. Either set the tabIndex property to ' +
+  'a valid value (usually 0) or use an element type which is inherently ' +
+  'focusable such as `button`.';
 
 const schema = generateObjSchema();
 
