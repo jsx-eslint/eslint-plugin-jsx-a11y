@@ -15,29 +15,28 @@ describe('isInteractiveElement', () => {
     });
   });
   describe('non-interactive elements', () => {
-    it('should not identify them as interactive elements', () => {
-      genNonInteractiveElements().forEach(
-        ({
-          type,
-          openingElement,
-        }) => expect(isInteractiveElement(
-          elementType(openingElement),
-          openingElement.attributes,
-        )).toBe(false)
-      );
-    });
+
+    genNonInteractiveElements().forEach(
+      ({ openingElement }) => {
+        it(`should not identify \`${openingElement.name.name}\` as an interactive element`, () => {
+          expect(isInteractiveElement(
+            elementType(openingElement),
+            openingElement.attributes,
+          )).toBe(false);
+        });
+      }
+    );
   });
   describe('interactive elements', () => {
-    it('should identify them as interactive elements', () => {
-      genInteractiveElements().forEach(
-        ({
-          type,
-          openingElement,
-        }) => expect(isInteractiveElement(
-          elementType(openingElement),
-          openingElement.attributes,
-        )).toBe(true)
-      );
-    });
+    genInteractiveElements().forEach(
+      ({ openingElement }) => {
+        it(`should identify \`${openingElement.name.name}\` as an interactive element`, () => {
+          expect(isInteractiveElement(
+            elementType(openingElement),
+            openingElement.attributes,
+          )).toBe(true);
+        });
+      }
+    );
   });
 });

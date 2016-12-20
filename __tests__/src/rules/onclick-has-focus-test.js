@@ -24,7 +24,7 @@ const parserOptions = {
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'Elements with onClick handlers must be focusable. ' +
+  message: 'Interactive elements with onClick handlers must be focusable. ' +
     'Either set the tabIndex property to a valid value (usually 0), ' +
     'or use an element type which is inherently focusable such as `button`.',
   type: 'JSXOpeningElement',
@@ -46,6 +46,7 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<div onClick={() => void 0} tabIndex={undefined} />;', parserOptions },
     { code: '<div onClick={() => void 0} tabIndex="bad" />;', parserOptions },
     { code: '<div onClick={() => void 0} role={undefined} />;', parserOptions },
+    { code: '<div role="section" onClick={() => void 0} />', parserOptions },
     { code: '<div onClick={() => void 0} aria-hidden={false} />;', parserOptions },
     { code: '<div onClick={() => void 0} {...props} />;', parserOptions },
     { code: '<input type="text" onClick={() => void 0} />', parserOptions },
@@ -95,6 +96,7 @@ ruleTester.run('onclick-has-focus', rule, {
     { code: '<div role="option" tabIndex="0" onClick={() => void 0} />', parserOptions },
     { code: '<div role="radio" tabIndex="0" onClick={() => void 0} />', parserOptions },
     { code: '<div role="spinbutton" tabIndex="0" onClick={() => void 0} />', parserOptions },
+    { code: '<div role="switch" tabIndex="0" onClick={() => void 0} />', parserOptions },
     { code: '<div role="tab" tabIndex="0" onClick={() => void 0} />', parserOptions },
     { code: '<div role="textbox" tabIndex="0" onClick={() => void 0} />', parserOptions },
     { code: '<Foo.Bar onClick={() => void 0} aria-hidden={false} />;', parserOptions },
@@ -154,6 +156,11 @@ ruleTester.run('onclick-has-focus', rule, {
     },
     {
       code: '<div role="spinbutton" onClick={() => void 0} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<div role="switch" onClick={() => void 0} />',
       errors: [expectedError],
       parserOptions,
     },

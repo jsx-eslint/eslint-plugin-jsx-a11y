@@ -1,26 +1,12 @@
-import { getProp, getPropValue } from 'jsx-ast-utils';
+import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import DOMElements from './attributes/DOM.json';
-
-// ARIA roles that denote user interaction support.
-export const interactiveRoles = [
-  'button',
-  'checkbox',
-  'link',
-  'menuitem',
-  'menuitemcheckbox',
-  'menuitemradio',
-  'option',
-  'radio',
-  'spinbutton',
-  'tab',
-  'textbox',
-];
+import roles from './attributes/role.json';
 
 /**
  * Returns boolean indicating whether the given element has a role
  * that is associated with an interactive component. Used when an element
  * has a dynamic handler on it and we need to discern whether or not
- * it's intention is to be interacted with in the DOM.
+ * its intention is to be interacted with in the DOM.
  *
  * isInteractiveRole is a Logical Disjunction:
  * https://en.wikipedia.org/wiki/Logical_disjunction
@@ -34,17 +20,20 @@ const isInteractiveRole = (tagName, attributes) => {
     return true;
   }
 
-  let role = getPropValue(getProp(attributes, 'role'));
+  const value = getLiteralPropValue(getProp(attributes, 'role'));
 
-  if (role == null) {
+  // If value is undefined, then the role attribute will be dropped in the DOM.
+  // If value is null, then getLiteralAttributeValue is telling us that the
+  // value isn't in the form of a literal
+  if (value === undefined || value === null) {
     return false;
   }
 
-  if (typeof role === 'string') {
-    role = role.toLowerCase();
-  }
+  const normalizedValues = String(value).toUpperCase().split(' ');
+  const validRoles = Object.keys(roles).filter(role => roles[role].interactive === true);
+  const isInteractive = normalizedValues.every(val => validRoles.indexOf(val) > -1);
 
-  return (interactiveRoles.indexOf(role) > -1);
+  return isInteractive;
 };
 
 export default isInteractiveRole;
