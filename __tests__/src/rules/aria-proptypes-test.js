@@ -123,6 +123,12 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-sort={`other`} />', parserOptions },
     { code: '<div aria-sort={foo} />', parserOptions },
     { code: '<div aria-sort={foo.bar} />', parserOptions },
+    { code: '<div aria-invalid={true} />', parserOptions },
+    { code: '<div aria-invalid="true" />', parserOptions },
+    { code: '<div aria-invalid={false} />', parserOptions },
+    { code: '<div aria-invalid="false" />', parserOptions },
+    { code: '<div aria-invalid="grammar" />', parserOptions },
+    { code: '<div aria-invalid="spelling" />', parserOptions },
 
     // TOKENLIST
     { code: '<div aria-relevant="additions" />', parserOptions },
