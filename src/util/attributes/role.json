@@ -1820,7 +1820,8 @@
   "MENU": {
     "requiredProps": [],
     "abstract": false,
-    "interactive": false, "props": [
+    "interactive": false,
+    "props": [
       "ARIA-EXPANDED",
       "ARIA-ATOMIC",
       "ARIA-BUSY",
