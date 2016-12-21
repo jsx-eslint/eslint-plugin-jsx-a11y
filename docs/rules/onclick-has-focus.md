@@ -13,10 +13,10 @@ This rule will only test low-level DOM components, as we can not deterministical
 ## `tabIndex` of an element with role `gridcell`
 
 Within a grid, a grid cell may itself be tabbable if it contains text content.
-In this case, apply a `tabIndex` of 0.
+In this case apply a `tabIndex` of 0.
 
-If the content of the grid cell is tabbable -- for example a button or link --,
-this apply a `tabIndex` of -1.
+If the content of the grid cell is tabbable -- for example a button or link --
+then apply a `tabIndex` of -1.
 
 #### References
 1. [AX_FOCUS_02](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_02)
