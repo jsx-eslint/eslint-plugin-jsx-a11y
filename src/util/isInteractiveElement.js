@@ -4,12 +4,13 @@ import DOMElements from './attributes/DOM.json';
 
 // Map of tagNames to functions that return whether that element is interactive or not.
 
-const pureInteractiveElements = {};
-Object.keys(DOMElements)
+const pureInteractiveElements = Object.keys(DOMElements)
   .filter(name => DOMElements[name].interactive === true)
-  .forEach((name) => {
-    pureInteractiveElements[name] = () => true;
-  });
+  .reduce((accumulator, name) => {
+    const interactiveElements = accumulator;
+    interactiveElements[name] = () => true;
+    return interactiveElements;
+  }, {});
 
 export const interactiveElementsMap = {
   ...pureInteractiveElements,

@@ -3,10 +3,12 @@ import JSXElementMock from 'JSXElementMock';
 import DOMElements from '../src/util/attributes/DOM.json';
 import roles from '../src/util/attributes/role.json';
 
-const pureInteractiveElements = {};
-Object.keys(DOMElements)
+const pureInteractiveElements = Object.keys(DOMElements)
   .filter(name => DOMElements[name].interactive === true)
-  .forEach(name => pureInteractiveElements[name] = []);
+  .reduce((interactiveElements, name) => {
+    interactiveElements[name] = [];
+    return interactiveElements;
+  }, {});
 
 const interactiveElementsMap = {
   ...pureInteractiveElements,
@@ -21,10 +23,12 @@ const interactiveElementsMap = {
   ],
 };
 
-const pureNonInteractiveElementsMap = {};
-Object.keys(DOMElements)
+const pureNonInteractiveElementsMap = Object.keys(DOMElements)
   .filter(name => !DOMElements[name].interactive)
-  .forEach(name => pureNonInteractiveElementsMap[name] = []);
+  .reduce((nonInteractiveElements, name) => {
+    nonInteractiveElements[name] = [];
+    return nonInteractiveElements;
+  }, {});
 
 const nonInteractiveElementsMap = {
   ...pureNonInteractiveElementsMap,
@@ -42,14 +46,13 @@ const nonInteractiveRoles = Object.keys(roles).filter(
 );
 
 export function genInteractiveElements () {
-  const elements = [];
-  for (const name in interactiveElementsMap) {
-    const attributes = interactiveElementsMap[name].map(
-      ({prop, value}) => JSXAttributeMock(prop, value)
-    );
-    elements.push(JSXElementMock(name, attributes));
-  }
-  return elements;
+  return Object.keys(interactiveElementsMap)
+    .map(name => {
+      const attributes = interactiveElementsMap[name].map(
+        ({prop, value}) => JSXAttributeMock(prop, value)
+      );
+      return JSXElementMock(name, attributes);
+    });
 }
 
 export function genInteractiveRoleElements () {
@@ -61,14 +64,13 @@ export function genInteractiveRoleElements () {
 }
 
 export function genNonInteractiveElements () {
-  const elements = [];
-  for (const name in nonInteractiveElementsMap) {
-    const attributes = nonInteractiveElementsMap[name].map(
-      ({prop, value}) => JSXAttributeMock(prop, value)
-    );
-    elements.push(JSXElementMock(name, attributes));
-  }
-  return elements;
+  return Object.keys(nonInteractiveElementsMap)
+    .map(name => {
+      const attributes = nonInteractiveElementsMap[name].map(
+        ({prop, value}) => JSXAttributeMock(prop, value)
+      );
+      return JSXElementMock(name, attributes);
+    });
 }
 
 export function genNonInteractiveRoleElements () {
