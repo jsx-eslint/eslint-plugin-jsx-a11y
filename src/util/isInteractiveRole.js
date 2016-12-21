@@ -2,6 +2,9 @@ import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import DOMElements from './attributes/DOM.json';
 import roles from './attributes/role.json';
 
+
+const VALID_ROLES = Object.keys(roles)
+  .filter(role => roles[role].interactive === true);
 /**
  * Returns boolean indicating whether the given element has a role
  * that is associated with an interactive component. Used when an element
@@ -30,8 +33,9 @@ const isInteractiveRole = (tagName, attributes) => {
   }
 
   const normalizedValues = String(value).toUpperCase().split(' ');
-  const validRoles = Object.keys(roles).filter(role => roles[role].interactive === true);
-  const isInteractive = normalizedValues.every(val => validRoles.indexOf(val) > -1);
+  const isInteractive = normalizedValues.every(
+    val => VALID_ROLES.indexOf(val) > -1,
+  );
 
   return isInteractive;
 };
