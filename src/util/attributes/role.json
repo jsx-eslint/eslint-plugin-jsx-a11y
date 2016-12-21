@@ -1474,7 +1474,7 @@
   "GRIDCELL": {
     "requiredProps": [],
     "abstract": false,
-    "interactive": false,
+    "interactive": true,
     "props": [
       "ARIA-READONLY",
       "ARIA-REQUIRED",
@@ -2303,6 +2303,40 @@
       "ARIA-RELEVANT"
     ]
   },
+  "SEARCHBOX": {
+    "props": [
+      "ARIA-ACTIVEDESCENDANT",
+      "ARIA-ATOMIC",
+      "ARIA-AUTOCOMPLETE",
+      "ARIA-BUSY",
+      "ARIA-CONTROLS",
+      "ARIA-CURRENT",
+      "ARIA-DESCRIBEDBY",
+      "ARIA-DETAILS",
+      "ARIA-DISABLED",
+      "ARIA-DROPEFFECT",
+      "ARIA-ERRORMESSAGE",
+      "ARIA-FLOWTO",
+      "ARIA-GRABBED",
+      "ARIA-HASPOPUP",
+      "ARIA-HIDDEN",
+      "ARIA-INVALID",
+      "ARIA-KEYSHORTCUTS",
+      "ARIA-LABEL",
+      "ARIA-LABELLEDBY",
+      "ARIA-LIVE",
+      "ARIA-MULTILINE",
+      "ARIA-OWNS",
+      "ARIA-PLACEHOLDER",
+      "ARIA-READONLY",
+      "ARIA-RELEVANT",
+      "ARIA-REQUIRED",
+      "ARIA-ROLEDESCRIPTION"
+    ],
+    "requiredProps": [],
+    "abstract": false,
+    "interactive": true
+  },
   "SECTION": {
     "props": [
       "ARIA-EXPANDED",
@@ -2442,7 +2476,7 @@
       "ARIA-VALUENOW"
     ],
     "abstract": false,
-    "interactive": false,
+    "interactive": true,
     "props": [
       "ARIA-VALUEMAX",
       "ARIA-VALUEMIN",
@@ -2808,7 +2842,7 @@
   "TREEITEM": {
     "requiredProps": [],
     "abstract": false,
-    "interactive": false,
+    "interactive": true,
     "props": [
       "ARIA-LEVEL",
       "ARIA-POSINSET",

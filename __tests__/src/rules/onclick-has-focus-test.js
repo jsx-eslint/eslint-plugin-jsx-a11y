@@ -133,6 +133,11 @@ ruleTester.run('onclick-has-focus', rule, {
       parserOptions,
     },
     {
+      code: '<div role="gridcell" onClick={() => void 0} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
       code: '<div role="menuitem" onClick={() => void 0} />',
       errors: [expectedError],
       parserOptions,
@@ -158,6 +163,16 @@ ruleTester.run('onclick-has-focus', rule, {
       parserOptions,
     },
     {
+      code: '<div role="searchbox" onClick={() => void 0} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<div role="slider" onClick={() => void 0} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
       code: '<div role="spinbutton" onClick={() => void 0} />',
       errors: [expectedError],
       parserOptions,
@@ -174,6 +189,11 @@ ruleTester.run('onclick-has-focus', rule, {
     },
     {
       code: '<div role="textbox" onClick={() => void 0} />',
+      errors: [expectedError],
+      parserOptions,
+    },
+    {
+      code: '<div role="treeitem" onClick={() => void 0} />',
       errors: [expectedError],
       parserOptions,
     },
