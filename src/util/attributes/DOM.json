@@ -1,7 +1,9 @@
 {
   "a": {},
   "abbr": {},
+  "acronym": {},
   "address": {},
+  "applet": {},
   "area": {},
   "article": {},
   "aside": {},
@@ -13,12 +15,16 @@
   "bdi": {},
   "bdo": {},
   "big": {},
+  "blink": {},
   "blockquote": {},
   "body": {},
   "br": {},
-  "button": {},
+  "button": {
+    "interactive": true
+  },
   "canvas": {},
   "caption": {},
+  "center": {},
   "cite": {},
   "code": {},
   "col": {
@@ -27,6 +33,7 @@
   "colgroup": {
     "reserved": true
   },
+  "content": {},
   "data": {},
   "datalist": {},
   "dd": {},
@@ -34,6 +41,7 @@
   "details": {},
   "dfn": {},
   "dialog": {},
+  "dir": {},
   "div": {},
   "dl": {},
   "dt": {},
@@ -42,8 +50,11 @@
   "fieldset": {},
   "figcaption": {},
   "figure": {},
+  "font": {},
   "footer": {},
   "form": {},
+  "frame": {},
+  "frameset": {},
   "h1": {},
   "h2": {},
   "h3": {},
@@ -75,6 +86,7 @@
   "main": {},
   "map": {},
   "mark": {},
+  "marquee": {},
   "menu": {},
   "menuitem": {},
   "meta": {
@@ -82,13 +94,18 @@
   },
   "meter": {},
   "nav": {},
+  "noembed": {
+    "reserved": true
+  },
   "noscript": {
     "reserved": true
   },
   "object": {},
   "ol": {},
   "optgroup": {},
-  "option": {},
+  "option": {
+    "interactive": true
+  },
   "output": {},
   "p": {},
   "param": {
@@ -102,6 +119,7 @@
   "q": {},
   "rp": {},
   "rt": {},
+  "rtc": {},
   "ruby": {},
   "s": {},
   "samp": {},
@@ -109,12 +127,16 @@
     "reserved": true
   },
   "section": {},
-  "select": {},
+  "select": {
+    "interactive": true
+  },
   "small": {},
   "source": {
     "reserved": true
   },
+  "spacer": {},
   "span": {},
+  "strike": {},
   "strong": {},
   "style": {
     "reserved": true
@@ -125,7 +147,9 @@
   "table": {},
   "tbody": {},
   "td": {},
-  "textarea": {},
+  "textarea": {
+    "interactive": true
+  },
   "tfoot": {},
   "th": {},
   "thead": {},
@@ -137,9 +161,11 @@
   "track": {
     "reserved": true
   },
+  "tt": {},
   "u": {},
   "ul": {},
   "var": {},
   "video": {},
-  "wbr": {}
+  "wbr": {},
+  "xmp": {}
 }

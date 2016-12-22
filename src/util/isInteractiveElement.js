@@ -3,22 +3,28 @@ import getTabIndex from './getTabIndex';
 import DOMElements from './attributes/DOM.json';
 
 // Map of tagNames to functions that return whether that element is interactive or not.
-const interactiveMap = {
+
+const pureInteractiveElements = Object.keys(DOMElements)
+  .filter(name => DOMElements[name].interactive === true)
+  .reduce((accumulator, name) => {
+    const interactiveElements = accumulator;
+    interactiveElements[name] = () => true;
+    return interactiveElements;
+  }, {});
+
+export const interactiveElementsMap = {
+  ...pureInteractiveElements,
   a: (attributes) => {
     const href = getPropValue(getProp(attributes, 'href'));
     const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
     return href !== undefined || tabIndex !== undefined;
   },
   // This is same as `a` interactivity function
-  area: attributes => interactiveMap.a(attributes),
-  button: () => true,
+  area: attributes => interactiveElementsMap.a(attributes),
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
     return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
   },
-  option: () => true,
-  select: () => true,
-  textarea: () => true,
 };
 
 /**
@@ -34,11 +40,11 @@ const isInteractiveElement = (tagName, attributes) => {
     return true;
   }
 
-  if ({}.hasOwnProperty.call(interactiveMap, tagName) === false) {
+  if ({}.hasOwnProperty.call(interactiveElementsMap, tagName) === false) {
     return false;
   }
 
-  return interactiveMap[tagName](attributes);
+  return interactiveElementsMap[tagName](attributes);
 };
 
 export default isInteractiveElement;
