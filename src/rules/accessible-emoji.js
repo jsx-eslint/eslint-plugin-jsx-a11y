@@ -31,20 +31,16 @@ module.exports = {
         return false;
       });
 
-      if (literalChildValue) {
-        const containsEmoji = emojiRegex().test(literalChildValue.value);
+      if (literalChildValue && emojiRegex().test(literalChildValue.value)) {
+        const rolePropValue = getLiteralPropValue(getProp(node.attributes, 'role'));
+        const ariaLabelProp = getProp(node.attributes, 'aria-label');
+        const isSpan = elementType(node) === 'span';
 
-        if (containsEmoji) {
-          const roleProp = getProp(node.attributes, 'role');
-          const rolePropValue = getLiteralPropValue(roleProp);
-          const ariaLabelProp = getProp(node.attributes, 'aria-label');
-          const isSpan = elementType(node) === 'span';
-          if (ariaLabelProp === 'undefined' || rolePropValue !== 'img' || isSpan === false) {
-            context.report({
-              node,
-              message: errorMessage,
-            });
-          }
+        if (ariaLabelProp === 'undefined' || rolePropValue !== 'img' || isSpan === false) {
+          context.report({
+            node,
+            message: errorMessage,
+          });
         }
       }
     },
