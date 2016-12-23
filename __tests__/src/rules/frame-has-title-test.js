@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce html element has lang prop.
+ * @fileoverview Enforce frame elements have a title attribute.
  * @author Ethan Cohen
  */
 
