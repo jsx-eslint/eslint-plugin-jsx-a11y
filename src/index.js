@@ -2,6 +2,7 @@
 
 module.exports = {
   rules: {
+    'accessible-emoji': require('./rules/accessible-emoji'),
     'anchor-has-content': require('./rules/anchor-has-content'),
     'aria-props': require('./rules/aria-props'),
     'aria-proptypes': require('./rules/aria-proptypes'),
@@ -36,6 +37,7 @@ module.exports = {
         },
       },
       rules: {
+        'jsx-a11y/accessible-emoji': 'error',
         'jsx-a11y/anchor-has-content': 'error',
         'jsx-a11y/aria-props': 'error',
         'jsx-a11y/aria-proptypes': 'error',
