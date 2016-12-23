@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce frame elements have a title attribute.
+ * @fileoverview Enforce iframe elements have a title attribute.
  * @author Ethan Cohen
  */
 
@@ -10,7 +10,7 @@
 import { elementType, getProp, getPropValue } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = 'Frame elements (frame, iframe) must have a unique title property.';
+const errorMessage = '<iframe> elements must have a unique title property.';
 
 const schema = generateObjSchema();
 
@@ -23,9 +23,8 @@ module.exports = {
   create: context => ({
     JSXOpeningElement: (node) => {
       const type = elementType(node);
-      const isFrameElement = type && (type === 'frame' || type === 'iframe');
 
-      if (!isFrameElement) {
+      if (type && type !== 'iframe') {
         return;
       }
 
