@@ -88,6 +88,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
 - [aria-unsupported-elements](docs/rules/aria-unsupported-elements.md): Enforce that elements that do not support ARIA roles, states, and properties do not have those attributes.
 - [click-events-have-key-events](docs/rules/click-events-have-key-events.md): Enforce a clickable non-interactive element has at least one keyboard event listener.
+- [frame-has-title](docs/rules/frame-has-title.md): Enforce frame elements have a title attribute.
 - [heading-has-content](docs/rules/heading-has-content.md): Enforce heading (`h1`, `h2`, etc) elements contain accessible content.
 - [href-no-hash](docs/rules/href-no-hash.md): Enforce an anchor element's `href` prop value is not just `#`.
 - [html-has-lang](docs/rules/html-has-lang.md): Enforce `<html>` element has `lang` prop.
