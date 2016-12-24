@@ -24,7 +24,7 @@ const parserOptions = {
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'Emojis should be wrapped in <span>, have role="img", and have aria-label="Description of emoji".',
+  message: 'Emojis should be wrapped in <span>, have role="img", and have an accessible description with aria-label or aria-labelledby.',
   type: 'JSXOpeningElement',
 };
 
@@ -35,6 +35,9 @@ ruleTester.run('accessible-emoji', rule, {
     { code: '<span>No emoji here!</span>', parserOptions },
     { code: '<span role="img" aria-label="Panda face">🐼</span>', parserOptions },
     { code: '<span role="img" aria-label="Snowman">&#9731;</span>', parserOptions },
+    { code: '<span role="img" aria-labelledby="id1">🐼</span>', parserOptions },
+    { code: '<span role="img" aria-labelledby="id1">&#9731;</span>', parserOptions },
+    { code: '<span role="img" aria-labelledby="id1" aria-label="Snowman">&#9731;</span>', parserOptions },
     { code: '<span>{props.emoji}</span>', parserOptions },
   ],
   invalid: [
@@ -42,6 +45,7 @@ ruleTester.run('accessible-emoji', rule, {
     { code: '<span>foo🐼bar</span>', errors: [expectedError], parserOptions },
     { code: '<span>foo 🐼 bar</span>', errors: [expectedError], parserOptions },
     { code: '<i role="img" aria-label="Panda face">🐼</i>', errors: [expectedError], parserOptions },
+    { code: '<i role="img" aria-labelledby="id1">🐼</i>', errors: [expectedError], parserOptions },
     { code: '<Foo>🐼</Foo>', errors: [expectedError], parserOptions },
   ],
 });

@@ -13,6 +13,7 @@ This rule takes no arguments.
 ```jsx
 <span role="img" aria-label="Snowman">&#9731;</span>
 <span role="img" aria-label="Panda">🐼</span>
+<span role="img" aria-labelledby="panda1">🐼</span> 
 ```
 
 ### Fail
