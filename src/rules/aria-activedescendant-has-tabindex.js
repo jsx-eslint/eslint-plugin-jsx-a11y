@@ -34,15 +34,19 @@ module.exports = {
         return;
       }
 
-      const type = elementType(node);
-      const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
-
       // Do not test higher level JSX components, as we do not know what
       // low-level DOM element this maps to.
       if (DOMElementKeys.indexOf(type) === -1) {
         return;
       }
 
+      const type = elementType(node);
+      const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
+
+      // If this is an interactive element, tabIndex must be either left
+      // unspecified allowing the inherent tabIndex to obtain or it must be
+      // zero (allowing for positive, even though that is not ideal). It cannot
+      // be given a negative value.
       if (
         isInteractiveElement(type, attributes)
         && (
@@ -53,7 +57,7 @@ module.exports = {
         return;
       }
 
-      if (getTabIndex(getProp(attributes, 'tabIndex')) >= 0) {
+      if (tabIndex >= 0) {
         return;
       }
 
