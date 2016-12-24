@@ -91,6 +91,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [heading-has-content](docs/rules/heading-has-content.md): Enforce heading (`h1`, `h2`, etc) elements contain accessible content.
 - [href-no-hash](docs/rules/href-no-hash.md): Enforce an anchor element's `href` prop value is not just `#`.
 - [html-has-lang](docs/rules/html-has-lang.md): Enforce `<html>` element has `lang` prop.
+- [iframe-has-title](docs/rules/iframe-has-title.md): Enforce iframe elements have a title attribute.
 - [img-has-alt](docs/rules/img-has-alt.md): Enforce that `<img>` JSX elements use the `alt` prop.
 - [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
 - [label-has-for](docs/rules/label-has-for.md): Enforce that `<label>` elements have the `htmlFor` prop.
