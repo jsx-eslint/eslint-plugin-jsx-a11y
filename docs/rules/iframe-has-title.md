@@ -19,4 +19,10 @@ This rule takes no arguments.
 ```jsx
 <iframe />
 <iframe {...props} />
+<iframe title="" />
+<iframe title={''} />
+<iframe title={``} />
+<iframe title={undefined} />
+<iframe title={false} />
+<iframe title={true} />
 ```
