@@ -25,4 +25,5 @@ This rule takes no arguments.
 <iframe title={undefined} />
 <iframe title={false} />
 <iframe title={true} />
+<iframe title={42} />
 ```

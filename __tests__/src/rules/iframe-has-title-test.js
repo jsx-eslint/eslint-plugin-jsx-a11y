@@ -45,5 +45,6 @@ ruleTester.run('html-has-lang', rule, {
     { code: "<iframe title={''} />", errors: [expectedError], parserOptions },
     { code: '<iframe title={``} />', errors: [expectedError], parserOptions },
     { code: '<iframe title={""} />', errors: [expectedError], parserOptions },
+    { code: '<iframe title={42} />', errors: [expectedError], parserOptions },
   ],
 });

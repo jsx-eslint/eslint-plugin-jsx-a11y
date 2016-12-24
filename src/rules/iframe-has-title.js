@@ -30,7 +30,7 @@ module.exports = {
 
       const title = getPropValue(getProp(node.attributes, 'title'));
 
-      if (title && title !== true) {
+      if (title && typeof title === 'string') {
         return;
       }
 
