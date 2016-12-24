@@ -23,7 +23,8 @@
     "lint": "eslint  --config .eslintrc src tests",
     "lint:fix": "npm run lint -- --fix",
     "pretest": "npm run lint:fix",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "create": "node ./scripts/create-rule"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
@@ -37,6 +38,7 @@
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0",
     "jest": "^18.1.0",
+    "minimist": "^1.2.0",
     "rimraf": "^2.5.2",
     "to-ast": "^1.0.0"
   },
