@@ -34,13 +34,12 @@ module.exports = {
         return;
       }
 
+      const type = elementType(node);
       // Do not test higher level JSX components, as we do not know what
       // low-level DOM element this maps to.
       if (DOMElementKeys.indexOf(type) === -1) {
         return;
       }
-
-      const type = elementType(node);
       const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
 
       // If this is an interactive element, tabIndex must be either left
