@@ -34,12 +34,7 @@ module.exports = {
       const options = context.options[0] || {};
       const elementOptions = options.elements || DEFAULT_ELEMENTS;
       const type = elementType(node);
-      const distractingElement = elementOptions.find((element) => {
-        if (type === element) {
-          return element;
-        }
-        return false;
-      });
+      const distractingElement = elementOptions.find(element => type === element);
 
       if (distractingElement) {
         context.report({
