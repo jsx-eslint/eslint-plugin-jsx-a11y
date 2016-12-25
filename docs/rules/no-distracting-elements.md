@@ -1,4 +1,4 @@
-# no-marquee
+# no-distracting-elements
 
 Enforces that no distracting elements are used. Elements that can be visually distracting can cause accessibility issues with visually impaired users. Such elements are most likely deprecated, and should be avoided. By default, the following elements are visually distracting: `<marquee>` and `<blink>`.
 
