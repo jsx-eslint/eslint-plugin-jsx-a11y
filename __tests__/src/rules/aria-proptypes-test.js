@@ -26,6 +26,7 @@ const ruleTester = new RuleTester();
 
 const errorMessage = (name) => {
   const { type, values: permittedValues } = ariaAttributes[name.toUpperCase()];
+
   switch (type) {
     case 'tristate':
       return `The value for ${name} must be a boolean or the string "mixed".`;

@@ -8,7 +8,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import rule from '../../../src/rules/anchor-has-content';
+import rule,
+  { determineChildType } from '../../../src/rules/anchor-has-content';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -27,6 +28,16 @@ const expectedError = {
   message: 'Anchors must have content and the content must be accessible by a screen reader.',
   type: 'JSXOpeningElement',
 };
+
+describe('determineChildType', () => {
+  describe('default case', () => {
+    it('should return false', () => {
+      expect(
+        determineChildType({})
+      ).toBe(false);
+    });
+  });
+});
 
 ruleTester.run('anchor-has-content', rule, {
   valid: [
