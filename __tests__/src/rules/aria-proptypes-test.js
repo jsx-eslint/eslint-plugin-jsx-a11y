@@ -9,7 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import ariaAttributes from '../../../src/util/attributes/ARIA.json';
-import rule from '../../../src/rules/aria-proptypes';
+import rule, { validityCheck } from '../../../src/rules/aria-proptypes';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -26,7 +26,7 @@ const ruleTester = new RuleTester();
 
 const errorMessage = (name) => {
   const { type, values: permittedValues } = ariaAttributes[name.toUpperCase()];
-
+  const defaultMsg = `The value for ${name} must be a ${type}.`;
   switch (type) {
     case 'tristate':
       return `The value for ${name} must be a boolean or the string "mixed".`;
@@ -36,13 +36,26 @@ const errorMessage = (name) => {
       return `The value for ${name} must be a list of one or more \
 tokens from the following: ${permittedValues}.`;
     case 'boolean':
+      return defaultMsg;
     case 'string':
+      return defaultMsg;
     case 'integer':
+      return defaultMsg;
     case 'number':
+      return defaultMsg;
     default:
-      return `The value for ${name} must be a ${type}.`;
+      return `${name} is not a valid ARIA attribute`;
   }
 };
+
+describe('validityCheck', () => {
+  it('should false for an unknown expected type', () => {
+    expect(validityCheck(
+      null,
+      null,
+    )).toBe(false);
+  });
+});
 
 ruleTester.run('aria-proptypes', rule, {
   valid: [
