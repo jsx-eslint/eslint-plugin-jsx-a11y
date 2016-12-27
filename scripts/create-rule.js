@@ -14,6 +14,14 @@ const rulePath = path.resolve(`src/rules/${ruleName}.js`);
 const testPath = path.resolve(`__tests__/src/rules/${ruleName}-test.js`);
 const docsPath = path.resolve(`docs/rules/${ruleName}.md`);
 
+const jscodeshiftJSON = require('jscodeshift/package.json');
+const jscodeshiftMain = jscodeshiftJSON.main;
+const jscodeshiftPath = require.resolve('jscodeshift');
+const jscodeshiftRoot = jscodeshiftPath.slice(
+  0,
+  jscodeshiftPath.indexOf(jscodeshiftMain)
+);
+
 // Validate
 if (!ruleName) {
   throw new Error('Rule name is required');
@@ -34,8 +42,8 @@ fs.writeFileSync(docsPath, docBoilerplate);
 // Add the rule to the index
 exec([
   path.join(
-    require.resolve('jscodeshift'),
-    require('jscodeshift/package.json').bin.jscodeshift
+    jscodeshiftRoot,
+    jscodeshiftJSON.bin.jscodeshift
   ),
   './src/index.js',
   '-t ./scripts/addRuleToIndex.js',
