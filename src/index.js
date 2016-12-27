@@ -17,7 +17,7 @@ module.exports = {
     'img-has-alt': require('./rules/img-has-alt'),
     'img-redundant-alt': require('./rules/img-redundant-alt'),
     'label-has-for': require('./rules/label-has-for'),
-    lang: require('./rules/lang'),
+    'lang': require('./rules/lang'),
     'mouse-events-have-key-events': require('./rules/mouse-events-have-key-events'),
     'no-access-key': require('./rules/no-access-key'),
     'no-autofocus': require('./rules/no-autofocus'),
@@ -28,7 +28,7 @@ module.exports = {
     'onclick-has-role': require('./rules/onclick-has-role'),
     'role-has-required-aria-props': require('./rules/role-has-required-aria-props'),
     'role-supports-aria-props': require('./rules/role-supports-aria-props'),
-    scope: require('./rules/scope'),
+    'scope': require('./rules/scope'),
     'tabindex-no-positive': require('./rules/tabindex-no-positive'),
   },
   configs: {

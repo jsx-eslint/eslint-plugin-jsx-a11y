@@ -4,6 +4,7 @@ const argv = require('minimist')(process.argv.slice(2)); // eslint-disable-line 
 const ruleBoilerplateGenerator = require('./boilerplate/rule');
 const testBoilerplateGenerator = require('./boilerplate/test');
 const docBoilerplateGenerator = require('./boilerplate/doc');
+const exec = require('child_process').exec;
 
 const ruleName = argv._[0];
 const author = argv.author || '$AUTHOR';
@@ -29,3 +30,24 @@ const docBoilerplate = docBoilerplateGenerator(ruleName);
 fs.writeFileSync(rulePath, ruleBoilerplate);
 fs.writeFileSync(testPath, testBoilerplate);
 fs.writeFileSync(docsPath, docBoilerplate);
+
+// Add the rule to the index
+exec([
+  './node_modules/jscodeshift/bin/jscodeshift.sh',
+  './src/index.js',
+  '-t ./scripts/addRuleToIndex.js',
+  '-p',
+  '--extensions js',
+  '--parser flow',
+  `--ruleName=${ruleName}`,
+  `--rulePath=${rulePath}`,
+  ].join(' '),
+  (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  }
+);
