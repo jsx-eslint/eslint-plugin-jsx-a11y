@@ -26,7 +26,6 @@ const ruleTester = new RuleTester();
 
 const errorMessage = (name) => {
   const { type, values: permittedValues } = ariaAttributes[name.toUpperCase()];
-  const defaultMsg = `The value for ${name} must be a ${type}.`;
   switch (type) {
     case 'tristate':
       return `The value for ${name} must be a boolean or the string "mixed".`;
@@ -36,15 +35,11 @@ const errorMessage = (name) => {
       return `The value for ${name} must be a list of one or more \
 tokens from the following: ${permittedValues}.`;
     case 'boolean':
-      return defaultMsg;
     case 'string':
-      return defaultMsg;
     case 'integer':
-      return defaultMsg;
     case 'number':
-      return defaultMsg;
     default:
-      return `${name} is not a valid ARIA attribute`;
+      return `The value for ${name} must be a ${type}.`;
   }
 };
 
