@@ -61,7 +61,7 @@ module.exports = {
       }
 
       const isAccessible = node.parent.children.some(
-        determineChildType
+        determineChildType,
       ) || hasAnyProp(node.attributes, ['dangerouslySetInnerHTML', 'children']);
 
 
