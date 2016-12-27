@@ -33,10 +33,12 @@ fs.writeFileSync(docsPath, docBoilerplate);
 
 // Add the rule to the index
 exec([
-  './node_modules/jscodeshift/bin/jscodeshift.sh',
+  path.join(
+    require.resolve('jscodeshift'),
+    require('jscodeshift/package.json').bin.jscodeshift
+  ),
   './src/index.js',
   '-t ./scripts/addRuleToIndex.js',
-  '-p',
   '--extensions js',
   '--parser flow',
   `--ruleName=${ruleName}`,
@@ -47,7 +49,5 @@ exec([
       console.error(`exec error: ${error}`);
       return;
     }
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
   }
 );

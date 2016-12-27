@@ -9,8 +9,8 @@ export default function transformer(file, api, options) {
   } = options || {};
 
   const nameSort = (a, b) => {
-    const aName = a.key.value;
-    const bName = b.key.value;
+    const aName = (a.key.type === 'Literal') ? a.key.value : a.key.name;
+    const bName = (b.key.type === 'Literal') ? b.key.value : b.key.name;
     if (aName < bName) {
       return -1;
     }
