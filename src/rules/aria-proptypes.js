@@ -54,6 +54,7 @@ const validityCheck = (value, expectedType, permittedValues) => {
 const schema = generateObjSchema();
 
 module.exports = {
+  validityCheck,
   meta: {
     docs: {},
     schema: [schema],

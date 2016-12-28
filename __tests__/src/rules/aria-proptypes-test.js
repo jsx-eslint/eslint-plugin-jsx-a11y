@@ -9,7 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import ariaAttributes from '../../../src/util/attributes/ARIA.json';
-import rule from '../../../src/rules/aria-proptypes';
+import rule, { validityCheck } from '../../../src/rules/aria-proptypes';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -43,6 +43,15 @@ tokens from the following: ${permittedValues}.`;
       return `The value for ${name} must be a ${type}.`;
   }
 };
+
+describe('validityCheck', () => {
+  it('should false for an unknown expected type', () => {
+    expect(validityCheck(
+      null,
+      null,
+    )).toBe(false);
+  });
+});
 
 ruleTester.run('aria-proptypes', rule, {
   valid: [

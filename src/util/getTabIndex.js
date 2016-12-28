@@ -4,12 +4,33 @@ import { getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
  * Returns the tabIndex value.
  */
 export default function getTabIndex(tabIndex) {
-  // First test if we can extract a literal value
-  // to see if it's a valid tabIndex. If not, then just see if
-  // one exists as an expression.
-  const literalTabIndex = getLiteralPropValue(tabIndex);
-  if (literalTabIndex !== undefined || literalTabIndex !== null) {
-    return isNaN(Number(literalTabIndex)) ? undefined : literalTabIndex;
+  const literalValue = getLiteralPropValue(tabIndex);
+
+  // String and number values.
+  if (['string', 'number'].indexOf(typeof literalValue) > -1) {
+    // Empty string will convert to zero, so check for it explicity.
+    if (
+      typeof literalValue === 'string'
+      && literalValue.length === 0
+    ) {
+      return undefined;
+    }
+    const value = Number(literalValue);
+    if (Number.isNaN(value)) {
+      return undefined;
+    }
+
+    return Number.isInteger(value)
+      ? value
+      : undefined;
+  }
+
+  // Booleans are not valid values, return undefined.
+  if (
+    literalValue === true
+    || literalValue === false
+  ) {
+    return undefined;
   }
 
   return getPropValue(tabIndex);
