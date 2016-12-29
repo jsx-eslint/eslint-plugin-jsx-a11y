@@ -40,7 +40,7 @@ $ npm i eslint --save-dev
 Next, install `eslint-plugin-jsx-a11y`:
 
 ```sh
-$ npm install eslint-plugin-jsx-a11y --save-dev
+$ npm i eslint-plugin-jsx-a11y --save-dev
 ```
 
 **Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-jsx-a11y` globally.
