@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce <marquee> elements are not used.
  * @author Ethan Cohen

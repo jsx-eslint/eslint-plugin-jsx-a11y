@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 import assert from 'assert';
 import getSuggestion from '../../../src/util/getSuggestion';
 

@@ -20,7 +20,7 @@
     "build": "rimraf lib && babel src --out-dir lib && cp -R src/util/attributes lib/util/attributes",
     "prepublish": "npm run lint && npm run test && npm run build",
     "coveralls": "cat ./reports/lcov.info | coveralls",
-    "lint": "eslint  --config .eslintrc src tests",
+    "lint": "eslint  --config .eslintrc src __tests__",
     "lint:fix": "npm run lint -- --fix",
     "pretest": "npm run lint:fix",
     "test": "jest --coverage",

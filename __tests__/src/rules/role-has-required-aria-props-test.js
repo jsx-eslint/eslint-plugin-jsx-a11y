@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce that elements with ARIA roles must
  *  have all required attributes for that role.

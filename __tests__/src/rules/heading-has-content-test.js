@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce heading (h1, h2, etc) elements contain accessible content.
  * @author Ethan Cohen
@@ -33,7 +34,7 @@ describe('determineChildType', () => {
   describe('default case', () => {
     it('should return false', () => {
       expect(
-        determineChildType({})
+        determineChildType({}),
       ).toBe(false);
     });
   });
