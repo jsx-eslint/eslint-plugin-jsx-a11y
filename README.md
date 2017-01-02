@@ -34,16 +34,24 @@ Ryan Florence built out this awesome runtime-analysis tool called [react-a11y](h
 You'll first need to install [ESLint](http://eslint.org):
 
 ```sh
-$ npm i eslint --save-dev
+# npm
+npm install eslint --save-dev
+
+# yarn
+yarn add eslint --dev
 ```
 
 Next, install `eslint-plugin-jsx-a11y`:
 
 ```sh
-$ npm install eslint-plugin-jsx-a11y --save-dev
+# npm
+npm install eslint-plugin-jsx-a11y --save-dev
+
+# yarn
+yarn add eslint-plugin-jsx-a11y --dev
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-jsx-a11y` globally.
+**Note:** If you installed ESLint globally (using the `-g` flag in npm, or the `global` prefix in yarn) then you must also install `eslint-plugin-jsx-a11y` globally.
 
 ## Usage
 
