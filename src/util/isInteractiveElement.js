@@ -12,19 +12,16 @@ const pureInteractiveElements = Object.keys(DOMElements)
     return interactiveElements;
   }, {});
 
+const isLink = function isLink(attributes) {
+  const href = getPropValue(getProp(attributes, 'href'));
+  const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
+  return href !== undefined || tabIndex !== undefined;
+};
+
 export const interactiveElementsMap = {
   ...pureInteractiveElements,
-  a: (attributes) => {
-    const href = getPropValue(getProp(attributes, 'href'));
-    const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
-    return href !== undefined || tabIndex !== undefined;
-  },
-  // This is same as `a` interactivity function
-  area: (attributes) => {
-    const href = getPropValue(getProp(attributes, 'href'));
-    const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
-    return href !== undefined || tabIndex !== undefined;
-  },
+  a: isLink,
+  area: isLink,
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
     return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
