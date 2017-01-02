@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce non-interactive elements have no interactive handlers.
  * @author Ethan Cohen

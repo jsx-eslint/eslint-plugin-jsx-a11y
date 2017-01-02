@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce usage of onBlur over onChange on select menus for accessibility.
  * @author Ethan Cohen

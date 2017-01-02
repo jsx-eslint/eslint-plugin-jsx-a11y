@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce scope prop is only used on <th> elements.
  * @author Ethan Cohen

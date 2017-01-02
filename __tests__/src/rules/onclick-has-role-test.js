@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce non-interactive elements with click handlers use role attribute.
  * @author Ethan Cohen

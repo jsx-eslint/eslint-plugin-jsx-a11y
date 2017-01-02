@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce aria role attribute is valid.
  * @author Ethan Cohen

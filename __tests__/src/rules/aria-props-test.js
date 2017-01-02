@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce all aria-* properties are valid.
  * @author Ethan Cohen

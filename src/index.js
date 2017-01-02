@@ -2,7 +2,9 @@
 
 module.exports = {
   rules: {
+    'accessible-emoji': require('./rules/accessible-emoji'),
     'anchor-has-content': require('./rules/anchor-has-content'),
+    'aria-activedescendant-has-tabindex': require('./rules/aria-activedescendant-has-tabindex'),
     'aria-props': require('./rules/aria-props'),
     'aria-proptypes': require('./rules/aria-proptypes'),
     'aria-role': require('./rules/aria-role'),
@@ -18,7 +20,8 @@ module.exports = {
     lang: require('./rules/lang'),
     'mouse-events-have-key-events': require('./rules/mouse-events-have-key-events'),
     'no-access-key': require('./rules/no-access-key'),
-    'no-marquee': require('./rules/no-marquee'),
+    'no-autofocus': require('./rules/no-autofocus'),
+    'no-distracting-elements': require('./rules/no-distracting-elements'),
     'no-onchange': require('./rules/no-onchange'),
     'no-static-element-interactions': require('./rules/no-static-element-interactions'),
     'onclick-has-focus': require('./rules/onclick-has-focus'),
@@ -36,7 +39,9 @@ module.exports = {
         },
       },
       rules: {
+        'jsx-a11y/accessible-emoji': 'error',
         'jsx-a11y/anchor-has-content': 'error',
+        'jsx-a11y/aria-activedescendant-has-tabindex': 'error',
         'jsx-a11y/aria-props': 'error',
         'jsx-a11y/aria-proptypes': 'error',
         'jsx-a11y/aria-role': 'error',
@@ -51,7 +56,8 @@ module.exports = {
         'jsx-a11y/label-has-for': 'error',
         'jsx-a11y/mouse-events-have-key-events': 'error',
         'jsx-a11y/no-access-key': 'error',
-        'jsx-a11y/no-marquee': 'error',
+        'jsx-a11y/no-autofocus': 'error',
+        'jsx-a11y/no-distracting-elements': 'error',
         'jsx-a11y/no-onchange': 'error',
         'jsx-a11y/no-static-element-interactions': 'warn',
         'jsx-a11y/onclick-has-focus': 'error',

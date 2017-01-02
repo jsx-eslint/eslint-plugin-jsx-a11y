@@ -82,7 +82,9 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 
 ## Supported Rules
 
+- [accessible-emoji](docs/rules/accessible-emoji): Enforce emojis are wrapped in <span> and provide screenreader access.
 - [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
+- [aria-activedescendant-has-tabindex](docs/rules/aria-activedescendant-has-tabindex.md): Enforce elements with aria-activedescendant are tabbable.
 - [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
 - [aria-proptypes](docs/rules/aria-proptypes.md): Enforce ARIA state and property values are valid.
 - [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
@@ -98,7 +100,8 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [lang](docs/rules/lang.md): Enforce lang attribute has a valid value.
 - [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
 - [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
-- [no-marquee](docs/rules/no-marquee.md): Enforce `<marquee>` elements are not used.
+- [no-autofocus](docs/rules/no-autofocus.md): Enforce autoFocus prop is not used.
+- [no-distracting-elements](docs/rules/no-distracting-elements.md): Enforce distracting elements are not used.
 - [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
 - [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce non-interactive elements have no interactive handlers.
 - [onclick-has-focus](docs/rules/onclick-has-focus.md): Enforce that elements with `onClick` handlers must be focusable.
@@ -107,6 +110,15 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [role-supports-aria-props](docs/rules/role-supports-aria-props.md): Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.
 - [scope](docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
 - [tabindex-no-positive](docs/rules/tabindex-no-positive.md): Enforce `tabIndex` value is not greater than zero.
+
+## Creating a new rule
+
+If you are developing new rules for this project, you can use the `create-rule`
+script to scaffold the new files.
+
+```
+$ ./scripts/create-rule.js my-new-rule
+```
 
 ## License
 
