@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import assert from 'assert';
+import expect from 'expect';
 import { elementType } from 'jsx-ast-utils';
 import isInteractiveElement from '../../../src/util/isInteractiveElement';
 import {
@@ -15,7 +15,6 @@ describe('isInteractiveElement', () => {
     });
   });
   describe('non-interactive elements', () => {
-
     genNonInteractiveElements().forEach(
       ({ openingElement }) => {
         it(`should not identify \`${openingElement.name.name}\` as an interactive element`, () => {
@@ -24,7 +23,7 @@ describe('isInteractiveElement', () => {
             openingElement.attributes,
           )).toBe(false);
         });
-      }
+      },
     );
   });
   describe('interactive elements', () => {
@@ -36,7 +35,7 @@ describe('isInteractiveElement', () => {
             openingElement.attributes,
           )).toBe(true);
         });
-      }
+      },
     );
   });
 });

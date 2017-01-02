@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import assert from 'assert';
+import expect from 'expect';
 import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import isInteractiveRole from '../../../src/util/isInteractiveRole';
 import {
@@ -23,9 +23,9 @@ describe('isInteractiveRole', () => {
           expect(isInteractiveRole(
             elementType(openingElement),
             attributes,
-          )).toBe(false)
+          )).toBe(false);
         });
-      }
+      },
     );
   });
   describe('elements without a role', () => {
@@ -42,9 +42,9 @@ describe('isInteractiveRole', () => {
           expect(isInteractiveRole(
             elementType(openingElement),
             attributes,
-          )).toBe(true)
+          )).toBe(true);
         });
-      }
+      },
     );
   });
 });

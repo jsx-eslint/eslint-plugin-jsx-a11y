@@ -1,5 +1,5 @@
-import JSXAttributeMock from 'JSXAttributeMock';
-import JSXElementMock from 'JSXElementMock';
+import JSXAttributeMock from './JSXAttributeMock';
+import JSXElementMock from './JSXElementMock';
 import DOMElements from '../src/util/attributes/DOM.json';
 import roles from '../src/util/attributes/role.json';
 
