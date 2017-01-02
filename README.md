@@ -111,6 +111,15 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [scope](docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
 - [tabindex-no-positive](docs/rules/tabindex-no-positive.md): Enforce `tabIndex` value is not greater than zero.
 
+## Creating a new rule
+
+If you are developing new rules for this project, you can use the `create-rule`
+script to scaffold the new files.
+
+```
+$ ./scripts/create-rule.js my-new-rule
+```
+
 ## License
 
 eslint-plugin-jsx-a11y is licensed under the [MIT License](LICENSE.md).
