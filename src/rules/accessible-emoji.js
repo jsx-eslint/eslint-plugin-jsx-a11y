@@ -24,12 +24,9 @@ module.exports = {
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      const literalChildValue = node.parent.children.find((child) => {
-        if (child.type === 'Literal') {
-          return child.value;
-        }
-        return false;
-      });
+      const literalChildValue = node.parent.children.find(
+        child => child.type === 'Literal',
+      );
 
       if (literalChildValue && emojiRegex().test(literalChildValue.value)) {
         const rolePropValue = getLiteralPropValue(getProp(node.attributes, 'role'));
