@@ -20,7 +20,11 @@ export const interactiveElementsMap = {
     return href !== undefined || tabIndex !== undefined;
   },
   // This is same as `a` interactivity function
-  area: attributes => interactiveElementsMap.a(attributes),
+  area: (attributes) => {
+    const href = getPropValue(getProp(attributes, 'href'));
+    const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
+    return href !== undefined || tabIndex !== undefined;
+  },
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
     return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
