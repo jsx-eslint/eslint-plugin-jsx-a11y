@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce anchor elements to contain accessible content.
  * @author Lisa Ring & Niklas Holmberg
@@ -33,7 +34,7 @@ describe('determineChildType', () => {
   describe('default case', () => {
     it('should return false', () => {
       expect(
-        determineChildType({})
+        determineChildType({}),
       ).toBe(false);
     });
   });

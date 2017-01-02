@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce ARIA state and property values are valid.
  * @author Ethan Cohen

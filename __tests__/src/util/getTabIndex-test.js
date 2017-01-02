@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 import getTabIndex from '../../../src/util/getTabIndex';
 import IdentifierMock from '../../../__mocks__/IdentifierMock';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
@@ -111,7 +111,7 @@ describe('getTabIndex', () => {
               JSXAttributeMock(
                 'tabIndex',
                 IdentifierMock(name),
-                true
+                true,
               ),
             ),
           ).toEqual(name);

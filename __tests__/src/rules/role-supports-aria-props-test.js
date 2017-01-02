@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce that an element does not have an unsupported ARIA attribute.
  * @author Ethan Cohen

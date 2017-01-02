@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce html element has lang prop.
  * @author Ethan Cohen

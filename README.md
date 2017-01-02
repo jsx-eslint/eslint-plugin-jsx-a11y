@@ -82,6 +82,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 
 ## Supported Rules
 
+- [accessible-emoji](docs/rules/accessible-emoji): Enforce emojis are wrapped in <span> and provide screenreader access.
 - [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
 - [aria-activedescendant-has-tabindex](docs/rules/aria-activedescendant-has-tabindex.md): Enforce elements with aria-activedescendant are tabbable.
 - [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
@@ -99,7 +100,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [lang](docs/rules/lang.md): Enforce lang attribute has a valid value.
 - [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
 - [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
-- [no-marquee](docs/rules/no-marquee.md): Enforce `<marquee>` elements are not used.
+- [no-distracting-elements](docs/rules/no-distracting-elements.md): Enforce distracting elements are not used.
 - [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
 - [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce non-interactive elements have no interactive handlers.
 - [onclick-has-focus](docs/rules/onclick-has-focus.md): Enforce that elements with `onClick` handlers must be focusable.

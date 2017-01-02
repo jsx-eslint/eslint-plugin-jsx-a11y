@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce that elements with onClick handlers must be focusable.
  * @author Ethan Cohen

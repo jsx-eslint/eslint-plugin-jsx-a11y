@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce tabIndex value is not greater than zero.
  * @author Ethan Cohen

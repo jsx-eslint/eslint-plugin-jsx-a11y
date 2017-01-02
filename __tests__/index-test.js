@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 /* eslint global-require: 0 */
 
 import assert from 'assert';

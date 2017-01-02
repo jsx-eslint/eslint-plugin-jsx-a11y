@@ -1,3 +1,4 @@
+/* eslint-env jest */
 /**
  * @fileoverview Enforce links may not point to just #.
  * @author Ethan Cohen

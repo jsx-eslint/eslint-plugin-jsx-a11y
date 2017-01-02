@@ -1,6 +1,7 @@
+const testBoilerplate = (name, author, description) => `/* eslint-env jest */
 /**
- * @fileoverview Enforce <marquee> elements are not used.
- * @author Ethan Cohen
+ * @fileoverview ${description}
+ * @author ${author}
  */
 
 // -----------------------------------------------------------------------------
@@ -8,7 +9,7 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import rule from '../../../src/rules/no-marquee';
+import rule from '../../../src/rules/${name}';
 
 const parserOptions = {
   ecmaVersion: 6,
@@ -24,19 +25,16 @@ const parserOptions = {
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'Do not use <marquee> elements as they create accessibility issues and are deprecated.',
+  message: '',
   type: 'JSXOpeningElement',
 };
 
-ruleTester.run('no-marquee', rule, {
+ruleTester.run('${name}', rule, {
   valid: [
     { code: '<div />;', parserOptions },
-    { code: '<Marquee />', parserOptions },
-    { code: '<div marquee />', parserOptions },
   ],
-  invalid: [
-    { code: '<marquee />', errors: [expectedError], parserOptions },
-    { code: '<marquee {...props} />', errors: [expectedError], parserOptions },
-    { code: '<marquee lang={undefined} />', errors: [expectedError], parserOptions },
-  ],
+  invalid: [],
 });
+`;
+
+module.exports = testBoilerplate;

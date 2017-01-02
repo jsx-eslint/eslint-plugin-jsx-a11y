@@ -1,17 +1,15 @@
-/**
- * @fileoverview Enforce <marquee> elements are not used.
- * @author Ethan Cohen
+const ruleBoilerplate = (author, description) => `/**
+ * @fileoverview ${description}
+ * @author ${author}
  */
 
 // ----------------------------------------------------------------------------
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage =
-  'Do not use <marquee> elements as they create accessibility issues and are deprecated.';
+const errorMessage = '';
 
 const schema = generateObjSchema();
 
@@ -23,14 +21,13 @@ module.exports = {
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      const isMarquee = elementType(node) === 'marquee';
-
-      if (isMarquee) {
-        context.report({
-          node,
-          message: errorMessage,
-        });
-      }
+      context.report({
+        node,
+        message: errorMessage,
+      });
     },
   }),
 };
+`;
+
+module.exports = ruleBoilerplate;
