@@ -111,6 +111,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [no-autofocus](docs/rules/no-autofocus.md): Enforce autoFocus prop is not used.
 - [no-distracting-elements](docs/rules/no-distracting-elements.md): Enforce distracting elements are not used.
 - [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
+- [no-redundant-roles](docs/rules/no-redundant-roles.md): Enforce explicit role property is not the same as implicit/default role property on element.
 - [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce non-interactive elements have no interactive handlers.
 - [onclick-has-focus](docs/rules/onclick-has-focus.md): Enforce that elements with `onClick` handlers must be focusable.
 - [onclick-has-role](docs/rules/onclick-has-role.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
