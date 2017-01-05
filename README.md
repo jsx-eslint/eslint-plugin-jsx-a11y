@@ -90,7 +90,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 
 ## Supported Rules
 
-- [accessible-emoji](docs/rules/accessible-emoji): Enforce emojis are wrapped in <span> and provide screenreader access.
+- [accessible-emoji](docs/rules/accessible-emoji.md): Enforce emojis are wrapped in <span> and provide screenreader access.
 - [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
 - [aria-activedescendant-has-tabindex](docs/rules/aria-activedescendant-has-tabindex.md): Enforce elements with aria-activedescendant are tabbable.
 - [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
