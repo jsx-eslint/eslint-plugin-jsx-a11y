@@ -35,9 +35,11 @@ ruleTester.run('no-redundant-roles', rule, {
     { code: '<div />;', parserOptions },
     { code: '<button role="main" />', parserOptions },
     { code: '<MyComponent role="button" />', parserOptions },
+    { code: '<button role={`${foo}button`} />', parserOptions },
   ],
   invalid: [
     { code: '<button role="button" />', errors: [expectedError('button', 'button')], parserOptions },
     { code: '<body role="DOCUMENT" />', errors: [expectedError('body', 'document')], parserOptions },
+    { code: '<button role={`${undefined}button`} />', errors: [expectedError('button', 'button')], parserOptions },
   ],
 });
