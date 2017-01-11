@@ -28,11 +28,12 @@
     "create": "node ./scripts/create-rule"
   },
   "devDependencies": {
-    "ast-types-flow": "0.0.7",
+    "ast-types-flow": "^0.0.7",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
     "babel-jest": "^18.0.0",
+    "babel-plugin-transform-flow-strip-types": "^6.21.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.14.0",
