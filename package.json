@@ -28,6 +28,7 @@
     "create": "node ./scripts/create-rule"
   },
   "devDependencies": {
+    "ast-types-flow": "0.0.7",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
