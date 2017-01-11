@@ -54,6 +54,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "ast-types-flow": "0.0.7",
     "damerau-levenshtein": "^1.0.0",
     "emoji-regex": "^6.1.0",
     "jsx-ast-utils": "^1.0.0",
