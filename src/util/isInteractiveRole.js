@@ -1,9 +1,15 @@
+/**
+ * @flow
+ */
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import DOMElements from './attributes/DOM.json';
 import roles from './attributes/role.json';
 
+import type {
+  JSXAttribute,
+} from 'ast-types-flow';
 
-const VALID_ROLES = Object.keys(roles)
+const VALID_ROLES: Array<string> = Object.keys(roles)
   .filter(role => roles[role].interactive === true);
 /**
  * Returns boolean indicating whether the given element has a role
@@ -16,14 +22,17 @@ const VALID_ROLES = Object.keys(roles)
  * The JSX element does not have a tagName or it has a tagName and a role
  * attribute with a value in the set of non-interactive roles.
  */
-const isInteractiveRole = (tagName, attributes) => {
+const isInteractiveRole = (
+  tagName: string,
+  attributes: Array<JSXAttribute>,
+): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
   if (Object.keys(DOMElements).indexOf(tagName) === -1) {
     return true;
   }
 
-  const value = getLiteralPropValue(getProp(attributes, 'role'));
+  const value: ?string = getLiteralPropValue(getProp(attributes, 'role'));
 
   // If value is undefined, then the role attribute will be dropped in the DOM.
   // If value is null, then getLiteralAttributeValue is telling us that the
@@ -32,9 +41,9 @@ const isInteractiveRole = (tagName, attributes) => {
     return false;
   }
 
-  const normalizedValues = String(value).toUpperCase().split(' ');
+  const normalizedValues: Array<string> = String(value).toUpperCase().split(' ');
   const isInteractive = normalizedValues.every(
-    val => VALID_ROLES.indexOf(val) > -1,
+    (val: string) => VALID_ROLES.indexOf(val) > -1,
   );
 
   return isInteractive;
