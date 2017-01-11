@@ -43,7 +43,7 @@ const isInteractiveRole = (
 
   const normalizedValues: Array<string> = String(value).toUpperCase().split(' ');
   const isInteractive = normalizedValues.every(
-    (val: string) => VALID_ROLES.indexOf(val) > -1,
+    (val: string): boolean => VALID_ROLES.indexOf(val) > -1,
   );
 
   return isInteractive;
