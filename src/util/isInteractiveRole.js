@@ -9,7 +9,7 @@ import type {
   JSXAttribute,
 } from 'ast-types-flow';
 
-const VALID_ROLES: Array<string> = Object.keys(roles)
+const VALID_ROLES = Object.keys(roles)
   .filter(role => roles[role].interactive === true);
 /**
  * Returns boolean indicating whether the given element has a role
@@ -41,7 +41,7 @@ const isInteractiveRole = (
     return false;
   }
 
-  const normalizedValues: Array<string> = String(value).toUpperCase().split(' ');
+  const normalizedValues = String(value).toUpperCase().split(' ');
   const isInteractive = normalizedValues.every(
     (val: string): boolean => VALID_ROLES.indexOf(val) > -1,
   );
