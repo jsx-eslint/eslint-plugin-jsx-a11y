@@ -1,5 +1,4 @@
 [ignore]
 <PROJECT_ROOT>/lib/.*
 <PROJECT_ROOT>/docs/.*
-<PROJECT_ROOT>/node_modules/.*
 <PROJECT_ROOT>/reports/.*
