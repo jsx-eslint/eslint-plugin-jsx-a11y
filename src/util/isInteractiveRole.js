@@ -2,12 +2,9 @@
  * @flow
  */
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import type { JSXAttribute } from 'ast-types-flow';
 import DOMElements from './attributes/DOM.json';
 import roles from './attributes/role.json';
-
-import type {
-  JSXAttribute,
-} from 'ast-types-flow';
 
 const VALID_ROLES = Object.keys(roles)
   .filter(role => roles[role].interactive === true);
