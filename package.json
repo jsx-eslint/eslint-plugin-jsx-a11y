@@ -18,11 +18,12 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rimraf lib && babel src --out-dir lib && cp -R src/util/attributes lib/util/attributes",
-    "prepublish": "npm run lint && npm run test && npm run build",
+    "prepublish": "npm run lint && npm run flow && npm run test && npm run build",
     "coveralls": "cat ./reports/lcov.info | coveralls",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lint": "eslint  --config .eslintrc src __tests__",
     "lint:fix": "npm run lint -- --fix",
-    "pretest": "npm run lint:fix",
+    "pretest": "npm run lint:fix && npm run flow",
     "test": "jest --coverage",
     "create": "node ./scripts/create-rule"
   },
@@ -31,6 +32,7 @@
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
     "babel-jest": "^18.0.0",
+    "babel-plugin-transform-flow-strip-types": "^6.21.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.14.0",
@@ -39,6 +41,7 @@
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0",
     "expect": "^1.20.2",
+    "flow-bin": "^0.37.4",
     "jest": "^18.1.0",
     "jscodeshift": "^0.3.30",
     "minimist": "^1.2.0",
@@ -50,6 +53,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "ast-types-flow": "0.0.7",
     "damerau-levenshtein": "^1.0.0",
     "emoji-regex": "^6.1.0",
     "jsx-ast-utils": "^1.0.0",
