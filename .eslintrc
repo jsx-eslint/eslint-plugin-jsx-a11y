@@ -1,6 +1,6 @@
 {
-  parser: "babel-eslint",
   extends: "airbnb-base",
+  parser: "babel-eslint",
   rules: {
     'no-template-curly-in-string': 'off'
   }
