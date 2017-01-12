@@ -10,14 +10,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/mouse-events-have-key-events';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -36,44 +30,38 @@ const mouseOutError = {
 
 ruleTester.run('mouse-events-have-key-events', rule, {
   valid: [
-    { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;', parserOptions },
+    { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;' },
     {
       code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;',
-      parserOptions,
     },
-    { code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} />;', parserOptions },
+    { code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} />;' },
     {
       code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} {...props} />;',
-      parserOptions,
     },
-    { code: '<div />;', parserOptions },
-    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} />', parserOptions },
-    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} {...props} />', parserOptions },
-    { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} />', parserOptions },
-    { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} {...props} />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} />' },
+    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} {...props} />' },
+    { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} />' },
+    { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} {...props} />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<div onMouseOver={() => void 0} />;', errors: [mouseOverError], parserOptions },
-    { code: '<div onMouseOut={() => void 0} />', errors: [mouseOutError], parserOptions },
+    { code: '<div onMouseOver={() => void 0} />;', errors: [mouseOverError] },
+    { code: '<div onMouseOut={() => void 0} />', errors: [mouseOutError] },
     {
       code: '<div onMouseOver={() => void 0} onFocus={undefined} />;',
       errors: [mouseOverError],
-      parserOptions,
     },
     {
       code: '<div onMouseOut={() => void 0} onBlur={undefined} />',
       errors: [mouseOutError],
-      parserOptions,
     },
     {
       code: '<div onMouseOver={() => void 0} {...props} />',
       errors: [mouseOverError],
-      parserOptions,
     },
     {
       code: '<div onMouseOut={() => void 0} {...props} />',
       errors: [mouseOutError],
-      parserOptions,
     },
-  ],
+  ].map(parserOptionsMapper),
 });

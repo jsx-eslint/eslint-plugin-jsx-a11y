@@ -10,14 +10,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/no-onchange';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -33,21 +27,21 @@ const expectedError = {
 
 ruleTester.run('no-onchange', rule, {
   valid: [
-    { code: '<select onBlur={() => {}} />;', parserOptions },
-    { code: '<select onBlur={handleOnBlur} />;', parserOptions },
-    { code: '<option />;', parserOptions },
-    { code: '<option onBlur={() => {}} onChange={() => {}} />;', parserOptions },
-    { code: '<option {...props} />', parserOptions },
-    { code: '<input onChange={() => {}} />;', parserOptions },
-    { code: '<input onChange={handleOnChange} />;', parserOptions },
-    { code: '<input />;', parserOptions },
-    { code: '<input onChange={() => {}} onChange={() => {}} />;', parserOptions },
-    { code: '<input {...props} />', parserOptions },
-  ],
+    { code: '<select onBlur={() => {}} />;' },
+    { code: '<select onBlur={handleOnBlur} />;' },
+    { code: '<option />;' },
+    { code: '<option onBlur={() => {}} onChange={() => {}} />;' },
+    { code: '<option {...props} />' },
+    { code: '<input onChange={() => {}} />;' },
+    { code: '<input onChange={handleOnChange} />;' },
+    { code: '<input />;' },
+    { code: '<input onChange={() => {}} onChange={() => {}} />;' },
+    { code: '<input {...props} />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<select onChange={() => {}} />;', errors: [expectedError], parserOptions },
-    { code: '<select onChange={handleOnChange} />;', errors: [expectedError], parserOptions },
-    { code: '<option onChange={() => {}} />', errors: [expectedError], parserOptions },
-    { code: '<option onChange={() => {}} {...props} />', errors: [expectedError], parserOptions },
-  ],
+    { code: '<select onChange={() => {}} />;', errors: [expectedError] },
+    { code: '<select onChange={handleOnChange} />;', errors: [expectedError] },
+    { code: '<option onChange={() => {}} />', errors: [expectedError] },
+    { code: '<option onChange={() => {}} {...props} />', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

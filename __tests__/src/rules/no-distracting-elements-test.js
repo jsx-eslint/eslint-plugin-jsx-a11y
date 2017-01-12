@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/no-distracting-elements';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,18 +25,18 @@ const expectedError = element => ({
 
 ruleTester.run('no-marquee', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<Marquee />', parserOptions },
-    { code: '<div marquee />', parserOptions },
-    { code: '<Blink />', parserOptions },
-    { code: '<div blink />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<Marquee />' },
+    { code: '<div marquee />' },
+    { code: '<Blink />' },
+    { code: '<div blink />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<marquee />', errors: [expectedError('marquee')], parserOptions },
-    { code: '<marquee {...props} />', errors: [expectedError('marquee')], parserOptions },
-    { code: '<marquee lang={undefined} />', errors: [expectedError('marquee')], parserOptions },
-    { code: '<blink />', errors: [expectedError('blink')], parserOptions },
-    { code: '<blink {...props} />', errors: [expectedError('blink')], parserOptions },
-    { code: '<blink foo={undefined} />', errors: [expectedError('blink')], parserOptions },
-  ],
+    { code: '<marquee />', errors: [expectedError('marquee')] },
+    { code: '<marquee {...props} />', errors: [expectedError('marquee')] },
+    { code: '<marquee lang={undefined} />', errors: [expectedError('marquee')] },
+    { code: '<blink />', errors: [expectedError('blink')] },
+    { code: '<blink {...props} />', errors: [expectedError('blink')] },
+    { code: '<blink foo={undefined} />', errors: [expectedError('blink')] },
+  ].map(parserOptionsMapper),
 });

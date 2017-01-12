@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/iframe-has-title';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,21 +25,21 @@ const expectedError = {
 
 ruleTester.run('html-has-lang', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<iframe title="Unique title" />', parserOptions },
-    { code: '<iframe title={foo} />', parserOptions },
-    { code: '<FooComponent />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<iframe title="Unique title" />' },
+    { code: '<iframe title={foo} />' },
+    { code: '<FooComponent />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<iframe />', errors: [expectedError], parserOptions },
-    { code: '<iframe {...props} />', errors: [expectedError], parserOptions },
-    { code: '<iframe title={undefined} />', errors: [expectedError], parserOptions },
-    { code: '<iframe title="" />', errors: [expectedError], parserOptions },
-    { code: '<iframe title={false} />', errors: [expectedError], parserOptions },
-    { code: '<iframe title={true} />', errors: [expectedError], parserOptions },
-    { code: "<iframe title={''} />", errors: [expectedError], parserOptions },
-    { code: '<iframe title={``} />', errors: [expectedError], parserOptions },
-    { code: '<iframe title={""} />', errors: [expectedError], parserOptions },
-    { code: '<iframe title={42} />', errors: [expectedError], parserOptions },
-  ],
+    { code: '<iframe />', errors: [expectedError] },
+    { code: '<iframe {...props} />', errors: [expectedError] },
+    { code: '<iframe title={undefined} />', errors: [expectedError] },
+    { code: '<iframe title="" />', errors: [expectedError] },
+    { code: '<iframe title={false} />', errors: [expectedError] },
+    { code: '<iframe title={true} />', errors: [expectedError] },
+    { code: "<iframe title={''} />", errors: [expectedError] },
+    { code: '<iframe title={``} />', errors: [expectedError] },
+    { code: '<iframe title={""} />', errors: [expectedError] },
+    { code: '<iframe title={42} />', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

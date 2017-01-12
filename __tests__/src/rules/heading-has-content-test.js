@@ -9,15 +9,9 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule,
   { determineChildType } from '../../../src/rules/heading-has-content';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -42,23 +36,23 @@ describe('determineChildType', () => {
 
 ruleTester.run('heading-has-content', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<h1>Foo</h1>', parserOptions },
-    { code: '<h2>Foo</h2>', parserOptions },
-    { code: '<h3>Foo</h3>', parserOptions },
-    { code: '<h4>Foo</h4>', parserOptions },
-    { code: '<h5>Foo</h5>', parserOptions },
-    { code: '<h6>Foo</h6>', parserOptions },
-    { code: '<h6>123</h6>', parserOptions },
-    { code: '<h1><Bar /></h1>', parserOptions },
-    { code: '<h1>{foo}</h1>', parserOptions },
-    { code: '<h1>{foo.bar}</h1>', parserOptions },
-    { code: '<h1 dangerouslySetInnerHTML={{ __html: "foo" }} />', parserOptions },
-    { code: '<h1 children={children} />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<h1>Foo</h1>' },
+    { code: '<h2>Foo</h2>' },
+    { code: '<h3>Foo</h3>' },
+    { code: '<h4>Foo</h4>' },
+    { code: '<h5>Foo</h5>' },
+    { code: '<h6>Foo</h6>' },
+    { code: '<h6>123</h6>' },
+    { code: '<h1><Bar /></h1>' },
+    { code: '<h1>{foo}</h1>' },
+    { code: '<h1>{foo.bar}</h1>' },
+    { code: '<h1 dangerouslySetInnerHTML={{ __html: "foo" }} />' },
+    { code: '<h1 children={children} />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<h1 />', errors: [expectedError], parserOptions },
-    { code: '<h1><Bar aria-hidden /></h1>', errors: [expectedError], parserOptions },
-    { code: '<h1>{undefined}</h1>', errors: [expectedError], parserOptions },
-  ],
+    { code: '<h1 />', errors: [expectedError] },
+    { code: '<h1><Bar aria-hidden /></h1>', errors: [expectedError] },
+    { code: '<h1>{undefined}</h1>', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

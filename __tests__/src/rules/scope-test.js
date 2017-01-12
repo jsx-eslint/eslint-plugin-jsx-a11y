@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/scope';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,15 +25,15 @@ const expectedError = {
 
 ruleTester.run('scope', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<div foo />;', parserOptions },
-    { code: '<th scope />', parserOptions },
-    { code: '<th scope="row" />', parserOptions },
-    { code: '<th scope={foo} />', parserOptions },
-    { code: '<th scope={"col"} {...props} />', parserOptions },
-    { code: '<Foo scope="bar" {...props} />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<div foo />;' },
+    { code: '<th scope />' },
+    { code: '<th scope="row" />' },
+    { code: '<th scope={foo} />' },
+    { code: '<th scope={"col"} {...props} />' },
+    { code: '<Foo scope="bar" {...props} />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<div scope />', errors: [expectedError], parserOptions },
-  ],
+    { code: '<div scope />', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

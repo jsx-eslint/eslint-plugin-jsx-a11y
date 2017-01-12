@@ -10,14 +10,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/no-redundant-roles';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -32,14 +26,14 @@ const expectedError = (element, implicitRole) => ({
 
 ruleTester.run('no-redundant-roles', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<button role="main" />', parserOptions },
-    { code: '<MyComponent role="button" />', parserOptions },
-    { code: '<button role={`${foo}button`} />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<button role="main" />' },
+    { code: '<MyComponent role="button" />' },
+    { code: '<button role={`${foo}button`} />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<button role="button" />', errors: [expectedError('button', 'button')], parserOptions },
-    { code: '<body role="DOCUMENT" />', errors: [expectedError('body', 'document')], parserOptions },
-    { code: '<button role={`${undefined}button`} />', errors: [expectedError('button', 'button')], parserOptions },
-  ],
+    { code: '<button role="button" />', errors: [expectedError('button', 'button')] },
+    { code: '<body role="DOCUMENT" />', errors: [expectedError('body', 'document')] },
+    { code: '<button role={`${undefined}button`} />', errors: [expectedError('button', 'button')] },
+  ].map(parserOptionsMapper),
 });

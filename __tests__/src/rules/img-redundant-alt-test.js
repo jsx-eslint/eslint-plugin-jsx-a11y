@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/img-redundant-alt';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -38,93 +32,84 @@ const expectedError = {
 
 ruleTester.run('img-redundant-alt', rule, {
   valid: [
-    { code: '<img alt="foo" />;', parserOptions },
-    { code: '<img alt="picture of me taking a photo of an image" aria-hidden />', parserOptions },
-    { code: '<img aria-hidden alt="photo of image" />', parserOptions },
-    { code: '<img ALt="foo" />;', parserOptions },
-    { code: '<img {...this.props} alt="foo" />', parserOptions },
-    { code: '<img {...this.props} alt={"foo"} />', parserOptions },
-    { code: '<img {...this.props} alt={alt} />', parserOptions },
-    { code: '<a />', parserOptions },
-    { code: '<img />', parserOptions },
-    { code: '<IMG />', parserOptions },
-    { code: '<img alt={undefined} />', parserOptions },
-    { code: '<img alt={`this should pass for ${now}`} />', parserOptions },
-    { code: '<img alt={`this should pass for ${photo}`} />', parserOptions },
-    { code: '<img alt={`this should pass for ${image}`} />', parserOptions },
-    { code: '<img alt={`this should pass for ${picture}`} />', parserOptions },
-    { code: '<img alt={`${photo}`} />', parserOptions },
-    { code: '<img alt={`${image}`} />', parserOptions },
-    { code: '<img alt={`${picture}`} />', parserOptions },
-    { code: '<img alt={"undefined"} />', parserOptions },
-    { code: '<img alt={() => {}} />', parserOptions },
-    { code: '<img alt={function(e){}} />', parserOptions },
-    { code: '<img aria-hidden={false} alt="Doing cool things." />', parserOptions },
-    { code: '<UX.Layout>test</UX.Layout>', parserOptions },
-    { code: '<img alt={imageAlt} />', parserOptions },
-    { code: '<img alt />', parserOptions },
-  ],
+    { code: '<img alt="foo" />;' },
+    { code: '<img alt="picture of me taking a photo of an image" aria-hidden />' },
+    { code: '<img aria-hidden alt="photo of image" />' },
+    { code: '<img ALt="foo" />;' },
+    { code: '<img {...this.props} alt="foo" />' },
+    { code: '<img {...this.props} alt={"foo"} />' },
+    { code: '<img {...this.props} alt={alt} />' },
+    { code: '<a />' },
+    { code: '<img />' },
+    { code: '<IMG />' },
+    { code: '<img alt={undefined} />' },
+    { code: '<img alt={`this should pass for ${now}`} />' },
+    { code: '<img alt={`this should pass for ${photo}`} />' },
+    { code: '<img alt={`this should pass for ${image}`} />' },
+    { code: '<img alt={`this should pass for ${picture}`} />' },
+    { code: '<img alt={`${photo}`} />' },
+    { code: '<img alt={`${image}`} />' },
+    { code: '<img alt={`${picture}`} />' },
+    { code: '<img alt={"undefined"} />' },
+    { code: '<img alt={() => {}} />' },
+    { code: '<img alt={function(e){}} />' },
+    { code: '<img aria-hidden={false} alt="Doing cool things." />' },
+    { code: '<UX.Layout>test</UX.Layout>' },
+    { code: '<img alt={imageAlt} />' },
+    { code: '<img alt />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<img alt="Photo of friend." />;', errors: [expectedError], parserOptions },
-    { code: '<img alt="Picture of friend." />;', errors: [expectedError], parserOptions },
-    { code: '<img alt="Image of friend." />;', errors: [expectedError], parserOptions },
-    { code: '<img alt="PhOtO of friend." />;', errors: [expectedError], parserOptions },
-    { code: '<img alt={"photo"} />;', errors: [expectedError], parserOptions },
-    { code: '<img alt="piCTUre of friend." />;', errors: [expectedError], parserOptions },
-    { code: '<img alt="imAGE of friend." />;', errors: [expectedError], parserOptions },
+    { code: '<img alt="Photo of friend." />;', errors: [expectedError] },
+    { code: '<img alt="Picture of friend." />;', errors: [expectedError] },
+    { code: '<img alt="Image of friend." />;', errors: [expectedError] },
+    { code: '<img alt="PhOtO of friend." />;', errors: [expectedError] },
+    { code: '<img alt={"photo"} />;', errors: [expectedError] },
+    { code: '<img alt="piCTUre of friend." />;', errors: [expectedError] },
+    { code: '<img alt="imAGE of friend." />;', errors: [expectedError] },
     {
       code: '<img alt="photo of cool person" aria-hidden={false} />',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<img alt="picture of cool person" aria-hidden={false} />',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<img alt="image of cool person" aria-hidden={false} />',
       errors: [expectedError],
-      parserOptions,
     },
-    { code: '<img alt="photo" {...this.props} />', errors: [expectedError], parserOptions },
-    { code: '<img alt="image" {...this.props} />', errors: [expectedError], parserOptions },
-    { code: '<img alt="picture" {...this.props} />', errors: [expectedError], parserOptions },
+    { code: '<img alt="photo" {...this.props} />', errors: [expectedError] },
+    { code: '<img alt="image" {...this.props} />', errors: [expectedError] },
+    { code: '<img alt="picture" {...this.props} />', errors: [expectedError] },
     {
       code: '<img alt={`picture doing ${things}`} {...this.props} />',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<img alt={`photo doing ${things}`} {...this.props} />',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<img alt={`image doing ${things}`} {...this.props} />',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<img alt={`picture doing ${picture}`} {...this.props} />',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<img alt={`photo doing ${photo}`} {...this.props} />',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<img alt={`image doing ${image}`} {...this.props} />',
       errors: [expectedError],
-      parserOptions,
     },
 
     // TESTS FOR ARRAY OPTION TESTS
-    { code: '<img alt="Word1" />;', options: array, errors: [expectedError], parserOptions },
-    { code: '<img alt="Word2" />;', options: array, errors: [expectedError], parserOptions },
-    { code: '<Image alt="Word1" />;', options: array, errors: [expectedError], parserOptions },
-    { code: '<Image alt="Word2" />;', options: array, errors: [expectedError], parserOptions },
-  ],
+    { code: '<img alt="Word1" />;', options: array, errors: [expectedError] },
+    { code: '<img alt="Word2" />;', options: array, errors: [expectedError] },
+    { code: '<Image alt="Word1" />;', options: array, errors: [expectedError] },
+    { code: '<Image alt="Word2" />;', options: array, errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

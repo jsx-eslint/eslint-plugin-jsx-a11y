@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/no-autofocus';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,17 +25,17 @@ const expectedError = {
 
 ruleTester.run('no-autofocus', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<div autofocus />;', parserOptions },
-    { code: '<input autofocus="true" />;', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<div autofocus />;' },
+    { code: '<input autofocus="true" />;' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<div autoFocus />', errors: [expectedError], parserOptions },
-    { code: '<div autoFocus={true} />', errors: [expectedError], parserOptions },
-    { code: '<div autoFocus={false} />', errors: [expectedError], parserOptions },
-    { code: '<div autoFocus={undefined} />', errors: [expectedError], parserOptions },
-    { code: '<div autoFocus="true" />', errors: [expectedError], parserOptions },
-    { code: '<div autoFocus="false" />', errors: [expectedError], parserOptions },
-    { code: '<input autoFocus />', errors: [expectedError], parserOptions },
-  ],
+    { code: '<div autoFocus />', errors: [expectedError] },
+    { code: '<div autoFocus={true} />', errors: [expectedError] },
+    { code: '<div autoFocus={false} />', errors: [expectedError] },
+    { code: '<div autoFocus={undefined} />', errors: [expectedError] },
+    { code: '<div autoFocus="true" />', errors: [expectedError] },
+    { code: '<div autoFocus="false" />', errors: [expectedError] },
+    { code: '<input autoFocus />', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

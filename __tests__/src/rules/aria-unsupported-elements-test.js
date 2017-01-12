@@ -10,15 +10,9 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import DOM from '../../../src/util/attributes/DOM.json';
 import rule from '../../../src/rules/aria-unsupported-elements';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -39,7 +33,6 @@ const roleValidityTests = Object.keys(DOM).map((element) => {
 
   return {
     code: `<${element} ${role} />`,
-    parserOptions,
   };
 });
 
@@ -49,7 +42,6 @@ const ariaValidityTests = Object.keys(DOM).map((element) => {
 
   return {
     code: `<${element} ${aria} />`,
-    parserOptions,
   };
 });
 
@@ -59,7 +51,6 @@ const invalidRoleValidityTests = Object.keys(DOM)
   .map(reservedElem => ({
     code: `<${reservedElem} role {...props} />`,
     errors: [errorMessage('role')],
-    parserOptions,
   }));
 
 const invalidAriaValidityTests = Object.keys(DOM)
@@ -67,10 +58,10 @@ const invalidAriaValidityTests = Object.keys(DOM)
   .map(reservedElem => ({
     code: `<${reservedElem} aria-hidden {...props} />`,
     errors: [errorMessage('aria-hidden')],
-    parserOptions,
   }));
 
 ruleTester.run('aria-unsupported-elements', rule, {
-  valid: roleValidityTests.concat(ariaValidityTests),
-  invalid: invalidRoleValidityTests.concat(invalidAriaValidityTests),
+  valid: roleValidityTests.concat(ariaValidityTests).map(parserOptionsMapper),
+  invalid: invalidRoleValidityTests.concat(invalidAriaValidityTests)
+    .map(parserOptionsMapper),
 });

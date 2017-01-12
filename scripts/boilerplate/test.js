@@ -9,14 +9,8 @@ const testBoilerplate = (name, author, description) => `/* eslint-env jest */
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/${name}';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,9 +25,9 @@ const expectedError = {
 
 ruleTester.run('${name}', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-  ],
-  invalid: [],
+    { code: '<div />;' },
+  ].map(parserOptionsMapper),
+  invalid: [].map(parserOptionsMapper),
 });
 `;
 

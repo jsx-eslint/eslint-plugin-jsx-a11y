@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
 import rule from '../../../src/rules/html-has-lang';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,16 +25,16 @@ const expectedError = {
 
 ruleTester.run('html-has-lang', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<html lang="en" />', parserOptions },
-    { code: '<html lang="en-US" />', parserOptions },
-    { code: '<html lang={foo} />', parserOptions },
-    { code: '<html lang />', parserOptions },
-    { code: '<HTML />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<html lang="en" />' },
+    { code: '<html lang="en-US" />' },
+    { code: '<html lang={foo} />' },
+    { code: '<html lang />' },
+    { code: '<HTML />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<html />', errors: [expectedError], parserOptions },
-    { code: '<html {...props} />', errors: [expectedError], parserOptions },
-    { code: '<html lang={undefined} />', errors: [expectedError], parserOptions },
-  ],
+    { code: '<html />', errors: [expectedError] },
+    { code: '<html {...props} />', errors: [expectedError] },
+    { code: '<html lang={undefined} />', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });
