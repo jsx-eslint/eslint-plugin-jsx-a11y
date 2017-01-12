@@ -1,0 +1,98 @@
+{
+  "CLIPBOARD": [
+    "onCopy",
+    "onCut",
+    "onPaste"
+  ],
+  "COMPOSITION": [
+    "onCompositionEnd",
+    "onCompositionStart",
+    "onCompositionUpdate"
+  ],
+  "KEYBOARD": [
+    "onKeyDown",
+    "onKeyPress",
+    "onKeyUp"
+  ],
+  "FOCUS": [
+    "onFocus",
+    "onBlur"
+  ],
+  "FORM": [
+    "onChange",
+    "onInput",
+    "onSubmit"
+  ],
+  "MOUSE": [
+    "onClick",
+    "onContextMenu",
+    "onDoubleClick",
+    "onDrag",
+    "onDragEnd",
+    "onDragEnter",
+    "onDragExit",
+    "onDragLeave",
+    "onDragOver",
+    "onDragStart",
+    "onDrop",
+    "onMouseDown",
+    "onMouseEnter",
+    "onMouseLeave",
+    "onMouseMove",
+    "onMouseOut",
+    "onMouseOver",
+    "onMouseUp"
+  ],
+  "SELECTION": [
+    "onSelect"
+  ],
+  "TOUCH": [
+    "onTouchCancel",
+    "onTouchEnd",
+    "onTouchMove",
+    "onTouchStart"
+  ],
+  "UI": [
+    "onScroll"
+  ],
+  "WHEEL": [
+    "onWheel"
+  ],
+  "MEDIA": [
+    "onAbort",
+    "onCanPlay",
+    "onCanPlayThrough",
+    "onDurationChange",
+    "onEmptied",
+    "onEncrypted",
+    "onEnded",
+    "onError",
+    "onLoadedData",
+    "onLoadedMetadata",
+    "onLoadStart",
+    "onPause",
+    "onPlay",
+    "onPlaying",
+    "onProgress",
+    "onRateChange",
+    "onSeeked",
+    "onSeeking",
+    "onStalled",
+    "onSuspend",
+    "onTimeUpdate",
+    "onVolumeChange",
+    "onWaiting"
+  ],
+  "IMAGE": [
+    "onLoad",
+    "onError"
+  ],
+  "ANIMATION": [
+    "onAnimationStart",
+    "onAnimationEnd",
+    "onAnimationIteration"
+  ],
+  "TRANSITION": [
+    "onTransitionEnd"
+  ]
+}
