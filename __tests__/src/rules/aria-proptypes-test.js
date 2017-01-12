@@ -10,7 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import ariaAttributes from '../../../src/util/attributes/ARIA.json';
-import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule, { validityCheck } from '../../../src/rules/aria-proptypes';
 
 // -----------------------------------------------------------------------------

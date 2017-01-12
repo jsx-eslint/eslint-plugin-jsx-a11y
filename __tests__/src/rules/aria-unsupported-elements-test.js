@@ -10,7 +10,7 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import DOM from '../../../src/util/attributes/DOM.json';
 import rule from '../../../src/rules/aria-unsupported-elements';
 

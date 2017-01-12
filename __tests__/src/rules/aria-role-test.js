@@ -10,7 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import assign from 'object-assign';
-import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/aria-role';
 import ROLES from '../../../src/util/attributes/role.json';
 

@@ -10,7 +10,7 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import parserOptionsMapper from '../../../src/util/parserOptionsMapper';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import validRoleTypes from '../../../src/util/attributes/role.json';
 import rule from '../../../src/rules/role-has-required-aria-props';
 
