@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/tabindex-no-positive';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,31 +25,31 @@ const expectedError = {
 
 ruleTester.run('tabindex-no-positive', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<div {...props} />', parserOptions },
-    { code: '<div id="main" />', parserOptions },
-    { code: '<div tabIndex={undefined} />', parserOptions },
-    { code: '<div tabIndex={`${undefined}`} />', parserOptions },
-    { code: '<div tabIndex={`${undefined}${undefined}`} />', parserOptions },
-    { code: '<div tabIndex={0} />', parserOptions },
-    { code: '<div tabIndex={-1} />', parserOptions },
-    { code: '<div tabIndex={null} />', parserOptions },
-    { code: '<div tabIndex={bar()} />', parserOptions },
-    { code: '<div tabIndex={bar} />', parserOptions },
-    { code: '<div tabIndex={"foobar"} />', parserOptions },
-    { code: '<div tabIndex="0" />', parserOptions },
-    { code: '<div tabIndex="-1" />', parserOptions },
-    { code: '<div tabIndex="-5" />', parserOptions },
-    { code: '<div tabIndex="-5.5" />', parserOptions },
-    { code: '<div tabIndex={-5.5} />', parserOptions },
-    { code: '<div tabIndex={-5} />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<div {...props} />' },
+    { code: '<div id="main" />' },
+    { code: '<div tabIndex={undefined} />' },
+    { code: '<div tabIndex={`${undefined}`} />' },
+    { code: '<div tabIndex={`${undefined}${undefined}`} />' },
+    { code: '<div tabIndex={0} />' },
+    { code: '<div tabIndex={-1} />' },
+    { code: '<div tabIndex={null} />' },
+    { code: '<div tabIndex={bar()} />' },
+    { code: '<div tabIndex={bar} />' },
+    { code: '<div tabIndex={"foobar"} />' },
+    { code: '<div tabIndex="0" />' },
+    { code: '<div tabIndex="-1" />' },
+    { code: '<div tabIndex="-5" />' },
+    { code: '<div tabIndex="-5.5" />' },
+    { code: '<div tabIndex={-5.5} />' },
+    { code: '<div tabIndex={-5} />' },
+  ].map(parserOptionsMapper),
 
   invalid: [
-    { code: '<div tabIndex="1" />', errors: [expectedError], parserOptions },
-    { code: '<div tabIndex={1} />', errors: [expectedError], parserOptions },
-    { code: '<div tabIndex={"1"} />', errors: [expectedError], parserOptions },
-    { code: '<div tabIndex={`1`} />', errors: [expectedError], parserOptions },
-    { code: '<div tabIndex={1.589} />', errors: [expectedError], parserOptions },
-  ],
+    { code: '<div tabIndex="1" />', errors: [expectedError] },
+    { code: '<div tabIndex={1} />', errors: [expectedError] },
+    { code: '<div tabIndex={"1"} />', errors: [expectedError] },
+    { code: '<div tabIndex={`1`} />', errors: [expectedError] },
+    { code: '<div tabIndex={1.589} />', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

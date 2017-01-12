@@ -10,15 +10,9 @@
 
 import { RuleTester } from 'eslint';
 import assign from 'object-assign';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/aria-role';
 import ROLES from '../../../src/util/attributes/role.json';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -36,7 +30,6 @@ const invalidRoles = Object.keys(ROLES).filter(role => ROLES[role].abstract === 
 
 const createTests = roles => roles.map(role => ({
   code: `<div role="${role.toLowerCase()}" />`,
-  parserOptions,
 }));
 
 const validTests = createTests(validRoles);
@@ -49,27 +42,27 @@ const invalidTests = createTests(invalidRoles).map((test) => {
 ruleTester.run('aria-role', rule, {
   valid: [
     // Variables should pass, as we are only testing literals.
-    { code: '<div />', parserOptions },
-    { code: '<div></div>', parserOptions },
-    { code: '<div role={role} />', parserOptions },
-    { code: '<div role={role || "button"} />', parserOptions },
-    { code: '<div role={role || "foobar"} />', parserOptions },
-    { code: '<div role="tabpanel row" />', parserOptions },
-    { code: '<div role="switch" />', parserOptions },
-    { code: '<div role="doc-abstract" />', parserOptions },
-    { code: '<div role="doc-appendix doc-bibliography" />', parserOptions },
-    { code: '<Bar baz />', parserOptions },
-  ].concat(validTests),
+    { code: '<div />' },
+    { code: '<div></div>' },
+    { code: '<div role={role} />' },
+    { code: '<div role={role || "button"} />' },
+    { code: '<div role={role || "foobar"} />' },
+    { code: '<div role="tabpanel row" />' },
+    { code: '<div role="switch" />' },
+    { code: '<div role="doc-abstract" />' },
+    { code: '<div role="doc-appendix doc-bibliography" />' },
+    { code: '<Bar baz />' },
+  ].concat(validTests).map(parserOptionsMapper),
 
   invalid: [
-    { code: '<div role="foobar" />', errors: [errorMessage], parserOptions },
-    { code: '<div role="datepicker"></div>', errors: [errorMessage], parserOptions },
-    { code: '<div role="range"></div>', errors: [errorMessage], parserOptions },
-    { code: '<div role=""></div>', errors: [errorMessage], parserOptions },
-    { code: '<div role="tabpanel row foobar"></div>', errors: [errorMessage], parserOptions },
-    { code: '<div role="tabpanel row range"></div>', errors: [errorMessage], parserOptions },
-    { code: '<div role="doc-endnotes range"></div>', errors: [errorMessage], parserOptions },
-    { code: '<div role />', errors: [errorMessage], parserOptions },
-    { code: '<div role={null}></div>', errors: [errorMessage], parserOptions },
-  ].concat(invalidTests),
+    { code: '<div role="foobar" />', errors: [errorMessage] },
+    { code: '<div role="datepicker"></div>', errors: [errorMessage] },
+    { code: '<div role="range"></div>', errors: [errorMessage] },
+    { code: '<div role=""></div>', errors: [errorMessage] },
+    { code: '<div role="tabpanel row foobar"></div>', errors: [errorMessage] },
+    { code: '<div role="tabpanel row range"></div>', errors: [errorMessage] },
+    { code: '<div role="doc-endnotes range"></div>', errors: [errorMessage] },
+    { code: '<div role />', errors: [errorMessage] },
+    { code: '<div role={null}></div>', errors: [errorMessage] },
+  ].concat(invalidTests).map(parserOptionsMapper),
 });

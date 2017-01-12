@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/no-access-key';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -33,25 +27,24 @@ const expectedError = {
 
 ruleTester.run('no-access-key', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<div {...props} />', parserOptions },
-    { code: '<div accessKey={undefined} />', parserOptions },
-    { code: '<div accessKey={`${undefined}`} />', parserOptions },
-    { code: '<div accessKey={`${undefined}${undefined}`} />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<div {...props} />' },
+    { code: '<div accessKey={undefined} />' },
+    { code: '<div accessKey={`${undefined}`} />' },
+    { code: '<div accessKey={`${undefined}${undefined}`} />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<div accesskey="h" />', errors: [expectedError], parserOptions },
-    { code: '<div accessKey="h" />', errors: [expectedError], parserOptions },
-    { code: '<div accessKey="h" {...props} />', errors: [expectedError], parserOptions },
-    { code: '<div acCesSKeY="y" />', errors: [expectedError], parserOptions },
-    { code: '<div accessKey={"y"} />', errors: [expectedError], parserOptions },
-    { code: '<div accessKey={`${y}`} />', errors: [expectedError], parserOptions },
+    { code: '<div accesskey="h" />', errors: [expectedError] },
+    { code: '<div accessKey="h" />', errors: [expectedError] },
+    { code: '<div accessKey="h" {...props} />', errors: [expectedError] },
+    { code: '<div acCesSKeY="y" />', errors: [expectedError] },
+    { code: '<div accessKey={"y"} />', errors: [expectedError] },
+    { code: '<div accessKey={`${y}`} />', errors: [expectedError] },
     {
       code: '<div accessKey={`${undefined}y${undefined}`} />',
       errors: [expectedError],
-      parserOptions,
     },
-    { code: '<div accessKey={`This is ${bad}`} />', errors: [expectedError], parserOptions },
-    { code: '<div accessKey={accessKey} />', errors: [expectedError], parserOptions },
-  ],
+    { code: '<div accessKey={`This is ${bad}`} />', errors: [expectedError] },
+    { code: '<div accessKey={accessKey} />', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

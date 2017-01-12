@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/lang';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,18 +25,18 @@ const expectedError = {
 
 ruleTester.run('lang', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<div foo="bar" />;', parserOptions },
-    { code: '<div lang="foo" />;', parserOptions },
-    { code: '<html lang="en" />', parserOptions },
-    { code: '<html lang="en-US" />', parserOptions },
-    { code: '<html lang={foo} />', parserOptions },
-    { code: '<HTML lang="foo" />', parserOptions },
-    { code: '<Foo lang="bar" />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<div foo="bar" />;' },
+    { code: '<div lang="foo" />;' },
+    { code: '<html lang="en" />' },
+    { code: '<html lang="en-US" />' },
+    { code: '<html lang={foo} />' },
+    { code: '<HTML lang="foo" />' },
+    { code: '<Foo lang="bar" />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<html lang="foo" />', errors: [expectedError], parserOptions },
-    { code: '<html lang="zz-LL" />', errors: [expectedError], parserOptions },
-    { code: '<html lang={undefined} />', errors: [expectedError], parserOptions },
-  ],
+    { code: '<html lang="foo" />', errors: [expectedError] },
+    { code: '<html lang="zz-LL" />', errors: [expectedError] },
+    { code: '<html lang={undefined} />', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

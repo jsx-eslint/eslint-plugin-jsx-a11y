@@ -8,14 +8,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/aria-activedescendant-has-tabindex';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -33,73 +27,57 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
   valid: [
     {
       code: '<CustomComponent />;',
-      parserOptions,
     },
     {
       code: '<CustomComponent aria-activedescendant={someID} />;',
-      parserOptions,
     },
     {
       code: '<CustomComponent aria-activedescendant={someID} tabIndex={0} />;',
-      parserOptions,
     },
     {
       code: '<CustomComponent aria-activedescendant={someID} tabIndex={-1} />;',
-      parserOptions,
     },
     {
       code: '<div />;',
-      parserOptions,
     },
     {
       code: '<input />;',
-      parserOptions,
     },
     {
       code: '<div tabIndex={0} />;',
-      parserOptions,
     },
     {
       code: '<div aria-activedescendant={someID} tabIndex={0} />;',
-      parserOptions,
     },
     {
       code: '<div aria-activedescendant={someID} tabIndex="0" />;',
-      parserOptions,
     },
     {
       code: '<div aria-activedescendant={someID} tabIndex={1} />;',
-      parserOptions,
     },
     {
       code: '<input aria-activedescendant={someID} />;',
-      parserOptions,
     },
     {
       code: '<input aria-activedescendant={someID} tabIndex={0} />;',
-      parserOptions,
     },
-  ],
+  ].map(parserOptionsMapper),
   invalid: [
     {
       code: '<div aria-activedescendant={someID} />;',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<div aria-activedescendant={someID} tabIndex={-1} />;',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<div aria-activedescendant={someID} tabIndex="-1" />;',
       errors: [expectedError],
-      parserOptions,
     },
     {
       code: '<input aria-activedescendant={someID} tabIndex={-1} />;',
       errors: [expectedError],
-      parserOptions,
     },
-  ],
+  ].map(parserOptionsMapper),
 });

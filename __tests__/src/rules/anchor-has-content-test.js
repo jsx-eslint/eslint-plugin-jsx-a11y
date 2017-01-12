@@ -9,15 +9,9 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule,
   { determineChildType } from '../../../src/rules/anchor-has-content';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -42,17 +36,17 @@ describe('determineChildType', () => {
 
 ruleTester.run('anchor-has-content', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<a>Foo</a>', parserOptions },
-    { code: '<a><Bar /></a>', parserOptions },
-    { code: '<a>{foo}</a>', parserOptions },
-    { code: '<a>{foo.bar}</a>', parserOptions },
-    { code: '<a dangerouslySetInnerHTML={{ __html: "foo" }} />', parserOptions },
-    { code: '<a children={children} />', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<a>Foo</a>' },
+    { code: '<a><Bar /></a>' },
+    { code: '<a>{foo}</a>' },
+    { code: '<a>{foo.bar}</a>' },
+    { code: '<a dangerouslySetInnerHTML={{ __html: "foo" }} />' },
+    { code: '<a children={children} />' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<a />', errors: [expectedError], parserOptions },
-    { code: '<a><Bar aria-hidden /></a>', errors: [expectedError], parserOptions },
-    { code: '<a>{undefined}</a>', errors: [expectedError], parserOptions },
-  ],
+    { code: '<a />', errors: [expectedError] },
+    { code: '<a><Bar aria-hidden /></a>', errors: [expectedError] },
+    { code: '<a>{undefined}</a>', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });

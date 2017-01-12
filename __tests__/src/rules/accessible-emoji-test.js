@@ -9,14 +9,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/accessible-emoji';
-
-const parserOptions = {
-  ecmaVersion: 6,
-  ecmaFeatures: {
-    jsx: true,
-  },
-};
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -31,22 +25,22 @@ const expectedError = {
 
 ruleTester.run('accessible-emoji', rule, {
   valid: [
-    { code: '<div />;', parserOptions },
-    { code: '<span />', parserOptions },
-    { code: '<span>No emoji here!</span>', parserOptions },
-    { code: '<span role="img" aria-label="Panda face">🐼</span>', parserOptions },
-    { code: '<span role="img" aria-label="Snowman">&#9731;</span>', parserOptions },
-    { code: '<span role="img" aria-labelledby="id1">🐼</span>', parserOptions },
-    { code: '<span role="img" aria-labelledby="id1">&#9731;</span>', parserOptions },
-    { code: '<span role="img" aria-labelledby="id1" aria-label="Snowman">&#9731;</span>', parserOptions },
-    { code: '<span>{props.emoji}</span>', parserOptions },
-  ],
+    { code: '<div />;' },
+    { code: '<span />' },
+    { code: '<span>No emoji here!</span>' },
+    { code: '<span role="img" aria-label="Panda face">🐼</span>' },
+    { code: '<span role="img" aria-label="Snowman">&#9731;</span>' },
+    { code: '<span role="img" aria-labelledby="id1">🐼</span>' },
+    { code: '<span role="img" aria-labelledby="id1">&#9731;</span>' },
+    { code: '<span role="img" aria-labelledby="id1" aria-label="Snowman">&#9731;</span>' },
+    { code: '<span>{props.emoji}</span>' },
+  ].map(parserOptionsMapper),
   invalid: [
-    { code: '<span>🐼</span>', errors: [expectedError], parserOptions },
-    { code: '<span>foo🐼bar</span>', errors: [expectedError], parserOptions },
-    { code: '<span>foo 🐼 bar</span>', errors: [expectedError], parserOptions },
-    { code: '<i role="img" aria-label="Panda face">🐼</i>', errors: [expectedError], parserOptions },
-    { code: '<i role="img" aria-labelledby="id1">🐼</i>', errors: [expectedError], parserOptions },
-    { code: '<Foo>🐼</Foo>', errors: [expectedError], parserOptions },
-  ],
+    { code: '<span>🐼</span>', errors: [expectedError] },
+    { code: '<span>foo🐼bar</span>', errors: [expectedError] },
+    { code: '<span>foo 🐼 bar</span>', errors: [expectedError] },
+    { code: '<i role="img" aria-label="Panda face">🐼</i>', errors: [expectedError] },
+    { code: '<i role="img" aria-labelledby="id1">🐼</i>', errors: [expectedError] },
+    { code: '<Foo>🐼</Foo>', errors: [expectedError] },
+  ].map(parserOptionsMapper),
 });
