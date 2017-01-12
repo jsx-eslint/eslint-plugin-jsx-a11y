@@ -1,12 +1,14 @@
 const ruleBoilerplate = (author, description) => `/**
  * @fileoverview ${description}
  * @author ${author}
+ * @flow
  */
 
 // ----------------------------------------------------------------------------
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { JSXOpeningElement } from 'ast-types-flow';
 import { generateObjSchema } from '../util/schemas';
 
 const errorMessage = '';
@@ -19,8 +21,8 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
-    JSXOpeningElement: (node) => {
+  create: (context: ESLintContext) => ({
+    JSXOpeningElement: (node: JSXOpeningElement) => {
       context.report({
         node,
         message: errorMessage,
