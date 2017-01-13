@@ -1,29 +1,29 @@
 {
-  "CLIPBOARD": [
+  "clipboard": [
     "onCopy",
     "onCut",
     "onPaste"
   ],
-  "COMPOSITION": [
+  "composition": [
     "onCompositionEnd",
     "onCompositionStart",
     "onCompositionUpdate"
   ],
-  "KEYBOARD": [
+  "keyboard": [
     "onKeyDown",
     "onKeyPress",
     "onKeyUp"
   ],
-  "FOCUS": [
+  "focus": [
     "onFocus",
     "onBlur"
   ],
-  "FORM": [
+  "form": [
     "onChange",
     "onInput",
     "onSubmit"
   ],
-  "MOUSE": [
+  "mouse": [
     "onClick",
     "onContextMenu",
     "onDoubleClick",
@@ -43,22 +43,22 @@
     "onMouseOver",
     "onMouseUp"
   ],
-  "SELECTION": [
+  "selection": [
     "onSelect"
   ],
-  "TOUCH": [
+  "touch": [
     "onTouchCancel",
     "onTouchEnd",
     "onTouchMove",
     "onTouchStart"
   ],
-  "UI": [
+  "ui": [
     "onScroll"
   ],
-  "WHEEL": [
+  "wheel": [
     "onWheel"
   ],
-  "MEDIA": [
+  "media": [
     "onAbort",
     "onCanPlay",
     "onCanPlayThrough",
@@ -83,16 +83,16 @@
     "onVolumeChange",
     "onWaiting"
   ],
-  "IMAGE": [
+  "image": [
     "onLoad",
     "onError"
   ],
-  "ANIMATION": [
+  "animation": [
     "onAnimationStart",
     "onAnimationEnd",
     "onAnimationIteration"
   ],
-  "TRANSITION": [
+  "transition": [
     "onTransitionEnd"
   ]
 }
