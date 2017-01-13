@@ -21,7 +21,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "ALERTDIALOG": {
     "requiredProps": [],
@@ -45,7 +46,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "APPLICATION": {
     "requiredProps": [],
@@ -69,7 +71,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "ARTICLE": {
     "requiredProps": [],
@@ -93,7 +96,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "BANNER": {
     "requiredProps": [],
@@ -117,7 +121,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "BUTTON": {
     "requiredProps": [],
@@ -142,7 +147,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": true
+    "interactive": true,
+    "childrenPresentational": true
   },
   "CHECKBOX": {
     "requiredProps": [
@@ -168,7 +174,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": true
+    "interactive": true,
+    "childrenPresentational": true
   },
   "COLUMNHEADER": {
     "requiredProps": [],
@@ -196,7 +203,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "COMBOBOX": {
     "requiredProps": [
@@ -225,7 +233,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "COMMAND": {
     "props": [
@@ -248,7 +257,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "COMPLEMENTARY": {
     "requiredProps": [],
@@ -272,7 +282,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "COMPOSITE": {
     "props": [
@@ -296,7 +307,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "CONTENTINFO": {
     "requiredProps": [],
@@ -320,7 +332,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DEFINITION": {
     "requiredProps": [],
@@ -344,7 +357,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DIALOG": {
     "requiredProps": [],
@@ -368,7 +382,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DIRECTORY": {
     "requiredProps": [],
@@ -392,7 +407,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "DOC-ABSTRACT": {
     "props": [
@@ -418,7 +434,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-ACKNOWLEDGMENTS": {
     "props": [
@@ -444,7 +461,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-AFTERWORD": {
     "props": [
@@ -470,7 +488,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-APPENDIX": {
     "props": [
@@ -496,7 +515,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-BACKLINK": {
     "props": [
@@ -522,7 +542,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-BIBLIOENTRY": {
     "props": [
@@ -551,7 +572,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-BIBLIOGRAPHY": {
     "props": [
@@ -577,7 +599,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-BIBLIOREF": {
     "props": [
@@ -603,7 +626,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-CHAPTER": {
     "props": [
@@ -629,7 +653,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-COLOPHON": {
     "props": [
@@ -655,7 +680,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-CONCLUSION": {
     "props": [
@@ -681,7 +707,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-COVER": {
     "props": [
@@ -707,7 +734,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-CREDIT": {
     "props": [
@@ -733,7 +761,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-CREDITS": {
     "props": [
@@ -759,7 +788,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-DEDICATION": {
     "props": [
@@ -785,7 +815,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-ENDNOTE": {
     "props": [
@@ -814,7 +845,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-ENDNOTES": {
     "props": [
@@ -840,7 +872,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-EPIGRAPH": {
     "props": [
@@ -866,7 +899,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-EPILOGUE": {
     "props": [
@@ -892,7 +926,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-ERRATA": {
     "props": [
@@ -918,7 +953,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-EXAMPLE": {
     "props": [
@@ -944,7 +980,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-FOOTNOTE": {
     "props": [
@@ -970,7 +1007,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-FOREWORD": {
     "props": [
@@ -996,7 +1034,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-GLOSSARY": {
     "props": [
@@ -1022,7 +1061,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-GLOSSREF": {
     "props": [
@@ -1048,7 +1088,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-INDEX": {
     "props": [
@@ -1074,7 +1115,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-INTRODUCTION": {
     "props": [
@@ -1100,7 +1142,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-NOTEREF": {
     "props": [
@@ -1126,7 +1169,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-NOTICE": {
     "props": [
@@ -1152,7 +1196,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-PAGEBREAK": {
     "props": [
@@ -1179,7 +1224,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-PAGELIST": {
     "props": [
@@ -1205,7 +1251,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-PART": {
     "props": [
@@ -1231,7 +1278,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-PREFACE": {
     "props": [
@@ -1257,7 +1305,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-PROLOGUE": {
     "props": [
@@ -1283,13 +1332,15 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-PULLQUOTE": {
     "props": [],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-QNA": {
     "props": [
@@ -1315,7 +1366,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-SUBTITLE": {
     "props": [
@@ -1341,7 +1393,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-TIP": {
     "props": [
@@ -1367,7 +1420,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOC-TOC": {
     "props": [
@@ -1393,7 +1447,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "DOCUMENT": {
     "requiredProps": [],
@@ -1417,7 +1472,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "FORM": {
     "requiredProps": [],
@@ -1441,7 +1497,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "GRID": {
     "requiredProps": [],
@@ -1469,7 +1526,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-EXPANDED"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "GRIDCELL": {
     "requiredProps": [],
@@ -1496,7 +1554,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "GROUP": {
     "requiredProps": [],
@@ -1521,7 +1580,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "HEADING": {
     "requiredProps": [],
@@ -1546,7 +1606,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "IMG": {
     "requiredProps": [],
@@ -1570,7 +1631,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "INPUT": {
     "props": [
@@ -1593,7 +1655,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "LANDMARK": {
     "props": [
@@ -1617,7 +1680,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "LINK": {
     "requiredProps": [],
@@ -1641,7 +1705,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "LIST": {
     "requiredProps": [],
@@ -1665,7 +1730,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "LISTBOX": {
     "requiredProps": [],
@@ -1692,7 +1758,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-ACTIVEDESCENDANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "LISTITEM": {
     "requiredProps": [],
@@ -1719,7 +1786,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "LOG": {
     "requiredProps": [],
@@ -1743,7 +1811,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "MAIN": {
     "requiredProps": [],
@@ -1767,7 +1836,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "MARQUEE": {
     "requiredProps": [],
@@ -1791,7 +1861,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "MATH": {
     "requiredProps": [],
@@ -1815,7 +1886,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "MENU": {
     "requiredProps": [],
@@ -1840,7 +1912,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-ACTIVEDESCENDANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "MENUBAR": {
     "requiredProps": [],
@@ -1865,7 +1938,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-ACTIVEDESCENDANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "MENUITEM": {
     "requiredProps": [],
@@ -1888,7 +1962,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "MENUITEMCHECKBOX": {
     "requiredProps": [
@@ -1914,7 +1989,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "MENUITEMRADIO": {
     "requiredProps": [
@@ -1943,7 +2019,8 @@
       "ARIA-POSINSET",
       "ARIA-SELECTED",
       "ARIA-SETSIZE"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "NAVIGATION": {
     "requiredProps": [],
@@ -1967,7 +2044,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "NOTE": {
     "requiredProps": [],
@@ -1991,7 +2069,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "OPTION": {
     "requiredProps": [],
@@ -2018,7 +2097,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "PRESENTATION": {
     "requiredProps": [],
@@ -2041,7 +2121,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "PROGRESSBAR": {
     "requiredProps": [],
@@ -2068,7 +2149,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "RADIO": {
     "requiredProps": [
@@ -2097,7 +2179,8 @@
       "ARIA-POSINSET",
       "ARIA-SELECTED",
       "ARIA-SETSIZE"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "RADIOGROUP": {
     "requiredProps": [],
@@ -2123,7 +2206,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-EXPANDED"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "RANGE": {
     "props": [
@@ -2150,7 +2234,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "REGION": {
     "requiredProps": [],
@@ -2174,7 +2259,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "ROLETYPE": {
     "props": [
@@ -2197,7 +2283,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "ROW": {
     "requiredProps": [],
@@ -2224,7 +2311,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "ROWGROUP": {
     "requiredProps": [],
@@ -2249,7 +2337,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "ROWHEADER": {
     "requiredProps": [],
@@ -2277,7 +2366,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "SEARCH": {
     "requiredProps": [],
@@ -2301,7 +2391,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "SEARCHBOX": {
     "props": [
@@ -2335,7 +2426,8 @@
     ],
     "requiredProps": [],
     "abstract": false,
-    "interactive": true
+    "interactive": true,
+    "childrenPresentational": false
   },
   "SECTION": {
     "props": [
@@ -2359,7 +2451,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "SECTIONHEAD": {
     "props": [
@@ -2383,7 +2476,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "SELECT": {
     "props": [
@@ -2408,7 +2502,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "SEPARATOR": {
     "requiredProps": [],
@@ -2433,7 +2528,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "SCROLLBAR": {
     "requiredProps": [
@@ -2467,7 +2563,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-VALUETEXT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "SLIDER": {
     "requiredProps": [
@@ -2499,7 +2596,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-VALUETEXT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "SPINBUTTON": {
     "requiredProps": [
@@ -2531,7 +2629,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-VALUETEXT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "STATUS": {
     "requiredProps": [],
@@ -2555,7 +2654,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "STRUCTURE": {
     "props": [
@@ -2578,7 +2678,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "SWITCH": {
     "requiredProps": [
@@ -2604,7 +2705,8 @@
       "ARIA-RELEVANT"
     ],
     "abstract": false,
-    "interactive": true
+    "interactive": true,
+    "childrenPresentational": true
   },
   "TAB": {
     "requiredProps": [],
@@ -2629,7 +2731,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": true
   },
   "TABLIST": {
     "requiredProps": [],
@@ -2656,7 +2759,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-EXPANDED"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "TABPANEL": {
     "requiredProps": [],
@@ -2680,7 +2784,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "TEXTBOX": {
     "requiredProps": [],
@@ -2708,7 +2813,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "TIMER": {
     "requiredProps": [],
@@ -2732,7 +2838,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "TOOLBAR": {
     "requiredProps": [],
@@ -2757,7 +2864,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "TOOLTIP": {
     "requiredProps": [],
@@ -2781,7 +2889,8 @@
       "ARIA-LIVE",
       "ARIA-OWNS",
       "ARIA-RELEVANT"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "TREE": {
     "requiredProps": [],
@@ -2808,7 +2917,8 @@
       "ARIA-OWNS",
       "ARIA-RELEVANT",
       "ARIA-EXPANDED"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "TREEGRID": {
     "requiredProps": [],
@@ -2837,7 +2947,8 @@
       "ARIA-RELEVANT",
       "ARIA-EXPANDED",
       "ARIA-REQUIRED"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "TREEITEM": {
     "requiredProps": [],
@@ -2866,7 +2977,8 @@
       "ARIA-RELEVANT",
       "ARIA-CHECKED",
       "ARIA-SELECTED"
-    ]
+    ],
+    "childrenPresentational": false
   },
   "WIDGET": {
     "props": [
@@ -2889,7 +3001,8 @@
     ],
     "requiredProps": [],
     "abstract": true,
-    "interactive": false
+    "interactive": false,
+    "childrenPresentational": false
   },
   "WINDOW": {
     "props": [
