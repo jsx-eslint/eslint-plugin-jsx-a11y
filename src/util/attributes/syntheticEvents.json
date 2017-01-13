@@ -26,6 +26,7 @@
   "mouse": [
     "onClick",
     "onContextMenu",
+    "onDblClick",
     "onDoubleClick",
     "onDrag",
     "onDragEnd",
