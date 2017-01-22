@@ -57,6 +57,8 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<UX.Layout>test</UX.Layout>' },
     { code: '<img alt={imageAlt} />' },
     { code: '<img alt />' },
+    { code: '<img alt="Photography" />;' },
+    { code: '<img alt="ImageMagick" />;' },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<img alt="Photo of friend." />;', errors: [expectedError] },
