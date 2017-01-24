@@ -1,3 +1,7 @@
+/**
+ * @flow
+ */
+
 import {
   dom,
   roles,
@@ -6,6 +10,7 @@ import JSXAttributeMock from './JSXAttributeMock';
 import JSXElementMock from './JSXElementMock';
 
 const domElements = [...dom.keys()];
+const roleNames = [...roles.keys()];
 
 const pureInteractiveElements = domElements
   .filter(name => dom.get(name).interactive === true)
@@ -27,12 +32,36 @@ const interactiveElementsMap = {
   ],
 };
 
-const pureNonInteractiveElementsMap = domElements
-  .filter(name => !dom.get(name).interactive)
-  .reduce((nonInteractiveElements, name) => {
-    nonInteractiveElements[name] = [];
-    return nonInteractiveElements;
-  }, {});
+const pureNonInteractiveElementsMap = {
+  a: [],
+  area: [],
+  article: [],
+  dd: [],
+  dfn: [],
+  dt: [],
+  fieldset: [],
+  figure: [],
+  form: [],
+  frame: [],
+  h1: [],
+  h2: [],
+  h3: [],
+  h4: [],
+  h5: [],
+  h6: [],
+  hr: [],
+  img: [],
+  input: [],
+  li: [],
+  nav: [],
+  ol: [],
+  table: [],
+  tbody: [],
+  tfoot: [],
+  thead: [],
+  tr: [],
+  ul: [],
+};
 
 const nonInteractiveElementsMap = {
   ...pureNonInteractiveElementsMap,
@@ -41,10 +70,26 @@ const nonInteractiveElementsMap = {
   ],
 };
 
-const roleNames = [...roles.keys()];
+const indeterminantInteractiveElementsMap = domElements
+  .reduce(
+    (
+      accumulator: {[key: string]: Array<any>},
+      name: string
+    ): {[key: string]: Array<any>} => {
+      accumulator[name] = [];
+      return accumulator;
+    },
+    {},
+  );
+
+Object.keys(interactiveElementsMap)
+  .concat(Object.keys(nonInteractiveElementsMap))
+  .forEach(
+    (name: string) => delete indeterminantInteractiveElementsMap[name]
+  );
 
 const interactiveRoles = roleNames.filter(
-  role => roles.get(role).interactive === true
+  role => roles[role].interactive === true
 );
 
 const nonInteractiveRoles = roleNames.filter(
@@ -85,4 +130,14 @@ export function genNonInteractiveRoleElements () {
       JSXAttributeMock('role', value)
     ])
   );
+}
+
+export function genIndeterminantInteractiveElements () {
+  return Object.keys(indeterminantInteractiveElementsMap)
+    .map(name => {
+      const attributes = indeterminantInteractiveElementsMap[name].map(
+        ({prop, value}) => JSXAttributeMock(prop, value)
+      );
+      return JSXElementMock(name, attributes);
+    });
 }
