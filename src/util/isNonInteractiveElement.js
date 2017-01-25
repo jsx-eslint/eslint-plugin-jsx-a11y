@@ -5,9 +5,16 @@
 import {
   roles,
   elementRoles,
-  roleElements,
 } from 'aria-query';
-import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
+import type {
+  JSXAttribute,
+} from 'ast-types-flow';
+import {
+  getProp,
+  getPropValue,
+  getLiteralPropValue,
+  propName,
+} from 'jsx-ast-utils';
 import getTabIndex from './getTabIndex';
 import DOMElements from './attributes/DOM.json';
 
@@ -16,10 +23,16 @@ const nonInteractiveRoles = new Set(
 );
 
 const pureNonInteractiveElements = [...elementRoles.entries()]
-  .reduce((accumulator, [elementSchemaJSON, roleSet]): {
+  .reduce((accumulator, [
+    // $FlowFixMe: Flow is incorrectly inferring that this is a number.
+    elementSchemaJSON,
+    // $FlowFixMe: Flow is incorrectly inferring that this is a number.
+    roleSet,
+  ]): {
     [elementName: string]: (attributes: Array<Object>) => boolean,
   } => {
     const nonInteractiveElements = accumulator;
+    // $FlowFixMe: Flow is incorrectly inferring that this is a number.
     const elementSchema = JSON.parse(elementSchemaJSON);
     const elementName = elementSchema.name;
     const elementAttributes = elementSchema.attributes || [];
@@ -65,7 +78,10 @@ export const nonInteractiveElementsMap = {
  * an inherent role are not considered. For those, this utility returns false
  * because a positive determination of interactiveness cannot be determined.
  */
-const isNonInteractiveElement = (tagName, attributes) => {
+const isNonInteractiveElement = (
+  tagName: string,
+  attributes: Array<JSXAttribute>,
+): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
   if (Object.keys(DOMElements).indexOf(tagName) === -1) {
