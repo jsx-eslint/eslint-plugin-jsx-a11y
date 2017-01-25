@@ -1,7 +1,7 @@
+import { roles } from 'aria-query';
 import JSXAttributeMock from './JSXAttributeMock';
 import JSXElementMock from './JSXElementMock';
 import DOMElements from '../src/util/attributes/DOM.json';
-import roles from '../src/util/attributes/role.json';
 
 const pureInteractiveElements = Object.keys(DOMElements)
   .filter(name => DOMElements[name].interactive === true)
@@ -37,12 +37,14 @@ const nonInteractiveElementsMap = {
   ],
 };
 
-const interactiveRoles = Object.keys(roles).filter(
-  role => roles[role].interactive === true
+const roleNames = [...roles.keys()];
+
+const interactiveRoles = roleNames.filter(
+  role => roles.get(role).interactive === true
 );
 
-const nonInteractiveRoles = Object.keys(roles).filter(
-  role => roles[role].interactive === false
+const nonInteractiveRoles = roleNames.filter(
+  role => roles.get(role).interactive === false
 );
 
 export function genInteractiveElements () {

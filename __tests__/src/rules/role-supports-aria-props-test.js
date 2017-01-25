@@ -8,10 +8,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
+import { roles } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/role-supports-aria-props';
-import ROLES from '../../../src/util/attributes/role.json';
 import ARIA from '../../../src/util/attributes/ARIA.json';
 
 // -----------------------------------------------------------------------------
@@ -34,11 +34,12 @@ const errorMessage = (attr, role, tag, isImplicit) => ({
   type: 'JSXOpeningElement',
 });
 
-const nonAbstractRoles = Object.keys(ROLES).filter(role => ROLES[role].abstract === false);
+const nonAbstractRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
 
-const createTests = roles => roles.reduce((tests, role) => {
-  const validPropsForRole = ROLES[role.toUpperCase()].props;
+const createTests = rolesNames => rolesNames.reduce((tests, role) => {
+  const validPropsForRole = roles.get(role.toLowerCase()).props;
   const invalidPropsForRole = Object.keys(ARIA)
+    .map(attribute => attribute.toLowerCase())
     .filter(attribute => validPropsForRole.indexOf(attribute) === -1);
   const normalRole = role.toLowerCase();
 
