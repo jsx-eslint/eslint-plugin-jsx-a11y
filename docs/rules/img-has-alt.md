@@ -18,7 +18,7 @@ This rule takes one optional object argument of type object:
 
 For the `components` option, these strings determine which JSX elements (**always including** `<img>`) should be checked for having `alt` prop. This is a good use case when you have a wrapper component that simply renders an `img` element (like in React):
 
-```js
+```jsx
 // Image.js
 const Image = props => {
   const {
@@ -42,7 +42,7 @@ return (
 );
 ```
 
-Note that passing props as spread attribute without `alt` explicitly defined will cause this rule to fail. Explicitly pass down `alt` prop or use `role="presentation"` for rule to pass. Use `Image` component above as a reference for destructuring and applying the prop. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.** For example:
+Note that passing props as spread attribute without `alt` explicitly defined will cause this rule to fail. Explicitly pass down `alt` prop for rule to pass. Use `Image` component above as a reference for destructuring and applying the prop. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.** For example:
 
 #### Bad
 ```jsx
@@ -85,4 +85,5 @@ function Foo(props) {
 <img {...props} alt /> // Has no value
 <img {...props} alt={undefined} /> // Has no value
 <img {...props} alt={`${undefined}`} /> // Has no value
+<img src="foo" role="presentation" /> // Avoid ARIA if it can be achieved without
 ```
