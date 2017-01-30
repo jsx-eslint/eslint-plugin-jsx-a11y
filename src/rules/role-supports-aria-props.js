@@ -8,10 +8,12 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { roles } from 'aria-query';
+import {
+  aria,
+  roles,
+} from 'aria-query';
 import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import ARIA from '../util/attributes/ARIA.json';
 import getImplicitRole from '../util/getImplicitRole';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
@@ -51,7 +53,7 @@ module.exports = {
 
       // Make sure it has no aria-* properties defined outside of its property set.
       const propertySet = roles.get(roleValue.toLowerCase()).props;
-      const invalidAriaPropsForRole = Object.keys(ARIA)
+      const invalidAriaPropsForRole = [...aria.keys()]
         .map(attribute => attribute.toLowerCase())
         .filter(attribute => propertySet.indexOf(attribute) === -1);
 

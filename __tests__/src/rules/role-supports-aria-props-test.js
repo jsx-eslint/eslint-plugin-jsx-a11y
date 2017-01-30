@@ -8,11 +8,13 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import { roles } from 'aria-query';
+import {
+  aria,
+  roles,
+} from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/role-supports-aria-props';
-import ARIA from '../../../src/util/attributes/ARIA.json';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -38,7 +40,7 @@ const nonAbstractRoles = [...roles.keys()].filter(role => roles.get(role).abstra
 
 const createTests = rolesNames => rolesNames.reduce((tests, role) => {
   const validPropsForRole = roles.get(role.toLowerCase()).props;
-  const invalidPropsForRole = Object.keys(ARIA)
+  const invalidPropsForRole = [...aria.keys()]
     .map(attribute => attribute.toLowerCase())
     .filter(attribute => validPropsForRole.indexOf(attribute) === -1);
   const normalRole = role.toLowerCase();

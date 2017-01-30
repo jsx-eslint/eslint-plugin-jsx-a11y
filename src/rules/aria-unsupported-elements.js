@@ -8,10 +8,10 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { aria } from 'aria-query';
 import { elementType, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import DOM from '../util/attributes/DOM.json';
-import ARIA from '../util/attributes/ARIA.json';
 
 const errorMessage = invalidProp =>
   `This element does not support ARIA roles, states and properties. \
@@ -33,12 +33,12 @@ module.exports = {
         reserved: isReservedNodeType = false,
       } = nodeAttrs;
 
-      // If it's not reserved, then it can have ARIA-* roles, states, and properties
+      // If it's not reserved, then it can have aria-* roles, states, and properties
       if (isReservedNodeType === false) {
         return;
       }
 
-      const invalidAttributes = Object.keys(ARIA).concat('ROLE');
+      const invalidAttributes = [...aria.keys()].concat('role');
 
       node.attributes.forEach((prop) => {
         if (prop.type === 'JSXSpreadAttribute') {
@@ -46,7 +46,7 @@ module.exports = {
         }
 
         const name = propName(prop);
-        const normalizedName = name ? name.toUpperCase() : '';
+        const normalizedName = name ? name.toLowerCase() : '';
 
         if (invalidAttributes.indexOf(normalizedName) > -1) {
           context.report({
