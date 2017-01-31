@@ -1,6 +1,8 @@
-import { roles } from 'aria-query';
+import {
+  dom,
+  roles,
+} from 'aria-query';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
-import DOMElements from './attributes/DOM.json';
 
 const VALID_ROLES = [...roles.keys()]
   .filter(role => roles.get(role).interactive === true);
@@ -18,7 +20,7 @@ const VALID_ROLES = [...roles.keys()]
 const isInteractiveRole = (tagName, attributes) => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (Object.keys(DOMElements).indexOf(tagName) === -1) {
+  if ([...dom.keys()].indexOf(tagName) === -1) {
     return true;
   }
 

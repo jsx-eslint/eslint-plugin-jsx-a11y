@@ -7,9 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { dom } from 'aria-query';
 import { propName, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import DOMElements from '../util/attributes/DOM.json';
 
 const errorMessage = 'The scope prop can only be used on <th> elements.';
 
@@ -33,7 +33,7 @@ module.exports = {
 
       // Do not test higher level JSX components, as we do not know what
       // low-level DOM element this maps to.
-      if (Object.keys(DOMElements).indexOf(tagName) === -1) {
+      if ([...dom.keys()].indexOf(tagName) === -1) {
         return;
       } else if (tagName && tagName.toUpperCase() === 'TH') {
         return;

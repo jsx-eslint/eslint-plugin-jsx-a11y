@@ -8,10 +8,12 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { aria } from 'aria-query';
+import {
+  aria,
+  dom,
+} from 'aria-query';
 import { elementType, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import DOM from '../util/attributes/DOM.json';
 
 const errorMessage = invalidProp =>
   `This element does not support ARIA roles, states and properties. \
@@ -28,7 +30,7 @@ module.exports = {
   create: context => ({
     JSXOpeningElement: (node) => {
       const nodeType = elementType(node);
-      const nodeAttrs = DOM[nodeType] || {};
+      const nodeAttrs = dom.get(nodeType) || {};
       const {
         reserved: isReservedNodeType = false,
       } = nodeAttrs;
