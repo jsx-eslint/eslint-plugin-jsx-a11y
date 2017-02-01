@@ -89,7 +89,7 @@ Object.keys(interactiveElementsMap)
   );
 
 const interactiveRoles = roleNames.filter(
-  role => roles[role].interactive === true
+  role => roles.get(role).interactive === true
 );
 
 const nonInteractiveRoles = roleNames.filter(

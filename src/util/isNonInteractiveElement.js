@@ -3,8 +3,9 @@
  */
 
 import {
-  roles,
+  dom,
   elementRoles,
+  roles,
 } from 'aria-query';
 import type {
   JSXAttribute,
@@ -16,7 +17,6 @@ import {
   propName,
 } from 'jsx-ast-utils';
 import getTabIndex from './getTabIndex';
-import DOMElements from './attributes/DOM.json';
 
 const nonInteractiveRoles = new Set(
   [...roles.keys()].filter(name => !roles.get(name).interactive),
@@ -84,7 +84,7 @@ const isNonInteractiveElement = (
 ): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (Object.keys(DOMElements).indexOf(tagName) === -1) {
+  if ([...dom.keys()].indexOf(tagName) === -1) {
     return false;
   }
 

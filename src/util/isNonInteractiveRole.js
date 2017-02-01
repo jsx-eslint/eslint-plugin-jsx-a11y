@@ -1,10 +1,12 @@
+import {
+  dom,
+  roles,
+} from 'aria-query';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
-import DOMElements from './attributes/DOM.json';
-import roles from './attributes/role.json';
 
 
-const VALID_ROLES = Object.keys(roles)
-  .filter(role => roles[role].interactive === false);
+const VALID_ROLES = [...roles.keys()]
+  .filter(role => roles.get(role).interactive === false);
 /**
  * Returns boolean indicating whether the given element has a role
  * that is associated with a non-interactive component. Non-interactive roles
@@ -25,7 +27,7 @@ const VALID_ROLES = Object.keys(roles)
 const isNonInteractiveRole = (tagName, attributes) => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (Object.keys(DOMElements).indexOf(tagName) === -1) {
+  if ([...dom.keys()].indexOf(tagName) === -1) {
     return false;
   }
 
