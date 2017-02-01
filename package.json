@@ -39,6 +39,7 @@
     "coveralls": "^2.11.8",
     "eslint": "^3.12.2",
     "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-plugin-flowtype": "^2.29.2",
     "eslint-plugin-import": "^2.2.0",
     "expect": "^1.20.2",
     "flow-bin": "^0.38.0",
