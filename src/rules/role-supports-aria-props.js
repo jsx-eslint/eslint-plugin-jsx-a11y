@@ -8,10 +8,12 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import {
+  aria,
+  roles,
+} from 'aria-query';
 import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import ROLES from '../util/attributes/role.json';
-import ARIA from '../util/attributes/ARIA.json';
 import getImplicitRole from '../util/getImplicitRole';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
@@ -42,13 +44,17 @@ module.exports = {
       // If there is no explicit or implicit role, then assume that the element
       // can handle the global set of aria-* properties.
       // This actually isn't true - should fix in future release.
-      if (typeof roleValue !== 'string' || ROLES[roleValue.toUpperCase()] === undefined) {
+      if (
+        typeof roleValue !== 'string'
+        || roles.get(roleValue.toLowerCase()) === undefined
+      ) {
         return;
       }
 
       // Make sure it has no aria-* properties defined outside of its property set.
-      const propertySet = ROLES[roleValue.toUpperCase()].props;
-      const invalidAriaPropsForRole = Object.keys(ARIA)
+      const propertySet = roles.get(roleValue.toLowerCase()).props;
+      const invalidAriaPropsForRole = [...aria.keys()]
+        .map(attribute => attribute.toLowerCase())
         .filter(attribute => propertySet.indexOf(attribute) === -1);
 
       node.attributes.forEach((prop) => {
@@ -57,7 +63,7 @@ module.exports = {
         }
 
         const name = propName(prop);
-        const normalizedName = name ? name.toUpperCase() : '';
+        const normalizedName = name ? name.toLowerCase() : '';
 
         if (invalidAriaPropsForRole.indexOf(normalizedName) > -1) {
           context.report({

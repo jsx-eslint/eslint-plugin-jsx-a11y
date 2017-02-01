@@ -7,14 +7,15 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { aria } from 'aria-query';
 import { propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import ariaAttributes from '../util/attributes/ARIA.json';
 import getSuggestion from '../util/getSuggestion';
 
+const ariaAttributes = [...aria.keys()];
+
 const errorMessage = (name) => {
-  const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
-  const suggestions = getSuggestion(name, dictionary);
+  const suggestions = getSuggestion(name, ariaAttributes);
   const message = `${name}: This attribute is an invalid ARIA attribute.`;
 
   if (suggestions.length > 0) {
@@ -35,14 +36,14 @@ module.exports = {
   create: context => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute);
-      const normalizedName = name ? name.toUpperCase() : '';
+      const normalizedName = name ? name.toLowerCase() : '';
 
       // `aria` needs to be prefix of property.
-      if (normalizedName.indexOf('ARIA-') !== 0) {
+      if (normalizedName.indexOf('aria-') !== 0) {
         return;
       }
 
-      const isValid = Object.keys(ariaAttributes).indexOf(normalizedName) > -1;
+      const isValid = ariaAttributes.indexOf(normalizedName) > -1;
 
       if (isValid === false) {
         context.report({

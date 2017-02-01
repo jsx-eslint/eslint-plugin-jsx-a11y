@@ -3,9 +3,9 @@
  * @author Jesse Beach <@jessebeach>
  */
 
+import { dom } from 'aria-query';
 import { getProp, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import DOMElements from '../util/attributes/DOM.json';
 import getTabIndex from '../util/getTabIndex';
 import isInteractiveElement from '../util/isInteractiveElement';
 
@@ -18,7 +18,7 @@ const errorMessage =
 
 const schema = generateObjSchema();
 
-const DOMElementKeys = Object.keys(DOMElements);
+const domElements = [...dom.keys()];
 
 module.exports = {
   meta: {
@@ -37,7 +37,7 @@ module.exports = {
       const type = elementType(node);
       // Do not test higher level JSX components, as we do not know what
       // low-level DOM element this maps to.
-      if (DOMElementKeys.indexOf(type) === -1) {
+      if (domElements.indexOf(type) === -1) {
         return;
       }
       const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));

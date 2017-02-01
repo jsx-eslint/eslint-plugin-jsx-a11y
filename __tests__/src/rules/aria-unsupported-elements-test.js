@@ -9,9 +9,9 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
+import { dom } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import DOM from '../../../src/util/attributes/DOM.json';
 import rule from '../../../src/rules/aria-unsupported-elements';
 
 // -----------------------------------------------------------------------------
@@ -26,9 +26,10 @@ Try removing the prop '${invalidProp}'.`,
   type: 'JSXOpeningElement',
 });
 
+const domElements = [...dom.keys()];
 // Generate valid test cases
-const roleValidityTests = Object.keys(DOM).map((element) => {
-  const isReserved = DOM[element].reserved || false;
+const roleValidityTests = domElements.map((element) => {
+  const isReserved = dom.get(element).reserved || false;
   const role = isReserved ? '' : 'role';
 
   return {
@@ -36,8 +37,8 @@ const roleValidityTests = Object.keys(DOM).map((element) => {
   };
 });
 
-const ariaValidityTests = Object.keys(DOM).map((element) => {
-  const isReserved = DOM[element].reserved || false;
+const ariaValidityTests = domElements.map((element) => {
+  const isReserved = dom.get(element).reserved || false;
   const aria = isReserved ? '' : 'aria-hidden';
 
   return {
@@ -46,15 +47,15 @@ const ariaValidityTests = Object.keys(DOM).map((element) => {
 });
 
 // Generate invalid test cases.
-const invalidRoleValidityTests = Object.keys(DOM)
-  .filter(element => Boolean(DOM[element].reserved))
+const invalidRoleValidityTests = domElements
+  .filter(element => Boolean(dom.get(element).reserved))
   .map(reservedElem => ({
     code: `<${reservedElem} role {...props} />`,
     errors: [errorMessage('role')],
   }));
 
-const invalidAriaValidityTests = Object.keys(DOM)
-  .filter(element => Boolean(DOM[element].reserved))
+const invalidAriaValidityTests = domElements
+  .filter(element => Boolean(dom.get(element).reserved))
   .map(reservedElem => ({
     code: `<${reservedElem} aria-hidden {...props} />`,
     errors: [errorMessage('aria-hidden')],

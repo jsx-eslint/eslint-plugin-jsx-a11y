@@ -8,9 +8,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { roles } from 'aria-query';
 import { getProp, getLiteralPropValue, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import validRoleTypes from '../util/attributes/role.json';
 
 const errorMessage = (role, requiredProps) =>
   `Elements with the ARIA role "${role}" must have the following ` +
@@ -42,12 +42,12 @@ module.exports = {
         return;
       }
 
-      const normalizedValues = String(value).toUpperCase().split(' ');
+      const normalizedValues = String(value).toLowerCase().split(' ');
       const validRoles = normalizedValues
-        .filter(val => Object.keys(validRoleTypes).indexOf(val) > -1);
+        .filter(val => [...roles.keys()].indexOf(val) > -1);
 
       validRoles.forEach((role) => {
-        const { requiredProps } = validRoleTypes[role];
+        const { requiredProps } = roles.get(role);
 
         if (requiredProps.length > 0) {
           const hasRequiredProps = requiredProps

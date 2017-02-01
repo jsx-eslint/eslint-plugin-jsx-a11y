@@ -1,11 +1,11 @@
+import { dom } from 'aria-query';
 import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
 import getTabIndex from './getTabIndex';
-import DOMElements from './attributes/DOM.json';
 
 // Map of tagNames to functions that return whether that element is interactive or not.
-
-const pureInteractiveElements = Object.keys(DOMElements)
-  .filter(name => DOMElements[name].interactive === true)
+const DOMElements = [...dom.keys()];
+const pureInteractiveElements = DOMElements
+  .filter(name => dom.get(name).interactive === true)
   .reduce((accumulator, name) => {
     const interactiveElements = accumulator;
     interactiveElements[name] = () => true;
@@ -37,7 +37,7 @@ export const interactiveElementsMap = {
 const isInteractiveElement = (tagName, attributes) => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (Object.keys(DOMElements).indexOf(tagName) === -1) {
+  if (DOMElements.indexOf(tagName) === -1) {
     return true;
   }
 

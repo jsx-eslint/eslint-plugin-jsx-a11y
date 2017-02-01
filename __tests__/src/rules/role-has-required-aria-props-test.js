@@ -9,9 +9,9 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
+import { roles } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import validRoleTypes from '../../../src/util/attributes/role.json';
 import rule from '../../../src/rules/role-has-required-aria-props';
 
 // -----------------------------------------------------------------------------
@@ -21,7 +21,7 @@ import rule from '../../../src/rules/role-has-required-aria-props';
 const ruleTester = new RuleTester();
 
 const errorMessage = (role) => {
-  const requiredProps = validRoleTypes[role.toUpperCase()].requiredProps.toString().toLowerCase();
+  const requiredProps = roles.get(role).requiredProps.toString().toLowerCase();
 
   return {
     message: `Elements with the ARIA role "${role}" must have the following ` +
@@ -32,8 +32,8 @@ const errorMessage = (role) => {
 
 
 // Create basic test cases using all valid role types.
-const basicValidityTests = Object.keys(validRoleTypes).map((role) => {
-  const { requiredProps } = validRoleTypes[role];
+const basicValidityTests = [...roles.keys()].map((role) => {
+  const { requiredProps } = roles.get(role);
   const propChain = requiredProps.join(' ').toLowerCase();
 
   return {

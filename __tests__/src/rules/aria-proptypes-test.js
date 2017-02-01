@@ -8,8 +8,8 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
+import { aria } from 'aria-query';
 import { RuleTester } from 'eslint';
-import ariaAttributes from '../../../src/util/attributes/ARIA.json';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule, { validityCheck } from '../../../src/rules/aria-proptypes';
 
@@ -20,7 +20,10 @@ import rule, { validityCheck } from '../../../src/rules/aria-proptypes';
 const ruleTester = new RuleTester();
 
 const errorMessage = (name) => {
-  const { type, values: permittedValues } = ariaAttributes[name.toUpperCase()];
+  const {
+    type,
+    values: permittedValues,
+  } = aria.get(name.toLowerCase());
 
   switch (type) {
     case 'tristate':
