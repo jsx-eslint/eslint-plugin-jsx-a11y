@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-jsx-a11y",
   "version": "3.0.2",
-  "description": "A static analysis linter of jsx and their accessibility with screen readers.",
+  "description": "Static AST checker for accessibility rules on JSX elements.",
   "keywords": [
     "eslint",
     "eslintplugin",
@@ -42,7 +42,7 @@
     "eslint-plugin-flowtype": "^2.29.2",
     "eslint-plugin-import": "^2.2.0",
     "expect": "^1.20.2",
-    "flow-bin": "^0.37.4",
+    "flow-bin": "^0.38.0",
     "jest": "^18.1.0",
     "jscodeshift": "^0.3.30",
     "minimist": "^1.2.0",
