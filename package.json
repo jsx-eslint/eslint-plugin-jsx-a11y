@@ -16,6 +16,10 @@
     "url": "https://github.com/evcohen/eslint-plugin-jsx-a11y"
   },
   "main": "lib/index.js",
+  "files": [
+    "lib",
+    "docs"
+  ],
   "scripts": {
     "build": "rimraf lib && babel src --out-dir lib && cp -R src/util/attributes lib/util/attributes",
     "prepublish": "npm run lint && npm run flow && npm run test && npm run build",
