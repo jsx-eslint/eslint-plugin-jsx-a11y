@@ -39,6 +39,10 @@ const invalidTests = createTests(invalidRoles).map((test) => {
   return invalidTest;
 });
 
+const ignoreNonDOMSchema = [{
+  ignoreNonDOM: true,
+}];
+
 ruleTester.run('aria-role', rule, {
   valid: [
     // Variables should pass, as we are only testing literals.
@@ -52,6 +56,7 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role="doc-abstract" />' },
     { code: '<div role="doc-appendix doc-bibliography" />' },
     { code: '<Bar baz />' },
+    { code: '<Foo role="bar" />', options: ignoreNonDOMSchema },
   ].concat(validTests).map(parserOptionsMapper),
 
   invalid: [
@@ -64,5 +69,6 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role="doc-endnotes range"></div>', errors: [errorMessage] },
     { code: '<div role />', errors: [errorMessage] },
     { code: '<div role={null}></div>', errors: [errorMessage] },
+    { code: '<Foo role="datepicker" />', errors: [errorMessage] },
   ].concat(invalidTests).map(parserOptionsMapper),
 });
