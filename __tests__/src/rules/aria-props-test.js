@@ -8,10 +8,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
+import { aria } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/aria-props';
-import ariaAttributes from '../../../src/util/attributes/ARIA.json';
 import getSuggestion from '../../../src/util/getSuggestion';
 
 // -----------------------------------------------------------------------------
@@ -19,10 +19,10 @@ import getSuggestion from '../../../src/util/getSuggestion';
 // -----------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
+const ariaAttributes = [...aria.keys()];
 
 const errorMessage = (name) => {
-  const dictionary = Object.keys(ariaAttributes).map(aria => aria.toLowerCase());
-  const suggestions = getSuggestion(name, dictionary);
+  const suggestions = getSuggestion(name, ariaAttributes);
   const message = `${name}: This attribute is an invalid ARIA attribute.`;
 
   if (suggestions.length > 0) {
@@ -39,7 +39,7 @@ const errorMessage = (name) => {
 };
 
 // Create basic test cases using all valid role types.
-const basicValidityTests = Object.keys(ariaAttributes).map(prop => ({
+const basicValidityTests = ariaAttributes.map(prop => ({
   code: `<div ${prop.toLowerCase()}="foobar" />`,
 }));
 

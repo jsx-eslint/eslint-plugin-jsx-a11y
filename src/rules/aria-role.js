@@ -7,10 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { dom, roles } from 'aria-query';
 import { getLiteralPropValue, propName, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import roles from '../util/attributes/role.json';
-import DOMElements from '../util/attributes/DOM.json';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
 
@@ -36,7 +35,9 @@ module.exports = {
 
       if (ignoreNonDOM) {
         const type = elementType(attribute.parent);
-        if (!DOMElements[type]) { return; }
+        if (!dom.get(type)) {
+          return;
+        }
       }
 
       // Get prop name
@@ -52,8 +53,10 @@ module.exports = {
       // value isn't in the form of a literal.
       if (value === undefined || value === null) { return; }
 
-      const normalizedValues = String(value).toUpperCase().split(' ');
-      const validRoles = Object.keys(roles).filter(role => roles[role].abstract === false);
+      const normalizedValues = String(value).toLowerCase().split(' ');
+      const validRoles = [...roles.keys()].filter(
+        role => roles.get(role).abstract === false,
+      );
       const isValid = normalizedValues.every(val => validRoles.indexOf(val) > -1);
 
       if (isValid === true) { return; }

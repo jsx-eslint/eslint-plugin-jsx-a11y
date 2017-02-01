@@ -7,9 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { aria } from 'aria-query';
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import ariaAttributes from '../util/attributes/ARIA.json';
 
 const errorMessage = (name, type, permittedValues) => {
   switch (type) {
@@ -63,10 +63,10 @@ module.exports = {
   create: context => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute);
-      const normalizedName = name ? name.toUpperCase() : '';
+      const normalizedName = name ? name.toLowerCase() : '';
 
       // Not a valid aria-* state or property.
-      if (normalizedName.indexOf('ARIA-') !== 0 || ariaAttributes[normalizedName] === undefined) {
+      if (normalizedName.indexOf('aria-') !== 0 || aria.get(normalizedName) === undefined) {
         return;
       }
 
@@ -78,7 +78,7 @@ module.exports = {
       }
 
       // These are the attributes of the property/state to check against.
-      const attributes = ariaAttributes[normalizedName];
+      const attributes = aria.get(normalizedName);
       const permittedType = attributes.type;
       const allowUndefined = attributes.allowUndefined || false;
       const permittedValues = attributes.values || [];
