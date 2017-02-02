@@ -21,18 +21,35 @@ const pureInteractiveElements = domElements
 
 const interactiveElementsMap = {
   ...pureInteractiveElements,
-  a: [
-    {prop: 'href', value: '#'}
-  ],
-  area: [
-    {prop: 'href', value: '#'}
-  ],
-  input: [
-    {prop: 'type', value: 'text'}
-  ],
+  a: [{prop: 'href', value: '#'}],
+  area: [{prop: 'href', value: '#'}],
+  form: [],
+  input: [],
+  'input[type=\"button\"]': [{prop: 'type', value: 'button'}],
+  'input[type=\"checkbox\"]': [{prop: 'type', value: 'checkbox'}],
+  'input[type=\"color\"]': [{prop: 'type', value: 'color'}],
+  'input[type=\"date\"]': [{prop: 'type', value: 'date'}],
+  'input[type=\"datetime\"]': [{prop: 'type', value: 'datetime'}],
+  'input[type=\"datetime\"]': [{prop: 'type', value: 'datetime'}],
+  'input[type=\"email\"]': [{prop: 'type', value: 'email'}],
+  'input[type=\"file\"]': [{prop: 'type', value: 'file'}],
+  'input[type=\"image\"]': [{prop: 'type', value: 'image'}],
+  'input[type=\"month\"]': [{prop: 'type', value: 'month'}],
+  'input[type=\"number\"]': [{prop: 'type', value: 'number'}],
+  'input[type=\"password\"]': [{prop: 'type', value: 'password'}],
+  'input[type=\"radio\"]': [{prop: 'type', value: 'radio'}],
+  'input[type=\"range\"]': [{prop: 'type', value: 'range'}],
+  'input[type=\"reset\"]': [{prop: 'type', value: 'reset'}],
+  'input[type=\"search\"]': [{prop: 'type', value: 'search'}],
+  'input[type=\"submit\"]': [{prop: 'type', value: 'submit'}],
+  'input[type=\"tel\"]': [{prop: 'type', value: 'tel'}],
+  'input[type=\"text\"]': [{prop: 'type', value: 'text'}],
+  'input[type=\"time\"]': [{prop: 'type', value: 'time'}],
+  'input[type=\"url\"]': [{prop: 'type', value: 'url'}],
+  'input[type=\"week\"]': [{prop: 'type', value: 'week'}],
 };
 
-const pureNonInteractiveElementsMap = {
+const nonInteractiveElementsMap = {
   a: [],
   area: [],
   article: [],
@@ -41,7 +58,6 @@ const pureNonInteractiveElementsMap = {
   dt: [],
   fieldset: [],
   figure: [],
-  form: [],
   frame: [],
   h1: [],
   h2: [],
@@ -51,8 +67,9 @@ const pureNonInteractiveElementsMap = {
   h6: [],
   hr: [],
   img: [],
-  input: [],
+  'input[type=\"hidden\"]': [{prop: 'type', value: 'hidden'}],
   li: [],
+  main: [],
   nav: [],
   ol: [],
   table: [],
@@ -61,13 +78,6 @@ const pureNonInteractiveElementsMap = {
   thead: [],
   tr: [],
   ul: [],
-};
-
-const nonInteractiveElementsMap = {
-  ...pureNonInteractiveElementsMap,
-  input: [
-    {prop: 'type', value: 'hidden'}
-  ],
 };
 
 const indeterminantInteractiveElementsMap = domElements
@@ -98,8 +108,13 @@ const nonInteractiveRoles = roleNames.filter(
 
 export function genInteractiveElements () {
   return Object.keys(interactiveElementsMap)
-    .map(name => {
-      const attributes = interactiveElementsMap[name].map(
+    .map(elementSymbol => {
+      const bracketIndex = elementSymbol.indexOf('[');
+      let name = elementSymbol;
+      if (bracketIndex > -1) {
+        name = elementSymbol.slice(0, bracketIndex);
+      }
+      const attributes = interactiveElementsMap[elementSymbol].map(
         ({prop, value}) => JSXAttributeMock(prop, value)
       );
       return JSXElementMock(name, attributes);
@@ -116,8 +131,13 @@ export function genInteractiveRoleElements () {
 
 export function genNonInteractiveElements () {
   return Object.keys(nonInteractiveElementsMap)
-    .map(name => {
-      const attributes = nonInteractiveElementsMap[name].map(
+    .map(elementSymbol => {
+      const bracketIndex = elementSymbol.indexOf('[');
+      let name = elementSymbol;
+      if (bracketIndex > -1) {
+        name = elementSymbol.slice(0, bracketIndex);
+      }
+      const attributes = nonInteractiveElementsMap[elementSymbol].map(
         ({prop, value}) => JSXAttributeMock(prop, value)
       );
       return JSXElementMock(name, attributes);

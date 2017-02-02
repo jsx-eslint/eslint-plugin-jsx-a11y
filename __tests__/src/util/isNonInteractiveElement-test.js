@@ -8,6 +8,16 @@ import {
   genNonInteractiveElements,
 } from '../../../__mocks__/genInteractives';
 
+const genElementSymbol = (openingElement) => {
+  return openingElement.name.name + (
+    (openingElement.attributes.length > 0)
+      ? `${openingElement.attributes.map(
+        attr => `[${attr.name.name}=\"${attr.value.value}\"]` ).join('')
+      }`
+      : ''
+  );
+};
+
 describe('isNonInteractiveElement', () => {
   describe('JSX Components (no tagName)', () => {
     it('should identify them as interactive elements', () => {
@@ -18,7 +28,7 @@ describe('isNonInteractiveElement', () => {
   describe('non-interactive elements', () => {
     genNonInteractiveElements().forEach(
       ({ openingElement }) => {
-        it(`should identify \`${openingElement.name.name}\` as a non-interactive element`, () => {
+        it(`should identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
           expect(isNonInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
@@ -30,7 +40,7 @@ describe('isNonInteractiveElement', () => {
   describe('interactive elements', () => {
     genInteractiveElements().forEach(
       ({ openingElement }) => {
-        it(`should not identify \`${openingElement.name.name}\` as a non-interactive element`, () => {
+        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
           expect(isNonInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
@@ -42,7 +52,7 @@ describe('isNonInteractiveElement', () => {
   describe('indeterminate elements', () => {
     genIndeterminantInteractiveElements().forEach(
       ({ openingElement }) => {
-        it(`should not identify \`${openingElement.name.name}\` as a non-interactive element`, () => {
+        it(`should NOT identify \`${openingElement.name.name}\` as a non-interactive element`, () => {
           expect(isNonInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
