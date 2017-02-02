@@ -66,7 +66,7 @@ export const nonInteractiveElementsMap = {
   area: isNotLink,
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
-    return typeAttr ? typeAttr.toUpperCase() === 'HIDDEN' : false;
+    return typeAttr ? typeAttr.toLowerCase() === 'hidden' : false;
   },
 };
 
