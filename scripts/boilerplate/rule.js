@@ -8,7 +8,7 @@ const ruleBoilerplate = (author, description) => `/**
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { JSXOpeningElement } from 'ast-types-flow';
+import type { JSXOpeningElement } from 'ast-types-flow';
 import { generateObjSchema } from '../util/schemas';
 
 const errorMessage = '';
