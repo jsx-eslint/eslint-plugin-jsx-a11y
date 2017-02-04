@@ -4,3 +4,4 @@ npm-debug.log
 coverage
 .gitignore
 .DS_Store
+yarn-error.log
