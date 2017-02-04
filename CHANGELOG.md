@@ -1,3 +1,18 @@
+4.0.0 / 2017-02-04
+==================
+Add new rules:
+- `jsx-a11y/accessible-emoji`
+- `jsx-a11y/aria-activedescendant-has-tabindex`
+- `jsx-a11y/iframe-has-title`
+- `jsx-a11y/no-autofocus`
+- `jsx-a11y/no-distracting-elements` *(breaking: consolidated no-marquee and no-blink into this rule.)*
+- `jsx-a11y/no-redundant-roles`
+- [fix] - redundant-alt to only check full words
+- [docs] - Documentation upgrades across the board.
+- [new] - Add `ignoreNonDom`
+- [dev] - Add script to scaffold new rule creation.
+
+
 3.0.2 / 2016-12-14
 ==================
 - [fix] - make `aria-invalid` values true and false pass for rule `aria-proptypes`
