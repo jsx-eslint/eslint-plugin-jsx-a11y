@@ -81,9 +81,9 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 
 ```json
 {
-  "extends": {
+  "extends": [
     "plugin:jsx-a11y/recommended"
-  }
+  ]
 }
 ```
 
