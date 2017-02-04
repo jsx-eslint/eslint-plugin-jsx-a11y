@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jsx-a11y",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Static AST checker for accessibility rules on JSX elements.",
   "keywords": [
     "eslint",
