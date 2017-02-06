@@ -1,11 +1,12 @@
 import {
-  dom,
   roles,
 } from 'aria-query';
+import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
 const VALID_ROLES = [...roles.keys()]
-  .filter(role => roles.get(role).interactive === true);
+  .filter(role => !roles.get(role).abstract)
+  .filter(role => roles.get(role).interactive);
 /**
  * Returns boolean indicating whether the given element has a role
  * that is associated with an interactive component. Used when an element
@@ -17,13 +18,10 @@ const VALID_ROLES = [...roles.keys()]
  * The JSX element does not have a tagName or it has a tagName and a role
  * attribute with a value in the set of non-interactive roles.
  */
-const isInteractiveRole = (tagName, attributes) => {
-  // Do not test higher level JSX components, as we do not know what
-  // low-level DOM element this maps to.
-  if ([...dom.keys()].indexOf(tagName) === -1) {
-    return true;
-  }
-
+const isInteractiveRole = (
+  tagName: string,
+  attributes: Array<Node>,
+): boolean => {
   const value = getLiteralPropValue(getProp(attributes, 'role'));
 
   // If value is undefined, then the role attribute will be dropped in the DOM.

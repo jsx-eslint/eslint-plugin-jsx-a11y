@@ -24,7 +24,7 @@
     "lint": "eslint  --config .eslintrc src __tests__",
     "lint:fix": "npm run lint -- --fix",
     "pretest": "npm run lint:fix && npm run flow",
-    "test": "jest --bail --coverage",
+    "test": "jest --coverage",
     "create": "node ./scripts/create-rule"
   },
   "devDependencies": {
