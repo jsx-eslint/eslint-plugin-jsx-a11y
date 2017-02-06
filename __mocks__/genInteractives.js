@@ -98,13 +98,31 @@ Object.keys(interactiveElementsMap)
     (name: string) => delete indeterminantInteractiveElementsMap[name]
   );
 
-const interactiveRoles = roleNames.filter(
-  role => roles.get(role).interactive === true
-);
+const abstractRoles = roleNames
+  .filter(role => roles.get(role).abstract);
 
-const nonInteractiveRoles = roleNames.filter(
-  role => roles.get(role).interactive === false
-);
+const nonAbstractRoles = roleNames
+  .filter(role => !roles.get(role).abstract);
+
+const interactiveRoles = roleNames
+  .filter(role => !roles.get(role).abstract)
+  .filter(role => roles.get(role).interactive);
+
+const nonInteractiveRoles = roleNames
+  .filter(role => !roles.get(role).abstract)
+  .filter(role => !roles.get(role).interactive);
+
+export function genElementSymbol (
+  openingElement: Object,
+) {
+  return openingElement.name.name + (
+    (openingElement.attributes.length > 0)
+      ? `${openingElement.attributes.map(
+        attr => `[${attr.name.name}=\"${attr.value.value}\"]` ).join('')
+      }`
+      : ''
+  );
+};
 
 export function genInteractiveElements () {
   return Object.keys(interactiveElementsMap)
@@ -151,6 +169,22 @@ export function genNonInteractiveRoleElements () {
     ])
   );
 }
+
+export function genAbstractRoleElements () {
+  return abstractRoles.map(
+    value => JSXElementMock('div', [
+      JSXAttributeMock('role', value)
+    ])
+  );
+};
+
+export function genNonAbstractRoleElements () {
+  return nonAbstractRoles.map(
+    value => JSXElementMock('div', [
+      JSXAttributeMock('role', value)
+    ])
+  );
+};
 
 export function genIndeterminantInteractiveElements () {
   return Object.keys(indeterminantInteractiveElementsMap)

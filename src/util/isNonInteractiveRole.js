@@ -1,12 +1,20 @@
+/**
+ * @flow
+ */
+
 import {
   dom,
   roles,
 } from 'aria-query';
+import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
+const nonInteractiveRoles = new Set(
+  [...roles.keys()]
+    .filter(name => !roles.get(name).abstract)
+    .filter(name => !roles.get(name).interactive),
+);
 
-const VALID_ROLES = [...roles.keys()]
-  .filter(role => roles.get(role).interactive === false);
 /**
  * Returns boolean indicating whether the given element has a role
  * that is associated with a non-interactive component. Non-interactive roles
@@ -24,28 +32,18 @@ const VALID_ROLES = [...roles.keys()]
  * it is considered neither interactive nor non-interactive -- a determination
  * cannot be made in this case and false is returned.
  */
-const isNonInteractiveRole = (tagName, attributes) => {
+const isNonInteractiveRole = (
+  tagName: string,
+  attributes: Array<Node>,
+): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
   if ([...dom.keys()].indexOf(tagName) === -1) {
     return false;
   }
 
-  const value = getLiteralPropValue(getProp(attributes, 'role'));
-
-  // If value is undefined, then the role attribute will be dropped in the DOM.
-  // If value is null, then getLiteralAttributeValue is telling us that the
-  // value isn't in the form of a literal
-  if (value === undefined || value === null) {
-    return false;
-  }
-
-  const normalizedValues = String(value).toUpperCase().split(' ');
-  const isNonInteractive = normalizedValues.every(
-    val => VALID_ROLES.indexOf(val) > -1,
-  );
-
-  return isNonInteractive;
+  const role = getLiteralPropValue(getProp(attributes, 'role'));
+  return nonInteractiveRoles.has(role);
 };
 
 export default isNonInteractiveRole;

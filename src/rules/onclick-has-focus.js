@@ -3,6 +3,7 @@
  * @author Ethan Cohen
  */
 
+import { dom } from 'aria-query';
 import { getProp, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
@@ -21,6 +22,7 @@ const errorMessage =
   'focusable such as `button`.';
 
 const schema = generateObjSchema();
+const DOMElements = [...dom.keys()];
 
 module.exports = {
   meta: {
@@ -37,7 +39,11 @@ module.exports = {
 
       const type = elementType(node);
 
-      if (isHiddenFromScreenReader(type, attributes)) {
+      if (DOMElements.indexOf(type) === -1) {
+        // Do not test higher level JSX components, as we do not know what
+        // low-level DOM element this maps to.
+        return;
+      } else if (isHiddenFromScreenReader(type, attributes)) {
         return;
       } else if (isInteractiveElement(type, attributes)) {
         return;

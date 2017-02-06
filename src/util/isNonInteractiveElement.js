@@ -7,9 +7,7 @@ import {
   elementRoles,
   roles,
 } from 'aria-query';
-import type {
-  JSXAttribute,
-} from 'ast-types-flow';
+import type { Node } from 'ast-types-flow';
 import {
   getProp,
   getPropValue,
@@ -18,19 +16,26 @@ import {
 } from 'jsx-ast-utils';
 import getTabIndex from './getTabIndex';
 
+type ElementCallbackMap = {
+  [elementName: string]: (attributes: Array<Node>) => boolean,
+};
+
 const nonInteractiveRoles = new Set(
-  [...roles.keys()].filter(name => !roles.get(name).interactive),
+  [...roles.keys()]
+    .filter(name => !roles.get(name).abstract)
+    .filter(name => !roles.get(name).interactive),
 );
 
 const pureNonInteractiveElements = [...elementRoles.entries()]
-  .reduce((accumulator, [
-    // $FlowFixMe: Flow is incorrectly inferring that this is a number.
-    elementSchemaJSON,
-    // $FlowFixMe: Flow is incorrectly inferring that this is a number.
-    roleSet,
-  ]): {
-    [elementName: string]: (attributes: Array<Object>) => boolean,
-  } => {
+  .reduce((
+    accumulator: ElementCallbackMap,
+    [
+      // $FlowFixMe: Flow is incorrectly inferring that this is a number.
+      elementSchemaJSON,
+      // $FlowFixMe: Flow is incorrectly inferring that this is a number.
+      roleSet,
+    ],
+  ): ElementCallbackMap => {
     const nonInteractiveElements = accumulator;
     // $FlowFixMe: Flow is incorrectly inferring that this is a number.
     const elementSchema = JSON.parse(elementSchemaJSON);
@@ -80,7 +85,7 @@ export const nonInteractiveElementsMap = {
  */
 const isNonInteractiveElement = (
   tagName: string,
-  attributes: Array<JSXAttribute>,
+  attributes: Array<Node>,
 ): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
