@@ -33,11 +33,11 @@ describe('isNonInteractiveElement', () => {
   describe('non-interactive role elements', () => {
     genNonInteractiveRoleElements().forEach(
       ({ openingElement }) => {
-        it(`should identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
+        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
           expect(isNonInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
-          )).toBe(true);
+          )).toBe(false);
         });
       },
     );

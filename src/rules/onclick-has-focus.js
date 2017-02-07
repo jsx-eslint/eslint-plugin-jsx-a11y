@@ -1,10 +1,16 @@
 /**
  * @fileoverview Enforce that elements with onClick handlers must be focusable.
  * @author Ethan Cohen
+ * @flow
  */
 
 import { dom } from 'aria-query';
-import { getProp, elementType } from 'jsx-ast-utils';
+import {
+  getLiteralPropValue,
+  getProp,
+  elementType,
+} from 'jsx-ast-utils';
+import type { JSXOpeningElement } from 'ast-types-flow';
 import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -22,7 +28,7 @@ const errorMessage =
   'focusable such as `button`.';
 
 const schema = generateObjSchema();
-const DOMElements = [...dom.keys()];
+const domElements = [...dom.keys()];
 
 module.exports = {
   meta: {
@@ -30,8 +36,10 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
-    JSXOpeningElement: (node) => {
+  create: (context: ESLintContext) => ({
+    JSXOpeningElement: (
+      node: JSXOpeningElement,
+    ) => {
       const { attributes } = node;
       if (getProp(attributes, 'onClick') === undefined) {
         return;
@@ -39,7 +47,7 @@ module.exports = {
 
       const type = elementType(node);
 
-      if (DOMElements.indexOf(type) === -1) {
+      if (!domElements.includes(type)) {
         // Do not test higher level JSX components, as we do not know what
         // low-level DOM element this maps to.
         return;
@@ -47,14 +55,19 @@ module.exports = {
         return;
       } else if (isInteractiveElement(type, attributes)) {
         return;
-      } else if (!isInteractiveRole(type, attributes)) {
-        // A non-interactive element or an element without an interactive
-        // role might have a click hanlder attached to it in order to catch
-        // bubbled click events. In this case, the author should apply a role
-        // of presentation to the element to indicate that it is not meant to
-        // be interactive.
+      } else if (
+        ['presentation', 'none'].indexOf(
+          getLiteralPropValue(getProp(attributes, 'role')),
+        ) > -1
+      ) {
+        // Presentation is an intentional signal from the author that this
+        // element is not meant to be perceivable. For example, a click screen
+        // to close a dialog .
         return;
-      } else if (getTabIndex(getProp(attributes, 'tabIndex')) !== undefined) {
+      } else if (
+        isInteractiveRole(type, attributes)
+        && getTabIndex(getProp(attributes, 'tabIndex')) !== undefined
+      ) {
         return;
       }
 

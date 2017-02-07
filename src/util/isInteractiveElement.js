@@ -31,7 +31,10 @@ const pureInteractiveElements = DOMElements.reduce(
     name: string,
   ): ElementCallbackMap => {
     const interactiveElements = accumulator;
-    if (dom.get(name).interactive) {
+    if (
+      dom.get(name).interactive
+      && !dom.get(name).reserved
+    ) {
       interactiveElements[name] = () => true;
     }
     return interactiveElements;
@@ -49,12 +52,12 @@ const pureInteractiveRoleElements = [...elementRoles.entries()]
       roleSet,
     ],
   ): ElementCallbackMap => {
-    const nonInteractiveElements = accumulator;
+    const interactiveElements = accumulator;
     // $FlowFixMe: Flow is incorrectly inferring that this is a number.
     const elementSchema = JSON.parse(elementSchemaJSON);
     const elementName = elementSchema.name;
     const elementAttributes = elementSchema.attributes || [];
-    nonInteractiveElements[elementName] = (attributes: Array<Node>): boolean => {
+    interactiveElements[elementName] = (attributes: Array<Node>): boolean => {
       const passedAttrCheck =
         elementAttributes.length === 0 ||
         elementAttributes.every(
@@ -65,11 +68,14 @@ const pureInteractiveRoleElements = [...elementRoles.entries()]
             ),
           ),
         );
-      return passedAttrCheck && [...roleSet.keys()].every(
+      // [].some is used here because some elements are associated with both
+      // interactive and non-interactive roles. Like select, which is
+      // associated with combobox and listbox.
+      return passedAttrCheck && [...roleSet.keys()].some(
         (roleName): boolean => interactiveRoles.has(roleName),
       );
     };
-    return nonInteractiveElements;
+    return interactiveElements;
   }, {});
 
 const isLink = function isLink(attributes) {
@@ -80,13 +86,18 @@ const isLink = function isLink(attributes) {
 
 export const interactiveElementsMap = {
   ...pureInteractiveRoleElements,
-  ...pureInteractiveElements,
   a: isLink,
   area: isLink,
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
     return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
   },
+  // Although this is associated with an interactive role, it should not be
+  // considered interactive in HTML.
+  link: () => false,
+  td: (attributes) => getLiteralPropValue(
+    getProp(attributes, 'role')
+  ) === 'gridcell',
 };
 
 /**
@@ -99,11 +110,6 @@ const isInteractiveElement = (
   tagName: string,
   attributes: Array<Node>,
 ): boolean => {
-  // The element has a role.
-  const role = getLiteralPropValue(getProp(attributes, 'role'));
-  if (role) {
-    return interactiveRoles.has(role);
-  }
 
   // The element does not have an explicit role, determine if it has an
   // inherently interactive role.

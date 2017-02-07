@@ -13,6 +13,7 @@ import {
 } from 'aria-query';
 import {
   elementType,
+  eventHandlersByType,
   getLiteralPropValue,
   getProp,
   hasAnyProp,
@@ -25,10 +26,15 @@ import isInteractiveElement from '../util/isInteractiveElement';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 
 const errorMessage =
-  'Visible, non-interactive elements should not have mouse or keyboard event listeners';
+  'Visible, static elements should not have mouse or keyboard event listeners';
 
 const schema = generateObjSchema();
+
 const domElements = [...dom.keys()];
+const interactiveProps = [
+  ...eventHandlersByType.mouse,
+  ...eventHandlersByType.keyboard,
+];
 
 module.exports = {
   meta: {
@@ -42,14 +48,6 @@ module.exports = {
     ) => {
       const props = node.attributes;
       const type = elementType(node);
-
-      const interactiveProps = [
-        'onclick',
-        'ondblclick',
-        'onkeydown',
-        'onkeyup',
-        'onkeypress',
-      ];
 
       const hasInteractiveProps = hasAnyProp(props, interactiveProps);
 

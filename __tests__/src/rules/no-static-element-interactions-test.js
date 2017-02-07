@@ -1,6 +1,6 @@
 /* eslint-env jest */
 /**
- * @fileoverview Enforce non-interactive elements have no interactive handlers.
+ * @fileoverview Enforce static elements have no interactive handlers.
  * @author Ethan Cohen
  */
 
@@ -19,7 +19,7 @@ import rule from '../../../src/rules/no-static-element-interactions';
 const ruleTester = new RuleTester();
 
 const errorMessage =
-  'Visible, non-interactive elements should not have mouse or keyboard event listeners';
+  'Visible, static elements should not have mouse or keyboard event listeners';
 
 const expectedError = {
   message: errorMessage,
@@ -123,6 +123,19 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<thead onClick={() => {}} />;' },
     { code: '<tr onClick={() => {}} />;' },
     { code: '<ul onClick={() => {}} />;' },
+    /* HTML elements attributed with an abstract role */
+    { code: '<div role="command" onClick={() => {}} />;' },
+    { code: '<div role="composite" onClick={() => {}} />;' },
+    { code: '<div role="input" onClick={() => {}} />;' },
+    { code: '<div role="landmark" onClick={() => {}} />;' },
+    { code: '<div role="range" onClick={() => {}} />;' },
+    { code: '<div role="roletype" onClick={() => {}} />;' },
+    { code: '<div role="section" onClick={() => {}} />;' },
+    { code: '<div role="sectionhead" onClick={() => {}} />;' },
+    { code: '<div role="select" onClick={() => {}} />;' },
+    { code: '<div role="structure" onClick={() => {}} />;' },
+    { code: '<div role="widget" onClick={() => {}} />;' },
+    { code: '<div role="window" onClick={() => {}} />;' },
     /* HTML elements attributed with a non-interactive role */
     { code: '<div role="alert" onClick={() => {}} />;' },
     { code: '<div role="alertdialog" onClick={() => {}} />;' },
@@ -130,9 +143,7 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<div role="article" onClick={() => {}} />;' },
     { code: '<div role="banner" onClick={() => {}} />;' },
     { code: '<div role="cell" onClick={() => {}} />;' },
-    { code: '<div role="command" onClick={() => {}} />;' },
     { code: '<div role="complementary" onClick={() => {}} />;' },
-    { code: '<div role="composite" onClick={() => {}} />;' },
     { code: '<div role="contentinfo" onClick={() => {}} />;' },
     { code: '<div role="definition" onClick={() => {}} />;' },
     { code: '<div role="dialog" onClick={() => {}} />;' },
@@ -144,8 +155,6 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<div role="group" onClick={() => {}} />;' },
     { code: '<div role="heading" onClick={() => {}} />;' },
     { code: '<div role="img" onClick={() => {}} />;' },
-    { code: '<div role="input" onClick={() => {}} />;' },
-    { code: '<div role="landmark" onClick={() => {}} />;' },
     { code: '<div role="list" onClick={() => {}} />;' },
     { code: '<div role="listbox" onClick={() => {}} />;' },
     { code: '<div role="listitem" onClick={() => {}} />;' },
@@ -159,19 +168,13 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<div role="note" onClick={() => {}} />;' },
     { code: '<div role="progressbar" onClick={() => {}} />;' },
     { code: '<div role="radiogroup" onClick={() => {}} />;' },
-    { code: '<div role="range" onClick={() => {}} />;' },
     { code: '<div role="region" onClick={() => {}} />;' },
-    { code: '<div role="roletype" onClick={() => {}} />;' },
     { code: '<div role="row" onClick={() => {}} />;' },
     { code: '<div role="rowgroup" onClick={() => {}} />;' },
     { code: '<div role="search" onClick={() => {}} />;' },
-    { code: '<div role="section" onClick={() => {}} />;' },
-    { code: '<div role="sectionhead" onClick={() => {}} />;' },
-    { code: '<div role="select" onClick={() => {}} />;' },
     { code: '<div role="separator" onClick={() => {}} />;' },
     { code: '<div role="scrollbar" onClick={() => {}} />;' },
     { code: '<div role="status" onClick={() => {}} />;' },
-    { code: '<div role="structure" onClick={() => {}} />;' },
     { code: '<div role="table" onClick={() => {}} />;' },
     { code: '<div role="tablist" onClick={() => {}} />;' },
     { code: '<div role="tabpanel" onClick={() => {}} />;' },
@@ -181,8 +184,6 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<div role="tooltip" onClick={() => {}} />;' },
     { code: '<div role="tree" onClick={() => {}} />;' },
     { code: '<div role="treegrid" onClick={() => {}} />;' },
-    { code: '<div role="widget" onClick={() => {}} />;' },
-    { code: '<div role="window" onClick={() => {}} />;' },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div onClick={() => void 0} />;', errors: [expectedError] },
