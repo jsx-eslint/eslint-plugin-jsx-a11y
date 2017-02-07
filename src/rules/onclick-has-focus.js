@@ -6,7 +6,6 @@
 
 import { dom } from 'aria-query';
 import {
-  getLiteralPropValue,
   getProp,
   elementType,
 } from 'jsx-ast-utils';
@@ -15,6 +14,7 @@ import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
+import isPresentationRole from '../util/isPresentationRole';
 import getTabIndex from '../util/getTabIndex';
 
 // ----------------------------------------------------------------------------
@@ -46,35 +46,34 @@ module.exports = {
       }
 
       const type = elementType(node);
+      const hasTabindex = getTabIndex(
+        getProp(attributes, 'tabIndex'),
+      ) !== undefined;
 
       if (!domElements.includes(type)) {
         // Do not test higher level JSX components, as we do not know what
         // low-level DOM element this maps to.
         return;
-      } else if (isHiddenFromScreenReader(type, attributes)) {
-        return;
-      } else if (isInteractiveElement(type, attributes)) {
-        return;
       } else if (
-        ['presentation', 'none'].indexOf(
-          getLiteralPropValue(getProp(attributes, 'role')),
-        ) > -1
+        isHiddenFromScreenReader(type, attributes)
+        || isPresentationRole(type, attributes)
       ) {
         // Presentation is an intentional signal from the author that this
         // element is not meant to be perceivable. For example, a click screen
         // to close a dialog .
         return;
-      } else if (
-        isInteractiveRole(type, attributes)
-        && getTabIndex(getProp(attributes, 'tabIndex')) !== undefined
-      ) {
-        return;
       }
 
-      context.report({
-        node,
-        message: errorMessage,
-      });
+      if (
+        !isInteractiveElement(type, attributes)
+        && isInteractiveRole(type, attributes)
+        && !hasTabindex
+      ) {
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      }
     },
   }),
 };

@@ -60,6 +60,7 @@ ruleTester.run('no-static-element-interactions', rule, {
     /* End all flavors of input */
     { code: '<input type="hidden" onClick={() => void 0} />' },
     { code: '<button onClick={() => void 0} className="foo" />' },
+    { code: '<menuitem onClick={() => {}} />;' },
     { code: '<option onClick={() => void 0} className="foo" />' },
     { code: '<select onClick={() => void 0} className="foo" />' },
     { code: '<textarea onClick={() => void 0} className="foo" />' },
@@ -242,7 +243,6 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<mark onClick={() => {}} />;', errors: [expectedError] },
     { code: '<marquee onClick={() => {}} />;', errors: [expectedError] },
     { code: '<menu onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<menuitem onClick={() => {}} />;', errors: [expectedError] },
     { code: '<meta onClick={() => {}} />;', errors: [expectedError] },
     { code: '<meter onClick={() => {}} />;', errors: [expectedError] },
     { code: '<noembed onClick={() => {}} />;', errors: [expectedError] },

@@ -2,7 +2,6 @@
  * @flow
  */
 import {
-  dom,
   elementRoles,
   roles,
 } from 'aria-query';
@@ -23,23 +22,6 @@ const interactiveRoles = new Set(
   [...roles.keys()]
     .filter(name => !roles.get(name).abstract)
     .filter(name => roles.get(name).interactive),
-);
-const DOMElements = [...dom.keys()];
-const pureInteractiveElements = DOMElements.reduce(
-  (
-    accumulator: ElementCallbackMap,
-    name: string,
-  ): ElementCallbackMap => {
-    const interactiveElements = accumulator;
-    if (
-      dom.get(name).interactive
-      && !dom.get(name).reserved
-    ) {
-      interactiveElements[name] = () => true;
-    }
-    return interactiveElements;
-  },
-  {},
 );
 // Map of tagNames to functions that return whether that element is interactive or not.
 const pureInteractiveRoleElements = [...elementRoles.entries()]
@@ -95,8 +77,8 @@ export const interactiveElementsMap = {
   // Although this is associated with an interactive role, it should not be
   // considered interactive in HTML.
   link: () => false,
-  td: (attributes) => getLiteralPropValue(
-    getProp(attributes, 'role')
+  td: attributes => getLiteralPropValue(
+    getProp(attributes, 'role'),
   ) === 'gridcell',
 };
 
@@ -110,7 +92,6 @@ const isInteractiveElement = (
   tagName: string,
   attributes: Array<Node>,
 ): boolean => {
-
   // The element does not have an explicit role, determine if it has an
   // inherently interactive role.
   if ({}.hasOwnProperty.call(interactiveElementsMap, tagName) === false) {
