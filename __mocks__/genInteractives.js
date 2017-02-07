@@ -12,17 +12,10 @@ import JSXElementMock from './JSXElementMock';
 const domElements = [...dom.keys()];
 const roleNames = [...roles.keys()];
 
-const pureInteractiveElements = domElements
-  .filter(name => dom.get(name).interactive === true)
-  .reduce((interactiveElements, name) => {
-    interactiveElements[name] = [];
-    return interactiveElements;
-  }, {});
-
 const interactiveElementsMap = {
-  ...pureInteractiveElements,
   a: [{prop: 'href', value: '#'}],
   area: [{prop: 'href', value: '#'}],
+  button: [],
   form: [],
   input: [],
   'input[type=\"button\"]': [{prop: 'type', value: 'button'}],
@@ -47,6 +40,11 @@ const interactiveElementsMap = {
   'input[type=\"time\"]': [{prop: 'type', value: 'time'}],
   'input[type=\"url\"]': [{prop: 'type', value: 'url'}],
   'input[type=\"week\"]': [{prop: 'type', value: 'week'}],
+  menuitem:[],
+  option: [],
+  select: [],
+  'td[role="gridcell"]': [{prop: 'role', value: 'gridcell'}],
+  textarea: [],
 };
 
 const nonInteractiveElementsMap = {

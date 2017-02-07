@@ -33,11 +33,11 @@ describe('isInteractiveElement', () => {
   describe('interactive role elements', () => {
     genInteractiveRoleElements().forEach(
       ({ openingElement }) => {
-        it(`should identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
+        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
           expect(isInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
-          )).toBe(true);
+          )).toBe(false);
         });
       },
     );

@@ -93,12 +93,6 @@ const isNonInteractiveElement = (
     return false;
   }
 
-  // The element has a role.
-  const role = getLiteralPropValue(getProp(attributes, 'role'));
-  if (role) {
-    return nonInteractiveRoles.has(role);
-  }
-
   // The element does not have an explicit role, determine if it has an
   // inherently non-interactive role.
   if ({}.hasOwnProperty.call(nonInteractiveElementsMap, tagName) === false) {
