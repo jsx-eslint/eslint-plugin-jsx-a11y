@@ -10,7 +10,6 @@
 
 import { roles } from 'aria-query';
 import { RuleTester } from 'eslint';
-import assign from 'object-assign';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/aria-role';
 
@@ -38,7 +37,7 @@ const createTests = roleNames => roleNames.map(role => ({
 
 const validTests = createTests(validRoles);
 const invalidTests = createTests(invalidRoles).map((test) => {
-  const invalidTest = assign({}, test);
+  const invalidTest = Object.assign({}, test);
   invalidTest.errors = [errorMessage];
   return invalidTest;
 });
