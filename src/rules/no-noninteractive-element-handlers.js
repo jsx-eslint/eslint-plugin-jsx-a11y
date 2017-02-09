@@ -1,9 +1,8 @@
 /**
- * @fileoverview $DESCRIPTION
- * @author $AUTHOR
+ * @fileoverview Enforce non-interactive elements have no interactive handlers.
+ * @author Jese Beach
  * @flow
  */
-
 // ----------------------------------------------------------------------------
 // Rule Definition
 // ----------------------------------------------------------------------------
