@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce non-interactive elements have no interactive handlers.
+ * @fileoverview Enforce static elements have no interactive handlers.
  * @author Ethan Cohen
  * @flow
  */
