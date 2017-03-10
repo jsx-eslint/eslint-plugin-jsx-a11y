@@ -21,7 +21,7 @@ import rule from '../../../src/rules/role-has-required-aria-props';
 const ruleTester = new RuleTester();
 
 const errorMessage = (role) => {
-  const requiredProps = roles.get(role).requiredProps.toString().toLowerCase();
+  const requiredProps = Object.keys(roles.get(role).requiredProps);
 
   return {
     message: `Elements with the ARIA role "${role}" must have the following ` +
@@ -33,8 +33,11 @@ const errorMessage = (role) => {
 
 // Create basic test cases using all valid role types.
 const basicValidityTests = [...roles.keys()].map((role) => {
-  const { requiredProps } = roles.get(role);
-  const propChain = requiredProps.join(' ').toLowerCase();
+  const {
+    requiredProps: requiredPropKeyValues,
+  } = roles.get(role);
+  const requiredProps = Object.keys(requiredPropKeyValues);
+  const propChain = requiredProps.join(' ');
 
   return {
     code: `<div role="${role.toLowerCase()}" ${propChain} />`,
@@ -43,17 +46,15 @@ const basicValidityTests = [...roles.keys()].map((role) => {
 
 ruleTester.run('role-has-required-aria-props', rule, {
   valid: [
+    { code: '<Bar baz />' },
     // Variables should pass, as we are only testing literals.
     { code: '<div />' },
     { code: '<div></div>' },
     { code: '<div role={role} />' },
     { code: '<div role={role || "button"} />' },
     { code: '<div role={role || "foobar"} />' },
-    { code: '<div role="tabpanel row" />' },
-    {
-      code: '<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>',
-    },
-    { code: '<Bar baz />' },
+    { code: '<div role="row" />' },
+    { code: '<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>' },
   ].concat(basicValidityTests).map(parserOptionsMapper),
 
   invalid: [

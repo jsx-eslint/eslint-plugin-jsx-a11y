@@ -21,28 +21,27 @@ type ElementCallbackMap = {
 const interactiveRoles = new Set(
   [...roles.keys()]
     .filter(name => !roles.get(name).abstract)
-    .filter(name => roles.get(name).interactive),
+    .filter(name => roles.get(name).superClass.some(
+      klasses => klasses.includes('widget')),
+    ),
 );
+
 // Map of tagNames to functions that return whether that element is interactive or not.
 const pureInteractiveRoleElements = [...elementRoles.entries()]
   .reduce((
     accumulator: ElementCallbackMap,
     [
-      // $FlowFixMe: Flow is incorrectly inferring that this is a number.
-      elementSchemaJSON,
-      // $FlowFixMe: Flow is incorrectly inferring that this is a number.
+      elementSchema,
       roleSet,
     ],
   ): ElementCallbackMap => {
     const interactiveElements = accumulator;
-    // $FlowFixMe: Flow is incorrectly inferring that this is a number.
-    const elementSchema = JSON.parse(elementSchemaJSON);
     const elementName = elementSchema.name;
     const elementAttributes = elementSchema.attributes || [];
     interactiveElements[elementName] = (attributes: Array<Node>): boolean => {
       const passedAttrCheck =
-        elementAttributes.length === 0 ||
-        elementAttributes.every(
+        elementAttributes.size === 0 ||
+        [...elementAttributes.values()].every(
           (controlAttr): boolean => attributes.some(
             (attr): boolean => (
               controlAttr.name === propName(attr).toLowerCase()
@@ -80,6 +79,12 @@ export const interactiveElementsMap = {
   td: attributes => getLiteralPropValue(
     getProp(attributes, 'role'),
   ) === 'gridcell',
+  table: (attributes) => {
+    const role = getLiteralPropValue(
+      getProp(attributes, 'role'),
+    );
+    return (role === 'grid');
+  },
 };
 
 /**
@@ -92,8 +97,6 @@ const isInteractiveElement = (
   tagName: string,
   attributes: Array<Node>,
 ): boolean => {
-  // The element does not have an explicit role, determine if it has an
-  // inherently interactive role.
   if ({}.hasOwnProperty.call(interactiveElementsMap, tagName) === false) {
     return false;
   }
