@@ -5,8 +5,10 @@ import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
 const VALID_ROLES = [...roles.keys()]
-  .filter(role => !roles.get(role).abstract)
-  .filter(role => roles.get(role).interactive);
+  .filter(name => !roles.get(name).abstract)
+  .filter(name => roles.get(name).superClass.some(
+    klasses => klasses.includes('widget')),
+  );
 /**
  * Returns boolean indicating whether the given element has a role
  * that is associated with an interactive component. Used when an element

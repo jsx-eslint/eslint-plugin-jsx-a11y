@@ -46,15 +46,17 @@ module.exports = {
       // This actually isn't true - should fix in future release.
       if (
         typeof roleValue !== 'string'
-        || roles.get(roleValue.toLowerCase()) === undefined
+        || roles.get(roleValue) === undefined
       ) {
         return;
       }
 
       // Make sure it has no aria-* properties defined outside of its property set.
-      const propertySet = roles.get(roleValue.toLowerCase()).props;
+      const {
+        props: propKeyValues,
+      } = roles.get(roleValue);
+      const propertySet = Object.keys(propKeyValues);
       const invalidAriaPropsForRole = [...aria.keys()]
-        .map(attribute => attribute.toLowerCase())
         .filter(attribute => propertySet.indexOf(attribute) === -1);
 
       node.attributes.forEach((prop) => {
@@ -63,9 +65,7 @@ module.exports = {
         }
 
         const name = propName(prop);
-        const normalizedName = name ? name.toLowerCase() : '';
-
-        if (invalidAriaPropsForRole.indexOf(normalizedName) > -1) {
+        if (invalidAriaPropsForRole.indexOf(name) > -1) {
           context.report({
             node,
             message: errorMessage(name, roleValue, type, isImplicit),

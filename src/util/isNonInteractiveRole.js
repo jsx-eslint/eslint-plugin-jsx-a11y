@@ -12,7 +12,9 @@ import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 const nonInteractiveRoles = new Set(
   [...roles.keys()]
     .filter(name => !roles.get(name).abstract)
-    .filter(name => !roles.get(name).interactive),
+    .filter(name => !roles.get(name).superClass.some(
+      klasses => klasses.includes('widget')),
+    ),
 );
 
 /**
@@ -32,6 +34,7 @@ const nonInteractiveRoles = new Set(
  * it is considered neither interactive nor non-interactive -- a determination
  * cannot be made in this case and false is returned.
  */
+
 const isNonInteractiveRole = (
   tagName: string,
   attributes: Array<Node>,

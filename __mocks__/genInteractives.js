@@ -16,7 +16,6 @@ const interactiveElementsMap = {
   a: [{prop: 'href', value: '#'}],
   area: [{prop: 'href', value: '#'}],
   button: [],
-  form: [],
   input: [],
   'input[type=\"button\"]': [{prop: 'type', value: 'button'}],
   'input[type=\"checkbox\"]': [{prop: 'type', value: 'checkbox'}],
@@ -43,7 +42,9 @@ const interactiveElementsMap = {
   menuitem:[],
   option: [],
   select: [],
+  'table[role="grid"]': [{prop: 'role', value: 'grid'}],
   'td[role="gridcell"]': [{prop: 'role', value: 'gridcell'}],
+  tr: [],
   textarea: [],
 };
 
@@ -56,6 +57,7 @@ const nonInteractiveElementsMap = {
   dt: [],
   fieldset: [],
   figure: [],
+  form: [],
   frame: [],
   h1: [],
   h2: [],
@@ -71,10 +73,10 @@ const nonInteractiveElementsMap = {
   nav: [],
   ol: [],
   table: [],
+  td: [],
   tbody: [],
   tfoot: [],
   thead: [],
-  tr: [],
   ul: [],
 };
 
@@ -104,11 +106,15 @@ const nonAbstractRoles = roleNames
 
 const interactiveRoles = roleNames
   .filter(role => !roles.get(role).abstract)
-  .filter(role => roles.get(role).interactive);
+  .filter(role => roles.get(role).superClass.some(
+    klasses => klasses.includes('widget')),
+  );
 
 const nonInteractiveRoles = roleNames
   .filter(role => !roles.get(role).abstract)
-  .filter(role => !roles.get(role).interactive);
+  .filter(role => !roles.get(role).superClass.some(
+    klasses => klasses.includes('widget')),
+  );
 
 export function genElementSymbol (
   openingElement: Object,

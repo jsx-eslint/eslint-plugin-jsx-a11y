@@ -23,22 +23,20 @@ type ElementCallbackMap = {
 const nonInteractiveRoles = new Set(
   [...roles.keys()]
     .filter(name => !roles.get(name).abstract)
-    .filter(name => !roles.get(name).interactive),
+    .filter(name => !roles.get(name).superClass.some(
+      klasses => klasses.includes('widget')),
+    ),
 );
 
 const pureNonInteractiveElements = [...elementRoles.entries()]
   .reduce((
     accumulator: ElementCallbackMap,
     [
-      // $FlowFixMe: Flow is incorrectly inferring that this is a number.
-      elementSchemaJSON,
-      // $FlowFixMe: Flow is incorrectly inferring that this is a number.
+      elementSchema,
       roleSet,
     ],
   ): ElementCallbackMap => {
     const nonInteractiveElements = accumulator;
-    // $FlowFixMe: Flow is incorrectly inferring that this is a number.
-    const elementSchema = JSON.parse(elementSchemaJSON);
     const elementName = elementSchema.name;
     const elementAttributes = elementSchema.attributes || [];
     nonInteractiveElements[elementName] = (attributes: Array<Object>): boolean => {
@@ -72,6 +70,14 @@ export const nonInteractiveElementsMap = {
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
     return typeAttr ? typeAttr.toLowerCase() === 'hidden' : false;
+  },
+  table: (attributes) => {
+    const roleAttr = getLiteralPropValue(getProp(attributes, 'role'));
+    return roleAttr ? roleAttr.toLowerCase() !== 'grid' : true;
+  },
+  td: (attributes) => {
+    const roleAttr = getLiteralPropValue(getProp(attributes, 'role'));
+    return roleAttr ? roleAttr.toLowerCase() !== 'gridcell' : true;
   },
 };
 

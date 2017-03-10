@@ -27,9 +27,9 @@ module.exports = {
   create: context => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute);
-      const normalizedName = name ? name.toUpperCase() : '';
+      const normalizedName = name ? name.toLowerCase() : '';
 
-      if (normalizedName !== 'ROLE') {
+      if (normalizedName !== 'role') {
         return;
       }
 
@@ -47,12 +47,14 @@ module.exports = {
         .filter(val => [...roles.keys()].indexOf(val) > -1);
 
       validRoles.forEach((role) => {
-        const { requiredProps } = roles.get(role);
+        const {
+          requiredProps: requiredPropKeyValues,
+        } = roles.get(role);
+        const requiredProps = Object.keys(requiredPropKeyValues);
 
         if (requiredProps.length > 0) {
           const hasRequiredProps = requiredProps
             .every(prop => getProp(attribute.parent.attributes, prop));
-
           if (hasRequiredProps === false) {
             context.report({
               node: attribute,

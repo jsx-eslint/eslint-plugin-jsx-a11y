@@ -39,7 +39,10 @@ const errorMessage = (attr, role, tag, isImplicit) => ({
 const nonAbstractRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
 
 const createTests = rolesNames => rolesNames.reduce((tests, role) => {
-  const validPropsForRole = roles.get(role.toLowerCase()).props;
+  const {
+    props: propKeyValues,
+  } = roles.get(role);
+  const validPropsForRole = Object.keys(propKeyValues);
   const invalidPropsForRole = [...aria.keys()]
     .map(attribute => attribute.toLowerCase())
     .filter(attribute => validPropsForRole.indexOf(attribute) === -1);
