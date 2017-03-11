@@ -37,7 +37,7 @@ const pureInteractiveRoleElements = [...elementRoles.entries()]
   ): ElementCallbackMap => {
     const interactiveElements = accumulator;
     const elementName = elementSchema.name;
-    const elementAttributes = elementSchema.attributes || [];
+    const elementAttributes = elementSchema.attributes || new Map([]);
     interactiveElements[elementName] = (attributes: Array<Node>): boolean => {
       const passedAttrCheck =
         elementAttributes.size === 0 ||
