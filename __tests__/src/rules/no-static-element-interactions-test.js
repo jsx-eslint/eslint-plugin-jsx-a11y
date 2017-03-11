@@ -28,6 +28,8 @@ const expectedError = {
 
 ruleTester.run('no-static-element-interactions', rule, {
   valid: [
+    { code: '<TestComponent onClick={doFoo} />' },
+    { code: '<Button onClick={doFoo} />' },
     { code: '<div />;' },
     { code: '<div className="foo" />;' },
     { code: '<div className="foo" {...props} />;' },
@@ -69,8 +71,6 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />' },
     { code: '<input onClick={() => void 0} type="hidden" />;' },
     { code: '<form onClick={() => {}} />;' },
-    { code: '<TestComponent onClick={doFoo} />' },
-    { code: '<Button onClick={doFoo} />' },
     /* HTML elements attributed with an interactive role */
     { code: '<div role="button" onClick={() => {}} />;' },
     { code: '<div role="checkbox" onClick={() => {}} />;' },
