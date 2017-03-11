@@ -21,6 +21,8 @@ import isAbstractRole from '../util/isAbstractRole';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
+import isNonInteractiveElement from '../util/isNonInteractiveElement';
+import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 
 const errorMessage =
@@ -65,6 +67,10 @@ module.exports = {
       } else if (
         isInteractiveElement(type, attributes)
         || isInteractiveRole(type, attributes)
+        || (
+          !isNonInteractiveElement(type, attributes)
+          && !isNonInteractiveRole(type, attributes)
+        )
         || isAbstractRole(type, attributes)
       ) {
         // This rule has no opinion about abtract roles.
