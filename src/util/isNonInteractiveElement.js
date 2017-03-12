@@ -44,10 +44,13 @@ const pureNonInteractiveElements = [...elementRoles.entries()]
         elementAttributes.length === 0 ||
         elementAttributes.every(
           (controlAttr): boolean => attributes.some(
-            (attr): boolean => (
-              controlAttr.name === propName(attr).toLowerCase()
-              && controlAttr.value === getLiteralPropValue(attr)
-            ),
+            (attr): boolean => {
+              if (attr.type !== 'JSXAttribute') {
+                return false;
+              }
+              return controlAttr.name === propName(attr).toLowerCase()
+                && controlAttr.value === getLiteralPropValue(attr);
+            },
           ),
         );
       return passedAttrCheck && [...roleSet.keys()].every(
