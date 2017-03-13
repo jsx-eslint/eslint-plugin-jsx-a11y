@@ -207,6 +207,7 @@ ruleTester.run('no-noninteractive-element-handlers', rule, {
     { code: '<div role="select" onClick={() => {}} />;' },
     { code: '<div role="structure" onClick={() => {}} />;' },
     { code: '<div role="tablist" onClick={() => {}} />;' },
+    { code: '<div role="toolbar" onClick={() => {}} />;' },
     { code: '<div role="tree" onClick={() => {}} />;' },
     { code: '<div role="treegrid" onClick={() => {}} />;' },
     { code: '<div role="widget" onClick={() => {}} />;' },
@@ -281,7 +282,6 @@ ruleTester.run('no-noninteractive-element-handlers', rule, {
     { code: '<div role="tabpanel" onClick={() => {}} />;', errors: [expectedError] },
     { code: '<div role="term" onClick={() => {}} />;', errors: [expectedError] },
     { code: '<div role="timer" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="toolbar" onClick={() => {}} />;', errors: [expectedError] },
     { code: '<div role="tooltip" onClick={() => {}} />;', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });

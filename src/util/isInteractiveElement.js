@@ -19,7 +19,12 @@ type ElementCallbackMap = {
 };
 
 const interactiveRoles = new Set(
-  [...roles.keys()]
+    [].concat(
+      [...roles.keys()],
+      // 'toolbar' does not descend from widget, but it does support
+      // aria-activedescendant, thus in practice we treat it as a widget.
+      'toolbar',
+    )
     .filter(name => !roles.get(name).abstract)
     .filter(name => roles.get(name).superClass.some(
       klasses => klasses.includes('widget')),
