@@ -41,7 +41,7 @@ const isInteractiveRole = (
   const normalizedValues = String(value).toLowerCase().split(' ');
   if (normalizedValues.length > 0) {
     // The last role value is a series takes precedence.
-    let val = normalizedValues[normalizedValues.length - 1];
+    const val = normalizedValues[normalizedValues.length - 1];
     isInteractive = interactiveRoles.indexOf(val) > -1;
   }
 

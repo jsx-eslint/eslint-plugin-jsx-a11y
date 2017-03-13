@@ -10,7 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import rule from '../../../src/rules/no-noninteractive-element-handlers';
+import rule from '../../../src/rules/no-noninteractive-element-interactions';
 
 // -----------------------------------------------------------------------------
 // Tests
