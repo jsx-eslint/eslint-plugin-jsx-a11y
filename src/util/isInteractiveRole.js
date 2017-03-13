@@ -4,11 +4,15 @@ import {
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
-const VALID_ROLES = [...roles.keys()]
+const interactiveRoles = [...roles.keys()]
   .filter(name => !roles.get(name).abstract)
   .filter(name => roles.get(name).superClass.some(
     klasses => klasses.includes('widget')),
   );
+
+// 'toolbar' does not descend from widget, but it does support
+// aria-activedescendant, thus in practice we treat it as a widget.
+interactiveRoles.push('toolbar');
 /**
  * Returns boolean indicating whether the given element has a role
  * that is associated with an interactive component. Used when an element
@@ -33,10 +37,13 @@ const isInteractiveRole = (
     return false;
   }
 
+  let isInteractive = false;
   const normalizedValues = String(value).toLowerCase().split(' ');
-  const isInteractive = normalizedValues.every(
-    val => VALID_ROLES.indexOf(val) > -1,
-  );
+  if (normalizedValues.length > 0) {
+    // The last role value is a series takes precedence.
+    let val = normalizedValues[normalizedValues.length - 1];
+    isInteractive = interactiveRoles.indexOf(val) > -1;
+  }
 
   return isInteractive;
 };

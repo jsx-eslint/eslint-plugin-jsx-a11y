@@ -104,7 +104,13 @@ const abstractRoles = roleNames
 const nonAbstractRoles = roleNames
   .filter(role => !roles.get(role).abstract);
 
-const interactiveRoles = roleNames
+const interactiveRoles = []
+  .concat(
+    roleNames,
+    // 'toolbar' does not descend from widget, but it does support
+    // aria-activedescendant, thus in practice we treat it as a widget.
+    'toolbar',
+  )
   .filter(role => !roles.get(role).abstract)
   .filter(role => roles.get(role).superClass.some(
     klasses => klasses.includes('widget')),
@@ -114,7 +120,10 @@ const nonInteractiveRoles = roleNames
   .filter(role => !roles.get(role).abstract)
   .filter(role => !roles.get(role).superClass.some(
     klasses => klasses.includes('widget')),
-  );
+  )
+  // 'toolbar' does not descend from widget, but it does support
+  // aria-activedescendant, thus in practice we treat it as a widget.
+  .filter(role => !['toolbar'].includes(role));
 
 export function genElementSymbol (
   openingElement: Object,
