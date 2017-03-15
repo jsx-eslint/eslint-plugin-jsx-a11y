@@ -1,4 +1,4 @@
-# onclick-has-focus
+# interactive-supports-focus
 
 Enforce that visible elements with onClick handlers must be focusable. Visible means that it is not hidden from a screen reader. Examples of non-interactive elements are `div`, `section`, and `a` elements without a href prop. Elements which have click handlers but are not focusable can not be used by keyboard-only users.
 

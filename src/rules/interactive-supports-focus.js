@@ -8,6 +8,8 @@ import { dom } from 'aria-query';
 import {
   getProp,
   elementType,
+  eventHandlersByType,
+  hasAnyProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import { generateObjSchema } from '../util/schemas';
@@ -30,6 +32,11 @@ const errorMessage =
 const schema = generateObjSchema();
 const domElements = [...dom.keys()];
 
+const interactiveProps = [
+  ...eventHandlersByType.mouse,
+  ...eventHandlersByType.keyboard,
+];
+
 module.exports = {
   meta: {
     docs: {},
@@ -40,12 +47,9 @@ module.exports = {
     JSXOpeningElement: (
       node: JSXOpeningElement,
     ) => {
-      const { attributes } = node;
-      if (getProp(attributes, 'onClick') === undefined) {
-        return;
-      }
-
+      const attributes = node.attributes
       const type = elementType(node);
+      const hasInteractiveProps = hasAnyProp(attributes, interactiveProps);
       const hasTabindex = getTabIndex(
         getProp(attributes, 'tabIndex'),
       ) !== undefined;
@@ -55,7 +59,8 @@ module.exports = {
         // low-level DOM element this maps to.
         return;
       } else if (
-        isHiddenFromScreenReader(type, attributes)
+        !hasInteractiveProps
+        || isHiddenFromScreenReader(type, attributes)
         || isPresentationRole(type, attributes)
       ) {
         // Presentation is an intentional signal from the author that this
@@ -65,7 +70,8 @@ module.exports = {
       }
 
       if (
-        !isInteractiveElement(type, attributes)
+        hasInteractiveProps
+        && !isInteractiveElement(type, attributes)
         && isInteractiveRole(type, attributes)
         && !hasTabindex
       ) {
