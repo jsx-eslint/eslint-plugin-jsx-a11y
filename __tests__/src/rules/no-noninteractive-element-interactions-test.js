@@ -56,6 +56,8 @@ ruleTester.run('no-noninteractive-element-handlers', rule, {
     { code: '<input type="week" onClick={() => void 0} />' },
     { code: '<input type="hidden" onClick={() => void 0} />' },
     /* End all flavors of input */
+    { code: '<a onClick={() => void 0} />' },
+    { code: '<a onClick={() => {}} />;' },
     { code: '<a tabIndex="0" onClick={() => void 0} />' },
     { code: '<a onClick={() => void 0} href="http://x.y.z" />' },
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />' },
@@ -216,8 +218,6 @@ ruleTester.run('no-noninteractive-element-handlers', rule, {
   invalid: [
     /* HTML elements with an inherent, non-interactive role */
     { code: '<main onClick={() => void 0} />;', errors: [expectedError] },
-    { code: '<a onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<a onClick={() => {}} />;', errors: [expectedError] },
     { code: '<area onClick={() => {}} />;', errors: [expectedError] },
     { code: '<article onClick={() => {}} />;', errors: [expectedError] },
     { code: '<article onDblClick={() => void 0} />;', errors: [expectedError] },

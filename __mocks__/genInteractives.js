@@ -49,7 +49,6 @@ const interactiveElementsMap = {
 };
 
 const nonInteractiveElementsMap = {
-  a: [],
   area: [],
   article: [],
   dd: [],
