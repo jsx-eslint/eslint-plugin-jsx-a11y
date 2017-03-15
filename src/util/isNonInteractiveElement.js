@@ -68,7 +68,6 @@ const isNotLink = function isNotLink(attributes) {
 
 export const nonInteractiveElementsMap = {
   ...pureNonInteractiveElements,
-  a: isNotLink,
   area: isNotLink,
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));

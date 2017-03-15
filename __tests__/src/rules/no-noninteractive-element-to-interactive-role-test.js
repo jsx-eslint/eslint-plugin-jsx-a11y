@@ -288,6 +288,10 @@ ruleTester.run('no-noninteractive-element-to-interactive-role', rule, {
     { code: '<main role="listitem" />;' },
     { code: '<a role="listitem" />' },
     { code: '<a role="listitem" />;' },
+    { code: '<a role="button" />' },
+    { code: '<a role="button" />;' },
+    { code: '<a role="menuitem" />' },
+    { code: '<a role="menuitem" />;' },
     { code: '<area role="listitem" />;' },
     { code: '<article role="listitem" />;' },
     { code: '<article role="listitem" />;' },
@@ -358,8 +362,6 @@ ruleTester.run('no-noninteractive-element-to-interactive-role', rule, {
     /* HTML elements with an inherent non-interactive role, assigned an
      * interactive role. */
     { code: '<main role="button" />;', errors: [expectedError] },
-    { code: '<a role="button" />', errors: [expectedError] },
-    { code: '<a role="button" />;', errors: [expectedError] },
     { code: '<area role="button" />;', errors: [expectedError] },
     { code: '<article role="button" />;', errors: [expectedError] },
     { code: '<article role="button" />;', errors: [expectedError] },
@@ -391,8 +393,6 @@ ruleTester.run('no-noninteractive-element-to-interactive-role', rule, {
     /* HTML elements with an inherent non-interactive role, assigned an
      * interactive role. */
     { code: '<main role="menuitem" />;', errors: [expectedError] },
-    { code: '<a role="menuitem" />', errors: [expectedError] },
-    { code: '<a role="menuitem" />;', errors: [expectedError] },
     { code: '<area role="menuitem" />;', errors: [expectedError] },
     { code: '<article role="menuitem" />;', errors: [expectedError] },
     { code: '<article role="menuitem" />;', errors: [expectedError] },

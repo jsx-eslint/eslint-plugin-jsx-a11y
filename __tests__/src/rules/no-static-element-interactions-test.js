@@ -96,8 +96,6 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<div role="presentation" onClick={() => {}} />;' },
     /* HTML elements with an inherent, non-interactive role */
     { code: '<main onClick={() => void 0} />;' },
-    { code: '<a onClick={() => void 0} />' },
-    { code: '<a onClick={() => {}} />;' },
     { code: '<area onClick={() => {}} />;' },
     { code: '<article onClick={() => {}} />;' },
     { code: '<article onDblClick={() => void 0} />;' },
@@ -193,6 +191,8 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<div onClick={() => void 0} {...props} />;', errors: [expectedError] },
     { code: '<div onKeyUp={() => void 0} aria-hidden={false} />;', errors: [expectedError] },
     /* Static elements; no inherent role */
+    { code: '<a onClick={() => void 0} />', errors: [expectedError] },
+    { code: '<a onClick={() => {}} />;', errors: [expectedError] },
     { code: '<acronym onClick={() => {}} />;', errors: [expectedError] },
     { code: '<address onClick={() => {}} />;', errors: [expectedError] },
     { code: '<applet onClick={() => {}} />;', errors: [expectedError] },

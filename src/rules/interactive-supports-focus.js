@@ -16,6 +16,8 @@ import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
+import isNonInteractiveElement from '../util/isNonInteractiveElement';
+import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 import getTabIndex from '../util/getTabIndex';
 
@@ -47,7 +49,7 @@ module.exports = {
     JSXOpeningElement: (
       node: JSXOpeningElement,
     ) => {
-      const attributes = node.attributes
+      const attributes = node.attributes;
       const type = elementType(node);
       const hasInteractiveProps = hasAnyProp(attributes, interactiveProps);
       const hasTabindex = getTabIndex(
@@ -71,8 +73,10 @@ module.exports = {
 
       if (
         hasInteractiveProps
-        && !isInteractiveElement(type, attributes)
         && isInteractiveRole(type, attributes)
+        && !isInteractiveElement(type, attributes)
+        && !isNonInteractiveElement(type, attributes)
+        && !isNonInteractiveRole(type, attributes)
         && !hasTabindex
       ) {
         context.report({

@@ -68,6 +68,8 @@ ruleTester.run('no-interactive-element-to-noninteractive-role', rule, {
     { code: '<textarea className="foo" role="button" />' },
     { code: '<tr role="button" />;' },
     /* HTML elements with neither an interactive or non-interactive valence (static) */
+    { code: '<a role="button" />' },
+    { code: '<a role="button" />;' },
     { code: '<acronym role="button" />;' },
     { code: '<address role="button" />;' },
     { code: '<applet role="button" />;' },
@@ -217,8 +219,6 @@ ruleTester.run('no-interactive-element-to-noninteractive-role', rule, {
     /* HTML elements with an inherent, non-interactive role, assigned an
      * interactive role. */
     { code: '<main role="button" />;' },
-    { code: '<a role="button" />' },
-    { code: '<a role="button" />;' },
     { code: '<area role="button" />;' },
     { code: '<article role="button" />;' },
     { code: '<article role="button" />;' },
