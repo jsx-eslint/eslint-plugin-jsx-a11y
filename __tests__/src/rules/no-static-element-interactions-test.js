@@ -121,6 +121,7 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<tfoot onClick={() => {}} />;' },
     { code: '<thead onClick={() => {}} />;' },
     { code: '<tr onClick={() => {}} />;' },
+    { code: '<ol onClick={() => {}} />;' },
     { code: '<ul onClick={() => {}} />;' },
     /* HTML elements attributed with an abstract role */
     { code: '<div role="command" onClick={() => {}} />;' },
