@@ -26,10 +26,7 @@ import getTabIndex from '../util/getTabIndex';
 // ----------------------------------------------------------------------------
 
 const errorMessage =
-  'An non-interactive element with an onClick handler and an ' +
-  'interactive role must be focusable. Either set the tabIndex property to ' +
-  'a valid value (usually 0) or use an element type which is inherently ' +
-  'focusable such as `button`.';
+  'Elements with interactive roles must be focusable.';
 
 const schema = generateObjSchema();
 const domElements = [...dom.keys()];

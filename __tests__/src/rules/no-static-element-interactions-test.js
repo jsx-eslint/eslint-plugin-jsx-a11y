@@ -19,7 +19,7 @@ import rule from '../../../src/rules/no-static-element-interactions';
 const ruleTester = new RuleTester();
 
 const errorMessage =
-  'Visible, static elements should not have mouse or keyboard event listeners';
+  'Static HTML elements with event handlers require a role.';
 
 const expectedError = {
   message: errorMessage,
