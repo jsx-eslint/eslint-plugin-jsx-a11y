@@ -1,14 +1,69 @@
-import { dom } from 'aria-query';
-import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
+/**
+ * @flow
+ */
+import {
+  elementRoles,
+  roles,
+} from 'aria-query';
+import type { Node } from 'ast-types-flow';
+import {
+  getProp,
+  getPropValue,
+  getLiteralPropValue,
+  propName,
+} from 'jsx-ast-utils';
 import getTabIndex from './getTabIndex';
 
+type ElementCallbackMap = {
+  [elementName: string]: (attributes: Array<Node>) => boolean,
+};
+
+const interactiveRoles = new Set(
+    [].concat(
+      [...roles.keys()],
+      // 'toolbar' does not descend from widget, but it does support
+      // aria-activedescendant, thus in practice we treat it as a widget.
+      'toolbar',
+    )
+    .filter(name => !roles.get(name).abstract)
+    .filter(name => roles.get(name).superClass.some(
+      klasses => klasses.includes('widget')),
+    ),
+);
+
 // Map of tagNames to functions that return whether that element is interactive or not.
-const DOMElements = [...dom.keys()];
-const pureInteractiveElements = DOMElements
-  .filter(name => dom.get(name).interactive === true)
-  .reduce((accumulator, name) => {
+const pureInteractiveRoleElements = [...elementRoles.entries()]
+  .reduce((
+    accumulator: ElementCallbackMap,
+    [
+      elementSchema,
+      roleSet,
+    ],
+  ): ElementCallbackMap => {
     const interactiveElements = accumulator;
-    interactiveElements[name] = () => true;
+    const elementName = elementSchema.name;
+    const elementAttributes = elementSchema.attributes || [];
+    interactiveElements[elementName] = (attributes: Array<Node>): boolean => {
+      const passedAttrCheck =
+        elementAttributes.length === 0 ||
+        elementAttributes.every(
+          (controlAttr): boolean => attributes.some(
+            (attr): boolean => {
+              if (attr.type !== 'JSXAttribute') {
+                return false;
+              }
+              return controlAttr.name === propName(attr).toLowerCase()
+                && controlAttr.value === getLiteralPropValue(attr);
+            },
+          ),
+        );
+      // [].some is used here because some elements are associated with both
+      // interactive and non-interactive roles. Like select, which is
+      // associated with combobox and listbox.
+      return passedAttrCheck && [...roleSet.keys()].some(
+        (roleName): boolean => interactiveRoles.has(roleName),
+      );
+    };
     return interactiveElements;
   }, {});
 
@@ -19,12 +74,24 @@ const isLink = function isLink(attributes) {
 };
 
 export const interactiveElementsMap = {
-  ...pureInteractiveElements,
+  ...pureInteractiveRoleElements,
   a: isLink,
   area: isLink,
   input: (attributes) => {
     const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
     return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
+  },
+  // Although this is associated with an interactive role, it should not be
+  // considered interactive in HTML.
+  link: () => false,
+  td: attributes => getLiteralPropValue(
+    getProp(attributes, 'role'),
+  ) === 'gridcell',
+  table: (attributes) => {
+    const role = getLiteralPropValue(
+      getProp(attributes, 'role'),
+    );
+    return (role === 'grid');
   },
 };
 
@@ -34,13 +101,10 @@ export const interactiveElementsMap = {
  * has a dynamic handler on it and we need to discern whether or not
  * it's intention is to be interacted with on the DOM.
  */
-const isInteractiveElement = (tagName, attributes) => {
-  // Do not test higher level JSX components, as we do not know what
-  // low-level DOM element this maps to.
-  if (DOMElements.indexOf(tagName) === -1) {
-    return true;
-  }
-
+const isInteractiveElement = (
+  tagName: string,
+  attributes: Array<Node>,
+): boolean => {
   if ({}.hasOwnProperty.call(interactiveElementsMap, tagName) === false) {
     return false;
   }

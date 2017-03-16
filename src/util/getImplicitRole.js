@@ -9,10 +9,8 @@ import implicitRoles from './implicitRoles';
  * @returns {String} - String representing the node's implicit role or '' if it doesn't exist.
  */
 export default function getImplicitRole(type, attributes) {
-  const normalizedType = type.toUpperCase();
-
-  if (implicitRoles[normalizedType]) {
-    return implicitRoles[normalizedType](attributes);
+  if (implicitRoles[type]) {
+    return implicitRoles[type](attributes);
   }
 
   return '';

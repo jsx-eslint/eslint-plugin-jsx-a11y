@@ -1,77 +1,77 @@
-import A from './a';
-import AREA from './area';
-import ARTICLE from './article';
-import ASIDE from './aside';
-import BODY from './body';
-import BUTTON from './button';
-import DATALIST from './datalist';
-import DETAILS from './details';
-import DIALOG from './dialog';
-import DL from './dl';
-import FORM from './form';
-import H1 from './h1';
-import H2 from './h2';
-import H3 from './h3';
-import H4 from './h4';
-import H5 from './h5';
-import H6 from './h6';
-import HR from './hr';
-import IMG from './img';
-import INPUT from './input';
-import LI from './li';
-import LINK from './link';
-import MENU from './menu';
-import MENUITEM from './menuitem';
-import METER from './meter';
-import NAV from './nav';
-import OL from './ol';
-import OPTION from './option';
-import OUTPUT from './output';
-import PROGRESS from './progress';
-import SECTION from './section';
-import SELECT from './select';
-import TBODY from './tbody';
-import TEXTAREA from './textarea';
-import TFOOT from './tfoot';
-import THEAD from './thead';
-import UL from './ul';
+import a from './a';
+import area from './area';
+import article from './article';
+import aside from './aside';
+import body from './body';
+import button from './button';
+import datalist from './datalist';
+import details from './details';
+import dialog from './dialog';
+import dl from './dl';
+import form from './form';
+import h1 from './h1';
+import h2 from './h2';
+import h3 from './h3';
+import h4 from './h4';
+import h5 from './h5';
+import h6 from './h6';
+import hr from './hr';
+import img from './img';
+import input from './input';
+import li from './li';
+import link from './link';
+import menu from './menu';
+import menuitem from './menuitem';
+import meter from './meter';
+import nav from './nav';
+import ol from './ol';
+import option from './option';
+import output from './output';
+import progress from './progress';
+import section from './section';
+import select from './select';
+import tbody from './tbody';
+import textarea from './textarea';
+import tfoot from './tfoot';
+import thead from './thead';
+import ul from './ul';
 
 export default {
-  A,
-  AREA,
-  ARTICLE,
-  ASIDE,
-  BODY,
-  BUTTON,
-  DATALIST,
-  DETAILS,
-  DIALOG,
-  DL,
-  FORM,
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6,
-  HR,
-  IMG,
-  INPUT,
-  LI,
-  LINK,
-  MENU,
-  MENUITEM,
-  METER,
-  NAV,
-  OL,
-  OPTION,
-  OUTPUT,
-  PROGRESS,
-  SECTION,
-  SELECT,
-  TBODY,
-  TEXTAREA,
-  TFOOT,
-  THEAD,
-  UL,
+  a,
+  area,
+  article,
+  aside,
+  body,
+  button,
+  datalist,
+  details,
+  dialog,
+  dl,
+  form,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  hr,
+  img,
+  input,
+  li,
+  link,
+  menu,
+  menuitem,
+  meter,
+  nav,
+  ol,
+  option,
+  output,
+  progress,
+  section,
+  select,
+  tbody,
+  textarea,
+  tfoot,
+  thead,
+  ul,
 };

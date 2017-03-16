@@ -26,7 +26,7 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-ruleTester.run('onclick-has-role', rule, {
+ruleTester.run('click-events-have-key-events', rule, {
   valid: [
     { code: '<div onClick={() => void 0} onKeyDown={foo}/>;' },
     { code: '<div onClick={() => void 0} onKeyUp={foo} />;' },
