@@ -2,8 +2,9 @@ const docBoilerplateGenerator = name => `# ${name}
 
 Write a useful explanation here!
 
-#### References
-1.
+### References
+
+  1.
 
 ## Rule details
 
