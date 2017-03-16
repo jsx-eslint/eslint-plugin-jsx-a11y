@@ -1,20 +1,48 @@
 # no-noninteractive-element-to-interactive-role
 
-Write a useful explanation here!
+Non-interactive HTML elements indicate _content_ and _containers_ in the user interface. Non-interactive elements include `<main>`, `<area>`, `<h1>` (,`<h2>`, etc), `<img>`, `<li>`, `<ul>` and `<ol>`.
 
-#### References
-1.
+Interactive HTML elements indicate _controls_ in the user interface. Interactive elements include `<a href>`, `<button>`, `<input>`, `<select>`, `<textarea>`.
+
+
+[WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro) should not be used to convert a non-interactive element to an interactive element. Interactive ARIA roles include `button`, `link`, `checkbox`, `menuitem`, `menuitemcheckbox`, `menuitemradio`, `option`, `radio`, `searchbox`, `switch` and `textbox`.
+
+## How do I resolve this error?
+
+### Case: This element should be a control, like a button
+
+Put the control inside the non-interactive container element.
+
+```
+<li>
+  <div
+    role="button"
+    onClick={() => {}}
+    onKeyPress={() => {}}>
+    Save
+  </div>
+</li>
+```
+
+Or wrap the content inside your interactive element.
+
+```
+<div
+  role="button"
+  onClick={() => {}}
+  onKeyPress={() => {}}
+  tabIndex="0">
+  <img src="some/file.png" alt="Save" />
+</div>
+```
+
+### References
+
+1. [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
+1. [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
+1. [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
+1. [Mozilla Developer Network - ARIA Techniques](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
 
 ## Rule details
 
 This rule takes no arguments.
-
-### Succeed
-```jsx
-<div />
-```
-
-### Fail
-```jsx
-
-```
