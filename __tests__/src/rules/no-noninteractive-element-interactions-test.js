@@ -244,6 +244,7 @@ ruleTester.run('no-noninteractive-element-handlers', rule, {
     { code: '<td onClick={() => {}} />;', errors: [expectedError] },
     { code: '<tfoot onClick={() => {}} />;', errors: [expectedError] },
     { code: '<thead onClick={() => {}} />;', errors: [expectedError] },
+    { code: '<ol onClick={() => {}} />;', errors: [expectedError] },
     { code: '<ul onClick={() => {}} />;', errors: [expectedError] },
     /* HTML elements attributed with a non-interactive role */
     { code: '<div role="alert" onClick={() => {}} />;', errors: [expectedError] },
