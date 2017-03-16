@@ -27,7 +27,7 @@ import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 
 const errorMessage =
-  'Visible, static elements should not have mouse or keyboard event listeners';
+  'Static HTML elements with event handlers require a role.';
 
 const schema = generateObjSchema();
 

@@ -19,7 +19,7 @@ import rule from '../../../src/rules/no-noninteractive-element-interactions';
 const ruleTester = new RuleTester();
 
 const errorMessage =
-  'Visible, non-interactive elements should not have mouse or keyboard event listeners';
+  'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
 const expectedError = {
   message: errorMessage,

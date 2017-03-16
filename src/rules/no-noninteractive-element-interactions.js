@@ -26,7 +26,7 @@ import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 
 const errorMessage =
-  'Visible, non-interactive elements should not have mouse or keyboard event listeners';
+  'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
 const schema = generateObjSchema();
 
