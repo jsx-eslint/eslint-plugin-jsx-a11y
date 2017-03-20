@@ -71,6 +71,7 @@ const alwaysValid = [
   { code: '<select className="foo" role="button" />' },
   { code: '<textarea className="foo" role="button" />' },
   { code: '<tr role="button" />;' },
+  { code: '<tr role="presentation" />;' },
   /* Interactive elements */
   { code: '<a tabIndex="0" role="img" />' },
   { code: '<a href="http://x.y.z" role="img" />' },
@@ -314,6 +315,7 @@ const alwaysValid = [
   { code: '<hr role="listitem" />;' },
   { code: '<img role="listitem" />;' },
   { code: '<li role="listitem" />;' },
+  { code: '<li role="presentation" />;' },
   { code: '<nav role="listitem" />;' },
   { code: '<ol role="listitem" />;' },
   { code: '<table role="listitem" />;' },
