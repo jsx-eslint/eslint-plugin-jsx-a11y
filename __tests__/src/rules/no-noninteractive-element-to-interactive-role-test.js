@@ -23,11 +23,11 @@ import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 const ruleTester = new RuleTester();
 
 const errorMessage =
-  'Non-interactive elements should not be assigned interactive roles';
+  'Non-interactive elements should not be assigned interactive roles.';
 
 const expectedError = {
   message: errorMessage,
-  type: 'JSXOpeningElement',
+  type: 'JSXAttribute',
 };
 
 const ruleName = 'jsx-a11y/no-noninteractive-element-to-interactive-role';

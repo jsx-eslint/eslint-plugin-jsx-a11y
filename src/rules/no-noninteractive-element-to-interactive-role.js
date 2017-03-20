@@ -24,7 +24,7 @@ import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 
 const errorMessage =
-  'Non-interactive elements should not be assigned interactive roles';
+  'Non-interactive elements should not be assigned interactive roles.';
 
 const domElements = [...dom.keys()];
 
@@ -76,9 +76,8 @@ module.exports = {
           isNonInteractiveElement(type, attributes)
           && isInteractiveRole(type, attributes)
         ) {
-          // Visible, non-interactive elements should not have an interactive handler.
           context.report({
-            node,
+            node: attribute,
             message: errorMessage,
           });
         }
