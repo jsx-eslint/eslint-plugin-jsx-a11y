@@ -4,5 +4,6 @@ type ESLintReport = {
 };
 
 type ESLintContext = {
+  options: Array<Object>,
   report: (ESLintReport) => void,
 };
