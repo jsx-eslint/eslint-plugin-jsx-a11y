@@ -10,8 +10,10 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/no-interactive-element-to-noninteractive-role';
+import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -239,6 +241,7 @@ const alwaysValid = [
   { code: '<hr role="button" />;' },
   { code: '<img role="button" />;' },
   { code: '<li role="button" />;' },
+  { code: '<li role="presentation" />;' },
   { code: '<nav role="button" />;' },
   { code: '<ol role="button" />;' },
   { code: '<table role="button" />;' },
@@ -358,11 +361,27 @@ const neverValid = [
   { code: '<tr role="listitem" />;', errors: [expectedError] },
 ];
 
-ruleTester.run(`${ruleName}`, rule, {
+const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});
+ruleTester.run(`${ruleName}:recommended`, rule, {
+  valid: [
+    ...alwaysValid,
+    { code: '<tr role="presentation" />;' },
+  ]
+    .map(ruleOptionsMapperFactory(recommendedOptions))
+    .map(parserOptionsMapper),
+  invalid: [
+    ...neverValid,
+  ]
+    .map(ruleOptionsMapperFactory(recommendedOptions))
+    .map(parserOptionsMapper),
+});
+
+ruleTester.run(`${ruleName}:strict`, rule, {
   valid: [
     ...alwaysValid,
   ].map(parserOptionsMapper),
   invalid: [
     ...neverValid,
+    { code: '<tr role="presentation" />;', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
