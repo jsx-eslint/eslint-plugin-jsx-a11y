@@ -14,47 +14,75 @@ import {
 } from 'aria-query';
 import {
   elementType,
+  getProp,
+  getLiteralPropValue,
 } from 'jsx-ast-utils';
-import type { JSXOpeningElement } from 'ast-types-flow';
-import { generateObjSchema } from '../util/schemas';
+import type {
+  JSXIdentifier,
+} from 'ast-types-flow';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 
 const errorMessage =
   'Non-interactive elements should not be assigned interactive roles';
 
-const schema = generateObjSchema();
-
 const domElements = [...dom.keys()];
 
 module.exports = {
   meta: {
     docs: {},
-    schema: [schema],
+    schema: [{
+      type: 'object',
+      additionalProperties: {
+        type: 'array',
+        items: {
+          type: 'string',
+        },
+        uniqueItems: true,
+      },
+    }],
   },
 
-  create: (context: ESLintContext) => ({
-    JSXOpeningElement: (
-      node: JSXOpeningElement,
-    ) => {
-      const attributes = node.attributes;
-      const type = elementType(node);
+  create: (context: ESLintContext) => {
+    const options = context.options;
+    return {
+      JSXAttribute: (
+        attribute: ESLintJSXAttribute,
+      ) => {
+        const attributeName: JSXIdentifier = attribute.name.name;
+        if (attributeName !== 'role') {
+          return;
+        }
+        const node = attribute.parent;
+        const attributes = node.attributes;
+        const type = elementType(node);
+        const role = getLiteralPropValue(getProp(node.attributes, 'role'));
 
-      if (!domElements.includes(type)) {
-        // Do not test higher level JSX components, as we do not know what
-        // low-level DOM element this maps to.
-        return;
-      }
-      if (
-        isNonInteractiveElement(type, attributes)
-        && isInteractiveRole(type, attributes)
-      ) {
-        // Visible, non-interactive elements should not have an interactive handler.
-        context.report({
-          node,
-          message: errorMessage,
-        });
-      }
-    },
-  }),
+        if (!domElements.includes(type)) {
+          // Do not test higher level JSX components, as we do not know what
+          // low-level DOM element this maps to.
+          return;
+        }
+        // Allow overrides from rule configuration for specific elements and
+        // roles.
+        const allowedRoles = (options[0] || {});
+        if (
+          Object.prototype.hasOwnProperty.call(allowedRoles, type)
+          && allowedRoles[type].includes(role)
+        ) {
+          return;
+        }
+        if (
+          isNonInteractiveElement(type, attributes)
+          && isInteractiveRole(type, attributes)
+        ) {
+          // Visible, non-interactive elements should not have an interactive handler.
+          context.report({
+            node,
+            message: errorMessage,
+          });
+        }
+      },
+    };
+  },
 };
