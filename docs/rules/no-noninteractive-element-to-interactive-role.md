@@ -45,4 +45,24 @@ Or wrap the content inside your interactive element.
 
 ## Rule details
 
-This rule takes no arguments.
+The recommended options for this rule allow several common interactive roles to be applied to a non-interactive element. The options are provided as an object keyed by HTML element name; the value is an array of interactive roles that are allowed on the specified element.
+
+```
+{
+  'no-noninteractive-element-to-interactive-role': [
+  'error',
+  {
+    ul: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+    ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+    li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
+    table: ['grid'],
+    td: ['gridcell'],
+  },
+}
+```
+
+Under the recommended options, the following code is valid. It would be invalid under the strict rules.
+
+```
+<ul role="menu" />
+```

@@ -8,7 +8,7 @@ import {
   genNonAbstractRoleElements,
 } from '../../../__mocks__/genInteractives';
 
-describe('isInteractiveRole', () => {
+describe('isAbstractRole', () => {
   describe('JSX Components (no tagName)', () => {
     it('should NOT identify them as abstract role elements', () => {
       expect(isAbstractRole(undefined, []))

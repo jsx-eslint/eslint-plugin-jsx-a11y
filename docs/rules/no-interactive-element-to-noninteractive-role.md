@@ -41,4 +41,23 @@ Put the content inside your interactive element.
 
 ## Rule details
 
-This rule takes no arguments.
+The recommended options for this rule allow the `tr` element to be given a role of `presentation` (or its semantic equivalent `none`). Under normal circumstances, an element with an interactive role should not be semantically neutralized with `presentation` (or `none`).
+
+Options are provided as an object keyed by HTML element name; the value is an array of interactive roles that are allowed on the specified element.
+
+```
+{
+  'no-interactive-element-to-noninteractive-role': [
+    'error',
+    {
+      tr: ['none', 'presentation'],
+    },
+  ]
+}
+```
+
+Under the recommended options, the following code is valid. It would be invalid under the strict rules.
+
+```
+<tr role="presentation" />
+```

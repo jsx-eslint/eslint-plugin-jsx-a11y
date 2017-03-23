@@ -152,7 +152,11 @@ export function genInteractiveElements () {
 }
 
 export function genInteractiveRoleElements () {
-  return interactiveRoles.map(
+  return [
+    ...interactiveRoles,
+    'button article',
+    'fakerole button article',
+  ].map(
     value => JSXElementMock('div', [
       JSXAttributeMock('role', value)
     ])
@@ -175,7 +179,11 @@ export function genNonInteractiveElements () {
 }
 
 export function genNonInteractiveRoleElements () {
-  return nonInteractiveRoles.map(
+  return [
+    ...nonInteractiveRoles,
+    'article button',
+    'fakerole article button',
+  ].map(
     value => JSXElementMock('div', [
       JSXAttributeMock('role', value)
     ])

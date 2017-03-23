@@ -16,6 +16,7 @@ import {
   elementType,
   getProp,
   getLiteralPropValue,
+  propName,
 } from 'jsx-ast-utils';
 import type { JSXIdentifier } from 'ast-types-flow';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -48,7 +49,7 @@ module.exports = {
       JSXAttribute: (
         attribute: ESLintJSXAttribute,
       ) => {
-        const attributeName: JSXIdentifier = attribute.name.name;
+        const attributeName: JSXIdentifier = propName(attribute);
         if (attributeName !== 'role') {
           return;
         }

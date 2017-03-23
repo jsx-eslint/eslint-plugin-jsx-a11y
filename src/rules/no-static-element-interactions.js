@@ -72,7 +72,7 @@ module.exports = {
         || isNonInteractiveRole(type, attributes)
         || isAbstractRole(type, attributes)
       ) {
-        // This rule has no opinion about abtract roles.
+        // This rule has no opinion about abstract roles.
         return;
       }
 
