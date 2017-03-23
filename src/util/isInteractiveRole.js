@@ -1,12 +1,13 @@
 import {
-  roles,
+  roles as rolesMap,
 } from 'aria-query';
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
-const interactiveRoles = [...roles.keys()]
-  .filter(name => !roles.get(name).abstract)
-  .filter(name => roles.get(name).superClass.some(
+const roles = [...rolesMap.keys()];
+const interactiveRoles = roles
+  .filter(name => !rolesMap.get(name).abstract)
+  .filter(name => rolesMap.get(name).superClass.some(
     klasses => klasses.includes('widget')),
   );
 
@@ -39,10 +40,18 @@ const isInteractiveRole = (
 
   let isInteractive = false;
   const normalizedValues = String(value).toLowerCase().split(' ');
-  if (normalizedValues.length > 0) {
-    // The last role value is a series takes precedence.
-    const val = normalizedValues[normalizedValues.length - 1];
-    isInteractive = interactiveRoles.indexOf(val) > -1;
+  const validRoles = normalizedValues.reduce((
+    accumulator: Array<string>,
+    name: string,
+  ) => {
+    if (roles.includes(name)) {
+      accumulator.push(name);
+    }
+    return accumulator;
+  }, []);
+  if (validRoles.length > 0) {
+    // The first role value is a series takes precedence.
+    isInteractive = interactiveRoles.includes(validRoles[0]);
   }
 
   return isInteractive;

@@ -6,7 +6,7 @@ Elements with an interactive role and interaction handlers (mouse or key press) 
 
 ### Case: This element is a stand-alone control like a button, a link or a form element
 
-Add this prop to your component:
+Add the `tabIndex` property to your component. A value of zero indicates that this element can be tabbed to.
 
 ```
 <div
@@ -26,7 +26,7 @@ An element that can be tabbed to is said to be in the _tab ring_.
 One item in a group should have a tabindex of zero, the rest should have a tabindex of -1. A value of zero makes the element _tabbable_. A value of -1 makes the element _focusable_.
 
 ```
-<div role="men">
+<div role="menu">
   <div role="menuitem" tabIndex="0">Open</div>
   <div role="menuitem" tabIndex="-1">Save</div>
   <div role="menuitem" tabIndex="-1">Close</div>
@@ -41,7 +41,7 @@ If your element is catching bubbled click or key events from descendant elements
 
 ```
 <div
-  onClick="onClickHandler"
+  onClick={onClickHandler}
   role="presentation">
   <button>Save</button>
 </div>
