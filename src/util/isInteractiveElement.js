@@ -2,25 +2,33 @@
  * @flow
  */
 import {
+  dom,
   elementRoles,
   roles,
 } from 'aria-query';
 import type { Node } from 'ast-types-flow';
 import {
-  getProp,
-  getPropValue,
+  AXObjects,
+  elementAXObjects,
+} from 'axobject-query';
+import {
   getLiteralPropValue,
   propName,
 } from 'jsx-ast-utils';
-import getTabIndex from './getTabIndex';
 
-type ElementCallbackMap = {
-  [elementName: string]: (attributes: Array<Node>) => boolean,
-};
+const roleKeys = [...roles.keys()];
+
+const nonInteractiveRoles = new Set(
+  roleKeys
+    .filter(name => !roles.get(name).abstract)
+    .filter(name => !roles.get(name).superClass.some(
+      klasses => klasses.includes('widget')),
+    ),
+);
 
 const interactiveRoles = new Set(
     [].concat(
-      [...roles.keys()],
+      roleKeys,
       // 'toolbar' does not descend from widget, but it does support
       // aria-activedescendant, thus in practice we treat it as a widget.
       'toolbar',
@@ -31,69 +39,115 @@ const interactiveRoles = new Set(
     ),
 );
 
-// Map of tagNames to functions that return whether that element is interactive or not.
-const pureInteractiveRoleElements = [...elementRoles.entries()]
+
+const nonInteractiveElementRoles = [...elementRoles.entries()]
   .reduce((
-    accumulator: ElementCallbackMap,
+    accumulator,
     [
       elementSchema,
       roleSet,
     ],
-  ): ElementCallbackMap => {
-    const interactiveElements = accumulator;
-    const elementName = elementSchema.name;
-    const elementAttributes = elementSchema.attributes || [];
-    interactiveElements[elementName] = (attributes: Array<Node>): boolean => {
-      const passedAttrCheck =
-        elementAttributes.length === 0 ||
-        elementAttributes.every(
-          (controlAttr): boolean => attributes.some(
-            (attr): boolean => {
-              if (attr.type !== 'JSXAttribute') {
-                return false;
-              }
-              return controlAttr.name === propName(attr).toLowerCase()
-                && controlAttr.value === getLiteralPropValue(attr);
-            },
-          ),
-        );
-      // [].some is used here because some elements are associated with both
-      // interactive and non-interactive roles. Like select, which is
-      // associated with combobox and listbox.
-      return passedAttrCheck && [...roleSet.keys()].some(
-        (roleName): boolean => interactiveRoles.has(roleName),
-      );
-    };
-    return interactiveElements;
-  }, {});
+  ) => {
+    if ([...roleSet.keys()].every(
+      (role): boolean => nonInteractiveRoles.has(role),
+    )) {
+      accumulator.set(elementSchema, roleSet);
+    }
+    return accumulator;
+  }, new Map([]));
 
-const isLink = function isLink(attributes) {
-  const href = getPropValue(getProp(attributes, 'href'));
-  const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
-  return href !== undefined || tabIndex !== undefined;
-};
+const interactiveElementRoles = [...elementRoles.entries()]
+  .reduce((
+    accumulator,
+    [
+      elementSchema,
+      roleSet,
+    ],
+  ) => {
+    if ([...roleSet.keys()].some(
+      (role): boolean => interactiveRoles.has(role),
+    )) {
+      accumulator.set(elementSchema, roleSet);
+    }
+    return accumulator;
+  }, new Map([]));
 
-export const interactiveElementsMap = {
-  ...pureInteractiveRoleElements,
-  a: isLink,
-  area: isLink,
-  input: (attributes) => {
-    const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
-    return typeAttr ? typeAttr.toUpperCase() !== 'HIDDEN' : true;
-  },
-  // Although this is associated with an interactive role, it should not be
-  // considered interactive in HTML.
-  link: () => false,
-  td: attributes => getLiteralPropValue(
-    getProp(attributes, 'role'),
-  ) === 'gridcell',
-  table: (attributes) => {
-    const role = getLiteralPropValue(
-      getProp(attributes, 'role'),
-    );
-    return (role === 'grid');
-  },
-};
+const interactiveAXObjects = new Set(
+  [...AXObjects.keys()]
+    .filter(name => ['widget'].includes(AXObjects.get(name).type)),
+);
+
+const interactiveElementAXObjects = [...elementAXObjects.entries()]
+  .reduce((
+    accumulator,
+    [
+      elementSchema,
+      AXObjectSet,
+    ],
+  ) => {
+    if ([...AXObjectSet.keys()].every(
+      (role): boolean => interactiveAXObjects.has(role),
+    )) {
+      accumulator.set(elementSchema, AXObjectSet);
+    }
+    return accumulator;
+  }, new Map([]));
+
+function attributesComparator(baseAttributes = [], attributes = []): boolean {
+  return baseAttributes.every(
+    (baseAttr): boolean => attributes.some(
+      (attribute): boolean => {
+        let attrMatches = false;
+        let valueMatches = true;
+        // Attribute matches.
+        if (baseAttr.name === propName(attribute).toLowerCase()) {
+          attrMatches = true;
+        }
+        // Value exists and matches.
+        if (baseAttr.value) {
+          valueMatches = baseAttr.value === getLiteralPropValue(attribute);
+        }
+        // attribute.type === 'JSXAttribute'
+        return attrMatches && valueMatches;
+      },
+    ),
+  );
+}
+
+function checkIsInteractiveElement(tagName, attributes): boolean {
+  // Check in configuration for an override.
+
+  // Check in elementRoles for inherent interactive role associations for
+  // this element.
+  for (const [elementSchema] of interactiveElementRoles) {
+    if (
+      tagName === elementSchema.name
+      && attributesComparator(elementSchema.attributes, attributes)
+    ) {
+      return true;
+    }
+  }
+
+  // Check in elementRoles for inherent interactive role associations for
+  // this element.
+  for (const [elementSchema] of nonInteractiveElementRoles) {
+    if (
+      tagName === elementSchema.name
+      && attributesComparator(elementSchema.attributes, attributes)
+    ) {
+      return false;
+    }
+  }
+
+  // Check in elementAXObjects for AX Tree associations for this elements.
+  for (const [elementSchema] of interactiveElementAXObjects) {
+    if (tagName === elementSchema.name) {
+      return attributesComparator(elementSchema.attributes, attributes);
+    }
+  }
+
+  return false;
+}
 
 /**
  * Returns boolean indicating whether the given element is
@@ -105,11 +159,13 @@ const isInteractiveElement = (
   tagName: string,
   attributes: Array<Node>,
 ): boolean => {
-  if ({}.hasOwnProperty.call(interactiveElementsMap, tagName) === false) {
+  // Do not test higher level JSX components, as we do not know what
+  // low-level DOM element this maps to.
+  if ([...dom.keys()].indexOf(tagName) === -1) {
     return false;
   }
 
-  return interactiveElementsMap[tagName](attributes);
+  return checkIsInteractiveElement(tagName, attributes);
 };
 
 export default isInteractiveElement;
