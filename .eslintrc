@@ -8,6 +8,12 @@
     "flowtype"
   ],
   rules: {
-    'no-template-curly-in-string': 'off'
+    'no-template-curly-in-string': 'off',
+    'no-restricted-syntax': [
+      'error',
+      'ForInStatement',
+      'LabeledStatement',
+      'WithStatement',
+    ]
   }
 }

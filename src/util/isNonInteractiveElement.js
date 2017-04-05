@@ -7,81 +7,142 @@ import {
   elementRoles,
   roles,
 } from 'aria-query';
+import {
+  AXObjects,
+  elementAXObjects,
+} from 'axobject-query';
 import type { Node } from 'ast-types-flow';
 import {
-  getProp,
-  getPropValue,
   getLiteralPropValue,
   propName,
 } from 'jsx-ast-utils';
-import getTabIndex from './getTabIndex';
 
-type ElementCallbackMap = {
-  [elementName: string]: (attributes: Array<Node>) => boolean,
-};
+const roleKeys = [...roles.keys()];
 
 const nonInteractiveRoles = new Set(
-  [...roles.keys()]
+  roleKeys
     .filter(name => !roles.get(name).abstract)
     .filter(name => !roles.get(name).superClass.some(
       klasses => klasses.includes('widget')),
     ),
 );
 
-const pureNonInteractiveElements = [...elementRoles.entries()]
+const interactiveRoles = new Set(
+  roleKeys
+    .filter(name => !roles.get(name).abstract)
+    .filter(name => roles.get(name).superClass.some(
+      klasses => klasses.includes('widget')),
+    ),
+);
+
+const nonInteractiveElementRoles = [...elementRoles.entries()]
   .reduce((
-    accumulator: ElementCallbackMap,
+    accumulator,
     [
       elementSchema,
       roleSet,
     ],
-  ): ElementCallbackMap => {
-    const nonInteractiveElements = accumulator;
-    const elementName = elementSchema.name;
-    const elementAttributes = elementSchema.attributes || [];
-    nonInteractiveElements[elementName] = (attributes: Array<Object>): boolean => {
-      const passedAttrCheck =
-        elementAttributes.length === 0 ||
-        elementAttributes.every(
-          (controlAttr): boolean => attributes.some(
-            (attr): boolean => {
-              if (attr.type !== 'JSXAttribute') {
-                return false;
-              }
-              return controlAttr.name === propName(attr).toLowerCase()
-                && controlAttr.value === getLiteralPropValue(attr);
-            },
-          ),
-        );
-      return passedAttrCheck && [...roleSet.keys()].every(
-        (roleName): boolean => nonInteractiveRoles.has(roleName),
-      );
-    };
-    return nonInteractiveElements;
-  }, {});
+  ) => {
+    if ([...roleSet.keys()].every(
+      (role): boolean => nonInteractiveRoles.has(role),
+    )) {
+      accumulator.set(elementSchema, roleSet);
+    }
+    return accumulator;
+  }, new Map([]));
 
-const isNotLink = function isNotLink(attributes) {
-  const href = getPropValue(getProp(attributes, 'href'));
-  const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
-  return href === undefined && tabIndex === undefined;
-};
+const interactiveElementRoles = [...elementRoles.entries()]
+  .reduce((
+    accumulator,
+    [
+      elementSchema,
+      roleSet,
+    ],
+  ) => {
+    if ([...roleSet.keys()].some(
+      (role): boolean => interactiveRoles.has(role),
+    )) {
+      accumulator.set(elementSchema, roleSet);
+    }
+    return accumulator;
+  }, new Map([]));
 
-export const nonInteractiveElementsMap = {
-  ...pureNonInteractiveElements,
-  area: isNotLink,
-  input: (attributes) => {
-    const typeAttr = getLiteralPropValue(getProp(attributes, 'type'));
-    return typeAttr ? typeAttr.toLowerCase() === 'hidden' : false;
-  },
-  table: (attributes) => {
-    const roleAttr = getLiteralPropValue(getProp(attributes, 'role'));
-    return roleAttr ? roleAttr.toLowerCase() !== 'grid' : true;
-  },
-  td: (attributes) => {
-    const roleAttr = getLiteralPropValue(getProp(attributes, 'role'));
-    return roleAttr ? roleAttr.toLowerCase() !== 'gridcell' : true;
-  },
-};
+const nonInteractiveAXObjects = new Set(
+  [...AXObjects.keys()]
+    .filter(name => ['window', 'structure'].includes(AXObjects.get(name).type)),
+);
+
+const nonInteractiveElementAXObjects = [...elementAXObjects.entries()]
+  .reduce((
+    accumulator,
+    [
+      elementSchema,
+      AXObjectSet,
+    ],
+  ) => {
+    if ([...AXObjectSet.keys()].every(
+      (role): boolean => nonInteractiveAXObjects.has(role),
+    )) {
+      accumulator.set(elementSchema, AXObjectSet);
+    }
+    return accumulator;
+  }, new Map([]));
+
+function attributesComparator(baseAttributes = [], attributes = []): boolean {
+  return baseAttributes.every(
+    (baseAttr): boolean => attributes.some(
+      (attribute): boolean => {
+        let attrMatches = false;
+        let valueMatches = true;
+        // Attribute matches.
+        if (baseAttr.name === propName(attribute).toLowerCase()) {
+          attrMatches = true;
+        }
+        // Value exists and matches.
+        if (baseAttr.value) {
+          valueMatches = baseAttr.value === getLiteralPropValue(attribute);
+        }
+        // attribute.type === 'JSXAttribute'
+        return attrMatches && valueMatches;
+      },
+    ),
+  );
+}
+
+function checkIsNonInteractiveElement(tagName, attributes): boolean {
+  // Check in configuration for an override.
+
+  // Check in elementRoles for inherent non-interactive role associations for
+  // this element.
+  for (const [elementSchema] of nonInteractiveElementRoles) {
+    if (
+      tagName === elementSchema.name
+      && attributesComparator(elementSchema.attributes, attributes)
+    ) {
+      return true;
+    }
+  }
+
+  // Check in elementRoles for inherent interactive role associations for
+  // this element.
+  for (const [elementSchema] of interactiveElementRoles) {
+    if (
+      tagName === elementSchema.name
+      && attributesComparator(elementSchema.attributes, attributes)
+    ) {
+      return false;
+    }
+  }
+
+  // Check in elementAXObjects for AX Tree associations for this element.
+  for (const [elementSchema] of nonInteractiveElementAXObjects) {
+    if (tagName === elementSchema.name) {
+      return attributesComparator(elementSchema.attributes, attributes);
+    }
+  }
+
+  return false;
+}
 
 /**
  * Returns boolean indicating whether the given element is a non-interactive
@@ -101,13 +162,7 @@ const isNonInteractiveElement = (
     return false;
   }
 
-  // The element does not have an explicit role, determine if it has an
-  // inherently non-interactive role.
-  if ({}.hasOwnProperty.call(nonInteractiveElementsMap, tagName) === false) {
-    return false;
-  }
-
-  return nonInteractiveElementsMap[tagName](attributes);
+  return checkIsNonInteractiveElement(tagName, attributes);
 };
 
 export default isNonInteractiveElement;

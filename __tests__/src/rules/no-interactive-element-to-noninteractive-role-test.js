@@ -34,7 +34,6 @@ const alwaysValid = [
   { code: '<TestComponent onClick={doFoo} />' },
   { code: '<Button onClick={doFoo} />' },
   /* Interactive elements */
-  { code: '<a tabIndex="0" role="button" />' },
   { code: '<a href="http://x.y.z" role="button" />' },
   { code: '<a href="http://x.y.z" tabIndex="0" role="button" />' },
   { code: '<button className="foo" role="button" />' },
@@ -63,7 +62,6 @@ const alwaysValid = [
   { code: '<input type="url" role="button" />' },
   { code: '<input type="week" role="button" />' },
   { code: '<input type="hidden" role="button" />' },
-  { code: '<input type="hidden" role="img" />' },
   /* End all flavors of input */
   { code: '<menuitem role="button" />;' },
   { code: '<option className="foo" role="button" />' },
@@ -72,7 +70,9 @@ const alwaysValid = [
   { code: '<tr role="button" />;' },
   /* HTML elements with neither an interactive or non-interactive valence (static) */
   { code: '<a role="button" />' },
-  { code: '<a role="button" />;' },
+  { code: '<a role="img" />;' },
+  { code: '<a tabIndex="0" role="button" />' },
+  { code: '<a tabIndex="0" role="img" />' },
   { code: '<acronym role="button" />;' },
   { code: '<address role="button" />;' },
   { code: '<applet role="button" />;' },
@@ -292,7 +292,6 @@ const alwaysValid = [
 
 const neverValid = [
   /* Interactive elements */
-  { code: '<a tabIndex="0" role="img" />', errors: [expectedError] },
   { code: '<a href="http://x.y.z" role="img" />', errors: [expectedError] },
   { code: '<a href="http://x.y.z" tabIndex="0" role="img" />', errors: [expectedError] },
   /* All flavors of input */
@@ -305,6 +304,7 @@ const neverValid = [
   { code: '<input type="datetime-local" role="img" />', errors: [expectedError] },
   { code: '<input type="email" role="img" />', errors: [expectedError] },
   { code: '<input type="file" role="img" />', errors: [expectedError] },
+  { code: '<input type="hidden" role="img" />', errors: [expectedError] },
   { code: '<input type="image" role="img" />', errors: [expectedError] },
   { code: '<input type="month" role="img" />', errors: [expectedError] },
   { code: '<input type="number" role="img" />', errors: [expectedError] },
@@ -326,7 +326,6 @@ const neverValid = [
   { code: '<textarea className="foo" role="img" />', errors: [expectedError] },
   { code: '<tr role="img" />;', errors: [expectedError] },
   /* Interactive elements */
-  { code: '<a tabIndex="0" role="listitem" />', errors: [expectedError] },
   { code: '<a href="http://x.y.z" role="listitem" />', errors: [expectedError] },
   { code: '<a href="http://x.y.z" tabIndex="0" role="listitem" />', errors: [expectedError] },
   /* All flavors of input */
