@@ -97,6 +97,10 @@ function attributesComparator(baseAttributes = [], attributes = []): boolean {
   return baseAttributes.every(
     (baseAttr): boolean => attributes.some(
       (attribute): boolean => {
+        // Guard against non-JSXAttribute nodes like JSXSpreadAttribute
+        if (attribute.type !== 'JSXAttribute') {
+          return false;
+        }
         let attrMatches = false;
         let valueMatches = true;
         // Attribute matches.
@@ -107,7 +111,6 @@ function attributesComparator(baseAttributes = [], attributes = []): boolean {
         if (baseAttr.value) {
           valueMatches = baseAttr.value === getLiteralPropValue(attribute);
         }
-        // attribute.type === 'JSXAttribute'
         return attrMatches && valueMatches;
       },
     ),
