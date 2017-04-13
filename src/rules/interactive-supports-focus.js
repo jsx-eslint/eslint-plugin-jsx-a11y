@@ -1,37 +1,36 @@
 /**
- * @fileoverview Enforce static elements have no interactive handlers.
+ * @fileoverview Enforce that elements with onClick handlers must be focusable.
  * @author Ethan Cohen
  * @flow
  */
 
-// ----------------------------------------------------------------------------
-// Rule Definition
-// ----------------------------------------------------------------------------
-
+import { dom } from 'aria-query';
 import {
-  dom,
-} from 'aria-query';
-import {
+  getProp,
   elementType,
   eventHandlersByType,
   hasAnyProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import { generateObjSchema } from '../util/schemas';
-import isAbstractRole from '../util/isAbstractRole';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
+import getTabIndex from '../util/getTabIndex';
+
+// ----------------------------------------------------------------------------
+// Rule Definition
+// ----------------------------------------------------------------------------
 
 const errorMessage =
-  'Static HTML elements with event handlers require a role.';
+  'Elements with interactive roles must be focusable.';
 
 const schema = generateObjSchema();
-
 const domElements = [...dom.keys()];
+
 const interactiveProps = [
   ...eventHandlersByType.mouse,
   ...eventHandlersByType.keyboard,
@@ -49,8 +48,10 @@ module.exports = {
     ) => {
       const attributes = node.attributes;
       const type = elementType(node);
-
       const hasInteractiveProps = hasAnyProp(attributes, interactiveProps);
+      const hasTabindex = getTabIndex(
+        getProp(attributes, 'tabIndex'),
+      ) !== undefined;
 
       if (!domElements.includes(type)) {
         // Do not test higher level JSX components, as we do not know what
@@ -65,22 +66,21 @@ module.exports = {
         // element is not meant to be perceivable. For example, a click screen
         // to close a dialog .
         return;
-      } else if (
-        isInteractiveElement(type, attributes)
-        || isInteractiveRole(type, attributes)
-        || isNonInteractiveElement(type, attributes)
-        || isNonInteractiveRole(type, attributes)
-        || isAbstractRole(type, attributes)
-      ) {
-        // This rule has no opinion about abstract roles.
-        return;
       }
 
-      // Visible, non-interactive elements should not have an interactive handler.
-      context.report({
-        node,
-        message: errorMessage,
-      });
+      if (
+        hasInteractiveProps
+        && isInteractiveRole(type, attributes)
+        && !isInteractiveElement(type, attributes)
+        && !isNonInteractiveElement(type, attributes)
+        && !isNonInteractiveRole(type, attributes)
+        && !hasTabindex
+      ) {
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      }
     },
   }),
 };

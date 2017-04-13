@@ -1,11 +1,19 @@
 import {
-  dom,
-  roles,
+  roles as rolesMap,
 } from 'aria-query';
+import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
-const VALID_ROLES = [...roles.keys()]
-  .filter(role => roles.get(role).interactive === true);
+const roles = [...rolesMap.keys()];
+const interactiveRoles = roles
+  .filter(name => !rolesMap.get(name).abstract)
+  .filter(name => rolesMap.get(name).superClass.some(
+    klasses => klasses.includes('widget')),
+  );
+
+// 'toolbar' does not descend from widget, but it does support
+// aria-activedescendant, thus in practice we treat it as a widget.
+interactiveRoles.push('toolbar');
 /**
  * Returns boolean indicating whether the given element has a role
  * that is associated with an interactive component. Used when an element
@@ -17,13 +25,10 @@ const VALID_ROLES = [...roles.keys()]
  * The JSX element does not have a tagName or it has a tagName and a role
  * attribute with a value in the set of non-interactive roles.
  */
-const isInteractiveRole = (tagName, attributes) => {
-  // Do not test higher level JSX components, as we do not know what
-  // low-level DOM element this maps to.
-  if ([...dom.keys()].indexOf(tagName) === -1) {
-    return true;
-  }
-
+const isInteractiveRole = (
+  tagName: string,
+  attributes: Array<Node>,
+): boolean => {
   const value = getLiteralPropValue(getProp(attributes, 'role'));
 
   // If value is undefined, then the role attribute will be dropped in the DOM.
@@ -33,10 +38,21 @@ const isInteractiveRole = (tagName, attributes) => {
     return false;
   }
 
+  let isInteractive = false;
   const normalizedValues = String(value).toLowerCase().split(' ');
-  const isInteractive = normalizedValues.every(
-    val => VALID_ROLES.indexOf(val) > -1,
-  );
+  const validRoles = normalizedValues.reduce((
+    accumulator: Array<string>,
+    name: string,
+  ) => {
+    if (roles.includes(name)) {
+      accumulator.push(name);
+    }
+    return accumulator;
+  }, []);
+  if (validRoles.length > 0) {
+    // The first role value is a series takes precedence.
+    isInteractive = interactiveRoles.includes(validRoles[0]);
+  }
 
   return isInteractive;
 };

@@ -1,9 +1,8 @@
 /**
- * @fileoverview Enforce static elements have no interactive handlers.
- * @author Ethan Cohen
+ * @fileoverview Enforce non-interactive elements have no interactive handlers.
+ * @author Jese Beach
  * @flow
  */
-
 // ----------------------------------------------------------------------------
 // Rule Definition
 // ----------------------------------------------------------------------------
@@ -27,7 +26,7 @@ import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 
 const errorMessage =
-  'Static HTML elements with event handlers require a role.';
+  'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
 const schema = generateObjSchema();
 
@@ -68,11 +67,13 @@ module.exports = {
       } else if (
         isInteractiveElement(type, attributes)
         || isInteractiveRole(type, attributes)
-        || isNonInteractiveElement(type, attributes)
-        || isNonInteractiveRole(type, attributes)
+        || (
+          !isNonInteractiveElement(type, attributes)
+          && !isNonInteractiveRole(type, attributes)
+        )
         || isAbstractRole(type, attributes)
       ) {
-        // This rule has no opinion about abstract roles.
+        // This rule has no opinion about abtract roles.
         return;
       }
 
