@@ -1,7 +1,10 @@
-node_modules
-reports
-npm-debug.log
-coverage
-.gitignore
 .DS_Store
+.flowconfig
+.gitignore
+.travis.yml
+coverage
+flow
+node_modules
+npm-debug.log
+reports
 yarn-error.log
