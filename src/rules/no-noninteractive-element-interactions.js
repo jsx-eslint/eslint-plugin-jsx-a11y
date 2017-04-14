@@ -13,7 +13,9 @@ import {
 import {
   elementType,
   eventHandlersByType,
-  hasAnyProp,
+  getPropValue,
+  getProp,
+  hasProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import { generateObjSchema } from '../util/schemas';
@@ -49,7 +51,11 @@ module.exports = {
       const attributes = node.attributes;
       const type = elementType(node);
 
-      const hasInteractiveProps = hasAnyProp(attributes, interactiveProps);
+      const hasInteractiveProps = interactiveProps
+        .some(prop => (
+          hasProp(attributes, prop)
+          && getPropValue(getProp(attributes, prop)) != null
+        ));
 
       if (!domElements.includes(type)) {
         // Do not test higher level JSX components, as we do not know what
