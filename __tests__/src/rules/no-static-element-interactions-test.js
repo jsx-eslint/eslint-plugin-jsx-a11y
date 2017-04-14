@@ -35,6 +35,7 @@ ruleTester.run('no-static-element-interactions', rule, {
     { code: '<div className="foo" {...props} />;' },
     { code: '<div onClick={() => void 0} aria-hidden />;' },
     { code: '<div onClick={() => void 0} aria-hidden={true} />;' },
+    { code: '<div onClick={null} />;' },
     /* All flavors of input */
     { code: '<input onClick={() => void 0} />' },
     { code: '<input type="button" onClick={() => void 0} />' },
