@@ -1,6 +1,5 @@
 .DS_Store
 .flowconfig
-.gitignore
 .travis.yml
 coverage
 flow
