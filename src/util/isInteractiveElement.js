@@ -164,7 +164,7 @@ const isInteractiveElement = (
 ): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if ([...dom.keys()].indexOf(tagName) === -1) {
+  if (!dom.keys(tagName)) {
     return false;
   }
 

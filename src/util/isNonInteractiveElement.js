@@ -43,7 +43,7 @@ const nonInteractiveElementRoles = [...elementRoles.entries()]
       roleSet,
     ],
   ) => {
-    if ([...roleSet.keys()].every(
+    if ([...roleSet].every(
       (role): boolean => nonInteractiveRoles.has(role),
     )) {
       accumulator.set(elementSchema, roleSet);
@@ -161,7 +161,7 @@ const isNonInteractiveElement = (
 ): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if ([...dom.keys()].indexOf(tagName) === -1) {
+  if (!dom.has(tagName)) {
     return false;
   }
 
