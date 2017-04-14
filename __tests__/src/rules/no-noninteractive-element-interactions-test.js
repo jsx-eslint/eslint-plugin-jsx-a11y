@@ -26,7 +26,7 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-ruleTester.run('no-noninteractive-element-handlers', rule, {
+ruleTester.run('no-noninteractive-element-interactions', rule, {
   valid: [
     { code: '<TestComponent onClick={doFoo} />' },
     { code: '<Button onClick={doFoo} />' },

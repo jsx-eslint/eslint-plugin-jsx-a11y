@@ -42,6 +42,19 @@ Move the event handler function to an inner element like `<div>` and give that e
 
 Marking an element with the role `presentation` indicates to assistive technology that this element should be ignored; it exists to support the web application and is not meant for humans to interact with directly.
 
+### Case: This is a heading that expands/collapses content on the package
+
+Headers often double as expand/collapse controls for the content they headline. An accordion component is a common example of this pattern. Rather than assign the interaction handling code to the heading itself, put a button inside the heading instead. This pattern retains the role of the heading and the role of the button.
+
+```jsx
+<h3>
+  <button onClick={this._expandSection}>News</button>
+</h3>
+<ul id="articles-list">
+  <li>...</li>
+</ul>
+```
+
 ### References
 
   1. [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)

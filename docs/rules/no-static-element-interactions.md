@@ -52,6 +52,9 @@ If your element is catching bubbled click or key events from descendant elements
 
 Marking an element with the role `presentation` indicates to assistive technology that this element should be ignored; it exists to support the web application and is not meant for humans to interact with directly.
 
+### Case: This element is a heading that toggles a section of the page.
+
+
 ### References
   1. [WAI-ARIA `role` attribute](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
   1. [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
