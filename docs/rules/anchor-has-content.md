@@ -49,5 +49,5 @@ return (
 ### Fail
 ```jsx
 <a />
-<a><TextWrapper aria-hidden />
+<a><TextWrapper aria-hidden /></a>
 ```
