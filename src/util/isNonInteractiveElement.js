@@ -12,30 +12,43 @@ import {
   elementAXObjects,
 } from 'axobject-query';
 import type { Node } from 'ast-types-flow';
-import {
-  getLiteralPropValue,
-  propName,
-} from 'jsx-ast-utils';
+import attributesComparator from './attributesComparator';
 
 const roleKeys = [...roles.keys()];
+const elementRoleEntries = [...elementRoles];
 
 const nonInteractiveRoles = new Set(
   roleKeys
-    .filter(name => !roles.get(name).abstract)
-    .filter(name => !roles.get(name).superClass.some(
-      klasses => klasses.includes('widget')),
-    ),
+    .filter((name) => {
+      const role = roles.get(name);
+      return (
+        !role.abstract
+        && !role.superClass.some(
+          classes => classes.includes('widget'),
+        )
+      );
+    }),
 );
 
 const interactiveRoles = new Set(
-  roleKeys
-    .filter(name => !roles.get(name).abstract)
-    .filter(name => roles.get(name).superClass.some(
-      klasses => klasses.includes('widget')),
-    ),
+    [].concat(
+      roleKeys,
+      // 'toolbar' does not descend from widget, but it does support
+      // aria-activedescendant, thus in practice we treat it as a widget.
+      'toolbar',
+    )
+    .filter((name) => {
+      const role = roles.get(name);
+      return (
+        !role.abstract
+        && role.superClass.some(
+          classes => classes.includes('widget'),
+        )
+      );
+    }),
 );
 
-const nonInteractiveElementRoles = [...elementRoles.entries()]
+const nonInteractiveElementRoleSchemas = elementRoleEntries
   .reduce((
     accumulator,
     [
@@ -46,12 +59,12 @@ const nonInteractiveElementRoles = [...elementRoles.entries()]
     if ([...roleSet].every(
       (role): boolean => nonInteractiveRoles.has(role),
     )) {
-      accumulator.set(elementSchema, roleSet);
+      accumulator.push(elementSchema);
     }
     return accumulator;
-  }, new Map([]));
+  }, []);
 
-const interactiveElementRoles = [...elementRoles.entries()]
+const interactiveElementRoleSchemas = elementRoleEntries
   .reduce((
     accumulator,
     [
@@ -59,20 +72,20 @@ const interactiveElementRoles = [...elementRoles.entries()]
       roleSet,
     ],
   ) => {
-    if ([...roleSet.keys()].some(
+    if ([...roleSet].some(
       (role): boolean => interactiveRoles.has(role),
     )) {
-      accumulator.set(elementSchema, roleSet);
+      accumulator.push(elementSchema);
     }
     return accumulator;
-  }, new Map([]));
+  }, []);
 
 const nonInteractiveAXObjects = new Set(
   [...AXObjects.keys()]
     .filter(name => ['window', 'structure'].includes(AXObjects.get(name).type)),
 );
 
-const nonInteractiveElementAXObjects = [...elementAXObjects.entries()]
+const nonInteractiveElementAXObjectSchemas = [...elementAXObjects]
   .reduce((
     accumulator,
     [
@@ -80,68 +93,40 @@ const nonInteractiveElementAXObjects = [...elementAXObjects.entries()]
       AXObjectSet,
     ],
   ) => {
-    if ([...AXObjectSet.keys()].every(
+    if ([...AXObjectSet].every(
       (role): boolean => nonInteractiveAXObjects.has(role),
     )) {
-      accumulator.set(elementSchema, AXObjectSet);
+      accumulator.push(elementSchema);
     }
     return accumulator;
-  }, new Map([]));
-
-function attributesComparator(baseAttributes = [], attributes = []): boolean {
-  return baseAttributes.every(
-    (baseAttr): boolean => attributes.some(
-      (attribute): boolean => {
-        // Guard against non-JSXAttribute nodes like JSXSpreadAttribute
-        if (attribute.type !== 'JSXAttribute') {
-          return false;
-        }
-        let attrMatches = false;
-        let valueMatches = true;
-        // Attribute matches.
-        if (baseAttr.name === propName(attribute).toLowerCase()) {
-          attrMatches = true;
-        }
-        // Value exists and matches.
-        if (baseAttr.value) {
-          valueMatches = baseAttr.value === getLiteralPropValue(attribute);
-        }
-        return attrMatches && valueMatches;
-      },
-    ),
-  );
-}
+  }, []);
 
 function checkIsNonInteractiveElement(tagName, attributes): boolean {
-  // Check in configuration for an override.
-
+  function elementSchemaMatcher(elementSchema) {
+    return (
+      tagName === elementSchema.name
+      && attributesComparator(elementSchema.attributes, attributes)
+    );
+  }
   // Check in elementRoles for inherent non-interactive role associations for
   // this element.
-  for (const [elementSchema] of nonInteractiveElementRoles) {
-    if (
-      tagName === elementSchema.name
-      && attributesComparator(elementSchema.attributes, attributes)
-    ) {
-      return true;
-    }
+  const isInherentNonInteractiveElement = nonInteractiveElementRoleSchemas
+    .some(elementSchemaMatcher);
+  if (isInherentNonInteractiveElement) {
+    return true;
   }
-
   // Check in elementRoles for inherent interactive role associations for
   // this element.
-  for (const [elementSchema] of interactiveElementRoles) {
-    if (
-      tagName === elementSchema.name
-      && attributesComparator(elementSchema.attributes, attributes)
-    ) {
-      return false;
-    }
+  const isInherentInteractiveElement = interactiveElementRoleSchemas
+    .some(elementSchemaMatcher);
+  if (isInherentInteractiveElement) {
+    return false;
   }
-
   // Check in elementAXObjects for AX Tree associations for this element.
-  for (const [elementSchema] of nonInteractiveElementAXObjects) {
-    if (tagName === elementSchema.name) {
-      return attributesComparator(elementSchema.attributes, attributes);
-    }
+  const isNonInteractiveAXElement = nonInteractiveElementAXObjectSchemas
+    .some(elementSchemaMatcher);
+  if (isNonInteractiveAXElement) {
+    return true;
   }
 
   return false;
