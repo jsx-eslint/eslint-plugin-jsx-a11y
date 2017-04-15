@@ -40,9 +40,13 @@ ruleTester.run('mouse-events-have-key-events', rule, {
     },
     { code: '<div />;' },
     { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} />' },
-    { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} {...props} />' },
+    {
+      code: '<div onMouseOut={() => void 0} onBlur={() => void 0} {...props} />',
+    },
     { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} />' },
-    { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} {...props} />' },
+    {
+      code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} {...props} />',
+    },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div onMouseOver={() => void 0} />;', errors: [mouseOverError] },

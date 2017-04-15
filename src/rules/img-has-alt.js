@@ -32,8 +32,10 @@ module.exports = {
 
       const roleProp = getProp(node.attributes, 'role');
       const roleValue = getPropValue(roleProp);
-      const isPresentation = roleProp && typeof roleValue === 'string'
-        && roleValue.toLowerCase() === 'presentation';
+      const isPresentation =
+        roleProp &&
+        typeof roleValue === 'string' &&
+        roleValue.toLowerCase() === 'presentation';
 
       const altProp = getProp(node.attributes, 'alt');
 
@@ -64,8 +66,7 @@ module.exports = {
       // Undefined alt prop error.
       context.report({
         node,
-        message:
-          `Invalid alt value for ${nodeType}. \
+        message: `Invalid alt value for ${nodeType}. \
 Use alt="" for presentational images.`,
       });
     },

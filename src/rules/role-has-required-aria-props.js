@@ -43,18 +43,18 @@ module.exports = {
       }
 
       const normalizedValues = String(value).toLowerCase().split(' ');
-      const validRoles = normalizedValues
-        .filter(val => [...roles.keys()].indexOf(val) > -1);
+      const validRoles = normalizedValues.filter(
+        val => [...roles.keys()].indexOf(val) > -1,
+      );
 
       validRoles.forEach((role) => {
-        const {
-          requiredProps: requiredPropKeyValues,
-        } = roles.get(role);
+        const { requiredProps: requiredPropKeyValues } = roles.get(role);
         const requiredProps = Object.keys(requiredPropKeyValues);
 
         if (requiredProps.length > 0) {
-          const hasRequiredProps = requiredProps
-            .every(prop => getProp(attribute.parent.attributes, prop));
+          const hasRequiredProps = requiredProps.every(prop =>
+            getProp(attribute.parent.attributes, prop),
+          );
           if (hasRequiredProps === false) {
             context.report({
               node: attribute,

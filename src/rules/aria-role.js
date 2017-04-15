@@ -11,7 +11,8 @@ import { dom, roles } from 'aria-query';
 import { getLiteralPropValue, propName, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
+const errorMessage =
+  'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
 
 const schema = generateObjSchema({
   ignoreNonDOM: {
@@ -44,22 +45,30 @@ module.exports = {
       const name = propName(attribute);
       const normalizedName = name ? name.toUpperCase() : '';
 
-      if (normalizedName !== 'ROLE') { return; }
+      if (normalizedName !== 'ROLE') {
+        return;
+      }
 
       const value = getLiteralPropValue(attribute);
 
       // If value is undefined, then the role attribute will be dropped in the DOM.
       // If value is null, then getLiteralAttributeValue is telling us that the
       // value isn't in the form of a literal.
-      if (value === undefined || value === null) { return; }
+      if (value === undefined || value === null) {
+        return;
+      }
 
       const normalizedValues = String(value).toLowerCase().split(' ');
       const validRoles = [...roles.keys()].filter(
         role => roles.get(role).abstract === false,
       );
-      const isValid = normalizedValues.every(val => validRoles.indexOf(val) > -1);
+      const isValid = normalizedValues.every(
+        val => validRoles.indexOf(val) > -1,
+      );
 
-      if (isValid === true) { return; }
+      if (isValid === true) {
+        return;
+      }
 
       context.report({
         node: attribute,

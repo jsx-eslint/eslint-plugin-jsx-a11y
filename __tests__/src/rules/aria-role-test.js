@@ -31,9 +31,10 @@ const invalidRoles = [...roles.keys()].filter(
   role => roles.get(role).abstract === true,
 );
 
-const createTests = roleNames => roleNames.map(role => ({
-  code: `<div role="${role.toLowerCase()}" />`,
-}));
+const createTests = roleNames =>
+  roleNames.map(role => ({
+    code: `<div role="${role.toLowerCase()}" />`,
+  }));
 
 const validTests = createTests(validRoles);
 const invalidTests = createTests(invalidRoles).map((test) => {
@@ -42,9 +43,11 @@ const invalidTests = createTests(invalidRoles).map((test) => {
   return invalidTest;
 });
 
-const ignoreNonDOMSchema = [{
-  ignoreNonDOM: true,
-}];
+const ignoreNonDOMSchema = [
+  {
+    ignoreNonDOM: true,
+  },
+];
 
 ruleTester.run('aria-role', rule, {
   valid: [
@@ -60,7 +63,9 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role="doc-appendix doc-bibliography" />' },
     { code: '<Bar baz />' },
     { code: '<Foo role="bar" />', options: ignoreNonDOMSchema },
-  ].concat(validTests).map(parserOptionsMapper),
+  ]
+    .concat(validTests)
+    .map(parserOptionsMapper),
 
   invalid: [
     { code: '<div role="foobar" />', errors: [errorMessage] },
@@ -73,5 +78,7 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role />', errors: [errorMessage] },
     { code: '<div role={null}></div>', errors: [errorMessage] },
     { code: '<Foo role="datepicker" />', errors: [errorMessage] },
-  ].concat(invalidTests).map(parserOptionsMapper),
+  ]
+    .concat(invalidTests)
+    .map(parserOptionsMapper),
 });

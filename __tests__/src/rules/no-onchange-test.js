@@ -4,7 +4,6 @@
  * @author Ethan Cohen
  */
 
-
 // -----------------------------------------------------------------------------
 // Requirements
 // -----------------------------------------------------------------------------
@@ -42,6 +41,9 @@ ruleTester.run('no-onchange', rule, {
     { code: '<select onChange={() => {}} />;', errors: [expectedError] },
     { code: '<select onChange={handleOnChange} />;', errors: [expectedError] },
     { code: '<option onChange={() => {}} />', errors: [expectedError] },
-    { code: '<option onChange={() => {}} {...props} />', errors: [expectedError] },
+    {
+      code: '<option onChange={() => {}} {...props} />',
+      errors: [expectedError],
+    },
   ].map(parserOptionsMapper),
 });

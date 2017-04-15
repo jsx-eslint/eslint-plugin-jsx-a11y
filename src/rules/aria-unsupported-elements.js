@@ -8,10 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  aria,
-  dom,
-} from 'aria-query';
+import { aria, dom } from 'aria-query';
 import { elementType, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
@@ -31,9 +28,7 @@ module.exports = {
     JSXOpeningElement: (node) => {
       const nodeType = elementType(node);
       const nodeAttrs = dom.get(nodeType) || {};
-      const {
-        reserved: isReservedNodeType = false,
-      } = nodeAttrs;
+      const { reserved: isReservedNodeType = false } = nodeAttrs;
 
       // If it's not reserved, then it can have aria-* roles, states, and properties
       if (isReservedNodeType === false) {

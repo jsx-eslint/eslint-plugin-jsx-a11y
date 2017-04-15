@@ -2,18 +2,16 @@
  * @flow
  */
 
-import {
-  dom,
-  roles as rolesMap,
-} from 'aria-query';
+import { dom, roles as rolesMap } from 'aria-query';
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
 const roles = [...rolesMap.keys()];
 const nonInteractiveRoles = roles
   .filter(name => !rolesMap.get(name).abstract)
-  .filter(name => !rolesMap.get(name).superClass.some(
-    klasses => klasses.includes('widget')),
+  .filter(
+    name =>
+      !rolesMap.get(name).superClass.some(klasses => klasses.includes('widget')),
   );
 
 /**
@@ -48,10 +46,7 @@ const isNonInteractiveRole = (
 
   let isNonInteractive = false;
   const normalizedValues = String(role).toLowerCase().split(' ');
-  const validRoles = normalizedValues.reduce((
-    accumulator: Array<string>,
-    name: string,
-  ) => {
+  const validRoles = normalizedValues.reduce((accumulator: Array<string>, name: string) => {
     if (roles.includes(name)) {
       accumulator.push(name);
     }

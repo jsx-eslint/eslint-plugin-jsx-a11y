@@ -9,9 +9,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
+import { dom } from 'aria-query';
 import {
   elementType,
   getProp,
@@ -31,24 +29,24 @@ const domElements = [...dom.keys()];
 module.exports = {
   meta: {
     docs: {},
-    schema: [{
-      type: 'object',
-      additionalProperties: {
-        type: 'array',
-        items: {
-          type: 'string',
+    schema: [
+      {
+        type: 'object',
+        additionalProperties: {
+          type: 'array',
+          items: {
+            type: 'string',
+          },
+          uniqueItems: true,
         },
-        uniqueItems: true,
       },
-    }],
+    ],
   },
 
   create: (context: ESLintContext) => {
     const options = context.options;
     return {
-      JSXAttribute: (
-        attribute: ESLintJSXAttribute,
-      ) => {
+      JSXAttribute: (attribute: ESLintJSXAttribute) => {
         const attributeName: JSXIdentifier = propName(attribute);
         if (attributeName !== 'role') {
           return;
@@ -65,19 +63,17 @@ module.exports = {
         }
         // Allow overrides from rule configuration for specific elements and
         // roles.
-        const allowedRoles = (options[0] || {});
+        const allowedRoles = options[0] || {};
         if (
-          Object.prototype.hasOwnProperty.call(allowedRoles, type)
-          && allowedRoles[type].includes(role)
+          Object.prototype.hasOwnProperty.call(allowedRoles, type) &&
+          allowedRoles[type].includes(role)
         ) {
           return;
         }
         if (
-          isInteractiveElement(type, attributes)
-          && (
-            isNonInteractiveRole(type, attributes)
-            || isPresentationRole(type, attributes)
-          )
+          isInteractiveElement(type, attributes) &&
+          (isNonInteractiveRole(type, attributes) ||
+            isPresentationRole(type, attributes))
         ) {
           // Visible, non-interactive elements should not have an interactive handler.
           context.report({

@@ -10,7 +10,8 @@
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 
-const errorMessage = 'Form controls using a label to identify them must be ' +
+const errorMessage =
+  'Form controls using a label to identify them must be ' +
   'programmatically associated with the control using htmlFor';
 
 const schema = generateObjSchema({ components: arraySchema });

@@ -20,10 +20,7 @@ import rule, { validityCheck } from '../../../src/rules/aria-proptypes';
 const ruleTester = new RuleTester();
 
 const errorMessage = (name) => {
-  const {
-    type,
-    values: permittedValues,
-  } = aria.get(name.toLowerCase());
+  const { type, values: permittedValues } = aria.get(name.toLowerCase());
 
   switch (type) {
     case 'tristate':
@@ -44,10 +41,7 @@ tokens from the following: ${permittedValues}.`;
 
 describe('validityCheck', () => {
   it('should false for an unknown expected type', () => {
-    expect(validityCheck(
-      null,
-      null,
-    )).toBe(false);
+    expect(validityCheck(null, null)).toBe(false);
   });
 });
 
@@ -160,52 +154,94 @@ ruleTester.run('aria-proptypes', rule, {
       code: '<div aria-hidden={undefined} />',
       errors: [errorMessage('aria-hidden')],
     },
-    { code: '<div aria-hidden="yes" />', errors: [errorMessage('aria-hidden')] },
+    {
+      code: '<div aria-hidden="yes" />',
+      errors: [errorMessage('aria-hidden')],
+    },
     { code: '<div aria-hidden="no" />', errors: [errorMessage('aria-hidden')] },
-    { code: '<div aria-hidden={1234} />', errors: [errorMessage('aria-hidden')] },
+    {
+      code: '<div aria-hidden={1234} />',
+      errors: [errorMessage('aria-hidden')],
+    },
     {
       code: '<div aria-hidden={`${abc}`} />',
       errors: [errorMessage('aria-hidden')],
     },
 
     // STRING
-    { code: '<div aria-label={undefined} />', errors: [errorMessage('aria-label')] },
+    {
+      code: '<div aria-label={undefined} />',
+      errors: [errorMessage('aria-label')],
+    },
     { code: '<div aria-label />', errors: [errorMessage('aria-label')] },
     { code: '<div aria-label={true} />', errors: [errorMessage('aria-label')] },
-    { code: '<div aria-label={false} />', errors: [errorMessage('aria-label')] },
+    {
+      code: '<div aria-label={false} />',
+      errors: [errorMessage('aria-label')],
+    },
     { code: '<div aria-label={1234} />', errors: [errorMessage('aria-label')] },
-    { code: '<div aria-label={!true} />', errors: [errorMessage('aria-label')] },
+    {
+      code: '<div aria-label={!true} />',
+      errors: [errorMessage('aria-label')],
+    },
 
     // TRISTATE
     {
       code: '<div aria-checked={undefined} />',
       errors: [errorMessage('aria-checked')],
     },
-    { code: '<div aria-checked="yes" />', errors: [errorMessage('aria-checked')] },
-    { code: '<div aria-checked="no" />', errors: [errorMessage('aria-checked')] },
-    { code: '<div aria-checked={1234} />', errors: [errorMessage('aria-checked')] },
+    {
+      code: '<div aria-checked="yes" />',
+      errors: [errorMessage('aria-checked')],
+    },
+    {
+      code: '<div aria-checked="no" />',
+      errors: [errorMessage('aria-checked')],
+    },
+    {
+      code: '<div aria-checked={1234} />',
+      errors: [errorMessage('aria-checked')],
+    },
     {
       code: '<div aria-checked={`${abc}`} />',
       errors: [errorMessage('aria-checked')],
     },
 
     // INTEGER
-    { code: '<div aria-level={undefined} />', errors: [errorMessage('aria-level')] },
+    {
+      code: '<div aria-level={undefined} />',
+      errors: [errorMessage('aria-level')],
+    },
     { code: '<div aria-level="yes" />', errors: [errorMessage('aria-level')] },
     { code: '<div aria-level="no" />', errors: [errorMessage('aria-level')] },
-    { code: '<div aria-level={`abc`} />', errors: [errorMessage('aria-level')] },
+    {
+      code: '<div aria-level={`abc`} />',
+      errors: [errorMessage('aria-level')],
+    },
     { code: '<div aria-level={true} />', errors: [errorMessage('aria-level')] },
     { code: '<div aria-level />', errors: [errorMessage('aria-level')] },
-    { code: '<div aria-level={"false"} />', errors: [errorMessage('aria-level')] },
-    { code: '<div aria-level={!"false"} />', errors: [errorMessage('aria-level')] },
+    {
+      code: '<div aria-level={"false"} />',
+      errors: [errorMessage('aria-level')],
+    },
+    {
+      code: '<div aria-level={!"false"} />',
+      errors: [errorMessage('aria-level')],
+    },
 
     // NUMBER
     {
       code: '<div aria-valuemax={undefined} />',
       errors: [errorMessage('aria-valuemax')],
     },
-    { code: '<div aria-valuemax="yes" />', errors: [errorMessage('aria-valuemax')] },
-    { code: '<div aria-valuemax="no" />', errors: [errorMessage('aria-valuemax')] },
+    {
+      code: '<div aria-valuemax="yes" />',
+      errors: [errorMessage('aria-valuemax')],
+    },
+    {
+      code: '<div aria-valuemax="no" />',
+      errors: [errorMessage('aria-valuemax')],
+    },
     {
       code: '<div aria-valuemax={`abc`} />',
       errors: [errorMessage('aria-valuemax')],
@@ -226,18 +262,30 @@ ruleTester.run('aria-proptypes', rule, {
 
     // TOKEN
     { code: '<div aria-sort="" />', errors: [errorMessage('aria-sort')] },
-    { code: '<div aria-sort="descnding" />', errors: [errorMessage('aria-sort')] },
+    {
+      code: '<div aria-sort="descnding" />',
+      errors: [errorMessage('aria-sort')],
+    },
     { code: '<div aria-sort />', errors: [errorMessage('aria-sort')] },
-    { code: '<div aria-sort={undefined} />', errors: [errorMessage('aria-sort')] },
+    {
+      code: '<div aria-sort={undefined} />',
+      errors: [errorMessage('aria-sort')],
+    },
     { code: '<div aria-sort={true} />', errors: [errorMessage('aria-sort')] },
-    { code: '<div aria-sort={"false"} />', errors: [errorMessage('aria-sort')] },
+    {
+      code: '<div aria-sort={"false"} />',
+      errors: [errorMessage('aria-sort')],
+    },
     {
       code: '<div aria-sort="ascending descending" />',
       errors: [errorMessage('aria-sort')],
     },
 
     // TOKENLIST
-    { code: '<div aria-relevant="" />', errors: [errorMessage('aria-relevant')] },
+    {
+      code: '<div aria-relevant="" />',
+      errors: [errorMessage('aria-relevant')],
+    },
     {
       code: '<div aria-relevant="foobar" />',
       errors: [errorMessage('aria-relevant')],

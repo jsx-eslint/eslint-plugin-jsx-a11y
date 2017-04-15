@@ -14,68 +14,67 @@ import {
 describe('isInteractiveElement', () => {
   describe('JSX Components (no tagName)', () => {
     it('should identify them as interactive elements', () => {
-      expect(isInteractiveElement(undefined, []))
-        .toBe(false);
+      expect(isInteractiveElement(undefined, [])).toBe(false);
     });
   });
   describe('interactive elements', () => {
-    genInteractiveElements().forEach(
-      ({ openingElement }) => {
-        it(`should identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
-          expect(isInteractiveElement(
+    genInteractiveElements().forEach(({ openingElement }) => {
+      it(`should identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
+        expect(
+          isInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
-          )).toBe(true);
-        });
-      },
-    );
+          ),
+        ).toBe(true);
+      });
+    });
   });
   describe('interactive role elements', () => {
-    genInteractiveRoleElements().forEach(
-      ({ openingElement }) => {
-        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
-          expect(isInteractiveElement(
+    genInteractiveRoleElements().forEach(({ openingElement }) => {
+      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
+        expect(
+          isInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
-          )).toBe(false);
-        });
-      },
-    );
+          ),
+        ).toBe(false);
+      });
+    });
   });
   describe('non-interactive elements', () => {
-    genNonInteractiveElements().forEach(
-      ({ openingElement }) => {
-        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
-          expect(isInteractiveElement(
+    genNonInteractiveElements().forEach(({ openingElement }) => {
+      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
+        expect(
+          isInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
-          )).toBe(false);
-        });
-      },
-    );
+          ),
+        ).toBe(false);
+      });
+    });
   });
   describe('non-interactive role elements', () => {
-    genNonInteractiveRoleElements().forEach(
-      ({ openingElement }) => {
-        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
-          expect(isInteractiveElement(
+    genNonInteractiveRoleElements().forEach(({ openingElement }) => {
+      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
+        expect(
+          isInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
-          )).toBe(false);
-        });
-      },
-    );
+          ),
+        ).toBe(false);
+      });
+    });
   });
   describe('indeterminate elements', () => {
-    genIndeterminantInteractiveElements().forEach(
-      ({ openingElement }) => {
-        it(`should NOT identify \`${openingElement.name.name}\` as an interactive element`, () => {
-          expect(isInteractiveElement(
+    genIndeterminantInteractiveElements().forEach(({ openingElement }) => {
+      it(`should NOT identify \`${openingElement.name.name}\` as an interactive element`, () => {
+        expect(
+          isInteractiveElement(
             elementType(openingElement),
             openingElement.attributes,
-          )).toBe(false);
-        });
-      },
-    );
+          ),
+        ).toBe(false);
+      });
+    });
   });
 });

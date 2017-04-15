@@ -2,11 +2,7 @@
  * @flow
  */
 
-import {
-  dom,
-  elementRoles,
-  roles,
-} from 'aria-query';
+import { dom, elementRoles, roles } from 'aria-query';
 import type { Node } from 'ast-types-flow';
 import {
   getProp,
@@ -17,48 +13,52 @@ import {
 import getTabIndex from './getTabIndex';
 
 type ElementCallbackMap = {
-  [elementName: string]: (attributes: Array<Node>) => boolean,
+  [elementName: string]: (attributes: Array<Node>) => boolean
 };
 
 const nonInteractiveRoles = new Set(
   [...roles.keys()]
     .filter(name => !roles.get(name).abstract)
-    .filter(name => !roles.get(name).superClass.some(
-      klasses => klasses.includes('widget')),
+    .filter(
+      name =>
+        !roles.get(name).superClass.some(klasses => klasses.includes('widget')),
     ),
 );
 
-const pureNonInteractiveElements = [...elementRoles.entries()]
-  .reduce((
-    accumulator: ElementCallbackMap,
-    [
-      elementSchema,
-      roleSet,
-    ],
-  ): ElementCallbackMap => {
-    const nonInteractiveElements = accumulator;
-    const elementName = elementSchema.name;
-    const elementAttributes = elementSchema.attributes || [];
-    nonInteractiveElements[elementName] = (attributes: Array<Object>): boolean => {
-      const passedAttrCheck =
-        elementAttributes.length === 0 ||
-        elementAttributes.every(
-          (controlAttr): boolean => attributes.some(
-            (attr): boolean => {
-              if (attr.type !== 'JSXAttribute') {
-                return false;
-              }
-              return controlAttr.name === propName(attr).toLowerCase()
-                && controlAttr.value === getLiteralPropValue(attr);
-            },
-          ),
-        );
-      return passedAttrCheck && [...roleSet.keys()].every(
-        (roleName): boolean => nonInteractiveRoles.has(roleName),
+const pureNonInteractiveElements = [
+  ...elementRoles.entries(),
+].reduce((accumulator: ElementCallbackMap, [
+  elementSchema,
+  roleSet,
+]): ElementCallbackMap => {
+  const nonInteractiveElements = accumulator;
+  const elementName = elementSchema.name;
+  const elementAttributes = elementSchema.attributes || [];
+  nonInteractiveElements[elementName] = (
+    attributes: Array<Object>,
+  ): boolean => {
+    const passedAttrCheck =
+      elementAttributes.length === 0 ||
+      elementAttributes.every((controlAttr): boolean =>
+        attributes.some((attr): boolean => {
+          if (attr.type !== 'JSXAttribute') {
+            return false;
+          }
+          return (
+            controlAttr.name === propName(attr).toLowerCase() &&
+            controlAttr.value === getLiteralPropValue(attr)
+          );
+        }),
       );
-    };
-    return nonInteractiveElements;
-  }, {});
+    return (
+      passedAttrCheck &&
+      [...roleSet.keys()].every((roleName): boolean =>
+        nonInteractiveRoles.has(roleName),
+      )
+    );
+  };
+  return nonInteractiveElements;
+}, {});
 
 const isNotLink = function isNotLink(attributes) {
   const href = getPropValue(getProp(attributes, 'href'));

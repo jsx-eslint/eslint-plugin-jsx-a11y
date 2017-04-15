@@ -23,16 +23,22 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-const components = [{
-  components: ['Anchor', 'Link'],
-}];
-const specialLink = [{
-  specialLink: ['hrefLeft', 'hrefRight'],
-}];
-const componentsAndSpecialLink = [{
-  components: ['Anchor'],
-  specialLink: ['hrefLeft'],
-}];
+const components = [
+  {
+    components: ['Anchor', 'Link'],
+  },
+];
+const specialLink = [
+  {
+    specialLink: ['hrefLeft', 'hrefRight'],
+  },
+];
+const componentsAndSpecialLink = [
+  {
+    components: ['Anchor'],
+    specialLink: ['hrefLeft'],
+  },
+];
 
 ruleTester.run('href-no-hash', rule, {
   valid: [
@@ -114,10 +120,19 @@ ruleTester.run('href-no-hash', rule, {
     { code: '<Anchor hrefLeft="foo" />', options: componentsAndSpecialLink },
     { code: '<Anchor hrefLeft={foo} />', options: componentsAndSpecialLink },
     { code: '<Anchor hrefLeft="/foo" />', options: componentsAndSpecialLink },
-    { code: '<Anchor hrefLeft={`${undefined}`} />', options: componentsAndSpecialLink },
+    {
+      code: '<Anchor hrefLeft={`${undefined}`} />',
+      options: componentsAndSpecialLink,
+    },
     { code: '<div hrefLeft="foo" />', options: componentsAndSpecialLink },
-    { code: '<Anchor hrefLeft={`${undefined}foo`}/>', options: componentsAndSpecialLink },
-    { code: '<Anchor hrefLeft={`#${undefined}foo`}/>', options: componentsAndSpecialLink },
+    {
+      code: '<Anchor hrefLeft={`${undefined}foo`}/>',
+      options: componentsAndSpecialLink,
+    },
+    {
+      code: '<Anchor hrefLeft={`#${undefined}foo`}/>',
+      options: componentsAndSpecialLink,
+    },
     { code: '<Anchor hrefLeft={`#foo`}/>', options: componentsAndSpecialLink },
     { code: '<Anchor hrefLeft={"foo"}/>', options: componentsAndSpecialLink },
     { code: '<Anchor hrefLeft="#foo" />', options: componentsAndSpecialLink },
@@ -131,14 +146,26 @@ ruleTester.run('href-no-hash', rule, {
 
     // CUSTOM ELEMENT TEST FOR ARRAY OPTION
     { code: '<Link href="#" />', errors: [expectedError], options: components },
-    { code: '<Link href={"#"} />', errors: [expectedError], options: components },
+    {
+      code: '<Link href={"#"} />',
+      errors: [expectedError],
+      options: components,
+    },
     {
       code: '<Link href={`#${undefined}`} />',
       errors: [expectedError],
       options: components,
     },
-    { code: '<Anchor href="#" />', errors: [expectedError], options: components },
-    { code: '<Anchor href={"#"} />', errors: [expectedError], options: components },
+    {
+      code: '<Anchor href="#" />',
+      errors: [expectedError],
+      options: components,
+    },
+    {
+      code: '<Anchor href={"#"} />',
+      errors: [expectedError],
+      options: components,
+    },
     {
       code: '<Anchor href={`#${undefined}`} />',
       errors: [expectedError],
@@ -146,15 +173,31 @@ ruleTester.run('href-no-hash', rule, {
     },
 
     // CUSTOM PROP TESTS
-    { code: '<a hrefLeft="#" />', errors: [expectedError], options: specialLink },
-    { code: '<a hrefLeft={"#"} />', errors: [expectedError], options: specialLink },
+    {
+      code: '<a hrefLeft="#" />',
+      errors: [expectedError],
+      options: specialLink,
+    },
+    {
+      code: '<a hrefLeft={"#"} />',
+      errors: [expectedError],
+      options: specialLink,
+    },
     {
       code: '<a hrefLeft={`#${undefined}`} />',
       errors: [expectedError],
       options: specialLink,
     },
-    { code: '<a hrefRight="#" />', errors: [expectedError], options: specialLink },
-    { code: '<a hrefRight={"#"} />', errors: [expectedError], options: specialLink },
+    {
+      code: '<a hrefRight="#" />',
+      errors: [expectedError],
+      options: specialLink,
+    },
+    {
+      code: '<a hrefRight={"#"} />',
+      errors: [expectedError],
+      options: specialLink,
+    },
     {
       code: '<a hrefRight={`#${undefined}`} />',
       errors: [expectedError],
@@ -162,8 +205,16 @@ ruleTester.run('href-no-hash', rule, {
     },
 
     // CUSTOM BOTH COMPONENTS AND SPECIALLINK TESTS
-    { code: '<Anchor hrefLeft="#" />', errors: [expectedError], options: componentsAndSpecialLink },
-    { code: '<Anchor hrefLeft={"#"} />', errors: [expectedError], options: componentsAndSpecialLink },
+    {
+      code: '<Anchor hrefLeft="#" />',
+      errors: [expectedError],
+      options: componentsAndSpecialLink,
+    },
+    {
+      code: '<Anchor hrefLeft={"#"} />',
+      errors: [expectedError],
+      options: componentsAndSpecialLink,
+    },
     {
       code: '<Anchor hrefLeft={`#${undefined}`} />',
       errors: [expectedError],

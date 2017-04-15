@@ -12,7 +12,7 @@ import { arraySchema, generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage =
-    'Anchors must have content and the content must be accessible by a screen reader.';
+  'Anchors must have content and the content must be accessible by a screen reader.';
 
 const schema = generateObjSchema({ components: arraySchema });
 
@@ -22,8 +22,9 @@ const determineChildType = (child) => {
       return Boolean(child.value);
     case 'JSXElement':
       return !isHiddenFromScreenReader(
-          elementType(child.openingElement),
-          child.openingElement.attributes);
+        elementType(child.openingElement),
+        child.openingElement.attributes,
+      );
     case 'JSXExpressionContainer':
       if (child.expression.type === 'Identifier') {
         return child.expression.name !== 'undefined';
@@ -52,10 +53,9 @@ module.exports = {
       if (typeCheck.indexOf(nodeType) === -1) {
         return;
       }
-      const isAccessible = node.parent.children.some(
-        determineChildType,
-      ) || hasAnyProp(node.attributes, ['dangerouslySetInnerHTML', 'children']);
-
+      const isAccessible =
+        node.parent.children.some(determineChildType) ||
+        hasAnyProp(node.attributes, ['dangerouslySetInnerHTML', 'children']);
 
       if (isAccessible) {
         return;

@@ -10,7 +10,8 @@
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 
-const errorMessage = 'Links must not point to "#". ' +
+const errorMessage =
+  'Links must not point to "#". ' +
   'Use a more descriptive href or use a button instead.';
 
 const schema = generateObjSchema({

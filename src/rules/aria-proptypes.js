@@ -42,10 +42,18 @@ const validityCheck = (value, expectedType, permittedValues) => {
       // Booleans resolve to 0/1 values so hard check that it's not first.
       return typeof value !== 'boolean' && isNaN(Number(value)) === false;
     case 'token':
-      return permittedValues.indexOf(typeof value === 'string' ? value.toLowerCase() : value) > -1;
+      return (
+        permittedValues.indexOf(
+          typeof value === 'string' ? value.toLowerCase() : value,
+        ) > -1
+      );
     case 'tokenlist':
-      return typeof value === 'string' &&
-        value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);
+      return (
+        typeof value === 'string' &&
+        value
+          .split(' ')
+          .every(token => permittedValues.indexOf(token.toLowerCase()) > -1)
+      );
     default:
       return false;
   }
@@ -66,7 +74,10 @@ module.exports = {
       const normalizedName = name ? name.toLowerCase() : '';
 
       // Not a valid aria-* state or property.
-      if (normalizedName.indexOf('aria-') !== 0 || aria.get(normalizedName) === undefined) {
+      if (
+        normalizedName.indexOf('aria-') !== 0 ||
+        aria.get(normalizedName) === undefined
+      ) {
         return;
       }
 
@@ -83,7 +94,8 @@ module.exports = {
       const allowUndefined = attributes.allowUndefined || false;
       const permittedValues = attributes.values || [];
 
-      const isValid = validityCheck(value, permittedType, permittedValues) ||
+      const isValid =
+        validityCheck(value, permittedType, permittedValues) ||
         (allowUndefined && value === undefined);
 
       if (isValid) {

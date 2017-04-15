@@ -33,7 +33,7 @@ ruleTester.run('scope', rule, {
     { code: '<th scope={"col"} {...props} />' },
     { code: '<Foo scope="bar" {...props} />' },
   ].map(parserOptionsMapper),
-  invalid: [
-    { code: '<div scope />', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  invalid: [{ code: '<div scope />', errors: [expectedError] }].map(
+    parserOptionsMapper,
+  ),
 });

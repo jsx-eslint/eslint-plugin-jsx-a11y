@@ -21,9 +21,9 @@
     "prepublish": "npm run lint && npm run flow && npm run test && npm run build",
     "coveralls": "cat ./reports/lcov.info | coveralls",
     "flow": "if [ ! -e ./.flowconfig ]; then echo \"Could not find .flowconfig\"; else flow; test $? -eq 0 -o $? -eq 2; fi",
-    "lint": "eslint  --config .eslintrc src __tests__",
+    "lint": "eslint  --config .eslintrc src __tests__ __mocks__",
     "lint:fix": "npm run lint -- --fix",
-    "pretest": "npm run lint:fix && npm run flow",
+    "precommit": "lint-staged",
     "test": "jest --coverage __tests__/**/*",
     "create": "node ./scripts/create-rule"
   },
@@ -43,9 +43,12 @@
     "eslint-plugin-import": "^2.2.0",
     "expect": "^1.20.2",
     "flow-bin": "^0.44.0",
+    "husky": "^0.13.3",
     "jest": "^19.0.0",
     "jscodeshift": "^0.3.30",
+    "lint-staged": "^3.4.0",
     "minimist": "^1.2.0",
+    "prettier": "^1.1.0",
     "rimraf": "^2.5.2",
     "to-ast": "^1.0.0"
   },
@@ -73,6 +76,13 @@
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/__tests__/__util__"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "lint:fix",
+      "git add"
     ]
   }
 }

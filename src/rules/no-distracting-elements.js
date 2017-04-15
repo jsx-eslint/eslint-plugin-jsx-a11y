@@ -13,11 +13,7 @@ import { generateObjSchema, enumArraySchema } from '../util/schemas';
 const errorMessage = element =>
   `Do not use <${element}> elements as they can create visual accessibility issues and are deprecated.`;
 
-
-const DEFAULT_ELEMENTS = [
-  'marquee',
-  'blink',
-];
+const DEFAULT_ELEMENTS = ['marquee', 'blink'];
 
 const schema = generateObjSchema({
   elements: enumArraySchema(DEFAULT_ELEMENTS),
@@ -34,7 +30,9 @@ module.exports = {
       const options = context.options[0] || {};
       const elementOptions = options.elements || DEFAULT_ELEMENTS;
       const type = elementType(node);
-      const distractingElement = elementOptions.find(element => type === element);
+      const distractingElement = elementOptions.find(
+        element => type === element,
+      );
 
       if (distractingElement) {
         context.report({

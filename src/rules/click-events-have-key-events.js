@@ -7,16 +7,15 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
+import { dom } from 'aria-query';
 import { getProp, hasAnyProp, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 
-const errorMessage = 'Visible, non-interactive elements with click handlers' +
-' must have at least one keyboard listener.';
+const errorMessage =
+  'Visible, non-interactive elements with click handlers' +
+  ' must have at least one keyboard listener.';
 
 const schema = generateObjSchema();
 const domElements = [...dom.keys()];

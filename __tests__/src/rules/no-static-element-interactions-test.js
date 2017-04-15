@@ -18,8 +18,7 @@ import rule from '../../../src/rules/no-static-element-interactions';
 
 const ruleTester = new RuleTester();
 
-const errorMessage =
-  'Static HTML elements with event handlers require a role.';
+const errorMessage = 'Static HTML elements with event handlers require a role.';
 
 const expectedError = {
   message: errorMessage,
@@ -189,9 +188,18 @@ ruleTester.run('no-static-element-interactions', rule, {
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div onClick={() => void 0} />;', errors: [expectedError] },
-    { code: '<div onClick={() => void 0} role={undefined} />;', errors: [expectedError] },
-    { code: '<div onClick={() => void 0} {...props} />;', errors: [expectedError] },
-    { code: '<div onKeyUp={() => void 0} aria-hidden={false} />;', errors: [expectedError] },
+    {
+      code: '<div onClick={() => void 0} role={undefined} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div onClick={() => void 0} {...props} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div onKeyUp={() => void 0} aria-hidden={false} />;',
+      errors: [expectedError],
+    },
     /* Static elements; no inherent role */
     { code: '<a onClick={() => void 0} />', errors: [expectedError] },
     { code: '<a onClick={() => {}} />;', errors: [expectedError] },

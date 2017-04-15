@@ -47,11 +47,8 @@ module.exports = {
       // zero (allowing for positive, even though that is not ideal). It cannot
       // be given a negative value.
       if (
-        isInteractiveElement(type, attributes)
-        && (
-          tabIndex === undefined
-          || tabIndex >= 0
-        )
+        isInteractiveElement(type, attributes) &&
+        (tabIndex === undefined || tabIndex >= 0)
       ) {
         return;
       }

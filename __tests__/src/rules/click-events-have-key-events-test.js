@@ -18,8 +18,9 @@ import rule from '../../../src/rules/click-events-have-key-events';
 
 const ruleTester = new RuleTester();
 
-const errorMessage = 'Visible, non-interactive elements with click handlers' +
-' must have at least one keyboard listener.';
+const errorMessage =
+  'Visible, non-interactive elements with click handlers' +
+  ' must have at least one keyboard listener.';
 
 const expectedError = {
   message: errorMessage,
@@ -36,7 +37,9 @@ ruleTester.run('click-events-have-key-events', rule, {
     { code: '<div className="foo" />;' },
     { code: '<div onClick={() => void 0} aria-hidden />;' },
     { code: '<div onClick={() => void 0} aria-hidden={true} />;' },
-    { code: '<div onClick={() => void 0} aria-hidden={false} onKeyDown={foo} />;' },
+    {
+      code: '<div onClick={() => void 0} aria-hidden={false} onKeyDown={foo} />;',
+    },
     {
       code: '<div onClick={() => void 0} onKeyDown={foo} aria-hidden={undefined} />;',
     },
@@ -59,7 +62,10 @@ ruleTester.run('click-events-have-key-events', rule, {
       code: '<div onClick={() => void 0} role={undefined} />;',
       errors: [expectedError],
     },
-    { code: '<div onClick={() => void 0} {...props} />;', errors: [expectedError] },
+    {
+      code: '<div onClick={() => void 0} {...props} />;',
+      errors: [expectedError],
+    },
     { code: '<section onClick={() => void 0} />;', errors: [expectedError] },
     { code: '<main onClick={() => void 0} />;', errors: [expectedError] },
     { code: '<article onClick={() => void 0} />;', errors: [expectedError] },

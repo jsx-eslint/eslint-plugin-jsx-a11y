@@ -11,8 +11,7 @@ import { propName, elementType, getLiteralPropValue } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import ISO_CODES from '../util/attributes/ISO.json';
 
-const errorMessage =
-  'lang attribute must have a valid value.';
+const errorMessage = 'lang attribute must have a valid value.';
 
 const schema = generateObjSchema();
 
@@ -53,8 +52,10 @@ module.exports = {
       const lang = hyphen > -1 ? value.substring(0, hyphen) : value;
       const country = hyphen > -1 ? value.substring(3) : undefined;
 
-      if (ISO_CODES.languages.indexOf(lang) > -1
-        && (country === undefined || ISO_CODES.countries.indexOf(country) > -1)) {
+      if (
+        ISO_CODES.languages.indexOf(lang) > -1 &&
+        (country === undefined || ISO_CODES.countries.indexOf(country) > -1)
+      ) {
         return;
       }
 

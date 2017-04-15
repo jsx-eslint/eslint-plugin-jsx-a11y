@@ -35,7 +35,10 @@ module.exports = {
       const role = getProp(node.attributes, 'role');
       const roleValue = getLiteralPropValue(role);
 
-      if (typeof roleValue === 'string' && roleValue.toUpperCase() === implicitRole.toUpperCase()) {
+      if (
+        typeof roleValue === 'string' &&
+        roleValue.toUpperCase() === implicitRole.toUpperCase()
+      ) {
         context.report({
           node,
           message: errorMessage(type, implicitRole.toLowerCase()),

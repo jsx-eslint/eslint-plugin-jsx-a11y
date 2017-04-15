@@ -7,9 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
+import { dom } from 'aria-query';
 import {
   elementType,
   eventHandlersByType,
@@ -45,39 +43,35 @@ module.exports = {
   },
 
   create: (context: ESLintContext) => ({
-    JSXOpeningElement: (
-      node: JSXOpeningElement,
-    ) => {
+    JSXOpeningElement: (node: JSXOpeningElement) => {
       const attributes = node.attributes;
       const type = elementType(node);
 
-      const hasInteractiveProps = interactiveProps
-        .some(prop => (
-          hasProp(attributes, prop)
-          && getPropValue(getProp(attributes, prop)) != null
-        ));
+      const hasInteractiveProps = interactiveProps.some(
+        prop =>
+          hasProp(attributes, prop) &&
+          getPropValue(getProp(attributes, prop)) != null,
+      );
 
       if (!domElements.includes(type)) {
         // Do not test higher level JSX components, as we do not know what
         // low-level DOM element this maps to.
         return;
       } else if (
-        !hasInteractiveProps
-        || isHiddenFromScreenReader(type, attributes)
-        || isPresentationRole(type, attributes)
+        !hasInteractiveProps ||
+        isHiddenFromScreenReader(type, attributes) ||
+        isPresentationRole(type, attributes)
       ) {
         // Presentation is an intentional signal from the author that this
         // element is not meant to be perceivable. For example, a click screen
         // to close a dialog .
         return;
       } else if (
-        isInteractiveElement(type, attributes)
-        || isInteractiveRole(type, attributes)
-        || (
-          !isNonInteractiveElement(type, attributes)
-          && !isNonInteractiveRole(type, attributes)
-        )
-        || isAbstractRole(type, attributes)
+        isInteractiveElement(type, attributes) ||
+        isInteractiveRole(type, attributes) ||
+        (!isNonInteractiveElement(type, attributes) &&
+          !isNonInteractiveRole(type, attributes)) ||
+        isAbstractRole(type, attributes)
       ) {
         // This rule has no opinion about abtract roles.
         return;

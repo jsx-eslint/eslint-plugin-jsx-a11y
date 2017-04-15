@@ -25,8 +25,7 @@ import getTabIndex from '../util/getTabIndex';
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-const errorMessage =
-  'Elements with interactive roles must be focusable.';
+const errorMessage = 'Elements with interactive roles must be focusable.';
 
 const schema = generateObjSchema();
 const domElements = [...dom.keys()];
@@ -43,24 +42,21 @@ module.exports = {
   },
 
   create: (context: ESLintContext) => ({
-    JSXOpeningElement: (
-      node: JSXOpeningElement,
-    ) => {
+    JSXOpeningElement: (node: JSXOpeningElement) => {
       const attributes = node.attributes;
       const type = elementType(node);
       const hasInteractiveProps = hasAnyProp(attributes, interactiveProps);
-      const hasTabindex = getTabIndex(
-        getProp(attributes, 'tabIndex'),
-      ) !== undefined;
+      const hasTabindex =
+        getTabIndex(getProp(attributes, 'tabIndex')) !== undefined;
 
       if (!domElements.includes(type)) {
         // Do not test higher level JSX components, as we do not know what
         // low-level DOM element this maps to.
         return;
       } else if (
-        !hasInteractiveProps
-        || isHiddenFromScreenReader(type, attributes)
-        || isPresentationRole(type, attributes)
+        !hasInteractiveProps ||
+        isHiddenFromScreenReader(type, attributes) ||
+        isPresentationRole(type, attributes)
       ) {
         // Presentation is an intentional signal from the author that this
         // element is not meant to be perceivable. For example, a click screen
@@ -69,12 +65,12 @@ module.exports = {
       }
 
       if (
-        hasInteractiveProps
-        && isInteractiveRole(type, attributes)
-        && !isInteractiveElement(type, attributes)
-        && !isNonInteractiveElement(type, attributes)
-        && !isNonInteractiveRole(type, attributes)
-        && !hasTabindex
+        hasInteractiveProps &&
+        isInteractiveRole(type, attributes) &&
+        !isInteractiveElement(type, attributes) &&
+        !isNonInteractiveElement(type, attributes) &&
+        !isNonInteractiveRole(type, attributes) &&
+        !hasTabindex
       ) {
         context.report({
           node,

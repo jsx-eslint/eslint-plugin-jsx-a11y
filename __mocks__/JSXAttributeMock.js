@@ -1,10 +1,10 @@
+import toAST from 'to-ast'; // eslint-disable-line import/no-extraneous-dependencies
 import JSXExpressionContainerMock from './JSXExpressionContainerMock';
-import toAST from 'to-ast';
 
-export default function JSXAttributeMock (
+export default function JSXAttributeMock(
   prop,
   value,
-  isExpressionContainer = false
+  isExpressionContainer = false,
 ) {
   let astValue;
   if (value && value.type !== undefined) {
@@ -13,13 +13,8 @@ export default function JSXAttributeMock (
     astValue = toAST(value);
   }
   let attributeValue = astValue;
-  if (
-    isExpressionContainer
-    || astValue.type !== 'Literal'
-  ) {
-    attributeValue = JSXExpressionContainerMock(
-      astValue
-    );
+  if (isExpressionContainer || astValue.type !== 'Literal') {
+    attributeValue = JSXExpressionContainerMock(astValue);
   }
 
   return {

@@ -14,12 +14,13 @@ export const arraySchema = {
 /**
  * JSON schema to accept an array of unique strings from an enumerated list.
  */
-export const enumArraySchema = (enumeratedList = []) => Object.assign({}, arraySchema, {
-  items: {
-    type: 'string',
-    enum: enumeratedList,
-  },
-});
+export const enumArraySchema = (enumeratedList = []) =>
+  Object.assign({}, arraySchema, {
+    items: {
+      type: 'string',
+      enum: enumeratedList,
+    },
+  });
 
 /**
  * Factory function to generate an object schema

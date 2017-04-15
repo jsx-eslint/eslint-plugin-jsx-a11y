@@ -16,16 +16,18 @@ import rule from '../../../src/rules/img-redundant-alt';
 // Tests
 // -----------------------------------------------------------------------------
 
-const array = [{
-  components: ['Image'],
-  words: ['Word1', 'Word2'],
-}];
+const array = [
+  {
+    components: ['Image'],
+    words: ['Word1', 'Word2'],
+  },
+];
 
 const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Redundant alt attribute. Screen-readers already announce `img` tags as an image. ' +
-    'You don\'t need to use the words `image`, `photo,` or `picture` ' +
+    "You don't need to use the words `image`, `photo,` or `picture` " +
     '(or any specified custom words) in the alt prop.',
   type: 'JSXOpeningElement',
 };
@@ -33,7 +35,9 @@ const expectedError = {
 ruleTester.run('img-redundant-alt', rule, {
   valid: [
     { code: '<img alt="foo" />;' },
-    { code: '<img alt="picture of me taking a photo of an image" aria-hidden />' },
+    {
+      code: '<img alt="picture of me taking a photo of an image" aria-hidden />',
+    },
     { code: '<img aria-hidden alt="photo of image" />' },
     { code: '<img ALt="foo" />;' },
     { code: '<img {...this.props} alt="foo" />' },

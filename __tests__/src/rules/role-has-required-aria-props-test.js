@@ -25,17 +25,14 @@ const errorMessage = (role) => {
 
   return {
     message: `Elements with the ARIA role "${role}" must have the following ` +
-    `attributes defined: ${requiredProps}`,
+      `attributes defined: ${requiredProps}`,
     type: 'JSXAttribute',
   };
 };
 
-
 // Create basic test cases using all valid role types.
 const basicValidityTests = [...roles.keys()].map((role) => {
-  const {
-    requiredProps: requiredPropKeyValues,
-  } = roles.get(role);
+  const { requiredProps: requiredPropKeyValues } = roles.get(role);
   const requiredProps = Object.keys(requiredPropKeyValues);
   const propChain = requiredProps.join(' ');
 
@@ -54,8 +51,12 @@ ruleTester.run('role-has-required-aria-props', rule, {
     { code: '<div role={role || "button"} />' },
     { code: '<div role={role || "foobar"} />' },
     { code: '<div role="row" />' },
-    { code: '<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>' },
-  ].concat(basicValidityTests).map(parserOptionsMapper),
+    {
+      code: '<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>',
+    },
+  ]
+    .concat(basicValidityTests)
+    .map(parserOptionsMapper),
 
   invalid: [
     // SLIDER
@@ -98,7 +99,10 @@ ruleTester.run('role-has-required-aria-props', rule, {
 
     // CHECKBOX
     { code: '<div role="checkbox" />', errors: [errorMessage('checkbox')] },
-    { code: '<div role="checkbox" checked />', errors: [errorMessage('checkbox')] },
+    {
+      code: '<div role="checkbox" checked />',
+      errors: [errorMessage('checkbox')],
+    },
     {
       code: '<div role="checkbox" aria-chcked />',
       errors: [errorMessage('checkbox')],
@@ -110,7 +114,10 @@ ruleTester.run('role-has-required-aria-props', rule, {
 
     // COMBOBOX
     { code: '<div role="combobox" />', errors: [errorMessage('combobox')] },
-    { code: '<div role="combobox" expanded />', errors: [errorMessage('combobox')] },
+    {
+      code: '<div role="combobox" expanded />',
+      errors: [errorMessage('combobox')],
+    },
     {
       code: '<div role="combobox" aria-expandd />',
       errors: [errorMessage('combobox')],

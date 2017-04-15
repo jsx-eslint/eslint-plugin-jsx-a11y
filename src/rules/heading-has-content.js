@@ -14,14 +14,7 @@ import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 const errorMessage =
   'Headings must have content and the content must be accessible by a screen reader.';
 
-const headings = [
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-];
+const headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
 const schema = generateObjSchema({ components: arraySchema });
 
@@ -32,7 +25,8 @@ const determineChildType = (child) => {
     case 'JSXElement':
       return !isHiddenFromScreenReader(
         elementType(child.openingElement),
-        child.openingElement.attributes);
+        child.openingElement.attributes,
+      );
     case 'JSXExpressionContainer':
       if (child.expression.type === 'Identifier') {
         return child.expression.name !== 'undefined';
@@ -60,10 +54,9 @@ module.exports = {
         return;
       }
 
-      const isAccessible = node.parent.children.some(
-        determineChildType,
-      ) || hasAnyProp(node.attributes, ['dangerouslySetInnerHTML', 'children']);
-
+      const isAccessible =
+        node.parent.children.some(determineChildType) ||
+        hasAnyProp(node.attributes, ['dangerouslySetInnerHTML', 'children']);
 
       if (isAccessible) {
         return;

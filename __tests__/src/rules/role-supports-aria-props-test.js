@@ -8,10 +8,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import {
-  aria,
-  roles,
-} from 'aria-query';
+import { aria, roles } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/role-supports-aria-props';
@@ -36,31 +33,39 @@ const errorMessage = (attr, role, tag, isImplicit) => ({
   type: 'JSXOpeningElement',
 });
 
-const nonAbstractRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
+const nonAbstractRoles = [...roles.keys()].filter(
+  role => roles.get(role).abstract === false,
+);
 
-const createTests = rolesNames => rolesNames.reduce((tests, role) => {
-  const {
-    props: propKeyValues,
-  } = roles.get(role);
-  const validPropsForRole = Object.keys(propKeyValues);
-  const invalidPropsForRole = [...aria.keys()]
-    .map(attribute => attribute.toLowerCase())
-    .filter(attribute => validPropsForRole.indexOf(attribute) === -1);
-  const normalRole = role.toLowerCase();
+const createTests = rolesNames =>
+  rolesNames.reduce(
+    (tests, role) => {
+      const { props: propKeyValues } = roles.get(role);
+      const validPropsForRole = Object.keys(propKeyValues);
+      const invalidPropsForRole = [...aria.keys()]
+        .map(attribute => attribute.toLowerCase())
+        .filter(attribute => validPropsForRole.indexOf(attribute) === -1);
+      const normalRole = role.toLowerCase();
 
-  const allTests = [];
+      const allTests = [];
 
-  allTests[0] = tests[0].concat(validPropsForRole.map(prop => ({
-    code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
-  })));
+      allTests[0] = tests[0].concat(
+        validPropsForRole.map(prop => ({
+          code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
+        })),
+      );
 
-  allTests[1] = tests[1].concat(invalidPropsForRole.map(prop => ({
-    code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
-    errors: [errorMessage(prop.toLowerCase(), normalRole, 'div', false)],
-  })));
+      allTests[1] = tests[1].concat(
+        invalidPropsForRole.map(prop => ({
+          code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
+          errors: [errorMessage(prop.toLowerCase(), normalRole, 'div', false)],
+        })),
+      );
 
-  return allTests;
-}, [[], []]);
+      return allTests;
+    },
+    [[], []],
+  );
 
 const [validTests, invalidTests] = createTests(nonAbstractRoles);
 
@@ -424,8 +429,9 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<tfoot aria-expanded />' },
     { code: '<thead aria-expanded />' },
     { code: '<ul aria-expanded />' },
-
-  ].concat(validTests).map(parserOptionsMapper),
+  ]
+    .concat(validTests)
+    .map(parserOptionsMapper),
 
   invalid: [
     // implicit basic checks
@@ -453,5 +459,7 @@ ruleTester.run('role-supports-aria-props', rule, {
       code: '<aside aria-checked />',
       errors: [errorMessage('aria-checked', 'complementary', 'aside', true)],
     },
-  ].concat(invalidTests).map(parserOptionsMapper),
+  ]
+    .concat(invalidTests)
+    .map(parserOptionsMapper),
 });

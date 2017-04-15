@@ -11,14 +11,11 @@ import { getProp, getLiteralPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
-const REDUNDANT_WORDS = [
-  'image',
-  'photo',
-  'picture',
-];
+const REDUNDANT_WORDS = ['image', 'photo', 'picture'];
 
-const errorMessage = 'Redundant alt attribute. Screen-readers already announce ' +
-  '`img` tags as an image. You don\'t need to use the words `image`, ' +
+const errorMessage =
+  'Redundant alt attribute. Screen-readers already announce ' +
+  "`img` tags as an image. You don't need to use the words `image`, " +
   '`photo,` or `picture` (or any specified custom words) in the alt prop.';
 
 const schema = generateObjSchema({
@@ -51,16 +48,16 @@ module.exports = {
       }
 
       const value = getLiteralPropValue(altProp);
-      const isVisible = isHiddenFromScreenReader(nodeType, node.attributes) === false;
+      const isVisible =
+        isHiddenFromScreenReader(nodeType, node.attributes) === false;
 
-      const {
-        words = [],
-      } = options;
+      const { words = [] } = options;
       const redundantWords = REDUNDANT_WORDS.concat(words);
 
       if (typeof value === 'string' && isVisible) {
-        const hasRedundancy = redundantWords
-          .some(word => Boolean(value.match(new RegExp(`(?!{)\\b${word}\\b(?!})`, 'i'))));
+        const hasRedundancy = redundantWords.some(word =>
+          Boolean(value.match(new RegExp(`(?!{)\\b${word}\\b(?!})`, 'i'))),
+        );
 
         if (hasRedundancy === true) {
           context.report({

@@ -9,7 +9,10 @@ const THRESHOLD = 2;
  */
 export default function getSuggestion(word, dictionary = [], limit = 2) {
   const distances = dictionary.reduce((suggestions, dictionaryWord) => {
-    const distance = editDistance(word.toUpperCase(), dictionaryWord.toUpperCase());
+    const distance = editDistance(
+      word.toUpperCase(),
+      dictionaryWord.toUpperCase(),
+    );
     const { steps } = distance;
     suggestions[dictionaryWord] = steps; // eslint-disable-line
     return suggestions;

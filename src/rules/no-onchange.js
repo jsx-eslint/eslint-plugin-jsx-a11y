@@ -10,14 +10,12 @@
 import { getProp, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = 'onBlur must be used instead of onchange, ' +
+const errorMessage =
+  'onBlur must be used instead of onchange, ' +
   'unless absolutely necessary and it causes no negative consequences ' +
   'for keyboard only or screen reader users.';
 
-const applicableTypes = [
-  'select',
-  'option',
-];
+const applicableTypes = ['select', 'option'];
 
 const schema = generateObjSchema();
 
