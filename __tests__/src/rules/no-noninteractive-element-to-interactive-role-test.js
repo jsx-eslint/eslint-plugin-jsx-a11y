@@ -13,7 +13,8 @@
 import { RuleTester } from 'eslint';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import rule from '../../../src/rules/no-noninteractive-element-to-interactive-role';
+import rule
+  from '../../../src/rules/no-noninteractive-element-to-interactive-role';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
 // -----------------------------------------------------------------------------
@@ -427,7 +428,7 @@ const neverValid = [
   { code: '<thead role="menuitem" />;', errors: [expectedError] },
 ];
 
-const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});
+const recommendedOptions = configs.recommended.rules[ruleName][1] || {};
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
     ...alwaysValid,
@@ -450,17 +451,13 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
   ]
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [
-    ...neverValid,
-  ]
+  invalid: [...neverValid]
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [
-    ...alwaysValid,
-  ].map(parserOptionsMapper),
+  valid: [...alwaysValid].map(parserOptionsMapper),
   invalid: [
     ...neverValid,
     { code: '<ul role="menu" />;', errors: [expectedError] },

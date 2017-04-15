@@ -1,6 +1,6 @@
-export default function JSXExpressionContainerMock (exp) {
+export default function JSXExpressionContainerMock(exp) {
   return {
     type: 'JSXExpressionContainer',
     expression: exp,
   };
-};
+}

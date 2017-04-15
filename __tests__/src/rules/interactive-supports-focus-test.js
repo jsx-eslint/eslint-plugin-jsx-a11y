@@ -67,12 +67,19 @@ ruleTester.run('interactive-supports-focus', rule, {
     { code: '<a onClick={() => void 0} href="http://x.y.z" role="button" />' },
     { code: '<TestComponent onClick={doFoo} />' },
     { code: '<input onClick={() => void 0} type="hidden" />;' },
-    { code: '<span onClick="submitForm();">Submit</span>', errors: [expectedError] },
-    { code: '<span onClick="submitForm();" tabIndex={undefined}>Submit</span>' },
+    {
+      code: '<span onClick="submitForm();">Submit</span>',
+      errors: [expectedError],
+    },
+    {
+      code: '<span onClick="submitForm();" tabIndex={undefined}>Submit</span>',
+    },
     { code: '<span onClick="submitForm();" tabIndex="bad">Submit</span>' },
     { code: '<span onClick="doSomething();" tabIndex="0">Click me!</span>' },
     { code: '<span onClick="doSomething();" tabIndex={0}>Click me!</span>' },
-    { code: '<span onClick="doSomething();" tabIndex="-1">Click me too!</span>' },
+    {
+      code: '<span onClick="doSomething();" tabIndex="-1">Click me too!</span>',
+    },
     {
       code: '<a href="javascript:void(0);" onClick="doSomething();">Click ALL the things!</a>',
     },
@@ -85,8 +92,12 @@ ruleTester.run('interactive-supports-focus', rule, {
     { code: '<div role="checkbox" tabIndex="0" onClick={() => void 0} />' },
     { code: '<div role="link" tabIndex="0" onClick={() => void 0} />' },
     { code: '<div role="menuitem" tabIndex="0" onClick={() => void 0} />' },
-    { code: '<div role="menuitemcheckbox" tabIndex="0" onClick={() => void 0} />' },
-    { code: '<div role="menuitemradio" tabIndex="0" onClick={() => void 0} />' },
+    {
+      code: '<div role="menuitemcheckbox" tabIndex="0" onClick={() => void 0} />',
+    },
+    {
+      code: '<div role="menuitemradio" tabIndex="0" onClick={() => void 0} />',
+    },
     { code: '<div role="option" tabIndex="0" onClick={() => void 0} />' },
     { code: '<div role="radio" tabIndex="0" onClick={() => void 0} />' },
     { code: '<div role="spinbutton" tabIndex="0" onClick={() => void 0} />' },
@@ -99,47 +110,167 @@ ruleTester.run('interactive-supports-focus', rule, {
 
   invalid: [
     // onClick
-    { code: '<span role="button" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<a role="button" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="button" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="checkbox" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="link" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="gridcell" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="menuitem" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="menuitemcheckbox" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="menuitemradio" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="option" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="radio" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="searchbox" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="slider" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="spinbutton" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="switch" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="tab" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="textbox" onClick={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="treeitem" onClick={() => void 0} />', errors: [expectedError] },
+    {
+      code: '<span role="button" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<a role="button" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="button" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="checkbox" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="link" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="gridcell" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="menuitem" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="menuitemcheckbox" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="menuitemradio" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="option" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="radio" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="searchbox" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="slider" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="spinbutton" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="switch" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="tab" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="textbox" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="treeitem" onClick={() => void 0} />',
+      errors: [expectedError],
+    },
     // onKeyPress
-    { code: '<span role="button" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<a role="button" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="button" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="checkbox" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="link" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="gridcell" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="menuitem" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="menuitemcheckbox" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="menuitemradio" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="option" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="radio" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="searchbox" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="slider" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="spinbutton" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="switch" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="tab" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="textbox" onKeyPress={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="treeitem" onKeyPress={() => void 0} />', errors: [expectedError] },
+    {
+      code: '<span role="button" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<a role="button" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="button" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="checkbox" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="link" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="gridcell" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="menuitem" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="menuitemcheckbox" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="menuitemradio" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="option" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="radio" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="searchbox" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="slider" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="spinbutton" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="switch" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="tab" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="textbox" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="treeitem" onKeyPress={() => void 0} />',
+      errors: [expectedError],
+    },
     // Other interactive handlers
-    { code: '<div role="button" onKeyDown={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="button" onKeyUp={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="button" onMouseDown={() => void 0} />', errors: [expectedError] },
-    { code: '<div role="button" onMouseUp={() => void 0} />', errors: [expectedError] },
+    {
+      code: '<div role="button" onKeyDown={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="button" onKeyUp={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="button" onMouseDown={() => void 0} />',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="button" onMouseUp={() => void 0} />',
+      errors: [expectedError],
+    },
   ].map(parserOptionsMapper),
 });

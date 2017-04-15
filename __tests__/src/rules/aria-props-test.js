@@ -53,7 +53,9 @@ ruleTester.run('aria-props', rule, {
     { code: '<div fooaria-foobar="true"></div>' },
     { code: '<div fooaria-hidden="true"></div>' },
     { code: '<Bar baz />' },
-  ].concat(basicValidityTests).map(parserOptionsMapper),
+  ]
+    .concat(basicValidityTests)
+    .map(parserOptionsMapper),
   invalid: [
     { code: '<div aria-="foobar" />', errors: [errorMessage('aria-')] },
     {

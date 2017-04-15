@@ -72,8 +72,24 @@ module.exports = {
         'jsx-a11y/no-noninteractive-element-to-interactive-role': [
           'error',
           {
-            ul: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
-            ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+            ul: [
+              'listbox',
+              'menu',
+              'menubar',
+              'radiogroup',
+              'tablist',
+              'tree',
+              'treegrid',
+            ],
+            ol: [
+              'listbox',
+              'menu',
+              'menubar',
+              'radiogroup',
+              'tablist',
+              'tree',
+              'treegrid',
+            ],
             li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
             table: ['grid'],
             td: ['gridcell'],

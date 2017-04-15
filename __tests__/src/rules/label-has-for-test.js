@@ -20,13 +20,15 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Form controls using a label to identify them must be ' +
-  'programmatically associated with the control using htmlFor',
+    'programmatically associated with the control using htmlFor',
   type: 'JSXOpeningElement',
 };
 
-const array = [{
-  components: ['Label', 'Descriptor'],
-}];
+const array = [
+  {
+    components: ['Label', 'Descriptor'],
+  },
+];
 
 ruleTester.run('label-has-for', rule, {
   valid: [
@@ -75,13 +77,21 @@ ruleTester.run('label-has-for', rule, {
       errors: [expectedError],
       options: array,
     },
-    { code: '<Label>First Name</Label>', errors: [expectedError], options: array },
+    {
+      code: '<Label>First Name</Label>',
+      errors: [expectedError],
+      options: array,
+    },
     {
       code: '<Label {...props}>Foo</Label>',
       errors: [expectedError],
       options: array,
     },
-    { code: '<Descriptor id="foo" />', errors: [expectedError], options: array },
+    {
+      code: '<Descriptor id="foo" />',
+      errors: [expectedError],
+      options: array,
+    },
     {
       code: '<Descriptor htmlFor={undefined} />',
       errors: [expectedError],

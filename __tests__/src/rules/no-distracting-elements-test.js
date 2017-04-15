@@ -34,7 +34,10 @@ ruleTester.run('no-marquee', rule, {
   invalid: [
     { code: '<marquee />', errors: [expectedError('marquee')] },
     { code: '<marquee {...props} />', errors: [expectedError('marquee')] },
-    { code: '<marquee lang={undefined} />', errors: [expectedError('marquee')] },
+    {
+      code: '<marquee lang={undefined} />',
+      errors: [expectedError('marquee')],
+    },
     { code: '<blink />', errors: [expectedError('blink')] },
     { code: '<blink {...props} />', errors: [expectedError('blink')] },
     { code: '<blink foo={undefined} />', errors: [expectedError('blink')] },

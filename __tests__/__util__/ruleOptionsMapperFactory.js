@@ -6,10 +6,10 @@ type ESLintTestRunnerTestCase = {
   code: string,
   errors: ?Array<{
     message: string,
-    type: string,
+    type: string
   }>,
   options: ?Array<mixed>,
-  parserOptions: ?Array<mixed>,
+  parserOptions: ?Array<mixed>
 };
 
 export default function ruleOptionsMapperFactory(

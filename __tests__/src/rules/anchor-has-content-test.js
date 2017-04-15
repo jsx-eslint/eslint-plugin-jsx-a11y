@@ -10,8 +10,9 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import rule,
-  { determineChildType } from '../../../src/rules/anchor-has-content';
+import rule, {
+  determineChildType,
+} from '../../../src/rules/anchor-has-content';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -27,9 +28,7 @@ const expectedError = {
 describe('determineChildType', () => {
   describe('default case', () => {
     it('should return false', () => {
-      expect(
-        determineChildType({}),
-      ).toBe(false);
+      expect(determineChildType({})).toBe(false);
     });
   });
 });

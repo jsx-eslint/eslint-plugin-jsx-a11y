@@ -34,10 +34,11 @@ const preferAltError = () => ({
   type: 'JSXOpeningElement',
 });
 
-const array = [{
-  components: ['Thumbnail', 'Image'],
-}];
-
+const array = [
+  {
+    components: ['Thumbnail', 'Image'],
+  },
+];
 
 ruleTester.run('img-has-alt', rule, {
   valid: [
@@ -112,8 +113,14 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img role />', errors: [missingPropError('img')] },
     { code: '<img {...this.props} />', errors: [missingPropError('img')] },
     { code: '<img alt={false || false} />', errors: [altValueError('img')] },
-    { code: '<img alt={undefined} role="presentation" />;', errors: [altValueError('img')] },
-    { code: '<img alt role="presentation" />;', errors: [altValueError('img')] },
+    {
+      code: '<img alt={undefined} role="presentation" />;',
+      errors: [altValueError('img')],
+    },
+    {
+      code: '<img alt role="presentation" />;',
+      errors: [altValueError('img')],
+    },
     { code: '<img role="presentation" />;', errors: [preferAltError()] },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
@@ -143,7 +150,11 @@ ruleTester.run('img-has-alt', rule, {
       options: array,
     },
     { code: '<Image />;', errors: [missingPropError('Image')], options: array },
-    { code: '<Image alt />;', errors: [altValueError('Image')], options: array },
+    {
+      code: '<Image alt />;',
+      errors: [altValueError('Image')],
+      options: array,
+    },
     {
       code: '<Image alt={undefined} />;',
       errors: [altValueError('Image')],

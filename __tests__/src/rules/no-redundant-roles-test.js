@@ -32,8 +32,17 @@ ruleTester.run('no-redundant-roles', rule, {
     { code: '<button role={`${foo}button`} />' },
   ].map(parserOptionsMapper),
   invalid: [
-    { code: '<button role="button" />', errors: [expectedError('button', 'button')] },
-    { code: '<body role="DOCUMENT" />', errors: [expectedError('body', 'document')] },
-    { code: '<button role={`${undefined}button`} />', errors: [expectedError('button', 'button')] },
+    {
+      code: '<button role="button" />',
+      errors: [expectedError('button', 'button')],
+    },
+    {
+      code: '<body role="DOCUMENT" />',
+      errors: [expectedError('body', 'document')],
+    },
+    {
+      code: '<button role={`${undefined}button`} />',
+      errors: [expectedError('button', 'button')],
+    },
   ].map(parserOptionsMapper),
 });

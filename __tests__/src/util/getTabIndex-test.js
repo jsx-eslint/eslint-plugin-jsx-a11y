@@ -8,37 +8,23 @@ describe('getTabIndex', () => {
     describe('as a number ', () => {
       describe('zero', () => {
         it('should return zero', () => {
-          expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', 0),
-            ),
-          ).toBe(0);
+          expect(getTabIndex(JSXAttributeMock('tabIndex', 0))).toBe(0);
         });
       });
       describe('positive integer', () => {
         it('should return the integer', () => {
-          expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', 1),
-            ),
-          ).toBe(1);
+          expect(getTabIndex(JSXAttributeMock('tabIndex', 1))).toBe(1);
         });
       });
       describe('negative integer', () => {
         it('should return the integer', () => {
-          expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', -1),
-            ),
-          ).toBe(-1);
+          expect(getTabIndex(JSXAttributeMock('tabIndex', -1))).toBe(-1);
         });
       });
       describe('float', () => {
         it('should return undefined', () => {
           expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', 9.1),
-            ),
+            getTabIndex(JSXAttributeMock('tabIndex', 9.1)),
           ).toBeUndefined();
         });
       });
@@ -46,28 +32,18 @@ describe('getTabIndex', () => {
     describe('as a string', () => {
       describe('empty', () => {
         it('should return undefined', () => {
-          expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', ''),
-            ),
-          ).toBeUndefined();
+          expect(getTabIndex(JSXAttributeMock('tabIndex', ''))).toBeUndefined();
         });
       });
       describe('which converts to a number', () => {
         it('should return an integer', () => {
-          expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', '0'),
-            ),
-          ).toBe(0);
+          expect(getTabIndex(JSXAttributeMock('tabIndex', '0'))).toBe(0);
         });
       });
       describe('which is NaN', () => {
         it('should return undefined', () => {
           expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', '0a'),
-            ),
+            getTabIndex(JSXAttributeMock('tabIndex', '0a')),
           ).toBeUndefined();
         });
       });
@@ -76,18 +52,14 @@ describe('getTabIndex', () => {
       describe('true', () => {
         it('should return undefined', () => {
           expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', true),
-            ),
+            getTabIndex(JSXAttributeMock('tabIndex', true)),
           ).toBeUndefined();
         });
       });
       describe('false', () => {
         it('should return undefined', () => {
           expect(
-            getTabIndex(
-              JSXAttributeMock('tabIndex', false),
-            ),
+            getTabIndex(JSXAttributeMock('tabIndex', false)),
           ).toBeUndefined();
         });
       });
@@ -95,11 +67,11 @@ describe('getTabIndex', () => {
     describe('as an expression', () => {
       describe('function expression', () => {
         it('should return the correct type', () => {
-          const attr = function mockFn() { return 0; };
+          const attr = function mockFn() {
+            return 0;
+          };
           expect(
-            typeof getTabIndex(
-              JSXAttributeMock('tabIndex', attr),
-            ),
+            typeof getTabIndex(JSXAttributeMock('tabIndex', attr)),
           ).toEqual('function');
         });
       });
@@ -108,11 +80,7 @@ describe('getTabIndex', () => {
           const name = 'identName';
           expect(
             getTabIndex(
-              JSXAttributeMock(
-                'tabIndex',
-                IdentifierMock(name),
-                true,
-              ),
+              JSXAttributeMock('tabIndex', IdentifierMock(name), true),
             ),
           ).toEqual(name);
         });
@@ -122,9 +90,7 @@ describe('getTabIndex', () => {
   describe('tabIndex is not defined', () => {
     it('should return undefined', () => {
       expect(
-        getTabIndex(
-          JSXAttributeMock('tabIndex', undefined),
-        ),
+        getTabIndex(JSXAttributeMock('tabIndex', undefined)),
       ).toBeUndefined();
     });
   });

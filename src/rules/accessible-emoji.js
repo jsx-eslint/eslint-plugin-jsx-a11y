@@ -29,10 +29,13 @@ module.exports = {
       );
 
       if (literalChildValue && emojiRegex().test(literalChildValue.value)) {
-        const rolePropValue = getLiteralPropValue(getProp(node.attributes, 'role'));
+        const rolePropValue = getLiteralPropValue(
+          getProp(node.attributes, 'role'),
+        );
         const ariaLabelProp = getProp(node.attributes, 'aria-label');
         const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
-        const hasLabel = ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
+        const hasLabel =
+          ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
         const isSpan = elementType(node) === 'span';
 
         if (hasLabel === false || rolePropValue !== 'img' || isSpan === false) {

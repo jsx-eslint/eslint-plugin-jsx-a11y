@@ -249,42 +249,147 @@ ruleTester.run('no-noninteractive-element-handlers', rule, {
     { code: '<ol onClick={() => {}} />;', errors: [expectedError] },
     { code: '<ul onClick={() => {}} />;', errors: [expectedError] },
     /* HTML elements attributed with a non-interactive role */
-    { code: '<div role="alert" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="alertdialog" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="application" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="article" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="banner" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="cell" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="complementary" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="contentinfo" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="definition" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="dialog" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="directory" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="document" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="feed" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="figure" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="form" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="group" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="heading" onClick={() => {}} />;', errors: [expectedError] },
+    {
+      code: '<div role="alert" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="alertdialog" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="application" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="article" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="banner" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="cell" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="complementary" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="contentinfo" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="definition" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="dialog" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="directory" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="document" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="feed" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="figure" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="form" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="group" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="heading" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
     { code: '<div role="img" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="list" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="listitem" onClick={() => {}} />;', errors: [expectedError] },
+    {
+      code: '<div role="list" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="listitem" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
     { code: '<div role="log" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="main" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="marquee" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="math" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="navigation" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="note" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="region" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="rowgroup" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="search" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="separator" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="scrollbar" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="status" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="table" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="tabpanel" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="term" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="timer" onClick={() => {}} />;', errors: [expectedError] },
-    { code: '<div role="tooltip" onClick={() => {}} />;', errors: [expectedError] },
+    {
+      code: '<div role="main" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="marquee" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="math" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="navigation" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="note" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="region" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="rowgroup" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="search" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="separator" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="scrollbar" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="status" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="table" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="tabpanel" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="term" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="timer" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
+    {
+      code: '<div role="tooltip" onClick={() => {}} />;',
+      errors: [expectedError],
+    },
   ].map(parserOptionsMapper),
 });
