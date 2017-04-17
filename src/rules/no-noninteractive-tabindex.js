@@ -32,41 +32,57 @@ module.exports = {
     schema: [schema],
   },
 
-  create: (context: ESLintContext) => ({
-    JSXAttribute: (
-        attribute: ESLintJSXAttribute,
-      ) => {
-      const attributeName = propName(attribute);
-      if (attributeName !== 'tabIndex') {
-        return;
-      }
-      const node = attribute.parent;
-      const attributes = node.attributes;
-      const type = elementType(node);
-      const tabIndex = getLiteralPropValue(
-          getProp(node.attributes, 'tabIndex'),
+  create: (context: ESLintContext) => {
+    const options = context.options;
+    return {
+      JSXOpeningElement: (
+          node: JSXOpeningElement,
+        ) => {
+        const type = elementType(node);
+        const attributes = node.attributes;
+        const tabIndexProp = getProp(attributes, 'tabIndex');
+        const tabIndex = getLiteralPropValue(tabIndexProp);
+        // Early return;
+        if (typeof tabIndex === 'undefined') {
+          return;
+        }
+        const role = getLiteralPropValue(
+          getProp(node.attributes, 'role'),
         );
 
-      if (!dom.has(type)) {
-          // Do not test higher level JSX components, as we do not know what
-          // low-level DOM element this maps to.
-        return;
-      }
-      if (
-        isInteractiveElement(type, attributes)
-        || isInteractiveRole(type, attributes)
-      ) {
-        return;
-      }
-      if (
-          !isNaN(Number.parseInt(tabIndex, 10))
-          && tabIndex >= 0
+
+        if (!dom.has(type)) {
+            // Do not test higher level JSX components, as we do not know what
+            // low-level DOM element this maps to.
+          return;
+        }
+        // Allow for configuration overrides.
+        const {
+          tags,
+          roles,
+        } = (options[0] || {});
+        if (
+          (tags && tags.includes(type))
+          || (roles && roles.includes(role))
         ) {
-        context.report({
-          node: attribute,
-          message: errorMessage,
-        });
-      }
-    },
-  }),
+          return;
+        }
+        if (
+          isInteractiveElement(type, attributes)
+          || isInteractiveRole(type, attributes)
+        ) {
+          return;
+        }
+        if (
+            !isNaN(Number.parseInt(tabIndex, 10))
+            && tabIndex >= 0
+          ) {
+          context.report({
+            node: tabIndexProp,
+            message: errorMessage,
+          });
+        }
+      },
+    };
+  },
 };
