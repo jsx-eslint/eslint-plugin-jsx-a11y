@@ -19,7 +19,7 @@ import rule from '../../../src/rules/no-noninteractive-tabindex';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'TabIndex should only be declared on interactive elements.',
+  message: '`tabIndex` should only be declared on interactive elements.',
   type: 'JSXAttribute',
 };
 
@@ -38,8 +38,8 @@ const alwaysValid = [
 const neverValid = [
   { code: '<div tabIndex="0" />', errors: [expectedError] },
   { code: '<div role="article" tabIndex="0" />', errors: [expectedError] },
-  { code: '<article tabIndex="0" />', errors: [expectedError]  },
-  { code: '<article tabIndex={0} />', errors: [expectedError]  },
+  { code: '<article tabIndex="0" />', errors: [expectedError] },
+  { code: '<article tabIndex={0} />', errors: [expectedError] },
 ];
 
 ruleTester.run('no-noninteractive-tabindex', rule, {

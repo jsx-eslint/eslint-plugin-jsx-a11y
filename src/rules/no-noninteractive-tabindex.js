@@ -22,7 +22,7 @@ import isInteractiveRole from '../util/isInteractiveRole';
 import { generateObjSchema } from '../util/schemas';
 
 const errorMessage =
-  'TabIndex should only be declared on interactive elements.';
+  '`tabIndex` should only be declared on interactive elements.';
 
 const schema = generateObjSchema();
 
