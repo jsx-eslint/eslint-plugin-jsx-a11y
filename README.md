@@ -104,6 +104,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [iframe-has-title](docs/rules/iframe-has-title.md): Enforce iframe elements have a title attribute.
 - [img-has-alt](docs/rules/img-has-alt.md): Enforce that `<img>` JSX elements use the `alt` prop.
 - [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
+- [interactive-supports-focus](docs/rules/interactive-supports-focus.md): Enforce that elements with interactive handlers like `onClick` must be focusable.
 - [label-has-for](docs/rules/label-has-for.md): Enforce that `<label>` elements have the `htmlFor` prop.
 - [lang](docs/rules/lang.md): Enforce lang attribute has a valid value.
 - [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
@@ -112,9 +113,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [no-distracting-elements](docs/rules/no-distracting-elements.md): Enforce distracting elements are not used.
 - [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
 - [no-redundant-roles](docs/rules/no-redundant-roles.md): Enforce explicit role property is not the same as implicit/default role property on element.
-- [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce non-interactive elements have no interactive handlers.
-- [onclick-has-focus](docs/rules/onclick-has-focus.md): Enforce that elements with `onClick` handlers must be focusable.
-- [onclick-has-role](docs/rules/onclick-has-role.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
+- [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
 - [role-has-required-aria-props](docs/rules/role-has-required-aria-props.md): Enforce that elements with ARIA roles must have all required attributes for that role.
 - [role-supports-aria-props](docs/rules/role-supports-aria-props.md): Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.
 - [scope](docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
@@ -128,6 +127,39 @@ script to scaffold the new files.
 ```
 $ ./scripts/create-rule.js my-new-rule
 ```
+
+## Some background on WAI-ARIA, the AX Tree and Browsers
+
+### Accessibility API
+An operating system will provide an accessibility API that maps application state and content onto input/output controllers such as a screen reader, braille device, keyboard, etc.
+
+These APIs were developed as computer interfaces shifted from buffers (which are text based and inherently quite accessible) to graphical user interfaces (GUIs). The first attempts to make GUIs accessible involved raster image parsing to recognize characters, words, etc. This information was stored in a parallel buffer and made accessible to assistive technology (AT) devices.
+
+As GUIs became more complex, the raster parsing approach became untenable. Accessibility APIs were developed to replace them. Check out [NSAccessibility (AXAPI)](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Protocols/NSAccessibility_Protocol/index.html) for an example. See [Core Accessibility API Mappings 1.1](https://www.w3.org/TR/core-aam-1.1/) for more details.
+
+### Browsers
+Browsers support an Accessibility API on a per operating system basis. For instance Firefox implements the MSAA accessibility API on Windows, but does not implement the AXAPI on OSX.
+
+### The Accessibility (AX) Tree & DOM
+From the [W3 Core Accessibility API Mappings 1.1](https://www.w3.org/TR/core-aam-1.1/#intro_treetypes)
+
+> The accessibility tree and the DOM tree are parallel structures. Roughly speaking the accessibility tree is a subset of the DOM tree. It includes the user interface objects of the user agent and the objects of the document. Accessible objects are created in the accessibility tree for every DOM element that should be exposed to an assistive technology, either because it may fire an accessibility event or because it has a property, relationship or feature which needs to be exposed. Generally if something can be trimmed out it will be, for reasons of performance and simplicity. For example, a <span> with just a style change and no semantics may not get its own accessible object, but the style change will be exposed by other means.
+
+Browser vendors are beginning to expose the AX Tree through inspection tools. Chrome has an experiment available to enable their inspection tool.
+
+You can also see a text-based version of the AX Tree in Chrome in the stable release version.
+
+#### Viewing the AX Tree in Chrome
+  1. Navigate to `chrome://accessibility/` in Chrome.
+  1. Toggle the `accessibility off` link for any tab that you want to inspect.
+  1. A link labeled `show accessibility tree` will appear; click this link.
+  1. Balk at the wall of text that gets displayed, but then regain your conviction.
+  1. Use the browser's find command to locate strings and values in the wall of text.
+
+### Pulling it all together
+A browser constructs an AX Tree as a subset of the DOM. ARIA heavily informs the properties of this AX Tree. This AX Tree is exposed to the system level Accessibility API which mediates assistive technology agents.
+
+We model ARIA in the [aria-query](https://github.com/a11yance/aria-query) project. We model AXObjects (that comprise the AX Tree) in the [axobject-query](https://github.com/A11yance/axobject-query) project. The goal of the WAI-ARIA specification is to be a complete complete declarative interface to the AXObject model. The [in-draft 1.2 version](https://github.com/w3c/aria/issues?q=is%3Aissue+is%3Aopen+label%3A%22ARIA+1.2%22) is moving towards this goal. But until then, we must consider the semantics constructs affored by ARIA as well as those afforded by the AXObject model (AXAPI) in order to determine how HTML can be used to express user interface affordances to assistive technology users.
 
 ## License
 
