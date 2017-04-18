@@ -18,12 +18,22 @@ import {
 } from 'jsx-ast-utils';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
-import { generateObjSchema } from '../util/schemas';
+import { generateObjSchema, arraySchema } from '../util/schemas';
+import getTabIndex from '../util/getTabIndex';
 
 const errorMessage =
   '`tabIndex` should only be declared on interactive elements.';
 
-const schema = generateObjSchema();
+const schema = generateObjSchema({
+  roles: {
+    ...arraySchema,
+    description: 'An array of ARIA roles',
+  },
+  tags: {
+    ...arraySchema,
+    description: 'An array of HTML tag names',
+  },
+});
 
 module.exports = {
   meta: {
@@ -40,7 +50,7 @@ module.exports = {
         const type = elementType(node);
         const attributes = node.attributes;
         const tabIndexProp = getProp(attributes, 'tabIndex');
-        const tabIndex = getLiteralPropValue(tabIndexProp);
+        const tabIndex = getTabIndex(tabIndexProp);
         // Early return;
         if (typeof tabIndex === 'undefined') {
           return;
@@ -73,9 +83,8 @@ module.exports = {
           return;
         }
         if (
-            !isNaN(Number.parseInt(tabIndex, 10))
-            && tabIndex >= 0
-          ) {
+          tabIndex >= 0
+        ) {
           context.report({
             node: tabIndexProp,
             message: errorMessage,

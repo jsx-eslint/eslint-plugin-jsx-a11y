@@ -1,6 +1,6 @@
 # no-noninteractive-tabindex
 
-Tab key navigation should be limited to elements on the page that can be interacted with. Thus it is not necessary to add a tabindex to items in an unordered list, for example, to make them navigable through assistive technology. These applications already afford page traversal mechanisms based on the HTML of the page. Generally, we should try to reduce the size of the page's tab ring rather than increasing it. 
+Tab key navigation should be limited to elements on the page that can be interacted with. Thus it is not necessary to add a tabindex to items in an unordered list, for example, to make them navigable through assistive technology. These applications already afford page traversal mechanisms based on the HTML of the page. Generally, we should try to reduce the size of the page's tab ring rather than increasing it.
 
 ## How do I resolve this error?
 
@@ -18,7 +18,7 @@ The bare `<a>` tag is an _anchor_. It has no semantic AX API mapping in either A
 
 ### Case: I am using "semantic" HTML. Isn't that interactive?
 
-If we take a step back into the field of linguistics for a moment, let's consider what it means for something to be "semantic". Nothing, in and of itself, has meaning. Meaning is constructed through dialogue. A speaker intends a meaning and a listener/observer interprets a meaning. Each participant constructs their own meaning through dialogue. There is no intrinsic or isolated meaning outside of interaction. Thus, we must ask, given that have a "speaker" who communicates via "semantic" HTML, who is listening/observing?
+If we take a step back into the field of linguistics for a moment, let's consider what it means for something to be "semantic". Nothing, in and of itself, has meaning. Meaning is constructed through dialogue. A speaker intends a meaning and a listener/observer interprets a meaning. Each participant constructs their own meaning through dialogue. There is no intrinsic or isolated meaning outside of interaction. Thus, we must ask, given that we have a "speaker" who communicates via "semantic" HTML, who is listening/observing?
 
 In our case, the observer is the Accessibility (AX) API. Browsers interpret HTML (inflected at times by ARIA) to construct a meaning (AX Tree) of the page. Whatever the semantic HTML intends has only the force of suggestion to the AX API. Therefore, we have inconsistencies. For example, there is not yet an ARIA role for `text` or `label` and thus no way to change a `<label>` into plain text or a `<span>` into a label via ARIA. '<div>' has an AXObject correpondant `DivRole`, but no such object maps to `<span>`.
 
@@ -42,7 +42,7 @@ Endeavor to limit tabbable elements to those that a user can act upon.
 
 ### Case: Shouldn't I add a tabindex so that users can navigate to this item?
 
-It is not necessary to put a tabindex or an `<article>`, for instance or on `<li>` items; assistive technologies provide affordances to users to find and traverse these containers. Most elements that require a tabindex -- `<a href>`, `<button>`, `<input>`, `<textarea>` -- have it already.
+It is not necessary to put a tabindex on an `<article>`, for instance or on `<li>` items; assistive technologies provide affordances to users to find and traverse these containers. Most elements that require a tabindex -- `<a href>`, `<button>`, `<input>`, `<textarea>` -- have it already.
 
 Your application might require an exception to this rule in the case of an element that captures incoming tab traversal for a composite widget. In that case, turn off this rule on a per instance basis. This is an uncommon case.
 
@@ -52,7 +52,17 @@ Your application might require an exception to this rule in the case of an eleme
 
 ## Rule details
 
-This rule takes no arguments.
+The recommended options for this rule allow `tabIndex` on elements with the noninteractive `tabpanel` role. Adding `tabIndex` to a tabpanel is a recommended practice in some instances.
+
+```javascript
+'jsx-a11y/no-noninteractive-tabindex': [
+  'error',
+  {
+    tags: [],
+    roles: ['tabpanel'],
+  },
+]
+```
 
 ### Succeed
 ```jsx
