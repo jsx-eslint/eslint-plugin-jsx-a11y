@@ -8,7 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import type { Node, JSXElement, JSXOpeningElement } from 'ast-types-flow';
+import type { JSXElement, JSXOpeningElement } from 'ast-types-flow';
 import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
@@ -34,7 +34,7 @@ module.exports = {
         return;
       }
 
-      const trackChildren: Array<JSXElement> = node.children.filter(child => {
+      const trackChildren: Array<JSXElement> = node.children.filter((child) => {
         if (child.type !== 'JSXElement') {
           return false;
         }
@@ -50,7 +50,7 @@ module.exports = {
         return;
       }
 
-      const hasCaption: boolean = trackChildren.some(track => {
+      const hasCaption: boolean = trackChildren.some((track) => {
         const kindProp = getProp(track.openingElement.attributes, 'kind');
         const kindPropValue = getLiteralPropValue(kindProp) || '';
         return kindPropValue.toLowerCase() === 'captions';
