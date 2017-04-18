@@ -51,5 +51,7 @@ ruleTester.run('media-has-caption', rule, {
       errors: [expectedError],
     },
     { code: '<video />', errors: [expectedError] },
+    { code: '<audio>Foo</audio>', errors: [expectedError] },
+    { code: '<video>Foo</video>', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
