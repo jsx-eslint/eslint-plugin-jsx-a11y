@@ -7,7 +7,7 @@ import { getProp, getPropValue, getLiteralPropValue } from 'jsx-ast-utils';
  *
  * <div aria-hidden /> is equivalent to the DOM as <div aria-hidden=true />.
  */
-const isHiddenFromScreenReader = (type, attributes) => {
+const isHiddenFromScreenReader = (type = '', attributes) => {
   if (type.toUpperCase() === 'INPUT') {
     const hidden = getLiteralPropValue(getProp(attributes, 'type'));
 

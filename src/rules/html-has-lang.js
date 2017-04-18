@@ -9,6 +9,7 @@
 
 import { elementType, getProp, getPropValue } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import { getDOMElementFromCustomComponent } from '../util/settings/resolve';
 
 const errorMessage = '<html> elements must have the lang prop.';
 
@@ -22,7 +23,7 @@ module.exports = {
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      const type = elementType(node);
+      const type = getDOMElementFromCustomComponent(context, elementType(node));
 
       if (type && type !== 'html') {
         return;

@@ -10,8 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import rule,
-  { determineChildType } from '../../../src/rules/heading-has-content';
+import rule, { determineChildType } from '../../../src/rules/heading-has-content';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -27,12 +26,16 @@ const expectedError = {
 describe('determineChildType', () => {
   describe('default case', () => {
     it('should return false', () => {
-      expect(
-        determineChildType({}),
-      ).toBe(false);
+      expect(determineChildType({}, {})).toBe(false);
     });
   });
 });
+
+const customTypeSchema = [
+  {
+    components: ['Heading'],
+  },
+];
 
 ruleTester.run('heading-has-content', rule, {
   valid: [
@@ -49,10 +52,12 @@ ruleTester.run('heading-has-content', rule, {
     { code: '<h1>{foo.bar}</h1>' },
     { code: '<h1 dangerouslySetInnerHTML={{ __html: "foo" }} />' },
     { code: '<h1 children={children} />' },
+    { code: '<Heading>{foo}</Heading>', options: customTypeSchema },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<h1 />', errors: [expectedError] },
     { code: '<h1><Bar aria-hidden /></h1>', errors: [expectedError] },
     { code: '<h1>{undefined}</h1>', errors: [expectedError] },
+    { code: '<Heading>{undefined}</Heading>', options: customTypeSchema, errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
