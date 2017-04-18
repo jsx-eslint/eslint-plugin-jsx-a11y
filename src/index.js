@@ -106,7 +106,7 @@ module.exports = {
           {
             tags: [],
             roles: ['tabpanel'],
-          }
+          },
         ],
         'jsx-a11y/no-onchange': 'error',
         'jsx-a11y/no-redundant-roles': 'error',

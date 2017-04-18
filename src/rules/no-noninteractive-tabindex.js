@@ -15,7 +15,6 @@ import {
   elementType,
   getProp,
   getLiteralPropValue,
-  propName,
 } from 'jsx-ast-utils';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
