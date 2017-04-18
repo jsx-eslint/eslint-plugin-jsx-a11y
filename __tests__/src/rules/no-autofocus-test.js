@@ -23,11 +23,19 @@ const expectedError = {
   type: 'JSXAttribute',
 };
 
+const ignoreNonDOMSchema = [
+  {
+    ignoreNonDOM: true,
+  },
+];
+
 ruleTester.run('no-autofocus', rule, {
   valid: [
     { code: '<div />;' },
     { code: '<div autofocus />;' },
     { code: '<input autofocus="true" />;' },
+    { code: '<Foo bar />' },
+    { code: '<Foo autoFocus />', options: ignoreNonDOMSchema },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div autoFocus />', errors: [expectedError] },
@@ -37,5 +45,6 @@ ruleTester.run('no-autofocus', rule, {
     { code: '<div autoFocus="true" />', errors: [expectedError] },
     { code: '<div autoFocus="false" />', errors: [expectedError] },
     { code: '<input autoFocus />', errors: [expectedError] },
+    { code: '<Foo autoFocus />', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
