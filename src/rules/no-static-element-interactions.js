@@ -33,12 +33,11 @@ const errorMessage =
 
 const domElements = [...dom.keys()];
 const defaultInteractiveProps = eventHandlers;
-const schema = arraySchema;
 
 module.exports = {
   meta: {
     docs: {},
-    schema: [schema],
+    schema: [arraySchema],
   },
 
   create: (context: ESLintContext) => {
