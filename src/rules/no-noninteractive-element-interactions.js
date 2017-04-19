@@ -18,7 +18,7 @@ import {
   hasProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
-import { arraySchema } from '../util/schemas';
+import { arraySchema, generateObjSchema } from '../util/schemas';
 import isAbstractRole from '../util/isAbstractRole';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -32,11 +32,14 @@ const errorMessage =
 
 const domElements = [...dom.keys()];
 const defaultInteractiveProps = eventHandlers;
+const schema = generateObjSchema({
+  handlers: arraySchema,
+});
 
 module.exports = {
   meta: {
     docs: {},
-    schema: [arraySchema],
+    schema: [schema],
   },
 
   create: (context: ESLintContext) => {
@@ -47,7 +50,9 @@ module.exports = {
       ) => {
         const attributes = node.attributes;
         const type = elementType(node);
-        const interactiveProps = options[0] || defaultInteractiveProps;
+        const interactiveProps = options[0]
+          ? options[0].handlers
+          : defaultInteractiveProps;
 
         const hasInteractiveProps = interactiveProps
           .some(prop => (

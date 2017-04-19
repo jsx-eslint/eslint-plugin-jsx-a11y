@@ -74,14 +74,16 @@ module.exports = {
         ],
         'jsx-a11y/no-noninteractive-element-interactions': [
           'error',
-          [
-            'onClick',
-            'onMouseDown',
-            'onMouseUp',
-            'onKeyPress',
-            'onKeyDown',
-            'onKeyUp',
-          ],
+          {
+            handlers: [
+              'onClick',
+              'onMouseDown',
+              'onMouseUp',
+              'onKeyPress',
+              'onKeyDown',
+              'onKeyUp',
+            ],
+          },
         ],
         'jsx-a11y/no-noninteractive-element-to-interactive-role': [
           'error',
@@ -120,14 +122,16 @@ module.exports = {
         'jsx-a11y/no-redundant-roles': 'error',
         'jsx-a11y/no-static-element-interactions': [
           'error',
-          [
-            'onClick',
-            'onMouseDown',
-            'onMouseUp',
-            'onKeyPress',
-            'onKeyDown',
-            'onKeyUp',
-          ],
+          {
+            handlers: [
+              'onClick',
+              'onMouseDown',
+              'onMouseUp',
+              'onKeyPress',
+              'onKeyDown',
+              'onKeyUp',
+            ],
+          },
         ],
         'jsx-a11y/role-has-required-aria-props': 'error',
         'jsx-a11y/role-supports-aria-props': 'error',

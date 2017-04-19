@@ -291,7 +291,8 @@ const neverValid = [
   { code: '<div role="tooltip" onClick={() => {}} />;', errors: [expectedError] },
 ];
 
-const recommendedOptions = [configs.recommended.rules[`jsx-a11y/${ruleName}`][1]];
+const recommendedOptions =
+  (configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {});
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
     ...alwaysValid,
