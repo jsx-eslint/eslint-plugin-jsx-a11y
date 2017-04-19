@@ -23,6 +23,14 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
+const customSchema = [
+  {
+    audio: ['Audio'],
+    video: ['Video'],
+    track: ['Track'],
+  },
+];
+
 ruleTester.run('media-has-caption', rule, {
   valid: [
     { code: '<div />;' },
@@ -36,6 +44,30 @@ ruleTester.run('media-has-caption', rule, {
     { code: '<video><track kind="Captions" /></video>' },
     {
       code: '<video><track kind="Captions" /><track kind="subtitles" /></video>',
+    },
+    {
+      code: '<Audio><track kind="captions" /></Audio>',
+      options: customSchema,
+    },
+    {
+      code: '<audio><Track kind="captions" /></audio>',
+      options: customSchema,
+    },
+    {
+      code: '<Video><track kind="captions" /></Video>',
+      options: customSchema,
+    },
+    {
+      code: '<video><Track kind="captions" /></video>',
+      options: customSchema,
+    },
+    {
+      code: '<Audio><Track kind="captions" /></Audio>',
+      options: customSchema,
+    },
+    {
+      code: '<Video><Track kind="captions" /></Video>',
+      options: customSchema,
     },
   ].map(parserOptionsMapper),
   invalid: [
@@ -53,5 +85,19 @@ ruleTester.run('media-has-caption', rule, {
     { code: '<video />', errors: [expectedError] },
     { code: '<audio>Foo</audio>', errors: [expectedError] },
     { code: '<video>Foo</video>', errors: [expectedError] },
+    { code: '<Audio />', options: customSchema, errors: [expectedError] },
+    { code: '<Video />', options: customSchema, errors: [expectedError] },
+    { code: '<audio><Track /></audio>', options: customSchema, errors: [expectedError] },
+    { code: '<video><Track /></video>', options: customSchema, errors: [expectedError] },
+    {
+      code: '<Audio><Track kind="subtitles" /></Audio>',
+      options: customSchema,
+      errors: [expectedError],
+    },
+    {
+      code: '<Video><Track kind="subtitles" /></Video>',
+      options: customSchema,
+      errors: [expectedError],
+    },
   ].map(parserOptionsMapper),
 });

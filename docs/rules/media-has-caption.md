@@ -11,7 +11,21 @@ The captions should contain all important and relevant information to understand
 
 ## Rule details
 
-This rule takes no arguments.
+This rule takes one optional object argument of type object:
+
+```json
+{
+    "rules": {
+        "jsx-a11y/media-has-caption": [ 2, {
+            "audio": [ "Audio" ],
+            "video": [ "Video" ],
+            "track": [ "Track" ],
+          }],
+    }
+}
+```
+
+For the `audio`, `video`, and `track` options, these strings determine which JSX elements (**always including** their corresponding DOM element) should be used for this rule. This is a good use case when you have a wrapper component that simply renders an `audio`, `video`, or `track` element (like in React):
 
 ### Succeed
 ```jsx
