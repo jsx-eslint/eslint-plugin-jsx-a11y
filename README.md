@@ -116,6 +116,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [no-interactive-element-to-noninteractive-role](docs/rules/no-interactive-element-to-noninteractive-role.md): Interactive elements should not be assigned non-interactive roles.
 - [no-noninteractive-element-interactions](docs/rules/no-noninteractive-element-interactions.md): Non-interactive elements should not be assigned mouse or keyboard event listeners.
 - [no-noninteractive-element-to-interactive-role](docs/rules/no-noninteractive-element-to-interactive-role.md): Non-interactive elements should not be assigned interactive roles.
+- [no-noninteractive-tabindex](docs/rules/no-noninteractive-tabindex.md): `tabIndex` should only be declared on interactive elements.
 - [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
 - [no-redundant-roles](docs/rules/no-redundant-roles.md): Enforce explicit role property is not the same as implicit/default role property on element.
 - [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.

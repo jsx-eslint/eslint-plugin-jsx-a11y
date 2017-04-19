@@ -6,7 +6,6 @@ export const arraySchema = {
   items: {
     type: 'string',
   },
-  minItems: 1,
   uniqueItems: true,
   additionalItems: false,
 };
