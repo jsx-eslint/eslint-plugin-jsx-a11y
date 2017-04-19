@@ -1,3 +1,4 @@
+// @flow
 import {
   roles as rolesMap,
 } from 'aria-query';
