@@ -72,9 +72,19 @@ module.exports = {
             tr: ['none', 'presentation'],
           },
         ],
-
-        'jsx-a11y/no-noninteractive-element-interactions': 'error',
-
+        'jsx-a11y/no-noninteractive-element-interactions': [
+          'error',
+          {
+            handlers: [
+              'onClick',
+              'onMouseDown',
+              'onMouseUp',
+              'onKeyPress',
+              'onKeyDown',
+              'onKeyUp',
+            ],
+          },
+        ],
         'jsx-a11y/no-noninteractive-element-to-interactive-role': [
           'error',
           {
@@ -110,7 +120,19 @@ module.exports = {
         ],
         'jsx-a11y/no-onchange': 'error',
         'jsx-a11y/no-redundant-roles': 'error',
-        'jsx-a11y/no-static-element-interactions': 'warn',
+        'jsx-a11y/no-static-element-interactions': [
+          'error',
+          {
+            handlers: [
+              'onClick',
+              'onMouseDown',
+              'onMouseUp',
+              'onKeyPress',
+              'onKeyDown',
+              'onKeyUp',
+            ],
+          },
+        ],
         'jsx-a11y/role-has-required-aria-props': 'error',
         'jsx-a11y/role-supports-aria-props': 'error',
         'jsx-a11y/scope': 'error',
@@ -151,7 +173,7 @@ module.exports = {
         'jsx-a11y/no-noninteractive-tabindex': 'error',
         'jsx-a11y/no-onchange': 'error',
         'jsx-a11y/no-redundant-roles': 'error',
-        'jsx-a11y/no-static-element-interactions': 'warn',
+        'jsx-a11y/no-static-element-interactions': 'error',
         'jsx-a11y/role-has-required-aria-props': 'error',
         'jsx-a11y/role-supports-aria-props': 'error',
         'jsx-a11y/scope': 'error',
