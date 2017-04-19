@@ -19,6 +19,7 @@ module.exports = {
     'interactive-supports-focus': require('./rules/interactive-supports-focus'),
     'label-has-for': require('./rules/label-has-for'),
     lang: require('./rules/lang'),
+    'media-has-caption': require('./rules/media-has-caption'),
     'mouse-events-have-key-events': require('./rules/mouse-events-have-key-events'),
     'no-access-key': require('./rules/no-access-key'),
     'no-autofocus': require('./rules/no-autofocus'),
@@ -58,27 +59,48 @@ module.exports = {
         'jsx-a11y/img-redundant-alt': 'error',
         'jsx-a11y/interactive-supports-focus': 'error',
         'jsx-a11y/label-has-for': 'error',
+        'jsx-a11y/media-has-caption': 'error',
         'jsx-a11y/mouse-events-have-key-events': 'error',
         'jsx-a11y/no-access-key': 'error',
         'jsx-a11y/no-autofocus': 'error',
         'jsx-a11y/no-distracting-elements': 'error',
+
         'jsx-a11y/no-interactive-element-to-noninteractive-role': [
           'error',
           {
             tr: ['none', 'presentation'],
           },
         ],
+
         'jsx-a11y/no-noninteractive-element-interactions': 'error',
+
         'jsx-a11y/no-noninteractive-element-to-interactive-role': [
           'error',
           {
-            ul: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
-            ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+            ul: [
+              'listbox',
+              'menu',
+              'menubar',
+              'radiogroup',
+              'tablist',
+              'tree',
+              'treegrid',
+            ],
+            ol: [
+              'listbox',
+              'menu',
+              'menubar',
+              'radiogroup',
+              'tablist',
+              'tree',
+              'treegrid',
+            ],
             li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
             table: ['grid'],
             td: ['gridcell'],
           },
         ],
+
         'jsx-a11y/no-onchange': 'error',
         'jsx-a11y/no-redundant-roles': 'error',
         'jsx-a11y/no-static-element-interactions': 'warn',
@@ -111,6 +133,7 @@ module.exports = {
         'jsx-a11y/img-redundant-alt': 'error',
         'jsx-a11y/interactive-supports-focus': 'error',
         'jsx-a11y/label-has-for': 'error',
+        'jsx-a11y/media-has-caption': 'error',
         'jsx-a11y/mouse-events-have-key-events': 'error',
         'jsx-a11y/no-access-key': 'error',
         'jsx-a11y/no-autofocus': 'error',
