@@ -1,6 +1,6 @@
 /* eslint-env jest */
 /**
- * @fileoverview Enforce img tags use alt attribute.
+ * @fileoverview Enforce all elements that require alternative text have it.
  * @author Ethan Cohen
  */
 
@@ -10,7 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import rule from '../../../src/rules/img-has-alt';
+import rule from '../../../src/rules/alt-text';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -34,12 +34,15 @@ const preferAltError = () => ({
   type: 'JSXOpeningElement',
 });
 
+const objectError = 'Embedded <object> elements must have alternative text by providing inner text, aria-label or aria-labelledby props.';
+
 const array = [{
-  components: ['Thumbnail', 'Image'],
+  img: ['Thumbnail', 'Image'],
+  object: ['Object'],
 }];
 
 
-ruleTester.run('img-has-alt', rule, {
+ruleTester.run('alt-text', rule, {
   valid: [
     // DEFAULT ELEMENT 'img' TESTS
     { code: '<img alt="foo" />;' },
@@ -73,6 +76,13 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt={undefined ? "working": "not working"} />' },
     { code: '<img alt={plugin.name + " Logo"} />' },
 
+    // DEFAULT <object> TESTS
+    { code: '<object aria-label="foo" />' },
+    { code: '<object aria-labelledby="id1" />' },
+    { code: '<object>Foo</object>' },
+    { code: '<object><p>This is descriptive!</p></object>' },
+    { code: '<Object />' },
+
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     { code: '<Thumbnail alt="foo" />;', options: array },
     { code: '<Thumbnail alt={"foo"} />;', options: array },
@@ -102,6 +112,10 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<Image alt={() => void 0} />', options: array },
     { code: '<IMAGE />', options: array },
     { code: '<Image alt={alt || "foo" } />', options: array },
+    { code: '<Object aria-label="foo" />', options: array },
+    { code: '<Object aria-labelledby="id1" />', options: array },
+    { code: '<Object>Foo</Object>', options: array },
+    { code: '<Object><p>This is descriptive!</p></Object>', options: array },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT 'img' TESTS
@@ -115,6 +129,10 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt={undefined} role="presentation" />;', errors: [altValueError('img')] },
     { code: '<img alt role="presentation" />;', errors: [altValueError('img')] },
     { code: '<img role="presentation" />;', errors: [preferAltError()] },
+
+    // DEFAULT ELEMENT 'object' TESTS
+    { code: '<object />', errors: [objectError] },
+    { code: '<object><div aria-hidden /></object>', errors: [objectError] },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     {
@@ -159,5 +177,7 @@ ruleTester.run('img-has-alt', rule, {
       errors: [missingPropError('Image')],
       options: array,
     },
+    { code: '<object />', errors: [objectError], options: array },
+    { code: '<object><div aria-hidden /></object>', errors: [objectError], options: array },
   ].map(parserOptionsMapper),
 });

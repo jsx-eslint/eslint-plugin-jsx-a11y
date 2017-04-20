@@ -1,6 +1,9 @@
-# img-has-alt
+# alt-text
 
 Enforce that an `img` element contains the `alt` prop. The `alt` attribute specifies an alternate text for an image, if the image cannot be displayed.
+
+#### Resources
+  1. [aXe object-alt](https://dequeuniversity.com/rules/axe/1.1/object-alt)
 
 ## Rule details
 
