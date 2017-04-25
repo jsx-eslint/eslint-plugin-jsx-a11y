@@ -93,6 +93,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 ## Supported Rules
 
 - [accessible-emoji](docs/rules/accessible-emoji.md): Enforce emojis are wrapped in <span> and provide screenreader access.
+- [alt-text](docs/rules/alt-text.md): Enforce all elements that require alternative text have meaningful information to relay back to end user.
 - [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
 - [aria-activedescendant-has-tabindex](docs/rules/aria-activedescendant-has-tabindex.md): Enforce elements with aria-activedescendant are tabbable.
 - [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
@@ -104,7 +105,6 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [href-no-hash](docs/rules/href-no-hash.md): Enforce an anchor element's `href` prop value is not just `#`.
 - [html-has-lang](docs/rules/html-has-lang.md): Enforce `<html>` element has `lang` prop.
 - [iframe-has-title](docs/rules/iframe-has-title.md): Enforce iframe elements have a title attribute.
-- [img-has-alt](docs/rules/img-has-alt.md): Enforce that `<img>` JSX elements use the `alt` prop.
 - [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
 - [interactive-supports-focus](docs/rules/interactive-supports-focus.md): Enforce that elements with interactive handlers like `onClick` must be focusable.
 - [label-has-for](docs/rules/label-has-for.md): Enforce that `<label>` elements have the `htmlFor` prop.

@@ -7,7 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
+import { getProp, getPropValue, elementType, getLiteralPropValue } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 
@@ -15,7 +15,7 @@ const DEFAULT_ELEMENTS = [
   'img',
   'object',
   'area',
-  'input-image',
+  'input[type="image"]',
 ];
 
 const schema = generateObjSchema({
@@ -23,7 +23,7 @@ const schema = generateObjSchema({
   img: arraySchema,
   object: arraySchema,
   area: arraySchema,
-  'input-image': arraySchema,
+  'input[type="image"]': arraySchema,
 });
 
 const ruleByElement = {
@@ -33,15 +33,17 @@ const ruleByElement = {
     const roleValue = getPropValue(roleProp);
     const isPresentation = roleProp && typeof roleValue === 'string'
       && roleValue.toLowerCase() === 'presentation';
+    const isRoleNone = roleProp && typeof roleValue === 'string'
+      && roleValue.toLowerCase() === 'none';
 
     const altProp = getProp(node.attributes, 'alt');
 
     // Missing alt prop error.
     if (altProp === undefined) {
-      if (isPresentation) {
+      if (isPresentation || isRoleNone) {
         context.report({
           node,
-          message: 'Prefer alt="" over role="presentation". First rule of aria is to not use aria if it can be achieved via native HTML.',
+          message: `Prefer alt="" over role="${roleValue}". First rule of aria is to not use aria if it can be achieved via native HTML.`,
         });
         return;
       }
@@ -71,8 +73,10 @@ const ruleByElement = {
     const ariaLabelProp = getProp(node.attributes, 'aria-label');
     const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
     const hasLabel = ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
+    const titleProp = getLiteralPropValue(getProp(node.attributes, 'title'));
+    const hasTitleAttr = !!titleProp;
 
-    if (hasLabel || hasAccessibleChild(node.parent)) {
+    if (hasLabel || hasTitleAttr || hasAccessibleChild(node.parent)) {
       return;
     }
 
@@ -83,23 +87,71 @@ const ruleByElement = {
   },
 
   area(context, node) {
-    const ariaLabelProp = getProp(node.attributes, 'aria-label');
-    const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
-    const hasLabel = ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
-    const hasAlt = getProp(node.attributes, 'alt');
+    const ariaLabelPropValue = getPropValue(getProp(node.attributes, 'aria-label'));
+    const arialLabelledByPropValue = getPropValue(getProp(node.attributes, 'aria-labelledby'));
+    const hasLabel = ariaLabelPropValue !== undefined || arialLabelledByPropValue !== undefined;
 
-    if (hasLabel || hasAlt) {
+    if (hasLabel) {
+      return;
+    }
+
+    const altProp = getProp(node.attributes, 'alt');
+    if (altProp === undefined) {
+      context.report({
+        node,
+        message: 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+      });
+      return;
+    }
+
+    const altValue = getPropValue(altProp);
+    const isNullValued = altProp.value === null; // <area alt />
+
+    if ((altValue && !isNullValued) || altValue === '') {
       return;
     }
 
     context.report({
       node,
-      message: '',
+      message: 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
     });
   },
 
-  input(context, node) {
-    return node;
+  'input[type="image"]': function inputImage(context, node) {
+    // Only test input[type="image"]
+    const nodeType = elementType(node);
+    if (nodeType === 'input') {
+      const typePropValue = getPropValue(getProp(node.attributes, 'type'));
+      if (typePropValue !== 'image') { return; }
+    }
+    const ariaLabelPropValue = getPropValue(getProp(node.attributes, 'aria-label'));
+    const arialLabelledByPropValue = getPropValue(getProp(node.attributes, 'aria-labelledby'));
+    const hasLabel = ariaLabelPropValue !== undefined || arialLabelledByPropValue !== undefined;
+
+    if (hasLabel) {
+      return;
+    }
+
+    const altProp = getProp(node.attributes, 'alt');
+    if (altProp === undefined) {
+      context.report({
+        node,
+        message: '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+      });
+      return;
+    }
+
+    const altValue = getPropValue(altProp);
+    const isNullValued = altProp.value === null; // <area alt />
+
+    if ((altValue && !isNullValued) || altValue === '') {
+      return;
+    }
+
+    context.report({
+      node,
+      message: '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+    });
   },
 };
 
@@ -123,15 +175,24 @@ module.exports = {
           ),
           [],
         );
-      const typesToValidate = [].concat(customComponents, ...elementOptions);
+      const typesToValidate = []
+        .concat(customComponents, ...elementOptions)
+        .map((type) => {
+          if (type === 'input[type="image"]') { return 'input'; }
+          return type;
+        });
       const nodeType = elementType(node);
       if (typesToValidate.indexOf(nodeType) === -1) {
         return;
       }
 
-      // Map nodeType to the DOM element if we are running this on a custom component.
       let DOMElement = nodeType;
-      if (elementOptions.indexOf(nodeType) === -1) {
+      if (DOMElement === 'input') {
+        DOMElement = 'input[type="image"]';
+      }
+
+      // Map nodeType to the DOM element if we are running this on a custom component.
+      if (elementOptions.indexOf(DOMElement) === -1) {
         DOMElement = elementOptions.find((element) => {
           const customComponentsForElement = options[element] || [];
           return customComponentsForElement.indexOf(nodeType) > -1;
