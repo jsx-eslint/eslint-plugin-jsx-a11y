@@ -64,7 +64,25 @@ Headers often double as expand/collapse controls for the content they headline. 
 
 ## Rule details
 
-This rule takes no arguments.
+You may configure which handler props should be taken into account when applying this rule. The recommended configuration includes the following 6 handlers.
+
+```javascript
+'jsx-a11y/no-noninteractive-element-interactions': [
+  'error',
+  {
+    handlers: [
+      'onClick',
+      'onMouseDown',
+      'onMouseUp',
+      'onKeyPress',
+      'onKeyDown',
+      'onKeyUp',
+    ],
+  },
+],
+```
+
+Adjust the list of handler prop names in the handlers array to increase or decrease the coverage surface of this rule in your codebase.
 
 ### Succeed
 ```jsx
