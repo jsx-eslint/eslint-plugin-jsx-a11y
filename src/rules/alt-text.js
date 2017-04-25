@@ -10,6 +10,7 @@
 import { getProp, getPropValue, elementType, getLiteralPropValue } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
+import isPresentationRole from '../util/isPresentationRole';
 
 const DEFAULT_ELEMENTS = [
   'img',
@@ -29,21 +30,15 @@ const schema = generateObjSchema({
 const ruleByElement = {
   img(context, node) {
     const nodeType = elementType(node);
-    const roleProp = getProp(node.attributes, 'role');
-    const roleValue = getPropValue(roleProp);
-    const isPresentation = roleProp && typeof roleValue === 'string'
-      && roleValue.toLowerCase() === 'presentation';
-    const isRoleNone = roleProp && typeof roleValue === 'string'
-      && roleValue.toLowerCase() === 'none';
 
     const altProp = getProp(node.attributes, 'alt');
 
     // Missing alt prop error.
     if (altProp === undefined) {
-      if (isPresentation || isRoleNone) {
+      if (isPresentationRole(nodeType, node.attributes)) {
         context.report({
           node,
-          message: `Prefer alt="" over role="${roleValue}". First rule of aria is to not use aria if it can be achieved via native HTML.`,
+          message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
         });
         return;
       }
@@ -161,45 +156,47 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
-    JSXOpeningElement: (node) => {
-      const options = context.options[0] || {};
-      // Elements to validate for alt text.
-      const elementOptions = options.elements || DEFAULT_ELEMENTS;
-      // Get custom components for just the elements that will be tested.
-      const customComponents = elementOptions
-        .map(element => options[element])
-        .reduce(
-          (components, customComponentsForElement) => components.concat(
-            customComponentsForElement || [],
-          ),
-          [],
-        );
-      const typesToValidate = []
-        .concat(customComponents, ...elementOptions)
-        .map((type) => {
-          if (type === 'input[type="image"]') { return 'input'; }
-          return type;
-        });
-      const nodeType = elementType(node);
-      if (typesToValidate.indexOf(nodeType) === -1) {
-        return;
-      }
+  create: (context) => {
+    const options = context.options[0] || {};
+    // Elements to validate for alt text.
+    const elementOptions = options.elements || DEFAULT_ELEMENTS;
+    // Get custom components for just the elements that will be tested.
+    const customComponents = elementOptions
+      .map(element => options[element])
+      .reduce(
+        (components, customComponentsForElement) => components.concat(
+          customComponentsForElement || [],
+        ),
+        [],
+      );
+    const typesToValidate = []
+      .concat(customComponents, ...elementOptions)
+      .map((type) => {
+        if (type === 'input[type="image"]') { return 'input'; }
+        return type;
+      });
 
-      let DOMElement = nodeType;
-      if (DOMElement === 'input') {
-        DOMElement = 'input[type="image"]';
-      }
 
-      // Map nodeType to the DOM element if we are running this on a custom component.
-      if (elementOptions.indexOf(DOMElement) === -1) {
-        DOMElement = elementOptions.find((element) => {
-          const customComponentsForElement = options[element] || [];
-          return customComponentsForElement.indexOf(nodeType) > -1;
-        });
-      }
+    return {
+      JSXOpeningElement: (node) => {
+        const nodeType = elementType(node);
+        if (typesToValidate.indexOf(nodeType) === -1) { return; }
 
-      ruleByElement[DOMElement](context, node);
-    },
-  }),
+        let DOMElement = nodeType;
+        if (DOMElement === 'input') {
+          DOMElement = 'input[type="image"]';
+        }
+
+        // Map nodeType to the DOM element if we are running this on a custom component.
+        if (elementOptions.indexOf(DOMElement) === -1) {
+          DOMElement = elementOptions.find((element) => {
+            const customComponentsForElement = options[element] || [];
+            return customComponentsForElement.indexOf(nodeType) > -1;
+          });
+        }
+
+        ruleByElement[DOMElement](context, node);
+      },
+    };
+  },
 };

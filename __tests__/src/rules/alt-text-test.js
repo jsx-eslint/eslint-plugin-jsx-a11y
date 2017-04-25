@@ -29,8 +29,8 @@ Use alt="" for presentational images.`,
   type: 'JSXOpeningElement',
 });
 
-const preferAltError = (role = 'presentation') => ({
-  message: `Prefer alt="" over role="${role}". First rule of aria is to not use aria if it can be achieved via native HTML.`,
+const preferAltError = () => ({
+  message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
   type: 'JSXOpeningElement',
 });
 
@@ -167,7 +167,7 @@ ruleTester.run('alt-text', rule, {
     { code: '<img alt={undefined} role="presentation" />;', errors: [altValueError('img')] },
     { code: '<img alt role="presentation" />;', errors: [altValueError('img')] },
     { code: '<img role="presentation" />;', errors: [preferAltError()] },
-    { code: '<img role="none" />;', errors: [preferAltError('none')] },
+    { code: '<img role="none" />;', errors: [preferAltError()] },
 
     // DEFAULT ELEMENT 'object' TESTS
     { code: '<object />', errors: [objectError] },
