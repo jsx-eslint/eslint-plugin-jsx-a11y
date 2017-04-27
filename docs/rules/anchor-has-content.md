@@ -13,13 +13,13 @@ This rule takes one optional object argument of type object:
 {
     "rules": {
         "jsx-a11y/anchor-has-content": [ 2, {
-            "components": [ "Anchor" ],
+            "a": [ "Anchor" ],
           }],
     }
 }
 ```
 
-For the `components` option, these strings determine which JSX elements (**always including** `<a>`) should be checked for having content. This is a good use case when you have a wrapper component that simply renders an `a` element (like in React):
+For the `a` option, these strings determine which JSX elements (**always including** `<a>`) should be checked for having content. This is a good use case when you have a wrapper component that simply renders an `a` element (like in React):
 
 ```js
 // Anchor.js

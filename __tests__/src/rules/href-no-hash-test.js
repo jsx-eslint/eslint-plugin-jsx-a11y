@@ -23,16 +23,22 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-const components = [{
-  components: ['Anchor', 'Link'],
-}];
-const specialLink = [{
-  specialLink: ['hrefLeft', 'hrefRight'],
-}];
-const componentsAndSpecialLink = [{
-  components: ['Anchor'],
-  specialLink: ['hrefLeft'],
-}];
+const components = [
+  {
+    a: ['Anchor', 'Link'],
+  },
+];
+const specialLink = [
+  {
+    specialLink: ['hrefLeft', 'hrefRight'],
+  },
+];
+const componentsAndSpecialLink = [
+  {
+    a: ['Anchor'],
+    specialLink: ['hrefLeft'],
+  },
+];
 
 ruleTester.run('href-no-hash', rule, {
   valid: [
@@ -163,7 +169,11 @@ ruleTester.run('href-no-hash', rule, {
 
     // CUSTOM BOTH COMPONENTS AND SPECIALLINK TESTS
     { code: '<Anchor hrefLeft="#" />', errors: [expectedError], options: componentsAndSpecialLink },
-    { code: '<Anchor hrefLeft={"#"} />', errors: [expectedError], options: componentsAndSpecialLink },
+    {
+      code: '<Anchor hrefLeft={"#"} />',
+      errors: [expectedError],
+      options: componentsAndSpecialLink,
+    },
     {
       code: '<Anchor hrefLeft={`#${undefined}`} />',
       errors: [expectedError],

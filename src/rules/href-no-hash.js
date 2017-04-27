@@ -9,12 +9,13 @@
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
+import { getCustomComponents } from '../util/settings/resolve';
 
-const errorMessage = 'Links must not point to "#". ' +
-  'Use a more descriptive href or use a button instead.';
+const errorMessage =
+  'Links must not point to "#". Use a more descriptive href or use a button instead.';
 
 const schema = generateObjSchema({
-  components: arraySchema,
+  a: arraySchema,
   specialLink: arraySchema,
 });
 
@@ -27,8 +28,7 @@ module.exports = {
   create: context => ({
     JSXOpeningElement: (node) => {
       const options = context.options[0] || {};
-      const componentOptions = options.components || [];
-      const typesToValidate = ['a'].concat(componentOptions);
+      const typesToValidate = getCustomComponents(context, 'a').a;
       const nodeType = elementType(node);
 
       // Only check 'a' elements and custom types.

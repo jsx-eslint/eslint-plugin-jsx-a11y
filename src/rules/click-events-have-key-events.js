@@ -7,16 +7,16 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
+import { dom } from 'aria-query';
 import { getProp, hasAnyProp, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import { getDOMElementFromCustomComponent } from '../util/settings/resolve';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 
-const errorMessage = 'Visible, non-interactive elements with click handlers' +
-' must have at least one keyboard listener.';
+const errorMessage =
+  'Visible, non-interactive elements with click handlers' +
+  ' must have at least one keyboard listener.';
 
 const schema = generateObjSchema();
 const domElements = [...dom.keys()];
@@ -34,7 +34,7 @@ module.exports = {
         return;
       }
 
-      const type = elementType(node);
+      const type = getDOMElementFromCustomComponent(context, elementType(node));
       const requiredProps = ['onkeydown', 'onkeyup', 'onkeypress'];
 
       if (!domElements.includes(type)) {

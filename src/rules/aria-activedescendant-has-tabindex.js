@@ -6,6 +6,7 @@
 import { dom } from 'aria-query';
 import { getProp, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import { getDOMElementFromCustomComponent } from '../util/settings/resolve';
 import getTabIndex from '../util/getTabIndex';
 import isInteractiveElement from '../util/isInteractiveElement';
 
@@ -13,8 +14,7 @@ import isInteractiveElement from '../util/isInteractiveElement';
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-const errorMessage =
-  'An element that manages focus with `aria-activedescendant` must be tabbable';
+const errorMessage = 'An element that manages focus with `aria-activedescendant` must be tabbable';
 
 const schema = generateObjSchema();
 
@@ -34,7 +34,7 @@ module.exports = {
         return;
       }
 
-      const type = elementType(node);
+      const type = getDOMElementFromCustomComponent(context, elementType(node));
       // Do not test higher level JSX components, as we do not know what
       // low-level DOM element this maps to.
       if (domElements.indexOf(type) === -1) {
@@ -46,13 +46,7 @@ module.exports = {
       // unspecified allowing the inherent tabIndex to obtain or it must be
       // zero (allowing for positive, even though that is not ideal). It cannot
       // be given a negative value.
-      if (
-        isInteractiveElement(type, attributes)
-        && (
-          tabIndex === undefined
-          || tabIndex >= 0
-        )
-      ) {
+      if (isInteractiveElement(type, attributes) && (tabIndex === undefined || tabIndex >= 0)) {
         return;
       }
 
