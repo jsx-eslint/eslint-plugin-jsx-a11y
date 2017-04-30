@@ -55,6 +55,40 @@ Headers often double as expand/collapse controls for the content they headline. 
 </ul>
 ```
 
+### Case: This element is a table cell
+
+Table cells (and tables in general) are meant to contain data. ARIA provides us with a construct called a [Grid](http://w3c.github.io/aria-practices/#grid) that is essentially a 2 dimensional logical container for content and interactive elements.
+
+You have two options in this case.
+
+#### Option 1, move the interactive content inside the table cells
+
+For instance, move the button inside the cell:
+
+```
+<table>
+  <tr>
+    <td><button>Sort</button></td>
+  </tr>
+</table>
+```
+
+This preserves the table cell semantics and the button semantics; the two are not conflated on the cell.
+
+#### Option 2, convert the table into an ARIA grid
+
+If you're user interface has a table-like layout, but is filled with interactive components in the cells, consider converting the table into a grid.
+
+```
+<table role="grid">
+  <tr>
+    <td role="gridcell" onClick={this.sort}>Sort</td>
+  </tr>
+</table>
+```
+
+You can also put the interactive content inside the grid cell. This maintains the semantic distinction between the cell and the interaction content, although a grid cell can be interactive.
+
 ### References
 
   1. [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
