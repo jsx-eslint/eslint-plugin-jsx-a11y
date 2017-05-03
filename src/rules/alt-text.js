@@ -169,18 +169,18 @@ module.exports = {
         ),
         [],
       );
-    const typesToValidate = []
+    const typesToValidate = new Set([]
       .concat(customComponents, ...elementOptions)
       .map((type) => {
         if (type === 'input[type="image"]') { return 'input'; }
         return type;
-      });
+      }));
 
 
     return {
       JSXOpeningElement: (node) => {
         const nodeType = elementType(node);
-        if (typesToValidate.indexOf(nodeType) === -1) { return; }
+        if (!typesToValidate.has(nodeType)) { return; }
 
         let DOMElement = nodeType;
         if (DOMElement === 'input') {
