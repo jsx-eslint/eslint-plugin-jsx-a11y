@@ -7,9 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType, hasAnyProp } from 'jsx-ast-utils';
+import { elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
-import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
+import hasAccessibleChild from '../util/hasAccessibleChild';
 
 const errorMessage =
   'Headings must have content and the content must be accessible by a screen reader.';
@@ -25,26 +25,7 @@ const headings = [
 
 const schema = generateObjSchema({ components: arraySchema });
 
-const determineChildType = (child) => {
-  switch (child.type) {
-    case 'Literal':
-      return Boolean(child.value);
-    case 'JSXElement':
-      return !isHiddenFromScreenReader(
-        elementType(child.openingElement),
-        child.openingElement.attributes);
-    case 'JSXExpressionContainer':
-      if (child.expression.type === 'Identifier') {
-        return child.expression.name !== 'undefined';
-      }
-      return true;
-    default:
-      return false;
-  }
-};
-
 module.exports = {
-  determineChildType,
   meta: {
     docs: {},
     schema: [schema],
@@ -58,14 +39,7 @@ module.exports = {
       // Only check 'h*' elements and custom types.
       if (typeCheck.indexOf(nodeType) === -1) {
         return;
-      }
-
-      const isAccessible = node.parent.children.some(
-        determineChildType,
-      ) || hasAnyProp(node.attributes, ['dangerouslySetInnerHTML', 'children']);
-
-
-      if (isAccessible) {
+      } else if (hasAccessibleChild(node.parent)) {
         return;
       }
 

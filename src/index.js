@@ -3,6 +3,7 @@
 module.exports = {
   rules: {
     'accessible-emoji': require('./rules/accessible-emoji'),
+    'alt-text': require('./rules/alt-text'),
     'anchor-has-content': require('./rules/anchor-has-content'),
     'aria-activedescendant-has-tabindex': require('./rules/aria-activedescendant-has-tabindex'),
     'aria-props': require('./rules/aria-props'),
@@ -14,7 +15,6 @@ module.exports = {
     'href-no-hash': require('./rules/href-no-hash'),
     'html-has-lang': require('./rules/html-has-lang'),
     'iframe-has-title': require('./rules/iframe-has-title'),
-    'img-has-alt': require('./rules/img-has-alt'),
     'img-redundant-alt': require('./rules/img-redundant-alt'),
     'interactive-supports-focus': require('./rules/interactive-supports-focus'),
     'label-has-for': require('./rules/label-has-for'),
@@ -45,6 +45,7 @@ module.exports = {
       },
       rules: {
         'jsx-a11y/accessible-emoji': 'error',
+        'jsx-a11y/alt-text': 'error',
         'jsx-a11y/anchor-has-content': 'error',
         'jsx-a11y/aria-activedescendant-has-tabindex': 'error',
         'jsx-a11y/aria-props': 'error',
@@ -56,7 +57,6 @@ module.exports = {
         'jsx-a11y/href-no-hash': 'error',
         'jsx-a11y/html-has-lang': 'error',
         'jsx-a11y/iframe-has-title': 'error',
-        'jsx-a11y/img-has-alt': 'error',
         'jsx-a11y/img-redundant-alt': 'error',
         'jsx-a11y/interactive-supports-focus': 'error',
         'jsx-a11y/label-has-for': 'error',
@@ -147,6 +147,7 @@ module.exports = {
       },
       rules: {
         'jsx-a11y/accessible-emoji': 'error',
+        'jsx-a11y/alt-text': 'error',
         'jsx-a11y/anchor-has-content': 'error',
         'jsx-a11y/aria-activedescendant-has-tabindex': 'error',
         'jsx-a11y/aria-props': 'error',
@@ -158,7 +159,6 @@ module.exports = {
         'jsx-a11y/href-no-hash': 'error',
         'jsx-a11y/html-has-lang': 'error',
         'jsx-a11y/iframe-has-title': 'error',
-        'jsx-a11y/img-has-alt': 'error',
         'jsx-a11y/img-redundant-alt': 'error',
         'jsx-a11y/interactive-supports-focus': 'error',
         'jsx-a11y/label-has-for': 'error',

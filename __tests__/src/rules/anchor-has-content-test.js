@@ -10,8 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import rule,
-  { determineChildType } from '../../../src/rules/anchor-has-content';
+import rule from '../../../src/rules/anchor-has-content';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -23,16 +22,6 @@ const expectedError = {
   message: 'Anchors must have content and the content must be accessible by a screen reader.',
   type: 'JSXOpeningElement',
 };
-
-describe('determineChildType', () => {
-  describe('default case', () => {
-    it('should return false', () => {
-      expect(
-        determineChildType({}),
-      ).toBe(false);
-    });
-  });
-});
 
 ruleTester.run('anchor-has-content', rule, {
   valid: [

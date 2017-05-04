@@ -1,6 +1,6 @@
 /* eslint-env jest */
 /**
- * @fileoverview Enforce img tags use alt attribute.
+ * @fileoverview Enforce all elements that require alternative text have it.
  * @author Ethan Cohen
  */
 
@@ -10,7 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import rule from '../../../src/rules/img-has-alt';
+import rule from '../../../src/rules/alt-text';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -30,16 +30,25 @@ Use alt="" for presentational images.`,
 });
 
 const preferAltError = () => ({
-  message: 'Prefer alt="" over role="presentation". First rule of aria is to not use aria if it can be achieved via native HTML.',
+  message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
   type: 'JSXOpeningElement',
 });
 
+const objectError = 'Embedded <object> elements must have alternative text by providing inner text, aria-label or aria-labelledby props.';
+
+const areaError = 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.';
+
+const inputImageError = '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.';
+
 const array = [{
-  components: ['Thumbnail', 'Image'],
+  img: ['Thumbnail', 'Image'],
+  object: ['Object'],
+  area: ['Area'],
+  'input[type="image"]': ['InputImage'],
 }];
 
 
-ruleTester.run('img-has-alt', rule, {
+ruleTester.run('alt-text', rule, {
   valid: [
     // DEFAULT ELEMENT 'img' TESTS
     { code: '<img alt="foo" />;' },
@@ -51,6 +60,7 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt="foo" salt={undefined} />;' },
     { code: '<img {...this.props} alt="foo" />' },
     { code: '<a />' },
+    { code: '<div />' },
     { code: '<img alt={function(e) {} } />' },
     { code: '<div alt={function(e) {} } />' },
     { code: '<img alt={() => void 0} />' },
@@ -66,12 +76,39 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt={`${undefined}`} />' },
     { code: '<img alt=" " />' },
     { code: '<img alt="" role="presentation" />' },
+    { code: '<img alt="" role="none" />' },
     { code: '<img alt="" role={`presentation`} />' },
     { code: '<img alt="" role={"presentation"} />' },
     { code: '<img alt="this is lit..." role="presentation" />' },
     { code: '<img alt={error ? "not working": "working"} />' },
     { code: '<img alt={undefined ? "working": "not working"} />' },
     { code: '<img alt={plugin.name + " Logo"} />' },
+
+    // DEFAULT <object> TESTS
+    { code: '<object aria-label="foo" />' },
+    { code: '<object aria-labelledby="id1" />' },
+    { code: '<object>Foo</object>' },
+    { code: '<object><p>This is descriptive!</p></object>' },
+    { code: '<Object />' },
+    { code: '<object title="An object" />' },
+
+    // DEFAULT <area> TESTS
+    { code: '<area aria-label="foo" />' },
+    { code: '<area aria-labelledby="id1" />' },
+    { code: '<area alt="" />' },
+    { code: '<area alt="This is descriptive!" />' },
+    { code: '<area alt={altText} />' },
+    { code: '<Area />' },
+
+    // DEFAULT <input type="image"> TESTS
+    { code: '<input />' },
+    { code: '<input type="foo" />' },
+    { code: '<input type="image" aria-label="foo" />' },
+    { code: '<input type="image" aria-labelledby="id1" />' },
+    { code: '<input type="image" alt="" />' },
+    { code: '<input type="image" alt="This is descriptive!" />' },
+    { code: '<input type="image" alt={altText} />' },
+    { code: '<InputImage />' },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     { code: '<Thumbnail alt="foo" />;', options: array },
@@ -102,6 +139,21 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<Image alt={() => void 0} />', options: array },
     { code: '<IMAGE />', options: array },
     { code: '<Image alt={alt || "foo" } />', options: array },
+    { code: '<Object aria-label="foo" />', options: array },
+    { code: '<Object aria-labelledby="id1" />', options: array },
+    { code: '<Object>Foo</Object>', options: array },
+    { code: '<Object><p>This is descriptive!</p></Object>', options: array },
+    { code: '<Object title="An object" />', options: array },
+    { code: '<Area aria-label="foo" />', options: array },
+    { code: '<Area aria-labelledby="id1" />', options: array },
+    { code: '<Area alt="" />', options: array },
+    { code: '<Area alt="This is descriptive!" />', options: array },
+    { code: '<Area alt={altText} />', options: array },
+    { code: '<InputImage aria-label="foo" />', options: array },
+    { code: '<InputImage aria-labelledby="id1" />', options: array },
+    { code: '<InputImage alt="" />', options: array },
+    { code: '<InputImage alt="This is descriptive!" />', options: array },
+    { code: '<InputImage alt={altText} />', options: array },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT 'img' TESTS
@@ -115,6 +167,26 @@ ruleTester.run('img-has-alt', rule, {
     { code: '<img alt={undefined} role="presentation" />;', errors: [altValueError('img')] },
     { code: '<img alt role="presentation" />;', errors: [altValueError('img')] },
     { code: '<img role="presentation" />;', errors: [preferAltError()] },
+    { code: '<img role="none" />;', errors: [preferAltError()] },
+
+    // DEFAULT ELEMENT 'object' TESTS
+    { code: '<object />', errors: [objectError] },
+    { code: '<object><div aria-hidden /></object>', errors: [objectError] },
+    { code: '<object title={undefined} />', errors: [objectError] },
+
+    // DEFAULT ELEMENT 'area' TESTS
+    { code: '<area />', errors: [areaError] },
+    { code: '<area alt />', errors: [areaError] },
+    { code: '<area alt={undefined} />', errors: [areaError] },
+    { code: '<area src="xyz" />', errors: [areaError] },
+    { code: '<area {...this.props} />', errors: [areaError] },
+
+    // DEFAULT ELEMENT 'input type="image"' TESTS
+    { code: '<input type="image" />', errors: [inputImageError] },
+    { code: '<input type="image" alt />', errors: [inputImageError] },
+    { code: '<input type="image" alt={undefined} />', errors: [inputImageError] },
+    { code: '<input type="image">Foo</input>', errors: [inputImageError] },
+    { code: '<input type="image" {...this.props} />', errors: [inputImageError] },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     {
@@ -159,5 +231,18 @@ ruleTester.run('img-has-alt', rule, {
       errors: [missingPropError('Image')],
       options: array,
     },
+    { code: '<Object />', errors: [objectError], options: array },
+    { code: '<Object><div aria-hidden /></Object>', errors: [objectError], options: array },
+    { code: '<Object title={undefined} />', errors: [objectError], options: array },
+    { code: '<Area />', errors: [areaError], options: array },
+    { code: '<Area alt />', errors: [areaError], options: array },
+    { code: '<Area alt={undefined} />', errors: [areaError], options: array },
+    { code: '<Area src="xyz" />', errors: [areaError], options: array },
+    { code: '<Area {...this.props} />', errors: [areaError], options: array },
+    { code: '<InputImage />', errors: [inputImageError], options: array },
+    { code: '<InputImage alt />', errors: [inputImageError], options: array },
+    { code: '<InputImage alt={undefined} />', errors: [inputImageError], options: array },
+    { code: '<InputImage>Foo</InputImage>', errors: [inputImageError], options: array },
+    { code: '<InputImage {...this.props} />', errors: [inputImageError], options: array },
   ].map(parserOptionsMapper),
 });
