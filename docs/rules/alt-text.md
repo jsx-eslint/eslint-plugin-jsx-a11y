@@ -10,7 +10,17 @@ Enforce that all elements that require alternative text have meaningful informat
 
 ## How to resolve
 ### `<img>`
-An `<img>` must have the `alt` prop set with meaningful text or as an empty string to indicate that it is an image for decoration. For images that are being used as icons for a button or control, the `alt` prop should be set to an empty string (`""`), as well, since icons are not meant to have duplicative labels.
+An `<img>` must have the `alt` prop set with meaningful text or as an empty string to indicate that it is an image for decoration.
+
+For images that are being used as icons for a button or control, the `alt` prop should be set to an empty string (`alt=""`).
+
+```js
+<button>
+  <img src="icon.png" alt="" />
+  Save
+</button>
+```
+The content of an `alt` attribute is used to calculate the accessible label of an element, whereas the text content is used to produce a label for the element. For this reason, adding a label to an icon can produce a confusing or duplicated label on a control that already has appropriate text content.
 
 ### `<object>`
 Add alternative text to all embedded `<object>` elements using either inner text, setting the `title` prop, or using the `aria-label` or `aria-labelledby` props.
