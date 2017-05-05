@@ -1,3 +1,16 @@
+5.0.0 / 2017-05-05
+==================
+- [breaking] Refactor `img-has-alt` rule into `alt-text` rule
+- [breaking] Rule `onclick-has-role` is removed. Replaced with `no-static-element-interactions` and `no-noninteractive-element-interactions`.
+- [breaking] Rule `onclick-has-focus` is removed. Replaced with `interactive-supports-focus`. 
+- [new] - Add rule `media-has-caption` rule
+- [new] - Add `ignoreNonDOM` option to `no-autofocus`.
+- [new] - Add rule `no-interactive-element-to-noninteractive-role`
+- [new] - Add rule `no-noninteractive-element-to-interactive-role`
+- [new] - Add rule `no-noninteractive-tabindex`
+- [new] - Configs split into "recommended" and "strict". 
+- [enhanced] - Configuration options added to `no-static-element-interactions` and `no-noninteractive-element-interactions`. Options allow for fine-tuning of elements and event handlers to check.
+
 4.0.0 / 2017-02-04
 ==================
 Add new rules:
