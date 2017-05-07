@@ -11,6 +11,7 @@ import {
   AXObjects,
   elementAXObjects,
 } from 'axobject-query';
+import includes from 'array-includes';
 import attributesComparator from './attributesComparator';
 
 const roleKeys = [...roles.keys()];
@@ -23,7 +24,7 @@ const nonInteractiveRoles = new Set(
       return (
         !role.abstract
         && !role.superClass.some(
-          classes => classes.includes('widget'),
+          classes => includes(classes, 'widget'),
         )
       );
     }),
@@ -41,7 +42,7 @@ const interactiveRoles = new Set(
       return (
         !role.abstract
         && role.superClass.some(
-          classes => classes.includes('widget'),
+          classes => includes(classes, 'widget'),
         )
       );
     }),

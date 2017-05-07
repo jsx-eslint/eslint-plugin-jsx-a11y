@@ -12,6 +12,7 @@ import {
   hasAnyProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
+import includes from 'array-includes';
 import { generateObjSchema } from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -53,7 +54,7 @@ module.exports = {
         getProp(attributes, 'tabIndex'),
       ) !== undefined;
 
-      if (!domElements.includes(type)) {
+      if (!includes(domElements, type)) {
         // Do not test higher level JSX components, as we do not know what
         // low-level DOM element this maps to.
         return;

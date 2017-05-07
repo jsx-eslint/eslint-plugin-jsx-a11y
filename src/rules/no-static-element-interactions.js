@@ -19,6 +19,7 @@ import {
   hasProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
+import includes from 'array-includes';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import isAbstractRole from '../util/isAbstractRole';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
@@ -61,7 +62,7 @@ module.exports = {
             && getPropValue(getProp(attributes, prop)) != null
           ));
 
-        if (!domElements.includes(type)) {
+        if (!includes(domElements, type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;

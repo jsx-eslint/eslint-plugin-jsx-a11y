@@ -12,6 +12,7 @@ import {
   elementAXObjects,
 } from 'axobject-query';
 import type { Node } from 'ast-types-flow';
+import includes from 'array-includes';
 import attributesComparator from './attributesComparator';
 
 const roleKeys = [...roles.keys()];
@@ -24,7 +25,7 @@ const nonInteractiveRoles = new Set(
       return (
         !role.abstract
         && !role.superClass.some(
-          classes => classes.includes('widget'),
+          classes => includes(classes, 'widget'),
         )
       );
     }),
@@ -42,7 +43,7 @@ const interactiveRoles = new Set(
       return (
         !role.abstract
         && role.superClass.some(
-          classes => classes.includes('widget'),
+          classes => includes(classes, 'widget'),
         )
       );
     }),
@@ -82,7 +83,7 @@ const interactiveElementRoleSchemas = elementRoleEntries
 
 const nonInteractiveAXObjects = new Set(
   [...AXObjects.keys()]
-    .filter(name => ['window', 'structure'].includes(AXObjects.get(name).type)),
+    .filter(name => includes(['window', 'structure'], AXObjects.get(name).type)),
 );
 
 const nonInteractiveElementAXObjectSchemas = [...elementAXObjects]
