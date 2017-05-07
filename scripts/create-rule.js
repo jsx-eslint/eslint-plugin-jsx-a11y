@@ -15,13 +15,11 @@ const rulePath = path.resolve(`src/rules/${ruleName}.js`);
 const testPath = path.resolve(`__tests__/src/rules/${ruleName}-test.js`);
 const docsPath = path.resolve(`docs/rules/${ruleName}.md`);
 
-const jscodeshiftJSON = require('jscodeshift/package.json');
+const jscodeshiftJSON = require('jscodeshift/package.json'); // eslint-disable-line import/no-extraneous-dependencies
+
 const jscodeshiftMain = jscodeshiftJSON.main;
 const jscodeshiftPath = require.resolve('jscodeshift');
-const jscodeshiftRoot = jscodeshiftPath.slice(
-  0,
-  jscodeshiftPath.indexOf(jscodeshiftMain)
-);
+const jscodeshiftRoot = jscodeshiftPath.slice(0, jscodeshiftPath.indexOf(jscodeshiftMain));
 
 // Validate
 if (!ruleName) {
@@ -41,22 +39,19 @@ fs.writeFileSync(testPath, testBoilerplate);
 fs.writeFileSync(docsPath, docBoilerplate);
 
 // Add the rule to the index
-exec([
-  path.join(
-    jscodeshiftRoot,
-    jscodeshiftJSON.bin.jscodeshift
-  ),
-  './src/index.js',
-  '-t ./scripts/addRuleToIndex.js',
-  '--extensions js',
-  '--parser flow',
-  `--ruleName=${ruleName}`,
-  `--rulePath=${rulePath}`,
+exec(
+  [
+    path.join(jscodeshiftRoot, jscodeshiftJSON.bin.jscodeshift),
+    './src/index.js',
+    '-t ./scripts/addRuleToIndex.js',
+    '--extensions js',
+    '--parser flow',
+    `--ruleName=${ruleName}`,
+    `--rulePath=${rulePath}`,
   ].join(' '),
-  (error, stdout, stderr) => {
+  (error) => {
     if (error) {
-      console.error(`exec error: ${error}`);
-      return;
+      console.error(`exec error: ${error}`); // eslint-disable-line no-console
     }
-  }
+  },
 );

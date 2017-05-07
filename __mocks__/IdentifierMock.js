@@ -3,4 +3,4 @@ export default function IdentifierMock(ident) {
     type: 'Identifier',
     name: ident,
   };
-};
+}
