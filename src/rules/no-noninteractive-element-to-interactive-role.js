@@ -20,6 +20,7 @@ import {
 import type {
   JSXIdentifier,
 } from 'ast-types-flow';
+import includes from 'array-includes';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 
@@ -58,7 +59,7 @@ module.exports = {
         const type = elementType(node);
         const role = getLiteralPropValue(getProp(node.attributes, 'role'));
 
-        if (!domElements.includes(type)) {
+        if (!includes(domElements, type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;
@@ -68,7 +69,7 @@ module.exports = {
         const allowedRoles = (options[0] || {});
         if (
           Object.prototype.hasOwnProperty.call(allowedRoles, type)
-          && allowedRoles[type].includes(role)
+          && includes(allowedRoles[type], role)
         ) {
           return;
         }

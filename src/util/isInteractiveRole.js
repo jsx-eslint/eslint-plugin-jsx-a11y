@@ -4,12 +4,13 @@ import {
 } from 'aria-query';
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import includes from 'array-includes';
 
 const roles = [...rolesMap.keys()];
 const interactiveRoles = roles
   .filter(name => !rolesMap.get(name).abstract)
   .filter(name => rolesMap.get(name).superClass.some(
-    klasses => klasses.includes('widget')),
+    klasses => includes(klasses, 'widget')),
   );
 
 // 'toolbar' does not descend from widget, but it does support
@@ -45,14 +46,14 @@ const isInteractiveRole = (
     accumulator: Array<string>,
     name: string,
   ) => {
-    if (roles.includes(name)) {
+    if (includes(roles, name)) {
       accumulator.push(name);
     }
     return accumulator;
   }, []);
   if (validRoles.length > 0) {
     // The first role value is a series takes precedence.
-    isInteractive = interactiveRoles.includes(validRoles[0]);
+    isInteractive = includes(interactiveRoles, validRoles[0]);
   }
 
   return isInteractive;
