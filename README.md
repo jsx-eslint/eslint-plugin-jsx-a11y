@@ -109,6 +109,7 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [interactive-supports-focus](docs/rules/interactive-supports-focus.md): Enforce that elements with interactive handlers like `onClick` must be focusable.
 - [label-has-for](docs/rules/label-has-for.md): Enforce that `<label>` elements have the `htmlFor` prop.
 - [lang](docs/rules/lang.md): Enforce lang attribute has a valid value.
+- [media-has-caption](docs/rules/media-has-caption.md): Enforces that `<audio>` and `<video>` elements must have a `<track>` for captions.
 - [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
 - [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
 - [no-autofocus](docs/rules/no-autofocus.md): Enforce autoFocus prop is not used.
