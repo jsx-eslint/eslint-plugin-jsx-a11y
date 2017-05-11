@@ -90,6 +90,42 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 }
 ```
 
+## Supported Rules
+
+- [accessible-emoji](docs/rules/accessible-emoji.md): Enforce emojis are wrapped in <span> and provide screenreader access.
+- [alt-text](docs/rules/alt-text.md): Enforce all elements that require alternative text have meaningful information to relay back to end user.
+- [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
+- [aria-activedescendant-has-tabindex](docs/rules/aria-activedescendant-has-tabindex.md): Enforce elements with aria-activedescendant are tabbable.
+- [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
+- [aria-proptypes](docs/rules/aria-proptypes.md): Enforce ARIA state and property values are valid.
+- [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
+- [aria-unsupported-elements](docs/rules/aria-unsupported-elements.md): Enforce that elements that do not support ARIA roles, states, and properties do not have those attributes.
+- [click-events-have-key-events](docs/rules/click-events-have-key-events.md): Enforce a clickable non-interactive element has at least one keyboard event listener.
+- [heading-has-content](docs/rules/heading-has-content.md): Enforce heading (`h1`, `h2`, etc) elements contain accessible content.
+- [href-no-hash](docs/rules/href-no-hash.md): Enforce an anchor element's `href` prop value is not just `#`.
+- [html-has-lang](docs/rules/html-has-lang.md): Enforce `<html>` element has `lang` prop.
+- [iframe-has-title](docs/rules/iframe-has-title.md): Enforce iframe elements have a title attribute.
+- [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
+- [interactive-supports-focus](docs/rules/interactive-supports-focus.md): Enforce that elements with interactive handlers like `onClick` must be focusable.
+- [label-has-for](docs/rules/label-has-for.md): Enforce that `<label>` elements have the `htmlFor` prop.
+- [lang](docs/rules/lang.md): Enforce lang attribute has a valid value.
+- [media-has-caption](docs/rules/media-has-caption.md): Enforces that `<audio>` and `<video>` elements must have a `<track>` for captions.
+- [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
+- [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
+- [no-autofocus](docs/rules/no-autofocus.md): Enforce autoFocus prop is not used.
+- [no-distracting-elements](docs/rules/no-distracting-elements.md): Enforce distracting elements are not used.
+- [no-interactive-element-to-noninteractive-role](docs/rules/no-interactive-element-to-noninteractive-role.md): Interactive elements should not be assigned non-interactive roles.
+- [no-noninteractive-element-interactions](docs/rules/no-noninteractive-element-interactions.md): Non-interactive elements should not be assigned mouse or keyboard event listeners.
+- [no-noninteractive-element-to-interactive-role](docs/rules/no-noninteractive-element-to-interactive-role.md): Non-interactive elements should not be assigned interactive roles.
+- [no-noninteractive-tabindex](docs/rules/no-noninteractive-tabindex.md): `tabIndex` should only be declared on interactive elements.
+- [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
+- [no-redundant-roles](docs/rules/no-redundant-roles.md): Enforce explicit role property is not the same as implicit/default role property on element.
+- [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
+- [role-has-required-aria-props](docs/rules/role-has-required-aria-props.md): Enforce that elements with ARIA roles must have all required attributes for that role.
+- [role-supports-aria-props](docs/rules/role-supports-aria-props.md): Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.
+- [scope](docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
+- [tabindex-no-positive](docs/rules/tabindex-no-positive.md): Enforce `tabIndex` value is not greater than zero.
+
 ### Difference between 'recommended' and 'strict' mode
 
 Rule | Recommended | Strict
@@ -214,41 +250,6 @@ The following rules have extra options when in *recommended* mode:
   },
 ]
 ```
-## Supported Rules
-
-- [accessible-emoji](docs/rules/accessible-emoji.md): Enforce emojis are wrapped in <span> and provide screenreader access.
-- [alt-text](docs/rules/alt-text.md): Enforce all elements that require alternative text have meaningful information to relay back to end user.
-- [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
-- [aria-activedescendant-has-tabindex](docs/rules/aria-activedescendant-has-tabindex.md): Enforce elements with aria-activedescendant are tabbable.
-- [aria-props](docs/rules/aria-props.md): Enforce all `aria-*` props are valid.
-- [aria-proptypes](docs/rules/aria-proptypes.md): Enforce ARIA state and property values are valid.
-- [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
-- [aria-unsupported-elements](docs/rules/aria-unsupported-elements.md): Enforce that elements that do not support ARIA roles, states, and properties do not have those attributes.
-- [click-events-have-key-events](docs/rules/click-events-have-key-events.md): Enforce a clickable non-interactive element has at least one keyboard event listener.
-- [heading-has-content](docs/rules/heading-has-content.md): Enforce heading (`h1`, `h2`, etc) elements contain accessible content.
-- [href-no-hash](docs/rules/href-no-hash.md): Enforce an anchor element's `href` prop value is not just `#`.
-- [html-has-lang](docs/rules/html-has-lang.md): Enforce `<html>` element has `lang` prop.
-- [iframe-has-title](docs/rules/iframe-has-title.md): Enforce iframe elements have a title attribute.
-- [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
-- [interactive-supports-focus](docs/rules/interactive-supports-focus.md): Enforce that elements with interactive handlers like `onClick` must be focusable.
-- [label-has-for](docs/rules/label-has-for.md): Enforce that `<label>` elements have the `htmlFor` prop.
-- [lang](docs/rules/lang.md): Enforce lang attribute has a valid value.
-- [media-has-caption](docs/rules/media-has-caption.md): Enforces that `<audio>` and `<video>` elements must have a `<track>` for captions.
-- [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
-- [no-access-key](docs/rules/no-access-key.md): Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.
-- [no-autofocus](docs/rules/no-autofocus.md): Enforce autoFocus prop is not used.
-- [no-distracting-elements](docs/rules/no-distracting-elements.md): Enforce distracting elements are not used.
-- [no-interactive-element-to-noninteractive-role](docs/rules/no-interactive-element-to-noninteractive-role.md): Interactive elements should not be assigned non-interactive roles.
-- [no-noninteractive-element-interactions](docs/rules/no-noninteractive-element-interactions.md): Non-interactive elements should not be assigned mouse or keyboard event listeners.
-- [no-noninteractive-element-to-interactive-role](docs/rules/no-noninteractive-element-to-interactive-role.md): Non-interactive elements should not be assigned interactive roles.
-- [no-noninteractive-tabindex](docs/rules/no-noninteractive-tabindex.md): `tabIndex` should only be declared on interactive elements.
-- [no-onchange](docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
-- [no-redundant-roles](docs/rules/no-redundant-roles.md): Enforce explicit role property is not the same as implicit/default role property on element.
-- [no-static-element-interactions](docs/rules/no-static-element-interactions.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
-- [role-has-required-aria-props](docs/rules/role-has-required-aria-props.md): Enforce that elements with ARIA roles must have all required attributes for that role.
-- [role-supports-aria-props](docs/rules/role-supports-aria-props.md): Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.
-- [scope](docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
-- [tabindex-no-positive](docs/rules/tabindex-no-positive.md): Enforce `tabIndex` value is not greater than zero.
 
 ## Creating a new rule
 
