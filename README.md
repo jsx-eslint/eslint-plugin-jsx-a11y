@@ -79,7 +79,8 @@ Then configure the rules you want to use under the rules section.
 ```
 
 
-You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/recommended` in `extends`:
+You can also enable all the recommended or strict rules at once. 
+Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 
 ```json
 {
@@ -88,7 +89,6 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
   ]
 }
 ```
-
 
 ## Supported Rules
 
@@ -125,6 +125,131 @@ You can also enable all the recommended rules at once. Add `plugin:jsx-a11y/reco
 - [role-supports-aria-props](docs/rules/role-supports-aria-props.md): Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.
 - [scope](docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
 - [tabindex-no-positive](docs/rules/tabindex-no-positive.md): Enforce `tabIndex` value is not greater than zero.
+
+### Difference between 'recommended' and 'strict' mode
+
+Rule | Recommended | Strict
+------------ | ------------- | -------------
+[accessible-emoji](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/accessible-emoji.md) | error | error
+[alt-text](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/alt-text.md) | error | error
+[anchor-has-content](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-has-content.md) | error | error
+[aria-activedescendant-has-tabindex](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-activedescendant-has-tabindex.md) | error | error
+[aria-props](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-props.md) | error | error
+[aria-proptypes](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-proptypes.md) | error | error
+[aria-role](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-role.md) | error | error
+[aria-unsupported-elements](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-unsupported-elements.md) | error | error
+[click-events-have-key-events](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/click-events-have-key-events.md) | error | error
+[heading-has-content](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/heading-has-content.md) | error | error
+[href-no-hash](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/href-no-hash.md) | error | error
+[html-has-lang](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/html-has-lang.md) | error | error
+[iframe-has-title](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/iframe-has-title.md) | error | error
+[img-redundant-alt](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-redundant-alt.md) | error | error
+[interactive-supports-focus](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/interactive-supports-focus.md) | error | error
+[label-has-for](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md) | error | error
+[media-has-caption](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/media-has-caption.md) | error | error
+[mouse-events-have-key-events](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md) | error | error
+[no-access-key](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-access-key.md) | error | error
+[no-autofocus](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-autofocus.md) | error | error
+[no-distracting-elements](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-distracting-elements.md) | error | error
+[no-interactive-element-to-noninteractive-role](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-interactive-element-to-noninteractive-role.md) | error, with options | error
+[no-noninteractive-element-interactions](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-noninteractive-element-interactions.md) | error, with options | error
+[no-noninteractive-element-to-interactive-role](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-noninteractive-element-to-interactive-role.md) | error, with options | error
+[no-noninteractive-tabindex](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-noninteractive-tabindex.md) | error, with options | error
+[no-onchange](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-onchange.md) | error | error
+[no-redundant-roles](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-redundant-roles.md) | error | error
+[no-static-element-interactions](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md) | error, with options | error
+[role-has-required-aria-props](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/role-has-required-aria-props.md) | error | error
+[role-supports-aria-props](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/role-supports-aria-props.md) | error | error
+[scope](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/scope.md) | error, with options | error
+[tabindex-no-positive](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/tabindex-no-positive.md) | error | error
+
+
+The following rules have extra options when in *recommended* mode:
+
+#### no-interactive-element-to-noninteractive-role
+```
+'jsx-a11y/no-interactive-element-to-noninteractive-role': [
+  'error',
+  {
+    tr: ['none', 'presentation'],
+  },
+]
+```
+
+#### no-noninteractive-element-interactions
+```
+'jsx-a11y/no-noninteractive-element-interactions': [
+  'error',
+  {
+    handlers: [
+      'onClick',
+      'onMouseDown',
+      'onMouseUp',
+      'onKeyPress',
+      'onKeyDown',
+      'onKeyUp',
+    ],
+  },
+]
+```
+
+#### no-noninteractive-element-to-interactive-role
+```
+'jsx-a11y/no-noninteractive-element-to-interactive-role': [
+  'error',
+  {
+    ul: [
+      'listbox',
+      'menu',
+      'menubar',
+      'radiogroup',
+      'tablist',
+      'tree',
+      'treegrid',
+    ],
+    ol: [
+      'listbox',
+      'menu',
+      'menubar',
+      'radiogroup',
+      'tablist',
+      'tree',
+      'treegrid',
+    ],
+    li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
+    table: ['grid'],
+    td: ['gridcell'],
+  },
+]
+```
+
+#### no-noninteractive-tabindex
+```
+'jsx-a11y/no-noninteractive-tabindex': [
+  'error',
+  {
+    tags: [],
+    roles: ['tabpanel'],
+  },
+]
+```
+
+#### no-static-element-interactions
+```
+'jsx-a11y/no-noninteractive-element-interactions': [
+  'error',
+  {
+    handlers: [
+      'onClick',
+      'onMouseDown',
+      'onMouseUp',
+      'onKeyPress',
+      'onKeyDown',
+      'onKeyUp',
+    ],
+  },
+]
+```
 
 ## Creating a new rule
 
