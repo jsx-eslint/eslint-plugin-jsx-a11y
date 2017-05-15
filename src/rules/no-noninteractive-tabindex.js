@@ -11,12 +11,16 @@
 import {
   dom,
 } from 'aria-query';
+import type {
+  JSXOpeningElement,
+} from 'ast-types-flow';
 import {
   elementType,
   getProp,
   getLiteralPropValue,
 } from 'jsx-ast-utils';
 import includes from 'array-includes';
+import type { ESLintContext } from '../../flow/eslint';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 import { generateObjSchema, arraySchema } from '../util/schemas';

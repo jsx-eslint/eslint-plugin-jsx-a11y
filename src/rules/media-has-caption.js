@@ -10,6 +10,7 @@
 
 import type { JSXElement, JSXOpeningElement } from 'ast-types-flow';
 import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import type { ESLintContext } from '../../flow/eslint';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 
 const errorMessage = 'Media elements such as <audio> and <video> must have a <track> for captions.';

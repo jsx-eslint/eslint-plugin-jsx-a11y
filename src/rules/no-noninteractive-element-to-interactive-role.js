@@ -21,6 +21,8 @@ import type {
   JSXIdentifier,
 } from 'ast-types-flow';
 import includes from 'array-includes';
+import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintJSXAttribute } from '../../flow/eslint-jsx';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 

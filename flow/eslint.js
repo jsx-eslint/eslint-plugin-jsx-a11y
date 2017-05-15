@@ -1,9 +1,12 @@
-type ESLintReport = {
+/*
+ * @flow
+ */
+export type ESLintReport = {
   node: any,
   message: string,
 };
 
-type ESLintContext = {
+export type ESLintContext = {
   options: Array<Object>,
   report: (ESLintReport) => void,
 };

@@ -20,6 +20,8 @@ import {
 } from 'jsx-ast-utils';
 import type { JSXIdentifier } from 'ast-types-flow';
 import includes from 'array-includes';
+import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintJSXAttribute } from '../../flow/eslint-jsx';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';

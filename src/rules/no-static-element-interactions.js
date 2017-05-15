@@ -20,6 +20,7 @@ import {
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import includes from 'array-includes';
+import type { ESLintContext } from '../../flow/eslint';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import isAbstractRole from '../util/isAbstractRole';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
