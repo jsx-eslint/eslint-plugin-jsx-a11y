@@ -288,6 +288,9 @@ const alwaysValid = [
   { code: '<div role="term" />;' },
   { code: '<div role="timer" />;' },
   { code: '<div role="tooltip" />;' },
+  /* Namespaced roles are not checked */
+  { code: '<div mynamespace:role="term" />' },
+  { code: '<input mynamespace:role="img" />' },
 ];
 
 const neverValid = [

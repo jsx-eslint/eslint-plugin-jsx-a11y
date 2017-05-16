@@ -2,6 +2,3 @@
 <PROJECT_ROOT>/lib/.*
 <PROJECT_ROOT>/docs/.*
 <PROJECT_ROOT>/reports/.*
-
-[libs]
-flow
