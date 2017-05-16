@@ -1,3 +1,13 @@
+5.0.2 / 2017-05-16
+=================
+- [fix] Explicitly import flow types to resolve flow failures in consuming projects.
+
+
+5.0.1 / 2017-05-07
+==================
+- [fix] Polyfill Array.includes for node < 6 support.
+
+
 5.0.0 / 2017-05-05
 ==================
 - [breaking] Refactor `img-has-alt` rule into `alt-text` rule
@@ -10,6 +20,7 @@
 - [new] - Add rule `no-noninteractive-tabindex`
 - [new] - Configs split into "recommended" and "strict". 
 - [enhanced] - Configuration options added to `no-static-element-interactions` and `no-noninteractive-element-interactions`. Options allow for fine-tuning of elements and event handlers to check.
+
 
 4.0.0 / 2017-02-04
 ==================
