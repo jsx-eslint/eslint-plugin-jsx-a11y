@@ -1,5 +1,9 @@
+5.0.3 / 2017-05-16
+==================
+- [fix] Remove `flow` directory from `.npmignore` to accommodate explicit imports from `v5.0.2`.
+
 5.0.2 / 2017-05-16
-=================
+==================
 - [fix] Explicitly import flow types to resolve flow failures in consuming projects.
 
 
