@@ -26,7 +26,7 @@
     "prepublish": "npm run lint && npm run flow && npm run test && npm run build",
     "pretest": "npm run lint:fix && npm run flow",
     "test:ci": "npm test -- --ci --runInBand",
-    "test": "jest --coverage __tests__/**/*",
+    "test": "jest --coverage __tests__/**/*"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
