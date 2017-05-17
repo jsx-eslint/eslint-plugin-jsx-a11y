@@ -7,5 +7,7 @@ cache:
   yarn: true
   directories:
     - node_modules
+script:
+  - npm run test:ci
 after_success:
   - npm run coveralls

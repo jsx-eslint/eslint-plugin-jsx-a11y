@@ -18,14 +18,15 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rimraf lib && babel src --out-dir lib --copy-files",
-    "prepublish": "npm run lint && npm run flow && npm run test && npm run build",
     "coveralls": "cat ./reports/lcov.info | coveralls",
+    "create": "node ./scripts/create-rule",
     "flow": "if [ ! -e ./.flowconfig ]; then echo \"Could not find .flowconfig\"; else flow; test $? -eq 0 -o $? -eq 2; fi",
-    "lint": "eslint  --config .eslintrc src __tests__ __mocks__ scripts",
     "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint  --config .eslintrc src __tests__ __mocks__ scripts",
+    "prepublish": "npm run lint && npm run flow && npm run test && npm run build",
     "pretest": "npm run lint:fix && npm run flow",
+    "test:ci": "npm test -- --ci --runInBand",
     "test": "jest --coverage __tests__/**/*",
-    "create": "node ./scripts/create-rule"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
@@ -42,7 +43,7 @@
     "eslint-plugin-flowtype": "^2.32.1",
     "eslint-plugin-import": "^2.2.0",
     "expect": "^1.20.2",
-    "flow-bin": "^0.45.0",
+    "flow-bin": "^0.46.0",
     "jest": "^20.0.0",
     "jscodeshift": "^0.3.30",
     "minimist": "^1.2.0",
