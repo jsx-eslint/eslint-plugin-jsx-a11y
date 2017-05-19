@@ -1,6 +1,13 @@
 # label-has-for
 
-Enforce label tags have htmlFor attribute. Form controls using a label to identify them must have only one label that is programmatically associated with the control using: label htmlFor=[ID of control].
+Enforce label tags have associated control.
+
+There are two supported ways to associate a label with a control:
+
+- nesting: by wrapping a control in a label tag
+- id: by using the prop `htmlFor` as in `htmlFor=[ID of control]`
+
+To fully cover 100% of assistive devices, you're encouraged to validate for both nesting and id.
 
 ## Rule details
 
@@ -11,7 +18,10 @@ This rule takes one optional object argument of type object:
     "rules": {
         "jsx-a11y/label-has-for": [ 2, {
             "components": [ "Label" ],
-          }],
+            "required": {
+                "every": [ "nesting", "id" ]
+            }
+        }],
     }
 }
 ```
@@ -42,6 +52,14 @@ return (
   </form>
 );
 ```
+
+The `required` option (defaults to `"required": "id"`) determines which checks are activated. You're allowed to pass in one of the following types:
+
+- string: must be one of the acceptable strings (`"nesting"` or `"id"`)
+- object, must have one of the following properties:
+
+  - some: an array of acceptable strings, will pass if ANY of the requested checks passed
+  - every: an array of acceptable strings, will pass if ALL of the requested checks passed
 
 Note that passing props as spread attribute without `htmlFor` explicitly defined will cause this rule to fail. Explicitly pass down `htmlFor` prop for rule to pass. The prop must have an actual value to pass. Use `Label` component above as a reference. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.** For example:
 

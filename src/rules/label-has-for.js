@@ -8,12 +8,45 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
-import { generateObjSchema, arraySchema } from '../util/schemas';
+import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
 
-const errorMessage = 'Form controls using a label to identify them must be ' +
-  'programmatically associated with the control using htmlFor';
+const errorMessage = 'Form label must have associated control';
 
-const schema = generateObjSchema({ components: arraySchema });
+const enumValues = ['nesting', 'id'];
+const schema = {
+  type: 'object',
+  properties: {
+    components: arraySchema,
+    required: {
+      oneOf: [
+        { type: 'string', enum: enumValues },
+        generateObjSchema({ some: enumArraySchema(enumValues) }, ['some']),
+        generateObjSchema({ every: enumArraySchema(enumValues) }, ['every']),
+      ],
+    },
+  },
+};
+
+const validateNesting = node => !!node.parent.children.find(child => child.type === 'JSXElement');
+const validateId = (node) => {
+  const htmlForAttr = getProp(node.attributes, 'htmlFor');
+  const htmlForValue = getPropValue(htmlForAttr);
+
+  return htmlForAttr !== false && !!htmlForValue;
+};
+const validate = (node, required) => (
+  required === 'nesting' ? validateNesting(node) : validateId(node)
+);
+
+const isValid = (node, required) => {
+  if (Array.isArray(required.some)) {
+    return required.some.some(rule => validate(node, rule));
+  } else if (Array.isArray(required.every)) {
+    return required.every.every(rule => validate(node, rule));
+  }
+
+  return validate(node, required);
+};
 
 module.exports = {
   meta: {
@@ -33,11 +66,9 @@ module.exports = {
         return;
       }
 
-      const htmlForAttr = getProp(node.attributes, 'htmlFor');
-      const htmlForValue = getPropValue(htmlForAttr);
-      const isInvalid = htmlForAttr === false || !htmlForValue;
+      const required = options.required || 'id';
 
-      if (isInvalid) {
+      if (!isValid(node, required)) {
         context.report({
           node,
           message: errorMessage,
