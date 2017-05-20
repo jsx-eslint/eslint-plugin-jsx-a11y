@@ -24,7 +24,8 @@ export const enumArraySchema = (enumeratedList = []) => Object.assign({}, arrayS
  * Factory function to generate an object schema
  * with specified properties object
  */
-export const generateObjSchema = (properties = {}) => ({
+export const generateObjSchema = (properties = {}, required) => ({
   type: 'object',
   properties,
+  required,
 });
