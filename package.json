@@ -29,8 +29,8 @@
     "test": "jest --coverage __tests__/**/*"
   },
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-core": "^6.14.0",
+    "babel-cli": "^6.0.0",
+    "babel-core": "^5.8.23",
     "babel-eslint": "^7.0.0",
     "babel-jest": "^20.0.0",
     "babel-plugin-transform-flow-strip-types": "^6.21.0",
