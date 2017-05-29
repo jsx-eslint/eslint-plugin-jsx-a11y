@@ -83,7 +83,7 @@ If you need to create an interface element that the user can mouse over or mouse
   onClick={() => this.setState({showSomething: true})}>
   onMouseEnter={() => this.setState({showSomething: true})}>
   {label}
-</a>
+</div>
 ```
 
 In the example immediately above an `onClick` event handler was added to provide the same experience mouse users enjoy to keyboard-only and touch-screen users. Never fully rely on mouse events alone to expose functionality.
@@ -100,7 +100,7 @@ This rule takes one optional object argument of type object:
 ```json
 {
     "rules": {
-        "jsx-a11y/href-no-hash": [ 2, {
+        "jsx-a11y/anchor-is-valid": [ 2, {
             "components": [ "Link" ],
             "specialLink": [ "hrefLeft", "hrefRight" ]
           }],
