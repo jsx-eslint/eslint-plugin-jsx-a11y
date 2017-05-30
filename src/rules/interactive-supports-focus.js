@@ -1,20 +1,27 @@
 /**
- * @fileoverview Enforce that elements with onClick handlers must be focusable.
+ * @fileoverview Enforce that elements with onClick handlers must be tabbable.
  * @author Ethan Cohen
  * @flow
  */
 
-import { dom } from 'aria-query';
+import {
+  dom,
+  roles,
+} from 'aria-query';
 import {
   getProp,
   elementType,
   eventHandlersByType,
+  getLiteralPropValue,
   hasAnyProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import includes from 'array-includes';
 import type { ESLintContext } from '../../flow/eslint';
-import { generateObjSchema } from '../util/schemas';
+import {
+  enumArraySchema,
+  generateObjSchema,
+} from '../util/schemas';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
@@ -27,10 +34,15 @@ import getTabIndex from '../util/getTabIndex';
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-const errorMessage =
-  'Elements with interactive roles must be focusable.';
-
-const schema = generateObjSchema();
+const schema = generateObjSchema({
+  tabbable: enumArraySchema(
+    [...roles.keys()]
+      .filter(name => !roles.get(name).abstract)
+      .filter(name => roles.get(name).superClass.some(
+        klasses => includes(klasses, 'widget')),
+      ),
+  ),
+});
 const domElements = [...dom.keys()];
 
 const interactiveProps = [
@@ -44,10 +56,17 @@ module.exports = {
     schema: [schema],
   },
 
-  create: (context: ESLintContext) => ({
+  create: (context: ESLintContext & {
+    options: {
+      tabbable: Array<string>
+    }
+  }) => ({
     JSXOpeningElement: (
       node: JSXOpeningElement,
     ) => {
+      const tabbable = (
+        context.options && context.options[0] && context.options[0].tabbable
+      ) || [];
       const attributes = node.attributes;
       const type = elementType(node);
       const hasInteractiveProps = hasAnyProp(attributes, interactiveProps);
@@ -78,10 +97,20 @@ module.exports = {
         && !isNonInteractiveRole(type, attributes)
         && !hasTabindex
       ) {
-        context.report({
-          node,
-          message: errorMessage,
-        });
+        const role = getLiteralPropValue(getProp(attributes, 'role'));
+        if (includes(tabbable, role)) {
+          // Always tabbable, tabIndex = 0
+          context.report({
+            node,
+            message: `Elements with the '${role}' interactive role must be tabbable.`,
+          });
+        } else {
+          // Focusable, tabIndex = -1 or 0
+          context.report({
+            node,
+            message: `Elements with the '${role}' interactive role must be focusable.`,
+          });
+        }
       }
     },
   }),
