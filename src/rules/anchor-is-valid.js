@@ -11,7 +11,9 @@
 import { elementType, getProp, getPropValue } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import type { ESLintContext } from '../../flow/eslint';
-import { generateObjSchema } from '../util/schemas';
+import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
+
+const allAspects = ['noHref', 'invalidHref', 'preferButton'];
 
 const preferButtonErrorMessage = 'Anchor used as a button. ' +
   'Anchors are primarily expected to navigate. ' +
@@ -23,7 +25,11 @@ const noHrefErrorMessage = 'The href attribute is required on an anchor. ' +
 const invalidHrefErrorMessage = 'The href attribute requires a valid address. ' +
   'Provide a valid, navigable address as the href value.';
 
-const schema = generateObjSchema();
+const schema = generateObjSchema({
+  components: arraySchema,
+  specialLink: arraySchema,
+  aspects: enumArraySchema(allAspects, 1),
+});
 
 module.exports = {
   meta: {
@@ -44,6 +50,16 @@ module.exports = {
         return;
       }
 
+      // Set up the rule aspects to check.
+      const aspects = options.aspects || allAspects;
+
+      // Create active aspect flag object. Failing checks will only report
+      // if the related flag is set to true.
+      const activeAspects = {};
+      allAspects.forEach((aspect) => {
+        activeAspects[aspect] = aspects.indexOf(aspect) !== -1;
+      });
+
       const propOptions = options.specialLink || [];
       const propsToValidate = ['href'].concat(propOptions);
       const values = propsToValidate
@@ -62,14 +78,15 @@ module.exports = {
       if (!hasAnyHref) {
         // If no spread operator is found and no onClick event is present
         // it is a link without href.
-        if (!hasSpreadOperator && !onClick) {
+        if (!hasSpreadOperator && activeAspects.noHref &&
+          (!onClick || (onClick && !activeAspects.preferButton))) {
           context.report({
             node,
             message: noHrefErrorMessage,
           });
         }
         // If no spread operator is found but an onClick is preset it should be a button.
-        if (!hasSpreadOperator && onClick) {
+        if (!hasSpreadOperator && onClick && activeAspects.preferButton) {
           context.report({
             node,
             message: preferButtonErrorMessage,
@@ -89,12 +106,12 @@ module.exports = {
         ));
       if (invalidHrefValues.length !== 0) {
         // If an onClick is found it should be a button, otherwise it is an invalid link.
-        if (onClick) {
+        if (onClick && activeAspects.preferButton) {
           context.report({
             node,
             message: preferButtonErrorMessage,
           });
-        } else {
+        } else if (activeAspects.invalidHref) {
           context.report({
             node,
             message: invalidHrefErrorMessage,
