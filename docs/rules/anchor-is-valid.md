@@ -100,10 +100,11 @@ This rule takes one optional object argument of type object:
 ```json
 {
     "rules": {
-        "jsx-a11y/anchor-is-valid": [ 2, {
+        "jsx-a11y/anchor-is-valid": [ "error", {
             "components": [ "Link" ],
-            "specialLink": [ "hrefLeft", "hrefRight" ]
-          }],
+            "specialLink": [ "hrefLeft", "hrefRight" ],
+            "aspects": [ "noHref", "invalidHref", "preferButton" ]
+          }]
     }
 }
 ```
@@ -124,6 +125,18 @@ return (
   </nav>
 );
 ```
+
+For the `aspects` option, these strings determine which sub-rules are run. This allows omission of certain error types in restrictive environments.
+
+- `noHref`: Checks whether an anchor contains an `href` attribute.
+- `invalidHref`: Checks if a given `href` value is valid.
+- `preferButton`: Checks if anchors have been used as buttons.
+
+The option can be used on its own or with the `components` and `specialLink` options.
+
+If omitted, all sub-rule aspects will be run by default. This is the recommended configuration for all cases except where the rule becomes unusable due to well founded restrictions. 
+
+The option must contain at least one `aspect`.
 
 ### Succeed
 ```jsx
