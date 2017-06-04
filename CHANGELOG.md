@@ -1,3 +1,13 @@
+6.0.0 / 2017-06-05
+=================
+- [new] Add rule `anchor-is-valid`. See documentation for configuration options. Thanks @AlmeroSteyn.
+- [update] The rule `label-has-for` now allows inputs nested in label tags. Previously it was strict about requiring a `for` attribute. Thanks @ignatiusreza. 
+- [update] New configuration for `interactive-supports-focus`. Recommended and strict configs for now contain a trimmed-down whitelist of roles that will be checked.
+- [fix] Incompatibility between node version 4 and 5. Thanks @evilebottnawi.
+- [fix] Missing README entry for `media-has-caption`. Thanks @ismail-syed.
+- [fix] README updates explaining recommended and strict configs. Thanks @Donaldini.
+- [fix] Updated to aria-query@0.7.0, which includes new ARIA 1.1 properties. Previously, the `aria-props` rule incorrectly threw errors for these new properties.
+
 5.0.3 / 2017-05-16
 ==================
 - [fix] Remove `flow` directory from `.npmignore` to accommodate explicit imports from `v5.0.2`.
