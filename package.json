@@ -56,7 +56,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "aria-query": "^0.5.0",
+    "aria-query": "^0.7.0",
     "array-includes": "^3.0.3",
     "ast-types-flow": "0.0.7",
     "axobject-query": "^0.1.0",
