@@ -1,7 +1,9 @@
-node_modules
-reports
-npm-debug.log
+.DS_Store
 coverage
 lib
-.DS_Store
+node_modules
+npm-debug.log
+package-lock.json
+reports
 yarn-error.log
+yarn.lock
