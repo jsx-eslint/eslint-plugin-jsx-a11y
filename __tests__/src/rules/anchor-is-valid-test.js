@@ -86,6 +86,7 @@ const componentsAndSpecialLinkAndNoHrefAspect = [{
 ruleTester.run('anchor-is-valid', rule, {
   valid: [
     // DEFAULT ELEMENT 'a' TESTS
+    { code: '<Anchor />;' },
     { code: '<a {...props} />' },
     { code: '<a href="foo" />' },
     { code: '<a href={foo} />' },
@@ -249,7 +250,6 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: '<a href={"#"} />', options: noHrefPreferButtonAspect },
     { code: '<a href="javascript:void(0)" />', options: noHrefPreferButtonAspect },
     { code: '<a href={"javascript:void(0)"} />', options: noHrefPreferButtonAspect },
-
 
     // SHOULD BE BUTTON
     { code: '<a onClick={() => void 0} />', options: invalidHrefAspect },
