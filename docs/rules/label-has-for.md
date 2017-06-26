@@ -20,7 +20,8 @@ This rule takes one optional object argument of type object:
             "components": [ "Label" ],
             "required": {
                 "every": [ "nesting", "id" ]
-            }
+            },
+            "allowChildren": false,
         }],
     }
 }
@@ -53,13 +54,21 @@ return (
 );
 ```
 
-The `required` option (defaults to `"required": "id"`) determines which checks are activated. You're allowed to pass in one of the following types:
+The `required` option (defaults to `"required": { "every": ["nesting", "id"] }`) determines which checks are activated. You're allowed to pass in one of the following types:
 
 - string: must be one of the acceptable strings (`"nesting"` or `"id"`)
 - object, must have one of the following properties:
 
   - some: an array of acceptable strings, will pass if ANY of the requested checks passed
   - every: an array of acceptable strings, will pass if ALL of the requested checks passed
+
+The `allowChildren` option (defaults to `false`) determines whether `{children}` content is allowed to be passed into a `label` element. For example, the following pattern, by default, is not allowed:
+
+```js
+<label>{children}</label>
+```
+
+However, if `allowChildren` is set to `true`, no error will be raised. If you want to pass in `{children}` content without raising an error, because you cannot be sure what `{children}` will render, then set `allowChildren` to `true`.
 
 Note that passing props as spread attribute without `htmlFor` explicitly defined will cause this rule to fail. Explicitly pass down `htmlFor` prop for rule to pass. The prop must have an actual value to pass. Use `Label` component above as a reference. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.** For example:
 
@@ -90,8 +99,10 @@ function Foo(props) {
 
 ### Succeed
 ```jsx
-<input type="text" id="firstName" />
-<label htmlFor="firstName">First Name</label>
+<label htmlFor="firstName">
+  <input type="text" id="firstName" />
+  First Name
+</label>
 ```
 
 ### Fail

@@ -48,6 +48,7 @@
     "jest": "^20.0.4",
     "jscodeshift": "^0.3.30",
     "minimist": "^1.2.0",
+    "object.assign": "^4.0.4",
     "rimraf": "^2.6.1",
     "to-ast": "^1.0.0"
   },
