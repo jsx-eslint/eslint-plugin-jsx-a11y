@@ -1,3 +1,8 @@
+6.0.1 / 2017-06-28
+==================
+- [temporary] Remove `src` and `flow` from package to resolve flow issues for consuming packages.
+
+
 6.0.0 / 2017-06-05
 =================
 - [new] Add rule `anchor-is-valid`. See documentation for configuration options. Thanks @AlmeroSteyn.
@@ -10,9 +15,11 @@
 - [fix] README updates explaining recommended and strict configs. Thanks @Donaldini.
 - [fix] Updated to aria-query@0.7.0, which includes new ARIA 1.1 properties. Previously, the `aria-props` rule incorrectly threw errors for these new properties.
 
+
 5.0.3 / 2017-05-16
 ==================
 - [fix] Remove `flow` directory from `.npmignore` to accommodate explicit imports from `v5.0.2`.
+
 
 5.0.2 / 2017-05-16
 ==================
