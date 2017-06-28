@@ -2,6 +2,7 @@
 .flowconfig
 .travis.yml
 coverage
+flow
 node_modules
 npm-debug.log
 reports
