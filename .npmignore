@@ -1,10 +1,10 @@
 .DS_Store
 .flowconfig
 .travis.yml
-coverage
-flow
-node_modules
+/coverage
+/flow
+/node_modules
 npm-debug.log
-src
-reports
+/src
+/reports
 yarn-error.log
