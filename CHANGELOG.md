@@ -1,3 +1,8 @@
+6.0.2 / 2017-06-28
+==================
+- [fix] Prefix directories in `.npmignore` with `/` so it only matches the top-level directory
+
+
 6.0.1 / 2017-06-28
 ==================
 - [temporary] Remove `src` and `flow` from package to resolve flow issues for consuming packages.
