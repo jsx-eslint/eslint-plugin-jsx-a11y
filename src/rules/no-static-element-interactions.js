@@ -13,7 +13,7 @@ import {
 } from 'aria-query';
 import {
   elementType,
-  eventHandlers,
+  eventHandlersByType,
   getPropValue,
   getProp,
   hasProp,
@@ -34,7 +34,11 @@ const errorMessage =
   'Static HTML elements with event handlers require a role.';
 
 const domElements = [...dom.keys()];
-const defaultInteractiveProps = eventHandlers;
+const defaultInteractiveProps = [
+  ...eventHandlersByType.focus,
+  ...eventHandlersByType.keyboard,
+  ...eventHandlersByType.mouse,
+];
 const schema = generateObjSchema({
   handlers: arraySchema,
 });

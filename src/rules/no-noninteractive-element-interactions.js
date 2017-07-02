@@ -12,7 +12,7 @@ import {
 } from 'aria-query';
 import {
   elementType,
-  eventHandlers,
+  eventHandlersByType,
   getPropValue,
   getProp,
   hasProp,
@@ -33,7 +33,11 @@ const errorMessage =
   'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
 const domElements = [...dom.keys()];
-const defaultInteractiveProps = eventHandlers;
+const defaultInteractiveProps = [
+  ...eventHandlersByType.focus,
+  ...eventHandlersByType.keyboard,
+  ...eventHandlersByType.mouse,
+];
 const schema = generateObjSchema({
   handlers: arraySchema,
 });
