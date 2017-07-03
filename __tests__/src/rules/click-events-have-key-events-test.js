@@ -49,6 +49,8 @@ ruleTester.run('click-events-have-key-events', rule, {
     { code: '<a onClick={() => void 0} href="http://x.y.z" />' },
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />' },
     { code: '<input onClick={() => void 0} type="hidden" />;' },
+    { code: '<div onClick={() => void 0} role="presentation" />;' },
+    { code: '<div onClick={() => void 0} role="none" />;' },
     { code: '<TestComponent onClick={doFoo} />' },
     { code: '<Button onClick={doFoo} />' },
   ].map(parserOptionsMapper),
