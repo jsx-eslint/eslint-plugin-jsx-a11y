@@ -23,7 +23,7 @@
     "flow": "if [ ! -e ./.flowconfig ]; then echo \"Could not find .flowconfig\"; else flow; test $? -eq 0 -o $? -eq 2; fi",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint  --config .eslintrc src __tests__ __mocks__ scripts",
-    "prepublish": "npm run lint && npm run flow && npm run test && npm run build",
+    "prepublish": "safe-publish-latest && npm run lint && npm run flow && npm run test && npm run build",
     "pretest": "npm run lint:fix && npm run flow",
     "test:ci": "npm test -- --ci --runInBand",
     "test": "jest --coverage __tests__/**/*"
@@ -49,6 +49,7 @@
     "jscodeshift": "^0.3.30",
     "minimist": "^1.2.0",
     "rimraf": "^2.6.1",
+    "safe-publish-latest": "^1.1.1",
     "to-ast": "^1.0.0"
   },
   "engines": {
