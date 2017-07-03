@@ -9,7 +9,6 @@
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
-import hasAccessibleChild from '../util/hasAccessibleChild';
 
 const errorMessage = 'Form label must have associated control';
 
@@ -25,37 +24,28 @@ const schema = {
         generateObjSchema({ every: enumArraySchema(enumValues) }, ['every']),
       ],
     },
-    allowChildren: { type: 'boolean' },
   },
 };
 
-const validateNesting = node => node.parent.children.some(child => child.type === 'JSXElement');
-
+const validateNesting = node => !!node.parent.children.find(child => child.type === 'JSXElement');
 const validateId = (node) => {
   const htmlForAttr = getProp(node.attributes, 'htmlFor');
   const htmlForValue = getPropValue(htmlForAttr);
 
   return htmlForAttr !== false && !!htmlForValue;
 };
+const validate = (node, required) => (
+  required === 'nesting' ? validateNesting(node) : validateId(node)
+);
 
-const validate = (node, required, allowChildren) => {
-  if (allowChildren === true) {
-    return hasAccessibleChild(node.parent);
-  }
-  if (required === 'nesting') {
-    return validateNesting(node);
-  }
-  return validateId(node);
-};
-
-const isValid = (node, required, allowChildren) => {
+const isValid = (node, required) => {
   if (Array.isArray(required.some)) {
-    return required.some.some(rule => validate(node, rule, allowChildren));
+    return required.some.some(rule => validate(node, rule));
   } else if (Array.isArray(required.every)) {
-    return required.every.every(rule => validate(node, rule, allowChildren));
+    return required.every.every(rule => validate(node, rule));
   }
 
-  return validate(node, required, allowChildren);
+  return validate(node, required);
 };
 
 module.exports = {
@@ -76,10 +66,9 @@ module.exports = {
         return;
       }
 
-      const required = options.required || { every: ['nesting', 'id'] };
-      const allowChildren = options.allowChildren || false;
+      const required = options.required || 'id';
 
-      if (!isValid(node, required, allowChildren)) {
+      if (!isValid(node, required)) {
         context.report({
           node,
           message: errorMessage,

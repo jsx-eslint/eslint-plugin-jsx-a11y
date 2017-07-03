@@ -9,7 +9,6 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import assign from 'object.assign';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/label-has-for';
 
@@ -36,48 +35,37 @@ const optionsRequiredSome = [{
 const optionsRequiredEvery = [{
   required: { every: ['nesting', 'id'] },
 }];
-const optionsChildrenAllowed = [{
-  allowChildren: true,
-}];
 
 ruleTester.run('label-has-for', rule, {
   valid: [
     // DEFAULT ELEMENT 'label' TESTS
+    { code: '<label htmlFor="foo" />' },
+    { code: '<label htmlFor={"foo"} />' },
+    { code: '<label htmlFor={foo} />' },
+    { code: '<label htmlFor={`${id}`} />' },
     { code: '<div />' },
-    { code: '<label htmlFor="foo"><input /></label>' },
+    { code: '<label htmlFor="foo">Test!</label>' },
     { code: '<Label />' }, // lower-case convention refers to real HTML elements.
     { code: '<Label htmlFor="foo" />' },
-    { code: '<Descriptor />' },
-    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>' },
     { code: '<UX.Layout>test</UX.Layout>' },
 
     // CUSTOM ELEMENT ARRAY OPTION TESTS
-    { code: '<Label htmlFor="foo" />', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<Label htmlFor={"foo"} />', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<Label htmlFor={foo} />', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<Label htmlFor={`${id}`} />', options: [assign({}, array[0], optionsRequiredSome[0])] },
+    { code: '<Label htmlFor="foo" />', options: array },
+    { code: '<Label htmlFor={"foo"} />', options: array },
+    { code: '<Label htmlFor={foo} />', options: array },
+    { code: '<Label htmlFor={`${id}`} />', options: array },
     { code: '<div />', options: array },
-    { code: '<Label htmlFor="something"><input /></Label>', options: array },
-    { code: '<Label htmlFor="foo">Test!</Label>', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor="foo" />', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor={"foo"} />', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor={foo} />', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor={`${id}`} />', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [assign({}, array[0], optionsRequiredSome[0])] },
-    { code: '<label htmlFor="foo" />', options: optionsRequiredSome },
-    { code: '<label htmlFor={"foo"} />', options: optionsRequiredSome },
-    { code: '<label htmlFor={foo} />', options: optionsRequiredSome },
-    { code: '<label htmlFor={`${id}`} />', options: optionsRequiredSome },
-    { code: '<label htmlFor="foo">Test!</label>', options: optionsRequiredSome },
-    { code: '<label><input /></label>', options: optionsRequiredSome },
+    { code: '<Label htmlFor="foo">Test!</Label>', options: array },
+    { code: '<Descriptor htmlFor="foo" />', options: array },
+    { code: '<Descriptor htmlFor={"foo"} />', options: array },
+    { code: '<Descriptor htmlFor={foo} />', options: array },
+    { code: '<Descriptor htmlFor={`${id}`} />', options: array },
+    { code: '<div />', options: array },
+    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: array },
     { code: '<label><input /></label>', options: optionsRequiredNesting },
-    { code: '<label htmlFor="input"><input /></label>', options: optionsRequiredEvery },
-    { code: '<label><input /></label>', options: optionsChildrenAllowed },
-    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [assign({}, array, optionsChildrenAllowed)] },
-    { code: '<label>Test!</label>', options: optionsChildrenAllowed },
-    { code: '<label htmlFor="foo">Test!</label>', options: optionsChildrenAllowed },
-    { code: '<label>{children}</label>', options: optionsChildrenAllowed },
-    { code: '<label htmlFor="children">{children}</label>', options: optionsChildrenAllowed },
+    { code: '<label><input /></label>', options: optionsRequiredSome },
+    { code: '<label htmlFor="foo" />', options: optionsRequiredSome },
+    { code: '<label htmlFor="foo"><input /></label>', options: optionsRequiredEvery },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT 'label' TESTS
@@ -87,29 +75,8 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label>First Name</label>', errors: [expectedError] },
     { code: '<label {...props}>Foo</label>', errors: [expectedError] },
     { code: '<label><input /></label>', errors: [expectedError] },
-    { code: '<label>{children}</label>', errors: [expectedError] },
-    { code: '<label htmlFor="foo" />', errors: [expectedError] },
-    { code: '<label htmlFor={"foo"} />', errors: [expectedError] },
-    { code: '<label htmlFor={foo} />', errors: [expectedError] },
-    { code: '<label htmlFor={`${id}`} />', errors: [expectedError] },
-    { code: '<label htmlFor="foo">Test!</label>', errors: [expectedError] },
-    //
-    // // CUSTOM ELEMENT ARRAY OPTION TESTS
-    { code: '<Label></Label>', errors: [expectedError], options: array },
-    { code: '<Label htmlFor="foo" />', errors: [expectedError], options: array },
-    { code: '<Label htmlFor={"foo"} />', errors: [expectedError], options: array },
-    { code: '<Label htmlFor={foo} />', errors: [expectedError], options: array },
-    { code: '<Label htmlFor={`${id}`} />', errors: [expectedError], options: array },
-    { code: '<Label htmlFor="foo">Test!</Label>', errors: [expectedError], options: array },
-    { code: '<Descriptor htmlFor="foo" />', errors: [expectedError], options: array },
-    { code: '<Descriptor htmlFor={"foo"} />', errors: [expectedError], options: array },
-    { code: '<Descriptor htmlFor={foo} />', errors: [expectedError], options: array },
-    { code: '<Descriptor htmlFor={`${id}`} />', errors: [expectedError], options: array },
-    {
-      code: '<Descriptor htmlFor="foo">Test!</Descriptor>',
-      errors: [expectedError],
-      options: array,
-    },
+
+    // CUSTOM ELEMENT ARRAY OPTION TESTS
     { code: '<Label id="foo" />', errors: [expectedError], options: array },
     {
       code: '<Label htmlFor={undefined} />',
@@ -148,11 +115,11 @@ ruleTester.run('label-has-for', rule, {
       errors: [expectedError],
       options: array,
     },
-    { code: '<label>{children}</label>', errors: [expectedError], options: array },
     { code: '<label htmlFor="foo" />', errors: [expectedError], options: optionsRequiredNesting },
     { code: '<label>First Name</label>', errors: [expectedError], options: optionsRequiredNesting },
     { code: '<label>First Name</label>', errors: [expectedError], options: optionsRequiredSome },
-    { code: '<label>{children}</label>', errors: [expectedError], options: optionsRequiredSome },
-    { code: '<label>{children}</label>', errors: [expectedError], options: optionsRequiredNesting },
+    { code: '<label htmlFor="foo" />', errors: [expectedError], options: optionsRequiredEvery },
+    { code: '<label><input /></label>', errors: [expectedError], options: optionsRequiredEvery },
+    { code: '<label>First Name</label>', errors: [expectedError], options: optionsRequiredEvery },
   ].map(parserOptionsMapper),
 });
