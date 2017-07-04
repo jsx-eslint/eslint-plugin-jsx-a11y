@@ -47,10 +47,9 @@ module.exports = {
           return;
         }
 
-        const name = propName(prop);
-        const normalizedName = name ? name.toLowerCase() : '';
+        const name = propName(prop).toLowerCase();
 
-        if (invalidAttributes.indexOf(normalizedName) > -1) {
+        if (invalidAttributes.indexOf(name) > -1) {
           context.report({
             node,
             message: errorMessage(name),

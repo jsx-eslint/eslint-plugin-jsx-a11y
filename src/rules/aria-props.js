@@ -36,7 +36,7 @@ module.exports = {
   create: context => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute);
-      const normalizedName = name ? name.toLowerCase() : '';
+      const normalizedName = name.toLowerCase();
 
       // `aria` needs to be prefix of property.
       if (normalizedName.indexOf('aria-') !== 0) {

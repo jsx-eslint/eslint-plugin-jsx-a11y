@@ -26,10 +26,9 @@ module.exports = {
 
   create: context => ({
     JSXAttribute: (attribute) => {
-      const name = propName(attribute);
-      const normalizedName = name ? name.toLowerCase() : '';
+      const name = propName(attribute).toLowerCase();
 
-      if (normalizedName !== 'role') {
+      if (name !== 'role') {
         return;
       }
 

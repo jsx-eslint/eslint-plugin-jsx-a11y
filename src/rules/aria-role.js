@@ -41,10 +41,9 @@ module.exports = {
       }
 
       // Get prop name
-      const name = propName(attribute);
-      const normalizedName = name ? name.toUpperCase() : '';
+      const name = propName(attribute).toUpperCase();
 
-      if (normalizedName !== 'ROLE') { return; }
+      if (name !== 'ROLE') { return; }
 
       const value = getLiteralPropValue(attribute);
 

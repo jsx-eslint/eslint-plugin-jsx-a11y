@@ -22,11 +22,10 @@ module.exports = {
 
   create: context => ({
     JSXAttribute: (attribute) => {
-      const name = propName(attribute);
-      const normalizedName = name ? name.toUpperCase() : '';
+      const name = propName(attribute).toUpperCase();
 
       // Check if tabIndex is the attribute
-      if (normalizedName !== 'TABINDEX') {
+      if (name !== 'TABINDEX') {
         return;
       }
 
