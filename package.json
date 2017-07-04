@@ -73,7 +73,8 @@
   },
   "jest": {
     "coverageReporters": [
-      "lcov"
+      "lcov",
+      "html"
     ],
     "coverageDirectory": "reports",
     "roots": [
