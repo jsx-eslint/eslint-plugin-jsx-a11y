@@ -2,6 +2,7 @@
 import expect from 'expect';
 import attributesComparator from '../../../src/util/attributesComparator';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
+import JSXElementMock from '../../../__mocks__/JSXElementMock';
 
 describe('attributesComparator', () => {
   describe('base attributes', () => {
@@ -65,6 +66,7 @@ describe('attributesComparator', () => {
           describe('and the values are the different', () => {
             it('should return false', () => {
               attributes = [
+                JSXElementMock(),
                 JSXAttributeMock('biz', 2),
                 JSXAttributeMock('ziff', 'opo'),
                 JSXAttributeMock('far', 'lolz'),

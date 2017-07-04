@@ -30,7 +30,7 @@ module.exports = {
       const onMouseOver = getProp(attributes, 'onMouseOver');
       const onMouseOverValue = getPropValue(onMouseOver);
 
-      if (onMouseOver && (onMouseOverValue !== null || onMouseOverValue !== undefined)) {
+      if (onMouseOver && onMouseOverValue != null) {
         const hasOnFocus = getProp(attributes, 'onFocus');
         const onFocusValue = getPropValue(hasOnFocus);
 
@@ -45,7 +45,7 @@ module.exports = {
       // Checkout onmouseout / onblur pairing
       const onMouseOut = getProp(attributes, 'onMouseOut');
       const onMouseOutValue = getPropValue(onMouseOut);
-      if (onMouseOut && (onMouseOutValue !== null || onMouseOutValue !== undefined)) {
+      if (onMouseOut && onMouseOutValue != null) {
         const hasOnBlur = getProp(attributes, 'onBlur');
         const onBlurValue = getPropValue(hasOnBlur);
 

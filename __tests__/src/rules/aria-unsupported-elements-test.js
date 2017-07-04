@@ -44,6 +44,9 @@ const ariaValidityTests = domElements.map((element) => {
   return {
     code: `<${element} ${aria} />`,
   };
+}).concat({
+  code: '<fake aria-hidden />',
+  errors: [errorMessage('aria-hidden')],
 });
 
 // Generate invalid test cases.
@@ -57,7 +60,7 @@ const invalidRoleValidityTests = domElements
 const invalidAriaValidityTests = domElements
   .filter(element => Boolean(dom.get(element).reserved))
   .map(reservedElem => ({
-    code: `<${reservedElem} aria-hidden {...props} />`,
+    code: `<${reservedElem} aria-hidden aria-role="none" {...props} />`,
     errors: [errorMessage('aria-hidden')],
   }));
 
