@@ -20,6 +20,18 @@
 - [fix] README updates explaining recommended and strict configs. Thanks @Donaldini.
 - [fix] Updated to aria-query@0.7.0, which includes new ARIA 1.1 properties. Previously, the `aria-props` rule incorrectly threw errors for these new properties.
 
+5.1.1 / 2017-07-03
+==================
+ - [fix] revert v6 breaking changes unintentionally added in v5.1 (#283)
+
+5.1.0 / 2017-06-26
+==================
+ - [new] Support eslint v4. (#267)
+ - [new] `label-has-for`: add "required" option to allow customization (#240)
+ - [new] add `anchor-is-valid` (#224)
+ - [new] `interactive-supports-focus`: Split interactive supports focus into tabbable and focusable cases (#236)
+ - [new] `anchor-is-valid`: add `aspects` option (#251)
+ - [Deps] Bump aria-query to 0.7.0
 
 5.0.3 / 2017-05-16
 ==================
