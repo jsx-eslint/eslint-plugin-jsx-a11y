@@ -14,6 +14,7 @@ import {
 import includes from 'array-includes';
 import attributesComparator from './attributesComparator';
 
+const domKeys = [...dom.keys()];
 const roleKeys = [...roles.keys()];
 const elementRoleEntries = [...elementRoles];
 
@@ -145,7 +146,7 @@ const isInteractiveElement = (
 ): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (!dom.keys(tagName)) {
+  if (!includes(domKeys, tagName)) {
     return false;
   }
 

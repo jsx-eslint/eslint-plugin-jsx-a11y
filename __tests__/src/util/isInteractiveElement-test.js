@@ -2,6 +2,7 @@
 import expect from 'expect';
 import { elementType } from 'jsx-ast-utils';
 import isInteractiveElement from '../../../src/util/isInteractiveElement';
+import JSXElementMock from '../../../__mocks__/JSXElementMock';
 import {
   genElementSymbol,
   genIndeterminantInteractiveElements,
@@ -77,5 +78,10 @@ describe('isInteractiveElement', () => {
         });
       },
     );
+  });
+  describe('JSX elements', () => {
+    it('is not interactive', () => {
+      expect(isInteractiveElement('CustomComponent', JSXElementMock())).toBe(false);
+    });
   });
 });

@@ -368,6 +368,7 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
     ...alwaysValid,
     { code: '<tr role="presentation" />;' },
+    { code: '<Component role="presentation" />;' },
   ]
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),

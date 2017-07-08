@@ -63,7 +63,7 @@ module.exports = {
   create: context => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute);
-      const normalizedName = name ? name.toLowerCase() : '';
+      const normalizedName = name.toLowerCase();
 
       // Not a valid aria-* state or property.
       if (normalizedName.indexOf('aria-') !== 0 || aria.get(normalizedName) === undefined) {

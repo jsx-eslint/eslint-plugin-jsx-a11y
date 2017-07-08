@@ -24,10 +24,12 @@ const errorMessage = {
   type: 'JSXAttribute',
 };
 
-const validRoles = [...roles.keys()].filter(
+const roleKeys = [...roles.keys()];
+
+const validRoles = roleKeys.filter(
   role => roles.get(role).abstract === false,
 );
-const invalidRoles = [...roles.keys()].filter(
+const invalidRoles = roleKeys.filter(
   role => roles.get(role).abstract === true,
 );
 
@@ -60,6 +62,8 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role="doc-appendix doc-bibliography" />' },
     { code: '<Bar baz />' },
     { code: '<Foo role="bar" />', options: ignoreNonDOMSchema },
+    { code: '<fakeDOM role="bar" />', options: ignoreNonDOMSchema },
+    { code: '<img role="presentation" />', options: ignoreNonDOMSchema },
   ].concat(validTests).map(parserOptionsMapper),
 
   invalid: [

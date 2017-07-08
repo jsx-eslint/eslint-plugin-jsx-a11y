@@ -36,6 +36,7 @@ ruleTester.run('no-autofocus', rule, {
     { code: '<input autofocus="true" />;' },
     { code: '<Foo bar />' },
     { code: '<Foo autoFocus />', options: ignoreNonDOMSchema },
+    { code: '<div><div autofocus /></div>', options: ignoreNonDOMSchema },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div autoFocus />', errors: [expectedError] },
