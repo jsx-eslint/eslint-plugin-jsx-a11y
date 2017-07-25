@@ -8,8 +8,8 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { roles } from 'aria-query';
-import { getProp, getLiteralPropValue, propName } from 'jsx-ast-utils';
+import { dom, roles } from 'aria-query';
+import { elementType, getProp, getLiteralPropValue, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
 const errorMessage = (role, requiredProps) =>
@@ -29,6 +29,11 @@ module.exports = {
       const name = propName(attribute).toLowerCase();
 
       if (name !== 'role') {
+        return;
+      }
+
+      const type = elementType(attribute.parent);
+      if (!dom.get(type)) {
         return;
       }
 

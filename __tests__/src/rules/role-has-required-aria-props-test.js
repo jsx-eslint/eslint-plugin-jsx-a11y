@@ -47,6 +47,7 @@ const basicValidityTests = [...roles.keys()].map((role) => {
 ruleTester.run('role-has-required-aria-props', rule, {
   valid: [
     { code: '<Bar baz />' },
+    { code: '<MyComponent role="combobox" />' },
     // Variables should pass, as we are only testing literals.
     { code: '<div />' },
     { code: '<div></div>' },
