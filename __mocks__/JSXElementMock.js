@@ -1,4 +1,14 @@
-export default function JSXElementMock(tagName, attributes, children = []) {
+/**
+ * @flow
+ */
+
+import JSXAttributeMock from './JSXAttributeMock';
+
+export default function JSXElementMock(
+  tagName: string,
+  attributes: Array<JSXAttributeMock>,
+  children: Array<Node> = [],
+) {
   return {
     type: 'JSXElement',
     openingElement: {
