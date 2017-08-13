@@ -71,13 +71,16 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label htmlFor="foo">Test!</label>', options: optionsRequiredSome },
     { code: '<label><input /></label>', options: optionsRequiredSome },
     { code: '<label><input /></label>', options: optionsRequiredNesting },
+    { code: '<label>Some label<input /></label>', options: optionsRequiredSome },
+    { code: '<label>Some label<input /></label>', options: optionsRequiredNesting },
+    { code: '<label>{"Some label"}<input /></label>', options: optionsRequiredSome },
+    { code: '<label>{"Some label"}<input /></label>', options: optionsRequiredNesting },
+    { code: '<label><input /></label>', options: [assign({}, optionsRequiredSome[0], optionsChildrenAllowed)] },
     { code: '<label htmlFor="input"><input /></label>', options: optionsRequiredEvery },
-    { code: '<label><input /></label>', options: optionsChildrenAllowed },
-    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [assign({}, array, optionsChildrenAllowed)] },
-    { code: '<label>Test!</label>', options: optionsChildrenAllowed },
-    { code: '<label htmlFor="foo">Test!</label>', options: optionsChildrenAllowed },
+    { code: '<label><div dangerouslySetInnerHTML={{__html: "hello"}} /></label>', options: [assign({}, optionsRequiredSome[0], optionsChildrenAllowed)] },
     { code: '<label>{children}</label>', options: optionsChildrenAllowed },
     { code: '<label htmlFor="children">{children}</label>', options: optionsChildrenAllowed },
+    { code: '<label>{this.props.children}</label>', options: optionsChildrenAllowed },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT 'label' TESTS
@@ -93,8 +96,8 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label htmlFor={foo} />', errors: [expectedError] },
     { code: '<label htmlFor={`${id}`} />', errors: [expectedError] },
     { code: '<label htmlFor="foo">Test!</label>', errors: [expectedError] },
-    //
-    // // CUSTOM ELEMENT ARRAY OPTION TESTS
+
+    // CUSTOM ELEMENT ARRAY OPTION TESTS
     { code: '<Label></Label>', errors: [expectedError], options: array },
     { code: '<Label htmlFor="foo" />', errors: [expectedError], options: array },
     { code: '<Label htmlFor={"foo"} />', errors: [expectedError], options: array },
@@ -154,5 +157,20 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label>First Name</label>', errors: [expectedError], options: optionsRequiredSome },
     { code: '<label>{children}</label>', errors: [expectedError], options: optionsRequiredSome },
     { code: '<label>{children}</label>', errors: [expectedError], options: optionsRequiredNesting },
+    { code: '<label>Some label<input /></label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label>{"Some label"}<input /></label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label><input /></label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label htmlFor="div"><div /></label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label>Test!</label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label htmlFor="foo">Test!</label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label htmlFor="something"><span>Firstname</span></label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label><SomeComponent /></label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label>{this.renderInput()}</label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label htmlFor="something"><SomeComponent /></label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label htmlFor="something">{this.renderInput()}</label>', errors: [expectedError], options: optionsChildrenAllowed },
+    { code: '<label htmlFor="something"><div dangerouslySetInnerHTML={hello} /></label>', errors: [expectedError], options: optionsChildrenAllowed },
+    // Invalid options
+    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', errors: [expectedError], options: array },
+    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', errors: [expectedError], options: [assign({}, array[0], optionsChildrenAllowed[0])] },
   ].map(parserOptionsMapper),
 });
