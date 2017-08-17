@@ -11,7 +11,7 @@ import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 
-const errorMessage = 'Form label must have associated control';
+const errorMessage = 'Form label must have associated control and wrap the control.';
 
 const enumValues = ['nesting', 'id'];
 const schema = {
