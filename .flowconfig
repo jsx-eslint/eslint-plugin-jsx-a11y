@@ -1,3 +1,6 @@
+[lints]
+sketchy-null-mixed=warn
+
 [ignore]
 <PROJECT_ROOT>/lib/.*
 <PROJECT_ROOT>/docs/.*

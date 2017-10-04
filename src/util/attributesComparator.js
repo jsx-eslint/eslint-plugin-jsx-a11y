@@ -29,12 +29,15 @@ function attributesComparator(
         }
         // Value exists and does not match.
         if (
+          /*
           baseAttr.value !== null &&
           baseAttr.value !== false &&
           baseAttr.value !== undefined &&
           baseAttr.value !== '' &&
           baseAttr.value !== 0 &&
           Object.prototype.hasOwnProperty.call(baseAttr, 'value') &&
+          */
+          baseAttr.value &&
           baseAttr.value !== getLiteralPropValue(attribute)
         ) {
           return false;
