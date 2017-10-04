@@ -34,7 +34,6 @@ function attributesComparator(
           baseAttr.value !== undefined &&
           baseAttr.value !== '' &&
           baseAttr.value !== 0 &&
-          baseAttr.value !== NaN &&
           Object.prototype.hasOwnProperty.call(baseAttr, 'value') &&
           baseAttr.value !== getLiteralPropValue(attribute)
         ) {
