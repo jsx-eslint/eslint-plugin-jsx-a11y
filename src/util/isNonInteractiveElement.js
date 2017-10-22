@@ -18,36 +18,28 @@ import attributesComparator from './attributesComparator';
 const roleKeys = [...roles.keys()];
 const elementRoleEntries = [...elementRoles];
 
-const nonInteractiveRoles = new Set(
-  roleKeys
-    .filter((name) => {
-      const role = roles.get(name);
-      return (
-        !role.abstract
-        && !role.superClass.some(
-          classes => includes(classes, 'widget'),
-        )
-      );
-    }),
-);
+const nonInteractiveRoles = new Set(roleKeys
+  .filter((name) => {
+    const role = roles.get(name);
+    return (
+      !role.abstract
+        && !role.superClass.some(classes => includes(classes, 'widget'))
+    );
+  }));
 
-const interactiveRoles = new Set(
-    [].concat(
-      roleKeys,
-      // 'toolbar' does not descend from widget, but it does support
-      // aria-activedescendant, thus in practice we treat it as a widget.
-      'toolbar',
-    )
-    .filter((name) => {
-      const role = roles.get(name);
-      return (
-        !role.abstract
-        && role.superClass.some(
-          classes => includes(classes, 'widget'),
-        )
-      );
-    }),
-);
+const interactiveRoles = new Set([].concat(
+  roleKeys,
+  // 'toolbar' does not descend from widget, but it does support
+  // aria-activedescendant, thus in practice we treat it as a widget.
+  'toolbar',
+)
+  .filter((name) => {
+    const role = roles.get(name);
+    return (
+      !role.abstract
+        && role.superClass.some(classes => includes(classes, 'widget'))
+    );
+  }));
 
 const nonInteractiveElementRoleSchemas = elementRoleEntries
   .reduce((
@@ -57,9 +49,7 @@ const nonInteractiveElementRoleSchemas = elementRoleEntries
       roleSet,
     ],
   ) => {
-    if ([...roleSet].every(
-      (role): boolean => nonInteractiveRoles.has(role),
-    )) {
+    if ([...roleSet].every((role): boolean => nonInteractiveRoles.has(role))) {
       accumulator.push(elementSchema);
     }
     return accumulator;
@@ -73,18 +63,14 @@ const interactiveElementRoleSchemas = elementRoleEntries
       roleSet,
     ],
   ) => {
-    if ([...roleSet].some(
-      (role): boolean => interactiveRoles.has(role),
-    )) {
+    if ([...roleSet].some((role): boolean => interactiveRoles.has(role))) {
       accumulator.push(elementSchema);
     }
     return accumulator;
   }, []);
 
-const nonInteractiveAXObjects = new Set(
-  [...AXObjects.keys()]
-    .filter(name => includes(['window', 'structure'], AXObjects.get(name).type)),
-);
+const nonInteractiveAXObjects = new Set([...AXObjects.keys()]
+  .filter(name => includes(['window', 'structure'], AXObjects.get(name).type)));
 
 const nonInteractiveElementAXObjectSchemas = [...elementAXObjects]
   .reduce((
@@ -94,9 +80,7 @@ const nonInteractiveElementAXObjectSchemas = [...elementAXObjects]
       AXObjectSet,
     ],
   ) => {
-    if ([...AXObjectSet].every(
-      (role): boolean => nonInteractiveAXObjects.has(role),
-    )) {
+    if ([...AXObjectSet].every((role): boolean => nonInteractiveAXObjects.has(role))) {
       accumulator.push(elementSchema);
     }
     return accumulator;

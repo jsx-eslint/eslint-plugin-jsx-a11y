@@ -142,8 +142,8 @@ export function genElementSymbol(openingElement: Object) {
     openingElement.name.name +
     (openingElement.attributes.length > 0
       ? `${openingElement.attributes
-          .map(attr => `[${attr.name.name}="${attr.value.value}"]`)
-          .join('')}`
+        .map(attr => `[${attr.name.name}="${attr.value.value}"]`)
+        .join('')}`
       : '')
   );
 }
@@ -156,16 +156,14 @@ export function genInteractiveElements() {
       name = elementSymbol.slice(0, bracketIndex);
     }
     const attributes = interactiveElementsMap[elementSymbol].map(({ prop, value }) =>
-      JSXAttributeMock(prop, value),
-    );
+      JSXAttributeMock(prop, value));
     return JSXElementMock(name, attributes);
   });
 }
 
 export function genInteractiveRoleElements() {
   return [...interactiveRoles, 'button article', 'fakerole button article'].map(value =>
-    JSXElementMock('div', [JSXAttributeMock('role', value)]),
-  );
+    JSXElementMock('div', [JSXAttributeMock('role', value)]));
 }
 
 export function genNonInteractiveElements() {
@@ -176,16 +174,14 @@ export function genNonInteractiveElements() {
       name = elementSymbol.slice(0, bracketIndex);
     }
     const attributes = nonInteractiveElementsMap[elementSymbol].map(({ prop, value }) =>
-      JSXAttributeMock(prop, value),
-    );
+      JSXAttributeMock(prop, value));
     return JSXElementMock(name, attributes);
   });
 }
 
 export function genNonInteractiveRoleElements() {
   return [...nonInteractiveRoles, 'article button', 'fakerole article button'].map(value =>
-    JSXElementMock('div', [JSXAttributeMock('role', value)]),
-  );
+    JSXElementMock('div', [JSXAttributeMock('role', value)]));
 }
 
 export function genAbstractRoleElements() {
@@ -199,8 +195,7 @@ export function genNonAbstractRoleElements() {
 export function genIndeterminantInteractiveElements() {
   return Object.keys(indeterminantInteractiveElementsMap).map((name) => {
     const attributes = indeterminantInteractiveElementsMap[name].map(({ prop, value }) =>
-      JSXAttributeMock(prop, value),
-    );
+      JSXAttributeMock(prop, value));
     return JSXElementMock(name, attributes);
   });
 }

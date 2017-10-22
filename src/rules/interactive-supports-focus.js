@@ -35,13 +35,9 @@ import getTabIndex from '../util/getTabIndex';
 // ----------------------------------------------------------------------------
 
 const schema = generateObjSchema({
-  tabbable: enumArraySchema(
-    [...roles.keys()]
-      .filter(name => !roles.get(name).abstract)
-      .filter(name => roles.get(name).superClass.some(
-        klasses => includes(klasses, 'widget')),
-      ),
-  ),
+  tabbable: enumArraySchema([...roles.keys()]
+    .filter(name => !roles.get(name).abstract)
+    .filter(name => roles.get(name).superClass.some(klasses => includes(klasses, 'widget')))),
 });
 const domElements = [...dom.keys()];
 
@@ -61,18 +57,14 @@ module.exports = {
       tabbable: Array<string>
     }
   }) => ({
-    JSXOpeningElement: (
-      node: JSXOpeningElement,
-    ) => {
+    JSXOpeningElement: (node: JSXOpeningElement) => {
       const tabbable = (
         context.options && context.options[0] && context.options[0].tabbable
       ) || [];
-      const attributes = node.attributes;
+      const { attributes } = node;
       const type = elementType(node);
       const hasInteractiveProps = hasAnyProp(attributes, interactiveProps);
-      const hasTabindex = getTabIndex(
-        getProp(attributes, 'tabIndex'),
-      ) !== undefined;
+      const hasTabindex = getTabIndex(getProp(attributes, 'tabIndex')) !== undefined;
 
       if (!includes(domElements, type)) {
         // Do not test higher level JSX components, as we do not know what

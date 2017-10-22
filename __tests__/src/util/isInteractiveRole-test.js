@@ -16,17 +16,15 @@ describe('isInteractiveRole', () => {
     });
   });
   describe('elements with a non-interactive role', () => {
-    genNonInteractiveRoleElements().forEach(
-      ({ openingElement }) => {
-        const attributes = openingElement.attributes;
-        it(`should not identify \`${genElementSymbol(openingElement)}\` as an interactive role element`, () => {
-          expect(isInteractiveRole(
-            elementType(openingElement),
-            attributes,
-          )).toBe(false);
-        });
-      },
-    );
+    genNonInteractiveRoleElements().forEach(({ openingElement }) => {
+      const { attributes } = openingElement;
+      it(`should not identify \`${genElementSymbol(openingElement)}\` as an interactive role element`, () => {
+        expect(isInteractiveRole(
+          elementType(openingElement),
+          attributes,
+        )).toBe(false);
+      });
+    });
   });
   describe('elements without a role', () => {
     it('should not identify them as interactive role elements', () => {
@@ -34,16 +32,14 @@ describe('isInteractiveRole', () => {
     });
   });
   describe('elements with an interactive role', () => {
-    genInteractiveRoleElements().forEach(
-      ({ openingElement }) => {
-        const attributes = openingElement.attributes;
-        it(`should identify \`${genElementSymbol(openingElement)}\` as an interactive role element`, () => {
-          expect(isInteractiveRole(
-            elementType(openingElement),
-            attributes,
-          )).toBe(true);
-        });
-      },
-    );
+    genInteractiveRoleElements().forEach(({ openingElement }) => {
+      const { attributes } = openingElement;
+      it(`should identify \`${genElementSymbol(openingElement)}\` as an interactive role element`, () => {
+        expect(isInteractiveRole(
+          elementType(openingElement),
+          attributes,
+        )).toBe(true);
+      });
+    });
   });
 });

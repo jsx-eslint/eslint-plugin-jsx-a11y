@@ -28,20 +28,16 @@ export default function transformer(file, api, options) {
     .forEach((path, index) => {
       // Add rule path.
       if (index === 0) {
-        path.parentPath.value.value.properties.unshift(
-          j.property(
-            'init',
-            j.literal(ruleName),
-            j.callExpression(j.identifier('require'), [j.literal(rulePathInSrc)]),
-          ),
-        );
+        path.parentPath.value.value.properties.unshift(j.property(
+          'init',
+          j.literal(ruleName),
+          j.callExpression(j.identifier('require'), [j.literal(rulePathInSrc)]),
+        ));
         path.parentPath.value.value.properties.sort(nameSort);
       }
       // Set default reporting to error.
       if (index === 1) {
-        path.parentPath.value.value.properties.unshift(
-          j.property('init', j.literal(`jsx-a11y/${ruleName}`), j.literal('error')),
-        );
+        path.parentPath.value.value.properties.unshift(j.property('init', j.literal(`jsx-a11y/${ruleName}`), j.literal('error')));
         path.parentPath.value.value.properties.sort(nameSort);
       }
     }).length;

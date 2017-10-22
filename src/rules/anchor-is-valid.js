@@ -39,7 +39,7 @@ module.exports = {
 
   create: (context: ESLintContext) => ({
     JSXOpeningElement: (node: JSXOpeningElement) => {
-      const attributes = node.attributes;
+      const { attributes } = node;
       const options = context.options[0] || {};
       const componentOptions = options.components || [];
       const typeCheck = ['a'].concat(componentOptions);
@@ -67,11 +67,11 @@ module.exports = {
         .map(prop => getPropValue(prop));
       // Checks if any actual or custom href prop is provided.
       const hasAnyHref = values
-          .filter(value => value === undefined || value === null).length !== values.length;
+        .filter(value => value === undefined || value === null).length !== values.length;
       // Need to check for spread operator as props can be spread onto the element
       // leading to an incorrect validation error.
       const hasSpreadOperator = attributes
-          .filter(prop => prop.type === 'JSXSpreadAttribute').length > 0;
+        .filter(prop => prop.type === 'JSXSpreadAttribute').length > 0;
       const onClick = getProp(attributes, 'onClick');
 
       // When there is no href at all, specific scenarios apply:
@@ -99,7 +99,7 @@ module.exports = {
       const invalidHrefValues = values
         .filter(value => value !== undefined && value !== null)
         .filter(value =>
-        typeof value === 'string' &&
+          typeof value === 'string' &&
         (!value.length
           || value === '#'
           || /^\W*?javascript/.test(value)

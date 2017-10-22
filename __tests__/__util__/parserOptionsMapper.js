@@ -8,7 +8,7 @@ const defaultParserOptions = {
 export default function parserOptionsMapper({
   code,
   errors,
-  options,
+  options = [],
   parserOptions = {},
 }) {
   return {

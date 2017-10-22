@@ -175,10 +175,7 @@ const passReducer = (roles, handlers, messageTemplate) =>
       roleAcc.concat(handlers
         .map(handler => ({
           code: messageTemplate(element, role, handler),
-        }),
-      ),
-    ), []),
-  ), []);
+        }))), [])), []);
 
 const failReducer = (roles, handlers, messageTemplate) =>
   staticElements.reduce((elementAcc, element) =>
@@ -190,10 +187,7 @@ const failReducer = (roles, handlers, messageTemplate) =>
             type,
             message: messageTemplate(role),
           }],
-        }),
-      ),
-    ), []),
-  ), []);
+        }))), [])), []);
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
