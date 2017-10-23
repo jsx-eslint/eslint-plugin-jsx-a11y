@@ -63,7 +63,7 @@
     "aria-query": "^0.7.0",
     "array-includes": "^3.0.3",
     "ast-types-flow": "0.0.7",
-    "axobject-query": "^0.1.0",
+    "axobject-query": "^0.2.0",
     "damerau-levenshtein": "^1.0.0",
     "emoji-regex": "^6.1.0",
     "jsx-ast-utils": "^2.0.0"
