@@ -139,6 +139,7 @@ const alwaysValid = [
   { code: '<input type="url" role="listitem" />' },
   { code: '<input type="week" role="listitem" />' },
   /* End all flavors of input */
+  { code: '<label role="button" />;' },
   { code: '<menuitem role="listitem" />;' },
   { code: '<option className="foo" role="listitem" />' },
   { code: '<select className="foo" role="listitem" />' },
@@ -378,7 +379,6 @@ const neverValid = [
   { code: '<hr role="button" />;', errors: [expectedError] },
   { code: '<iframe role="button" />;', errors: [expectedError] },
   { code: '<img role="button" />;', errors: [expectedError] },
-  { code: '<label role="button" />;', errors: [expectedError] },
   { code: '<legend role="button" />;', errors: [expectedError] },
   { code: '<li role="button" />;', errors: [expectedError] },
   { code: '<mark role="button" />;', errors: [expectedError] },
