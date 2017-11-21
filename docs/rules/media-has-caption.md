@@ -2,7 +2,7 @@
 
 Providing captions for media is essential for deaf users to follow along. Captions should be a transcription or translation of the dialogue, sound effects, relevant musical cues, and other relevant audio information. Not only is this important for accessibility, but can also be useful for all users in the case that the media is unavailable (similar to `alt` text on an image when an image is unable to load).
 
-The captions should contain all important and relevant information to understand the corresponding media. This may mean that the captions are not a 1:1 mapping of the dialogue in the media content.
+The captions should contain all important and relevant information to understand the corresponding media. This may mean that the captions are not a 1:1 mapping of the dialogue in the media content. However, captions are *not* necessary for video components with the mute attribute.
 
 ### References
 
@@ -31,6 +31,7 @@ For the `audio`, `video`, and `track` options, these strings determine which JSX
 ```jsx
 <audio><track kind="captions" {...props} /></audio>
 <video><track kind="captions" {...props} /></video>
+<video mute {...props} ></video>
 ```
 
 ### Fail
