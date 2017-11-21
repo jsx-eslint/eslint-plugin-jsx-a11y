@@ -48,7 +48,11 @@ module.exports = {
       if (!isMediaType(context, type)) {
         return;
       }
-
+      const muteProp = getProp(element.attributes, 'mute');
+      const mutePropVal: boolean = getLiteralPropValue(muteProp);
+      if (mutePropVal === true) {
+        return;
+      }
       // $FlowFixMe https://github.com/facebook/flow/issues/1414
       const trackChildren: Array<JSXElement> = node.children.filter((child: Node) => {
         if (child.type !== 'JSXElement') {
