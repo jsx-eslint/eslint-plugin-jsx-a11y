@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-jsx-a11y",
+  "name": "@coursera/eslint-plugin-jsx-a11y",
   "version": "6.0.2",
   "description": "Static AST checker for accessibility rules on JSX elements.",
   "keywords": [
@@ -60,6 +60,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@coursera/jsx-ast-utils": "2.0.2-0",
     "aria-query": "^0.7.0",
     "array-includes": "^3.0.3",
     "ast-types-flow": "0.0.7",
