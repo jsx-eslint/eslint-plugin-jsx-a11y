@@ -21,8 +21,8 @@ This rule takes one optional object argument of type object:
             "required": {
                 "every": [ "nesting", "id" ]
             },
-            "allowChildren": false,
-        }],
+            "allowChildren": false
+        }]
     }
 }
 ```
