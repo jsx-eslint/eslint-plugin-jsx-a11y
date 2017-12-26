@@ -5,6 +5,5 @@
 /flow
 /node_modules
 npm-debug.log
-/src
 /reports
 yarn-error.log
