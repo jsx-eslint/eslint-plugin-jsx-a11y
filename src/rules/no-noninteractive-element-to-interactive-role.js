@@ -48,17 +48,15 @@ module.exports = {
   },
 
   create: (context: ESLintContext) => {
-    const options = context.options;
+    const { options } = context;
     return {
-      JSXAttribute: (
-        attribute: ESLintJSXAttribute,
-      ) => {
+      JSXAttribute: (attribute: ESLintJSXAttribute) => {
         const attributeName: JSXIdentifier = propName(attribute);
         if (attributeName !== 'role') {
           return;
         }
         const node = attribute.parent;
-        const attributes = node.attributes;
+        const { attributes } = node;
         const type = elementType(node);
         const role = getLiteralPropValue(getProp(node.attributes, 'role'));
 

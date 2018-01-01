@@ -40,6 +40,7 @@ const validityCheck = (value, expectedType, permittedValues) => {
     case 'integer':
     case 'number':
       // Booleans resolve to 0/1 values so hard check that it's not first.
+      // eslint-disable-next-line no-restricted-globals
       return typeof value !== 'boolean' && isNaN(Number(value)) === false;
     case 'token':
       return permittedValues.indexOf(typeof value === 'string' ? value.toLowerCase() : value) > -1;

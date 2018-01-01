@@ -5,8 +5,6 @@ const presentationRoles = new Set([
   'none',
 ]);
 
-const isPresentationRole = (tagName, attributes) => presentationRoles.has(
-    getLiteralPropValue(getProp(attributes, 'role')),
-  );
+const isPresentationRole = (tagName, attributes) => presentationRoles.has(getLiteralPropValue(getProp(attributes, 'role')));
 
 export default isPresentationRole;

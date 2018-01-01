@@ -16,29 +16,25 @@ describe('isAbstractRole', () => {
     });
   });
   describe('elements with an abstract role', () => {
-    genAbstractRoleElements().forEach(
-      ({ openingElement }) => {
-        const attributes = openingElement.attributes;
-        it(`should identify \`${genElementSymbol(openingElement)}\` as an abstract role element`, () => {
-          expect(isAbstractRole(
-            elementType(openingElement),
-            attributes,
-          )).toBe(true);
-        });
-      },
-    );
+    genAbstractRoleElements().forEach(({ openingElement }) => {
+      const { attributes } = openingElement;
+      it(`should identify \`${genElementSymbol(openingElement)}\` as an abstract role element`, () => {
+        expect(isAbstractRole(
+          elementType(openingElement),
+          attributes,
+        )).toBe(true);
+      });
+    });
   });
   describe('elements with a non-abstract role', () => {
-    genNonAbstractRoleElements().forEach(
-      ({ openingElement }) => {
-        const attributes = openingElement.attributes;
-        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an abstract role element`, () => {
-          expect(isAbstractRole(
-            elementType(openingElement),
-            attributes,
-          )).toBe(false);
-        });
-      },
-    );
+    genNonAbstractRoleElements().forEach(({ openingElement }) => {
+      const { attributes } = openingElement;
+      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an abstract role element`, () => {
+        expect(isAbstractRole(
+          elementType(openingElement),
+          attributes,
+        )).toBe(false);
+      });
+    });
   });
 });

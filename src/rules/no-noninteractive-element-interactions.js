@@ -49,12 +49,10 @@ module.exports = {
   },
 
   create: (context: ESLintContext) => {
-    const options = context.options;
+    const { options } = context;
     return {
-      JSXOpeningElement: (
-        node: JSXOpeningElement,
-      ) => {
-        const attributes = node.attributes;
+      JSXOpeningElement: (node: JSXOpeningElement) => {
+        const { attributes } = node;
         const type = elementType(node);
         const interactiveProps = options[0]
           ? options[0].handlers

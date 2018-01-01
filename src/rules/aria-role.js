@@ -53,9 +53,7 @@ module.exports = {
       if (value === undefined || value === null) { return; }
 
       const normalizedValues = String(value).toLowerCase().split(' ');
-      const validRoles = [...roles.keys()].filter(
-        role => roles.get(role).abstract === false,
-      );
+      const validRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
       const isValid = normalizedValues.every(val => validRoles.indexOf(val) > -1);
 
       if (isValid === true) { return; }

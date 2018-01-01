@@ -32,6 +32,7 @@ module.exports = {
       // Only check literals because we can't infer values from certain expressions.
       const value = Number(getLiteralPropValue(attribute));
 
+      // eslint-disable-next-line no-restricted-globals
       if (isNaN(value) || value <= 0) {
         return;
       }

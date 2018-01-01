@@ -5,7 +5,7 @@ const argv = require('minimist')(process.argv.slice(2)); // eslint-disable-line 
 const ruleBoilerplateGenerator = require('./boilerplate/rule');
 const testBoilerplateGenerator = require('./boilerplate/test');
 const docBoilerplateGenerator = require('./boilerplate/doc');
-const exec = require('child_process').exec;
+const { exec } = require('child_process');
 
 const ruleName = argv._[0];
 const author = argv.author || '$AUTHOR';
