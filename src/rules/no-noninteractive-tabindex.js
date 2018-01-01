@@ -47,27 +47,23 @@ module.exports = {
   },
 
   create: (context: ESLintContext) => {
-    const options = context.options;
+    const { options } = context;
     return {
-      JSXOpeningElement: (
-          node: JSXOpeningElement,
-        ) => {
+      JSXOpeningElement: (node: JSXOpeningElement) => {
         const type = elementType(node);
-        const attributes = node.attributes;
+        const { attributes } = node;
         const tabIndexProp = getProp(attributes, 'tabIndex');
         const tabIndex = getTabIndex(tabIndexProp);
         // Early return;
         if (typeof tabIndex === 'undefined') {
           return;
         }
-        const role = getLiteralPropValue(
-          getProp(node.attributes, 'role'),
-        );
+        const role = getLiteralPropValue(getProp(node.attributes, 'role'));
 
 
         if (!dom.has(type)) {
-            // Do not test higher level JSX components, as we do not know what
-            // low-level DOM element this maps to.
+          // Do not test higher level JSX components, as we do not know what
+          // low-level DOM element this maps to.
           return;
         }
         // Allow for configuration overrides.

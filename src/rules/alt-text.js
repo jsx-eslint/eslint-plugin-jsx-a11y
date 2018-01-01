@@ -164,9 +164,8 @@ module.exports = {
     const customComponents = elementOptions
       .map(element => options[element])
       .reduce(
-        (components, customComponentsForElement) => components.concat(
-          customComponentsForElement || [],
-        ),
+        (components, customComponentsForElement) =>
+          components.concat(customComponentsForElement || []),
         [],
       );
     const typesToValidate = new Set([]

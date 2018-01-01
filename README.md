@@ -296,3 +296,7 @@ We model ARIA in the [aria-query](https://github.com/a11yance/aria-query) projec
 ## License
 
 eslint-plugin-jsx-a11y is licensed under the [MIT License](LICENSE.md).
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/cH2cDcSnheGRYewLYtuzYXqV/evcohen/eslint-plugin-jsx-a11y'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/cH2cDcSnheGRYewLYtuzYXqV/evcohen/eslint-plugin-jsx-a11y.svg' />
+</a>

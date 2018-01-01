@@ -19,63 +19,53 @@ describe('isNonInteractiveElement', () => {
     });
   });
   describe('non-interactive elements', () => {
-    genNonInteractiveElements().forEach(
-      ({ openingElement }) => {
-        it(`should identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
-          expect(isNonInteractiveElement(
-            elementType(openingElement),
-            openingElement.attributes,
-          )).toBe(true);
-        });
-      },
-    );
+    genNonInteractiveElements().forEach(({ openingElement }) => {
+      it(`should identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
+        expect(isNonInteractiveElement(
+          elementType(openingElement),
+          openingElement.attributes,
+        )).toBe(true);
+      });
+    });
   });
   describe('non-interactive role elements', () => {
-    genNonInteractiveRoleElements().forEach(
-      ({ openingElement }) => {
-        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
-          expect(isNonInteractiveElement(
-            elementType(openingElement),
-            openingElement.attributes,
-          )).toBe(false);
-        });
-      },
-    );
+    genNonInteractiveRoleElements().forEach(({ openingElement }) => {
+      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
+        expect(isNonInteractiveElement(
+          elementType(openingElement),
+          openingElement.attributes,
+        )).toBe(false);
+      });
+    });
   });
   describe('interactive elements', () => {
-    genInteractiveElements().forEach(
-      ({ openingElement }) => {
-        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
-          expect(isNonInteractiveElement(
-            elementType(openingElement),
-            openingElement.attributes,
-          )).toBe(false);
-        });
-      },
-    );
+    genInteractiveElements().forEach(({ openingElement }) => {
+      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
+        expect(isNonInteractiveElement(
+          elementType(openingElement),
+          openingElement.attributes,
+        )).toBe(false);
+      });
+    });
   });
   describe('interactive role elements', () => {
-    genInteractiveRoleElements().forEach(
-      ({ openingElement }) => {
-        it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
-          expect(isNonInteractiveElement(
-            elementType(openingElement),
-            openingElement.attributes,
-          )).toBe(false);
-        });
-      },
-    );
+    genInteractiveRoleElements().forEach(({ openingElement }) => {
+      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
+        expect(isNonInteractiveElement(
+          elementType(openingElement),
+          openingElement.attributes,
+        )).toBe(false);
+      });
+    });
   });
   describe('indeterminate elements', () => {
-    genIndeterminantInteractiveElements().forEach(
-      ({ openingElement }) => {
-        it(`should NOT identify \`${openingElement.name.name}\` as a non-interactive element`, () => {
-          expect(isNonInteractiveElement(
-            elementType(openingElement),
-            openingElement.attributes,
-          )).toBe(false);
-        });
-      },
-    );
+    genIndeterminantInteractiveElements().forEach(({ openingElement }) => {
+      it(`should NOT identify \`${openingElement.name.name}\` as a non-interactive element`, () => {
+        expect(isNonInteractiveElement(
+          elementType(openingElement),
+          openingElement.attributes,
+        )).toBe(false);
+      });
+    });
   });
 });

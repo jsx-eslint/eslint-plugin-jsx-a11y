@@ -7,9 +7,7 @@ import JSXExpressionContainerMock from '../../../__mocks__/JSXExpressionContaine
 describe('hasAccessibleChild', () => {
   describe('has no children and does not set dangerouslySetInnerHTML', () => {
     it('returns false', () => {
-      expect(
-        hasAccessibleChild(JSXElementMock('div', [])),
-      ).toBe(false);
+      expect(hasAccessibleChild(JSXElementMock('div', []))).toBe(false);
     });
   });
 
