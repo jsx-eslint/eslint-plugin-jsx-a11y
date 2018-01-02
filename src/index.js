@@ -90,12 +90,17 @@ module.exports = {
           {
             handlers: [
               'onClick',
+              'onError',
+              'onLoad',
               'onMouseDown',
               'onMouseUp',
               'onKeyPress',
               'onKeyDown',
               'onKeyUp',
             ],
+            body: ['onError', 'onLoad'],
+            iframe: ['onError', 'onLoad'],
+            img: ['onError', 'onLoad'],
           },
         ],
         'jsx-a11y/no-noninteractive-element-to-interactive-role': [
@@ -196,7 +201,14 @@ module.exports = {
         'jsx-a11y/no-autofocus': 'error',
         'jsx-a11y/no-distracting-elements': 'error',
         'jsx-a11y/no-interactive-element-to-noninteractive-role': 'error',
-        'jsx-a11y/no-noninteractive-element-interactions': 'error',
+        'jsx-a11y/no-noninteractive-element-interactions': [
+          'error',
+          {
+            body: ['onError', 'onLoad'],
+            iframe: ['onError', 'onLoad'],
+            img: ['onError', 'onLoad'],
+          },
+        ],
         'jsx-a11y/no-noninteractive-element-to-interactive-role': 'error',
         'jsx-a11y/no-noninteractive-tabindex': 'error',
         'jsx-a11y/no-onchange': 'error',
