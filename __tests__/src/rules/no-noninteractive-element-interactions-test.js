@@ -117,6 +117,7 @@ const alwaysValid = [
   { code: '<html onClick={() => {}} />;' },
   { code: '<i onClick={() => {}} />;' },
   { code: '<iframe onLoad={() => {}} />;' },
+  { code: '<img onError={() => {}} />;' },
   { code: '<img onLoad={() => {}} />;' },
   { code: '<ins onClick={() => {}} />;' },
   { code: '<kbd onClick={() => {}} />;' },
@@ -229,7 +230,6 @@ const alwaysValid = [
   { code: '<div role="article" onEmptied={() => {}} />;' },
   { code: '<div role="article" onEncrypted={() => {}} />;' },
   { code: '<div role="article" onEnded={() => {}} />;' },
-  { code: '<div role="article" onError={() => {}} />;' },
   { code: '<div role="article" onLoadedData={() => {}} />;' },
   { code: '<div role="article" onLoadedMetadata={() => {}} />;' },
   { code: '<div role="article" onLoadStart={() => {}} />;' },
@@ -245,8 +245,6 @@ const alwaysValid = [
   { code: '<div role="article" onTimeUpdate={() => {}} />;' },
   { code: '<div role="article" onVolumeChange={() => {}} />;' },
   { code: '<div role="article" onWaiting={() => {}} />;' },
-  { code: '<div role="article" onLoad={() => {}} />;' },
-  { code: '<div role="article" onError={() => {}} />;' },
   { code: '<div role="article" onAnimationStart={() => {}} />;' },
   { code: '<div role="article" onAnimationEnd={() => {}} />;' },
   { code: '<div role="article" onAnimationIteration={() => {}} />;' },
@@ -344,6 +342,8 @@ const neverValid = [
   { code: '<div role="article" onKeyPress={() => {}} />;', errors: [expectedError] },
   { code: '<div role="article" onKeyUp={() => {}} />;', errors: [expectedError] },
   { code: '<div role="article" onClick={() => {}} />;', errors: [expectedError] },
+  { code: '<div role="article" onLoad={() => {}} />;', errors: [expectedError] },
+  { code: '<div role="article" onError={() => {}} />;', errors: [expectedError] },
   { code: '<div role="article" onMouseDown={() => {}} />;', errors: [expectedError] },
   { code: '<div role="article" onMouseUp={() => {}} />;', errors: [expectedError] },
 ];
@@ -395,7 +395,6 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<div role="article" onEmptied={() => {}} />;' },
     { code: '<div role="article" onEncrypted={() => {}} />;' },
     { code: '<div role="article" onEnded={() => {}} />;' },
-    { code: '<div role="article" onError={() => {}} />;' },
     { code: '<div role="article" onLoadedData={() => {}} />;' },
     { code: '<div role="article" onLoadedMetadata={() => {}} />;' },
     { code: '<div role="article" onLoadStart={() => {}} />;' },
@@ -411,8 +410,6 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<div role="article" onTimeUpdate={() => {}} />;' },
     { code: '<div role="article" onVolumeChange={() => {}} />;' },
     { code: '<div role="article" onWaiting={() => {}} />;' },
-    { code: '<div role="article" onLoad={() => {}} />;' },
-    { code: '<div role="article" onError={() => {}} />;' },
     { code: '<div role="article" onAnimationStart={() => {}} />;' },
     { code: '<div role="article" onAnimationEnd={() => {}} />;' },
     { code: '<div role="article" onAnimationIteration={() => {}} />;' },
@@ -427,10 +424,14 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     .map(parserOptionsMapper),
 });
 
+const strictOptions =
+  (configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {});
 ruleTester.run(`${ruleName}:strict`, rule, {
   valid: [
     ...alwaysValid,
-  ].map(parserOptionsMapper),
+  ]
+    .map(ruleOptionsMapperFactory(strictOptions))
+    .map(parserOptionsMapper),
   invalid: [
     ...neverValid,
     // All the possible handlers
@@ -452,5 +453,7 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     { code: '<div role="article" onMouseMove={() => {}} />;', errors: [expectedError] },
     { code: '<div role="article" onMouseOut={() => {}} />;', errors: [expectedError] },
     { code: '<div role="article" onMouseOver={() => {}} />;', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  ]
+    .map(ruleOptionsMapperFactory(strictOptions))
+    .map(parserOptionsMapper),
 });

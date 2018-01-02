@@ -16,6 +16,7 @@ import {
   getPropValue,
   getProp,
   hasProp,
+  propName,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import includes from 'array-includes';
@@ -35,6 +36,7 @@ const errorMessage =
 const domElements = [...dom.keys()];
 const defaultInteractiveProps = [
   ...eventHandlersByType.focus,
+  ...eventHandlersByType.image,
   ...eventHandlersByType.keyboard,
   ...eventHandlersByType.mouse,
 ];
@@ -52,11 +54,14 @@ module.exports = {
     const { options } = context;
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
-        const { attributes } = node;
+        let { attributes } = node;
         const type = elementType(node);
-        const interactiveProps = options[0]
-          ? options[0].handlers
-          : defaultInteractiveProps;
+        const config = (options[0] || {});
+        const interactiveProps = config.handlers || defaultInteractiveProps;
+        // Allow overrides from rule configuration for specific elements and roles.
+        if (Object.prototype.hasOwnProperty.call(config, type)) {
+          attributes = attributes.filter(attr => !includes(config[type], propName(attr)));
+        }
 
         const hasInteractiveProps = interactiveProps
           .some(prop => (

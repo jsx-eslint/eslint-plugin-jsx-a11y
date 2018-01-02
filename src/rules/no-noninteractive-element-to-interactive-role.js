@@ -14,8 +14,6 @@ import {
 } from 'aria-query';
 import {
   elementType,
-  getProp,
-  getLiteralPropValue,
   propName,
 } from 'jsx-ast-utils';
 import type {
@@ -24,6 +22,7 @@ import type {
 import includes from 'array-includes';
 import type { ESLintContext } from '../../flow/eslint';
 import type { ESLintJSXAttribute } from '../../flow/eslint-jsx';
+import getExplicitRole from '../util/getExplicitRole';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 
@@ -58,7 +57,7 @@ module.exports = {
         const node = attribute.parent;
         const { attributes } = node;
         const type = elementType(node);
-        const role = getLiteralPropValue(getProp(node.attributes, 'role'));
+        const role = getExplicitRole(type, node.attributes);
 
         if (!includes(domElements, type)) {
           // Do not test higher level JSX components, as we do not know what
