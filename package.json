@@ -56,7 +56,7 @@
     "to-ast": "^1.0.0"
   },
   "engines": {
-    "node": ">=6.0"
+    "node": ">=4.0"
   },
   "license": "MIT",
   "dependencies": {
@@ -82,6 +82,7 @@
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/__tests__/__util__"
-    ]
+    ],
+    "testEnvironment": "node"
   }
 }
