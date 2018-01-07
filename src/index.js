@@ -137,7 +137,12 @@ module.exports = {
           },
         ],
         'jsx-a11y/no-onchange': 'error',
-        'jsx-a11y/no-redundant-roles': 'error',
+        'jsx-a11y/no-redundant-roles': [
+          'error',
+          {
+            nav: ['navigation'],
+          },
+        ],
         'jsx-a11y/no-static-element-interactions': [
           'error',
           {

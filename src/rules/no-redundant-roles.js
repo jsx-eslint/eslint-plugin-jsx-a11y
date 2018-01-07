@@ -2,6 +2,7 @@
  * @fileoverview Enforce explicit role property is not the
  * same as implicit/default role property on element.
  * @author Ethan Cohen <@evcohen>
+ * @flow
  */
 
 // ----------------------------------------------------------------------------
@@ -9,6 +10,9 @@
 // ----------------------------------------------------------------------------
 
 import { elementType } from 'jsx-ast-utils';
+import includes from 'array-includes';
+import type { JSXOpeningElement } from 'ast-types-flow';
+import type { ESLintContext } from '../../flow/eslint';
 import { generateObjSchema } from '../util/schemas';
 import getExplicitRole from '../util/getExplicitRole';
 import getImplicitRole from '../util/getImplicitRole';
@@ -26,22 +30,33 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
-    JSXOpeningElement: (node) => {
-      const type = elementType(node);
-      const implicitRole = getImplicitRole(type, node.attributes);
-      const explicitRole = getExplicitRole(type, node.attributes);
+  create: (context: ESLintContext) => {
+    const { options } = context;
+    return {
+      JSXOpeningElement: (node: JSXOpeningElement) => {
+        const type = elementType(node);
+        const implicitRole = getImplicitRole(type, node.attributes);
+        const explicitRole = getExplicitRole(type, node.attributes);
 
-      if (!implicitRole || !explicitRole) {
-        return;
-      }
+        if (!implicitRole || !explicitRole) {
+          return;
+        }
 
-      if (implicitRole === explicitRole) {
-        context.report({
-          node,
-          message: errorMessage(type, implicitRole.toLowerCase()),
-        });
-      }
-    },
-  }),
+        if (implicitRole === explicitRole) {
+          const allowedRoles = (options[0] || {});
+          if (
+            Object.prototype.hasOwnProperty.call(allowedRoles, type) &&
+            includes(allowedRoles[type], implicitRole)
+          ) {
+            return;
+          }
+
+          context.report({
+            node,
+            message: errorMessage(type, implicitRole.toLowerCase()),
+          });
+        }
+      },
+    };
+  },
 };
