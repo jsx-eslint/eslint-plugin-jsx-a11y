@@ -14,21 +14,27 @@ import includes from 'array-includes';
 import has from 'has';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import type { ESLintContext } from '../../flow/eslint';
-import { generateObjSchema } from '../util/schemas';
 import getExplicitRole from '../util/getExplicitRole';
 import getImplicitRole from '../util/getImplicitRole';
 
 const errorMessage = (element, implicitRole) =>
   `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`;
 
-const schema = generateObjSchema();
-
 module.exports = {
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-redundant-roles.md',
     },
-    schema: [schema],
+    schema: [{
+      type: 'object',
+      additionalProperties: {
+        type: 'array',
+        items: {
+          type: 'string',
+        },
+        uniqueItems: true,
+      },
+    }],
   },
 
   create: (context: ESLintContext) => {
