@@ -7,7 +7,7 @@ There are two supported ways to associate a label with a control:
 - Wrapping a control in a label tag.
 - Adding `htmlFor` to a label and assigning it a DOM ID string that indicates an input on the page.
 
-This rule checks that any `label` tag (or an indicated custom component that will output a `label` tag) either wraps an `input` element (or an inidicated custom component that will output an `input` tag) either (1) wraps an `input` or (2) has an `htmlFor` attribute *and* that the label tag has label content.
+This rule checks that any `label` tag (or an indicated custom component that will output a `label` tag) either (1) wraps an `input` element (or an indicated custom component that will output an `input` tag) or (2) has an `htmlFor` attribute and that the `label` tag has text content.
 
 ## How do I resolve this error?
 
@@ -78,7 +78,7 @@ This rule takes one optional object argument of type object:
 `labelComponents` is a list of custom React Component names that should be checked for an associated control.
 `labelAttributes` is a list of attributes to check on the label component and its children for a label. Use this if you have a custom component that uses a string passed on a prop to render an HTML `label`, for example.
 `controlComponents` is a list of custom React Components names that will output an input element.
-`depth` is an integer that determines who deep within a `JSXElement` label the rule should look for text content or an element with a label to determine if the `label` element will have an accessible label.
+`depth` (default 2, max 25) is an integer that determines how deep within a `JSXElement` label the rule should look for text content or an element with a label to determine if the `label` element will have an accessible label.
 
 ### Fail
 ```jsx

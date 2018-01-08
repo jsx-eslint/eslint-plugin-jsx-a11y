@@ -22,6 +22,7 @@ import {
   enumArraySchema,
   generateObjSchema,
 } from '../util/schemas';
+import isDisabledElement from '../util/isDisabledElement';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
@@ -72,6 +73,7 @@ module.exports = {
         return;
       } else if (
         !hasInteractiveProps
+        || isDisabledElement(attributes)
         || isHiddenFromScreenReader(type, attributes)
         || isPresentationRole(type, attributes)
       ) {

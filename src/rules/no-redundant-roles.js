@@ -8,8 +8,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import { elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import getExplicitRole from '../util/getExplicitRole';
 import getImplicitRole from '../util/getImplicitRole';
 
 const errorMessage = (element, implicitRole) =>
@@ -27,15 +28,13 @@ module.exports = {
     JSXOpeningElement: (node) => {
       const type = elementType(node);
       const implicitRole = getImplicitRole(type, node.attributes);
+      const explicitRole = getExplicitRole(type, node.attributes);
 
-      if (implicitRole === '') {
+      if (!implicitRole || !explicitRole) {
         return;
       }
 
-      const role = getProp(node.attributes, 'role');
-      const roleValue = getLiteralPropValue(role);
-
-      if (typeof roleValue === 'string' && roleValue.toUpperCase() === implicitRole.toUpperCase()) {
+      if (implicitRole === explicitRole) {
         context.report({
           node,
           message: errorMessage(type, implicitRole.toLowerCase()),

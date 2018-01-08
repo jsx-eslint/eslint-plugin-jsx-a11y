@@ -23,6 +23,11 @@ const schema = generateObjSchema({
   labelComponents: arraySchema,
   labelAttributes: arraySchema,
   controlComponents: arraySchema,
+  assert: {
+    description: 'Assert that the label has htmlFor, a nested label, both or either',
+    type: 'string',
+    enum: ['htmlFor', 'nesting', 'both', 'either'],
+  },
   depth: {
     description: 'JSX tree depth limit to check for accessible label',
     type: 'integer',
@@ -46,6 +51,7 @@ module.exports = {
   create: (context: ESLintContext) => {
     const options = context.options[0] || {};
     const labelComponents = options.labelComponents || [];
+    const assertType = options.assert || 'either';
     const componentNames = ['label'].concat(labelComponents);
 
     const rule = (node: JSXElement) => {
@@ -60,6 +66,7 @@ module.exports = {
         25,
       );
       const hasLabelId = validateId(node.openingElement);
+      // Check for multiple control components.
       const hasNestedControl = controlComponents.some(name => mayContainChildComponent(
         node,
         name,
@@ -71,11 +78,31 @@ module.exports = {
         options.labelAttributes,
       );
 
-      if (hasLabelId && hasAccessibleLabel) {
-        return;
-      }
-      if (hasNestedControl && hasAccessibleLabel) {
-        return;
+      if (hasAccessibleLabel) {
+        switch (assertType) {
+          case 'htmlFor':
+            if (hasLabelId) {
+              return;
+            }
+            break;
+          case 'nesting':
+            if (hasNestedControl) {
+              return;
+            }
+            break;
+          case 'both':
+            if (hasLabelId && hasNestedControl) {
+              return;
+            }
+            break;
+          case 'either':
+            if (hasLabelId || hasNestedControl) {
+              return;
+            }
+            break;
+          default:
+            break;
+        }
       }
 
       // htmlFor case
