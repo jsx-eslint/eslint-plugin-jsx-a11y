@@ -20,6 +20,7 @@ import type {
   JSXIdentifier,
 } from 'ast-types-flow';
 import includes from 'array-includes';
+import has from 'has';
 import type { ESLintContext } from '../../flow/eslint';
 import type { ESLintJSXAttribute } from '../../flow/eslint-jsx';
 import getExplicitRole from '../util/getExplicitRole';
@@ -69,10 +70,7 @@ module.exports = {
         // Allow overrides from rule configuration for specific elements and
         // roles.
         const allowedRoles = (options[0] || {});
-        if (
-          Object.prototype.hasOwnProperty.call(allowedRoles, type)
-          && includes(allowedRoles[type], role)
-        ) {
+        if (has(allowedRoles, type) && includes(allowedRoles[type], role)) {
           return;
         }
         if (

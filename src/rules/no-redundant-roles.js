@@ -11,6 +11,7 @@
 
 import { elementType } from 'jsx-ast-utils';
 import includes from 'array-includes';
+import has from 'has';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import type { ESLintContext } from '../../flow/eslint';
 import { generateObjSchema } from '../util/schemas';
@@ -44,10 +45,7 @@ module.exports = {
 
         if (implicitRole === explicitRole) {
           const allowedRoles = (options[0] || {});
-          if (
-            Object.prototype.hasOwnProperty.call(allowedRoles, type) &&
-            includes(allowedRoles[type], implicitRole)
-          ) {
+          if (has(allowedRoles, type) && includes(allowedRoles[type], implicitRole)) {
             return;
           }
 
