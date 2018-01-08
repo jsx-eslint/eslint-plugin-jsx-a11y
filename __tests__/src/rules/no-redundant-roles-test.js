@@ -10,7 +10,7 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import { configs } from '../../../src/index';
+import { configs } from '../../../src';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/no-redundant-roles';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
