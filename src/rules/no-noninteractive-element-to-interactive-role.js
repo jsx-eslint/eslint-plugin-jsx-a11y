@@ -33,7 +33,9 @@ const domElements = [...dom.keys()];
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-noninteractive-element-to-interactive-role.md',
+    },
     schema: [{
       type: 'object',
       additionalProperties: {

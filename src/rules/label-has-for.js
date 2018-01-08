@@ -60,7 +60,9 @@ const isValid = (node, required, allowChildren) => {
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/label-has-for.md',
+    },
     schema: [schema],
   },
 

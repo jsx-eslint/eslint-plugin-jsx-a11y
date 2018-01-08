@@ -19,7 +19,9 @@ const schema = generateObjSchema({ components: arraySchema });
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/anchor-has-content.md',
+    },
     schema: [schema],
   },
 

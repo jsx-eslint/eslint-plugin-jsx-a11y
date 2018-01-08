@@ -18,7 +18,9 @@ const schema = generateObjSchema();
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/mouse-events-have-key-events.md',
+    },
     schema: [schema],
   },
 

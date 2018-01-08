@@ -57,7 +57,9 @@ const schema = generateObjSchema();
 module.exports = {
   validityCheck,
   meta: {
-    docs: {},
+    docs: {
+      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/aria-proptypes.md',
+    },
     schema: [schema],
   },
 
