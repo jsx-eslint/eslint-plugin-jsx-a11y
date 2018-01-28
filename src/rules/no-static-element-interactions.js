@@ -45,7 +45,9 @@ const schema = generateObjSchema({
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-static-element-interactions.md',
+    },
     schema: [schema],
   },
 
