@@ -10,7 +10,6 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import { configs } from '../../../src';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/no-redundant-roles';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
@@ -41,26 +40,26 @@ const neverValid = [
   { code: '<button role={`${undefined}button`} />', errors: [expectedError('button', 'button')] },
 ];
 
-const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});
-
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
     ...alwaysValid,
     { code: '<nav role="navigation" />' },
   ]
-    .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
   invalid: neverValid
-    .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
-ruleTester.run(`${ruleName}:strict`, rule, {
+const noNavExceptionsOptions = { nav: [] };
+
+ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: alwaysValid
+    .map(ruleOptionsMapperFactory(noNavExceptionsOptions))
     .map(parserOptionsMapper),
   invalid: [
     ...neverValid,
     { code: '<nav role="navigation" />', errors: [expectedError('nav', 'navigation')] },
   ]
+    .map(ruleOptionsMapperFactory(noNavExceptionsOptions))
     .map(parserOptionsMapper),
 });

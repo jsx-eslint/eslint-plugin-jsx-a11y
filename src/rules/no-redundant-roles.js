@@ -20,6 +20,8 @@ import getImplicitRole from '../util/getImplicitRole';
 const errorMessage = (element, implicitRole) =>
   `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`;
 
+const DEFAULT_ROLE_EXCEPTIONS = { nav: ['navigation'] };
+
 module.exports = {
   meta: {
     docs: {
@@ -50,8 +52,16 @@ module.exports = {
         }
 
         if (implicitRole === explicitRole) {
-          const allowedRoles = (options[0] || {});
-          if (has(allowedRoles, type) && includes(allowedRoles[type], implicitRole)) {
+          const allowedRedundantRoles = (options[0] || {});
+          let redundantRolesForElement;
+
+          if (has(allowedRedundantRoles, type)) {
+            redundantRolesForElement = allowedRedundantRoles[type];
+          } else {
+            redundantRolesForElement = DEFAULT_ROLE_EXCEPTIONS[type] || [];
+          }
+
+          if (includes(redundantRolesForElement, implicitRole)) {
             return;
           }
 
