@@ -9,9 +9,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
+import { dom } from 'aria-query';
 import {
   elementType,
   getProp,

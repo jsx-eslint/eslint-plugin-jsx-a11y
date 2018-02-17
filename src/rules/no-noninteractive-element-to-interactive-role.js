@@ -9,16 +9,12 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
+import { dom } from 'aria-query';
 import {
   elementType,
   propName,
 } from 'jsx-ast-utils';
-import type {
-  JSXIdentifier,
-} from 'ast-types-flow';
+import type { JSXIdentifier } from 'ast-types-flow';
 import includes from 'array-includes';
 import has from 'has';
 import type { ESLintContext } from '../../flow/eslint';
