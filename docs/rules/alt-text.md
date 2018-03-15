@@ -14,7 +14,7 @@ An `<img>` must have the `alt` prop set with meaningful text or as an empty stri
 
 For images that are being used as icons for a button or control, the `alt` prop should be set to an empty string (`alt=""`).
 
-```js
+```jsx
 <button>
   <img src="icon.png" alt="" />
   Save
@@ -38,7 +38,7 @@ This rule takes one optional object argument of type object:
 ```json
 {
     "rules": {
-        "jsx-a11y/img-has-alt": [ 2, {
+        "jsx-a11y/alt-text": [ 2, {
             "elements": [ "img", "object", "area", "input[type=\"image\"]" ],
             "img": ["Image"],
             "object": ["Object"],
