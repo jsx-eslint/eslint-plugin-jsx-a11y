@@ -60,7 +60,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "aria-query": "^0.7.1",
+    "aria-query": "^2.0.0",
     "array-includes": "^3.0.3",
     "ast-types-flow": "^0.0.7",
     "axobject-query": "^1.0.2",
