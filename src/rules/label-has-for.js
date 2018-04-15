@@ -11,8 +11,6 @@ import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 
-const errorMessage = 'Form label must have associated control';
-
 const enumValues = ['nesting', 'id'];
 const schema = {
   type: 'object',
@@ -48,14 +46,26 @@ const validate = (node, required, allowChildren) => {
   return validateId(node);
 };
 
-const isValid = (node, required, allowChildren) => {
+const getValidityStatus = (node, required, allowChildren) => {
   if (Array.isArray(required.some)) {
-    return required.some.some(rule => validate(node, rule, allowChildren));
+    const isValid = required.some.some(rule => validate(node, rule, allowChildren));
+    const message = !isValid
+      ? `Form label must have ANY of the following types of associated control: ${required.some.join(', ')}`
+      : null;
+    return { isValid, message };
   } else if (Array.isArray(required.every)) {
-    return required.every.every(rule => validate(node, rule, allowChildren));
+    const isValid = required.every.every(rule => validate(node, rule, allowChildren));
+    const message = !isValid
+      ? `Form label must have ALL of the following types of associated control: ${required.every.join(', ')}`
+      : null;
+    return { isValid, message };
   }
 
-  return validate(node, required, allowChildren);
+  const isValid = validate(node, required, allowChildren);
+  const message = !isValid
+    ? `Form label must have the following type of associated control: ${required}`
+    : null;
+  return { isValid, message };
 };
 
 module.exports = {
@@ -81,10 +91,11 @@ module.exports = {
       const required = options.required || { every: ['nesting', 'id'] };
       const allowChildren = options.allowChildren || false;
 
-      if (!isValid(node, required, allowChildren)) {
+      const { isValid, message } = getValidityStatus(node, required, allowChildren);
+      if (!isValid) {
         context.report({
           node,
-          message: errorMessage,
+          message,
         });
       }
     },
