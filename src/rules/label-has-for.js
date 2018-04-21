@@ -9,7 +9,6 @@
 
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
-import hasAccessibleChild from '../util/hasAccessibleChild';
 
 const errorMessage = 'Form label must have associated control';
 
@@ -31,6 +30,14 @@ const schema = {
 
 const validateNesting = node => node.parent.children.some(child => child.type === 'JSXElement');
 
+const validateChild = node =>
+  node.parent.children.some(
+    child =>
+      child.type === 'JSXExpressionContainer' &&
+      (child.expression.name === 'children' ||
+        (child.expression.property && child.expression.property.name === 'children')),
+  );
+
 const validateId = (node) => {
   const htmlForAttr = getProp(node.attributes, 'htmlFor');
   const htmlForValue = getPropValue(htmlForAttr);
@@ -40,7 +47,7 @@ const validateId = (node) => {
 
 const validate = (node, required, allowChildren) => {
   if (allowChildren === true) {
-    return hasAccessibleChild(node.parent);
+    return validateChild(node);
   }
   if (required === 'nesting') {
     return validateNesting(node);
