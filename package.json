@@ -45,7 +45,7 @@
     "eslint-plugin-flowtype": "^2.44.0",
     "eslint-plugin-import": "^2.8.0",
     "expect": "^22.3.0",
-    "flow-bin": "^0.66.0",
+    "flow-bin": "^0.67.1",
     "in-publish": "^2.0.0",
     "jest": "^22.3.0",
     "jscodeshift": "^0.4.0",
