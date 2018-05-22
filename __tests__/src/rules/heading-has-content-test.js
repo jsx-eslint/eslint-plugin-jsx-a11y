@@ -23,8 +23,13 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
+const components = [{
+  components: ['Heading', 'Title'],
+}];
+
 ruleTester.run('heading-has-content', rule, {
   valid: [
+    // DEFAULT ELEMENT TESTS
     { code: '<div />;' },
     { code: '<h1>Foo</h1>' },
     { code: '<h2>Foo</h2>' },
@@ -38,10 +43,25 @@ ruleTester.run('heading-has-content', rule, {
     { code: '<h1>{foo.bar}</h1>' },
     { code: '<h1 dangerouslySetInnerHTML={{ __html: "foo" }} />' },
     { code: '<h1 children={children} />' },
+
+    // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
+    { code: '<Heading>Foo</Heading>', options: components },
+    { code: '<Title>Foo</Title>', options: components },
+    { code: '<Heading><Bar /></Heading>', options: components },
+    { code: '<Heading>{foo}</Heading>', options: components },
+    { code: '<Heading>{foo.bar}</Heading>', options: components },
+    { code: '<Heading dangerouslySetInnerHTML={{ __html: "foo" }} />', options: components },
+    { code: '<Heading children={children} />', options: components },
   ].map(parserOptionsMapper),
   invalid: [
+    // DEFAULT ELEMENT TESTS
     { code: '<h1 />', errors: [expectedError] },
     { code: '<h1><Bar aria-hidden /></h1>', errors: [expectedError] },
     { code: '<h1>{undefined}</h1>', errors: [expectedError] },
+
+    // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
+    { code: '<Heading />', errors: [expectedError], options: components },
+    { code: '<Heading><Bar aria-hidden /></Heading>', errors: [expectedError], options: components },
+    { code: '<Heading>{undefined}</Heading>', errors: [expectedError], options: components },
   ].map(parserOptionsMapper),
 });
