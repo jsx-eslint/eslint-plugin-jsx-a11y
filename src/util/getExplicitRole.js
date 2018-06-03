@@ -1,7 +1,5 @@
 // @flow
-import {
-  roles as rolesMap,
-} from 'aria-query';
+import { roles as rolesMap } from 'aria-query';
 import {
   getProp,
   getLiteralPropValue,

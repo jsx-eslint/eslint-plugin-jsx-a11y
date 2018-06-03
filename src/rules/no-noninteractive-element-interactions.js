@@ -7,9 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
+import { dom } from 'aria-query';
 import {
   elementType,
   eventHandlersByType,
@@ -20,6 +18,7 @@ import {
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import includes from 'array-includes';
+import has from 'has';
 import type { ESLintContext } from '../../flow/eslint';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import isAbstractRole from '../util/isAbstractRole';
@@ -61,7 +60,7 @@ module.exports = {
         const config = (options[0] || {});
         const interactiveProps = config.handlers || defaultInteractiveProps;
         // Allow overrides from rule configuration for specific elements and roles.
-        if (Object.prototype.hasOwnProperty.call(config, type)) {
+        if (has(config, type)) {
           attributes = attributes.filter(attr => !includes(config[type], propName(attr)));
         }
 

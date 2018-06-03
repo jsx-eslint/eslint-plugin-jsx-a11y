@@ -8,12 +8,8 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
-import type {
-  JSXOpeningElement,
-} from 'ast-types-flow';
+import { dom } from 'aria-query';
+import type { JSXOpeningElement } from 'ast-types-flow';
 import {
   elementType,
   getProp,

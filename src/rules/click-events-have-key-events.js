@@ -7,9 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import {
-  dom,
-} from 'aria-query';
+import { dom } from 'aria-query';
 import { getProp, hasAnyProp, elementType } from 'jsx-ast-utils';
 import includes from 'array-includes';
 import { generateObjSchema } from '../util/schemas';

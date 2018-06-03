@@ -50,9 +50,9 @@ module.exports = {
       if (!isMediaType(context, type)) {
         return;
       }
-      const muteProp = getProp(element.attributes, 'mute');
-      const mutePropVal: boolean = getLiteralPropValue(muteProp);
-      if (mutePropVal === true) {
+      const mutedProp = getProp(element.attributes, 'muted');
+      const mutedPropVal: boolean = getLiteralPropValue(mutedProp);
+      if (mutedPropVal === true) {
         return;
       }
       // $FlowFixMe https://github.com/facebook/flow/issues/1414

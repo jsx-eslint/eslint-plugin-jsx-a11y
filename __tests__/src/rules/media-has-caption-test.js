@@ -46,13 +46,13 @@ ruleTester.run('media-has-caption', rule, {
       code: '<video><track kind="Captions" /><track kind="subtitles" /></video>',
     },
     {
-      code: '<audio mute={true}></audio>',
+      code: '<audio muted={true}></audio>',
     },
     {
-      code: '<video mute={true}></video>',
+      code: '<video muted={true}></video>',
     },
     {
-      code: '<video mute></video>',
+      code: '<video muted></video>',
     },
     {
       code: '<Audio><track kind="captions" /></Audio>',
@@ -79,19 +79,19 @@ ruleTester.run('media-has-caption', rule, {
       options: customSchema,
     },
     {
-      code: '<Video mute></Video>',
+      code: '<Video muted></Video>',
       options: customSchema,
     },
     {
-      code: '<Video mute={true}></Video>',
+      code: '<Video muted={true}></Video>',
       options: customSchema,
     },
     {
-      code: '<Audio mute></Audio>',
+      code: '<Audio muted></Audio>',
       options: customSchema,
     },
     {
-      code: '<Audio mute={true}></Audio>',
+      code: '<Audio muted={true}></Audio>',
       options: customSchema,
     },
   ].map(parserOptionsMapper),
@@ -108,12 +108,12 @@ ruleTester.run('media-has-caption', rule, {
       errors: [expectedError],
     },
     {
-      code: '<Audio mute={false}></Audio>',
+      code: '<Audio muted={false}></Audio>',
       options: customSchema,
       errors: [expectedError],
     },
     {
-      code: '<Video mute={false}></Video>',
+      code: '<Video muted={false}></Video>',
       options: customSchema,
       errors: [expectedError],
     },
