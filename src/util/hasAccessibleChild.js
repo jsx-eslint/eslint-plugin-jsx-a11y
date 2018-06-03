@@ -8,6 +8,7 @@ export default function hasAccessibleChild(node: JSXElement): boolean {
   return node.children.some((child) => {
     switch (child.type) {
       case 'Literal':
+      case 'JSXText':
         return Boolean(child.value);
       case 'JSXElement':
         return !isHiddenFromScreenReader(

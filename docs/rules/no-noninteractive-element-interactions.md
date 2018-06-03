@@ -77,7 +77,7 @@ This preserves the table cell semantics and the button semantics; the two are no
 
 #### Option 2, convert the table into an ARIA grid
 
-If you're user interface has a table-like layout, but is filled with interactive components in the cells, consider converting the table into a grid.
+If your user interface has a table-like layout, but is filled with interactive components in the cells, consider converting the table into a grid.
 
 ```
 <table role="grid">
