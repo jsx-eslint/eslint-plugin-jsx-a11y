@@ -27,7 +27,10 @@ const schema = {
   },
 };
 
-const validateNesting = node => node.parent.children.some(child => child.type === 'JSXElement');
+const validateNesting = node => node.parent.children.some((child) => {
+  const opener = child.openingElement;
+  return child.type === 'JSXElement' && opener && opener.name.name === 'input';
+});
 
 const validateId = (node) => {
   const htmlForAttr = getProp(node.attributes, 'htmlFor');
