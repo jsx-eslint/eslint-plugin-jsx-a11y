@@ -19,10 +19,21 @@ import rule from '../../../src/rules/label-has-for';
 
 const ruleTester = new RuleTester();
 
-const expectedError = {
-  message: 'Form label must have associated control',
+const expectedNestingError = {
+  message: 'Form label must have the following type of associated control: nesting',
   type: 'JSXOpeningElement',
 };
+
+const expectedSomeError = {
+  message: 'Form label must have ANY of the following types of associated control: nesting, id',
+  type: 'JSXOpeningElement',
+};
+
+const expectedEveryError = {
+  message: 'Form label must have ALL of the following types of associated control: nesting, id',
+  type: 'JSXOpeningElement',
+};
+
 
 const array = [{
   components: ['Label', 'Descriptor'],
@@ -81,78 +92,88 @@ ruleTester.run('label-has-for', rule, {
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT 'label' TESTS
-    { code: '<label id="foo" />', errors: [expectedError] },
-    { code: '<label htmlFor={undefined} />', errors: [expectedError] },
-    { code: '<label htmlFor={`${undefined}`} />', errors: [expectedError] },
-    { code: '<label>First Name</label>', errors: [expectedError] },
-    { code: '<label {...props}>Foo</label>', errors: [expectedError] },
-    { code: '<label><input /></label>', errors: [expectedError] },
-    { code: '<label>{children}</label>', errors: [expectedError] },
-    { code: '<label htmlFor="foo" />', errors: [expectedError] },
-    { code: '<label htmlFor={"foo"} />', errors: [expectedError] },
-    { code: '<label htmlFor={foo} />', errors: [expectedError] },
-    { code: '<label htmlFor={`${id}`} />', errors: [expectedError] },
-    { code: '<label htmlFor="foo">Test!</label>', errors: [expectedError] },
+    { code: '<label id="foo" />', errors: [expectedEveryError] },
+    { code: '<label htmlFor={undefined} />', errors: [expectedEveryError] },
+    { code: '<label htmlFor={`${undefined}`} />', errors: [expectedEveryError] },
+    { code: '<label>First Name</label>', errors: [expectedEveryError] },
+    { code: '<label {...props}>Foo</label>', errors: [expectedEveryError] },
+    { code: '<label><input /></label>', errors: [expectedEveryError] },
+    { code: '<label>{children}</label>', errors: [expectedEveryError] },
+    { code: '<label htmlFor="foo" />', errors: [expectedEveryError] },
+    { code: '<label htmlFor={"foo"} />', errors: [expectedEveryError] },
+    { code: '<label htmlFor={foo} />', errors: [expectedEveryError] },
+    { code: '<label htmlFor={`${id}`} />', errors: [expectedEveryError] },
+    { code: '<label htmlFor="foo">Test!</label>', errors: [expectedEveryError] },
     //
     // // CUSTOM ELEMENT ARRAY OPTION TESTS
-    { code: '<Label></Label>', errors: [expectedError], options: array },
-    { code: '<Label htmlFor="foo" />', errors: [expectedError], options: array },
-    { code: '<Label htmlFor={"foo"} />', errors: [expectedError], options: array },
-    { code: '<Label htmlFor={foo} />', errors: [expectedError], options: array },
-    { code: '<Label htmlFor={`${id}`} />', errors: [expectedError], options: array },
-    { code: '<Label htmlFor="foo">Test!</Label>', errors: [expectedError], options: array },
-    { code: '<Descriptor htmlFor="foo" />', errors: [expectedError], options: array },
-    { code: '<Descriptor htmlFor={"foo"} />', errors: [expectedError], options: array },
-    { code: '<Descriptor htmlFor={foo} />', errors: [expectedError], options: array },
-    { code: '<Descriptor htmlFor={`${id}`} />', errors: [expectedError], options: array },
+    { code: '<Label></Label>', errors: [expectedEveryError], options: array },
+    { code: '<Label htmlFor="foo" />', errors: [expectedEveryError], options: array },
+    { code: '<Label htmlFor={"foo"} />', errors: [expectedEveryError], options: array },
+    { code: '<Label htmlFor={foo} />', errors: [expectedEveryError], options: array },
+    { code: '<Label htmlFor={`${id}`} />', errors: [expectedEveryError], options: array },
+    { code: '<Label htmlFor="foo">Test!</Label>', errors: [expectedEveryError], options: array },
+    { code: '<Descriptor htmlFor="foo" />', errors: [expectedEveryError], options: array },
+    { code: '<Descriptor htmlFor={"foo"} />', errors: [expectedEveryError], options: array },
+    { code: '<Descriptor htmlFor={foo} />', errors: [expectedEveryError], options: array },
+    { code: '<Descriptor htmlFor={`${id}`} />', errors: [expectedEveryError], options: array },
     {
       code: '<Descriptor htmlFor="foo">Test!</Descriptor>',
-      errors: [expectedError],
+      errors: [expectedEveryError],
       options: array,
     },
-    { code: '<Label id="foo" />', errors: [expectedError], options: array },
+    { code: '<Label id="foo" />', errors: [expectedEveryError], options: array },
     {
       code: '<Label htmlFor={undefined} />',
-      errors: [expectedError],
+      errors: [expectedEveryError],
       options: array,
     },
     {
       code: '<Label htmlFor={`${undefined}`} />',
-      errors: [expectedError],
+      errors: [expectedEveryError],
       options: array,
     },
-    { code: '<Label>First Name</Label>', errors: [expectedError], options: array },
+    { code: '<Label>First Name</Label>', errors: [expectedEveryError], options: array },
     {
       code: '<Label {...props}>Foo</Label>',
-      errors: [expectedError],
+      errors: [expectedEveryError],
       options: array,
     },
-    { code: '<Descriptor id="foo" />', errors: [expectedError], options: array },
+    { code: '<Descriptor id="foo" />', errors: [expectedEveryError], options: array },
     {
       code: '<Descriptor htmlFor={undefined} />',
-      errors: [expectedError],
+      errors: [expectedEveryError],
       options: array,
     },
     {
       code: '<Descriptor htmlFor={`${undefined}`} />',
-      errors: [expectedError],
+      errors: [expectedEveryError],
       options: array,
     },
     {
       code: '<Descriptor>First Name</Descriptor>',
-      errors: [expectedError],
+      errors: [expectedEveryError],
       options: array,
     },
     {
       code: '<Descriptor {...props}>Foo</Descriptor>',
-      errors: [expectedError],
+      errors: [expectedEveryError],
       options: array,
     },
-    { code: '<label>{children}</label>', errors: [expectedError], options: array },
-    { code: '<label htmlFor="foo" />', errors: [expectedError], options: optionsRequiredNesting },
-    { code: '<label>First Name</label>', errors: [expectedError], options: optionsRequiredNesting },
-    { code: '<label>First Name</label>', errors: [expectedError], options: optionsRequiredSome },
-    { code: '<label>{children}</label>', errors: [expectedError], options: optionsRequiredSome },
-    { code: '<label>{children}</label>', errors: [expectedError], options: optionsRequiredNesting },
+    { code: '<label>{children}</label>', errors: [expectedEveryError], options: array },
+    { code: '<label htmlFor="foo" />', errors: [expectedNestingError], options: optionsRequiredNesting },
+    { code: '<label>First Name</label>', errors: [expectedNestingError], options: optionsRequiredNesting },
+    { code: '<label>First Name</label>', errors: [expectedSomeError], options: optionsRequiredSome },
+    { code: '<label>{children}</label>', errors: [expectedSomeError], options: optionsRequiredSome },
+    { code: '<label>{children}</label>', errors: [expectedNestingError], options: optionsRequiredNesting },
+    {
+      code: '<form><input type="text" id="howmuch" value="1" /><label htmlFor="howmuch">How much ?</label></form>',
+      errors: [expectedEveryError],
+      options: optionsRequiredEvery,
+    },
+    {
+      code: '<form><input type="text" id="howmuch" value="1" /><label htmlFor="howmuch">How much ?<span /></label></form>',
+      errors: [expectedEveryError],
+      options: optionsRequiredEvery,
+    },
   ].map(parserOptionsMapper),
 });
