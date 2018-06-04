@@ -10,6 +10,7 @@
 import { elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
+import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage =
   'Headings must have content and the content must be accessible by a screen reader.';
@@ -42,6 +43,8 @@ module.exports = {
       if (typeCheck.indexOf(nodeType) === -1) {
         return;
       } else if (hasAccessibleChild(node.parent)) {
+        return;
+      } else if (isHiddenFromScreenReader(nodeType, node.attributes)) {
         return;
       }
 
