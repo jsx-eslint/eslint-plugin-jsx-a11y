@@ -95,6 +95,7 @@ const nonInteractiveElementsMap = {
   pre: [],
   progress: [],
   ruby: [],
+  section: [],
   table: [],
   tbody: [],
   td: [],
