@@ -36,6 +36,15 @@ describe('hasAccessibleChild', () => {
       expect(hasAccessibleChild(element)).toBe(true);
     });
 
+    it('Returns true for JSXText Element', () => {
+      const child = {
+        type: 'JSXText',
+        value: 'foo',
+      };
+      const element = JSXElementMock('div', [], [child]);
+      expect(hasAccessibleChild(element)).toBe(true);
+    });
+
     it('Returns false for hidden child JSXElement', () => {
       const ariaHiddenAttr = JSXAttributeMock('aria-hidden', true);
       const child = JSXElementMock('div', [ariaHiddenAttr]);

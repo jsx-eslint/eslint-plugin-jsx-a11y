@@ -1,5 +1,7 @@
 language: node_js
 node_js:
+  - "10"
+  - "9"
   - "8"
   - "7"
   - "6"
@@ -27,5 +29,6 @@ matrix:
     - node_js: "node"
       env: LINT=true TEST=false
   allow_failures:
+    - node_js: "9"
     - node_js: "7"
     - node_js: "5"

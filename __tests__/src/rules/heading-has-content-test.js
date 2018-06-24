@@ -43,7 +43,6 @@ ruleTester.run('heading-has-content', rule, {
     { code: '<h1>{foo.bar}</h1>' },
     { code: '<h1 dangerouslySetInnerHTML={{ __html: "foo" }} />' },
     { code: '<h1 children={children} />' },
-
     // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
     { code: '<Heading>Foo</Heading>', options: components },
     { code: '<Title>Foo</Title>', options: components },
@@ -52,6 +51,7 @@ ruleTester.run('heading-has-content', rule, {
     { code: '<Heading>{foo.bar}</Heading>', options: components },
     { code: '<Heading dangerouslySetInnerHTML={{ __html: "foo" }} />', options: components },
     { code: '<Heading children={children} />', options: components },
+    { code: '<h1 aria-hidden />' },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT TESTS
