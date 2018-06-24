@@ -36,7 +36,9 @@ module.exports = {
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      const typeCheck = headings.concat(context.options[0]);
+      const options = context.options[0] || {};
+      const componentOptions = options.components || [];
+      const typeCheck = headings.concat(componentOptions);
       const nodeType = elementType(node);
 
       // Only check 'h*' elements and custom types.
