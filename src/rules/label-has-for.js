@@ -74,6 +74,7 @@ const getValidityStatus = (node, required, allowChildren) => {
 
 module.exports = {
   meta: {
+    deprecated: true,
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/label-has-for.md',
     },
