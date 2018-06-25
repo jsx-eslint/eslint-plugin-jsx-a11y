@@ -1,4 +1,6 @@
-# label-has-for
+# [Deprecated] label-has-for
+
+*This rule was deprecated in v6.1.0. It will no longer be maintained.*
 
 Enforce label tags have associated control.
 
