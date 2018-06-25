@@ -24,6 +24,7 @@ env:
   global:
     - TEST=true
   matrix:
+    - ESLINT=5
     - ESLINT=4
     - ESLINT=3
 matrix:
@@ -33,6 +34,11 @@ matrix:
       env: FLOW=true TEST=false
     - node_js: "node"
       env: LINT=true TEST=false
+  exclude:
+    - node_js: "5"
+      env: ESLINT=5
+    - node_js: "4"
+      env: ESLINT=5
   allow_failures:
     - node_js: "9"
     - node_js: "7"
