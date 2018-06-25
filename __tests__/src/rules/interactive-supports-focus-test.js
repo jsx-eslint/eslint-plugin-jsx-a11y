@@ -35,16 +35,13 @@ function template(strings, ...keys) {
 const ruleName = 'interactive-supports-focus';
 const type = 'JSXOpeningElement';
 const codeTemplate = template`<${0} role="${1}" ${2}={() => void 0} />`;
-const tabindexTemplate =
-  template`<${0} role="${1}" ${2}={() => void 0} tabIndex="0" />`;
+const tabindexTemplate = template`<${0} role="${1}" ${2}={() => void 0} tabIndex="0" />`;
 const tabbableTemplate = template`Elements with the '${0}' interactive role must be tabbable.`;
 const focusableTemplate = template`Elements with the '${0}' interactive role must be focusable.`;
 
-const recommendedOptions =
-  (configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {});
+const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
 
-const strictOptions =
-  (configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {});
+const strictOptions = configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {};
 
 const alwaysValid = [
   { code: '<div />' },
@@ -170,25 +167,29 @@ const triggeringHandlers = [
   ...eventHandlersByType.keyboard,
 ];
 
-const passReducer = (roles, handlers, messageTemplate) =>
-  staticElements.reduce((elementAcc, element) =>
-    elementAcc.concat(roles.reduce((roleAcc, role) =>
-      roleAcc.concat(handlers
-        .map(handler => ({
-          code: messageTemplate(element, role, handler),
-        }))), [])), []);
+const passReducer = (roles, handlers, messageTemplate) => (
+  staticElements.reduce((elementAcc, element) => (
+    elementAcc.concat(roles.reduce((roleAcc, role) => (
+      roleAcc.concat(handlers.map(handler => ({
+        code: messageTemplate(element, role, handler),
+      })))
+    ), []))
+  ), [])
+);
 
-const failReducer = (roles, handlers, messageTemplate) =>
-  staticElements.reduce((elementAcc, element) =>
-    elementAcc.concat(roles.reduce((roleAcc, role) =>
-      roleAcc.concat(handlers
-        .map(handler => ({
-          code: codeTemplate(element, role, handler),
-          errors: [{
-            type,
-            message: messageTemplate(role),
-          }],
-        }))), [])), []);
+const failReducer = (roles, handlers, messageTemplate) => (
+  staticElements.reduce((elementAcc, element) => (
+    elementAcc.concat(roles.reduce((roleAcc, role) => (
+      roleAcc.concat(handlers.map(handler => ({
+        code: codeTemplate(element, role, handler),
+        errors: [{
+          type,
+          message: messageTemplate(role),
+        }],
+      })))
+    ), []))
+  ), [])
+);
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [

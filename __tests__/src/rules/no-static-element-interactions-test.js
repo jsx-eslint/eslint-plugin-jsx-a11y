@@ -20,8 +20,7 @@ import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
 const ruleTester = new RuleTester();
 
-const errorMessage =
-  'Static HTML elements with event handlers require a role.';
+const errorMessage = 'Static HTML elements with event handlers require a role.';
 
 const expectedError = {
   message: errorMessage,
@@ -344,8 +343,7 @@ const neverValid = [
   { code: '<div onMouseUp={() => {}} />;', errors: [expectedError] },
 ];
 
-const recommendedOptions =
-  (configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {});
+const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
     ...alwaysValid,

@@ -1,11 +1,13 @@
 #!/usr/bin/env node --harmony
 const path = require('path');
 const fs = require('fs');
+const { exec } = require('child_process');
 const argv = require('minimist')(process.argv.slice(2)); // eslint-disable-line import/no-extraneous-dependencies
+const jscodeshiftJSON = require('jscodeshift/package.json'); // eslint-disable-line import/no-extraneous-dependencies
+
 const ruleBoilerplateGenerator = require('./boilerplate/rule');
 const testBoilerplateGenerator = require('./boilerplate/test');
 const docBoilerplateGenerator = require('./boilerplate/doc');
-const { exec } = require('child_process');
 
 const ruleName = argv._[0];
 const author = argv.author || '$AUTHOR';
@@ -14,8 +16,6 @@ const description = argv.description || '$DESCRIPTION';
 const rulePath = path.resolve(`src/rules/${ruleName}.js`);
 const testPath = path.resolve(`__tests__/src/rules/${ruleName}-test.js`);
 const docsPath = path.resolve(`docs/rules/${ruleName}.md`);
-
-const jscodeshiftJSON = require('jscodeshift/package.json'); // eslint-disable-line import/no-extraneous-dependencies
 
 const jscodeshiftMain = jscodeshiftJSON.main;
 const jscodeshiftPath = require.resolve('jscodeshift');

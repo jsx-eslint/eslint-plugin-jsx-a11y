@@ -19,9 +19,7 @@ import rule from '../../../src/rules/no-access-key';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'No access key attribute allowed. Inconsistencies ' +
-  'between keyboard shortcuts and keyboard comments used by screenreader ' +
-  'and keyboard only users create a11y complications.',
+  message: 'No access key attribute allowed. Inconsistencies between keyboard shortcuts and keyboard comments used by screenreader and keyboard only users create a11y complications.',
   type: 'JSXOpeningElement',
 };
 

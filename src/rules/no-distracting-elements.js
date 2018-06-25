@@ -10,8 +10,9 @@
 import { elementType } from 'jsx-ast-utils';
 import { generateObjSchema, enumArraySchema } from '../util/schemas';
 
-const errorMessage = element =>
-  `Do not use <${element}> elements as they can create visual accessibility issues and are deprecated.`;
+const errorMessage = element => (
+  `Do not use <${element}> elements as they can create visual accessibility issues and are deprecated.`
+);
 
 
 const DEFAULT_ELEMENTS = [

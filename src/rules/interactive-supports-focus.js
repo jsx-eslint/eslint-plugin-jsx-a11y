@@ -73,7 +73,8 @@ module.exports = {
         // Do not test higher level JSX components, as we do not know what
         // low-level DOM element this maps to.
         return;
-      } else if (
+      }
+      if (
         !hasInteractiveProps
         || isDisabledElement(attributes)
         || isHiddenFromScreenReader(type, attributes)

@@ -45,8 +45,8 @@ const validityCheck = (value, expectedType, permittedValues) => {
     case 'token':
       return permittedValues.indexOf(typeof value === 'string' ? value.toLowerCase() : value) > -1;
     case 'tokenlist':
-      return typeof value === 'string' &&
-        value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);
+      return typeof value === 'string'
+        && value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);
     default:
       return false;
   }
@@ -86,8 +86,7 @@ module.exports = {
       const allowUndefined = attributes.allowUndefined || false;
       const permittedValues = attributes.values || [];
 
-      const isValid = validityCheck(value, permittedType, permittedValues) ||
-        (allowUndefined && value === undefined);
+      const isValid = validityCheck(value, permittedType, permittedValues) || (allowUndefined && value === undefined);
 
       if (isValid) {
         return;

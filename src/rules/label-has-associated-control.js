@@ -16,8 +16,7 @@ import type { ESLintContext } from '../../flow/eslint';
 import mayContainChildComponent from '../util/mayContainChildComponent';
 import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 
-const errorMessage =
-  'A form label must be associated with a control.';
+const errorMessage = 'A form label must be associated with a control.';
 
 const schema = generateObjSchema({
   labelComponents: arraySchema,
@@ -58,8 +57,7 @@ module.exports = {
       if (componentNames.indexOf(elementType(node.openingElement)) === -1) {
         return;
       }
-      const controlComponents =
-        ['input', 'textarea'].concat((options.controlComponents || []));
+      const controlComponents = ['input', 'textarea'].concat((options.controlComponents || []));
       // Prevent crazy recursion.
       const recursionDepth = Math.min(
         options.depth === undefined ? 2 : options.depth,

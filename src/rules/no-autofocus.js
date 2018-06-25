@@ -11,8 +11,7 @@ import { propName, elementType } from 'jsx-ast-utils';
 import { dom } from 'aria-query';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage =
-  'The autoFocus prop should not be used, as it can reduce usability and accessibility for users.';
+const errorMessage = 'The autoFocus prop should not be used, as it can reduce usability and accessibility for users.';
 
 const schema = generateObjSchema({
   ignoreNonDOM: {

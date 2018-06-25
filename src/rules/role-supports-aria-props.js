@@ -12,7 +12,12 @@ import {
   aria,
   roles,
 } from 'aria-query';
-import { getProp, getLiteralPropValue, elementType, propName } from 'jsx-ast-utils';
+import {
+  getProp,
+  getLiteralPropValue,
+  elementType,
+  propName,
+} from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import getImplicitRole from '../util/getImplicitRole';
 

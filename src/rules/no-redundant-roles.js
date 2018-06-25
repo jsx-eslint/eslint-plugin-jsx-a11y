@@ -17,8 +17,9 @@ import type { ESLintContext } from '../../flow/eslint';
 import getExplicitRole from '../util/getExplicitRole';
 import getImplicitRole from '../util/getImplicitRole';
 
-const errorMessage = (element, implicitRole) =>
-  `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`;
+const errorMessage = (element, implicitRole) => (
+  `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`
+);
 
 const DEFAULT_ROLE_EXCEPTIONS = { nav: ['navigation'] };
 

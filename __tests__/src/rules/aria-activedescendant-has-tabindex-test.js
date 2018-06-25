@@ -18,8 +18,7 @@ import rule from '../../../src/rules/aria-activedescendant-has-tabindex';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'An element that manages focus with `aria-activedescendant` ' +
-    'must be tabbable',
+  message: 'An element that manages focus with `aria-activedescendant` must be tabbable',
   type: 'JSXOpeningElement',
 };
 

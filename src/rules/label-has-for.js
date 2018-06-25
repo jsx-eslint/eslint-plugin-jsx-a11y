@@ -56,7 +56,8 @@ const getValidityStatus = (node, required, allowChildren) => {
       ? `Form label must have ANY of the following types of associated control: ${required.some.join(', ')}`
       : null;
     return { isValid, message };
-  } else if (Array.isArray(required.every)) {
+  }
+  if (Array.isArray(required.every)) {
     const isValid = required.every.every(rule => validate(node, rule, allowChildren));
     const message = !isValid
       ? `Form label must have ALL of the following types of associated control: ${required.every.join(', ')}`

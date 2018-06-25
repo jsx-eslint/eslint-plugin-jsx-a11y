@@ -25,8 +25,7 @@ import isInteractiveElement from '../util/isInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 
-const errorMessage =
-  'Interactive elements should not be assigned non-interactive roles.';
+const errorMessage = 'Interactive elements should not be assigned non-interactive roles.';
 
 const domElements = [...dom.keys()];
 

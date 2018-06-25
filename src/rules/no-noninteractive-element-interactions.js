@@ -29,8 +29,7 @@ import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 
-const errorMessage =
-  'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
+const errorMessage = 'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
 const domElements = [...dom.keys()];
 const defaultInteractiveProps = [
@@ -74,7 +73,8 @@ module.exports = {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;
-        } else if (
+        }
+        if (
           !hasInteractiveProps
           || isHiddenFromScreenReader(type, attributes)
           || isPresentationRole(type, attributes)
@@ -83,7 +83,8 @@ module.exports = {
           // element is not meant to be perceivable. For example, a click screen
           // to close a dialog .
           return;
-        } else if (
+        }
+        if (
           isInteractiveElement(type, attributes)
           || isInteractiveRole(type, attributes)
           || (

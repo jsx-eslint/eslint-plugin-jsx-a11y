@@ -11,8 +11,7 @@ import emojiRegex from 'emoji-regex';
 import { getProp, getLiteralPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage =
-  'Emojis should be wrapped in <span>, have role="img", and have an accessible description with aria-label or aria-labelledby.';
+const errorMessage = 'Emojis should be wrapped in <span>, have role="img", and have an accessible description with aria-label or aria-labelledby.';
 
 const schema = generateObjSchema();
 

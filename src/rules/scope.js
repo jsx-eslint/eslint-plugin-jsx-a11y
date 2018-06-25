@@ -37,7 +37,8 @@ module.exports = {
       // low-level DOM element this maps to.
       if (!dom.has(tagName)) {
         return;
-      } else if (tagName && tagName.toUpperCase() === 'TH') {
+      }
+      if (tagName && tagName.toUpperCase() === 'TH') {
         return;
       }
 

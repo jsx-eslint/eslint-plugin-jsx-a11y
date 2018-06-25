@@ -22,8 +22,7 @@ import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
 const ruleTester = new RuleTester();
 
-const errorMessage =
-  'Non-interactive elements should not be assigned interactive roles.';
+const errorMessage = 'Non-interactive elements should not be assigned interactive roles.';
 
 const expectedError = {
   message: errorMessage,

@@ -9,12 +9,17 @@
 // ----------------------------------------------------------------------------
 
 import { dom, roles } from 'aria-query';
-import { elementType, getProp, getLiteralPropValue, propName } from 'jsx-ast-utils';
+import {
+  elementType,
+  getProp,
+  getLiteralPropValue,
+  propName,
+} from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = (role, requiredProps) =>
-  `Elements with the ARIA role "${role}" must have the following ` +
-  `attributes defined: ${String(requiredProps).toLowerCase()}`;
+const errorMessage = (role, requiredProps) => (
+  `Elements with the ARIA role "${role}" must have the following attributes defined: ${String(requiredProps).toLowerCase()}`
+);
 
 const schema = generateObjSchema();
 

@@ -17,9 +17,7 @@ const REDUNDANT_WORDS = [
   'picture',
 ];
 
-const errorMessage = 'Redundant alt attribute. Screen-readers already announce ' +
-  '`img` tags as an image. You don\'t need to use the words `image`, ' +
-  '`photo,` or `picture` (or any specified custom words) in the alt prop.';
+const errorMessage = 'Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop.';
 
 const schema = generateObjSchema({
   components: arraySchema,
