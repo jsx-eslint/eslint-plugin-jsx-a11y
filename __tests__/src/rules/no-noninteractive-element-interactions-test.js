@@ -20,8 +20,7 @@ import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
 const ruleTester = new RuleTester();
 
-const errorMessage =
-  'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
+const errorMessage = 'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
 const expectedError = {
   message: errorMessage,
@@ -347,8 +346,7 @@ const neverValid = [
   { code: '<div role="article" onMouseUp={() => {}} />;', errors: [expectedError] },
 ];
 
-const recommendedOptions =
-  (configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {});
+const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
     ...alwaysValid,
@@ -423,8 +421,7 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     .map(parserOptionsMapper),
 });
 
-const strictOptions =
-  (configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {});
+const strictOptions = configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {};
 ruleTester.run(`${ruleName}:strict`, rule, {
   valid: [
     ...alwaysValid,

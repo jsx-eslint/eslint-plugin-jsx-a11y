@@ -7,7 +7,12 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getPropValue, elementType, getLiteralPropValue } from 'jsx-ast-utils';
+import {
+  getProp,
+  getPropValue,
+  elementType,
+  getLiteralPropValue,
+} from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 import isPresentationRole from '../util/isPresentationRole';
@@ -166,8 +171,7 @@ module.exports = {
     const customComponents = elementOptions
       .map(element => options[element])
       .reduce(
-        (components, customComponentsForElement) =>
-          components.concat(customComponentsForElement || []),
+        (components, customComponentsForElement) => components.concat(customComponentsForElement || []),
         [],
       );
     const typesToValidate = new Set([]

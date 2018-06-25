@@ -12,8 +12,7 @@ import { generateObjSchema, arraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
-const errorMessage =
-  'Headings must have content and the content must be accessible by a screen reader.';
+const errorMessage = 'Headings must have content and the content must be accessible by a screen reader.';
 
 const headings = [
   'h1',
@@ -44,9 +43,11 @@ module.exports = {
       // Only check 'h*' elements and custom types.
       if (typeCheck.indexOf(nodeType) === -1) {
         return;
-      } else if (hasAccessibleChild(node.parent)) {
+      }
+      if (hasAccessibleChild(node.parent)) {
         return;
-      } else if (isHiddenFromScreenReader(nodeType, node.attributes)) {
+      }
+      if (isHiddenFromScreenReader(nodeType, node.attributes)) {
         return;
       }
 

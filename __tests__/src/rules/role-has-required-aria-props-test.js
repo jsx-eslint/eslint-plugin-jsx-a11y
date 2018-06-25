@@ -24,8 +24,7 @@ const errorMessage = (role) => {
   const requiredProps = Object.keys(roles.get(role).requiredProps);
 
   return {
-    message: `Elements with the ARIA role "${role}" must have the following ` +
-    `attributes defined: ${requiredProps}`,
+    message: `Elements with the ARIA role "${role}" must have the following attributes defined: ${requiredProps}`,
     type: 'JSXAttribute',
   };
 };

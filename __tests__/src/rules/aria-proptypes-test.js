@@ -11,7 +11,9 @@
 import { aria } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import rule, { validityCheck } from '../../../src/rules/aria-proptypes';
+import rule from '../../../src/rules/aria-proptypes';
+
+const { validityCheck } = rule;
 
 // -----------------------------------------------------------------------------
 // Tests

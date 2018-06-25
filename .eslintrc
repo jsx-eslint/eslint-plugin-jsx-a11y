@@ -8,6 +8,7 @@
     "flowtype"
   ],
   rules: {
-    'no-template-curly-in-string': 'off'
+    'max-len': 'off',
+    'no-template-curly-in-string': 'off',
   }
 }

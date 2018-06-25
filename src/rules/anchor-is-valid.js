@@ -15,15 +15,11 @@ import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas
 
 const allAspects = ['noHref', 'invalidHref', 'preferButton'];
 
-const preferButtonErrorMessage = 'Anchor used as a button. ' +
-  'Anchors are primarily expected to navigate. ' +
-  'Use the button element instead.';
+const preferButtonErrorMessage = 'Anchor used as a button. Anchors are primarily expected to navigate. Use the button element instead.';
 
-const noHrefErrorMessage = 'The href attribute is required on an anchor. ' +
-  'Provide a valid, navigable address as the href value.';
+const noHrefErrorMessage = 'The href attribute is required on an anchor. Provide a valid, navigable address as the href value.';
 
-const invalidHrefErrorMessage = 'The href attribute requires a valid address. ' +
-  'Provide a valid, navigable address as the href value.';
+const invalidHrefErrorMessage = 'The href attribute requires a valid address. Provide a valid, navigable address as the href value.';
 
 const schema = generateObjSchema({
   components: arraySchema,
@@ -80,8 +76,8 @@ module.exports = {
       if (!hasAnyHref) {
         // If no spread operator is found and no onClick event is present
         // it is a link without href.
-        if (!hasSpreadOperator && activeAspects.noHref &&
-          (!onClick || (onClick && !activeAspects.preferButton))) {
+        if (!hasSpreadOperator && activeAspects.noHref
+          && (!onClick || (onClick && !activeAspects.preferButton))) {
           context.report({
             node,
             message: noHrefErrorMessage,
@@ -100,12 +96,9 @@ module.exports = {
       // Hrefs have been found, now check for validity.
       const invalidHrefValues = values
         .filter(value => value !== undefined && value !== null)
-        .filter(value =>
-          typeof value === 'string' &&
-        (!value.length
-          || value === '#'
-          || /^\W*?javascript/.test(value)
-        ));
+        .filter(value => (typeof value === 'string' && (
+          !value.length || value === '#' || /^\W*?javascript/.test(value)
+        )));
       if (invalidHrefValues.length !== 0) {
         // If an onClick is found it should be a button, otherwise it is an invalid link.
         if (onClick && activeAspects.preferButton) {

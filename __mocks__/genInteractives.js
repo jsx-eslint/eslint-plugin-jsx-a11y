@@ -140,12 +140,12 @@ const nonInteractiveRoles = roleNames
 
 export function genElementSymbol(openingElement: Object) {
   return (
-    openingElement.name.name +
-    (openingElement.attributes.length > 0
+    openingElement.name.name + (openingElement.attributes.length > 0
       ? `${openingElement.attributes
         .map(attr => `[${attr.name.name}="${attr.value.value}"]`)
         .join('')}`
-      : '')
+      : ''
+    )
   );
 }
 
@@ -156,15 +156,16 @@ export function genInteractiveElements() {
     if (bracketIndex > -1) {
       name = elementSymbol.slice(0, bracketIndex);
     }
-    const attributes = interactiveElementsMap[elementSymbol].map(({ prop, value }) =>
-      JSXAttributeMock(prop, value));
+    const attributes = interactiveElementsMap[elementSymbol].map(({ prop, value }) => JSXAttributeMock(prop, value));
     return JSXElementMock(name, attributes);
   });
 }
 
 export function genInteractiveRoleElements() {
-  return [...interactiveRoles, 'button article', 'fakerole button article'].map(value =>
-    JSXElementMock('div', [JSXAttributeMock('role', value)]));
+  return [...interactiveRoles, 'button article', 'fakerole button article'].map(value => JSXElementMock(
+    'div',
+    [JSXAttributeMock('role', value)],
+  ));
 }
 
 export function genNonInteractiveElements() {
@@ -174,15 +175,17 @@ export function genNonInteractiveElements() {
     if (bracketIndex > -1) {
       name = elementSymbol.slice(0, bracketIndex);
     }
-    const attributes = nonInteractiveElementsMap[elementSymbol].map(({ prop, value }) =>
-      JSXAttributeMock(prop, value));
+    const attributes = nonInteractiveElementsMap[elementSymbol].map(({ prop, value }) => JSXAttributeMock(prop, value));
     return JSXElementMock(name, attributes);
   });
 }
 
 export function genNonInteractiveRoleElements() {
-  return [...nonInteractiveRoles, 'article button', 'fakerole article button'].map(value =>
-    JSXElementMock('div', [JSXAttributeMock('role', value)]));
+  return [
+    ...nonInteractiveRoles,
+    'article button',
+    'fakerole article button',
+  ].map(value => JSXElementMock('div', [JSXAttributeMock('role', value)]));
 }
 
 export function genAbstractRoleElements() {
@@ -195,8 +198,7 @@ export function genNonAbstractRoleElements() {
 
 export function genIndeterminantInteractiveElements() {
   return Object.keys(indeterminantInteractiveElementsMap).map((name) => {
-    const attributes = indeterminantInteractiveElementsMap[name].map(({ prop, value }) =>
-      JSXAttributeMock(prop, value));
+    const attributes = indeterminantInteractiveElementsMap[name].map(({ prop, value }) => JSXAttributeMock(prop, value));
     return JSXElementMock(name, attributes);
   });
 }

@@ -13,8 +13,7 @@ import isInteractiveElement from '../util/isInteractiveElement';
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-const errorMessage =
-  'An element that manages focus with `aria-activedescendant` must be tabbable';
+const errorMessage = 'An element that manages focus with `aria-activedescendant` must be tabbable';
 
 const schema = generateObjSchema();
 

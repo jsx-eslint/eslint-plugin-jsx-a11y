@@ -15,9 +15,10 @@ import {
 import { elementType, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = invalidProp =>
+const errorMessage = invalidProp => (
   `This element does not support ARIA roles, states and properties. \
-Try removing the prop '${invalidProp}'.`;
+Try removing the prop '${invalidProp}'.`
+);
 
 const schema = generateObjSchema();
 

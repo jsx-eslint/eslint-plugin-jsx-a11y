@@ -20,8 +20,7 @@ import rule from '../../../src/rules/no-onchange';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'onBlur must be used instead of onchange, unless absolutely necessary and it ' +
-    'causes no negative consequences for keyboard only or screen reader users.',
+  message: 'onBlur must be used instead of onchange, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.',
   type: 'JSXOpeningElement',
 };
 

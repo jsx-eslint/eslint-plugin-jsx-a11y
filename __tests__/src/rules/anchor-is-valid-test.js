@@ -18,15 +18,11 @@ import rule from '../../../src/rules/anchor-is-valid';
 
 const ruleTester = new RuleTester();
 
-const preferButtonErrorMessage = 'Anchor used as a button. ' +
-  'Anchors are primarily expected to navigate. ' +
-  'Use the button element instead.';
+const preferButtonErrorMessage = 'Anchor used as a button. Anchors are primarily expected to navigate. Use the button element instead.';
 
-const noHrefErrorMessage = 'The href attribute is required on an anchor. ' +
-  'Provide a valid, navigable address as the href value.';
+const noHrefErrorMessage = 'The href attribute is required on an anchor. Provide a valid, navigable address as the href value.';
 
-const invalidHrefErrorMessage = 'The href attribute requires a valid address. ' +
-  'Provide a valid, navigable address as the href value.';
+const invalidHrefErrorMessage = 'The href attribute requires a valid address. Provide a valid, navigable address as the href value.';
 
 const preferButtonexpectedError = {
   message: preferButtonErrorMessage,

@@ -11,6 +11,8 @@ cache:
   yarn: true
   directories:
     - node_modules
+before_script:
+  - if [ -n "${ESLINT-}" ]; then npm uninstall --no-save eslint-config-airbnb-base && npm install --no-save "eslint@${ESLINT}"; fi
 script:
   - if [ "${FLOW-}" = true ]; then npm run flow; fi
   - if [ "${LINT-}" = true ]; then npm run lint; fi
@@ -21,6 +23,10 @@ sudo: false
 env:
   global:
     - TEST=true
+  matrix:
+    - ESLINT=5
+    - ESLINT=4
+    - ESLINT=3
 matrix:
   fast_finish: true
   include:
@@ -28,6 +34,11 @@ matrix:
       env: FLOW=true TEST=false
     - node_js: "node"
       env: LINT=true TEST=false
+  exclude:
+    - node_js: "5"
+      env: ESLINT=5
+    - node_js: "4"
+      env: ESLINT=5
   allow_failures:
     - node_js: "9"
     - node_js: "7"

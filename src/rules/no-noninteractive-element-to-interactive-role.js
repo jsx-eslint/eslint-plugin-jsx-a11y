@@ -23,8 +23,7 @@ import getExplicitRole from '../util/getExplicitRole';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 
-const errorMessage =
-  'Non-interactive elements should not be assigned interactive roles.';
+const errorMessage = 'Non-interactive elements should not be assigned interactive roles.';
 
 const domElements = [...dom.keys()];
 
