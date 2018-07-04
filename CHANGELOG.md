@@ -1,3 +1,7 @@
+6.1.1 / 2018-07-03
+
+- [fix] aria-proptypes support for idlist, #454
+
 6.1.0 / 2018-06-26
 ==================
 - [new] Support for eslint v5, #451

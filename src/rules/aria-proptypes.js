@@ -20,6 +20,10 @@ const errorMessage = (name, type, permittedValues) => {
     case 'tokenlist':
       return `The value for ${name} must be a list of one or more \
 tokens from the following: ${permittedValues}.`;
+    case 'idlist':
+      return `The value for ${name} must be a list of strings that represent DOM element IDs (idlist)`;
+    case 'id':
+      return `The value for ${name} must be a string that represents a DOM element ID`;
     case 'boolean':
     case 'string':
     case 'integer':
@@ -34,6 +38,7 @@ const validityCheck = (value, expectedType, permittedValues) => {
     case 'boolean':
       return typeof value === 'boolean';
     case 'string':
+    case 'id':
       return typeof value === 'string';
     case 'tristate':
       return typeof value === 'boolean' || value === 'mixed';
@@ -44,6 +49,9 @@ const validityCheck = (value, expectedType, permittedValues) => {
       return typeof value !== 'boolean' && isNaN(Number(value)) === false;
     case 'token':
       return permittedValues.indexOf(typeof value === 'string' ? value.toLowerCase() : value) > -1;
+    case 'idlist':
+      return typeof value === 'string'
+        && value.split(' ').every(token => validityCheck(token, 'id', []));
     case 'tokenlist':
       return typeof value === 'string'
         && value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);
