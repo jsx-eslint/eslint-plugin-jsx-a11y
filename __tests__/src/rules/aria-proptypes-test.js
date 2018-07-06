@@ -35,6 +35,10 @@ const errorMessage = (name) => {
     case 'tokenlist':
       return `The value for ${name} must be a list of one or more \
 tokens from the following: ${permittedValues}.`;
+    case 'idlist':
+      return `The value for ${name} must be a list of strings that represent DOM element IDs (idlist)`;
+    case 'id':
+      return `The value for ${name} must be a string that represents a DOM element ID`;
     case 'boolean':
     case 'string':
     case 'integer':
@@ -155,6 +159,40 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-relevant={`removals additions text all`} />' },
     { code: '<div aria-relevant={foo} />' },
     { code: '<div aria-relevant={foo.bar} />' },
+
+    // ID
+    { code: '<div aria-activedescendant="ascending" />' },
+    { code: '<div aria-activedescendant="ASCENDING" />' },
+    { code: '<div aria-activedescendant={"ascending"} />' },
+    { code: '<div aria-activedescendant={`ascending`} />' },
+    { code: '<div aria-activedescendant="descending" />' },
+    { code: '<div aria-activedescendant={"descending"} />' },
+    { code: '<div aria-activedescendant={`descending`} />' },
+    { code: '<div aria-activedescendant="none" />' },
+    { code: '<div aria-activedescendant={"none"} />' },
+    { code: '<div aria-activedescendant={`none`} />' },
+    { code: '<div aria-activedescendant="other" />' },
+    { code: '<div aria-activedescendant={"other"} />' },
+    { code: '<div aria-activedescendant={`other`} />' },
+    { code: '<div aria-activedescendant={foo} />' },
+    { code: '<div aria-activedescendant={foo.bar} />' },
+
+    // IDLIST
+    { code: '<div aria-labelledby="additions" />' },
+    { code: '<div aria-labelledby={"additions"} />' },
+    { code: '<div aria-labelledby={`additions`} />' },
+    { code: '<div aria-labelledby="additions removals" />' },
+    { code: '<div aria-labelledby="additions additions" />' },
+    { code: '<div aria-labelledby={"additions removals"} />' },
+    { code: '<div aria-labelledby={`additions removals`} />' },
+    { code: '<div aria-labelledby="additions removals text" />' },
+    { code: '<div aria-labelledby={"additions removals text"} />' },
+    { code: '<div aria-labelledby={`additions removals text`} />' },
+    { code: '<div aria-labelledby="additions removals text all" />' },
+    { code: '<div aria-labelledby={"additions removals text all"} />' },
+    { code: '<div aria-labelledby={`removals additions text all`} />' },
+    { code: '<div aria-labelledby={foo} />' },
+    { code: '<div aria-labelledby={foo.bar} />' },
   ].map(parserOptionsMapper),
   invalid: [
     // BOOLEAN
