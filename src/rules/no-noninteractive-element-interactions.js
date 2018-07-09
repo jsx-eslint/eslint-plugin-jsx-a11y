@@ -60,7 +60,7 @@ module.exports = {
         const interactiveProps = config.handlers || defaultInteractiveProps;
         // Allow overrides from rule configuration for specific elements and roles.
         if (has(config, type)) {
-          attributes = attributes.filter(attr => !includes(config[type], propName(attr)));
+          attributes = attributes.filter(attr => attr.type !== 'JSXSpreadAttribute' && !includes(config[type], propName(attr)));
         }
 
         const hasInteractiveProps = interactiveProps
