@@ -116,7 +116,7 @@ const alwaysValid = [
   { code: '<html onClick={() => {}} />;' },
   { code: '<i onClick={() => {}} />;' },
   { code: '<iframe onLoad={() => {}} />;' },
-  { code: '<img onError={() => {}} />;' },
+  { code: '<img {...props} onError={() => {}} />;' },
   { code: '<img onLoad={() => {}} />;' },
   { code: '<ins onClick={() => {}} />;' },
   { code: '<kbd onClick={() => {}} />;' },
