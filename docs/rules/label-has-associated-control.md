@@ -48,7 +48,7 @@ And the configuration:
 ```json
 {
   "rules": {
-    "jsx-a11y/label-has-for": [ 2, {
+    "jsx-a11y/label-has-associated-control": [ 2, {
       "labelComponents": ["CustomInputLabel"],
       "labelAttributes": ["label"],
       "controlComponents": ["CustomInput"],
@@ -65,7 +65,7 @@ This rule takes one optional object argument of type object:
 ```json
 {
   "rules": {
-    "jsx-a11y/label-has-for": [ 2, {
+    "jsx-a11y/label-has-associated-control": [ 2, {
       "labelComponents": ["CustomLabel"],
       "labelAttributes": ["inputLabel"],
       "controlComponents": ["CustomInput"],
