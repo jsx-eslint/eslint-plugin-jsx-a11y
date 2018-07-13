@@ -1,3 +1,8 @@
+6.1.2 / 2018-07-09
+
+- [fix] Image with expanded props throws 'The prop must be a JSXAttribute collected by the AST parser.', #459
+- [fix] label-has-for: broken in v6.1.0, #455
+
 6.1.1 / 2018-07-03
 ==================
 - [fix] aria-proptypes support for idlist, #454
