@@ -61,6 +61,7 @@ export default function mayHaveAccessibleLabel(
       return true;
     }
     // Check for JSXText.
+    // $FlowFixMe Remove after updating ast-types-flow
     if (node.type === 'JSXText' && !!node.value) {
       return true;
     }
