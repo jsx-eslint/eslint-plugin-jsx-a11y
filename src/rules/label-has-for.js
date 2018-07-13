@@ -26,11 +26,23 @@ const schema = {
     allowChildren: { type: 'boolean' },
   },
 };
-
-const validateNesting = node => node.parent.children.some((child) => {
-  const opener = child.openingElement;
-  return child.type === 'JSXElement' && opener && opener.name.name === 'input';
-});
+// Breadth-first search, assuming that HTML for forms is shallow.
+function validateNesting(node) {
+  let queue = [...node.parent.children];
+  let child;
+  let opener;
+  while (queue.length) {
+    child = queue.shift();
+    opener = child.openingElement;
+    if (child.type === 'JSXElement' && opener && opener.name.name === 'input') {
+      return true;
+    }
+    if (child.children) {
+      queue = queue.concat(child.children);
+    }
+  }
+  return false;
+}
 
 const validateId = (node) => {
   const htmlForAttr = getProp(node.attributes, 'htmlFor');
