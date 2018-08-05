@@ -38,6 +38,7 @@ const htmlForValid = [
 ];
 const nestingValid = [
   { code: '<label>A label<input /></label>' },
+  { code: '<label>A label<textarea /></label>' },
   { code: '<label><img alt="A label" /><input /></label>' },
   { code: '<label><img aria-label="A label" /><input /></label>' },
   { code: '<label><span>A label<input /></span></label>' },
@@ -56,6 +57,7 @@ const bothValid = [
   { code: '<label htmlFor="js_id"><span><span><span>A label<input /></span></span></span></label>', options: [{ depth: 4 }] },
   { code: '<label htmlFor="js_id" aria-label="A label"><input /></label>' },
   { code: '<label htmlFor="js_id" aria-labelledby="A label"><input /></label>' },
+  { code: '<label htmlFor="js_id" aria-labelledby="A label"><textarea /></label>' },
   // Custom label component.
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label"><input /></CustomLabel>', options: [{ labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel htmlFor="js_id" label="A label"><input /></CustomLabel>', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }] },
@@ -80,6 +82,7 @@ const htmlForInvalid = [
 ];
 const nestingInvalid = [
   { code: '<label>A label<input /></label>', errors: [expectedError] },
+  { code: '<label>A label<textarea /></label>', errors: [expectedError] },
   { code: '<label><img alt="A label" /><input /></label>', errors: [expectedError] },
   { code: '<label><img aria-label="A label" /><input /></label>', errors: [expectedError] },
   { code: '<label><span>A label<input /></span></label>', errors: [expectedError] },
@@ -97,6 +100,7 @@ const nestingInvalid = [
 const neverValid = [
   { code: '<label htmlFor="js_id" />', errors: [expectedError] },
   { code: '<label htmlFor="js_id"><input /></label>', errors: [expectedError] },
+  { code: '<label htmlFor="js_id"><textarea /></label>', errors: [expectedError] },
   { code: '<label></label>', errors: [expectedError] },
   { code: '<label>A label</label>', errors: [expectedError] },
   { code: '<div><label /><input /></div>', errors: [expectedError] },
