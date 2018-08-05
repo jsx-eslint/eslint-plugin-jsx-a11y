@@ -56,6 +56,7 @@ ruleTester.run('label-has-for', rule, {
     // DEFAULT ELEMENT 'label' TESTS
     { code: '<div />' },
     { code: '<label htmlFor="foo"><input /></label>' },
+    { code: '<label htmlFor="foo"><textarea /></label>' },
     { code: '<Label />' }, // lower-case convention refers to real HTML elements.
     { code: '<Label htmlFor="foo" />' },
     { code: '<Descriptor />' },
@@ -100,6 +101,7 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label>First Name</label>', errors: [expectedEveryError], options: optionsRequiredEvery },
     { code: '<label {...props}>Foo</label>', errors: [expectedEveryError], options: optionsRequiredEvery },
     { code: '<label><input /></label>', errors: [expectedEveryError], options: optionsRequiredEvery },
+    { code: '<label><textarea /></label>', errors: [expectedEveryError], options: optionsRequiredEvery },
     { code: '<label>{children}</label>', errors: [expectedEveryError], options: optionsRequiredEvery },
     { code: '<label htmlFor="foo" />', errors: [expectedEveryError], options: optionsRequiredEvery },
     { code: '<label htmlFor={"foo"} />', errors: [expectedEveryError], options: optionsRequiredEvery },
