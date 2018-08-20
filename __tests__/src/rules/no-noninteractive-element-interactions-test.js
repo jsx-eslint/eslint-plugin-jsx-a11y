@@ -116,6 +116,16 @@ const alwaysValid = [
   { code: '<html onClick={() => {}} />;' },
   { code: '<i onClick={() => {}} />;' },
   { code: '<iframe onLoad={() => {}} />;' },
+  {
+    code: `
+      <iframe
+        name="embeddedExternalPayment"
+        ref="embeddedExternalPayment"
+        style={iframeStyle}
+        onLoad={this.handleLoadIframe}
+      />
+    `,
+  },
   { code: '<img {...props} onError={() => {}} />;' },
   { code: '<img onLoad={() => {}} />;' },
   { code: '<ins onClick={() => {}} />;' },
