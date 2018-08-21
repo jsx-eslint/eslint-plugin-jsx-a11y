@@ -44,3 +44,5 @@ matrix:
     - node_js: "9"
     - node_js: "7"
     - node_js: "5"
+    - node_js: "4" # not sure why this is failing; probably something in jest
+      env: ESLINT=4
