@@ -11,7 +11,8 @@ cache:
   yarn: true
   directories:
     - node_modules
-before_script:
+before_install:
+  - nvm install-latest-npm
   - if [ -n "${ESLINT-}" ]; then npm uninstall --no-save eslint-config-airbnb-base && npm install --no-save "eslint@${ESLINT}"; fi
 script:
   - if [ "${FLOW-}" = true ]; then npm run flow; fi
