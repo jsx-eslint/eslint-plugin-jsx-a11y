@@ -30,7 +30,7 @@ In this case, use `htmlFor` and an ID to associate the controls.
 
 ```jsx
 <label htmlFor={domId}>Surname</label>
-<input type="text" id="domId" />
+<input type="text" id={domId} />
 ```
 
 ### Case: My label and input components are custom components.
