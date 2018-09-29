@@ -66,6 +66,7 @@ const bothValid = [
 const alwaysValid = [
   { code: '<div />' },
   { code: '<CustomElement />' },
+  { code: '<CustomElement />', options: [{ controlComponents: ['CustomElement'] }] },
 ];
 
 const htmlForInvalid = [
