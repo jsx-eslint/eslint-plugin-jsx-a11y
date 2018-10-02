@@ -88,6 +88,47 @@ If you need to create an interface element that the user can mouse over or mouse
 
 In the example immediately above an `onClick` event handler was added to provide the same experience mouse users enjoy to keyboard-only and touch-screen users. Never fully rely on mouse events alone to expose functionality.
 
+### Case: I understand the previous cases but still need an element resembling a link that is purely clickable
+
+We recommend, without reserve, that elements resembling anchors should navigate. This will provide a superior user experience to a larger group of users out there.
+
+However, we understand that developers are not always in total control of the visual design of web applications. In cases where it is imperative to provide an element resembling an anchor that purely acts as a click target with no navigation as result, we would like to recommend a compromise.
+
+Again change the element to a `<button>`: 
+
+```jsx
+<button 
+  type="button"
+  className="link-button" 
+  onClick={() => this.setState({showSomething: true})}>
+    Press me, I look like a link
+</button>
+``` 
+
+Then use styling to change its appearance to that of a link:
+
+```css
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+text-decoration: none;
+}
+```
+
+This button element can now also be used inline in text.
+
+Once again we stress that this is an inferior implementation and some users will encounter difficulty to use your website, however, it will allow a larger group of people to interact with your website than the alternative of ignoring the rule's warning.
+
+
 ### References
   1. [WebAIM - Introduction to Links and Hypertext](http://webaim.org/techniques/hypertext/)
   1. [Links vs. Buttons in Modern Web Applications](https://marcysutton.com/links-vs-buttons-in-modern-web-applications/)
