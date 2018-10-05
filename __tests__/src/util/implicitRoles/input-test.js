@@ -29,4 +29,7 @@ describe('isAbstractRole', () => {
   it('works for the default case', () => {
     expect(getImplicitRoleForInput([JSXAttributeMock('type', '')])).toBe('textbox');
   });
+  it('works for the true case', () => {
+    expect(getImplicitRoleForInput([JSXAttributeMock('type', true)])).toBe('textbox');
+  });
 });
