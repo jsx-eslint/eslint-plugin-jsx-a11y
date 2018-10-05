@@ -1,3 +1,8 @@
+6.1.2 / 2018-10-05
+=================
+- [fix] Add link-type styling recommendation to anchor-is-valid #486
+- [fix] `label-has-for`: `textarea`s are inputs too #470
+
 6.1.1 / 2018-07-03
 ==================
 - [fix] aria-proptypes support for idlist, #454
