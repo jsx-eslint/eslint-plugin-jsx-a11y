@@ -66,6 +66,7 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role="foobar" />', errors: [errorMessage] },
     { code: '<div role="datepicker"></div>', errors: [errorMessage] },
     { code: '<div role="range"></div>', errors: [errorMessage] },
+    { code: '<div role="Button"></div>', errors: [errorMessage] },
     { code: '<div role=""></div>', errors: [errorMessage] },
     { code: '<div role="tabpanel row foobar"></div>', errors: [errorMessage] },
     { code: '<div role="tabpanel row range"></div>', errors: [errorMessage] },
@@ -73,5 +74,6 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role />', errors: [errorMessage] },
     { code: '<div role={null}></div>', errors: [errorMessage] },
     { code: '<Foo role="datepicker" />', errors: [errorMessage] },
+    { code: '<Foo role="Button" />', errors: [errorMessage] },
   ].concat(invalidTests).map(parserOptionsMapper),
 });
