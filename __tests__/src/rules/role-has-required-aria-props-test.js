@@ -55,6 +55,7 @@ ruleTester.run('role-has-required-aria-props', rule, {
     { code: '<div role={role || "foobar"} />' },
     { code: '<div role="row" />' },
     { code: '<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>' },
+    { code: '<input type="checkbox" role="switch" />' },
   ].concat(basicValidityTests).map(parserOptionsMapper),
 
   invalid: [

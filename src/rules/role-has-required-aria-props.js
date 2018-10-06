@@ -58,6 +58,13 @@ module.exports = {
         .filter(val => [...roles.keys()].indexOf(val) > -1);
 
       validRoles.forEach((role) => {
+        // Handle special case for
+        // <input type="checkbox" role="switch" />
+        if (type === 'input' && role === 'switch'
+          && getLiteralPropValue(getProp(attribute.parent.attributes, 'type'))) {
+          return;
+        }
+
         const {
           requiredProps: requiredPropKeyValues,
         } = roles.get(role);
