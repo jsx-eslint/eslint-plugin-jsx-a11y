@@ -9,7 +9,7 @@ export default function getImplicitRoleForMenuitem(attributes) {
   if (type) {
     const value = getLiteralPropValue(type) || '';
 
-    switch (value.toUpperCase()) {
+    switch (typeof value === 'string' && value.toUpperCase()) {
       case 'COMMAND':
         return 'menuitem';
       case 'CHECKBOX':

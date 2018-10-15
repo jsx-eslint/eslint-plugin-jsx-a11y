@@ -16,4 +16,7 @@ describe('isAbstractRole', () => {
   it('works for non-toolbars', () => {
     expect(getImplicitRoleForMenuitem([JSXAttributeMock('type', '')])).toBe('');
   });
+  it('works for the true case', () => {
+    expect(getImplicitRoleForMenuitem([JSXAttributeMock('type', true)])).toBe('');
+  });
 });
