@@ -16,6 +16,7 @@ import {
   propName,
 } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import isSemanticRoleElement from '../util/isSemanticRoleElement';
 
 const errorMessage = (role, requiredProps) => (
   `Elements with the ARIA role "${role}" must have the following attributes defined: ${String(requiredProps).toLowerCase()}`
@@ -44,19 +45,26 @@ module.exports = {
         return;
       }
 
-      const value = getLiteralPropValue(attribute);
+      const roleAttrValue = getLiteralPropValue(attribute);
+      const { attributes } = attribute.parent;
 
       // If value is undefined, then the role attribute will be dropped in the DOM.
       // If value is null, then getLiteralAttributeValue is telling us
       // that the value isn't in the form of a literal.
-      if (value === undefined || value === null) {
+      if (roleAttrValue === undefined || roleAttrValue === null) {
         return;
       }
 
-      const normalizedValues = String(value).toLowerCase().split(' ');
+      const normalizedValues = String(roleAttrValue).toLowerCase().split(' ');
       const validRoles = normalizedValues
         .filter(val => [...roles.keys()].indexOf(val) > -1);
 
+      // Check semantic DOM elements
+      // For example, <input type="checkbox" role="switch" />
+      if (isSemanticRoleElement(type, attributes)) {
+        return;
+      }
+      // Check arbitrary DOM elements
       validRoles.forEach((role) => {
         const {
           requiredProps: requiredPropKeyValues,
