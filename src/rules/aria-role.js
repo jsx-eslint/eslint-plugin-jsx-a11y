@@ -54,9 +54,9 @@ module.exports = {
       // value isn't in the form of a literal.
       if (value === undefined || value === null) { return; }
 
-      const normalizedValues = String(value).split(' ');
+      const values = String(value).split(' ');
       const validRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
-      const isValid = normalizedValues.every(val => validRoles.indexOf(val) > -1);
+      const isValid = values.every(val => validRoles.indexOf(val) > -1);
 
       if (isValid === true) { return; }
 
