@@ -1,6 +1,6 @@
 # [Deprecated] label-has-for
 
-*This rule was deprecated in v6.1.0. It will no longer be maintained.*
+*This rule was deprecated in v6.1.0. It will no longer be maintained. Please use [`label-has-associated-control`](label-has-associated-control.md) instead.*
 
 Enforce label tags have associated control.
 
