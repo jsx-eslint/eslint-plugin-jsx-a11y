@@ -39,6 +39,9 @@ module.exports = {
   },
   configs: {
     recommended: {
+      plugins: [
+        'jsx-a11y',
+      ],
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -160,6 +163,9 @@ module.exports = {
       },
     },
     strict: {
+      plugins: [
+        'jsx-a11y',
+      ],
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
