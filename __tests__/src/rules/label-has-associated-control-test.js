@@ -63,6 +63,7 @@ const bothValid = [
   { code: '<CustomLabel htmlFor="js_id" label="A label"><input /></CustomLabel>', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }] },
   // Custom label attributes.
   { code: '<label htmlFor="js_id" label="A label"><input /></label>', options: [{ labelAttributes: ['label'] }] },
+  { code: '<label htmlFor="selectInput">Some text<select id="selectInput" /></label>' },
 ];
 
 const alwaysValid = [
