@@ -39,6 +39,9 @@ module.exports = {
   },
   configs: {
     recommended: {
+      plugins: [
+        'jsx-a11y',
+      ],
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -100,7 +103,9 @@ module.exports = {
               'onKeyDown',
               'onKeyUp',
             ],
+            alert: ['onKeyUp', 'onKeyDown', 'onKeyPress'],
             body: ['onError', 'onLoad'],
+            dialog: ['onKeyUp', 'onKeyDown', 'onKeyPress'],
             iframe: ['onError', 'onLoad'],
             img: ['onError', 'onLoad'],
           },
@@ -160,6 +165,9 @@ module.exports = {
       },
     },
     strict: {
+      plugins: [
+        'jsx-a11y',
+      ],
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
