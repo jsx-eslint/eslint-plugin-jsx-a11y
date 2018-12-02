@@ -46,7 +46,7 @@
     "eslint-plugin-import": "^2.13.0",
     "estraverse": "^4.2.0",
     "expect": "^21.2.1",
-    "flow-bin": "^0.66.0",
+    "flow-bin": "^0.87.0",
     "in-publish": "^2.0.0",
     "jest": "^21.2.1",
     "jscodeshift": "^0.4.0",
