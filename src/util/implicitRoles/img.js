@@ -7,7 +7,7 @@ export default function getImplicitRoleForImg(attributes) {
   const alt = getProp(attributes, 'alt');
 
   if (alt && getLiteralPropValue(alt) === '') {
-    return 'presentation';
+    return '';
   }
 
   return 'img';

@@ -141,23 +141,8 @@ ruleTester.run('role-supports-aria-props', rule, {
     // this will have global
     { code: '<link aria-checked />' },
 
-    // IMG TESTS - implicit role is `presentation`
-    { code: '<img alt="" aria-atomic />' },
-    { code: '<img alt="" aria-busy />' },
-    { code: '<img alt="" aria-controls />' },
-    { code: '<img alt="" aria-describedby />' },
-    { code: '<img alt="" aria-disabled />' },
-    { code: '<img alt="" aria-dropeffect />' },
-    { code: '<img alt="" aria-flowto />' },
-    { code: '<img alt="" aria-grabbed />' },
-    { code: '<img alt="" aria-haspopup />' },
-    { code: '<img alt="" aria-hidden />' },
-    { code: '<img alt="" aria-invalid />' },
-    { code: '<img alt="" aria-label />' },
-    { code: '<img alt="" aria-labelledby />' },
-    { code: '<img alt="" aria-live />' },
-    { code: '<img alt="" aria-owns />' },
-    { code: '<img alt="" aria-relevant />' },
+    // IMG TESTS - no implicit role
+    { code: '<img alt="" aria-checked />' },
 
     // this will have role of `img`
     { code: '<img alt="foobar" aria-busy />' },
@@ -444,8 +429,8 @@ ruleTester.run('role-supports-aria-props', rule, {
       errors: [errorMessage('aria-checked', 'link', 'link', true)],
     },
     {
-      code: '<img alt="" aria-checked />',
-      errors: [errorMessage('aria-checked', 'presentation', 'img', true)],
+      code: '<img alt="foobar" aria-checked />',
+      errors: [errorMessage('aria-checked', 'img', 'img', true)],
     },
     {
       code: '<menu type="toolbar" aria-checked />',
