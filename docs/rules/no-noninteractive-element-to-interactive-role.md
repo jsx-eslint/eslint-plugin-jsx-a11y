@@ -50,14 +50,15 @@ The recommended options for this rule allow several common interactive roles to 
 ```
 {
   'no-noninteractive-element-to-interactive-role': [
-  'error',
-  {
-    ul: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
-    ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
-    li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
-    table: ['grid'],
-    td: ['gridcell'],
-  },
+    'error',
+    {
+      ul: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+      ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+      li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
+      table: ['grid'],
+      td: ['gridcell'],
+    },
+  ]
 }
 ```
 
