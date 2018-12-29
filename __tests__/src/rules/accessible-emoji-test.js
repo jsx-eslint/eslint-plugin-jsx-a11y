@@ -34,6 +34,10 @@ ruleTester.run('accessible-emoji', rule, {
     { code: '<span role="img" aria-labelledby="id1">&#9731;</span>' },
     { code: '<span role="img" aria-labelledby="id1" aria-label="Snowman">&#9731;</span>' },
     { code: '<span>{props.emoji}</span>' },
+    { code: '<span aria-hidden>{props.emoji}</span>' },
+    { code: '<span aria-hidden="true">🐼</span>' },
+    { code: '<span aria-hidden>🐼</span>' },
+    { code: '<div aria-hidden="true">🐼</div>' },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<span>🐼</span>', errors: [expectedError] },
@@ -42,5 +46,6 @@ ruleTester.run('accessible-emoji', rule, {
     { code: '<i role="img" aria-label="Panda face">🐼</i>', errors: [expectedError] },
     { code: '<i role="img" aria-labelledby="id1">🐼</i>', errors: [expectedError] },
     { code: '<Foo>🐼</Foo>', errors: [expectedError] },
+    { code: '<span aria-hidden="false">🐼</span>', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
