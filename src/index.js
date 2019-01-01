@@ -76,7 +76,7 @@ module.exports = {
             ],
           },
         ],
-        'jsx-a11y/label-has-for': 'error',
+        'jsx-a11y/label-has-for': 'off',
         'jsx-a11y/label-has-associated-control': 'error',
         'jsx-a11y/media-has-caption': 'error',
         'jsx-a11y/mouse-events-have-key-events': 'error',

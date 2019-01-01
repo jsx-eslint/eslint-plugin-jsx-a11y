@@ -10,6 +10,7 @@
 import emojiRegex from 'emoji-regex';
 import { getProp, getLiteralPropValue, elementType } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage = 'Emojis should be wrapped in <span>, have role="img", and have an accessible description with aria-label or aria-labelledby.';
 
@@ -28,6 +29,11 @@ module.exports = {
       const literalChildValue = node.parent.children.find(child => child.type === 'Literal' || child.type === 'JSXText');
 
       if (literalChildValue && emojiRegex().test(literalChildValue.value)) {
+        const elementIsHidden = isHiddenFromScreenReader(elementType(node), node.attributes);
+        if (elementIsHidden) {
+          return; // emoji is decorative
+        }
+
         const rolePropValue = getLiteralPropValue(getProp(node.attributes, 'role'));
         const ariaLabelProp = getProp(node.attributes, 'aria-label');
         const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
