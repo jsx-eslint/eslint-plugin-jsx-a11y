@@ -46,7 +46,7 @@
     "eslint-plugin-import": "^2.13.0",
     "estraverse": "^4.2.0",
     "expect": "^21.2.1",
-    "flow-bin": "^0.87.0",
+    "flow-bin": "^0.88.0",
     "in-publish": "^2.0.0",
     "jest": "^21.2.1",
     "jscodeshift": "^0.6.0",
@@ -66,7 +66,7 @@
     "ast-types-flow": "^0.0.7",
     "axobject-query": "^2.0.2",
     "damerau-levenshtein": "^1.0.4",
-    "emoji-regex": "^6.5.1",
+    "emoji-regex": "^7.0.2",
     "has": "^1.0.3",
     "jsx-ast-utils": "^2.0.1"
   },
