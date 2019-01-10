@@ -12,7 +12,7 @@ In order to add interactivity such as a mouse or key event listener to a static 
 
 Indicate the element's role with the `role` attribute:
 
-```
+```jsx
 <div
   onClick={onClickHandler}
   onKeyPress={onKeyPressHandler}
