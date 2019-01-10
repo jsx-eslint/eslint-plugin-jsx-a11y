@@ -38,19 +38,20 @@ Common interactive roles include:
 
 Note: Adding a role to your element does **not** add behavior. When a semantic HTML element like `<button>` is used, then it will also respond to Enter key presses when it has focus. The developer is responsible for providing the expected behavior of an element that the role suggests it would have: focusability and key press support.
 
-### Case: This element is not a button, link, menuitem, etc. It is catching bubbled events from elements that it contains
+### Case: The event handler is only being used to capture bubbled events
 
-If your element is catching bubbled click or key events from descendant elements, then the proper role for this element is `presentation`.
+If a static element has an event handler for the sole purpose of capturing events from its descendants, you can tell the linter to ignore it by setting `role="presentation"`:
 
-```
+```jsx
 <div
-  onClick="onClickHandler"
+  onClick={this.handleButtonClick}
   role="presentation">
   <button>Save</button>
+  <button>Cancel</button>
 </div>
 ```
 
-Marking an element with the role `presentation` indicates to assistive technology that this element should be ignored; it exists to support the web application and is not meant for humans to interact with directly.
+This `role` has no effect on static elements, but it clarifies your intent.
 
 ### References
   1. [WAI-ARIA `role` attribute](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
