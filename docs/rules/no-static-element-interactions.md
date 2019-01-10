@@ -54,6 +54,7 @@ If a static element has an event handler for the sole purpose of capturing event
 This `role` has no effect on static elements, but it clarifies your intent.
 
 ### References
+
   1. [WAI-ARIA `role` attribute](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
   1. [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
   1. [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
@@ -82,6 +83,7 @@ You may configure which handler props should be taken into account when applying
 Adjust the list of handler prop names in the handlers array to increase or decrease the coverage surface of this rule in your codebase.
 
 ### Succeed
+
 ```jsx
 <button onClick={() => {}} className="foo" />
 <div className="foo" onClick={() => {}} role="button" />
@@ -89,6 +91,7 @@ Adjust the list of handler prop names in the handlers array to increase or decre
 ```
 
 ### Fail
+
 ```jsx
 <div onClick={() => {}} />
 ```
