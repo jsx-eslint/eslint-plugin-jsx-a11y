@@ -58,6 +58,21 @@ And the configuration:
 }
 ```
 
+### Case: I have two labels for the same input
+
+If the second `label` is in a different part of the HTML, then the second one can only contain `htmlFor` but not nesting. You will probably need eslint override comment on the second label.
+
+```jsx
+{/* eslint jsx-a11y/label-has-associated-control: ["error", { assert: "either" } ] */}
+<label htmlFor="a">
+  Username:
+</label>
+...
+<label htmlFor="a">
+  <input id="a" />
+</label>
+```
+
 ## Rule details
 
 This rule takes one optional object argument of type object:
@@ -69,6 +84,7 @@ This rule takes one optional object argument of type object:
       "labelComponents": ["CustomLabel"],
       "labelAttributes": ["inputLabel"],
       "controlComponents": ["CustomInput"],
+      "assert": "both",
       "depth": 3,
     }],
   }
@@ -78,6 +94,7 @@ This rule takes one optional object argument of type object:
 `labelComponents` is a list of custom React Component names that should be checked for an associated control.
 `labelAttributes` is a list of attributes to check on the label component and its children for a label. Use this if you have a custom component that uses a string passed on a prop to render an HTML `label`, for example.
 `controlComponents` is a list of custom React Components names that will output an input element.
+`assert` asserts that the label has htmlFor, a nested label, both or either. Available options: `'htmlFor', 'nesting', 'both', 'either'`.
 `depth` (default 2, max 25) is an integer that determines how deep within a `JSXElement` label the rule should look for text content or an element with a label to determine if the `label` element will have an accessible label.
 
 ### Fail
