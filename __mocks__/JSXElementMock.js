@@ -6,7 +6,7 @@ import JSXAttributeMock from './JSXAttributeMock';
 
 export default function JSXElementMock(
   tagName: string,
-  attributes: Array<JSXAttributeMock>,
+  attributes: Array<JSXAttributeMock> = [],
   children: Array<Node> = [],
 ) {
   return {
