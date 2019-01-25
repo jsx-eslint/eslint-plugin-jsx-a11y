@@ -73,6 +73,14 @@ If the second `label` is in a different part of the HTML, then the second one ca
 </label>
 ```
 
+## How to manage IDs of `input`
+
+A common way to think of `id` with libraries like React is, `id`s should be avoided since it must be unique on the page, and components need to be reusable. Hence it is tempted to generate `id` during render-time if `id` is required. *However:*
+
+IDs shouldn't be generated in the browser, so that server and client rendering are deterministic. Render-time uuids aren't just a hack, they're actually broken and should never be used.
+
+To restate, **every ID needs to be deterministic**, on the server and the client, and guaranteed to be unique on the page. EG: For each input, a required ID prop can be passed down from as far up the tree as possible to guarantee uniqueness.
+
 ## Rule details
 
 This rule takes one optional object argument of type object:
