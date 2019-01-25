@@ -1,3 +1,29 @@
+6.2.0 / 2019-01-25
+=================
+- 5650674 [new rule] control-has-associated-label checks interactives for a label
+- f234698 [docs] add How to manage IDs
+- 9924d03 [docs] document jsx-a11y/label-has-associated-control assert option
+- 77b9870 [docs] Add newlines below headings
+- 8244e43 [docs] Add syntax highlighting to example
+- 26f41c8 [docs] Change explanation for role="presentation" escape hatch
+- 33a1f94 [fix] - Purely decorative emojis do not need descriptions.
+- 29d20f7 [fix] (package): update emoji-regex to version 7.0.2
+- 0b63f73 [chore] (package): update flow-bin to version 0.88.0
+- baa1344 [fix] Disable jsx-a11y/label-has-for in recommended
+- 2c5fb06 [chore] (package): update jscodeshift to version 0.6.0
+- 87debc0 [fix] corrected no-noninteractive-element-to-interactive-role.md file
+- d56265b [chore] (package): update flow-bin to version 0.87.0
+- 477966f [fix] Update test for implicit role of `img`
+- f484ce3 [fix] No implicit role for `<img>` with `alt=""`
+- 6c33bcb [fix] Add select to the list of default control elements in label-has-associated-control
+- 011f8d9 [fix] Dialog and Alert roles can host keyboard listeners
+- 0f6a8af [fix] More easier `plugin:jsx-a11y/{recommended,strict}` configs
+- 3844248 [fix] Mark the replacement for label-has-for
+- 93265cb [fix] normalizedValues to values
+- 651366c [fix] Make aria-role case sensitive
+- 56d3b9a [fix] [484] Fix role-has-required-aria-props for semantic elements like input[checkbox]
+- 46e9abd [fix] Handle the type={truthy} case in jsx
+
 6.1.2 / 2018-10-05
 =================
 - [fix] Add link-type styling recommendation to anchor-is-valid #486
