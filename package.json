@@ -39,7 +39,7 @@
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-flowtype": "^3.2.1",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.16.0",
     "estraverse": "^4.2.0",
     "expect": "^24.0.0",
     "flow-bin": "^0.88.0",
@@ -48,7 +48,7 @@
     "jscodeshift": "^0.6.0",
     "minimist": "^1.2.0",
     "object.assign": "^4.1.0",
-    "rimraf": "^2.6.2",
+    "rimraf": "^2.6.3",
     "safe-publish-latest": "^1.1.1",
     "to-ast": "^1.0.0"
   },
