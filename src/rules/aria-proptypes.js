@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 
 import { aria } from 'aria-query';
-import { getLiteralPropValue, propName } from 'jsx-ast-utils';
+import { getLiteralPropValue, getPropValue, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
 const errorMessage = (name, type, permittedValues) => {
@@ -81,9 +81,12 @@ module.exports = {
         return;
       }
 
+      // Ignore the attribute if its value is null.
+      if (getPropValue(attribute) === null) return;
+
       const value = getLiteralPropValue(attribute);
 
-      // We only want to check literal prop values, so just pass if it's null.
+      // Ignore the attribute if its value is not a literal.
       if (value === null) {
         return;
       }
