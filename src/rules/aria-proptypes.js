@@ -81,8 +81,8 @@ module.exports = {
         return;
       }
 
-      // Ignore the attribute if its value is null.
-      if (getPropValue(attribute) === null) return;
+      // Ignore the attribute if its value is null or undefined.
+      if (getPropValue(attribute) == null) return;
 
       const value = getLiteralPropValue(attribute);
 
