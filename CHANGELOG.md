@@ -1,3 +1,7 @@
+6.2.1 / 2019-02-03
+=================
+- 9980e45 [fix] Prevent Error when JSXSpreadAttribute is passed to isSemanticRoleElement
+
 6.2.0 / 2019-01-25
 =================
 - 5650674 [new rule] control-has-associated-label checks interactives for a label
