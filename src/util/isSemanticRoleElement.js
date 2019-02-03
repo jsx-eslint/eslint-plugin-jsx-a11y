@@ -22,6 +22,9 @@ const isSemanticRoleElement = (
       && (concept.attributes || []).every(
         cAttr => attributes.some(
           (attr) => {
+            if (!attr.type || attr.type !== 'JSXAttribute') {
+              return false;
+            }
             const namesMatch = cAttr.name === propName(attr);
             let valuesMatch;
             if (cAttr.value !== undefined) {
