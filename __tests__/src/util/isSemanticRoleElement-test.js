@@ -27,4 +27,22 @@ describe('isSemanticRoleElement', () => {
       JSXAttributeMock('role', 'switch'),
     ])).toBe(false);
   });
+  it('should not throw on JSXSpreadAttribute', () => {
+    expect(() => {
+      isSemanticRoleElement('input', [
+        JSXAttributeMock('type', 'checkbox'),
+        JSXAttributeMock('role', 'checkbox'),
+        JSXAttributeMock('aria-checked', 'false'),
+        JSXAttributeMock('aria-labelledby', 'foo'),
+        JSXAttributeMock('tabindex', '0'),
+        {
+          type: 'JSXSpreadAttribute',
+          argument: {
+            type: 'Identifier',
+            name: 'props',
+          },
+        },
+      ]);
+    }).not.toThrow();
+  });
 });
