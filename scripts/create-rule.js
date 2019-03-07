@@ -12,9 +12,14 @@ const docBoilerplateGenerator = require('./boilerplate/doc');
 const ruleName = argv._[0];
 const author = argv.author || '$AUTHOR';
 const description = argv.description || '$DESCRIPTION';
+let platform = argv.platform || 'web';
 
-const rulePath = path.resolve(`src/rules/${ruleName}.js`);
-const testPath = path.resolve(`__tests__/src/rules/${ruleName}-test.js`);
+if (platform !== 'native' || platform !== 'web') {
+  platform = 'web';
+}
+
+const rulePath = path.resolve(`src/rules/${platform}/${ruleName}.js`);
+const testPath = path.resolve(`__tests__/src/rules/${platform}/${ruleName}-test.js`);
 const docsPath = path.resolve(`docs/rules/${ruleName}.md`);
 
 const jscodeshiftMain = jscodeshiftJSON.main;
