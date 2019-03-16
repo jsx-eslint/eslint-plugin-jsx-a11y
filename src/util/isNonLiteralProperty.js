@@ -20,8 +20,18 @@ const isNonLiteralProperty = (
   const prop = getProp(attributes, propName);
   if (!prop) return false;
 
-  const roleValue = prop.value;
-  return !!roleValue && roleValue.type !== 'Literal';
+  const propValue = prop.value;
+  if (!propValue) return false;
+
+  if (propValue.type === 'Literal') return false;
+
+  if (propValue.type === 'JSXExpressionContainer') {
+    const {expression} = propValue;
+    console.log(JSON.stringify(expression));
+    if (expression.type === 'Identifier' && expression.name === 'undefined') return false;
+  } 
+
+  return true;
 };
 
 export default isNonLiteralProperty;

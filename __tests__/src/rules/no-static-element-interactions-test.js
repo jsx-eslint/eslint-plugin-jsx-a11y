@@ -262,7 +262,7 @@ const alwaysValid = [
 
 const neverValid = [
   { code: '<div onClick={() => void 0} />;', errors: [expectedError] },
-  //  { code: '<div onClick={() => void 0} role={undefined} />;', errors: [expectedError] },
+  { code: '<div onClick={() => void 0} role={undefined} />;', errors: [expectedError] },
   { code: '<div onClick={() => void 0} {...props} />;', errors: [expectedError] },
   { code: '<div onKeyUp={() => void 0} aria-hidden={false} />;', errors: [expectedError] },
   /* Static elements; no inherent role */
