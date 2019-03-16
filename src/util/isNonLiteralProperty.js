@@ -27,7 +27,6 @@ const isNonLiteralProperty = (
 
   if (propValue.type === 'JSXExpressionContainer') {
     const { expression } = propValue;
-    console.log(JSON.stringify(expression));
     if (expression.type === 'Identifier' && expression.name === 'undefined') return false;
     if (expression.type === 'JSXText') return false;
   }
