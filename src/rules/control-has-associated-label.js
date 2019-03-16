@@ -21,6 +21,8 @@ import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 
 const errorMessage = 'A control must be associated with a text label.';
 
+const blacklist = ['link'];
+
 const schema = generateObjSchema({
   labelAttributes: arraySchema,
   controlComponents: arraySchema,
@@ -48,13 +50,15 @@ module.exports = {
       ignoreRoles = [],
     } = options;
 
+    const newIgnoreElements = ignoreElements.concat(blacklist);
+
     const rule = (node: JSXElement) => {
       const tag = elementType(node.openingElement);
       const role = getLiteralPropValue(getProp(node.openingElement.attributes, 'role'));
       // Ignore interactive elements that might get their label from a source
       // that cannot be discerned from static analysis, like
       // <label><input />Save</label>
-      if (includes(ignoreElements, tag)) {
+      if (includes(newIgnoreElements, tag)) {
         return;
       }
       // Ignore roles that are "interactive" but should not require a label.
