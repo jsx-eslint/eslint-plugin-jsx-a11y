@@ -3,10 +3,13 @@ import expect from 'expect';
 import isNonLiteralProperty from '../../../src/util/isNonLiteralProperty';
 import IdentifierMock from '../../../__mocks__/IdentifierMock';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
+import JSXSpreadAttributeMock from '../../../__mocks__/JSXSpreadAttributeMock';
 import JSXTextMock from '../../../__mocks__/JSXTextMock';
 import LiteralMock from '../../../__mocks__/LiteralMock';
 
 const theProp = 'theProp';
+
+const spread = JSXSpreadAttributeMock('theSpread');
 
 describe('isNonLiteralProperty', () => {
   describe('elements without the property', () => {
@@ -15,8 +18,11 @@ describe('isNonLiteralProperty', () => {
     });
   });
   describe('elements with a literal property', () => {
-    it('should not identify them as non-literal role elements', () => {
+    it('should not identify them as non-literal role elements without spread operator', () => {
       expect(isNonLiteralProperty([JSXAttributeMock(theProp, LiteralMock('theRole'))], theProp)).toBe(false);
+    });
+    it('should not identify them as non-literal role elements with spread operator', () => {
+      expect(isNonLiteralProperty([spread, JSXAttributeMock(theProp, LiteralMock('theRole'))], theProp)).toBe(false);
     });
   });
   describe('elements with a JSXText property', () => {
