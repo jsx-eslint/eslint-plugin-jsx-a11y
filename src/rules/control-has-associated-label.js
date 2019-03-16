@@ -21,7 +21,7 @@ import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 
 const errorMessage = 'A control must be associated with a text label.';
 
-const blacklist = ['link'];
+const ignoreList = ['link'];
 
 const schema = generateObjSchema({
   labelAttributes: arraySchema,
