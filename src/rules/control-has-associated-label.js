@@ -58,7 +58,7 @@ module.exports = {
       // Ignore interactive elements that might get their label from a source
       // that cannot be discerned from static analysis, like
       // <label><input />Save</label>
-      if (includes(newIgnoreElements, tag)) {
+      if (newIgnoreElements.has(tag)) {
         return;
       }
       // Ignore roles that are "interactive" but should not require a label.
