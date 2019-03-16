@@ -50,7 +50,7 @@ module.exports = {
       ignoreRoles = [],
     } = options;
 
-    const newIgnoreElements = ignoreElements.concat(blacklist);
+    const newIgnoreElements = new Set([...ignoreElements, ...ignoreList]);
 
     const rule = (node: JSXElement) => {
       const tag = elementType(node.openingElement);
