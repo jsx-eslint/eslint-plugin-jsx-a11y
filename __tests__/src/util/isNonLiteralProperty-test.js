@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 import expect from 'expect';
-import toAST from 'to-ast';
 import isNonLiteralProperty from '../../../src/util/isNonLiteralProperty';
 import IdentifierMock from '../../../__mocks__/IdentifierMock';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
-import JSXExpressionContainerMock from '../../../__mocks__/JSXExpressionContainerMock';
+import JSXTextMock from '../../../__mocks__/JSXTextMock';
+import LiteralMock from '../../../__mocks__/LiteralMock';
 
 const theProp = 'theProp';
 
@@ -16,7 +16,12 @@ describe('isNonLiteralProperty', () => {
   });
   describe('elements with a literal property', () => {
     it('should not identify them as non-literal role elements', () => {
-      expect(isNonLiteralProperty([JSXAttributeMock(theProp, toAST('theRole'))], theProp)).toBe(false);
+      expect(isNonLiteralProperty([JSXAttributeMock(theProp, LiteralMock('theRole'))], theProp)).toBe(false);
+    });
+  });
+  describe('elements with a JSXText property', () => {
+    it('should not identify them as non-literal role elements', () => {
+      expect(isNonLiteralProperty([JSXAttributeMock(theProp, JSXTextMock('theRole'))], theProp)).toBe(false);
     });
   });
   describe('elements with a property of undefined', () => {
