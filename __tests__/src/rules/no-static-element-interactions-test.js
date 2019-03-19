@@ -257,6 +257,7 @@ const alwaysValid = [
   { code: '<div onAnimationEnd={() => {}} />;' },
   { code: '<div onAnimationIteration={() => {}} />;' },
   { code: '<div onTransitionEnd={() => {}} />;' },
+  { code: '<div  {...this.props} role={this.props.role} onKeyPress={e => this.handleKeyPress(e)}>{this.props.children}</div>' },
 ];
 
 const neverValid = [
