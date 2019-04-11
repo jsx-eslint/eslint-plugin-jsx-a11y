@@ -97,7 +97,7 @@ module.exports = {
       const invalidHrefValues = values
         .filter(value => value !== undefined && value !== null)
         .filter(value => (typeof value === 'string' && (
-          !value.length || value === '#' || /^\W*?javascript/.test(value)
+          !value.length || value === '#' || /^\W*?javascript:/.test(value)
         )));
       if (invalidHrefValues.length !== 0) {
         // If an onClick is found it should be a button, otherwise it is an invalid link.

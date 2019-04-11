@@ -89,6 +89,8 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: '<a href="/foo" />' },
     { code: '<a href="https://foo.bar.com" />' },
     { code: '<div href="foo" />' },
+    { code: '<a href="javascript" />' },
+    { code: '<a href="javascriptFoo" />' },
     { code: '<a href={`#foo`}/>' },
     { code: '<a href={"foo"}/>' },
     { code: '<a href="#foo" />' },
