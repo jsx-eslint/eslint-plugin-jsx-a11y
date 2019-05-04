@@ -21,8 +21,16 @@ describe('all rule files should be exported by the plugin', () => {
 });
 
 describe('configurations', () => {
+  it('should export a \'disabled\' configuration', () => {
+    assert(plugin.configs.disabled);
+  });
+
   it('should export a \'recommended\' configuration', () => {
     assert(plugin.configs.recommended);
+  });
+
+  it('should export a \'strict\' configuration', () => {
+    assert(plugin.configs.strict);
   });
 });
 

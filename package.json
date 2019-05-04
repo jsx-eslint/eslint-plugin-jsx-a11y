@@ -27,7 +27,7 @@
     "pretest": "npm run lint:fix && npm run flow",
     "test": "npm run jest",
     "test:ci": "npm run jest -- --ci --runInBand",
-    "jest": "jest --coverage __tests__/**/*"
+    "jest": "jest --coverage __tests__/**"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

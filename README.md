@@ -90,6 +90,19 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 }
 ```
 
+You can also completely disable all `jsx-a11y` rules.
+This can be useful when `eslint-plugin-jsx-a11y` is used by another ESLint package (i.e. [eslint-config-airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)), but you are not concerned with accessibility.
+Add `plugin:jsx-a11y/disabled` in `extends`:
+
+```json
+{
+  "extends": [
+    "plugin:jsx-a11y/disabled"
+  ]
+}
+```
+> **Important:** Be sure to check local [Web Accessibility](https://www.w3.org/WAI/policies/) guidelines; a11y is typically required by law.
+
 ## Supported Rules
 
 - [accessible-emoji](docs/rules/accessible-emoji.md): Enforce emojis are wrapped in <span> and provide screenreader access.

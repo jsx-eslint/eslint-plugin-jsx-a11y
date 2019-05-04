@@ -35,8 +35,13 @@ export default function transformer(file, api, options) {
         ));
         path.parentPath.value.value.properties.sort(nameSort);
       }
-      // Set default reporting to error.
+      // Set default reporting to error (for disabled plugin).
       if (index === 1) {
+        path.parentPath.value.value.properties.unshift(j.property('init', j.literal(`jsx-a11y/${ruleName}`), j.literal('off')));
+        path.parentPath.value.value.properties.sort(nameSort);
+      }
+      // Set default reporting to error (for recommended plugin).
+      if (index === 2) {
         path.parentPath.value.value.properties.unshift(j.property('init', j.literal(`jsx-a11y/${ruleName}`), j.literal('error')));
         path.parentPath.value.value.properties.sort(nameSort);
       }
