@@ -28,8 +28,6 @@ ruleTester.run('no-access-key', rule, {
     { code: '<div />;' },
     { code: '<div {...props} />' },
     { code: '<div accessKey={undefined} />' },
-    { code: '<div accessKey={`${undefined}`} />' },
-    { code: '<div accessKey={`${undefined}${undefined}`} />' },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div accesskey="h" />', errors: [expectedError] },
@@ -44,5 +42,7 @@ ruleTester.run('no-access-key', rule, {
     },
     { code: '<div accessKey={`This is ${bad}`} />', errors: [expectedError] },
     { code: '<div accessKey={accessKey} />', errors: [expectedError] },
+    { code: '<div accessKey={`${undefined}`} />', errors: [expectedError] },
+    { code: '<div accessKey={`${undefined}${undefined}`} />', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
