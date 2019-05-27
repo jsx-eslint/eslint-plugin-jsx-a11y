@@ -7,6 +7,8 @@ import includes from 'array-includes';
 import JSXAttributeMock from './JSXAttributeMock';
 import JSXElementMock from './JSXElementMock';
 
+import type { TJSXElementMock } from './JSXElementMock';
+
 const domElements = [...dom.keys()];
 const roleNames = [...roles.keys()];
 
@@ -149,8 +151,8 @@ export function genElementSymbol(openingElement: Object) {
   );
 }
 
-export function genInteractiveElements() {
-  return Object.keys(interactiveElementsMap).map((elementSymbol) => {
+export function genInteractiveElements(): Array<TJSXElementMock> {
+  return Object.keys(interactiveElementsMap).map((elementSymbol: string): TJSXElementMock => {
     const bracketIndex = elementSymbol.indexOf('[');
     let name = elementSymbol;
     if (bracketIndex > -1) {
@@ -161,15 +163,15 @@ export function genInteractiveElements() {
   });
 }
 
-export function genInteractiveRoleElements() {
-  return [...interactiveRoles, 'button article', 'fakerole button article'].map(value => JSXElementMock(
+export function genInteractiveRoleElements(): Array<TJSXElementMock> {
+  return [...interactiveRoles, 'button article', 'fakerole button article'].map((value): TJSXElementMock => JSXElementMock(
     'div',
     [JSXAttributeMock('role', value)],
   ));
 }
 
-export function genNonInteractiveElements() {
-  return Object.keys(nonInteractiveElementsMap).map((elementSymbol) => {
+export function genNonInteractiveElements(): Array<TJSXElementMock> {
+  return Object.keys(nonInteractiveElementsMap).map((elementSymbol): TJSXElementMock => {
     const bracketIndex = elementSymbol.indexOf('[');
     let name = elementSymbol;
     if (bracketIndex > -1) {
@@ -196,9 +198,9 @@ export function genNonAbstractRoleElements() {
   return nonAbstractRoles.map(value => JSXElementMock('div', [JSXAttributeMock('role', value)]));
 }
 
-export function genIndeterminantInteractiveElements() {
+export function genIndeterminantInteractiveElements(): Array<TJSXElementMock> {
   return Object.keys(indeterminantInteractiveElementsMap).map((name) => {
-    const attributes = indeterminantInteractiveElementsMap[name].map(({ prop, value }) => JSXAttributeMock(prop, value));
+    const attributes = indeterminantInteractiveElementsMap[name].map(({ prop, value }): TJSXElementMock => JSXAttributeMock(prop, value));
     return JSXElementMock(name, attributes);
   });
 }
