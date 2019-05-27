@@ -6,8 +6,8 @@ The captions should contain all important and relevant information to understand
 
 ### References
 
-  1.[aXe](https://dequeuniversity.com/rules/axe/2.1/audio-caption)
-  1.[aXe](https://dequeuniversity.com/rules/axe/2.1/video-caption)
+  1. [audio](https://dequeuniversity.com/rules/axe/2.1/audio-caption)
+  1. [video](https://dequeuniversity.com/rules/axe/2.1/video-caption)
 
 ## Rule details
 

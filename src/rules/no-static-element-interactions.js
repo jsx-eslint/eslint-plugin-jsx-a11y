@@ -27,6 +27,7 @@ import isInteractiveRole from '../util/isInteractiveRole';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
+import isNonLiteralProperty from '../util/isNonLiteralProperty';
 
 const errorMessage = 'Static HTML elements with event handlers require a role.';
 
@@ -87,6 +88,11 @@ module.exports = {
           || isAbstractRole(type, attributes)
         ) {
           // This rule has no opinion about abstract roles.
+          return;
+        }
+
+        if (isNonLiteralProperty(attributes, 'role')) {
+          // This rule has no opinion about non-literal roles.
           return;
         }
 

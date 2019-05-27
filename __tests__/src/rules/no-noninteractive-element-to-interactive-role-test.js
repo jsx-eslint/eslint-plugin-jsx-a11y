@@ -345,6 +345,7 @@ const alwaysValid = [
   { code: '<div role="term" />;' },
   { code: '<div role="timer" />;' },
   { code: '<div role="tooltip" />;' },
+  { code: '<ul role="list" />;' },
 ];
 
 const neverValid = [
