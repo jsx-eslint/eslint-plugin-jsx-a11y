@@ -74,6 +74,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-hidden={!"yes"} />' },
     { code: '<div aria-hidden={foo} />' },
     { code: '<div aria-hidden={foo.bar} />' },
+    { code: '<div aria-hidden={null} />' },
+    { code: '<div aria-hidden={undefined} />' },
     { code: '<div aria-hidden={<div />} />' },
 
     // STRING
@@ -81,6 +83,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-label={`Close`} />' },
     { code: '<div aria-label={foo} />' },
     { code: '<div aria-label={foo.bar} />' },
+    { code: '<div aria-label={null} />' },
+    { code: '<div aria-label={undefined} />' },
     { code: '<input aria-invalid={error ? "true" : "false"} />' },
     { code: '<input aria-invalid={undefined ? "true" : "false"} />' },
 
@@ -97,6 +101,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-checked={foo.bar} />' },
     { code: '<div aria-checked="mixed" />' },
     { code: '<div aria-checked={`mixed`} />' },
+    { code: '<div aria-checked={null} />' },
+    { code: '<div aria-checked={undefined} />' },
 
     // INTEGER
     { code: '<div aria-level={123} />' },
@@ -108,6 +114,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-level="123" />' },
     { code: '<div aria-level={foo} />' },
     { code: '<div aria-level={foo.bar} />' },
+    { code: '<div aria-level={null} />' },
+    { code: '<div aria-level={undefined} />' },
 
     // NUMBER
     { code: '<div aria-valuemax={123} />' },
@@ -119,6 +127,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-valuemax="123" />' },
     { code: '<div aria-valuemax={foo} />' },
     { code: '<div aria-valuemax={foo.bar} />' },
+    { code: '<div aria-valuemax={null} />' },
+    { code: '<div aria-valuemax={undefined} />' },
 
     // TOKEN
     { code: '<div aria-sort="ascending" />' },
@@ -142,6 +152,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-invalid="false" />' },
     { code: '<div aria-invalid="grammar" />' },
     { code: '<div aria-invalid="spelling" />' },
+    { code: '<div aria-invalid={null} />' },
+    { code: '<div aria-invalid={undefined} />' },
 
     // TOKENLIST
     { code: '<div aria-relevant="additions" />' },
@@ -159,6 +171,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-relevant={`removals additions text all`} />' },
     { code: '<div aria-relevant={foo} />' },
     { code: '<div aria-relevant={foo.bar} />' },
+    { code: '<div aria-relevant={null} />' },
+    { code: '<div aria-relevant={undefined} />' },
 
     // ID
     { code: '<div aria-activedescendant="ascending" />' },
@@ -176,6 +190,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-activedescendant={`other`} />' },
     { code: '<div aria-activedescendant={foo} />' },
     { code: '<div aria-activedescendant={foo.bar} />' },
+    { code: '<div aria-activedescendant={null} />' },
+    { code: '<div aria-activedescendant={undefined} />' },
 
     // IDLIST
     { code: '<div aria-labelledby="additions" />' },
@@ -193,13 +209,11 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-labelledby={`removals additions text all`} />' },
     { code: '<div aria-labelledby={foo} />' },
     { code: '<div aria-labelledby={foo.bar} />' },
+    { code: '<div aria-labelledby={null} />' },
+    { code: '<div aria-labelledby={undefined} />' },
   ].map(parserOptionsMapper),
   invalid: [
     // BOOLEAN
-    {
-      code: '<div aria-hidden={undefined} />',
-      errors: [errorMessage('aria-hidden')],
-    },
     { code: '<div aria-hidden="yes" />', errors: [errorMessage('aria-hidden')] },
     { code: '<div aria-hidden="no" />', errors: [errorMessage('aria-hidden')] },
     { code: '<div aria-hidden={1234} />', errors: [errorMessage('aria-hidden')] },
@@ -209,7 +223,6 @@ ruleTester.run('aria-proptypes', rule, {
     },
 
     // STRING
-    { code: '<div aria-label={undefined} />', errors: [errorMessage('aria-label')] },
     { code: '<div aria-label />', errors: [errorMessage('aria-label')] },
     { code: '<div aria-label={true} />', errors: [errorMessage('aria-label')] },
     { code: '<div aria-label={false} />', errors: [errorMessage('aria-label')] },
@@ -217,10 +230,6 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-label={!true} />', errors: [errorMessage('aria-label')] },
 
     // TRISTATE
-    {
-      code: '<div aria-checked={undefined} />',
-      errors: [errorMessage('aria-checked')],
-    },
     { code: '<div aria-checked="yes" />', errors: [errorMessage('aria-checked')] },
     { code: '<div aria-checked="no" />', errors: [errorMessage('aria-checked')] },
     { code: '<div aria-checked={1234} />', errors: [errorMessage('aria-checked')] },
@@ -230,7 +239,6 @@ ruleTester.run('aria-proptypes', rule, {
     },
 
     // INTEGER
-    { code: '<div aria-level={undefined} />', errors: [errorMessage('aria-level')] },
     { code: '<div aria-level="yes" />', errors: [errorMessage('aria-level')] },
     { code: '<div aria-level="no" />', errors: [errorMessage('aria-level')] },
     { code: '<div aria-level={`abc`} />', errors: [errorMessage('aria-level')] },
@@ -240,10 +248,6 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-level={!"false"} />', errors: [errorMessage('aria-level')] },
 
     // NUMBER
-    {
-      code: '<div aria-valuemax={undefined} />',
-      errors: [errorMessage('aria-valuemax')],
-    },
     { code: '<div aria-valuemax="yes" />', errors: [errorMessage('aria-valuemax')] },
     { code: '<div aria-valuemax="no" />', errors: [errorMessage('aria-valuemax')] },
     {
@@ -268,7 +272,6 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-sort="" />', errors: [errorMessage('aria-sort')] },
     { code: '<div aria-sort="descnding" />', errors: [errorMessage('aria-sort')] },
     { code: '<div aria-sort />', errors: [errorMessage('aria-sort')] },
-    { code: '<div aria-sort={undefined} />', errors: [errorMessage('aria-sort')] },
     { code: '<div aria-sort={true} />', errors: [errorMessage('aria-sort')] },
     { code: '<div aria-sort={"false"} />', errors: [errorMessage('aria-sort')] },
     {
@@ -283,10 +286,6 @@ ruleTester.run('aria-proptypes', rule, {
       errors: [errorMessage('aria-relevant')],
     },
     { code: '<div aria-relevant />', errors: [errorMessage('aria-relevant')] },
-    {
-      code: '<div aria-relevant={undefined} />',
-      errors: [errorMessage('aria-relevant')],
-    },
     {
       code: '<div aria-relevant={true} />',
       errors: [errorMessage('aria-relevant')],

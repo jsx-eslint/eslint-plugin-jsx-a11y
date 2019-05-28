@@ -37,7 +37,6 @@ const alwaysValid = [
 const neverValid = [
   { code: '<button role="button" />', errors: [expectedError('button', 'button')] },
   { code: '<body role="DOCUMENT" />', errors: [expectedError('body', 'document')] },
-  { code: '<button role={`${undefined}button`} />', errors: [expectedError('button', 'button')] },
 ];
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
