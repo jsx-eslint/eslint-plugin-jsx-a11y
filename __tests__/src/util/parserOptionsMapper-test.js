@@ -14,8 +14,9 @@ describe('parserOptionsMapper', () => {
       errors: [],
       options: {},
       parserOptions: {
-        ecmaVersion: 6,
+        ecmaVersion: 2018,
         ecmaFeatures: {
+          experimentalObjectRestSpread: true,
           jsx: true,
         },
       },
@@ -37,6 +38,7 @@ describe('parserOptionsMapper', () => {
       parserOptions: {
         ecmaVersion: 5,
         ecmaFeatures: {
+          experimentalObjectRestSpread: true,
           jsx: true,
         },
       },

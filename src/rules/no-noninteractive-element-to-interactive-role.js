@@ -49,6 +49,7 @@ module.exports = {
     return {
       JSXAttribute: (attribute: ESLintJSXAttribute) => {
         const attributeName: JSXIdentifier = propName(attribute);
+        // $FlowFixMe: [TODO] Mark propName as a JSXIdentifier, not a string.
         if (attributeName !== 'role') {
           return;
         }

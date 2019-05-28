@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jsx-a11y",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "description": "Static AST checker for accessibility rules on JSX elements.",
   "keywords": [
     "eslint",
@@ -80,10 +80,10 @@
     ],
     "coverageDirectory": "reports",
     "roots": [
-      "<rootDir>/__tests__"
+      "__tests__"
     ],
     "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/__util__"
+      "__tests__/__util__/"
     ],
     "testEnvironment": "node"
   },

@@ -107,7 +107,7 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 - [iframe-has-title](docs/rules/iframe-has-title.md): Enforce iframe elements have a title attribute.
 - [img-redundant-alt](docs/rules/img-redundant-alt.md): Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".
 - [interactive-supports-focus](docs/rules/interactive-supports-focus.md): Enforce that elements with interactive handlers like `onClick` must be focusable.
-- [label-has-for](docs/rules/label-has-for.md): Enforce that `<label>` elements have the `htmlFor` prop.
+- [label-has-associated-control](docs/rules/label-has-associated-control.md): Enforce that a `label` tag has a text label and an associated control.
 - [lang](docs/rules/lang.md): Enforce lang attribute has a valid value.
 - [media-has-caption](docs/rules/media-has-caption.md): Enforces that `<audio>` and `<video>` elements must have a `<track>` for captions.
 - [mouse-events-have-key-events](docs/rules/mouse-events-have-key-events.md): Enforce that `onMouseOver`/`onMouseOut` are accompanied by `onFocus`/`onBlur` for keyboard-only users.
@@ -145,7 +145,7 @@ Rule | Recommended | Strict
 [iframe-has-title](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/iframe-has-title.md) | error | error
 [img-redundant-alt](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-redundant-alt.md) | error | error
 [interactive-supports-focus](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/interactive-supports-focus.md) | error | error
-[label-has-for](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md) | error | error
+[label-has-associated-control](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-associated-control.md) | error | error
 [media-has-caption](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/media-has-caption.md) | error | error
 [mouse-events-have-key-events](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md) | error | error
 [no-access-key](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-access-key.md) | error | error
@@ -265,17 +265,17 @@ $ ./scripts/create-rule.js my-new-rule
 ### Accessibility API
 An operating system will provide an accessibility API that maps application state and content onto input/output controllers such as a screen reader, braille device, keyboard, etc.
 
-These APIs were developed as computer interfaces shifted from buffers (which are text based and inherently quite accessible) to graphical user interfaces (GUIs). The first attempts to make GUIs accessible involved raster image parsing to recognize characters, words, etc. This information was stored in a parallel buffer and made accessible to assistive technology (AT) devices.
+These APIs were developed as computer interfaces shifted from buffers (which are text-based and inherently quite accessible) to graphical user interfaces (GUIs). The first attempts to make GUIs accessible involved raster image parsing to recognize characters, words, etc. This information was stored in a parallel buffer and made accessible to assistive technology (AT) devices.
 
 As GUIs became more complex, the raster parsing approach became untenable. Accessibility APIs were developed to replace them. Check out [NSAccessibility (AXAPI)](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Protocols/NSAccessibility_Protocol/index.html) for an example. See [Core Accessibility API Mappings 1.1](https://www.w3.org/TR/core-aam-1.1/) for more details.
 
 ### Browsers
-Browsers support an Accessibility API on a per operating system basis. For instance Firefox implements the MSAA accessibility API on Windows, but does not implement the AXAPI on OSX.
+Browsers support an Accessibility API on a per operating system basis. For instance, Firefox implements the MSAA accessibility API on Windows, but does not implement the AXAPI on OSX.
 
 ### The Accessibility (AX) Tree & DOM
 From the [W3 Core Accessibility API Mappings 1.1](https://www.w3.org/TR/core-aam-1.1/#intro_treetypes)
 
-> The accessibility tree and the DOM tree are parallel structures. Roughly speaking the accessibility tree is a subset of the DOM tree. It includes the user interface objects of the user agent and the objects of the document. Accessible objects are created in the accessibility tree for every DOM element that should be exposed to an assistive technology, either because it may fire an accessibility event or because it has a property, relationship or feature which needs to be exposed. Generally if something can be trimmed out it will be, for reasons of performance and simplicity. For example, a <span> with just a style change and no semantics may not get its own accessible object, but the style change will be exposed by other means.
+> The accessibility tree and the DOM tree are parallel structures. Roughly speaking the accessibility tree is a subset of the DOM tree. It includes the user interface objects of the user agent and the objects of the document. Accessible objects are created in the accessibility tree for every DOM element that should be exposed to assistive technology, either because it may fire an accessibility event or because it has a property, relationship or feature which needs to be exposed. Generally, if something can be trimmed out it will be, for reasons of performance and simplicity. For example, a <span> with just a style change and no semantics may not get its own accessible object, but the style change will be exposed by other means.
 
 Browser vendors are beginning to expose the AX Tree through inspection tools. Chrome has an experiment available to enable their inspection tool.
 
@@ -291,7 +291,7 @@ You can also see a text-based version of the AX Tree in Chrome in the stable rel
 ### Pulling it all together
 A browser constructs an AX Tree as a subset of the DOM. ARIA heavily informs the properties of this AX Tree. This AX Tree is exposed to the system level Accessibility API which mediates assistive technology agents.
 
-We model ARIA in the [aria-query](https://github.com/a11yance/aria-query) project. We model AXObjects (that comprise the AX Tree) in the [axobject-query](https://github.com/A11yance/axobject-query) project. The goal of the WAI-ARIA specification is to be a complete declarative interface to the AXObject model. The [in-draft 1.2 version](https://github.com/w3c/aria/issues?q=is%3Aissue+is%3Aopen+label%3A%22ARIA+1.2%22) is moving towards this goal. But until then, we must consider the semantics constructs affored by ARIA as well as those afforded by the AXObject model (AXAPI) in order to determine how HTML can be used to express user interface affordances to assistive technology users.
+We model ARIA in the [aria-query](https://github.com/a11yance/aria-query) project. We model AXObjects (that comprise the AX Tree) in the [axobject-query](https://github.com/A11yance/axobject-query) project. The goal of the WAI-ARIA specification is to be a complete declarative interface to the AXObject model. The [in-draft 1.2 version](https://github.com/w3c/aria/issues?q=is%3Aissue+is%3Aopen+label%3A%22ARIA+1.2%22) is moving towards this goal. But until then, we must consider the semantics constructs afforded by ARIA as well as those afforded by the AXObject model (AXAPI) in order to determine how HTML can be used to express user interface affordances to assistive technology users.
 
 ## License
 
