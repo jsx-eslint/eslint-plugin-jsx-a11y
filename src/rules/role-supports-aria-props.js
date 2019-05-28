@@ -15,6 +15,7 @@ import {
 import {
   getProp,
   getLiteralPropValue,
+  getPropValue,
   elementType,
   propName,
 } from 'jsx-ast-utils';
@@ -67,9 +68,11 @@ module.exports = {
         .filter(attribute => propertySet.indexOf(attribute) === -1);
 
       node.attributes.forEach((prop) => {
-        if (prop.type === 'JSXSpreadAttribute') {
-          return;
-        }
+        // Ignore the attribute if its value is null or undefined.
+        if (getPropValue(prop) == null) return;
+
+        // Ignore the attribute if it's a spread.
+        if (prop.type === 'JSXSpreadAttribute') return;
 
         const name = propName(prop);
         if (invalidAriaPropsForRole.indexOf(name) > -1) {
