@@ -379,6 +379,10 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="url" aria-disabled />' },
     { code: '<input aria-disabled />' },
 
+    // Allow null/undefined values regardless of role
+    { code: '<h2 role="presentation" aria-level={null} />' },
+    { code: '<h2 role="presentation" aria-level={undefined} />' },
+
     // OTHER TESTS
     { code: '<aside aria-expanded />' },
     { code: '<article aria-expanded />' },
