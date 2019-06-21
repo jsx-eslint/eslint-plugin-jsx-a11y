@@ -3,10 +3,10 @@
 Enforce that all elements that require alternative text have meaningful information to relay back to the end user. This is a critical component of accessibility for screenreader users in order for them to understand the content's purpose on the page. By default, this rule checks for alternative text on the following elements: `<img>`, `<area>`, `<input type="image">`, and `<object>`.
 
 #### Resources
-  1. [aXe object-alt](https://dequeuniversity.com/rules/axe/2.1/object-alt)
-  2. [aXe image-alt](https://dequeuniversity.com/rules/axe/2.1/image-alt)
-  3. [aXe input-image-alt](https://dequeuniversity.com/rules/axe/2.1/input-image-alt)
-  4. [aXe area-alt](https://dequeuniversity.com/rules/axe/2.1/area-alt)
+1. [axe-core, object-alt](https://dequeuniversity.com/rules/axe/3.2/object-alt)
+2. [axe-core, image-alt](https://dequeuniversity.com/rules/axe/3.2/image-alt)
+3. [axe-core, input-image-alt](https://dequeuniversity.com/rules/axe/3.2/input-image-alt)
+4. [axe-core, area-alt](https://dequeuniversity.com/rules/axe/3.2/area-alt)
 
 ## How to resolve
 ### `<img>`

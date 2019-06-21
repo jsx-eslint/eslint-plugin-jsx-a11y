@@ -3,7 +3,7 @@
 `<iframe>` elements must have a unique title property to indicate its content to the user.
 
 #### References
-1. [Deque University](https://dequeuniversity.com/rules/axe/1.1/frame-title)
+1. [axe-core, frame-title](https://dequeuniversity.com/rules/axe/3.2/frame-title)
 
 ## Rule details
 

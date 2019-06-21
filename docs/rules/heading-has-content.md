@@ -3,7 +3,7 @@
 Enforce that heading elements (`h1`, `h2`, etc.) have content and that the content is accessible to screen readers. Accessible means that it is not hidden using the `aria-hidden` prop. Refer to the references to learn about why this is important.
 
 #### References
-1. [Deque University](https://dequeuniversity.com/rules/axe/1.1/empty-heading)
+1. [axe-core, empty-heading](https://dequeuniversity.com/rules/axe/3.2/empty-heading)
 
 ## Rule details
 
