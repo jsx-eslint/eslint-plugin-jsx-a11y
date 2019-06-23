@@ -4,6 +4,9 @@
     "plugin:flowtype/recommended"
   ],
   parser: "babel-eslint",
+  parserOptions: {
+    "ecmaVersion": 2018,
+  },
   plugins: [
     "flowtype"
   ],

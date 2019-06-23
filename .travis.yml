@@ -4,9 +4,6 @@ node_js:
   - "9"
   - "8"
   - "7"
-  - "6"
-  - "5"
-  - "4"
 cache:
   yarn: true
   directories:
@@ -25,9 +22,7 @@ env:
   global:
     - TEST=true
   matrix:
-    - ESLINT=5
-    - ESLINT=4
-    - ESLINT=3
+    - ESLINT=6
 matrix:
   fast_finish: true
   include:
@@ -35,16 +30,3 @@ matrix:
       env: FLOW=true TEST=false
     - node_js: "node"
       env: LINT=true TEST=false
-  exclude:
-    - node_js: "5"
-      env: ESLINT=5
-    - node_js: "4"
-      env: ESLINT=5
-  allow_failures:
-    - node_js: "9"
-    - node_js: "7"
-    - node_js: "5"
-    - node_js: "4" # not sure why this is failing; probably something in jest
-      env: ESLINT=4
-    - node_js: "4"
-      env: ESLINT=3
