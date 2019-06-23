@@ -3,7 +3,8 @@
 <html> elements must have the lang prop.
 
 #### References
-1. [Deque University](https://dequeuniversity.com/rules/axe/1.1/html-lang)
+1. [axe-core, html-has-lang](https://dequeuniversity.com/rules/axe/3.2/html-has-lang)
+1. [axe-core, html-lang-valid](https://dequeuniversity.com/rules/axe/3.2/html-lang-valid)
 
 ## Rule details
 
