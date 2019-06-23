@@ -3,7 +3,6 @@ node_js:
   - "10"
   - "9"
   - "8"
-  - "7"
 cache:
   yarn: true
   directories:
@@ -23,6 +22,8 @@ env:
     - TEST=true
   matrix:
     - ESLINT=6
+    - ESLINT=5
+    - ESLINT=4
 matrix:
   fast_finish: true
   include:
