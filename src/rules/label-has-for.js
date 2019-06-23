@@ -34,7 +34,7 @@ function validateNesting(node) {
   while (queue.length) {
     child = queue.shift();
     opener = child.openingElement;
-    if (child.type === 'JSXElement' && opener && (opener.name.name === 'input' || opener.name.name === 'textarea')) {
+    if (child.type === 'JSXElement' && opener && (opener.name.name === 'input' || opener.name.name === 'textarea' || opener.name.name === 'select')) {
       return true;
     }
     if (child.children) {

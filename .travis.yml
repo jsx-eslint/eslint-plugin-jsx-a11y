@@ -21,6 +21,9 @@ script:
 after_success:
   - if [ "${TEST-}" = true ]; then npm run coveralls; fi
 sudo: false
+branches:
+  only:
+    - master
 env:
   global:
     - TEST=true
@@ -46,3 +49,5 @@ matrix:
     - node_js: "5"
     - node_js: "4" # not sure why this is failing; probably something in jest
       env: ESLINT=4
+    - node_js: "4"
+      env: ESLINT=3
