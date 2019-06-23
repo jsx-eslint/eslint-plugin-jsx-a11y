@@ -21,6 +21,9 @@ script:
 after_success:
   - if [ "${TEST-}" = true ]; then npm run coveralls; fi
 sudo: false
+branches:
+  only:
+    - master
 env:
   global:
     - TEST=true
