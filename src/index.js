@@ -170,6 +170,7 @@ module.exports = {
           {
             tags: [],
             roles: ['tabpanel'],
+            allowExpressionValues: true,
           },
         ],
         'jsx-a11y/no-onchange': 'error',
