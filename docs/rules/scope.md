@@ -3,7 +3,7 @@
 The `scope` scope should be used only on `<th>` elements.
 
 #### References
-1. [Deque University](https://dequeuniversity.com/rules/axe/1.1/scope)
+1. [axe-core, scope](https://dequeuniversity.com/rules/axe/1.1/scope)
 
 ## Rule details
 
