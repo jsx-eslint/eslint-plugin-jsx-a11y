@@ -97,6 +97,7 @@ const alwaysValid = [
   { code: '<div role="treeitem" onClick={() => {}} />;' },
   /* Presentation is a special case role that indicates intentional static semantics */
   { code: '<div role="presentation" onClick={() => {}} />;' },
+  { code: '<div role="presentation" onKeyDown={() => {}} />;' },
   /* HTML elements with an inherent, non-interactive role */
   { code: '<main onClick={() => void 0} />;' },
   { code: '<article onClick={() => {}} />;' },
