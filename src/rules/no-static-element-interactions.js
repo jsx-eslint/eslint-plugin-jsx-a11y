@@ -26,8 +26,8 @@ import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
-import isPresentationRole from '../util/isPresentationRole';
 import isNonLiteralProperty from '../util/isNonLiteralProperty';
+import isPresentationRole from '../util/isPresentationRole';
 
 const errorMessage = 'Static HTML elements with event handlers require a role.';
 
@@ -55,11 +55,12 @@ module.exports = {
       JSXOpeningElement: (node: JSXOpeningElement) => {
         const { attributes } = node;
         const type = elementType(node);
-        const interactiveProps = options[0]
-          ? options[0].handlers
-          : defaultInteractiveProps;
+        const {
+          allowExpressionValues,
+          handlers = defaultInteractiveProps,
+        } = (options[0] || {});
 
-        const hasInteractiveProps = interactiveProps
+        const hasInteractiveProps = handlers
           .some(prop => (
             hasProp(attributes, prop)
             && getPropValue(getProp(attributes, prop)) != null
@@ -91,7 +92,10 @@ module.exports = {
           return;
         }
 
-        if (isNonLiteralProperty(attributes, 'role')) {
+        if (
+          allowExpressionValues === true
+          && isNonLiteralProperty(attributes, 'role')
+        ) {
           // This rule has no opinion about non-literal roles.
           return;
         }

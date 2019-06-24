@@ -177,6 +177,7 @@ module.exports = {
         'jsx-a11y/no-static-element-interactions': [
           'error',
           {
+            allowExpressionValues: true,
             handlers: [
               'onClick',
               'onMouseDown',
