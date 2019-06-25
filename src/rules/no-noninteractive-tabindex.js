@@ -19,6 +19,7 @@ import includes from 'array-includes';
 import type { ESLintContext } from '../../flow/eslint';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
+import isNonLiteralProperty from '../util/isNonLiteralProperty';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import getTabIndex from '../util/getTabIndex';
 
@@ -67,10 +68,17 @@ module.exports = {
         const {
           tags,
           roles,
+          allowExpressionValues,
         } = (options[0] || {});
+        if (tags && includes(tags, type)) {
+          return;
+        }
+        if (roles && includes(roles, role)) {
+          return;
+        }
         if (
-          (tags && includes(tags, type))
-          || (roles && includes(roles, role))
+          allowExpressionValues === true
+          && isNonLiteralProperty(attributes, 'role')
         ) {
           return;
         }

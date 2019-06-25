@@ -32,6 +32,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-transform-flow-strip-types": "^7.2.3",
+    "@babel/runtime": "^7.4.5",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.0.0",
     "babel-preset-airbnb": "^3.2.0",
