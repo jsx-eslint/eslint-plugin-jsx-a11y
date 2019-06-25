@@ -37,7 +37,7 @@
     "babel-jest": "^24.0.0",
     "babel-preset-airbnb": "^3.2.0",
     "coveralls": "^3.0.1",
-    "eslint": "^5.15.2",
+    "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-flowtype": "^3.5.0",
     "eslint-plugin-import": "^2.16.0",
