@@ -170,6 +170,7 @@ module.exports = {
           {
             tags: [],
             roles: ['tabpanel'],
+            allowExpressionValues: true,
           },
         ],
         'jsx-a11y/no-onchange': 'error',
@@ -177,6 +178,7 @@ module.exports = {
         'jsx-a11y/no-static-element-interactions': [
           'error',
           {
+            allowExpressionValues: true,
             handlers: [
               'onClick',
               'onMouseDown',

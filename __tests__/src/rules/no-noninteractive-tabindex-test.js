@@ -54,6 +54,8 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
     ...alwaysValid,
     { code: '<div role="tabpanel" tabIndex="0" />' },
+    // Expressions should fail in strict mode
+    { code: '<div role={ROLE_BUTTON} onClick={() => {}} tabIndex="0" />;' },
   ]
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
@@ -71,5 +73,7 @@ ruleTester.run(`${ruleName}:strict`, rule, {
   invalid: [
     ...neverValid,
     { code: '<div role="tabpanel" tabIndex="0" />', errors: [expectedError] },
+    // Expressions should fail in strict mode
+    { code: '<div role={ROLE_BUTTON} onClick={() => {}} tabIndex="0" />;', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });

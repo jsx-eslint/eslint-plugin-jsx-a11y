@@ -97,6 +97,7 @@ const alwaysValid = [
   { code: '<div role="treeitem" onClick={() => {}} />;' },
   /* Presentation is a special case role that indicates intentional static semantics */
   { code: '<div role="presentation" onClick={() => {}} />;' },
+  { code: '<div role="presentation" onKeyDown={() => {}} />;' },
   /* HTML elements with an inherent, non-interactive role */
   { code: '<main onClick={() => void 0} />;' },
   { code: '<article onClick={() => {}} />;' },
@@ -257,7 +258,6 @@ const alwaysValid = [
   { code: '<div onAnimationEnd={() => {}} />;' },
   { code: '<div onAnimationIteration={() => {}} />;' },
   { code: '<div onTransitionEnd={() => {}} />;' },
-  { code: '<div  {...this.props} role={this.props.role} onKeyPress={e => this.handleKeyPress(e)}>{this.props.children}</div>' },
 ];
 
 const neverValid = [
@@ -412,6 +412,9 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<div onAnimationEnd={() => {}} />;' },
     { code: '<div onAnimationIteration={() => {}} />;' },
     { code: '<div onTransitionEnd={() => {}} />;' },
+    // Expressions should pass in recommended mode
+    { code: '<div role={ROLE_BUTTON} onClick={() => {}} />;' },
+    { code: '<div  {...this.props} role={this.props.role} onKeyPress={e => this.handleKeyPress(e)}>{this.props.children}</div>' },
   ]
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
@@ -445,5 +448,8 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     { code: '<div onMouseMove={() => {}} />;', errors: [expectedError] },
     { code: '<div onMouseOut={() => {}} />;', errors: [expectedError] },
     { code: '<div onMouseOver={() => {}} />;', errors: [expectedError] },
+    // Expressions should fail in strict mode
+    { code: '<div role={ROLE_BUTTON} onClick={() => {}} />;', errors: [expectedError] },
+    { code: '<div  {...this.props} role={this.props.role} onKeyPress={e => this.handleKeyPress(e)}>{this.props.children}</div>', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
