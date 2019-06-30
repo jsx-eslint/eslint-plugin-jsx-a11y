@@ -50,10 +50,15 @@ matrix:
     - node_js: "6"
       env: ESLINT=6
   allow_failures:
-    - node_js: "9"
     - node_js: "7"
+      env: ESLINT=6
     - node_js: "5"
-    - node_js: "4" # not sure why this is failing; probably something in jest
+      env: ESLINT=6
+    - node_js: "5"
+      env: ESLINT=4
+    - node_js: "5"
+      env: ESLINT=3
+    - node_js: "4"
       env: ESLINT=4
     - node_js: "4"
       env: ESLINT=3
