@@ -1,3 +1,40 @@
+6.2.2 / 2019-06-29
+=================
+- Update jsx-ast-utils to v2.2.1
+- Add @babel/cli to the dev dependencies
+- Update ESLint to v6
+- Update jsx-ast-utils to 2.2.0
+- Update flow-bin to version 0.102.0
+- [589] Allow expression statements for attribute values in no-noninteractive-tabindexlow-bin-0.101.0
+- [583] Allow expression values in attributes by configurationrror
+- [596] Adding a test case for no-static-element-interactionseper/flow-bin-0.101.0) Merge branch 'master' into greenkeeper/flow-bin-0.101.0
+- Only run branch test coverage on the master branch
+- chore(package): update flow-bin to version 0.100.0
+- Allow select as a valid child of label.
+- Allow Node 4 / ESLint 3 failure to unblock ESLint upgrade in PR #568
+- chore(package): update flow-bin to version 0.99.0
+- Remove rootDir from Jest path configs
+- (fix) Template literals with undefined evaluate to the string undefined.
+- adds more tests to “anchor-is-valid”
+- Fixes “anchor-is-valid” false positive for hrefs starting with the word “javascript”
+- chore(package): update eslint-plugin-flowtype to version 3.5.0
+- Modified no-static-element-interactions to pass on non-literal roles.
+- Added isNonLiteralProperty util method
+- [#399] Account for spread in parser options
+- [552] control-has-associated-label should allow generic links
+- [issue 392] ul role='list' test case
+- chore(package): update eslint to version 5.15.2
+- chore(package): update flow-bin to version 0.95.0
+- chore(package): update expect to version 24.3.1
+- Fix typo: defintions > definitions
+- docs: add proper title to links to axe website for media-has-caption
+- docs: removes deprecated rule label-has-for
+- docs: fix typo and couple grammatical errors in Readme
+- Ignore null/undefined values in role-supports-aria-props rule
+- Ignore undefined values in aria-proptypes rule
+- Ignore null values in aria-proptypes rule
+- set target for node 4
+
 6.2.1 / 2019-02-03
 =================
 - 9980e45 [fix] Prevent Error when JSXSpreadAttribute is passed to isSemanticRoleElement
