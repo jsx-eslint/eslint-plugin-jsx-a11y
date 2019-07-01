@@ -33,7 +33,6 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.0.0",
     "@babel/plugin-transform-flow-strip-types": "^7.2.3",
-    "@babel/runtime": "^7.4.5",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.0.0",
     "babel-preset-airbnb": "^4.0.0",
@@ -59,6 +58,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "^7.4.5",
     "aria-query": "^3.0.0",
     "array-includes": "^3.0.3",
     "ast-types-flow": "^0.0.7",
