@@ -1,3 +1,7 @@
+6.2.3 / 2019-06-30
+=================
+- [617] Add @babel/runtime to the dependencies
+
 6.2.2 / 2019-06-29
 =================
 - Update jsx-ast-utils to v2.2.1
