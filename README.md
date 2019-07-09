@@ -92,7 +92,7 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 
 ## Supported Rules
 
-- [accessible-emoji](docs/rules/accessible-emoji.md): Enforce emojis are wrapped in <span> and provide screenreader access.
+- [accessible-emoji](docs/rules/accessible-emoji.md): Enforce emojis are wrapped in `<span>` and provide screenreader access.
 - [alt-text](docs/rules/alt-text.md): Enforce all elements that require alternative text have meaningful information to relay back to end user.
 - [anchor-has-content](docs/rules/anchor-has-content.md): Enforce all anchors to contain accessible content.
 - [anchor-is-valid](docs/rules/anchor-is-valid.md): Enforce all anchors are valid, navigable elements.
@@ -275,7 +275,7 @@ Browsers support an Accessibility API on a per operating system basis. For insta
 ### The Accessibility (AX) Tree & DOM
 From the [W3 Core Accessibility API Mappings 1.1](https://www.w3.org/TR/core-aam-1.1/#intro_treetypes)
 
-> The accessibility tree and the DOM tree are parallel structures. Roughly speaking the accessibility tree is a subset of the DOM tree. It includes the user interface objects of the user agent and the objects of the document. Accessible objects are created in the accessibility tree for every DOM element that should be exposed to assistive technology, either because it may fire an accessibility event or because it has a property, relationship or feature which needs to be exposed. Generally, if something can be trimmed out it will be, for reasons of performance and simplicity. For example, a <span> with just a style change and no semantics may not get its own accessible object, but the style change will be exposed by other means.
+> The accessibility tree and the DOM tree are parallel structures. Roughly speaking the accessibility tree is a subset of the DOM tree. It includes the user interface objects of the user agent and the objects of the document. Accessible objects are created in the accessibility tree for every DOM element that should be exposed to assistive technology, either because it may fire an accessibility event or because it has a property, relationship or feature which needs to be exposed. Generally, if something can be trimmed out it will be, for reasons of performance and simplicity. For example, a `<span>` with just a style change and no semantics may not get its own accessible object, but the style change will be exposed by other means.
 
 Browser vendors are beginning to expose the AX Tree through inspection tools. Chrome has an experiment available to enable their inspection tool.
 
