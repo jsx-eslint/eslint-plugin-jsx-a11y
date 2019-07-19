@@ -40,7 +40,7 @@
     "eslint": "^3 || ^4 || ^5 || ^6",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-flowtype": "^3.5.0",
-    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-import": "^2.18.2",
     "estraverse": "^4.2.0",
     "expect": "^24.3.1",
     "flow-bin": "^0.102.0",
