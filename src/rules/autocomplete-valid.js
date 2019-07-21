@@ -49,6 +49,7 @@ module.exports = {
       if (violations.length === 0) {
         return;
       }
+      // Since we only test one rule, with one node, return the message from first (and only) instance of each
       context.report({
         node,
         message: violations[0].nodes[0].all[0].message,
