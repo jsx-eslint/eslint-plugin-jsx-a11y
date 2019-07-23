@@ -8,9 +8,8 @@
 // ----------------------------------------------------------------------------
 import { dom } from 'aria-query';
 import { runVirtualRule } from 'axe-core';
-import { elementType } from 'jsx-ast-utils';
+import { elementType, getLiteralPropValue, getProp } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
-import JSXVirtualNode from '../util/JSXVirtualNode';
 
 const schema = generateObjSchema({
   ignoreNonDOM: {
@@ -33,19 +32,24 @@ module.exports = {
       // If true, then do not run rule.
       const options = context.options[0] || {};
       const ignoreNonDOM = !!options.ignoreNonDOM;
-      const nodeName = elementType(node);
-      const isDOMNode = dom.get(nodeName);
+      const elType = elementType(node);
+      const isDOMNode = dom.get(elType);
       if (ignoreNonDOM && !isDOMNode) {
         return;
       }
 
-      // If not a DOM node, assume an input element
-      const vNode = new JSXVirtualNode({
-        props: { nodeName: isDOMNode ? nodeName : 'input' },
-        attrs: node.attributes,
-      });
+      const attr = (attrName) => {
+        const value = getLiteralPropValue(getProp(node.attributes, attrName));
+        return (typeof value === 'string' ? value : null);
+      };
+      const props = {
+        nodeName: isDOMNode ? elType : 'input',
+        nodeType: 1,
+      };
+      const hasAttr = attrName => attr(attrName) !== null;
 
-      const { violations } = runVirtualRule('autocomplete-valid', vNode);
+      const { violations } = runVirtualRule('autocomplete-valid', { attr, props, hasAttr });
+
       if (violations.length === 0) {
         return;
       }
