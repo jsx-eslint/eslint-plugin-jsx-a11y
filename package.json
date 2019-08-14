@@ -49,7 +49,7 @@
     "jscodeshift": "^0.6.0",
     "minimist": "^1.2.0",
     "object.assign": "^4.1.0",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.0",
     "safe-publish-latest": "^1.1.1",
     "to-ast": "^1.0.0"
   },
