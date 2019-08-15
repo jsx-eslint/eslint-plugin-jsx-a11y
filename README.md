@@ -20,6 +20,8 @@
   </a>
 </p>
 
+<a href='https://tidelift.com/subscription/pkg/npm-eslint-plugin-jsx-a11y?utm_source=npm-eslint-plugin-jsx-a11y&utm_medium=referral&utm_campaign=readme'>Sponsor us on Tidelift</a>
+
 # eslint-plugin-jsx-a11y
 
 Static AST checker for accessibility rules on JSX elements.
