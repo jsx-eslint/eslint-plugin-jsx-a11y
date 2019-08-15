@@ -20,7 +20,7 @@
   </a>
 </p>
 
-<a href='https://tidelift.com/subscription/pkg/npm-eslint-plugin-jsx-a11y?utm_source=npm-eslint-plugin-jsx-a11y&utm_medium=referral&utm_campaign=readme'>Sponsor us on Tidelift</a>
+<a href='https://tidelift.com/subscription/pkg/npm-eslint-plugin-jsx-a11y?utm_source=npm-eslint-plugin-jsx-a11y&utm_medium=referral&utm_campaign=readme'>Get professional support for eslint-plugin-jsx-a11y on Tidelift</a>
 
 # eslint-plugin-jsx-a11y
 
