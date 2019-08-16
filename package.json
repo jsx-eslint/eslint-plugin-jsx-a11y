@@ -42,7 +42,7 @@
     "eslint-plugin-flowtype": "^3.5.0",
     "eslint-plugin-import": "^2.18.0",
     "estraverse": "^4.2.0",
-    "expect": "^24.3.1",
+    "expect": "^24.9.0",
     "flow-bin": "^0.103.0",
     "in-publish": "^2.0.0",
     "jest": "^24.0.0",
