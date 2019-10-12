@@ -169,7 +169,7 @@ module.exports = {
           'error',
           {
             tags: [],
-            roles: ['tabpanel'],
+            roles: ['tabpanel', 'tooltip'],
             allowExpressionValues: true,
           },
         ],
@@ -279,7 +279,12 @@ module.exports = {
           },
         ],
         'jsx-a11y/no-noninteractive-element-to-interactive-role': 'error',
-        'jsx-a11y/no-noninteractive-tabindex': 'error',
+        'jsx-a11y/no-noninteractive-tabindex': [
+          'error',
+          {
+            roles: ['tooltip'],
+          },
+        ],
         'jsx-a11y/no-onchange': 'error',
         'jsx-a11y/no-redundant-roles': 'error',
         'jsx-a11y/no-static-element-interactions': 'error',

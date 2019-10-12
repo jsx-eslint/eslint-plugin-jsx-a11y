@@ -35,6 +35,8 @@ const alwaysValid = [
   { code: '<div />' },
   { code: '<div tabIndex="-1" />' },
   { code: '<div role="button" tabIndex="0" />' },
+  { code: '<div role="tooltip" tabIndex="0" />' },
+  { code: '<div role="tooltip" tabIndex={0} />' },
   { code: '<div role="article" tabIndex="-1" />' },
   { code: '<article tabIndex="-1" />' },
 ];
@@ -49,6 +51,8 @@ const neverValid = [
 const recommendedOptions = (
   configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {}
 );
+
+const strictOptions = configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {};
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
@@ -69,11 +73,15 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
 ruleTester.run(`${ruleName}:strict`, rule, {
   valid: [
     ...alwaysValid,
-  ].map(parserOptionsMapper),
+  ]
+    .map(ruleOptionsMapperFactory(strictOptions))
+    .map(parserOptionsMapper),
   invalid: [
     ...neverValid,
     { code: '<div role="tabpanel" tabIndex="0" />', errors: [expectedError] },
     // Expressions should fail in strict mode
     { code: '<div role={ROLE_BUTTON} onClick={() => {}} tabIndex="0" />;', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  ]
+    .map(ruleOptionsMapperFactory(strictOptions))
+    .map(parserOptionsMapper),
 });
