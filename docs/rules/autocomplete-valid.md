@@ -14,7 +14,7 @@ This rule takes one optional object argument of type object:
 {
     "rules": {
         "jsx-a11y/autocomplete-valid": [ 2, {
-            "ignoreNonDOM": true
+            "inputComponents": ["Input", "FormField"]
         }],
     }
 }
@@ -25,7 +25,7 @@ This rule takes one optional object argument of type object:
 <!-- Good: the autocomplete attribute is used according to the HTML specification -->
 <input type="text" autocomplete="name" />
 
-<!-- Good: ignoreNonDOM is set to true -->
+<!-- Good: MyInput is not listed in inputComponents -->
 <MyInput autocomplete="incorrect" /> 
 ```
 
@@ -37,6 +37,6 @@ This rule takes one optional object argument of type object:
 <!-- Bad: the autocomplete attribute is on an inappropriate input element -->
 <input type="email" autocomplete="url" />
 
-<!-- Bad: ignoreNonDOM is undefined or set to false -->
+<!-- Bad: MyInput is listed in inputComponents -->
 <MyInput autocomplete="incorrect" /> 
 ```

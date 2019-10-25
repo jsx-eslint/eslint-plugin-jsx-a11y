@@ -6,16 +6,12 @@
 // ----------------------------------------------------------------------------
 // Rule Definition
 // ----------------------------------------------------------------------------
-import { dom } from 'aria-query';
 import { runVirtualRule } from 'axe-core';
 import { elementType, getLiteralPropValue, getProp } from 'jsx-ast-utils';
-import { generateObjSchema } from '../util/schemas';
+import { generateObjSchema, arraySchema } from '../util/schemas';
 
 const schema = generateObjSchema({
-  ignoreNonDOM: {
-    type: 'boolean',
-    default: false,
-  },
+  inputComponents: arraySchema,
 });
 
 module.exports = {
@@ -29,16 +25,13 @@ module.exports = {
   create: context => ({
     JSXOpeningElement: (node) => {
       const options = context.options[0] || {};
-      const ignoreNonDOM = !!options.ignoreNonDOM;
+      const { inputComponents = [] } = options;
+      const inputTypes = ['input', ...inputComponents];
 
-      const autocomplete = getLiteralPropValue(getProp(node.attributes, 'autocomplete'));
       const elType = elementType(node);
-      const isNativeDOMNode = !!dom.get(elType);
+      const autocomplete = getLiteralPropValue(getProp(node.attributes, 'autocomplete'));
 
-      if (typeof autocomplete !== 'string'
-        || (isNativeDOMNode && elType !== 'input')
-        || (!isNativeDOMNode && ignoreNonDOM)
-      ) {
+      if (typeof autocomplete !== 'string' || !inputTypes.includes(elType)) {
         return;
       }
 
