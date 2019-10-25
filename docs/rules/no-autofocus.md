@@ -9,7 +9,7 @@ Enforce that autoFocus prop is not used on elements. Autofocusing elements can c
 
 This rule takes one optional object argument of type object:
 
-```
+```json
 {
     "rules": {
         "jsx-a11y/no-autofocus": [ 2, {

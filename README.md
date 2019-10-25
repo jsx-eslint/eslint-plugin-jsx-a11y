@@ -169,7 +169,7 @@ Rule | Recommended | Strict
 The following rules have extra options when in *recommended* mode:
 
 #### no-interactive-element-to-noninteractive-role
-```
+```js
 'jsx-a11y/no-interactive-element-to-noninteractive-role': [
   'error',
   {
@@ -179,7 +179,7 @@ The following rules have extra options when in *recommended* mode:
 ```
 
 #### no-noninteractive-element-interactions
-```
+```js
 'jsx-a11y/no-noninteractive-element-interactions': [
   'error',
   {
@@ -196,7 +196,7 @@ The following rules have extra options when in *recommended* mode:
 ```
 
 #### no-noninteractive-element-to-interactive-role
-```
+```js
 'jsx-a11y/no-noninteractive-element-to-interactive-role': [
   'error',
   {
@@ -226,7 +226,7 @@ The following rules have extra options when in *recommended* mode:
 ```
 
 #### no-noninteractive-tabindex
-```
+```js
 'jsx-a11y/no-noninteractive-tabindex': [
   'error',
   {
@@ -237,7 +237,7 @@ The following rules have extra options when in *recommended* mode:
 ```
 
 #### no-static-element-interactions
-```
+```js
 'jsx-a11y/no-noninteractive-element-interactions': [
   'error',
   {

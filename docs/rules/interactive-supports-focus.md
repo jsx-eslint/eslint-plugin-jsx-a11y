@@ -10,7 +10,7 @@ This element is a stand-alone control like a button, a link or a form element. A
 
 Add the `tabIndex` property to your component. A value of zero indicates that this element can be tabbed to.
 
-```
+```jsx
 <div
   role="button"
   tabIndex={0} />
@@ -26,7 +26,7 @@ Generally buttons, links and form elements should be reachable via tab key press
 
 This element is part of a group of buttons, links, menu items, etc. Or this element is part of a composite widget. Composite widgets prescribe standard [keyboard interaction patterns](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav). Within a group of similar elements -- like a button bar -- or within a composite widget, elements that can be focused are given a tabindex of -1. This makes the element *focusable* but not *tabbable*. Generally one item in a group should have a tabindex of zero so that a user can tab to the component. Once an element in the component has focus, your key management behaviors will control traversal within the component's pieces. As the UI author, you will need to implement the key handling behaviors such as listening for traversal key (up/down/left/right) presses and moving the page focus between the focusable elements in your widget.
 
-```
+```jsx
 <div role="menu">
   <div role="menuitem" tabIndex="0">Open</div>
   <div role="menuitem" tabIndex="-1">Save</div>
@@ -40,7 +40,7 @@ In the example above, the first item in the group can be tabbed to. The develope
 
 If your element is catching bubbled click or key events from descendant elements, then the proper role for this element is `presentation`.
 
-```
+```jsx
 <div
   onClick={onClickHandler}
   role="presentation">
@@ -60,28 +60,30 @@ Marking an element with the role `presentation` indicates to assistive technolog
 
 This rule takes an options object with the key `tabbable`. The value is an array of interactive ARIA roles that should be considered tabbable, not just focusable. Any interactive role not included in this list will be flagged as needing to be focusable (tabindex of -1).
 
-```
-'jsx-a11y/interactive-supports-focus': [
-  'error',
-  {
-    tabbable: [
-      'button',
-      'checkbox',
-      'link',
-      'searchbox',
-      'spinbutton',
-      'switch',
-      'textbox',
-    ],
-  },
-]
+```js
+{
+  'jsx-a11y/interactive-supports-focus': [
+    'error',
+    {
+      tabbable: [
+        'button',
+        'checkbox',
+        'link',
+        'searchbox',
+        'spinbutton',
+        'switch',
+        'textbox',
+      ],
+    },
+  ]
+}
 ```
 
 The recommended options list interactive roles that act as form elements. Generally, elements with a role like `menuitem` are a part of a composite widget. Focus in a composite widget is controlled and moved programmatically to satisfy the prescribed [keyboard interaction pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav) for the widget.
 
 The list of possible values includes:
 
-```
+```js
 [
   'button',
   'checkbox',
