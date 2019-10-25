@@ -28,27 +28,28 @@ module.exports = {
 
   create: context => ({
     JSXOpeningElement: (node) => {
-      // Determine if ignoreNonDOM is set to true
-      // If true, then do not run rule.
       const options = context.options[0] || {};
       const ignoreNonDOM = !!options.ignoreNonDOM;
+
+      const autocomplete = getLiteralPropValue(getProp(node.attributes, 'autocomplete'));
       const elType = elementType(node);
-      const isDOMNode = dom.get(elType);
-      if (ignoreNonDOM && !isDOMNode) {
+      const isNativeDOMNode = !!dom.get(elType);
+
+      if (typeof autocomplete !== 'string'
+        || (isNativeDOMNode && elType !== 'input')
+        || (!isNativeDOMNode && ignoreNonDOM)
+      ) {
         return;
       }
 
-      const attr = (attrName) => {
-        const value = getLiteralPropValue(getProp(node.attributes, attrName));
-        return (typeof value === 'string' ? value : null);
-      };
-      const props = {
-        nodeName: isDOMNode ? elType : 'input',
-        nodeType: 1,
-      };
-      const hasAttr = attrName => attr(attrName) !== null;
-
-      const { violations } = runVirtualRule('autocomplete-valid', { attr, props, hasAttr });
+      const { violations } = runVirtualRule('autocomplete-valid', {
+        nodeName: 'input',
+        attributes: {
+          autocomplete,
+          // Which autocomplete is valid depends on the input type
+          type: getLiteralPropValue(getProp(node.attributes, 'type')),
+        },
+      });
 
       if (violations.length === 0) {
         return;
