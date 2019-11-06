@@ -103,6 +103,7 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 - [aria-proptypes](docs/rules/aria-proptypes.md): Enforce ARIA state and property values are valid.
 - [aria-role](docs/rules/aria-role.md): Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.
 - [aria-unsupported-elements](docs/rules/aria-unsupported-elements.md): Enforce that elements that do not support ARIA roles, states, and properties do not have those attributes.
+- [autocomplete-valid](docs/rules/autocomplete-valid.md): Enforce that autocomplete attributes are used correctly.
 - [click-events-have-key-events](docs/rules/click-events-have-key-events.md): Enforce a clickable non-interactive element has at least one keyboard event listener.
 - [heading-has-content](docs/rules/heading-has-content.md): Enforce heading (`h1`, `h2`, etc) elements contain accessible content.
 - [html-has-lang](docs/rules/html-has-lang.md): Enforce `<html>` element has `lang` prop.
@@ -141,6 +142,7 @@ Rule | Recommended | Strict
 [aria-proptypes](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-proptypes.md) | error | error
 [aria-role](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-role.md) | error | error
 [aria-unsupported-elements](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-unsupported-elements.md) | error | error
+[autocomplete-valid](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/autocomplete-valid.md) | error | error
 [click-events-have-key-events](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/click-events-have-key-events.md) | error | error
 [heading-has-content](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/heading-has-content.md) | error | error
 [html-has-lang](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/html-has-lang.md) | error | error
