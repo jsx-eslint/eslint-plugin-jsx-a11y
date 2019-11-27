@@ -18,12 +18,12 @@ import rule from '../../../src/rules/alt-text';
 
 const ruleTester = new RuleTester();
 
-const missingPropError = type => ({
+const missingPropError = (type) => ({
   message: `${type} elements must have an alt prop, either with meaningful text, or an empty string for decorative images.`,
   type: 'JSXOpeningElement',
 });
 
-const altValueError = type => ({
+const altValueError = (type) => ({
   message: `Invalid alt value for ${type}. \
 Use alt="" for presentational images.`,
   type: 'JSXOpeningElement',

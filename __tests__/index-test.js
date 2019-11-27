@@ -7,7 +7,7 @@ import path from 'path';
 import plugin from '../src';
 
 const rules = fs.readdirSync(path.resolve(__dirname, '../src/rules/'))
-  .map(f => path.basename(f, '.js'));
+  .map((f) => path.basename(f, '.js'));
 
 describe('all rule files should be exported by the plugin', () => {
   rules.forEach((ruleName) => {

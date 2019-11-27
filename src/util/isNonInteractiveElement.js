@@ -23,7 +23,7 @@ const nonInteractiveRoles = new Set(roleKeys
     const role = roles.get(name);
     return (
       !role.abstract
-        && !role.superClass.some(classes => includes(classes, 'widget'))
+        && !role.superClass.some((classes) => includes(classes, 'widget'))
     );
   }));
 
@@ -37,7 +37,7 @@ const interactiveRoles = new Set([].concat(
     const role = roles.get(name);
     return (
       !role.abstract
-        && role.superClass.some(classes => includes(classes, 'widget'))
+        && role.superClass.some((classes) => includes(classes, 'widget'))
     );
   }));
 
@@ -70,7 +70,7 @@ const interactiveElementRoleSchemas = elementRoleEntries
   }, []);
 
 const nonInteractiveAXObjects = new Set([...AXObjects.keys()]
-  .filter(name => includes(['window', 'structure'], AXObjects.get(name).type)));
+  .filter((name) => includes(['window', 'structure'], AXObjects.get(name).type)));
 
 const nonInteractiveElementAXObjectSchemas = [...elementAXObjects]
   .reduce((

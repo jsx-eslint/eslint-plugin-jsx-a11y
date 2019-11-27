@@ -20,7 +20,7 @@ const isSemanticRoleElement = (
     if (
       concept.name === elementType
       && (concept.attributes || []).every(
-        cAttr => attributes.some(
+        (cAttr) => attributes.some(
           (attr) => {
             if (!attr.type || attr.type !== 'JSXAttribute') {
               return false;

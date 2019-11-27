@@ -28,7 +28,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXAttribute: (attribute) => {
       // Determine if ignoreNonDOM is set to true
       // If true, then do not run rule.

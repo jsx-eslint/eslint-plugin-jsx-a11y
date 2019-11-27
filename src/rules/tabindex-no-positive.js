@@ -22,7 +22,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute).toUpperCase();
 

@@ -61,7 +61,7 @@ module.exports = {
         } = (options[0] || {});
 
         const hasInteractiveProps = handlers
-          .some(prop => (
+          .some((prop) => (
             hasProp(attributes, prop)
             && getPropValue(getProp(attributes, prop)) != null
           ));

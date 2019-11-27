@@ -28,7 +28,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
       const props = node.attributes;
       if (getProp(props, 'onclick') === undefined) {

@@ -1,4 +1,4 @@
-const docBoilerplateGenerator = name => `# ${name}
+const docBoilerplateGenerator = (name) => `# ${name}
 
 Write a useful explanation here!
 

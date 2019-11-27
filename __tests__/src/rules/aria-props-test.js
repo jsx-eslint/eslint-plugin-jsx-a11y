@@ -39,7 +39,7 @@ const errorMessage = (name) => {
 };
 
 // Create basic test cases using all valid role types.
-const basicValidityTests = ariaAttributes.map(prop => ({
+const basicValidityTests = ariaAttributes.map((prop) => ({
   code: `<div ${prop.toLowerCase()}="foobar" />`,
 }));
 

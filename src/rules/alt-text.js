@@ -169,7 +169,7 @@ module.exports = {
     const elementOptions = options.elements || DEFAULT_ELEMENTS;
     // Get custom components for just the elements that will be tested.
     const customComponents = elementOptions
-      .map(element => options[element])
+      .map((element) => options[element])
       .reduce(
         (components, customComponentsForElement) => components.concat(customComponentsForElement || []),
         [],

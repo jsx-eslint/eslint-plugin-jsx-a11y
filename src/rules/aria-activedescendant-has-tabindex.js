@@ -27,7 +27,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
       const { attributes } = node;
 

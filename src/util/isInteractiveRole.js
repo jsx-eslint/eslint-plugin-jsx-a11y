@@ -6,8 +6,8 @@ import includes from 'array-includes';
 
 const roles = [...rolesMap.keys()];
 const interactiveRoles = roles
-  .filter(name => !rolesMap.get(name).abstract)
-  .filter(name => rolesMap.get(name).superClass.some(klasses => includes(klasses, 'widget')));
+  .filter((name) => !rolesMap.get(name).abstract)
+  .filter((name) => rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget')));
 
 // 'toolbar' does not descend from widget, but it does support
 // aria-activedescendant, thus in practice we treat it as a widget.

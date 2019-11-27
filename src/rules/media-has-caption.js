@@ -25,14 +25,14 @@ const schema = generateObjSchema({
 
 const isMediaType = (context, type) => {
   const options = context.options[0] || {};
-  return MEDIA_TYPES.map(mediaType => options[mediaType])
+  return MEDIA_TYPES.map((mediaType) => options[mediaType])
     .reduce((types, customComponent) => types.concat(customComponent), MEDIA_TYPES)
-    .some(typeToCheck => typeToCheck === type);
+    .some((typeToCheck) => typeToCheck === type);
 };
 
 const isTrackType = (context, type) => {
   const options = context.options[0] || {};
-  return ['track'].concat(options.track || []).some(typeToCheck => typeToCheck === type);
+  return ['track'].concat(options.track || []).some((typeToCheck) => typeToCheck === type);
 };
 
 module.exports = {

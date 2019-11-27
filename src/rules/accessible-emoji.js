@@ -24,9 +24,9 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
-      const literalChildValue = node.parent.children.find(child => child.type === 'Literal' || child.type === 'JSXText');
+      const literalChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText');
 
       if (literalChildValue && emojiRegex().test(literalChildValue.value)) {
         const elementIsHidden = isHiddenFromScreenReader(elementType(node), node.attributes);
