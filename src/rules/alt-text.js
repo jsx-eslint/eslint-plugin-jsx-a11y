@@ -34,8 +34,16 @@ const schema = generateObjSchema({
 
 const ruleByElement = {
   img(context, node) {
-    const nodeType = elementType(node);
+    // Check for label props (`aria-label` and `aria-labelledby`) to provide text alternative
+    const ariaLabelProp = getProp(node.attributes, 'aria-label');
+    const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
+    const hasLabel = ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
 
+    if (hasLabel) {
+      return;
+    }
+
+    const nodeType = elementType(node);
     const altProp = getProp(node.attributes, 'alt');
 
     // Missing alt prop error.

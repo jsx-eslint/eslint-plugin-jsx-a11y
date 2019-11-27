@@ -83,6 +83,8 @@ ruleTester.run('alt-text', rule, {
     { code: '<img alt={error ? "not working": "working"} />' },
     { code: '<img alt={undefined ? "working": "not working"} />' },
     { code: '<img alt={plugin.name + " Logo"} />' },
+    { code: '<img aria-label="foo" />' },
+    { code: '<img aria-labelledby="id1" />' },
 
     // DEFAULT <object> TESTS
     { code: '<object aria-label="foo" />' },
