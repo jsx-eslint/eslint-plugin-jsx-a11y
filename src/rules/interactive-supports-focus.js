@@ -37,8 +37,8 @@ import getTabIndex from '../util/getTabIndex';
 
 const schema = generateObjSchema({
   tabbable: enumArraySchema([...roles.keys()]
-    .filter(name => !roles.get(name).abstract)
-    .filter(name => roles.get(name).superClass.some(klasses => includes(klasses, 'widget')))),
+    .filter((name) => !roles.get(name).abstract)
+    .filter((name) => roles.get(name).superClass.some((klasses) => includes(klasses, 'widget')))),
 });
 const domElements = [...dom.keys()];
 

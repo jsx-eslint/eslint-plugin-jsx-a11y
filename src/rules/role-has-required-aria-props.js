@@ -32,7 +32,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute).toLowerCase();
 
@@ -57,7 +57,7 @@ module.exports = {
 
       const normalizedValues = String(roleAttrValue).toLowerCase().split(' ');
       const validRoles = normalizedValues
-        .filter(val => [...roles.keys()].indexOf(val) > -1);
+        .filter((val) => [...roles.keys()].indexOf(val) > -1);
 
       // Check semantic DOM elements
       // For example, <input type="checkbox" role="switch" />
@@ -73,7 +73,7 @@ module.exports = {
 
         if (requiredProps.length > 0) {
           const hasRequiredProps = requiredProps
-            .every(prop => getProp(attribute.parent.attributes, prop));
+            .every((prop) => getProp(attribute.parent.attributes, prop));
           if (hasRequiredProps === false) {
             context.report({
               node: attribute,

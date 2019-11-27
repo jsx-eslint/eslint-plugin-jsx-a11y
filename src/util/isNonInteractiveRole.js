@@ -12,8 +12,8 @@ import includes from 'array-includes';
 
 const roles = [...rolesMap.keys()];
 const nonInteractiveRoles = roles
-  .filter(name => !rolesMap.get(name).abstract)
-  .filter(name => !rolesMap.get(name).superClass.some(klasses => includes(klasses, 'widget')));
+  .filter((name) => !rolesMap.get(name).abstract)
+  .filter((name) => !rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget')));
 
 /**
  * Returns boolean indicating whether the given element has a role

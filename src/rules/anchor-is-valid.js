@@ -61,15 +61,15 @@ module.exports = {
       const propOptions = options.specialLink || [];
       const propsToValidate = ['href'].concat(propOptions);
       const values = propsToValidate
-        .map(prop => getProp(node.attributes, prop))
-        .map(prop => getPropValue(prop));
+        .map((prop) => getProp(node.attributes, prop))
+        .map((prop) => getPropValue(prop));
       // Checks if any actual or custom href prop is provided.
       const hasAnyHref = values
-        .filter(value => value === undefined || value === null).length !== values.length;
+        .filter((value) => value === undefined || value === null).length !== values.length;
       // Need to check for spread operator as props can be spread onto the element
       // leading to an incorrect validation error.
       const hasSpreadOperator = attributes
-        .filter(prop => prop.type === 'JSXSpreadAttribute').length > 0;
+        .filter((prop) => prop.type === 'JSXSpreadAttribute').length > 0;
       const onClick = getProp(attributes, 'onClick');
 
       // When there is no href at all, specific scenarios apply:
@@ -95,8 +95,8 @@ module.exports = {
 
       // Hrefs have been found, now check for validity.
       const invalidHrefValues = values
-        .filter(value => value !== undefined && value !== null)
-        .filter(value => (typeof value === 'string' && (
+        .filter((value) => value !== undefined && value !== null)
+        .filter((value) => (typeof value === 'string' && (
           !value.length || value === '#' || /^\W*?javascript:/.test(value)
         )));
       if (invalidHrefValues.length !== 0) {

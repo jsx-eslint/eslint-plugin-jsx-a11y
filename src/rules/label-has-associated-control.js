@@ -65,7 +65,7 @@ module.exports = {
       );
       const hasLabelId = validateId(node.openingElement);
       // Check for multiple control components.
-      const hasNestedControl = controlComponents.some(name => mayContainChildComponent(
+      const hasNestedControl = controlComponents.some((name) => mayContainChildComponent(
         node,
         name,
         recursionDepth,

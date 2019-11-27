@@ -51,10 +51,10 @@ const validityCheck = (value, expectedType, permittedValues) => {
       return permittedValues.indexOf(typeof value === 'string' ? value.toLowerCase() : value) > -1;
     case 'idlist':
       return typeof value === 'string'
-        && value.split(' ').every(token => validityCheck(token, 'id', []));
+        && value.split(' ').every((token) => validityCheck(token, 'id', []));
     case 'tokenlist':
       return typeof value === 'string'
-        && value.split(' ').every(token => permittedValues.indexOf(token.toLowerCase()) > -1);
+        && value.split(' ').every((token) => permittedValues.indexOf(token.toLowerCase()) > -1);
     default:
       return false;
   }
@@ -71,7 +71,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute);
       const normalizedName = name.toLowerCase();

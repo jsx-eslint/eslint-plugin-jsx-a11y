@@ -5,7 +5,7 @@ import {
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
 const abstractRoles = new Set([...roles.keys()]
-  .filter(role => roles.get(role).abstract));
+  .filter((role) => roles.get(role).abstract));
 
 const DOMElements = [...dom.keys()];
 

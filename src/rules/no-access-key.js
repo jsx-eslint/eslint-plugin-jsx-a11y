@@ -22,7 +22,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
       const accessKey = getProp(node.attributes, 'accesskey');
       const accessKeyValue = getPropValue(accessKey);
