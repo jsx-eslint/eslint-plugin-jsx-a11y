@@ -9,7 +9,7 @@ Elements with ARIA roles must use a valid, non-abstract ARIA role. A reference t
 
 This rule takes one optional object argument of type object:
 
-```
+```json
 {
     "rules": {
         "jsx-a11y/aria-role": [ 2, {

@@ -12,7 +12,7 @@ Non-interactive HTML elements and non-interactive ARIA roles indicate _content_ 
 
 Wrap your interactive element in a `<div>` with the desired role.
 
-```
+```jsx
 <div role="article">
   <button>Save</button>
 </div>
@@ -22,7 +22,7 @@ Wrap your interactive element in a `<div>` with the desired role.
 
 Put the content inside your interactive element.
 
-```
+```jsx
 <div
   role="button"
   onClick={() => {}}
@@ -45,7 +45,7 @@ The recommended options for this rule allow the `tr` element to be given a role 
 
 Options are provided as an object keyed by HTML element name; the value is an array of interactive roles that are allowed on the specified element.
 
-```
+```js
 {
   'no-interactive-element-to-noninteractive-role': [
     'error',
@@ -58,6 +58,6 @@ Options are provided as an object keyed by HTML element name; the value is an ar
 
 Under the recommended options, the following code is valid. It would be invalid under the strict rules.
 
-```
+```jsx
 <tr role="presentation" />
 ```

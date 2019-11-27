@@ -29,7 +29,7 @@ see [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://w
 
 Move the event handler function to an inner element like `<div>` and give that element a role of `presentation`. This leaves the _content_ or _container_ semantic value of this element intact.
 
-```
+```jsx
 <div role="article">
   <div
     onClick="onClickHandler"
@@ -65,7 +65,7 @@ You have two options in this case.
 
 For instance, move the button inside the cell:
 
-```
+```jsx
 <table>
   <tr>
     <td><button>Sort</button></td>
@@ -79,7 +79,7 @@ This preserves the table cell semantics and the button semantics; the two are no
 
 If your user interface has a table-like layout, but is filled with interactive components in the cells, consider converting the table into a grid.
 
-```
+```jsx
 <table role="grid">
   <tr>
     <td role="gridcell" onClick={this.sort}>Sort</td>
