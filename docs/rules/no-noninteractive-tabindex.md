@@ -8,7 +8,7 @@ Tab key navigation should be limited to elements on the page that can be interac
 
 The `<a>` tag is tricky. Consider the following:
 
-```
+```jsx
 <a>Edit</a>
 <a href="#">Edit</a>
 <a role="button">Edit</a>

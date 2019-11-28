@@ -18,7 +18,7 @@ import rule from '../../../src/rules/no-distracting-elements';
 
 const ruleTester = new RuleTester();
 
-const expectedError = element => ({
+const expectedError = (element) => ({
   message: `Do not use <${element}> elements as they can create visual accessibility issues and are deprecated.`,
   type: 'JSXOpeningElement',
 });

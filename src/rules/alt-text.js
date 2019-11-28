@@ -32,10 +32,20 @@ const schema = generateObjSchema({
   'input[type="image"]': arraySchema,
 });
 
+const ariaLabelHasValue = (prop) => {
+  const value = getPropValue(prop);
+  if (value === undefined) {
+    return false;
+  }
+  if (typeof value === 'string' && value.length === 0) {
+    return false;
+  }
+  return true;
+};
+
 const ruleByElement = {
   img(context, node) {
     const nodeType = elementType(node);
-
     const altProp = getProp(node.attributes, 'alt');
 
     // Missing alt prop error.
@@ -47,6 +57,33 @@ const ruleByElement = {
         });
         return;
       }
+      // Check for `aria-label` to provide text alternative
+      // Don't create an error if the attribute is used correctly. But if it
+      // isn't, suggest that the developer use `alt` instead.
+      const ariaLabelProp = getProp(node.attributes, 'aria-label');
+      if (ariaLabelProp !== undefined) {
+        if (!ariaLabelHasValue(ariaLabelProp)) {
+          context.report({
+            node,
+            message: 'The aria-label attribute must have a value. The alt attribute is preferred over aria-label for images.',
+          });
+        }
+        return;
+      }
+      // Check for `aria-labelledby` to provide text alternative
+      // Don't create an error if the attribute is used correctly. But if it
+      // isn't, suggest that the developer use `alt` instead.
+      const ariaLabelledbyProp = getProp(node.attributes, 'aria-labelledby');
+      if (ariaLabelledbyProp !== undefined) {
+        if (!ariaLabelHasValue(ariaLabelledbyProp)) {
+          context.report({
+            node,
+            message: 'The aria-labelledby attribute must have a value. The alt attribute is preferred over aria-labelledby for images.',
+          });
+        }
+        return;
+      }
+
       context.report({
         node,
         message: `${nodeType} elements must have an alt prop, either with meaningful text, or an empty string for decorative images.`,
@@ -72,7 +109,7 @@ const ruleByElement = {
   object(context, node) {
     const ariaLabelProp = getProp(node.attributes, 'aria-label');
     const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
-    const hasLabel = ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
+    const hasLabel = ariaLabelHasValue(ariaLabelProp) || ariaLabelHasValue(arialLabelledByProp);
     const titleProp = getLiteralPropValue(getProp(node.attributes, 'title'));
     const hasTitleAttr = !!titleProp;
 
@@ -87,9 +124,9 @@ const ruleByElement = {
   },
 
   area(context, node) {
-    const ariaLabelPropValue = getPropValue(getProp(node.attributes, 'aria-label'));
-    const arialLabelledByPropValue = getPropValue(getProp(node.attributes, 'aria-labelledby'));
-    const hasLabel = ariaLabelPropValue !== undefined || arialLabelledByPropValue !== undefined;
+    const ariaLabelProp = getProp(node.attributes, 'aria-label');
+    const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
+    const hasLabel = ariaLabelHasValue(ariaLabelProp) || ariaLabelHasValue(arialLabelledByProp);
 
     if (hasLabel) {
       return;
@@ -124,9 +161,9 @@ const ruleByElement = {
       const typePropValue = getPropValue(getProp(node.attributes, 'type'));
       if (typePropValue !== 'image') { return; }
     }
-    const ariaLabelPropValue = getPropValue(getProp(node.attributes, 'aria-label'));
-    const arialLabelledByPropValue = getPropValue(getProp(node.attributes, 'aria-labelledby'));
-    const hasLabel = ariaLabelPropValue !== undefined || arialLabelledByPropValue !== undefined;
+    const ariaLabelProp = getProp(node.attributes, 'aria-label');
+    const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
+    const hasLabel = ariaLabelHasValue(ariaLabelProp) || ariaLabelHasValue(arialLabelledByProp);
 
     if (hasLabel) {
       return;
@@ -169,7 +206,7 @@ module.exports = {
     const elementOptions = options.elements || DEFAULT_ELEMENTS;
     // Get custom components for just the elements that will be tested.
     const customComponents = elementOptions
-      .map(element => options[element])
+      .map((element) => options[element])
       .reduce(
         (components, customComponentsForElement) => components.concat(customComponentsForElement || []),
         [],

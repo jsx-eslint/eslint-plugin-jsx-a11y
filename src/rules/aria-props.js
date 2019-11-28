@@ -35,17 +35,16 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXAttribute: (attribute) => {
       const name = propName(attribute);
-      const normalizedName = name.toLowerCase();
 
       // `aria` needs to be prefix of property.
-      if (normalizedName.indexOf('aria-') !== 0) {
+      if (name.indexOf('aria-') !== 0) {
         return;
       }
 
-      const isValid = ariaAttributes.indexOf(normalizedName) > -1;
+      const isValid = ariaAttributes.indexOf(name) > -1;
 
       if (isValid === false) {
         context.report({

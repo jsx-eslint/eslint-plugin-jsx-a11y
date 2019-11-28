@@ -20,7 +20,7 @@ import rule from '../../../src/rules/aria-unsupported-elements';
 
 const ruleTester = new RuleTester();
 
-const errorMessage = invalidProp => ({
+const errorMessage = (invalidProp) => ({
   message: `This element does not support ARIA roles, states and properties. \
 Try removing the prop '${invalidProp}'.`,
   type: 'JSXOpeningElement',
@@ -51,15 +51,15 @@ const ariaValidityTests = domElements.map((element) => {
 
 // Generate invalid test cases.
 const invalidRoleValidityTests = domElements
-  .filter(element => Boolean(dom.get(element).reserved))
-  .map(reservedElem => ({
+  .filter((element) => Boolean(dom.get(element).reserved))
+  .map((reservedElem) => ({
     code: `<${reservedElem} role {...props} />`,
     errors: [errorMessage('role')],
   }));
 
 const invalidAriaValidityTests = domElements
-  .filter(element => Boolean(dom.get(element).reserved))
-  .map(reservedElem => ({
+  .filter((element) => Boolean(dom.get(element).reserved))
+  .map((reservedElem) => ({
     code: `<${reservedElem} aria-hidden aria-role="none" {...props} />`,
     errors: [errorMessage('aria-hidden')],
   }));

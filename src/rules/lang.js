@@ -23,7 +23,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXAttribute: (node) => {
       const name = propName(node);
       if (name && name.toUpperCase() !== 'LANG') {

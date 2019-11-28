@@ -13,7 +13,7 @@ Interactive HTML elements indicate _controls_ in the user interface. Interactive
 
 Put the control inside the non-interactive container element.
 
-```
+```jsx
 <li>
   <div
     role="button"
@@ -26,7 +26,7 @@ Put the control inside the non-interactive container element.
 
 Or wrap the content inside your interactive element.
 
-```
+```jsx
 <div
   role="button"
   onClick={() => {}}
@@ -47,7 +47,7 @@ Or wrap the content inside your interactive element.
 
 The recommended options for this rule allow several common interactive roles to be applied to a non-interactive element. The options are provided as an object keyed by HTML element name; the value is an array of interactive roles that are allowed on the specified element.
 
-```
+```js
 {
   'no-noninteractive-element-to-interactive-role': [
     'error',
@@ -64,6 +64,6 @@ The recommended options for this rule allow several common interactive roles to 
 
 Under the recommended options, the following code is valid. It would be invalid under the strict rules.
 
-```
+```jsx
 <ul role="menu" />
 ```

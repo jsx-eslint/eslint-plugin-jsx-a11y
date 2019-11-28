@@ -32,7 +32,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
       const options = context.options[0] || {};
       const componentOptions = options.components || [];
@@ -60,7 +60,7 @@ module.exports = {
 
       if (typeof value === 'string' && isVisible) {
         const hasRedundancy = redundantWords
-          .some(word => Boolean(value.match(new RegExp(`(?!{)\\b${word}\\b(?!})`, 'i'))));
+          .some((word) => Boolean(value.match(new RegExp(`(?!{)\\b${word}\\b(?!})`, 'i'))));
 
         if (hasRedundancy === true) {
           context.report({

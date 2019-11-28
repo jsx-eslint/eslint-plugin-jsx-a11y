@@ -28,7 +28,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXAttribute: (attribute) => {
       // Determine if ignoreNonDOM is set to true
       // If true, then do not run rule.
@@ -55,8 +55,8 @@ module.exports = {
       if (value === undefined || value === null) { return; }
 
       const values = String(value).split(' ');
-      const validRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
-      const isValid = values.every(val => validRoles.indexOf(val) > -1);
+      const validRoles = [...roles.keys()].filter((role) => roles.get(role).abstract === false);
+      const isValid = values.every((val) => validRoles.indexOf(val) > -1);
 
       if (isValid === true) { return; }
 

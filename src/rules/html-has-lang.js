@@ -22,7 +22,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
       const type = elementType(node);
 

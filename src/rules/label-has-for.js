@@ -63,14 +63,14 @@ const validate = (node, required, allowChildren) => {
 
 const getValidityStatus = (node, required, allowChildren) => {
   if (Array.isArray(required.some)) {
-    const isValid = required.some.some(rule => validate(node, rule, allowChildren));
+    const isValid = required.some.some((rule) => validate(node, rule, allowChildren));
     const message = !isValid
       ? `Form label must have ANY of the following types of associated control: ${required.some.join(', ')}`
       : null;
     return { isValid, message };
   }
   if (Array.isArray(required.every)) {
-    const isValid = required.every.every(rule => validate(node, rule, allowChildren));
+    const isValid = required.every.every((rule) => validate(node, rule, allowChildren));
     const message = !isValid
       ? `Form label must have ALL of the following types of associated control: ${required.every.join(', ')}`
       : null;
@@ -93,7 +93,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
       const options = context.options[0] || {};
       const componentOptions = options.components || [];

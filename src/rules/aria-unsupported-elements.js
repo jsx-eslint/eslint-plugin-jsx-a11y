@@ -15,7 +15,7 @@ import {
 import { elementType, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = invalidProp => (
+const errorMessage = (invalidProp) => (
   `This element does not support ARIA roles, states and properties. \
 Try removing the prop '${invalidProp}'.`
 );
@@ -30,7 +30,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
       const nodeType = elementType(node);
       const nodeAttrs = dom.get(nodeType) || {};

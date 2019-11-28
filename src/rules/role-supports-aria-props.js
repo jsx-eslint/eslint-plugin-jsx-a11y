@@ -41,7 +41,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: context => ({
+  create: (context) => ({
     JSXOpeningElement: (node) => {
       // If role is not explicitly defined, then try and get its implicit role.
       const type = elementType(node);
@@ -65,7 +65,7 @@ module.exports = {
       } = roles.get(roleValue);
       const propertySet = Object.keys(propKeyValues);
       const invalidAriaPropsForRole = [...aria.keys()]
-        .filter(attribute => propertySet.indexOf(attribute) === -1);
+        .filter((attribute) => propertySet.indexOf(attribute) === -1);
 
       node.attributes.forEach((prop) => {
         // Ignore the attribute if its value is null or undefined.

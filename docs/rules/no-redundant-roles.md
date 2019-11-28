@@ -9,7 +9,7 @@ Some HTML elements have native semantics that are implemented by the browser. Th
 
 The default options for this rule allow an implicit role of `navigation` to be applied to a `nav` element as is [advised by w3](https://www.w3.org/WAI/GL/wiki/Using_HTML5_nav_element#Example:The_.3Cnav.3E_element). The options are provided as an object keyed by HTML element name; the value is an array of implicit ARIA roles that are allowed on the specified element.
 
-```
+```js
 {
   'jsx-a11y/no-redundant-roles': [
   'error',
