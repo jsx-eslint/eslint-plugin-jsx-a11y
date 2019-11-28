@@ -29,6 +29,9 @@ Use alt="" for presentational images.`,
   type: 'JSXOpeningElement',
 });
 
+const ariaLabelValueError = 'The aria-label attribute must have a value. The alt attribute is preferred over aria-label for images.';
+const ariaLabelledbyValueError = 'The aria-labelledby attribute must have a value. The alt attribute is preferred over aria-labelledby for images.';
+
 const preferAltError = () => ({
   message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
   type: 'JSXOpeningElement',
@@ -83,6 +86,8 @@ ruleTester.run('alt-text', rule, {
     { code: '<img alt={error ? "not working": "working"} />' },
     { code: '<img alt={undefined ? "working": "not working"} />' },
     { code: '<img alt={plugin.name + " Logo"} />' },
+    { code: '<img aria-label="foo" />' },
+    { code: '<img aria-labelledby="id1" />' },
 
     // DEFAULT <object> TESTS
     { code: '<object aria-label="foo" />' },
@@ -168,11 +173,19 @@ ruleTester.run('alt-text', rule, {
     { code: '<img alt role="presentation" />;', errors: [altValueError('img')] },
     { code: '<img role="presentation" />;', errors: [preferAltError()] },
     { code: '<img role="none" />;', errors: [preferAltError()] },
+    { code: '<img aria-label={undefined} />', errors: [ariaLabelValueError] },
+    { code: '<img aria-labelledby={undefined} />', errors: [ariaLabelledbyValueError] },
+    { code: '<img aria-label="" />', errors: [ariaLabelValueError] },
+    { code: '<img aria-labelledby="" />', errors: [ariaLabelledbyValueError] },
 
     // DEFAULT ELEMENT 'object' TESTS
     { code: '<object />', errors: [objectError] },
     { code: '<object><div aria-hidden /></object>', errors: [objectError] },
     { code: '<object title={undefined} />', errors: [objectError] },
+    { code: '<object aria-label="" />', errors: [objectError] },
+    { code: '<object aria-labelledby="" />', errors: [objectError] },
+    { code: '<object aria-label={undefined} />', errors: [objectError] },
+    { code: '<object aria-labelledby={undefined} />', errors: [objectError] },
 
     // DEFAULT ELEMENT 'area' TESTS
     { code: '<area />', errors: [areaError] },
@@ -180,6 +193,10 @@ ruleTester.run('alt-text', rule, {
     { code: '<area alt={undefined} />', errors: [areaError] },
     { code: '<area src="xyz" />', errors: [areaError] },
     { code: '<area {...this.props} />', errors: [areaError] },
+    { code: '<area aria-label="" />', errors: [areaError] },
+    { code: '<area aria-label={undefined} />', errors: [areaError] },
+    { code: '<area aria-labelledby="" />', errors: [areaError] },
+    { code: '<area aria-labelledby={undefined} />', errors: [areaError] },
 
     // DEFAULT ELEMENT 'input type="image"' TESTS
     { code: '<input type="image" />', errors: [inputImageError] },
@@ -187,6 +204,10 @@ ruleTester.run('alt-text', rule, {
     { code: '<input type="image" alt={undefined} />', errors: [inputImageError] },
     { code: '<input type="image">Foo</input>', errors: [inputImageError] },
     { code: '<input type="image" {...this.props} />', errors: [inputImageError] },
+    { code: '<input type="image" aria-label="" />', errors: [inputImageError] },
+    { code: '<input type="image" aria-label={undefined} />', errors: [inputImageError] },
+    { code: '<input type="image" aria-labelledby="" />', errors: [inputImageError] },
+    { code: '<input type="image" aria-labelledby={undefined} />', errors: [inputImageError] },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     {
