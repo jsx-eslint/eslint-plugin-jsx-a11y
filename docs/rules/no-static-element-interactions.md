@@ -40,18 +40,18 @@ Note: Adding a role to your element does **not** add behavior. When a semantic H
 
 ### Case: The event handler is only being used to capture bubbled events
 
-If a static element has an event handler for the sole purpose of capturing events from its descendants, you can tell the linter to ignore it by setting `role="presentation"`:
+If your element is catching bubbled click or key events from descendant elements, there are no appropriate roles for your element: you will have to deactivate the rule. Consider explaining the reason for disabling the rule as well.
 
 ```jsx
-<div
-  onClick={this.handleButtonClick}
-  role="presentation">
+{/* The <div> element has a child <button> element that allows keyboard interaction */}
+{/* eslint-disable-next-line no-static-element-interactions */}
+<div onClick={this.handleButtonClick}>
   <button>Save</button>
   <button>Cancel</button>
 </div>
 ```
 
-This `role` has no effect on static elements, but it clarifies your intent.
+Do not use the role `presentation` on the element: it removes the element's semantics, and may also remove its children's semantics, creating big issues with assistive technology.
 
 ### References
 
