@@ -31,22 +31,35 @@ const mouseOutError = {
 ruleTester.run('mouse-events-have-key-events', rule, {
   valid: [
     { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;' },
-    {
-      code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;',
-    },
+    { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;' },
     { code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} />;' },
-    {
-      code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} {...props} />;',
-    },
+    { code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} {...props} />;' },
     { code: '<div />;' },
+    { code: '<div onBlur={() => {}} />' },
+    { code: '<div onFocus={() => {}} />' },
     { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} />' },
     { code: '<div onMouseOut={() => void 0} onBlur={() => void 0} {...props} />' },
     { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} />' },
     { code: '<div onMouseOut={handleMouseOut} onBlur={handleOnBlur} {...props} />' },
+    { code: '<MyElement />' },
+    { code: '<MyElement onMouseOver={() => {}} />' },
+    { code: '<MyElement onMouseOut={() => {}} />' },
+    { code: '<MyElement onBlur={() => {}} />' },
+    { code: '<MyElement onFocus={() => {}} />' },
+    { code: '<MyElement onMouseOver={() => {}} {...props} />' },
+    { code: '<MyElement onMouseOut={() => {}} {...props} />' },
+    { code: '<MyElement onBlur={() => {}} {...props} />' },
+    { code: '<MyElement onFocus={() => {}} {...props} />' },
   ].map(parserOptionsMapper),
   invalid: [
-    { code: '<div onMouseOver={() => void 0} />;', errors: [mouseOverError] },
-    { code: '<div onMouseOut={() => void 0} />', errors: [mouseOutError] },
+    {
+      code: '<div onMouseOver={() => void 0} />;',
+      errors: [mouseOverError],
+    },
+    {
+      code: '<div onMouseOut={() => void 0} />',
+      errors: [mouseOutError],
+    },
     {
       code: '<div onMouseOver={() => void 0} onFocus={undefined} />;',
       errors: [mouseOverError],
