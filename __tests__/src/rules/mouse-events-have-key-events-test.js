@@ -31,9 +31,13 @@ const mouseOutError = {
 ruleTester.run('mouse-events-have-key-events', rule, {
   valid: [
     { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;' },
-    { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;' },
+    {
+      code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;',
+    },
     { code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} />;' },
-    { code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} {...props} />;' },
+    {
+      code: '<div onMouseOver={handleMouseOver} onFocus={handleFocus} {...props} />;',
+    },
     { code: '<div />;' },
     { code: '<div onBlur={() => {}} />' },
     { code: '<div onFocus={() => {}} />' },
@@ -52,14 +56,8 @@ ruleTester.run('mouse-events-have-key-events', rule, {
     { code: '<MyElement onFocus={() => {}} {...props} />' },
   ].map(parserOptionsMapper),
   invalid: [
-    {
-      code: '<div onMouseOver={() => void 0} />;',
-      errors: [mouseOverError],
-    },
-    {
-      code: '<div onMouseOut={() => void 0} />',
-      errors: [mouseOutError],
-    },
+    { code: '<div onMouseOver={() => void 0} />;', errors: [mouseOverError] },
+    { code: '<div onMouseOut={() => void 0} />', errors: [mouseOutError] },
     {
       code: '<div onMouseOver={() => void 0} onFocus={undefined} />;',
       errors: [mouseOverError],
