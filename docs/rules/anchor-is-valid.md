@@ -154,9 +154,8 @@ Then use styling to change its appearance to that of a link:
   padding: 0;
 }
 
-.link-button:hover,
 .link-button:focus {
-  text-decoration: none;
+  text-decoration: thin dotted;
 }
 ```
 
