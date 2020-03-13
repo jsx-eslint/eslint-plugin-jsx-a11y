@@ -67,7 +67,8 @@
     "damerau-levenshtein": "^1.0.4",
     "emoji-regex": "^7.0.2",
     "has": "^1.0.3",
-    "jsx-ast-utils": "^2.2.1"
+    "jsx-ast-utils": "^2.2.1",
+    "language-tags": "^1.0.5"
   },
   "peerDependencies": {
     "eslint": "^3 || ^4 || ^5 || ^6"
