@@ -44,7 +44,7 @@
     "estraverse": "^4.2.0",
     "expect": "^24.3.1",
     "flow-bin": "^0.112.0",
-    "in-publish": "^2.0.0",
+    "in-publish": "^2.0.1",
     "jest": "^24.0.0",
     "jscodeshift": "^0.6.0",
     "minimist": "^1.2.0",
