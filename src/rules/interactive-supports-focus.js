@@ -90,7 +90,6 @@ module.exports = {
         hasInteractiveProps
         && isInteractiveRole(type, attributes)
         && !isInteractiveElement(type, attributes)
-        && !isNonInteractiveElement(type, attributes)
         && !isNonInteractiveRole(type, attributes)
         && !hasTabindex
       ) {
