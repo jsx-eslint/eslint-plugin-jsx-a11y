@@ -59,7 +59,7 @@ module.exports = {
       const redundantWords = REDUNDANT_WORDS.concat(words);
 
       if (typeof value === 'string' && isVisible) {
-        const hasRedundancy = Boolean(value.match(new RegExp(`(?!{)\\b(${redundantWords.join('|')})\\b(?!})`, 'i')));
+        const hasRedundancy = new RegExp(`(?!{)\\b(${redundantWords.join('|')})\\b(?!})`, 'i').test(value);
 
         if (hasRedundancy === true) {
           context.report({
