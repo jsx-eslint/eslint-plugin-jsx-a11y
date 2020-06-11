@@ -2,5 +2,5 @@
 import * as axe from 'axe-core';
 
 export function axeFailMessage(checkId, data) {
-  return axe._audit.data.checks[checkId].messages.fail(data);
+  return axe.utils.getCheckMessage(checkId, 'fail', data);
 }

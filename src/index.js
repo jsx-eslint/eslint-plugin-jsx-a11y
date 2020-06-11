@@ -11,6 +11,7 @@ module.exports = {
     'aria-proptypes': require('./rules/aria-proptypes'),
     'aria-role': require('./rules/aria-role'),
     'aria-unsupported-elements': require('./rules/aria-unsupported-elements'),
+    'autocomplete-valid': require('./rules/autocomplete-valid'),
     'click-events-have-key-events': require('./rules/click-events-have-key-events'),
     'control-has-associated-label': require('./rules/control-has-associated-label'),
     'heading-has-content': require('./rules/heading-has-content'),
