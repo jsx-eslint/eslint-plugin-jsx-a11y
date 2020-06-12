@@ -14,7 +14,6 @@ const errorMessage = (element) => (
   `Do not use <${element}> elements as they can create visual accessibility issues and are deprecated.`
 );
 
-
 const DEFAULT_ELEMENTS = [
   'marquee',
   'blink',

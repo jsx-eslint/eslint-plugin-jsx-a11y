@@ -29,7 +29,6 @@ const errorMessage = (role) => {
   };
 };
 
-
 // Create basic test cases using all valid role types.
 const basicValidityTests = [...roles.keys()].map((role) => {
   const {
