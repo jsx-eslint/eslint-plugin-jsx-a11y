@@ -377,8 +377,8 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<option aria-atomic />' },
     { code: '<progress aria-atomic />' },
     { code: '<textarea aria-hidden />' },
-    { code: '<select aria-expanded />', },
-    { code: '<datalist aria-expanded />', },
+    { code: '<select aria-expanded />' },
+    { code: '<datalist aria-expanded />' },
 
   ].concat(validTests).map(parserOptionsMapper),
 
