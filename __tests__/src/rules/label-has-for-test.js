@@ -34,7 +34,6 @@ const expectedEveryError = {
   type: 'JSXOpeningElement',
 };
 
-
 const optionsComponents = [{
   components: ['Label', 'Descriptor'],
 }];

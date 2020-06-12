@@ -11,7 +11,6 @@ import { elementType } from 'jsx-ast-utils';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 
-
 const errorMessage = 'Anchors must have content and the content must be accessible by a screen reader.';
 
 const schema = generateObjSchema({ components: arraySchema });
