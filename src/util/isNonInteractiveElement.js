@@ -26,6 +26,9 @@ const nonInteractiveRoles = new Set(roleKeys
         // 'toolbar' does not descend from widget, but it does support
         // aria-activedescendant, thus in practice we treat it as a widget.
         && name !== 'toolbar'
+        // This role is meant to have no semantic value.
+        // @see https://www.w3.org/TR/wai-aria-1.2/#generic
+        && name !== 'generic'
         && !role.superClass.some((classes) => includes(classes, 'widget'))
     );
   }).concat(
@@ -42,6 +45,9 @@ const interactiveRoles = new Set(roleKeys
       // The `progressbar` is descended from `widget`, but in practice, its
       // value is always `readonly`, so we treat it as a non-interactive role.
         && name !== 'progressbar'
+        // This role is meant to have no semantic value.
+        // @see https://www.w3.org/TR/wai-aria-1.2/#generic
+        && name !== 'generic'
         && role.superClass.some((classes) => includes(classes, 'widget'))
     );
   }).concat(
