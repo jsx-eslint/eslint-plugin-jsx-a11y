@@ -70,33 +70,6 @@ ruleTester.run('role-has-required-aria-props', rule, {
       code: '<div role="slider" aria-valuemax aria-valuemin />',
       errors: [errorMessage('slider')],
     },
-    {
-      code: '<div role="slider" aria-valuemax aria-valuenow />',
-      errors: [errorMessage('slider')],
-    },
-    {
-      code: '<div role="slider" aria-valuemin aria-valuenow />',
-      errors: [errorMessage('slider')],
-    },
-
-    // SPINBUTTON
-    { code: '<div role="spinbutton" />', errors: [errorMessage('spinbutton')] },
-    {
-      code: '<div role="spinbutton" aria-valuemax />',
-      errors: [errorMessage('spinbutton')],
-    },
-    {
-      code: '<div role="spinbutton" aria-valuemax aria-valuemin />',
-      errors: [errorMessage('spinbutton')],
-    },
-    {
-      code: '<div role="spinbutton" aria-valuemax aria-valuenow />',
-      errors: [errorMessage('spinbutton')],
-    },
-    {
-      code: '<div role="spinbutton" aria-valuemin aria-valuenow />',
-      errors: [errorMessage('spinbutton')],
-    },
 
     // CHECKBOX
     { code: '<div role="checkbox" />', errors: [errorMessage('checkbox')] },
