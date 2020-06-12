@@ -218,7 +218,6 @@ module.exports = {
         return type;
       }));
 
-
     return {
       JSXOpeningElement: (node) => {
         const nodeType = elementType(node);

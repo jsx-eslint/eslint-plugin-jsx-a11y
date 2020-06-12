@@ -11,7 +11,6 @@ describe('hasAccessibleChild', () => {
     });
   });
 
-
   describe('has no children and sets dangerouslySetInnerHTML', () => {
     it('Returns true', () => {
       const prop = JSXAttributeMock('dangerouslySetInnerHTML', true);
