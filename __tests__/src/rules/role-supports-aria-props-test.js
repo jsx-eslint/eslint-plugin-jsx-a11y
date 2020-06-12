@@ -85,9 +85,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<a href="#" aria-dropeffect />' },
     { code: '<a href="#" aria-flowto />' },
     { code: '<a href="#" aria-grabbed />' },
-    { code: '<a href="#" aria-haspopup />' },
     { code: '<a href="#" aria-hidden />' },
-    { code: '<a href="#" aria-invalid />' },
     { code: '<a href="#" aria-label />' },
     { code: '<a href="#" aria-labelledby />' },
     { code: '<a href="#" aria-live />' },
@@ -107,9 +105,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<area href="#" aria-dropeffect />' },
     { code: '<area href="#" aria-flowto />' },
     { code: '<area href="#" aria-grabbed />' },
-    { code: '<area href="#" aria-haspopup />' },
     { code: '<area href="#" aria-hidden />' },
-    { code: '<area href="#" aria-invalid />' },
     { code: '<area href="#" aria-label />' },
     { code: '<area href="#" aria-labelledby />' },
     { code: '<area href="#" aria-live />' },
@@ -129,9 +125,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<link href="#" aria-dropeffect />' },
     { code: '<link href="#" aria-flowto />' },
     { code: '<link href="#" aria-grabbed />' },
-    { code: '<link href="#" aria-haspopup />' },
     { code: '<link href="#" aria-hidden />' },
-    { code: '<link href="#" aria-invalid />' },
     { code: '<link href="#" aria-label />' },
     { code: '<link href="#" aria-labelledby />' },
     { code: '<link href="#" aria-live />' },
@@ -149,7 +143,6 @@ ruleTester.run('role-supports-aria-props', rule, {
 
     // MENU TESTS - implicit role is `toolbar` when `type="toolbar"`
     { code: '<menu type="toolbar" aria-activedescendant />' },
-    { code: '<menu type="toolbar" aria-expanded />' },
     { code: '<menu type="toolbar" aria-atomic />' },
     { code: '<menu type="toolbar" aria-busy />' },
     { code: '<menu type="toolbar" aria-controls />' },
@@ -158,9 +151,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<menu type="toolbar" aria-dropeffect />' },
     { code: '<menu type="toolbar" aria-flowto />' },
     { code: '<menu type="toolbar" aria-grabbed />' },
-    { code: '<menu type="toolbar" aria-haspopup />' },
     { code: '<menu type="toolbar" aria-hidden />' },
-    { code: '<menu type="toolbar" aria-invalid />' },
     { code: '<menu type="toolbar" aria-label />' },
     { code: '<menu type="toolbar" aria-labelledby />' },
     { code: '<menu type="toolbar" aria-live />' },
@@ -182,7 +173,6 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<menuitem type="command" aria-grabbed />' },
     { code: '<menuitem type="command" aria-haspopup />' },
     { code: '<menuitem type="command" aria-hidden />' },
-    { code: '<menuitem type="command" aria-invalid />' },
     { code: '<menuitem type="command" aria-label />' },
     { code: '<menuitem type="command" aria-labelledby />' },
     { code: '<menuitem type="command" aria-live />' },
@@ -225,7 +215,6 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<menuitem type="radio" aria-owns />' },
     { code: '<menuitem type="radio" aria-relevant />' },
     { code: '<menuitem type="radio" aria-posinset />' },
-    { code: '<menuitem type="radio" aria-selected />' },
     { code: '<menuitem type="radio" aria-setsize />' },
 
     // these will have global
@@ -246,7 +235,6 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="button" aria-grabbed />' },
     { code: '<input type="button" aria-haspopup />' },
     { code: '<input type="button" aria-hidden />' },
-    { code: '<input type="button" aria-invalid />' },
     { code: '<input type="button" aria-label />' },
     { code: '<input type="button" aria-labelledby />' },
     { code: '<input type="button" aria-live />' },
@@ -265,7 +253,6 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="image" aria-grabbed />' },
     { code: '<input type="image" aria-haspopup />' },
     { code: '<input type="image" aria-hidden />' },
-    { code: '<input type="image" aria-invalid />' },
     { code: '<input type="image" aria-label />' },
     { code: '<input type="image" aria-labelledby />' },
     { code: '<input type="image" aria-live />' },
@@ -284,7 +271,6 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="reset" aria-grabbed />' },
     { code: '<input type="reset" aria-haspopup />' },
     { code: '<input type="reset" aria-hidden />' },
-    { code: '<input type="reset" aria-invalid />' },
     { code: '<input type="reset" aria-label />' },
     { code: '<input type="reset" aria-labelledby />' },
     { code: '<input type="reset" aria-live />' },
@@ -303,14 +289,12 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="submit" aria-grabbed />' },
     { code: '<input type="submit" aria-haspopup />' },
     { code: '<input type="submit" aria-hidden />' },
-    { code: '<input type="submit" aria-invalid />' },
     { code: '<input type="submit" aria-label />' },
     { code: '<input type="submit" aria-labelledby />' },
     { code: '<input type="submit" aria-live />' },
     { code: '<input type="submit" aria-owns />' },
     { code: '<input type="submit" aria-relevant />' },
     // when `type="checkbox"`, the implicit role is `checkbox`
-    { code: '<input type="checkbox" aria-checked />' },
     { code: '<input type="checkbox" aria-atomic />' },
     { code: '<input type="checkbox" aria-busy />' },
     { code: '<input type="checkbox" aria-controls />' },
@@ -319,7 +303,6 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="checkbox" aria-dropeffect />' },
     { code: '<input type="checkbox" aria-flowto />' },
     { code: '<input type="checkbox" aria-grabbed />' },
-    { code: '<input type="checkbox" aria-haspopup />' },
     { code: '<input type="checkbox" aria-hidden />' },
     { code: '<input type="checkbox" aria-invalid />' },
     { code: '<input type="checkbox" aria-label />' },
@@ -328,7 +311,6 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="checkbox" aria-owns />' },
     { code: '<input type="checkbox" aria-relevant />' },
     // when `type="radio"`, the implicit role is `radio`
-    { code: '<input type="radio" aria-checked />' },
     { code: '<input type="radio" aria-atomic />' },
     { code: '<input type="radio" aria-busy />' },
     { code: '<input type="radio" aria-controls />' },
@@ -337,16 +319,13 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="radio" aria-dropeffect />' },
     { code: '<input type="radio" aria-flowto />' },
     { code: '<input type="radio" aria-grabbed />' },
-    { code: '<input type="radio" aria-haspopup />' },
     { code: '<input type="radio" aria-hidden />' },
-    { code: '<input type="radio" aria-invalid />' },
     { code: '<input type="radio" aria-label />' },
     { code: '<input type="radio" aria-labelledby />' },
     { code: '<input type="radio" aria-live />' },
     { code: '<input type="radio" aria-owns />' },
     { code: '<input type="radio" aria-relevant />' },
     { code: '<input type="radio" aria-posinset />' },
-    { code: '<input type="radio" aria-selected />' },
     { code: '<input type="radio" aria-setsize />' },
     // when `type="range"`, the implicit role is `slider`
     { code: '<input type="range" aria-valuemax />' },
@@ -384,14 +363,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<h2 role="presentation" aria-level={undefined} />' },
 
     // OTHER TESTS
-    { code: '<aside aria-expanded />' },
-    { code: '<article aria-expanded />' },
-    { code: '<body aria-expanded />' },
     { code: '<button aria-pressed />' },
-    { code: '<datalist aria-expanded />' },
-    { code: '<details aria-expanded />' },
-    { code: '<dialog aria-expanded />' },
-    { code: '<dl aria-expanded />' },
     { code: '<form aria-hidden />' },
     { code: '<h1 aria-hidden />' },
     { code: '<h2 aria-hidden />' },
@@ -401,20 +373,12 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<h6 aria-hidden />' },
     { code: '<hr aria-hidden />' },
     { code: '<li aria-current />' },
-    { code: '<li aria-expanded />' },
     { code: '<meter aria-atomic />' },
-    { code: '<nav aria-expanded />' },
-    { code: '<ol aria-expanded />' },
     { code: '<option aria-atomic />' },
-    { code: '<output aria-expanded />' },
     { code: '<progress aria-atomic />' },
-    { code: '<section aria-expanded />' },
-    { code: '<select aria-expanded />' },
-    { code: '<tbody aria-expanded />' },
     { code: '<textarea aria-hidden />' },
-    { code: '<tfoot aria-expanded />' },
-    { code: '<thead aria-expanded />' },
-    { code: '<ul aria-expanded />' },
+    { code: '<select aria-expanded />', },
+    { code: '<datalist aria-expanded />', },
 
   ].concat(validTests).map(parserOptionsMapper),
 
@@ -443,6 +407,150 @@ ruleTester.run('role-supports-aria-props', rule, {
     {
       code: '<aside aria-checked />',
       errors: [errorMessage('aria-checked', 'complementary', 'aside', true)],
+    },
+    {
+      code: '<ul aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'list', 'ul', true)],
+    },
+    {
+      code: '<details aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'group', 'details', true)],
+    },
+    {
+      code: '<dialog aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'dialog', 'dialog', true)],
+    },
+    {
+      code: '<dl aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'list', 'dl', true)],
+    },
+    {
+      code: '<aside aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'complementary', 'aside', true)],
+    },
+    {
+      code: '<article aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'article', 'article', true)],
+    },
+    {
+      code: '<body aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'document', 'body', true)],
+    },
+    {
+      code: '<li aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'listitem', 'li', true)],
+    },
+    {
+      code: '<nav aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'navigation', 'nav', true)],
+    },
+    {
+      code: '<ol aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'list', 'ol', true)],
+    },
+    {
+      code: '<output aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'status', 'output', true)],
+    },
+    {
+      code: '<section aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'region', 'section', true)],
+    },
+    {
+      code: '<tbody aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'rowgroup', 'tbody', true)],
+    },
+    {
+      code: '<tfoot aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'rowgroup', 'tfoot', true)],
+    },
+    {
+      code: '<thead aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'rowgroup', 'thead', true)],
+    },
+    {
+      code: '<input type="radio" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'radio', 'input', true)],
+    },
+    {
+      code: '<input type="radio" aria-selected />',
+      errors: [errorMessage('aria-selected', 'radio', 'input', true)],
+    },
+    {
+      code: '<input type="radio" aria-checked />',
+      errors: [errorMessage('aria-checked', 'radio', 'input', true)],
+    },
+    {
+      code: '<input type="radio" aria-haspopup />',
+      errors: [errorMessage('aria-haspopup', 'radio', 'input', true)],
+    },
+    {
+      code: '<input type="checkbox" aria-haspopup />',
+      errors: [errorMessage('aria-haspopup', 'checkbox', 'input', true)],
+    },
+    {
+      code: '<input type="checkbox" aria-checked />',
+      errors: [errorMessage('aria-checked', 'checkbox', 'input', true)],
+    },
+    {
+      code: '<input type="reset" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'button', 'input', true)],
+    },
+    {
+      code: '<input type="submit" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'button', 'input', true)],
+    },
+    {
+      code: '<input type="image" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'button', 'input', true)],
+    },
+    {
+      code: '<input type="button" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'button', 'input', true)],
+    },
+    {
+      code: '<menuitem type="command" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'menuitem', 'menuitem', true)],
+    },
+    {
+      code: '<menuitem type="radio" aria-selected />',
+      errors: [errorMessage('aria-selected', 'menuitemradio', 'menuitem', true)],
+    },
+    {
+      code: '<menu type="toolbar" aria-haspopup />',
+      errors: [errorMessage('aria-haspopup', 'toolbar', 'menu', true)],
+    },
+    {
+      code: '<menu type="toolbar" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'toolbar', 'menu', true)],
+    },
+    {
+      code: '<menu type="toolbar" aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'toolbar', 'menu', true)],
+    },
+    {
+      code: '<link href="#" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'link', 'link', true)],
+    },
+    {
+      code: '<link href="#" aria-haspopup />',
+      errors: [errorMessage('aria-haspopup', 'link', 'link', true)],
+    },
+    {
+      code: '<area href="#" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'link', 'area', true)],
+    },
+    {
+      code: '<area href="#" aria-haspopup />',
+      errors: [errorMessage('aria-haspopup', 'link', 'area', true)],
+    },
+    {
+      code: '<a href="#" aria-haspopup />',
+      errors: [errorMessage('aria-haspopup', 'link', 'a', true)],
+    },
+    {
+      code: '<a href="#" aria-invalid />',
+      errors: [errorMessage('aria-invalid', 'link', 'a', true)],
     },
   ].concat(invalidTests).map(parserOptionsMapper),
 });
