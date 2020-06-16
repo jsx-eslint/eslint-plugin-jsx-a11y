@@ -58,7 +58,6 @@ module.exports = {
         }
         const role = getLiteralPropValue(getProp(node.attributes, 'role'));
 
-
         if (!dom.has(type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.

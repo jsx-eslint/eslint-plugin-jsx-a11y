@@ -50,7 +50,6 @@ const array = [{
   'input[type="image"]': ['InputImage'],
 }];
 
-
 ruleTester.run('alt-text', rule, {
   valid: [
     // DEFAULT ELEMENT 'img' TESTS

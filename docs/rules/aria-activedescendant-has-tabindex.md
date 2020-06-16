@@ -1,6 +1,6 @@
 # aria-activedescendant-has-tabindex
 
-`aria-activedescendant` is used to manage focus within a [composite widget](https://www.w3.org/TR/wai-aria/roles#composite_header).
+`aria-activedescendant` is used to manage focus within a [composite widget](https://www.w3.org/TR/wai-aria/#composite).
 The element with the attribute `aria-activedescendant` retains the active document
 focus; it indicates which of its child elements has secondary focus by assigning
 the ID of that element to the value of `aria-activedescendant`. This pattern is
