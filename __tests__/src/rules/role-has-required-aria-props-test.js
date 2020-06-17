@@ -108,5 +108,13 @@ ruleTester.run('role-has-required-aria-props', rule, {
       code: '<div role="scrollbar" aria-valuemin aria-valuenow />',
       errors: [errorMessage('scrollbar')],
     },
+    {
+      code: '<div role="heading" />',
+      errors: [errorMessage('heading')],
+    },
+    {
+      code: '<div role="option" />',
+      errors: [errorMessage('option')],
+    },
   ].map(parserOptionsMapper),
 });
