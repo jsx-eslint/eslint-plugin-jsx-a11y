@@ -8,6 +8,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
+import { dom } from 'aria-query';
 import { getProp, getPropValue } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
@@ -26,6 +27,12 @@ module.exports = {
 
   create: (context) => ({
     JSXOpeningElement: (node) => {
+      const { name } = node.name;
+
+      if (!dom.get(name)) {
+        return;
+      }
+
       const { attributes } = node;
 
       // Check onmouseover / onfocus pairing.

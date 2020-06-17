@@ -8,8 +8,8 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType, getLiteralPropValue } from 'jsx-ast-utils';
+import tags from 'language-tags';
 import { generateObjSchema } from '../util/schemas';
-import ISO_CODES from '../util/attributes/ISO.json';
 
 const errorMessage = 'lang attribute must have a valid value.';
 
@@ -51,12 +51,7 @@ module.exports = {
         return;
       }
 
-      const hyphen = value.indexOf('-');
-      const lang = hyphen > -1 ? value.substring(0, hyphen) : value;
-      const country = hyphen > -1 ? value.substring(3) : undefined;
-
-      if (ISO_CODES.languages.indexOf(lang) > -1
-        && (country === undefined || ISO_CODES.countries.indexOf(country) > -1)) {
+      if (tags.check(value)) {
         return;
       }
 
