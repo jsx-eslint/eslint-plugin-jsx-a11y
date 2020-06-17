@@ -297,6 +297,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     // when `type="checkbox"`, the implicit role is `checkbox`
     { code: '<input type="checkbox" aria-atomic />' },
     { code: '<input type="checkbox" aria-busy />' },
+    { code: '<input type="checkbox" aria-checked />' },
     { code: '<input type="checkbox" aria-controls />' },
     { code: '<input type="checkbox" aria-describedby />' },
     { code: '<input type="checkbox" aria-disabled />' },
@@ -313,6 +314,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     // when `type="radio"`, the implicit role is `radio`
     { code: '<input type="radio" aria-atomic />' },
     { code: '<input type="radio" aria-busy />' },
+    { code: '<input type="radio" aria-checked />' },
     { code: '<input type="radio" aria-controls />' },
     { code: '<input type="radio" aria-describedby />' },
     { code: '<input type="radio" aria-disabled />' },
@@ -477,20 +479,12 @@ ruleTester.run('role-supports-aria-props', rule, {
       errors: [errorMessage('aria-selected', 'radio', 'input', true)],
     },
     {
-      code: '<input type="radio" aria-checked />',
-      errors: [errorMessage('aria-checked', 'radio', 'input', true)],
-    },
-    {
       code: '<input type="radio" aria-haspopup />',
       errors: [errorMessage('aria-haspopup', 'radio', 'input', true)],
     },
     {
       code: '<input type="checkbox" aria-haspopup />',
       errors: [errorMessage('aria-haspopup', 'checkbox', 'input', true)],
-    },
-    {
-      code: '<input type="checkbox" aria-checked />',
-      errors: [errorMessage('aria-checked', 'checkbox', 'input', true)],
     },
     {
       code: '<input type="reset" aria-invalid />',
