@@ -1,3 +1,51 @@
+6.3.0 / 2020-06-18
+==================
+
+- cce838a Update aria-query to 4.2.0
+- 121e8a4 Add two test cases found while upgrading to ARIA 1.2
+- 8059f51 Fix test failures raised by the upgrade to ARIA 1.2
+- 0d24e3a Update package.json
+- b1f412a Fix test failures in role-has-required-aria-props due to ARIA 1.2 updates
+- 74cec6e Fix test failures in no-noninteractive-element-interactions due to ARIA 1.2 updates
+- 835b89e Fix test failures in role-supports-aria-props-test due to ARIA 1.2 updates
+- 730319b Account for the null semantic generic role in ARIA 1.2
+- 7dfa7c9 Update aria-query from 4.0.1 to 4.0.2
+- 42098b9 [Refactor] `img-redundant-alt`: removing a use of `some`
+- a910d83 [Tests] `label-has-associated-control`: add test for <div><label /><input /></div>
+- b273fe5 [New] Support ESLint 7.x
+- 1a97632 [Deps] update `@babel/runtime`, `array-includes`, `axe-core`, `axobject-query`, `damerau-levenshtein`, `jsx-ast-utils`
+- b36976f [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-types`, `babel-eslint`, `babel-jest`, `coveralls`, `eslint-config-airbnb-base`, `eslint-plugin-flowtype`, `eslint-plugin-import`, `estraverse`, `in-publish`, `jest`, `minimist`, `rimraf`, `safe-publish-latest`
+- 89acdc4 fix: removing the use of the some function
+- 410ae43 chore(package): update eslint-plugin-flowtype to version 5.0.0
+- a87f83d fix(package): update emoji-regex to version 9.0.0
+- 71940e6 chore(package): update babel-preset-airbnb to version 5.0.0
+- d471f54 docs: Fix 404 links to WAI-ARIA spec
+- 42a2016 Fixes #669: use the `language-tags` package to check the `lang` rule
+- 7bcea20 [Tests] update axe-core
+- f13dc38 [Deps] Pin axe-core version
+- 33670bb fix: require missing 'autocomplete-valid' rule
+- aca4c37 chore(mouse-event): revert unrelated formatting changes
+- df1e275 fix(mouse-event): remove check from custom elements
+- 1a16a1c chore(package): update jscodeshift to version 0.7.0
+- 7a55cdd chore(package): update flow-bin to version 0.113.0
+- 8e0d22b Update aria-query and axobject-query to the latest versions
+- dd49060 Added test cases for an empty or undefined value of aria-label and aria-labelledby in alt-text
+- 1a7b94f Updated dependencies including eslint-config-airbnb-base
+- 3aea217 chore: replace ignoreNonDOM with inputComponents
+- 1848d00 feat(autocomplete-valid): add to recommended & strict config
+- 8703840 refactor: use to axe-cre 3.4 SerialVirtualNode format
+- 3519c7b chore: Remove axe VirtualNode abstraction
+- 9ac55c4 autocomplete-valid: Add inline comment
+- 44c6098 Update axe-core to 3.3.0
+- 9916990 new autocomplete-valid rule
+- 82f598e [Docs] examples: add language in code block for syntax highlight
+- 2529ad3 fixing casing issue on aria-props
+- 00926f2 Update README.md
+- ce5d121 Update README.md
+- 031574e chore(package): update flow-bin to version 0.103.0
+- e00e1db [meta] add FUNDING.yml
+- e1e5fae Fix readme file
+
 6.2.3 / 2019-06-30
 =================
 - [617] Add @babel/runtime to the dependencies
