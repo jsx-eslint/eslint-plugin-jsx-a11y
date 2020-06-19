@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jsx-a11y",
-  "version": "6.2.3",
+  "version": "6.3.0",
   "description": "Static AST checker for accessibility rules on JSX elements.",
   "keywords": [
     "eslint",
@@ -59,7 +59,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.10.2",
-    "aria-query": "^4.0.2",
+    "aria-query": "^4.2.0",
     "array-includes": "^3.1.1",
     "ast-types-flow": "^0.0.7",
     "axe-core": "^3.5.4",
