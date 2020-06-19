@@ -149,6 +149,13 @@ const isNonInteractiveElement = (
   if (!dom.has(tagName)) {
     return false;
   }
+  // <header> elements do not technically have semantics, unless the
+  // element is a direct descendant of <body>, and this plugin cannot
+  // reliably test that.
+  // @see https://www.w3.org/TR/wai-aria-practices/examples/landmarks/banner.html
+  if (tagName === 'header') {
+    return false;
+  }
 
   return checkIsNonInteractiveElement(tagName, attributes);
 };
