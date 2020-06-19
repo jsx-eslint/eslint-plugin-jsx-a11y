@@ -1,3 +1,11 @@
+6.3.1 / 2020-06-19
+==================
+
+- 765da0f Update to aria-query 4.2.2
+- d528e8c Fix aria-level allowed on elements wit role heading (#704)
+- 29c6859 [meta] remove yarn registry from npmrc, so publishing works
+- f52c206 chore(package): update estraverse to version 5.0.0
+
 6.3.0 / 2020-06-18
 ==================
 
