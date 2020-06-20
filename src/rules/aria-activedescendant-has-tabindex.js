@@ -13,7 +13,7 @@ import isInteractiveElement from '../util/isInteractiveElement';
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-const errorMessage = 'An element that manages focus with `aria-activedescendant` must be tabbable';
+const errorMessage = 'An element that manages focus with `aria-activedescendant` must have a tabindex';
 
 const schema = generateObjSchema();
 
@@ -43,21 +43,17 @@ module.exports = {
       }
       const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));
 
-      // If this is an interactive element, tabIndex must be either left
-      // unspecified allowing the inherent tabIndex to obtain or it must be
-      // zero (allowing for positive, even though that is not ideal). It cannot
-      // be given a negative value.
+      // If this is an interactive element and the tabindex attribute is not specified,
+      // or the tabIndex property was not mutated, then the tabIndex
+      // property will be undefined.
       if (
         isInteractiveElement(type, attributes)
-        && (
-          tabIndex === undefined
-          || tabIndex >= 0
-        )
+        && tabIndex === undefined
       ) {
         return;
       }
 
-      if (tabIndex >= 0) {
+      if (tabIndex >= -1) {
         return;
       }
 
