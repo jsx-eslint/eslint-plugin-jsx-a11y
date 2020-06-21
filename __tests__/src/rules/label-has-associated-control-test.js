@@ -48,6 +48,11 @@ const nestingValid = [
   { code: '<label><span><span><span><span>A label</span><input /></span></span></span></label>', options: [{ depth: 5 }] },
   { code: '<label><span><span><span><span aria-label="A label" /><input /></span></span></span></label>', options: [{ depth: 5 }] },
   { code: '<label><span><span><span><input aria-label="A label" /></span></span></span></label>', options: [{ depth: 5 }] },
+  // Other controls
+  { code: '<label>foo<meter /></label>' },
+  { code: '<label>foo<output /></label>' },
+  { code: '<label>foo<progress /></label>' },
+  { code: '<label>foo<textarea /></label>' },
   // Custom controlComponents.
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }] },
   { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }] },
