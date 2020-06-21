@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://travis-ci.org/evcohen/eslint-plugin-jsx-a11y">
-    <img src="https://api.travis-ci.org/evcohen/eslint-plugin-jsx-a11y.svg?branch=master"
+  <a href="https://travis-ci.com/github/jsx-eslint/eslint-plugin-jsx-a11y">
+    <img src="https://travis-ci.com/jsx-eslint/eslint-plugin-jsx-a11y.svg?branch=master"
          alt="build status">
   </a>
   <a href="https://npmjs.org/package/eslint-plugin-jsx-a11y">

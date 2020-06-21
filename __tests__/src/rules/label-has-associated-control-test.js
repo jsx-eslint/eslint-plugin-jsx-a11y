@@ -75,6 +75,7 @@ const bothValid = [
 const alwaysValid = [
   { code: '<div />' },
   { code: '<CustomElement />' },
+  { code: '<input type="hidden" />' },
 ];
 
 const htmlForInvalid = [
