@@ -57,7 +57,14 @@ module.exports = {
       if (componentNames.indexOf(elementType(node.openingElement)) === -1) {
         return;
       }
-      const controlComponents = ['input', 'select', 'textarea'].concat((options.controlComponents || []));
+      const controlComponents = [
+        'input',
+        'meter',
+        'output',
+        'progress',
+        'select',
+        'textarea',
+      ].concat((options.controlComponents || []));
       // Prevent crazy recursion.
       const recursionDepth = Math.min(
         options.depth === undefined ? 2 : options.depth,
