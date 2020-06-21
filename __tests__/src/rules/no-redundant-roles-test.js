@@ -50,6 +50,7 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
 });
 
 const noNavExceptionsOptions = { nav: [] };
+const listException = { ul: ['list'], ol: ['list'] };
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: alwaysValid
@@ -60,5 +61,19 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<nav role="navigation" />', errors: [expectedError('nav', 'navigation')] },
   ]
     .map(ruleOptionsMapperFactory(noNavExceptionsOptions))
+    .map(parserOptionsMapper),
+});
+
+ruleTester.run(`${ruleName}:recommended (valid list role override)`, rule, {
+  valid: [
+    { code: '<ul role="list" />' },
+    { code: '<ol role="list" />' },
+  ]
+    .map(ruleOptionsMapperFactory(listException))
+    .map(parserOptionsMapper),
+  invalid: [
+    { code: '<ul role="list" />', errors: [expectedError('ul', 'list')] },
+    { code: '<ol role="list" />', errors: [expectedError('ol', 'list')] },
+  ]
     .map(parserOptionsMapper),
 });
