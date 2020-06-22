@@ -71,6 +71,7 @@ const alwaysValid = [
   { code: '<select onClick={() => void 0} className="foo" />' },
   { code: '<area href="#" onClick={() => void 0} className="foo" />' },
   { code: '<area onClick={() => void 0} className="foo" />' },
+  { code: '<summary onClick={() => void 0} />' },
   { code: '<textarea onClick={() => void 0} className="foo" />' },
   { code: '<a onClick="showNextPage();">Next page</a>' },
   { code: '<a onClick="showNextPage();" tabIndex={undefined}>Next page</a>' },
