@@ -358,6 +358,7 @@ const neverValid = [
   { code: '<menuitem role="listitem" />;', errors: [expectedError] },
   { code: '<option className="foo" role="listitem" />', errors: [expectedError] },
   { code: '<select className="foo" role="listitem" />', errors: [expectedError] },
+  { code: '<summary role="listitem" />;', errors: [expectedError] },
   { code: '<textarea className="foo" role="listitem" />', errors: [expectedError] },
   { code: '<tr role="listitem" />;', errors: [expectedError] },
 ];
