@@ -18,7 +18,7 @@ import rule from '../../../src/rules/aria-activedescendant-has-tabindex';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'An element that manages focus with `aria-activedescendant` must be tabbable',
+  message: 'An element that manages focus with `aria-activedescendant` must have a tabindex',
   type: 'JSXOpeningElement',
 };
 
@@ -58,24 +58,27 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
       code: '<input aria-activedescendant={someID} />;',
     },
     {
+      code: '<input aria-activedescendant={someID} tabIndex={1} />;',
+    },
+    {
       code: '<input aria-activedescendant={someID} tabIndex={0} />;',
+    },
+    {
+      code: '<input aria-activedescendant={someID} tabIndex={-1} />;',
+    },
+    {
+      code: '<div aria-activedescendant={someID} tabIndex={-1} />;',
+    },
+    {
+      code: '<div aria-activedescendant={someID} tabIndex="-1" />;',
+    },
+    {
+      code: '<input aria-activedescendant={someID} tabIndex={-1} />;',
     },
   ].map(parserOptionsMapper),
   invalid: [
     {
       code: '<div aria-activedescendant={someID} />;',
-      errors: [expectedError],
-    },
-    {
-      code: '<div aria-activedescendant={someID} tabIndex={-1} />;',
-      errors: [expectedError],
-    },
-    {
-      code: '<div aria-activedescendant={someID} tabIndex="-1" />;',
-      errors: [expectedError],
-    },
-    {
-      code: '<input aria-activedescendant={someID} tabIndex={-1} />;',
       errors: [expectedError],
     },
   ].map(parserOptionsMapper),
