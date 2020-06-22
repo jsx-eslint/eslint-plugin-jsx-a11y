@@ -111,6 +111,7 @@ const alwaysValid = [
   { code: '<div role="radio" tabIndex="0" onClick={() => void 0} />' },
   { code: '<div role="spinbutton" tabIndex="0" onClick={() => void 0} />' },
   { code: '<div role="switch" tabIndex="0" onClick={() => void 0} />' },
+  { code: '<div role="tablist" tabIndex="0" onClick={() => void 0} />' },
   { code: '<div role="tab" tabIndex="0" onClick={() => void 0} />' },
   { code: '<div role="textbox" tabIndex="0" onClick={() => void 0} />' },
   { code: '<div role="textbox" aria-disabled="true" onClick={() => void 0} />' },
