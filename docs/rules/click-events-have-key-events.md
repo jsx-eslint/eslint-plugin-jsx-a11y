@@ -17,3 +17,13 @@ This rule takes no arguments.
 ```jsx
 <div onClick={() => {}} />
 ```
+
+### Disabled
+
+```js
+  rules: {
+    ...
+    "jsx-a11y/click-events-have-key-events": 0
+    ...
+  },
+```
