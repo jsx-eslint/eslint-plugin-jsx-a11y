@@ -36,3 +36,9 @@ The rule will first check if `aria-hidden` is true to determine whether to enfor
 <img src="bar" alt="Image of me at a bar!" />
 <img src="baz" alt="Picture of baz fixing a bug." />
 ```
+
+## Accessibility guidelines
+General best practice (reference resources)
+
+### Resources
+- [WebAIM, Alternative Text](https://webaim.org/techniques/alttext/)

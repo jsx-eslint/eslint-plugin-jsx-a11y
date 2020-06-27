@@ -20,3 +20,6 @@ This rule takes no arguments.
 <div id="address_label">Enter your address</div>
 <input aria-labeledby="address_label">
 ```
+
+## Accessibility guidelines
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)

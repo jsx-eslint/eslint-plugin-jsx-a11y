@@ -2,9 +2,6 @@
 
 `<iframe>` elements must have a unique title property to indicate its content to the user.
 
-#### References
-1. [axe-core, frame-title](https://dequeuniversity.com/rules/axe/3.2/frame-title)
-
 ## Rule details
 
 This rule takes no arguments.
@@ -27,3 +24,10 @@ This rule takes no arguments.
 <iframe title={true} />
 <iframe title={42} />
 ```
+
+## Accessibility guidelines
+- [WCAG 2.4.1](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+
+### Resources
+- [axe-core, frame-title](https://dequeuniversity.com/rules/axe/3.2/frame-title)

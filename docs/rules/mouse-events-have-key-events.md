@@ -23,3 +23,6 @@ In example 3 and 4 below, even if otherProps contains onBlur and/or onFocus, thi
 <div onMouseOver={ () => void 0 } {...otherProps} />
 <div onMouseOut={ () => void 0 } {...otherProps} />
 ```
+
+## Accessibility guidelines
+- [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard)

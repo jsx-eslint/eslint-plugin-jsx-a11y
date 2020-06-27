@@ -2,9 +2,6 @@
 
 Enforce that autoFocus prop is not used on elements. Autofocusing elements can cause usability issues for sighted and non-sighted users, alike.
 
-#### References
-1. [w3c](https://w3c.github.io/html/sec-forms.html#autofocusing-a-form-control-the-autofocus-attribute)
-
 ## Rule details
 
 This rule takes one optional object argument of type object:
@@ -33,3 +30,10 @@ For the `ignoreNonDOM` option, this determines if developer created components a
 <div autoFocus="false" />
 <div autoFocus={undefined} />
 ```
+
+## Accessibility guidelines
+General best practice (reference resources)
+
+### Resources
+- [WHATWG HTML Standard, The autofocus attribute](https://html.spec.whatwg.org/multipage/interaction.html#attr-fe-autofocus)
+- [The accessibility of HTML 5 autofocus](https://www.brucelawson.co.uk/2009/the-accessibility-of-html-5-autofocus/)

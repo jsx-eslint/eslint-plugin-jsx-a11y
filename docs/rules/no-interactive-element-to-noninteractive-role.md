@@ -32,13 +32,6 @@ Put the content inside your interactive element.
 </div>
 ```
 
-### References
-
-  1. [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
-  1. [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
-  1. [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
-  1. [Mozilla Developer Network - ARIA Techniques](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
-
 ## Rule details
 
 The recommended options for this rule allow the `tr` element to be given a role of `presentation` (or its semantic equivalent `none`). Under normal circumstances, an element with an interactive role should not be semantically neutralized with `presentation` (or `none`).
@@ -61,3 +54,14 @@ Under the recommended options, the following code is valid. It would be invalid 
 ```jsx
 <tr role="presentation" />
 ```
+
+## Accessibility guidelines
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+
+### Resources
+- [ARIA Spec, States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties)
+- [Chrome Audit Rules, AX_ARIA_04](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_04)
+- [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
+- [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
+- [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
+- [Mozilla Developer Network - ARIA Techniques](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)

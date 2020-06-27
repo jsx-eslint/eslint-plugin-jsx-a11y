@@ -2,9 +2,6 @@
 
 The `scope` scope should be used only on `<th>` elements.
 
-#### References
-1. [axe-core, scope](https://dequeuniversity.com/rules/axe/1.1/scope)
-
 ## Rule details
 
 This rule takes no arguments.
@@ -20,3 +17,10 @@ This rule takes no arguments.
 ```jsx
 <div scope />
 ```
+
+## Accessibility guidelines
+- [WCAG 1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships)
+- [WCAG 4.1.1](https://www.w3.org/WAI/WCAG21/Understanding/parsing)
+
+### Resources
+- [axe-core, scope-attr-valid](https://dequeuniversity.com/rules/axe/3.5/scope-attr-valid)

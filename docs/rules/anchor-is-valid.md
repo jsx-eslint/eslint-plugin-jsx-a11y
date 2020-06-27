@@ -128,12 +128,6 @@ This button element can now also be used inline in text.
 
 Once again we stress that this is an inferior implementation and some users will encounter difficulty to use your website, however, it will allow a larger group of people to interact with your website than the alternative of ignoring the rule's warning.
 
-
-### References
-  1. [WebAIM - Introduction to Links and Hypertext](http://webaim.org/techniques/hypertext/)
-  1. [Links vs. Buttons in Modern Web Applications](https://marcysutton.com/links-vs-buttons-in-modern-web-applications/)
-  1. [Using ARIA - Notes on ARIA use in HTML](https://www.w3.org/TR/using-aria/#NOTES)
-
 ## Rule details
 
 This rule takes one optional object argument of type object:
@@ -222,3 +216,11 @@ Invalid `href` attribute:
 <a href={"javascript:void(0)"} />
 <a href={`javascript:void(0)`} />
 ```
+
+## Accessibility guidelines
+- [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard)
+
+### Resources
+- [WebAIM - Introduction to Links and Hypertext](http://webaim.org/techniques/hypertext/)
+- [Links vs. Buttons in Modern Web Applications](https://marcysutton.com/links-vs-buttons-in-modern-web-applications/)
+- [Using ARIA - Notes on ARIA use in HTML](https://www.w3.org/TR/using-aria/#NOTES)

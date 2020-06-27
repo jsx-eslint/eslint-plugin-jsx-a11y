@@ -4,11 +4,6 @@ Providing captions for media is essential for deaf users to follow along. Captio
 
 The captions should contain all important and relevant information to understand the corresponding media. This may mean that the captions are not a 1:1 mapping of the dialogue in the media content. However, captions are *not* necessary for video components with the `muted` attribute.
 
-### References
-
-  1. [audio](https://dequeuniversity.com/rules/axe/2.1/audio-caption)
-  1. [video](https://dequeuniversity.com/rules/axe/2.1/video-caption)
-
 ## Rule details
 
 This rule takes one optional object argument of type object:
@@ -39,3 +34,11 @@ For the `audio`, `video`, and `track` options, these strings determine which JSX
 <audio {...props} />
 <video {...props} />
 ```
+
+## Accessibility guidelines
+- [WCAG 1.2.2](https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html)
+- [WCAG 1.2.3](https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded.html)
+
+### Resources
+- [axe-core, audio-caption](https://dequeuniversity.com/rules/axe/2.1/audio-caption)
+- [axe-core, video-caption](https://dequeuniversity.com/rules/axe/2.1/video-caption)

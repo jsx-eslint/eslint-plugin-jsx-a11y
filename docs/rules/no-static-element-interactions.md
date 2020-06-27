@@ -53,13 +53,6 @@ If your element is catching bubbled click or key events from descendant elements
 
 Do not use the role `presentation` on the element: it removes the element's semantics, and may also remove its children's semantics, creating big issues with assistive technology.
 
-### References
-
-  1. [WAI-ARIA `role` attribute](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
-  1. [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
-  1. [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
-  1. [Mozilla Developer Network - ARIA Techniques](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
-
 ## Rule details
 
 You may configure which handler props should be taken into account when applying this rule. The recommended configuration includes the following 6 handlers.
@@ -95,3 +88,12 @@ Adjust the list of handler prop names in the handlers array to increase or decre
 ```jsx
 <div onClick={() => {}} />
 ```
+
+## Accessibility guidelines
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+
+### Resources
+- [WAI-ARIA `role` attribute](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
+- [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
+- [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
+- [Mozilla Developer Network - ARIA Techniques](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
