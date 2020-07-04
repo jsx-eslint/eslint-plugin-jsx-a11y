@@ -15,6 +15,7 @@ import includes from 'array-includes';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import type { ESLintContext } from '../../flow/eslint';
 import isDOMElement from '../util/isDOMElement';
+import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
@@ -67,9 +68,14 @@ module.exports = {
       }
       const props = node.openingElement.attributes;
       const nodeIsDOMElement = isDOMElement(tag);
+      const nodeIsHiddenFromScreenReader = isHiddenFromScreenReader(tag, props);
       const nodeIsInteractiveElement = isInteractiveElement(tag, props);
       const nodeIsInteractiveRole = isInteractiveRole(tag, props);
       const nodeIsControlComponent = controlComponents.indexOf(tag) > -1;
+
+      if (nodeIsHiddenFromScreenReader) {
+        return;
+      }
 
       let hasAccessibleLabel = true;
       if (
