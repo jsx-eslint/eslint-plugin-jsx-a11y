@@ -54,6 +54,7 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: '<input type="text" autocomplete="invalid name" />;', errors: invalidAutocomplete },
     { code: '<input type="text" autocomplete="home url" />;', errors: invalidAutocomplete },
     { code: '<Bar autocomplete="baz"></Bar>;', errors: invalidAutocomplete, options: [{ inputComponents: ['Bar'] }] },
+    { code: '<input type={isEmail ? "email" : "text"} autocomplete="none" />;', errors: invalidAutocomplete },
 
     // FAILED "autocomplete-appropriate"
     { code: '<input type="date" autocomplete="email" />;', errors: inappropriateAutocomplete },
