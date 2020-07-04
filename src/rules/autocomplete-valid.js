@@ -35,12 +35,13 @@ module.exports = {
         return;
       }
 
+      const type = getLiteralPropValue(getProp(node.attributes, 'type'));
       const { violations } = runVirtualRule('autocomplete-valid', {
         nodeName: 'input',
         attributes: {
           autocomplete,
           // Which autocomplete is valid depends on the input type
-          type: getLiteralPropValue(getProp(node.attributes, 'type')),
+          type: type === null ? undefined : type,
         },
       });
 
