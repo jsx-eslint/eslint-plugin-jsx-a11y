@@ -2,12 +2,6 @@
 
 The `lang` prop on the `<html>` element must be a valid IETF's BCP 47 language tag.
 
-#### References
-
-1. [axe-core, valid-lang](https://dequeuniversity.com/rules/axe/3.2/valid-lang)
-2. [Language tags in HTML and XML](https://www.w3.org/International/articles/language-tags/)
-3. [IANA Language Subtag Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
-
 ## Rule details
 
 This rule takes no arguments.
@@ -25,3 +19,11 @@ This rule takes no arguments.
 <html>
 <html lang="foo">
 ```
+
+## Accessibility guidelines
+- [WCAG 3.1.1](https://www.w3.org/WAI/WCAG21/Understanding/language-of-page)
+
+### Resources
+- [axe-core, valid-lang](https://dequeuniversity.com/rules/axe/3.2/valid-lang)
+- [Language tags in HTML and XML](https://www.w3.org/International/articles/language-tags/)
+- [IANA Language Subtag Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)

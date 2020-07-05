@@ -50,12 +50,6 @@ If your element is catching bubbled click or key events from descendant elements
 
 Marking an element with the role `presentation` indicates to assistive technology that this element should be ignored; it exists to support the web application and is not meant for humans to interact with directly.
 
-### References
-  1. [AX_FOCUS_02](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_02)
-  1. [Mozilla Developer Network - ARIA Techniques](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
-  1. [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
-  1. [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
-
 ## Rule details
 
 This rule takes an options object with the key `tabbable`. The value is an array of interactive ARIA roles that should be considered tabbable, not just focusable. Any interactive role not included in this list will be flagged as needing to be focusable (tabindex of -1).
@@ -143,3 +137,12 @@ The list of possible values includes:
 <!-- Bad: anchor element without href is not focusable -->
 <a onclick="showNextPage();" role="button">Next page</a>
 ```
+
+## Accessibility guidelines
+- [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard)
+
+### Resources
+- [Chrome Audit Rules, AX_FOCUS_02](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_02) 
+- [Mozilla Developer Network - ARIA Techniques](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
+- [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
+- [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
