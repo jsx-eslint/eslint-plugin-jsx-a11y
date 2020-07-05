@@ -2,9 +2,6 @@
 
 Elements with ARIA roles must use a valid, non-abstract ARIA role. A reference to role definitions can be found at [WAI-ARIA](https://www.w3.org/TR/wai-aria/#role_definitions) site.
 
-[AX_ARIA_01](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_01)
-[DPUB-ARIA roles](https://www.w3.org/TR/dpub-aria-1.0/)
-
 ## Rule details
 
 This rule takes one optional object argument of type object:
@@ -37,3 +34,10 @@ For the `ignoreNonDOM` option, this determines if developer created components a
 <div role=""></div>           <!-- Bad: An empty ARIA role is not allowed -->
 <Foo role={role}></Foo>       <!-- Bad: ignoreNonDOM is set to false or not set -->
 ```
+
+## Accessibility guidelines
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+
+### Resources
+- [Chrome Audit Rules, AX_ARIA_01](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_01)
+- [DPUB-ARIA roles](https://www.w3.org/TR/dpub-aria-1.0/)

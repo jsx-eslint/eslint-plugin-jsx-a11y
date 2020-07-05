@@ -2,10 +2,6 @@
 
 ARIA state and property values must be valid.
 
-#### References
-1. [Spec](https://www.w3.org/TR/wai-aria/#states_and_properties)
-2. [AX_ARIA_04](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_04)
-
 ## Rule details
 
 This rule takes no arguments.
@@ -22,3 +18,9 @@ This rule takes no arguments.
 <span aria-hidden="yes">foo</span>
 ```
 
+## Accessibility guidelines
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+
+### Resources
+- [ARIA Spec, States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties)
+- [Chrome Audit Rules, AX_ARIA_04](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_04)

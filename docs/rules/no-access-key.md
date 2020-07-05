@@ -18,3 +18,9 @@ This rule takes no arguments.
 ```jsx
 <div accessKey="h" />
 ```
+
+## Accessibility guidelines
+General best practice (reference resources)
+
+### Resources
+- [WebAIM, Keyboard Accessibility: Accesskey](http://webaim.org/techniques/keyboard/accesskey#spec)

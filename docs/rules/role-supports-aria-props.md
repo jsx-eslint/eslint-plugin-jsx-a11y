@@ -2,10 +2,6 @@
 
 Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`. Many ARIA attributes (states and properties) can only be used on elements with particular roles. Some elements have implicit roles, such as `<a href="#" />`, which will resolve to `role="link"`.
 
-#### References
-1. [AX_ARIA_10](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_10)
-2. [Supported States & Properties](https://www.w3.org/TR/wai-aria/#states_and_properties)
-
 ## Rule details
 
 This rule takes no arguments.
@@ -30,3 +26,10 @@ This rule takes no arguments.
     <li aria-required tabIndex="0" role="radio" aria-checked="true">Lake Trout</li>
 </ul>
 ```
+
+## Accessibility guidelines
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+
+### Resources
+- [ARIA Spec, States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties)
+- [Chrome Audit Rules, AX_ARIA_10](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_10)

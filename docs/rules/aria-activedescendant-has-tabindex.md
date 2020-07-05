@@ -14,9 +14,6 @@ Because an element with `aria-activedescendant` must be tabbable, it must either
 have an inherent `tabIndex` of zero or declare a `tabIndex` of zero with the `tabIndex`
 attribute.
 
-#### References
-1. [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-activedescendant_attribute)
-
 ## Rule details
 
 This rule takes no arguments.
@@ -44,3 +41,9 @@ This rule takes no arguments.
 <div aria-activedescendant={someID} tabIndex="-1" />
 <input aria-activedescendant={someID} tabIndex={-1} />
 ```
+
+## Accessibility guidelines
+General best practice (reference resources)
+
+### Resources
+- [MDN, Using the aria-activedescendant attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-activedescendant_attribute)

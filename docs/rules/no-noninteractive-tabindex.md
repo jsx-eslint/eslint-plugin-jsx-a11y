@@ -46,10 +46,6 @@ It is not necessary to put a tabindex on an `<article>`, for instance or on `<li
 
 Your application might require an exception to this rule in the case of an element that captures incoming tab traversal for a composite widget. In that case, turn off this rule on a per instance basis. This is an uncommon case.
 
-### References
-
-  1. [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
-
 ## Rule details
 
 The recommended options for this rule allow `tabIndex` on elements with the noninteractive `tabpanel` role. Adding `tabIndex` to a tabpanel is a recommended practice in some instances.
@@ -85,3 +81,9 @@ The recommended options for this rule allow `tabIndex` on elements with the noni
 <article tabIndex="0" />
 <article tabIndex={0} />
 ```
+
+## Accessibility guidelines
+- [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard)
+
+### Resources
+- [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
