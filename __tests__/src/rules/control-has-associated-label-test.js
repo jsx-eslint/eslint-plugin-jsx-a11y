@@ -311,3 +311,15 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
 });
+
+ruleTester.run(`${ruleName}:no-config`, rule, {
+  valid: [
+    { code: '<input type="hidden" />' },
+    { code: '<input type="text" aria-hidden="true" />' },
+  ]
+    .map(parserOptionsMapper),
+  invalid: [
+    { code: '<input type="text" />', errors: [expectedError] },
+  ]
+    .map(parserOptionsMapper),
+});
