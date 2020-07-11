@@ -19,15 +19,17 @@ This is exacerbated by the expectation sighted users have of how _buttons_ and _
 We are aware that sometimes _anchors_ are used instead of _buttons_ to achieve a specific visual design. When using the `<button>` element this can still be achieved with styling but, due to the meaning many people attach to the standard underlined `<a>` due its appearance, please reconsider this in the design.
 
 Consider the following:
+
 ```jsx
-<a href="javascript:void(0)" onClick={foo} >Perform action</a>
-<a href="#" onClick={foo} >Perform action</a>
-<a onClick={foo} >Perform action</a>
+<a href="javascript:void(0)" onClick={foo}>Perform action</a>
+<a href="#" onClick={foo}>Perform action</a>
+<a onClick={foo}>Perform action</a>
 ```
 
 All these _anchor_ implementations indicate that the element is only used to execute JavaScript code. All the above should be replaced with:
+
 ```jsx
-<button onClick={foo} >Perform action</button>
+<button onClick={foo}>Perform action</button>
 ```
 
 ### Case: I want navigable links
@@ -37,51 +39,60 @@ An `<a>` element without an `href` attribute no longer functions as a hyperlink.
 To properly function as a hyperlink, the `href` attribute should be present and also contain a valid _URL_. _JavaScript_ strings, empty values or using only **#** are not considered valid `href` values.
 
 Valid `href` attributes values are:
+
 ```jsx
-<a href="/some/valid/uri" >Navigate to page</a>
-<a href="/some/valid/uri#top" >Navigate to page and location</a>
-<a href="#top" >Navigate to internal page location</a>
+<a href="/some/valid/uri">Navigate to page</a>
+<a href="/some/valid/uri#top">Navigate to page and location</a>
+<a href="#top">Navigate to internal page location</a>
 ```
 
-
 ### Case: I need the HTML to be interactive, don't I need to use an a tag for that?
-An `<a>` tag is not inherently interactive. Without an href attribute, it really is no different to a `<div>`.
+
+An `<a>` tag is not inherently interactive. Without an href attribute, it really is no different from a `<span>`.
 
 Let's look at an example that is not accessible by all users:
+
 ```jsx
 <a
-  className={'thing'}
-  onMouseEnter={() => this.setState({showSomething: true})}>
+  className="thing"
+  onMouseEnter={() => this.setState({ showSomething: true })}
+>
   {label}
 </a>
 ```
 
 If you need to create an interface element that the user can click on, consider using a button:
+
 ```jsx
 <button
-  className={'thing'}
-  onClick={() => this.setState({showSomething: true})}>
+  className="thing"
+  onClick={() => this.setState({ showSomething: true })}
+>
   {label}
 </button>
 ```
 
 If you want to navigate while providing the user with extra functionality, for example in the `onMouseEnter` event, use an anchor with an `href` attribute containing a URL or path as its value.
+
 ```jsx
 <a
   href={someValidPath}
-  className={'thing'}
-  onMouseEnter={() => this.setState({showSomething: true})}>
+  className="thing"
+  onMouseEnter={() => this.setState({ showSomething: true })}
+>
   {label}
 </a>
 ```
 
 If you need to create an interface element that the user can mouse over or mouse out of, consider using a div element. In this case, you may need to apply a role of presentation or an interactive role. Interactive ARIA roles include `button`, `link`, `checkbox`, `menuitem`, `menuitemcheckbox`, `menuitemradio`, `option`, `radio`, `searchbox`, `switch` and `textbox`.
+
 ```jsx
 <div
   role="menuitem"
-  className={'thing'}
-  onClick={() => this.setState({showSomething: true})}>
-  onMouseEnter={() => this.setState({showSomething: true})}>
+  className="thing"
+  onClick={() => this.setState({ showSomething: true })}
+  onMouseEnter={() => this.setState({ showSomething: true })}
+>
   {label}
 </div>
 ```
@@ -118,16 +129,17 @@ We recommend, without reserve, that elements resembling anchors should navigate.
 
 However, we understand that developers are not always in total control of the visual design of web applications. In cases where it is imperative to provide an element resembling an anchor that purely acts as a click target with no navigation as result, we would like to recommend a compromise.
 
-Again change the element to a `<button>`: 
+Again change the element to a `<button>`:
 
 ```jsx
-<button 
+<button
   type="button"
-  className="link-button" 
-  onClick={() => this.setState({showSomething: true})}>
-    Press me, I look like a link
+  className="link-button"
+  onClick={() => this.setState({ showSomething: true })}
+>
+  Press me, I look like a link
 </button>
-``` 
+```
 
 Then use styling to change its appearance to that of a link:
 
@@ -144,7 +156,7 @@ Then use styling to change its appearance to that of a link:
 
 .link-button:hover,
 .link-button:focus {
-text-decoration: none;
+  text-decoration: none;
 }
 ```
 
@@ -158,13 +170,16 @@ This rule takes one optional object argument of type object:
 
 ```json
 {
-    "rules": {
-        "jsx-a11y/anchor-is-valid": [ "error", {
-            "components": [ "Link" ],
-            "specialLink": [ "hrefLeft", "hrefRight" ],
-            "aspects": [ "noHref", "invalidHref", "preferButton" ]
-          }]
-    }
+  "rules": {
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ]
+  }
 }
 ```
 
@@ -193,11 +208,12 @@ For the `aspects` option, these strings determine which sub-rules are run. This 
 
 The option can be used on its own or with the `components` and `specialLink` options.
 
-If omitted, all sub-rule aspects will be run by default. This is the recommended configuration for all cases except where the rule becomes unusable due to well founded restrictions. 
+If omitted, all sub-rule aspects will be run by default. This is the recommended configuration for all cases except where the rule becomes unusable due to well founded restrictions.
 
 The option must contain at least one `aspect`.
 
 ### Succeed
+
 ```jsx
 <a href="https://github.com" />
 <a href="#section" />
@@ -214,6 +230,7 @@ The option must contain at least one `aspect`.
 ### Fail
 
 Anchors should be a button:
+
 ```jsx
 <a onClick={foo} />
 <a href="#" onClick={foo} />
@@ -225,6 +242,7 @@ Anchors should be a button:
 ```
 
 Missing `href` attribute:
+
 ```jsx
 <a />
 <a href={undefined} />
@@ -232,6 +250,7 @@ Missing `href` attribute:
 ```
 
 Invalid `href` attribute:
+
 ```jsx
 <a href="#" />
 <a href={"#"} />
@@ -242,9 +261,11 @@ Invalid `href` attribute:
 ```
 
 ## Accessibility guidelines
+
 - [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard)
 
 ### Resources
+
 - [WebAIM - Introduction to Links and Hypertext](http://webaim.org/techniques/hypertext/)
 - [Links vs. Buttons in Modern Web Applications](https://marcysutton.com/links-vs-buttons-in-modern-web-applications/)
 - [Using ARIA - Notes on ARIA use in HTML](https://www.w3.org/TR/using-aria/#NOTES)
