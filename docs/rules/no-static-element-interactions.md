@@ -44,7 +44,7 @@ If your element is catching bubbled click or key events from descendant elements
 
 ```jsx
 {/* The <div> element has a child <button> element that allows keyboard interaction */}
-{/* eslint-disable-next-line no-static-element-interactions */}
+{/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
 <div onClick={this.handleButtonClick}>
   <button>Save</button>
   <button>Cancel</button>
