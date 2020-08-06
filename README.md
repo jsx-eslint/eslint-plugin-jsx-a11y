@@ -26,6 +26,12 @@
 
 Static AST checker for accessibility rules on JSX elements.
 
+
+
+#### *Read this in [other languages](https://github.com/ari-os310/eslint-plugin-jsx-a11y/blob/master/translations/Translations.md).*
+
+[Mexican Spanish🇲🇽](https://github.com/ari-os310/eslint-plugin-jsx-a11y/blob/master/translations/README.mx.md)
+
 ## Why?
 Ryan Florence built out this awesome runtime-analysis tool called [react-a11y](https://github.com/reactjs/react-a11y). It is super useful. However, since you're probably already using linting in your project, this plugin comes for free and closer to the actual development process. Pairing this plugin with an editor lint plugin, you can bake accessibility standards into your application in real-time.
 
@@ -79,7 +85,6 @@ Then configure the rules you want to use under the rules section.
   }
 }
 ```
-
 
 You can also enable all the recommended or strict rules at once.
 Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
