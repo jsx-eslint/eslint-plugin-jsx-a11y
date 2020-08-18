@@ -58,12 +58,12 @@ module.exports = {
         return;
       }
       const controlComponents = [
-        'input',
-        'meter',
-        'output',
-        'progress',
-        'select',
-        'textarea',
+        '*Input',
+        '*Meter',
+        '*Output',
+        '*Progress',
+        '*Select',
+        '*Textarea',
       ].concat((options.controlComponents || []));
       // Prevent crazy recursion.
       const recursionDepth = Math.min(
