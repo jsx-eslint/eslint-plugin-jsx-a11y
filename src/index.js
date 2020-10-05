@@ -164,6 +164,7 @@ module.exports = {
             li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
             table: ['grid'],
             td: ['gridcell'],
+            fieldset: ['radiogroup', 'presentation'],
           },
         ],
         'jsx-a11y/no-noninteractive-tabindex': [
