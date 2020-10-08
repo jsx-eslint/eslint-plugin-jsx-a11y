@@ -68,7 +68,8 @@
     "emoji-regex": "^9.2.0",
     "has": "^1.0.3",
     "jsx-ast-utils": "^3.2.0",
-    "language-tags": "^1.0.5"
+    "language-tags": "^1.0.5",
+    "minimatch": "^3.0.4"
   },
   "peerDependencies": {
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7"

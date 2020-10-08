@@ -9,6 +9,7 @@
 
 import { elementType } from 'jsx-ast-utils';
 import type { Node } from 'ast-types-flow';
+import minimatch from 'minimatch';
 
 export default function mayContainChildComponent(
   root: Node,
@@ -37,7 +38,7 @@ export default function mayContainChildComponent(
         if (
           childNode.type === 'JSXElement'
           && childNode.openingElement
-          && elementType(childNode.openingElement) === componentName
+          && minimatch(elementType(childNode.openingElement), componentName)
         ) {
           return true;
         }
