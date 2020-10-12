@@ -1,3 +1,26 @@
+6.4.0 / 2020-10-26
+==================
+
+- 83e4ff2 [Deps] update `axe-core`, `jsx-ast-utils`
+- eb92b07 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-strip-types`, `eslint-plugin-flowtype`, `eslint-plugin-import`, `estraverse`, `expect`, `object.assign`
+- 3d98d7a [Deps] update `@babel/runtime`, `axe-core`
+- f702f62 [readme] add Spanish translation
+- c2ae092 [Docs] `no-static-element-interactions`: Fixed rule name in comments
+- b90e20d Fix screenreader -> screen reader
+- 645900a Fixed rule name in comments
+- 381b9d6 [fix:634] Ignore control elements that are hidden
+- 2c47f0a [Fix] `autocomplete-valid`: workaround for axe not being able to handle `null`
+- 00bd6d8 Add failing test for autocomplete with dynamic type
+- 3c49c9a Add WCAG guidelines to rule documentation
+- 4ecaf35 Add a testcase for tablist to interactive supports focus
+- dac6864 Deprecate the accessible-emoji rule
+- 5191053 Update to axobject-query@2.2.0
+- b315698 Allow negative tabindex in aria-activedescendant-has-tabindex
+- 8e6fcd0 docs: fix travis badge now points to correct location at travis-ci.com
+- 2234df7 Account for additional control elements in label-has-associated-control
+- 5cbb718 Adding test cases for label tests
+- 66c425c Additional test case for no-redundant-roles
+
 6.3.1 / 2020-06-19
 ==================
 
