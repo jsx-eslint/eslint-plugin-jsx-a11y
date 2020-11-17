@@ -1,4 +1,6 @@
-# no-onchange
+# [Deprecated] no-onchange
+
+⚠️ **Deprecated:** This rule is based on reports of behavior of [old browsers (eg. IE 10 and below)](https://www.quirksmode.org/dom/events/change.html#t05). In the meantime, this behavior has been corrected, both in newer versions of browsers as well as [in the DOM spec](https://bugzilla.mozilla.org/show_bug.cgi?id=969068#c2).
 
 Enforce usage of `onBlur` over/in parallel with `onChange` on select menu elements for accessibility. `onBlur` **should** be used instead of `onChange`, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users. `onBlur` is a more declarative action by the user: for instance in a dropdown, using the arrow keys to toggle between options will trigger the `onChange` event in some browsers. Regardless, when a change of context results from an `onBlur` event or an `onChange` event, the user should be notified of the change unless it occurs below the currently focused element.
 

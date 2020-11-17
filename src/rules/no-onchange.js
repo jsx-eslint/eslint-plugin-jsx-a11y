@@ -24,6 +24,7 @@ module.exports = {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-onchange.md',
     },
+    deprecated: true,
     schema: [schema],
   },
 
