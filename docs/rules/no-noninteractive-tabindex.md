@@ -46,6 +46,15 @@ It is not necessary to put a tabindex on an `<article>`, for instance or on `<li
 
 Your application might require an exception to this rule in the case of an element that captures incoming tab traversal for a composite widget. In that case, turn off this rule on a per instance basis. This is an uncommon case.
 
+If you know that a particular element will be scrollable, you might want to add `tabindex="0"` if your website supports browsers that don't make these containers keyboard-focusable. The current status for this platform feature can be tracked in [Chrome Platform Status "Feature: Keyboard-focusable scroll containers"](https://www.chromestatus.com/feature/5231964663578624).
+
+```jsx
+// eslint-disable-next-line no-noninteractive-tabindex
+<pre tabIndex="0"> 
+  <code>{someLongCode}</code>
+</pre>
+```
+
 ## Rule details
 
 The recommended options for this rule allow `tabIndex` on elements with the noninteractive `tabpanel` role. Adding `tabIndex` to a tabpanel is a recommended practice in some instances.
