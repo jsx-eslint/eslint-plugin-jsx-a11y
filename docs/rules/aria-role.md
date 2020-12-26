@@ -41,3 +41,4 @@ For the `ignoreNonDOM` option, this determines if developer created components a
 ### Resources
 - [Chrome Audit Rules, AX_ARIA_01](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_01)
 - [DPUB-ARIA roles](https://www.w3.org/TR/dpub-aria-1.0/)
+- [MDN: Using ARIA: Roles, states, and properties](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques)
