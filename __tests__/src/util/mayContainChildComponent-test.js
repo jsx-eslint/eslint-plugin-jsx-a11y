@@ -104,4 +104,52 @@ describe('mayContainChildComponent', () => {
       });
     });
   });
+
+  describe('Glob name matching', () => {
+    describe('component name contains question mark ? - match any single character', () => {
+      it('should return true', () => {
+        expect(mayContainChildComponent(
+          JSXElementMock('div', [], [
+            JSXElementMock('FancyComponent'),
+          ]),
+          'Fanc?Co??onent',
+        )).toBe(true);
+      });
+      it('should return false', () => {
+        expect(mayContainChildComponent(
+          JSXElementMock('div', [], [
+            JSXElementMock('FancyComponent'),
+          ]),
+          'FancyComponent?',
+        )).toBe(false);
+      });
+    });
+
+    describe('component name contains asterisk * - match zero or more characters', () => {
+      it('should return true', () => {
+        expect(mayContainChildComponent(
+          JSXElementMock('div', [], [
+            JSXElementMock('FancyComponent'),
+          ]),
+          'Fancy*',
+        )).toBe(true);
+      });
+      it('should return true', () => {
+        expect(mayContainChildComponent(
+          JSXElementMock('div', [], [
+            JSXElementMock('FancyComponent'),
+          ]),
+          '*Component',
+        )).toBe(true);
+      });
+      it('should return true', () => {
+        expect(mayContainChildComponent(
+          JSXElementMock('div', [], [
+            JSXElementMock('FancyComponent'),
+          ]),
+          'Fancy*C*t',
+        )).toBe(true);
+      });
+    });
+  });
 });

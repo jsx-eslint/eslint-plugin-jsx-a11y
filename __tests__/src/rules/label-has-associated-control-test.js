@@ -36,6 +36,9 @@ const htmlForValid = [
   { code: '<CustomLabel htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }] },
   // Custom label attributes.
   { code: '<label htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'] }] },
+  // Glob support for controlComponents option.
+  { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ controlComponents: ['Custom*'] }] },
+  { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ controlComponents: ['*Label'] }] },
 ];
 const nestingValid = [
   { code: '<label>A label<input /></label>' },
@@ -57,6 +60,9 @@ const nestingValid = [
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }] },
   { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel><span label="A label"><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }] },
+  // Glob support for controlComponents option.
+  { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['Custom*'] }] },
+  { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['*Input'] }] },
 ];
 
 const bothValid = [
