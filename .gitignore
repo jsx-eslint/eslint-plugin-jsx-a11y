@@ -1,9 +1,10 @@
 .DS_Store
-coverage
+coverage/
 lib
 node_modules
 npm-debug.log
+
+npm-shrinkwrap.json
 package-lock.json
-reports
 yarn-error.log
 yarn.lock
