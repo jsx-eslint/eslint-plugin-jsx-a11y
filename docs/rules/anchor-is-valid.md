@@ -88,6 +88,30 @@ If you need to create an interface element that the user can mouse over or mouse
 
 In the example immediately above an `onClick` event handler was added to provide the same experience mouse users enjoy to keyboard-only and touch-screen users. Never fully rely on mouse events alone to expose functionality.
 
+### Case: I use Next.js and I'm getting this error inside of `<Link>`s
+
+This is a [known issue](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/402) with Next.js's decision to construct internal links by nesting an href-free `<a>` tag inside of a `<Link>` component. Next.js is also [aware of the issue](https://github.com/vercel/next.js/issues/5533) and has an [RFC](https://github.com/vercel/next.js/discussions/8207) working towards a solution.
+
+Until the Next.js API can be updated to a more performant and standard setup, you have a few workaround options:
+
+1. If you have only a few `Link`s, or they're clustered in just a few files like `nav.tsx`, you can use disable macros like `{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}` to turn off validation of this rule for those usages.
+
+2. You can use the `Link` component's `passHref` prop to override a dummy `href` on the `<a>`:
+```typescript
+<Link href="/my-amazing-page" passHref>
+  <a href="replace">Go to my amazing page</a>
+</Link>
+```
+
+3. You can invest in a custom component that wraps the creation of the `Link` and `a`. You can then add your new custom component to the list of components to validate to ensure that your links are all created with a navigable href. A sample custom component is shared [here](https://gist.github.com/zackdotcomputer/d7af9901e7db87364aad7fbfadb5c99b) and it would be used like this:
+```typescript
+// Internally, LinkTo handles the making of the Link and A, collecting the
+// need for a lint workaround into a single file.
+// Externally, LinkTo can be linted using this rule, ensuring it will always
+// have a valid href prop.
+<LinkTo href="/my-amazing-page">Go to my amazing page</LinkTo>
+```
+
 ### Case: I understand the previous cases but still need an element resembling a link that is purely clickable
 
 We recommend, without reserve, that elements resembling anchors should navigate. This will provide a superior user experience to a larger group of users out there.
