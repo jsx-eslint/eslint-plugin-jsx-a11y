@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-jsx-a11y",
+  "name": "eslint-plugin-jsx-a11y-div-four",
   "version": "6.4.1",
   "description": "Static AST checker for accessibility rules on JSX elements.",
   "keywords": [
@@ -23,7 +23,7 @@
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint  --config .eslintrc src __tests__ __mocks__ scripts",
     "prepublish": "safe-publish-latest && not-in-publish || (npm run lint && npm run flow && npm run jest && npm run build)",
-    "pretest": "npm run lint:fix && npm run flow",
+    "pretest": "npm run lint:fix",
     "test": "npm run jest",
     "posttest": "aud --production",
     "test:ci": "npm run jest -- --ci --runInBand",
