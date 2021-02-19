@@ -68,7 +68,7 @@ jobs:
       - uses: ljharb/actions/node/run@main
         name: 'npm install && npm run tests-only'
         with:
-          after_install: npm uninstall --no-save eslint-config-airbnb-base && npm install --no-save "eslint@${{ matrix.eslint }}"
+          after_install: npm uninstall --no-save eslint-config-airbnb-base && NPM_CONFIG_LEGACY_PEER_DEPS=true npm install --no-save "eslint@${{ matrix.eslint }}"
           node-version: ${{ matrix.node-version }}
           command: 'test:ci'
           skip-ls-check: true
