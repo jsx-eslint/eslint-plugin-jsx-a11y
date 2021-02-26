@@ -48,7 +48,7 @@ ruleTester.run('div-has-apply', rule, {
     { code: '<button />', errors: [expectedError] },
     { code: '<button><Bar aria-hidden /></button>', errors: [expectedError] },
     { code: '<button>{undefined}</button>', errors: [expectedError] },
-    { code: '<div>apply</div>', errors: [expectedError] },
+    { code: '<div>apply</div>', errors: [expectedError] }, // this is the only addition - hasApplyText-test looks for divs though not buttons or headings
 
     // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
     { code: '<Button />', errors: [expectedError], options: components },
