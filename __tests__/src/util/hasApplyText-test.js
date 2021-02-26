@@ -7,14 +7,14 @@ import JSXExpressionContainerMock from '../../../__mocks__/JSXExpressionContaine
 describe('hasApplyText', () => {
   describe('has no children and does not set dangerouslySetInnerHTML', () => {
     it('returns false', () => {
-      expect(hasApplyText(JSXElementMock('div', []))).toBe(false);
+      expect(hasApplyText(JSXElementMock('button', []))).toBe(false);
     });
   });
 
   describe('has no children and sets dangerouslySetInnerHTML', () => {
     it('Returns true', () => {
       const prop = JSXAttributeMock('dangerouslySetInnerHTML', true);
-      const element = JSXElementMock('div', [prop], []);
+      const element = JSXElementMock('button', [prop], []);
       expect(hasApplyText(element)).toBe(true);
     });
   });
@@ -25,13 +25,13 @@ describe('hasApplyText', () => {
         type: 'Literal',
         value: 'apply',
       };
-      const element = JSXElementMock('div', [], [child]);
+      const element = JSXElementMock('button', [], [child]);
       expect(hasApplyText(element)).toBe(true);
     });
 
     it('Returns true for visible child JSXElement', () => {
-      const child = JSXElementMock('div', []);
-      const element = JSXElementMock('div', [], [child]);
+      const child = JSXElementMock('button', []);
+      const element = JSXElementMock('button', [], [child]);
       expect(hasApplyText(element)).toBe(true);
     });
 
@@ -40,14 +40,14 @@ describe('hasApplyText', () => {
         type: 'JSXText',
         value: 'apply',
       };
-      const element = JSXElementMock('div', [], [child]);
+      const element = JSXElementMock('button', [], [child]);
       expect(hasApplyText(element)).toBe(true);
     });
 
     it('Returns false for hidden child JSXElement', () => {
       const ariaHiddenAttr = JSXAttributeMock('aria-hidden', true);
-      const child = JSXElementMock('div', [ariaHiddenAttr]);
-      const element = JSXElementMock('div', [], [child]);
+      const child = JSXElementMock('button', [ariaHiddenAttr]);
+      const element = JSXElementMock('button', [], [child]);
       expect(hasApplyText(element)).toBe(false);
     });
 
@@ -57,7 +57,7 @@ describe('hasApplyText', () => {
         name: 'apply',
       };
       const child = JSXExpressionContainerMock(expression);
-      const element = JSXElementMock('div', [], [child]);
+      const element = JSXElementMock('button', [], [child]);
       expect(hasApplyText(element)).toBe(true);
     });
 
@@ -67,7 +67,7 @@ describe('hasApplyText', () => {
         name: 'undefined',
       };
       const child = JSXExpressionContainerMock(expression);
-      const element = JSXElementMock('div', [], [child]);
+      const element = JSXElementMock('button', [], [child]);
       expect(hasApplyText(element)).toBe(false);
     });
 
@@ -75,13 +75,13 @@ describe('hasApplyText', () => {
       const child = {
         type: 'Unknown',
       };
-      const element = JSXElementMock('div', [], [child]);
+      const element = JSXElementMock('button', [], [child]);
       expect(hasApplyText(element)).toBe(false);
     });
 
     it('Returns true with children passed as a prop', () => {
       const children = JSXAttributeMock('children', true);
-      const element = JSXElementMock('div', [children], []);
+      const element = JSXElementMock('button', [children], []);
       expect(hasApplyText(element)).toBe(true);
     });
   });
