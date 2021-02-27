@@ -4,7 +4,7 @@ import { elementType, hasAnyProp } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import isHiddenFromScreenReader from './isHiddenFromScreenReader';
 
-export default function hasAccessibleChild(node: JSXElement): boolean {
+export default function hasApplyTextd(node: JSXElement): boolean {
   return node.children.some((child) => {
     switch (child.type) {
       case 'Literal':
