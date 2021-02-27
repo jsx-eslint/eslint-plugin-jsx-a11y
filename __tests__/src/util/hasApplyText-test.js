@@ -20,6 +20,15 @@ describe('hasApplyText', () => {
   });
 
   describe('has children', () => {
+    it('Returns false for a Literal child', () => {
+      const child = {
+        type: 'Literal',
+        value: 'apply',
+      };
+      const element = JSXElementMock('div', [], [child]);
+      expect(hasApplyText(element)).toBe(false);
+    });
+
     it('Returns true for a Literal child', () => {
       const child = {
         type: 'Literal',

@@ -25,7 +25,7 @@ const expectedError = {
 
 ruleTester.run('div-has-apply', rule, {
   valid: [
-     // DEFAULT ELEMENT TESTS
+    // DEFAULT ELEMENT TESTS
     // { code: '<div />;' }, //not sure why this was included in heading-has-content-rule
     { code: '<button>apply</button>' },
     { code: '<button><Bar /></button>' },
@@ -33,15 +33,15 @@ ruleTester.run('div-has-apply', rule, {
     { code: '<button>{apply.bar}</button>' },
     { code: '<button dangerouslySetInnerHTML={{ __html: "apply" }} />' },
     { code: '<button children={children} />' },
-      // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
-      { code: '<Button>Apply</Button>', options: components },
-      { code: '<Title>Apply</Title>', options: components },
-      { code: '<Button><Bar /></Button>', options: components },
-      { code: '<Button>{apply}</Button>', options: components },
-      { code: '<Button>{apply.bar}</Button>', options: components },
-      { code: '<Button dangerouslySetInnerHTML={{ __html: "apply" }} />', options: components },
-      { code: '<Button children={children} />', options: components },
-      { code: '<button aria-hidden />' },
+    // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
+    { code: '<Button>Apply</Button>', options: components },
+    { code: '<Title>Apply</Title>', options: components },
+    { code: '<Button><Bar /></Button>', options: components },
+    { code: '<Button>{apply}</Button>', options: components },
+    { code: '<Button>{apply.bar}</Button>', options: components },
+    { code: '<Button dangerouslySetInnerHTML={{ __html: "apply" }} />', options: components },
+    { code: '<Button children={children} />', options: components },
+    { code: '<button aria-hidden />' },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT TESTS
