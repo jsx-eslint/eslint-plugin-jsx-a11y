@@ -1,6 +1,6 @@
 # html-has-lang
 
-<html> elements must have the lang prop.
+<html> elements must have the lang prop. This rule is largely superseded by the [`lang` rule](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/lang.md).
 
 ## Rule details
 
