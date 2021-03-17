@@ -30,6 +30,12 @@ module.exports = {
 
   create: (context) => ({
     JSXOpeningElement: (node) => {
+      const literalChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText');
+      /*   if (literalChildValue && literalChildValue.value === 'apply') {
+           errorMessage = 'Div should not have text apply. Use button native HTML element instead.';
+         } else {
+           errorMessage = 'it is valid';
+         } */
       const options = context.options[0] || {};
       const componentOptions = options.components || [];
       const typeCheck = headings.concat(componentOptions);
@@ -45,10 +51,12 @@ module.exports = {
       if (isHiddenFromScreenReader(nodeType, node.attributes)) {
         return;
       }
-      context.report({
-        node,
-        message: errorMessage,
-      });
+      if (literalChildValue && literalChildValue.value.toLowerCase() === 'apply') {
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      }
     },
   }),
 };

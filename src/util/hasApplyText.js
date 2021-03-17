@@ -4,12 +4,12 @@ import { elementType, hasAnyProp } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import isHiddenFromScreenReader from './isHiddenFromScreenReader';
 
-export default function hasApplyTextd(node: JSXElement): boolean {
+export default function hasApplyText(node: JSXElement): boolean {
   return node.children.some((child) => {
     switch (child.type) {
       case 'Literal':
       case 'JSXText':
-        return (Boolean(child.value) && Boolean(child.value.toUpperCase() === 'APPLY') );
+        return (Boolean(child.value) && Boolean(child.value.toUpperCase() === 'APPLY'));
       case 'JSXElement':
         return !isHiddenFromScreenReader(
           elementType(child.openingElement),
