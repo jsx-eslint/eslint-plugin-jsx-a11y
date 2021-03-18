@@ -9,7 +9,7 @@ export default function hasApplyText(node: JSXElement): boolean {
     switch (child.type) {
       case 'Literal':
       case 'JSXText':
-        return (Boolean(child.value) && Boolean(child.value.toUpperCase() === 'APPLY'));
+        return Boolean(child.value);
       case 'JSXElement':
         return !isHiddenFromScreenReader(
           elementType(child.openingElement),
