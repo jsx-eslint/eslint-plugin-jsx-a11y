@@ -12,7 +12,6 @@ import { elementType } from 'jsx-ast-utils';
 // import type { JSXOpeningElement } from 'ast-types-flow';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasApplyText';
-// import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const errorMessage = 'Div should not have text apply. Use button native HTML element instead.';
 
@@ -31,12 +30,11 @@ module.exports = {
   create: (context) => ({
     JSXOpeningElement: (node) => {
       const literalChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText');
-      // const literalChildValueApply = node.parent.children.find((child) => child.value !== 'apply');
-      // if (literalChildValue && literalChildValue.value === 'apply') {
-      //   errorMessage = 'Div should not have text apply. Use button native HTML element instead.';
-      // } else {
-      //   errorMessage = 'it is valid';
-      // }
+      /*   if (literalChildValue && literalChildValue.value === 'apply') {
+           errorMessage = 'Div should not have text apply. Use button native HTML element instead.';
+         } else {
+           errorMessage = 'it is valid';
+         } */
       const options = context.options[0] || {};
       const componentOptions = options.components || [];
       const typeCheck = headings.concat(componentOptions);
@@ -49,15 +47,13 @@ module.exports = {
       if (hasAccessibleChild(node.parent) === false) {
         return;
       }
-      // if (isHiddenFromScreenReader(nodeType, node.attributes)) {
-      //   return;
-      // }
-      if (literalChildValue && literalChildValue.value.toLowerCase() === 'apply') {
-        context.report({
-          node,
-          message: errorMessage,
-        });
+      if (literalChildValue && literalChildValue.value.toLowerCase() !== 'apply') {
+        return;
       }
+      context.report({
+        node,
+        message: errorMessage,
+      });
     },
   }),
 };
