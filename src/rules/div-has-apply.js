@@ -62,7 +62,7 @@ module.exports = {
       if (actionVerbs.includes(literalChildValue && literalChildValue.value.toLowerCase()) === false) {
         return;
       }
-      const tabindexProp = getProp(node.attributes, 'tabindex');
+      const tabindexProp = getProp(node.attributes, 'tabIndex');
       const roleProp = getProp(node.attributes, 'role');
       // Missing alt prop error.
       if ((tabindexProp === undefined) || (roleProp === undefined)) {
@@ -78,7 +78,6 @@ module.exports = {
           node,
           message: 'notabvalue',
         });
-        return;
       }
       const roleValue = getPropValue(roleProp);
       if (roleValue !== 'button') {
