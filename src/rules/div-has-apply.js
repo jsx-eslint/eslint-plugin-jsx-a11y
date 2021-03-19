@@ -29,7 +29,7 @@ module.exports = {
 
   create: (context) => ({
     JSXOpeningElement: (node) => {
-      const literalChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText');
+      const literalChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText' || child.type === 'Unknown');
       /*   if (literalChildValue && literalChildValue.value === 'apply') {
            errorMessage = 'Div should not have text apply. Use button native HTML element instead.';
          } else {

@@ -25,10 +25,12 @@ const expectedError = {
 
 ruleTester.run('div-has-apply', rule, {
   valid: [
-    { code: '<div>test</div>;' },
+    { code: '<div />;' },
+    { code: '<div>test</div>' },
+    { code: '<div></div>' },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT TESTS
-    { code: 'apply', errors: [expectedError] },
+    { code: '<div>apply</div>', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
