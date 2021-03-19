@@ -68,23 +68,23 @@ module.exports = {
       if ((tabindexProp === undefined) || (roleProp === undefined)) {
         context.report({
           node,
-          message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
+          message: 'no attributes',
         });
         return;
       }
       const tabindexValue = getPropValue(tabindexProp);
-      if (tabindexValue !== '"0"') {
+      if (tabindexValue !== '0') {
         context.report({
           node,
-          message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
+          message: 'notabvalue',
         });
         return;
       }
       const roleValue = getPropValue(roleProp);
-      if (roleValue !== '"button"') {
+      if (roleValue !== 'button') {
         context.report({
           node,
-          message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
+          message: 'noRolevalue',
         });
       }
     },
