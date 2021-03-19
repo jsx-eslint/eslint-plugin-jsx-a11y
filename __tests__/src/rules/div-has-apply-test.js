@@ -28,6 +28,7 @@ ruleTester.run('div-has-apply', rule, {
     { code: '<div />;' },
     { code: '<div>test</div>' },
     { code: '<div></div>' },
+    { code: '<div tabindex="0" role="button">apply</div>' },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT TESTS
@@ -36,5 +37,6 @@ ruleTester.run('div-has-apply', rule, {
     { code: '<div>finish</div>', errors: [expectedError] },
     { code: '<div>submit</div>', errors: [expectedError] },
     { code: '<div>delete</div>', errors: [expectedError] },
+    { code: '<div tabindex role>apply</div>' },
   ].map(parserOptionsMapper),
 });

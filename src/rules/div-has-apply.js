@@ -8,12 +8,16 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType } from 'jsx-ast-utils';
+import {
+  elementType,
+  getProp,
+  getPropValue,
+} from 'jsx-ast-utils';
 // import type { JSXOpeningElement } from 'ast-types-flow';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasApplyText';
 
-const errorMessage = 'Div should not have text apply/submit. Use button native HTML element instead.';
+// const errorMessage = 'Div should not have text apply/submit. Use button native HTML element instead.';
 
 const headings = [
   'div',
@@ -58,10 +62,29 @@ module.exports = {
       if (actionVerbs.includes(literalChildValue && literalChildValue.value.toLowerCase()) === false) {
         return;
       }
-      context.report({
-        node,
-        message: errorMessage,
-      });
+      const tabindexProp = getProp(node.attributes, 'tabindex');
+      const roleProp = getProp(node.attributes, 'role');
+      // Missing alt prop error.
+      if ((tabindexProp === undefined) || (roleProp === undefined)) {
+        context.report({
+          node,
+          message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
+        });
+      }
+      const tabindexValue = getPropValue(tabindexProp);
+      if (tabindexValue !== '"0"') {
+        context.report({
+          node,
+          message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
+        });
+      }
+      const roleValue = getPropValue(roleProp);
+      if (roleValue !== '"button"') {
+        context.report({
+          node,
+          message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
+        });
+      }
     },
   }),
 };
