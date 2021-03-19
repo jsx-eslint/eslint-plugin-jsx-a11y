@@ -70,6 +70,7 @@ module.exports = {
           node,
           message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
         });
+        return;
       }
       const tabindexValue = getPropValue(tabindexProp);
       if (tabindexValue !== '"0"') {
@@ -77,6 +78,7 @@ module.exports = {
           node,
           message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
         });
+        return;
       }
       const roleValue = getPropValue(roleProp);
       if (roleValue !== '"button"') {
