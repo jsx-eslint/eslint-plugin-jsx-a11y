@@ -18,7 +18,7 @@ const errorMessage = 'Div should not have text apply. Use button native HTML ele
 const headings = [
   'div',
 ];
-const actionVerbs = 'apply' || 'submit';
+// const actionVerbs = 'apply' || 'submit';
 const schema = generateObjSchema({ components: arraySchema });
 
 module.exports = {
@@ -47,7 +47,7 @@ module.exports = {
       if (hasAccessibleChild(node.parent) === false) {
         return;
       }
-      if (literalChildValue && literalChildValue.value.toLowerCase() !== actionVerbs) {
+      if (literalChildValue && literalChildValue.value.toLowerCase() !== 'submit') {
         return;
       }
       context.report({
