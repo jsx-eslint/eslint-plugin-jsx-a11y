@@ -13,12 +13,18 @@ import { elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasApplyText';
 
-const errorMessage = 'Div should not have text apply. Use button native HTML element instead.';
+const errorMessage = 'Div should not have text apply/submit. Use button native HTML element instead.';
 
 const headings = [
   'div',
 ];
-// const actionVerbs = 'apply' || 'submit';
+const actionVerbs = [
+  'submit',
+  'finish',
+  'delete',
+  'ok',
+  'apply',
+];
 const schema = generateObjSchema({ components: arraySchema });
 
 module.exports = {
@@ -47,7 +53,9 @@ module.exports = {
       if (hasAccessibleChild(node.parent) === false) {
         return;
       }
-      if (literalChildValue && literalChildValue.value.toLowerCase() !== 'submit') {
+      // if (literalChildValue && literalChildValue.value.toLowerCase() !== 'apply') {
+      //   return;
+      if (actionVerbs.includes(literalChildValue && literalChildValue.value.toLowerCase()) === false) {
         return;
       }
       context.report({

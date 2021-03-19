@@ -32,5 +32,9 @@ ruleTester.run('div-has-apply', rule, {
   invalid: [
     // DEFAULT ELEMENT TESTS
     { code: '<div>apply</div>', errors: [expectedError] },
+    { code: '<div>ok</div>', errors: [expectedError] },
+    { code: '<div>finish</div>', errors: [expectedError] },
+    { code: '<div>submit</div>', errors: [expectedError] },
+    { code: '<div>delete</div>', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
