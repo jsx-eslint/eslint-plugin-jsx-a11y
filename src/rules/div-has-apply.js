@@ -14,9 +14,6 @@ import {
   getPropValue,
 } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
-import hasAccessibleChild from '../util/hasApplyText';
-
-// const errorMessage = 'Div should not have text apply/submit. Use button native HTML element instead.';
 
 const actionVerbs = [
   'submit',
@@ -43,9 +40,6 @@ module.exports = {
 
       // Only check 'div*' elements and custom types.
       if (typeCheck.indexOf(nodeType) === -1) {
-        return;
-      }
-      if (hasAccessibleChild(node.parent) === false) {
         return;
       }
       if (actionVerbs.includes(literalChildValue && literalChildValue.value.toLowerCase()) === false) {
