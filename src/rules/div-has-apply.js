@@ -66,7 +66,8 @@ module.exports = {
       const tabindexValue = getPropValue(tabindexProp);
       const roleValue = getPropValue(roleProp);
       // Missing tabindex and role prop error.
-      if (((tabindexProp === undefined) && (roleProp === undefined)) || ((tabindexValue !== '0') && (roleValue !== 'button'))) {
+      if (((tabindexProp === undefined) && (roleProp === undefined)) || ((tabindexValue !== '0') && (roleValue !== 'button')) ||
+      ((tabindexProp === undefined) && (roleValue !== 'button')) || ((tabindexValue !== '0') && (roleProp === undefined))) {
         context.report({
           node,
           message: 'Missing or incorrect attributes. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
