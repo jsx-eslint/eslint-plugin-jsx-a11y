@@ -17,7 +17,8 @@ export default function hasAccessibleChild(node: JSXElement): boolean {
         );
       case 'JSXExpressionContainer':
         if (child.expression.type === 'Identifier') {
-          return (child.expression.name !== 'undefined') || (child.expression.value !== '');
+          // return (child.expression.name !== 'undefined') || (child.expression.value !== '');
+          return child.expression.name !== 'undefined';
         }
         return true;
       default:

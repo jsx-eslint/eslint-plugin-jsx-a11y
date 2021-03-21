@@ -63,22 +63,31 @@ module.exports = {
 
       const tabindexProp = getProp(node.attributes, 'tabIndex');
       const roleProp = getProp(node.attributes, 'role');
-      // Missing tabindex and role prop error.
-      if ((tabindexProp === undefined) || (roleProp === undefined)) {
-        return;
-      }
       const tabindexValue = getPropValue(tabindexProp);
-      if (tabindexValue !== '0') {
-        return;
-      }
       const roleValue = getPropValue(roleProp);
-      if (roleValue !== 'button') {
+      // Missing tabindex and role prop error.
+      if (((tabindexProp === undefined) && (roleProp === undefined)) || ((tabindexValue !== '0') && (roleValue !== 'button'))) {
+        context.report({
+          node,
+          message: 'Missing or incorrect attributes. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
+        });
         return;
       }
-      context.report({
-        node,
-        message: 'Missing or incorrect attributes. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
-      });
+
+      if ((tabindexValue !== '0') || (tabindexProp === undefined)) {
+        context.report({
+          node,
+          message: 'Missing or incorrect tabIndex attribute value. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
+        });
+        return;
+      }
+
+      if ((roleValue !== 'button') || (roleProp === undefined)) {
+        context.report({
+          node,
+          message: 'Missing or incorrect role value. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
+        });
+      }
     },
   }),
 };
