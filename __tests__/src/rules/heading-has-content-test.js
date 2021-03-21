@@ -56,7 +56,7 @@ ruleTester.run('heading-has-content', rule, {
   invalid: [
     // DEFAULT ELEMENT TESTS
     { code: '<h1 />', errors: [expectedError] },
-    { code: '<h1><Bar aria-hidden /></h1>', errors: [expectedError] },
+    { code: '<h1><Bar aria-hidden="true" /></h1>', errors: [expectedError] },
     { code: '<h1>{undefined}</h1>', errors: [expectedError] },
 
     // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
