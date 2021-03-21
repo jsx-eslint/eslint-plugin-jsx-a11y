@@ -16,11 +16,25 @@ import {
 import { generateObjSchema, arraySchema } from '../util/schemas';
 
 const actionVerbs = [
-  'submit',
-  'finish',
-  'delete',
-  'ok',
-  'apply',
+  'advise', 'amplify', 'apply', 'arrange', 'ask',
+  'boost', 'build',
+  'call', 'click', 'close', 'commit', 'consult', 'compile', 'collect', 'contribute', 'create', 'cut',
+  'decrease', 'delete', 'divide', 'drink',
+  'eat', 'earn', 'enable', 'enter', 'execute', 'exit', 'expand', 'explain',
+  'finish', 'forecast', 'fix',
+  'generate',
+  'handle', 'help', 'hire', 'hit',
+  'improve', 'increase',
+  'join', 'jump',
+  'leave', 'let\'/s', 'list', 'listen',
+  'magnify', 'make', 'manage', 'minimize', 'move',
+  'ok', 'open', 'organise', 'oversee',
+  'play', 'push',
+  'read', 'reduce', 'run',
+  'save', 'send', 'shout', 'sing', 'submit', 'support',
+  'talk', 'trim',
+  'visit', 'volunteer', 'vote',
+  'watch', 'win', 'write',
 ];
 const schema = generateObjSchema({ components: arraySchema });
 
@@ -42,33 +56,29 @@ module.exports = {
       if (typeCheck.indexOf(nodeType) === -1) {
         return;
       }
+
       if (actionVerbs.includes(literalChildValue && literalChildValue.value.toLowerCase()) === false) {
         return;
       }
+
       const tabindexProp = getProp(node.attributes, 'tabIndex');
       const roleProp = getProp(node.attributes, 'role');
       // Missing tabindex and role prop error.
       if ((tabindexProp === undefined) || (roleProp === undefined)) {
-        context.report({
-          node,
-          message: 'Missing or incorrect attributes. Action verbs should have aria attributes or native HTML elements. Please define tabIndex="0" attribute and role="button" aria role in the div. Refer to the rule defined by W3C: https://w3c.github.io/aria-practices/examples/button/button.html Otherwise, the first rule of aria is to not use aria with div if it can be achieved via native HTML, like button. Refer to the Living HTML standard on MDN website: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
-        });
         return;
       }
       const tabindexValue = getPropValue(tabindexProp);
       if (tabindexValue !== '0') {
-        context.report({
-          node,
-          message: 'Missing or incorrect tabIndex attribute value. Action verbs should have aria attributes or native HTML elements. Please define tabIndex="0" attribute. Refer to the rule defined by W3C: https://w3c.github.io/aria-practices/examples/button/button.html Otherwise, the first rule of aria is to not use aria with div if it can be achieved via native HTML, like button. Refer to the Living HTML standard on MDN website: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
-        });
+        return;
       }
       const roleValue = getPropValue(roleProp);
       if (roleValue !== 'button') {
-        context.report({
-          node,
-          message: 'Missing or incorrect role value. Action verbs should have aria attributes or native HTML elements. Please define role="button" attribute. Refer to the rule defined by W3C: https://w3c.github.io/aria-practices/examples/button/button.html Otherwise, the first rule of aria is to not use aria with div if it can be achieved via native HTML, like button. Refer to the Living HTML standard on MDN website: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
-        });
+        return;
       }
+      context.report({
+        node,
+        message: 'Missing or incorrect attributes. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
+      });
     },
   }),
 };
