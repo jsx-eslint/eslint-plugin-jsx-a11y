@@ -47,13 +47,14 @@ module.exports = {
   create: (context) => ({
     JSXOpeningElement: (node) => {
       const literalChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText' || child.type === 'Unknown');
-      const options = context.options[0] || {};
-      const componentOptions = options.components || [];
-      const typeCheck = ['div'].concat(componentOptions);
-      const nodeType = elementType(node);
+      const options = context.options[0] || {}; // [object Object]
+      const componentOptions = options.components || []; // Apply - comming from .eslintrc.js file
+      const typeCheck = ['div'].concat(componentOptions); // div, Apply
+      const nodeType = elementType(node); // Apply
 
       // Only check 'div*' elements and custom types.
-      if (typeCheck.indexOf(nodeType) === -1) {
+      if (typeCheck.indexOf(nodeType) === -1) { // answers the question: is the current node, which is Apply is defined in the componentOptions?
+        // for example, is the Apply custom component present in div,Apply
         return;
       }
 
@@ -70,7 +71,7 @@ module.exports = {
       || ((tabindexProp === undefined) && (roleValue !== 'button')) || ((tabindexValue !== '0') && (roleProp === undefined))) {
         context.report({
           node,
-          message: 'Missing and/or incorrect attributes. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
+          message: `${options} meh ${componentOptions} meh ${typeCheck} meh ${nodeType}  Missing and/or incorrect attributes. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns `,
         });
         return;
       }

@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-jsx-a11y-div-fourtyfour",
+  "name": "eslint-plugin-jsx-a11y-div-fourtyseven",
   "version": "6.4.1",
   "description": "Static AST checker for accessibility rules on JSX elements.",
   "keywords": [
@@ -69,7 +69,8 @@
     "has": "^1.0.3",
     "jsx-ast-utils": "^3.2.0",
     "language-tags": "^1.0.5",
-    "minimatch": "^3.0.4"
+    "minimatch": "^3.0.4",
+    "proptypes": "^1.1.0"
   },
   "peerDependencies": {
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7"
