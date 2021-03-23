@@ -33,9 +33,9 @@ const expectedErrorNoRole = {
   type: 'JSXOpeningElement',
 };
 
-// const components = [{
-//   components: ['Button', 'Apply'],
-// }];
+const components = [{
+  components: ['Button', 'Apply'],
+}];
 
 ruleTester.run('div-has-apply', rule, {
   valid: [
@@ -119,6 +119,16 @@ ruleTester.run('div-has-apply', rule, {
     { code: ' <div tabIndex="0" role="button">watch</div>' },
     { code: ' <div tabIndex="0" role="button">win</div>' },
     { code: ' <div tabIndex="0" role="button">write</div>' },
+
+    // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
+    { code: '<Apply>Orange</Apply>', options: components },
+    { code: '<Button>Orange</Button>', options: components },
+    { code: '<Apply><Orange /></Heading>', options: components },
+    { code: '<Heading>{foo}</Heading>', options: components },
+    { code: '<Heading>{foo.bar}</Heading>', options: components },
+    { code: '<Heading dangerouslySetInnerHTML={{ __html: "foo" }} />', options: components },
+    { code: '<Heading children={children} />', options: components },
+    { code: '<h1 aria-hidden />' },
 
   ].map(parserOptionsMapper),
   invalid: [

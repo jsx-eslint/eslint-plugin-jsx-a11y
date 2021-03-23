@@ -9,12 +9,12 @@ export default function hasAccessibleChild(node: JSXElement): boolean {
     switch (child.type) {
       case 'Literal':
       case 'JSXText':
-        return Boolean(child.value);
+        return Boolean(child.value); //exit if there is text within the tags
       case 'JSXElement':
         return !isHiddenFromScreenReader(
           elementType(child.openingElement),
           child.openingElement.attributes,
-        );
+        ); // exit when the JSXElement is visible for screenreader
       case 'JSXExpressionContainer':
         if (child.expression.type === 'Identifier') {
           // return (child.expression.name !== 'undefined') || (child.expression.value !== '');
