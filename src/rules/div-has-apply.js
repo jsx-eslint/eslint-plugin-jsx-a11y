@@ -47,39 +47,31 @@ module.exports = {
   create: (context) => ({
     JSXOpeningElement: (node) => {
       const TextChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText' || child.type === 'Unknown');
-      // TextChildValue.value is the text within the tag elements
-      // const VariableChildValue = node.parent.children.find((child) => child.type === 'JSXExpressionContainer' && child !== 'undefined');
-      const expressioncontainer = node.parent.children.find((child) => child.type === 'JSXExpressionContainer');
-      // => (expression.type === 'Identifier' && child.value !== 'undefined'));
-
       const options = context.options[0] || {}; // [object Object]
       const componentOptions = options.components || []; // Apply - comming from .eslintrc.js file
       const typeCheck = ['div'].concat(componentOptions); // div, Apply
       const nodeType = elementType(node); // Apply
 
       // Only check 'div*' elements and custom types.
-      if (typeCheck.indexOf(nodeType) === -1) { // answers the question: is the current node, which is Apply is defined in the componentOptions?
-        // for example, is the Apply custom component present in div,Apply
+      // for example, is the Apply custom component present in div,Apply
+      // answers the question: is the current node, which is Apply is defined in the componentOptions in the eslintrc.json file?
+      if (typeCheck.indexOf(nodeType) === -1) {
         return;
       }
 
-      // if (actionVerbs.includes(IdentifierChildValue && IdentifierChildValue.value.toLowerCase()) === false) {
-      //   return;
-      // }
-      if (expressioncontainer === true) {
-        const IdentifierChildValue = expressioncontainer.expression.type === 'Identifier';
-        context.report({
-          node,
-          message: `${IdentifierChildValue.value} is a identifier value`,
-        });
-        return;
+      if ((actionVerbs.includes(nodeType.toLowerCase()) || nodeType.toLowerCase() === 'button') === true) {
+        if (actionVerbs.includes(TextChildValue && TextChildValue.value.toLowerCase()) === false) {
+          context.report({
+            node,
+            message: 'If custom element is an action word then the text within it should also be an action word. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
+          });
+          return;
+        }
       }
 
       if (actionVerbs.includes(TextChildValue && TextChildValue.value.toLowerCase()) === false) {
         return;
       }
-
-
 
       const tabindexProp = getProp(node.attributes, 'tabIndex');
       const roleProp = getProp(node.attributes, 'role');
@@ -87,10 +79,9 @@ module.exports = {
       const roleValue = getPropValue(roleProp);
       // Missing tabindex and role prop error.
       if (((tabindexProp === undefined) && (roleProp === undefined)) || ((tabindexValue !== '0') && (roleValue !== 'button'))
-      || ((tabindexProp === undefined) && (roleValue !== 'button')) || ((tabindexValue !== '0') && (roleProp === undefined))) {
+        || ((tabindexProp === undefined) && (roleValue !== 'button')) || ((tabindexValue !== '0') && (roleProp === undefined))) {
         context.report({
           node,
-          // message: `${IdentifierChildValue} meh ${IdentifierChildValue.value}  meh ${IdentifierChildValue.type} text: ${TextChildValue} meh ${TextChildValue.value}  meh ${TextChildValue.type}  Missing and/or incorrect attributes. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns `,
           message: 'Missing and/or incorrect attributes. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
         });
         return;
