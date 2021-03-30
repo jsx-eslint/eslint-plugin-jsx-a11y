@@ -8,33 +8,33 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ljharb/actions/node/run@main
-        name: 'npm install && npm run lint'
+      - uses: ljharb/actions/node/install@main
+        name: 'nvm install lts/* && npm install'
         with:
           node-version: 'lts/*'
-          command: 'lint'
           skip-ls-check: true
+      - run: npm run lint
 
   flow:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ljharb/actions/node/run@main
-        name: 'npm install && npm run flow'
+      - uses: ljharb/actions/node/install@main
+        name: 'nvm install lts/* && npm install'
         with:
           node-version: 'lts/*'
-          command: 'flow'
           skip-ls-check: true
+      - run: npm run flow
 
   posttest:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ljharb/actions/node/run@main
-        name: 'npm install && npm run posttest'
+      - uses: ljharb/actions/node/install@main
+        name: 'nvm install lts/* && npm install'
         with:
           node-version: 'lts/*'
-          command: 'posttest'
           skip-ls-check: true
+      - run: npm run posttest

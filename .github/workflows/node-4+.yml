@@ -65,13 +65,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ljharb/actions/node/run@main
-        name: 'npm install && npm run tests-only'
+        with:
+            fetch-depth: 0
+      - uses: ljharb/actions/node/install@main
+        name: 'nvm install ${{ matrix.node-version }} && npm install'
         with:
           after_install: npm uninstall --no-save eslint-config-airbnb-base && NPM_CONFIG_LEGACY_PEER_DEPS=true npm install --no-save "eslint@${{ matrix.eslint }}"
           node-version: ${{ matrix.node-version }}
-          command: 'test:ci'
           skip-ls-check: true
+      - run: npm run test:ci
+      - run: bash <(curl -s https://codecov.io/bash) -f coverage/*.json;
 
   node:
     name: 'node 4+'
