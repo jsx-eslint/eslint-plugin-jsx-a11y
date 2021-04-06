@@ -12,7 +12,7 @@
 import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import { generateObjSchema, arraySchema } from '../util/schemas';
-import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import mayContainChildComponent from '../util/mayContainChildComponent';
 import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 
@@ -41,13 +41,13 @@ const validateId = (node) => {
   return htmlForAttr !== false && !!htmlForValue;
 };
 
-module.exports = {
+module.exports = ({
   meta: {
     docs: {},
     schema: [schema],
   },
 
-  create: (context: ESLintContext) => {
+  create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const options = context.options[0] || {};
     const labelComponents = options.labelComponents || [];
     const assertType = options.assert || 'either';
@@ -122,4 +122,4 @@ module.exports = {
       JSXElement: rule,
     };
   },
-};
+}: ESLintConfig);

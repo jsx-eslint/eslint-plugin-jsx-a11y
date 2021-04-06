@@ -2,9 +2,9 @@
  * @flow
  */
 
-import JSXAttributeMock from './JSXAttributeMock';
+import type { JSXAttributeMockType } from './JSXAttributeMock';
 
-export type TJSXElementMock = {
+export type JSXElementMockType = {
   type: 'JSXElement',
   openingElement: {
     type: 'JSXOpeningElement',
@@ -12,16 +12,16 @@ export type TJSXElementMock = {
       type: 'JSXIdentifier',
       name: string,
     },
-    attributes: Array<JSXAttributeMock>,
+    attributes: Array<JSXAttributeMockType>,
   },
   children: Array<Node>,
 };
 
 export default function JSXElementMock(
   tagName: string,
-  attributes: Array<JSXAttributeMock> = [],
-  children: Array<Node> = [],
-): TJSXElementMock {
+  attributes: Array<JSXAttributeMockType> = [],
+  children?: Array<Node> = [],
+): JSXElementMockType {
   return {
     type: 'JSXElement',
     openingElement: {

@@ -13,7 +13,7 @@ import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import includes from 'array-includes';
 import { generateObjSchema, arraySchema } from '../util/schemas';
-import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import isDOMElement from '../util/isDOMElement';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -36,13 +36,13 @@ const schema = generateObjSchema({
   },
 });
 
-module.exports = {
+module.exports = ({
   meta: {
     docs: {},
     schema: [schema],
   },
 
-  create: (context: ESLintContext) => {
+  create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const options = context.options[0] || {};
     const {
       labelAttributes = [],
@@ -53,7 +53,7 @@ module.exports = {
 
     const newIgnoreElements = new Set([...ignoreElements, ...ignoreList]);
 
-    const rule = (node: JSXElement) => {
+    const rule = (node: JSXElement): void => {
       const tag = elementType(node.openingElement);
       const role = getLiteralPropValue(getProp(node.openingElement.attributes, 'role'));
       // Ignore interactive elements that might get their label from a source
@@ -112,4 +112,4 @@ module.exports = {
       JSXElement: rule,
     };
   },
-};
+}: ESLintConfig);

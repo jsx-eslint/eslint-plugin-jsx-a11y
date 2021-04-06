@@ -10,7 +10,7 @@
 
 import { elementType, getProp, getPropValue } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
-import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
 
 const allAspects = ['noHref', 'invalidHref', 'preferButton'];
@@ -27,7 +27,7 @@ const schema = generateObjSchema({
   aspects: enumArraySchema(allAspects, 1),
 });
 
-module.exports = {
+module.exports = ({
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/anchor-is-valid.md',
@@ -35,8 +35,8 @@ module.exports = {
     schema: [schema],
   },
 
-  create: (context: ESLintContext) => ({
-    JSXOpeningElement: (node: JSXOpeningElement) => {
+  create: (context: ESLintContext): ESLintVisitorSelectorConfig => ({
+    JSXOpeningElement: (node: JSXOpeningElement): void => {
       const { attributes } = node;
       const options = context.options[0] || {};
       const componentOptions = options.components || [];
@@ -115,4 +115,4 @@ module.exports = {
       }
     },
   }),
-};
+}: ESLintConfig);

@@ -16,7 +16,7 @@ import {
   getLiteralPropValue,
 } from 'jsx-ast-utils';
 import includes from 'array-includes';
-import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 import isNonLiteralProperty from '../util/isNonLiteralProperty';
@@ -36,7 +36,7 @@ const schema = generateObjSchema({
   },
 });
 
-module.exports = {
+module.exports = ({
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-noninteractive-tabindex.md',
@@ -44,7 +44,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: (context: ESLintContext) => {
+  create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const { options } = context;
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
@@ -98,4 +98,4 @@ module.exports = {
       },
     };
   },
-};
+}: ESLintConfig);

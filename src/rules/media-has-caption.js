@@ -8,9 +8,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import type { JSXElement, JSXOpeningElement } from 'ast-types-flow';
+import type { JSXElement, JSXOpeningElement, Node } from 'ast-types-flow';
 import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
-import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 
 const errorMessage = 'Media elements such as <audio> and <video> must have a <track> for captions.';
@@ -35,7 +35,7 @@ const isTrackType = (context, type) => {
   return ['track'].concat(options.track || []).some((typeToCheck) => typeToCheck === type);
 };
 
-module.exports = {
+module.exports = ({
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/media-has-caption.md',
@@ -43,7 +43,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: (context: ESLintContext) => ({
+  create: (context: ESLintContext): ESLintVisitorSelectorConfig => ({
     JSXElement: (node: JSXElement) => {
       const element: JSXOpeningElement = node.openingElement;
       const type = elementType(element);
@@ -87,4 +87,4 @@ module.exports = {
       }
     },
   }),
-};
+}: ESLintConfig);

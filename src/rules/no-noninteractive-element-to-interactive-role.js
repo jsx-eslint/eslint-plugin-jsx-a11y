@@ -17,7 +17,7 @@ import {
 import type { JSXIdentifier } from 'ast-types-flow';
 import includes from 'array-includes';
 import has from 'has';
-import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import type { ESLintJSXAttribute } from '../../flow/eslint-jsx';
 import getExplicitRole from '../util/getExplicitRole';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
@@ -27,7 +27,7 @@ const errorMessage = 'Non-interactive elements should not be assigned interactiv
 
 const domElements = [...dom.keys()];
 
-module.exports = {
+module.exports = ({
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-noninteractive-element-to-interactive-role.md',
@@ -44,7 +44,7 @@ module.exports = {
     }],
   },
 
-  create: (context: ESLintContext) => {
+  create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const { options } = context;
     return {
       JSXAttribute: (attribute: ESLintJSXAttribute) => {
@@ -81,4 +81,4 @@ module.exports = {
       },
     };
   },
-};
+}: ESLintConfig);

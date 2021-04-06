@@ -17,7 +17,7 @@ import {
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import includes from 'array-includes';
-import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import {
   enumArraySchema,
   generateObjSchema,
@@ -47,7 +47,7 @@ const interactiveProps = [
   ...eventHandlersByType.keyboard,
 ];
 
-module.exports = {
+module.exports = ({
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/interactive-supports-focus.md',
@@ -55,11 +55,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: (context: ESLintContext & {
-    options: {
-      tabbable: Array<string>
-    }
-  }) => ({
+  create: (context: ESLintContext): ESLintVisitorSelectorConfig => ({
     JSXOpeningElement: (node: JSXOpeningElement) => {
       const tabbable = (
         context.options && context.options[0] && context.options[0].tabbable
@@ -111,4 +107,4 @@ module.exports = {
       }
     },
   }),
-};
+}: ESLintConfig);

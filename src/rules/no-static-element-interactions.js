@@ -18,7 +18,7 @@ import {
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import includes from 'array-includes';
-import type { ESLintContext } from '../../flow/eslint';
+import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import isAbstractRole from '../util/isAbstractRole';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
@@ -41,7 +41,7 @@ const schema = generateObjSchema({
   handlers: arraySchema,
 });
 
-module.exports = {
+module.exports = ({
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-static-element-interactions.md',
@@ -49,7 +49,7 @@ module.exports = {
     schema: [schema],
   },
 
-  create: (context: ESLintContext) => {
+  create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const { options } = context;
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
@@ -108,4 +108,4 @@ module.exports = {
       },
     };
   },
-};
+}: ESLintConfig);

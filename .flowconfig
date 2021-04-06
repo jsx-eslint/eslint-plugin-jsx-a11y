@@ -2,3 +2,5 @@
 <PROJECT_ROOT>/lib/.*
 <PROJECT_ROOT>/docs/.*
 <PROJECT_ROOT>/reports/.*
+[options]
+suppress_type=$FlowFixMe
