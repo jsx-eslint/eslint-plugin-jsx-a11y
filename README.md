@@ -133,7 +133,7 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 - [scope](docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
 - [tabindex-no-positive](docs/rules/tabindex-no-positive.md): Enforce `tabIndex` value is not greater than zero.
 
-### Difference between 'recommended' and 'strict' mode
+### Rule strictness in different modes
 
 Rule | Recommended | Strict
 ------------ | ------------- | -------------
