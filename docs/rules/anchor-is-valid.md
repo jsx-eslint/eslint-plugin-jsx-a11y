@@ -153,11 +153,6 @@ Then use styling to change its appearance to that of a link:
   margin: 0;
   padding: 0;
 }
-
-.link-button:hover,
-.link-button:focus {
-  text-decoration: none;
-}
 ```
 
 This button element can now also be used inline in text.
