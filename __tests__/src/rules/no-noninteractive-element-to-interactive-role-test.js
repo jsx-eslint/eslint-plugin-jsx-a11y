@@ -448,6 +448,8 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<li role="row" />;' },
     { code: '<li role="treeitem" />;' },
     { code: '<Component role="treeitem" />;' },
+    { code: '<fieldset role="radiogroup" />;' },
+    { code: '<fieldset role="presentation" />;' },
   ]
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
