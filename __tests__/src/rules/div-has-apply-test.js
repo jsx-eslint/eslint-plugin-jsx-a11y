@@ -1,6 +1,6 @@
 /* eslint-env jest */
 /**
- * @fileoverview Discourage use of div when text is apply
+ * @fileoverview Discourage use of div when text is an action word
  * @author Felicia Kovacs
  */
 
@@ -126,7 +126,8 @@ ruleTester.run('div-has-apply', rule, {
 
     // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
 
-    // limitation: I only test for <Apply> custom element, I do not test when custom element name is any other action word from the list
+    // limitation: I only test for <Apply> custom element,
+    // I do not test when custom element name is any other action word from the list
     // <Apply tabIndex="0" role="button">any action word </Apply> //has limitation
     { code: '<Apply tabIndex="0" role="button">advise</Apply>', options: components },
     { code: '<Apply tabIndex="0" role="button">amplify</Apply>', options: components },
@@ -1707,7 +1708,7 @@ ruleTester.run('div-has-apply', rule, {
     { code: ' <Apply role="contentinfo">trim</Apply>', errors: [expectedErrorNoAttributes], options: components },
     { code: ' <Apply role="contentinfo">visit</Apply>', errors: [expectedErrorNoAttributes], options: components },
     { code: ' <Apply role="contentinfo">volunteer</Apply>', errors: [expectedErrorNoAttributes], options: components },
-    { code: ' <Apply role="contentinfo">vote</Apply>', errors: [expectedErrorNoAttributes], options: components },
+    { code: ' <Apply role="contelsntinfo">vote</Apply>', errors: [expectedErrorNoAttributes], options: components },
     { code: ' <Apply role="contentinfo">watch</Apply>', errors: [expectedErrorNoAttributes], options: components },
     { code: ' <Apply role="contentinfo">win</Apply>', errors: [expectedErrorNoAttributes], options: components },
     { code: ' <Apply role="contentinfo">write</Apply>', errors: [expectedErrorNoAttributes], options: components },

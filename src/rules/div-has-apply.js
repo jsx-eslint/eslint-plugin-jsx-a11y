@@ -1,7 +1,6 @@
 /**
- * @fileoverview check if div has apply text
- * @author Felicia
- * @flow
+ * @fileoverview Discourage use of div when text is an action word
+ * @author Felicia Kovacs
  */
 
 // ----------------------------------------------------------------------------
@@ -15,6 +14,7 @@ import {
 } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 
+// random list of action verbs in alphabetical order
 const actionVerbs = [
   'advise', 'amplify', 'apply', 'arrange', 'ask',
   'boost', 'build',
@@ -46,11 +46,11 @@ module.exports = {
 
   create: (context) => ({
     JSXOpeningElement: (node) => {
-      const TextChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText' || child.type === 'Unknown');
-      const options = context.options[0] || {}; // [object Object]
-      const componentOptions = options.components || []; // Apply - comming from .eslintrc.js file
-      const typeCheck = ['div'].concat(componentOptions); // div, Apply
-      const nodeType = elementType(node); // Apply
+      const TextChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText' || child.type === 'Unknown'); // text within div elements
+      const options = context.options[0] || {}; // returns e.g.: [object Object]
+      const componentOptions = options.components || []; // returns e.g.: Apply - comming from .eslintrc.js file
+      const typeCheck = ['div'].concat(componentOptions); // returns e.g.: the string div, Apply
+      const nodeType = elementType(node); // returns e.g.: Apply
 
       // Only check 'div*' elements and custom types.
       // for example, is the Apply custom component present in div,Apply
@@ -77,7 +77,7 @@ module.exports = {
       const roleProp = getProp(node.attributes, 'role');
       const tabindexValue = getPropValue(tabindexProp);
       const roleValue = getPropValue(roleProp);
-      // Missing tabindex and role prop error.
+      // Missing and/ or incorrect tabindex and role attributes
       if (((tabindexProp === undefined) && (roleProp === undefined)) || ((tabindexValue !== '0') && (roleValue !== 'button'))
         || ((tabindexProp === undefined) && (roleValue !== 'button')) || ((tabindexValue !== '0') && (roleProp === undefined))) {
         context.report({
@@ -87,14 +87,16 @@ module.exports = {
         return;
       }
 
+      // Missing and/or incorrect tabindex attribute
       if ((tabindexValue !== '0') || (tabindexProp === undefined)) {
         context.report({
           node,
-          message: 'Missing or incorrect tabIndex attribute value. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
+          message: 'Missing or incorrect role attribute value. Action verbs should be contained preferably within a native HTML button element(see first rule of ARIA) or within a div element that has tabIndex="0" attribute and role="button" aria role. Refer to https://w3c.github.io/aria-practices/examples/button/button.html and https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#accessibility_concerns',
         });
         return;
       }
 
+      // Missing and/or incorrect role attribute
       if ((roleValue !== 'button') || (roleProp === undefined)) {
         context.report({
           node,
