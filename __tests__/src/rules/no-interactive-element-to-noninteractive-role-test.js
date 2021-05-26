@@ -368,6 +368,7 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
   valid: [
     ...alwaysValid,
     { code: '<tr role="presentation" />;' },
+    { code: '<canvas role="img" />;' },
     { code: '<Component role="presentation" />;' },
   ]
     .map(ruleOptionsMapperFactory(recommendedOptions))
@@ -386,5 +387,6 @@ ruleTester.run(`${ruleName}:strict`, rule, {
   invalid: [
     ...neverValid,
     { code: '<tr role="presentation" />;', errors: [expectedError] },
+    { code: '<canvas role="img" />;', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });
