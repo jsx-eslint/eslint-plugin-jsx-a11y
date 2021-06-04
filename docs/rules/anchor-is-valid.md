@@ -46,7 +46,7 @@ Valid `href` attributes values are:
 <a href="#top">Navigate to internal page location</a>
 ```
 
-### Case: I need the HTML to be interactive, don't I need to use an a tag for that?
+### Case: I need the HTML to be interactive, don't I need to use a tag for that?
 
 An `<a>` tag is not inherently interactive. Without an href attribute, it really is no different from a `<span>`.
 
