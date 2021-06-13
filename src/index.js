@@ -118,6 +118,7 @@ module.exports = {
           'error',
           {
             tr: ['none', 'presentation'],
+            canvas: ['img'],
           },
         ],
         'jsx-a11y/no-noninteractive-element-interactions': [
