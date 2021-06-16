@@ -1,6 +1,6 @@
 # scope
 
-The `scope` scope should be used only on `<th>` elements.
+The `scope` prop should be used only on `<th>` elements.
 
 ## Rule details
 
