@@ -46,6 +46,13 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: '<input type="text" autocomplete={autocompl || "name"} />;' },
     { code: '<input type="text" autocomplete={autocompl || "foo"} />;' },
     { code: '<Foo autocomplete="bar"></Foo>;' },
+
+    // PASSED "autocomplete-appropriate"
+    // see also: https://github.com/dequelabs/axe-core/issues/2912
+    { code: '<input type="date" autocomplete="email" />;', errors: inappropriateAutocomplete },
+    { code: '<input type="number" autocomplete="url" />;', errors: inappropriateAutocomplete },
+    { code: '<input type="month" autocomplete="tel" />;', errors: inappropriateAutocomplete },
+    { code: '<Foo type="month" autocomplete="tel"></Foo>;', errors: inappropriateAutocomplete, options: [{ inputComponents: ['Foo'] }] },
   ].map(parserOptionsMapper),
   invalid: [
     // FAILED "autocomplete-valid"
@@ -55,11 +62,5 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: '<input type="text" autocomplete="home url" />;', errors: invalidAutocomplete },
     { code: '<Bar autocomplete="baz"></Bar>;', errors: invalidAutocomplete, options: [{ inputComponents: ['Bar'] }] },
     { code: '<input type={isEmail ? "email" : "text"} autocomplete="none" />;', errors: invalidAutocomplete },
-
-    // FAILED "autocomplete-appropriate"
-    { code: '<input type="date" autocomplete="email" />;', errors: inappropriateAutocomplete },
-    { code: '<input type="number" autocomplete="url" />;', errors: inappropriateAutocomplete },
-    { code: '<input type="month" autocomplete="tel" />;', errors: inappropriateAutocomplete },
-    { code: '<Foo type="month" autocomplete="tel"></Foo>;', errors: inappropriateAutocomplete, options: [{ inputComponents: ['Foo'] }] },
   ].map(parserOptionsMapper),
 });
