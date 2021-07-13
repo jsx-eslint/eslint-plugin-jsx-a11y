@@ -74,6 +74,8 @@ jobs:
           after_install: npm uninstall --no-save eslint-config-airbnb-base && NPM_CONFIG_LEGACY_PEER_DEPS=true npm install --no-save "eslint@${{ matrix.eslint }}"
           node-version: ${{ matrix.node-version }}
           skip-ls-check: true
+      - run: rm __tests__/src/util/getComputedRole-test.js
+        if: ${{ matrix.node-version < 7 }}
       - run: npm run test:ci
       - run: bash <(curl -s https://codecov.io/bash) -f coverage/*.json;
 
