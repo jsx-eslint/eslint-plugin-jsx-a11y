@@ -7,7 +7,6 @@ import button from './button';
 import datalist from './datalist';
 import details from './details';
 import dialog from './dialog';
-import dl from './dl';
 import form from './form';
 import h1 from './h1';
 import h2 from './h2';
@@ -46,7 +45,6 @@ export default {
   datalist,
   details,
   dialog,
-  dl,
   form,
   h1,
   h2,
