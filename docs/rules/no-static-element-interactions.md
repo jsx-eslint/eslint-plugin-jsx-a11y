@@ -22,6 +22,7 @@ Indicate the element's role with the `role` attribute:
   onKeyPress={onKeyPressHandler}
   role="button"
   tabindex="0">
+  tabindex={0}>
   Save
 </div>
 ```
