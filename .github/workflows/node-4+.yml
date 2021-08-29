@@ -25,26 +25,45 @@ jobs:
       matrix:
         node-version: ${{ fromJson(needs.matrix.outputs.latest) }}
         eslint:
+          - 8
           - 7
           - 6
           - 5
           - 4
           - 3
         exclude:
+          - node-version: 15
+            eslint: 8
+          - node-version: 13
+            eslint: 8
+          - node-version: 11
+            eslint: 8
           - node-version: 11
             eslint: 7
+          - node-version: 10
+            eslint: 8
+          - node-version: 9
+            eslint: 8
           - node-version: 9
             eslint: 7
           - node-version: 8
+            eslint: 8
+          - node-version: 8
             eslint: 7
+          - node-version: 7
+            eslint: 8
           - node-version: 7
             eslint: 7
           - node-version: 7
             eslint: 6
           - node-version: 6
+            eslint: 8
+          - node-version: 6
             eslint: 7
           - node-version: 6
             eslint: 6
+          - node-version: 5
+            eslint: 8
           - node-version: 5
             eslint: 7
           - node-version: 5
@@ -55,6 +74,8 @@ jobs:
             eslint: 4
           - node-version: 5 # TODO: fix
             eslint: 3
+          - node-version: 4
+            eslint: 8
           - node-version: 4
             eslint: 7
           - node-version: 4
