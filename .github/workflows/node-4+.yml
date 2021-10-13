@@ -77,7 +77,7 @@ jobs:
       - run: rm __tests__/src/util/getComputedRole-test.js
         if: ${{ matrix.node-version < 7 }}
       - run: npm run test:ci
-      - run: bash <(curl -s https://codecov.io/bash) -f coverage/*.json;
+      - uses: codecov/codecov-action@v2
 
   node:
     name: 'node 4+'
