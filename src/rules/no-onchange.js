@@ -19,7 +19,7 @@ const applicableTypes = [
 
 const schema = generateObjSchema();
 
-module.exports = {
+export default {
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-onchange.md',

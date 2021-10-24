@@ -23,7 +23,7 @@ const schema = generateObjSchema({
   elements: enumArraySchema(DEFAULT_ELEMENTS),
 });
 
-module.exports = {
+export default {
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-distracting-elements.md',

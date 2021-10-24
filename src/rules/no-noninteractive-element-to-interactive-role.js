@@ -27,7 +27,7 @@ const errorMessage = 'Non-interactive elements should not be assigned interactiv
 
 const domElements = [...dom.keys()];
 
-module.exports = ({
+export default ({
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-noninteractive-element-to-interactive-role.md',

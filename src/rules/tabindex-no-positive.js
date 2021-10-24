@@ -14,7 +14,7 @@ const errorMessage = 'Avoid positive integer values for tabIndex.';
 
 const schema = generateObjSchema();
 
-module.exports = {
+export default {
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/tabindex-no-positive.md',

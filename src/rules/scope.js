@@ -15,7 +15,7 @@ const errorMessage = 'The scope prop can only be used on <th> elements.';
 
 const schema = generateObjSchema();
 
-module.exports = {
+export default {
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/scope.md',

@@ -84,7 +84,7 @@ const getValidityStatus = (node, required, allowChildren) => {
   return { isValid, message };
 };
 
-module.exports = {
+export default {
   meta: {
     deprecated: true,
     docs: {

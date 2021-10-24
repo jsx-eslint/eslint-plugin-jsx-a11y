@@ -14,7 +14,7 @@ const errorMessage = '<iframe> elements must have a unique title property.';
 
 const schema = generateObjSchema();
 
-module.exports = {
+export default {
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/iframe-has-title.md',

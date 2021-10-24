@@ -41,7 +41,7 @@ const validateId = (node) => {
   return htmlForAttr !== false && !!htmlForValue;
 };
 
-module.exports = ({
+export default ({
   meta: {
     docs: {},
     schema: [schema],

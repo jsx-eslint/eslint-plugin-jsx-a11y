@@ -17,7 +17,7 @@ const mouseOutErrorMessage = 'onMouseOut must be accompanied by onBlur for acces
 
 const schema = generateObjSchema();
 
-module.exports = {
+export default {
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/mouse-events-have-key-events.md',

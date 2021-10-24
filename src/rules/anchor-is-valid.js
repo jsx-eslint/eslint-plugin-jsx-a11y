@@ -27,7 +27,7 @@ const schema = generateObjSchema({
   aspects: enumArraySchema(allAspects, 1),
 });
 
-module.exports = ({
+export default ({
   meta: {
     docs: {
       url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/anchor-is-valid.md',

@@ -36,7 +36,7 @@ const schema = generateObjSchema({
   },
 });
 
-module.exports = ({
+export default ({
   meta: {
     docs: {},
     schema: [schema],
