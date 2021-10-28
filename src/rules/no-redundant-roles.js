@@ -26,7 +26,7 @@ const DEFAULT_ROLE_EXCEPTIONS = { nav: ['navigation'] };
 export default ({
   meta: {
     docs: {
-      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-redundant-roles.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-redundant-roles.md',
     },
     schema: [{
       type: 'object',

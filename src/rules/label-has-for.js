@@ -88,7 +88,7 @@ export default {
   meta: {
     deprecated: true,
     docs: {
-      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/label-has-for.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/label-has-for.md',
     },
     schema: [schema],
   },

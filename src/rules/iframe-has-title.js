@@ -17,7 +17,7 @@ const schema = generateObjSchema();
 export default {
   meta: {
     docs: {
-      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/iframe-has-title.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/iframe-has-title.md',
     },
     schema: [schema],
   },

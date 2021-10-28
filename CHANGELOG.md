@@ -259,10 +259,10 @@ Add new rules:
 ==================
 - [breaking] - Update all rule schemas to accept objects. This allows a future schema expansion to not be a breaking change.
 - [breaking] - All rules with schemas that accepted a string OR array, now only allows an array.
-- [new] - `href-no-hash` accepts new schema property `specialLink` to check for custom `href` properties on elements. (fixes [#76](https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/76))
+- [new] - `href-no-hash` accepts new schema property `specialLink` to check for custom `href` properties on elements. (fixes [#76](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/76))
 - [breaking][fix] - `img-has-alt` now prefers `alt=""` over `role="presentation"`. You can set both, but not just `role="presentation"` by itself to ensure a11y across all devices.
 
-Note - see [rule documentation](https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules) for updated schemas.
+Note - see [rule documentation](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules) for updated schemas.
 
 2.2.3 / 2016-10-08
 ==================
@@ -354,7 +354,7 @@ Note - see [rule documentation](https://github.com/evcohen/eslint-plugin-jsx-a11
 
 1.4.0 / 2016-06-10
 ==================
-- [dependency] Integrate [jsx-ast-utils](https://github.com/evcohen/jsx-ast-utils)
+- [dependency] Integrate [jsx-ast-utils](https://github.com/jsx-eslint/jsx-ast-utils)
 - [fix] Better error reporting for aria-unsupported-elements indicating which prop to remove.
 
 

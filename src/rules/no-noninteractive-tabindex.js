@@ -39,7 +39,7 @@ const schema = generateObjSchema({
 export default ({
   meta: {
     docs: {
-      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-noninteractive-tabindex.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/no-noninteractive-tabindex.md',
     },
     schema: [schema],
   },

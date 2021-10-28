@@ -50,7 +50,7 @@ const interactiveProps = [
 export default ({
   meta: {
     docs: {
-      url: 'https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules/interactive-supports-focus.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/interactive-supports-focus.md',
     },
     schema: [schema],
   },
