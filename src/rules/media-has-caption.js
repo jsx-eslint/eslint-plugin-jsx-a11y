@@ -38,7 +38,7 @@ const isTrackType = (context, type) => {
 export default ({
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/media-has-caption.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/media-has-caption.md',
     },
     schema: [schema],
   },

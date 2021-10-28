@@ -28,7 +28,7 @@ const schema = generateObjSchema({ components: arraySchema });
 export default {
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/heading-has-content.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/heading-has-content.md',
     },
     schema: [schema],
   },

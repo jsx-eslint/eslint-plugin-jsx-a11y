@@ -18,7 +18,7 @@
       "rules": {
         "eslint-plugin/require-meta-docs-url": [
           "error",
-          { "pattern": "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/{{name}}.md" }
+          { "pattern": "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/{{name}}.md" }
         ],
         "eslint-plugin/require-meta-type": "off"
       }

@@ -23,7 +23,7 @@ const domElements = [...dom.keys()];
 export default {
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/click-events-have-key-events.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/click-events-have-key-events.md',
     },
     schema: [schema],
   },

@@ -66,7 +66,7 @@ export default {
   validityCheck,
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules/aria-proptypes.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-proptypes.md',
     },
     schema: [schema],
   },

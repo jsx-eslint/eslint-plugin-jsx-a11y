@@ -262,7 +262,7 @@ Add new rules:
 - [new] - `href-no-hash` accepts new schema property `specialLink` to check for custom `href` properties on elements. (fixes [#76](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/76))
 - [breaking][fix] - `img-has-alt` now prefers `alt=""` over `role="presentation"`. You can set both, but not just `role="presentation"` by itself to ensure a11y across all devices.
 
-Note - see [rule documentation](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules) for updated schemas.
+Note - see [rule documentation](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules) for updated schemas.
 
 2.2.3 / 2016-10-08
 ==================
