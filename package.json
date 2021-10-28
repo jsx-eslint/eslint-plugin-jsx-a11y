@@ -21,7 +21,7 @@
     "create": "node ./scripts/create-rule",
     "flow": "if [ ! -e ./.flowconfig ]; then echo \"Could not find .flowconfig\"; else flow; test $? -eq 0 -o $? -eq 2; fi",
     "lint:fix": "npm run lint -- --fix",
-    "lint": "eslint  --config .eslintrc src __tests__ __mocks__ scripts",
+    "lint": "eslint .",
     "prepublish": "not-in-publish || npm run prepublishOnly",
     "prepublishOnly": "safe-publish-latest && npm run lint && npm run flow && npm run jest && npm run build",
     "pretest": "npm run lint:fix && npm run flow",
