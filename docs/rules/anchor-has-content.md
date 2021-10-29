@@ -39,7 +39,7 @@ return (
 ### Succeed
 ```jsx
 <a>Anchor Content!</a>
-<a><TextWrapper /><a>
+<a><TextWrapper /></a>
 <a dangerouslySetInnerHTML={{ __html: 'foo' }} />
 ```
 
