@@ -28,5 +28,5 @@ This rule takes no arguments.
 - [WCAG 3.2.2](https://www.w3.org/WAI/WCAG21/Understanding/on-input)
 
 ### Resources
-- [onChange Event Accessibility Issues](http://cita.disability.uiuc.edu/html-best-practices/auto/onchange.php)
-- [onChange Select Menu](http://www.themaninblue.com/writing/perspective/2004/10/19/)
+- [onChange Event Accessibility Issues](https://web.archive.org/web/20191207202425/http://cita.disability.uiuc.edu/html-best-practices/auto/onchange.php)
+- [onChange Select Menu](https://www.themaninblue.com/writing/perspective/2004/10/19/)

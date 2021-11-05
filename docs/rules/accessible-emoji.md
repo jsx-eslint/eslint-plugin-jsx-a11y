@@ -23,4 +23,4 @@ This rule takes no arguments.
 - [WCAG 1.1.1](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html)
 
 ### Resources
-- [Léonie Watson, Accessible Emoji](http://tink.uk/accessible-emoji/)
+- [Léonie Watson, Accessible Emoji](https://tink.uk/accessible-emoji/)

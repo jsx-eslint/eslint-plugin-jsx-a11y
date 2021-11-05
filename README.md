@@ -41,7 +41,7 @@ Ryan Florence built out this awesome runtime-analysis tool called [react-a11y](h
 
 **If you are installing this plugin via `eslint-config-airbnb`, please follow [these instructions](https://github.com/airbnb/javascript/tree/HEAD/packages/eslint-config-airbnb#eslint-config-airbnb-1).**
 
-You'll first need to install [ESLint](http://eslint.org):
+You'll first need to install [ESLint](https://eslint.org):
 
 ```sh
 # npm

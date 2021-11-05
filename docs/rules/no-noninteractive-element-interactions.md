@@ -57,7 +57,7 @@ Headers often double as expand/collapse controls for the content they headline. 
 
 ### Case: This element is a table cell
 
-Table cells (and tables in general) are meant to contain data. ARIA provides us with a construct called a [Grid](http://w3c.github.io/aria-practices/#grid) that is essentially a 2 dimensional logical container for content and interactive elements.
+Table cells (and tables in general) are meant to contain data. ARIA provides us with a construct called a [Grid](https://w3c.github.io/aria-practices/#grid) that is essentially a 2 dimensional logical container for content and interactive elements.
 
 You have two options in this case.
 

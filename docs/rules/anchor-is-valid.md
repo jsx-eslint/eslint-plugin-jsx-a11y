@@ -261,6 +261,6 @@ Invalid `href` attribute:
 
 ### Resources
 
-- [WebAIM - Introduction to Links and Hypertext](http://webaim.org/techniques/hypertext/)
+- [WebAIM - Introduction to Links and Hypertext](https://webaim.org/techniques/hypertext/)
 - [Links vs. Buttons in Modern Web Applications](https://marcysutton.com/links-vs-buttons-in-modern-web-applications/)
 - [Using ARIA - Notes on ARIA use in HTML](https://www.w3.org/TR/using-aria/#NOTES)
