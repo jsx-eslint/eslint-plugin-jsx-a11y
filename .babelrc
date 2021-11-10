@@ -9,5 +9,8 @@
       }
     ]
   ],
-  "plugins": ["@babel/plugin-transform-flow-strip-types"]
+  "plugins": [
+    "@babel/plugin-transform-flow-strip-types",
+    "add-module-exports"
+  ]
 }
