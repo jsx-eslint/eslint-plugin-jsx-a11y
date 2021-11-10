@@ -1,3 +1,8 @@
+6.5.1 / 2021-11-10
+==================
+- 8f7d0b0 [Fix] properly build `module.exports` (#824)
+- 2fd2087 [Dev Deps] update `eslint-plugin-import`
+
 6.5.0 / 2021-11-09
 ==================
 - 0f5f582 [New] support ESLint 8.x (#810)
