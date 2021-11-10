@@ -1,3 +1,58 @@
+6.5.0 / 2021-11-09
+==================
+- 0f5f582 [New] support ESLint 8.x (#810)
+- 1dbc416 [Deps] update `@babel/runtime`, `axe-core`
+- 4043d31 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `eslint-config-airbnb-base`
+- d143cba [Docs] HTTP => HTTPS (#823)
+- 309b040 [Docs] `anchor-has-content`: add missing close / for jsx succeed example (#821)
+- ba1e312 [eslint] simplify eslint command
+- 0269025 [meta] change all `master` references in URLs to `HEAD`
+- f1414cf [Dev Deps] add `eslint-plugin-eslint-plugin` (#818)
+- f44fc05 [meta] update URLs
+- df34872 [Refactor] switch to `export default` syntax for exporting rules (#819)
+- ff26b82 [meta] fix prepublish scripts
+- d4a57d8 [Deps] update `@babel/runtime`, `array-includes`, `axe-core`, `jsx-ast-utils`
+- bd1dec6 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `eslint-plugin-import`, `estraverse`, `safe-publish-latest`
+- 434c4cf [Tests] do not test eslint 7 on node 11
+- aed7a20 [Tests] use `@babel/eslint-parser` instead of `babel-eslint` (#811)
+- 0021489 [actions] use codecov action
+- 1251088 [meta] delete FUNDING.yml in favor of `.github` repo
+- ecf7a27 [Docs] `scope`: replace duplicate `scope` word (#799)
+- 952af25 [Fix] `no-access-key`: Fix wording and grammar (#800)
+- 6cf7ac0 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-strip-types`, `aud`, `eslint-plugin-flowtype`, `eslint-plugin-import`
+- 79a35d4 [Deps] update `@babel/runtime`, `axe-core`, `damerau-levenshtein`
+- 2a9ab71 [Tests] delete `src/util/getComputedRole-test.js` test in node 6
+- 0c1c587 [Tests] `autocomplete-valid`: move some failed tests to passing
+- 8830902 [Tests] fix eslint < 7 not understanding `import type`
+- d57887c [Tests] ensure all tests run
+- 55e5c11 Support img role for canvas (#796)
+- 36102cd [meta] use `prepublishOnly` script for npm 7+
+- 2501a7f Remove the link-button focus css from the anchor-is-valid doc (#662)
+- d927625 Update recommended config to allow fieldset to have the radiogroup role (#746)
+- 5aa8db9 [Docs] Clarify the title of the strictness table in the main doc (#786)
+- df3c7ad [Docs] Document the similarity between html-has-lang and lang (#778)
+- 426d4c2 Fix Flow warnings (#785)
+- ecec8e4 Fully deprecate accessible-emoji rule (#782)
+- 8a0e43c [Tests] remove .travis.yml
+- f88bf6b [Dev Deps] update `flow-bin` to support aarch64 (#784)
+- 369f9db [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-strip-types`, `aud`, `eslint-plugin-flowtype`, `jscodeshift`
+- ce0785f [Deps] update `@babel/runtime`, `array-includes`, `axe-core`, `emoji-regex`
+- 2c2a2ad [actions] update to use `node/install` action
+- c275964 [Docs] `anchor-is-valid`: general cleanup (#728)
+- 3df059e [Docs] `no-redundant-roles`: Adds missing closing square bracket (#775)
+- 42ce5b7 [Docs] `anchor-is-valid`: Add Next.js case (#769)
+- 2e5df91 [Tests] fix tests breaking on npm 7
+- 066ccff [Docs] `no-noninteractive-tabindex`: Add example for tabIndex on seemingly non-interactive element (#760)
+- 6b19aa5 [Tests] migrate tests to Github Actions (#764)
+- 7e158e3 [meta] run `aud` in `posttest`
+- 71f390f [Tests] stop using coveralls
+- e54b466 [meta] add Automatic Rebase and Require Allow Edits workflows
+- 7d5511d [New] `label-has-associated-control`: Add glob support (#749)
+- 854da0c Ran npm update; latest packages (#763)
+- 8637aa7 (source/pr/734, fork/pr/26) [patch] `strict` config: Turn off `label-has-for` (#734)
+- d85ce54 [doc] Add link to MDN Aria documentation (#762)
+- 20b48a4 [patch] `no-onchange`: Remove rule from recommended/strict configs, and deprecate (#757)
+
 6.4.1 / 2020-10-26
 ==================
 - f8a4496 Upgrade jsx-ast-utils to v3.1.0
