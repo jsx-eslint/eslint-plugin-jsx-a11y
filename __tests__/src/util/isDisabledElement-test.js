@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import expect from 'expect';
 import isDisabledElement from '../../../src/util/isDisabledElement';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';

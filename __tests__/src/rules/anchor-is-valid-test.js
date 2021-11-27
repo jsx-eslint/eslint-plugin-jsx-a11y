@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Performs validity check on anchor hrefs. Warns when anchors are used as buttons.
  * @author Almero Steyn

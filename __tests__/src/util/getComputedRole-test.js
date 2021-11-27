@@ -1,4 +1,4 @@
-/* eslint-env jest */
+import expect from 'expect';
 import getComputedRole from '../../../src/util/getComputedRole';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
 

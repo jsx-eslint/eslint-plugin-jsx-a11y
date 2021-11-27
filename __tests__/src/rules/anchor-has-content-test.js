@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce anchor elements to contain accessible content.
  * @author Lisa Ring & Niklas Holmberg

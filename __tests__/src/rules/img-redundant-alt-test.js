@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce img alt attribute does not have the word image, picture, or photo.
  * @author Ethan Cohen

@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Control elements must be associated with a text label
  * @author jessebeach

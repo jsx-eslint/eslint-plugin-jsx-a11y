@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import expect from 'expect';
 import attributesComparator from '../../../src/util/attributesComparator';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';

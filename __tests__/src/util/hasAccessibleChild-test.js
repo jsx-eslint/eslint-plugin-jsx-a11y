@@ -1,4 +1,4 @@
-/* eslint-env jest */
+import expect from 'expect';
 import hasAccessibleChild from '../../../src/util/hasAccessibleChild';
 import JSXElementMock from '../../../__mocks__/JSXElementMock';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';

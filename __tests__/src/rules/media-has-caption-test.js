@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview <audio> and <video> elements must have a <track> for captions.
  * @author Ethan Cohen

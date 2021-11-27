@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import expect from 'expect';
 import isNonLiteralProperty from '../../../src/util/isNonLiteralProperty';
 import IdentifierMock from '../../../__mocks__/IdentifierMock';

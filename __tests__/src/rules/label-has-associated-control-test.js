@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce label tags have an associated control.
  * @author Jesse Beach

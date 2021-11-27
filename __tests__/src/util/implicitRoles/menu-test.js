@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import expect from 'expect';
 import JSXAttributeMock from '../../../../__mocks__/JSXAttributeMock';
 import getImplicitRoleForMenu from '../../../../src/util/implicitRoles/menu';

@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce all elements that require alternative text have it.
  * @author Ethan Cohen

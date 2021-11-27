@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce distracting elements are not used.
  * @author Ethan Cohen

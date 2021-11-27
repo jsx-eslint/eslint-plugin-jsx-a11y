@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce autoFocus prop is not used.
  * @author Ethan Cohen <@evcohen>

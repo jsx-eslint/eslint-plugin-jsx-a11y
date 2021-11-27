@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import expect from 'expect';
 import JSXAttributeMock from '../../../../__mocks__/JSXAttributeMock';
 import getImplicitRoleForInput from '../../../../src/util/implicitRoles/input';

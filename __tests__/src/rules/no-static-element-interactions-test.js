@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce static elements have no interactive handlers.
  * @author Ethan Cohen

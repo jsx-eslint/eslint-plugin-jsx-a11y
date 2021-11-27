@@ -1,5 +1,4 @@
-/* eslint-env jest */
-import assert from 'assert';
+import expect from 'expect';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../../../src/util/schemas';
 
 describe('schemas', () => {
@@ -10,12 +9,12 @@ describe('schemas', () => {
     });
     const properties = schema.properties || {};
 
-    assert.deepEqual(properties.foo, 'bar');
-    assert.deepEqual(properties.baz.type, 'array');
+    expect(properties.foo).toEqual(properties.foo, 'bar');
+    expect(properties.baz.type).toEqual('array');
   });
   describe('enumArraySchema', () => {
     it('works with no arguments', () => {
-      assert.deepEqual(enumArraySchema(), {
+      expect(enumArraySchema()).toEqual({
         additionalItems: false,
         items: {
           enum: [],

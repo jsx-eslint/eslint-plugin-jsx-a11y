@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce that elements that do not support ARIA roles,
  *  states and properties do not have those attributes.

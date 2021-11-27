@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce label tags have htmlFor attribute.
  * @author Ethan Cohen

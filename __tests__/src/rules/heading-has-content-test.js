@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce heading (h1, h2, etc) elements contain accessible content.
  * @author Ethan Cohen

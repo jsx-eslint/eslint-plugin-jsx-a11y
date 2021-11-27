@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce no accesskey attribute on element.
  * @author Ethan Cohen

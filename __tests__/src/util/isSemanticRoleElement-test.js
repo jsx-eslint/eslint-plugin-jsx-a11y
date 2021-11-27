@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import expect from 'expect';
 import isSemanticRoleElement from '../../../src/util/isSemanticRoleElement';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';

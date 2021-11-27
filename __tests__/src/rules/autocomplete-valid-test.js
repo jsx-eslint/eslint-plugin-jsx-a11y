@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Ensure autocomplete attribute is correct.
  * @author Wilco Fiers

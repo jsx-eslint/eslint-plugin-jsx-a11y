@@ -1,9 +1,8 @@
-/* eslint-env jest */
 /* eslint global-require: 0 */
 
-import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
+import expect from 'expect';
 import plugin from '../src';
 
 const rules = fs.readdirSync(path.resolve(__dirname, '../src/rules/'))
@@ -12,8 +11,7 @@ const rules = fs.readdirSync(path.resolve(__dirname, '../src/rules/'))
 describe('all rule files should be exported by the plugin', () => {
   rules.forEach((ruleName) => {
     it(`should export ${ruleName}`, () => {
-      assert.equal(
-        plugin.rules[ruleName],
+      expect(plugin.rules[ruleName]).toEqual(
         require(path.join('../src/rules', ruleName)) // eslint-disable-line
       );
     });
@@ -22,7 +20,7 @@ describe('all rule files should be exported by the plugin', () => {
 
 describe('configurations', () => {
   it('should export a \'recommended\' configuration', () => {
-    assert(plugin.configs.recommended);
+    expect(plugin.configs.recommended).toBeDefined();
   });
 });
 
@@ -33,7 +31,7 @@ describe('schemas', () => {
       const schema = rule.meta && rule.meta.schema && rule.meta.schema[0];
       const { type } = schema;
 
-      assert.deepEqual(type, 'object');
+      expect(type).toEqual('object');
     });
   });
 });

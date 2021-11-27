@@ -1,4 +1,4 @@
-/* eslint-env jest */
+import expect from 'expect';
 import getImplicitRole from '../../../src/util/getImplicitRole';
 
 describe('getImplicitRole', () => {

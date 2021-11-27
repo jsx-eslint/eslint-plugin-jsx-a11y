@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce onmouseover/onmouseout are accompanied
  *  by onfocus/onblur.

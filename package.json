@@ -35,6 +35,7 @@
     "@babel/core": "^7.16.12",
     "@babel/eslint-parser": "^7.16.5",
     "@babel/plugin-transform-flow-strip-types": "^7.16.7",
+    "ast-types-flow": "^0.0.7",
     "aud": "^2.0.0",
     "babel-jest": "^24.9.0",
     "babel-plugin-add-module-exports": "^1.0.4",

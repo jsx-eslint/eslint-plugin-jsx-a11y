@@ -1,4 +1,4 @@
-/* eslint-env jest */
+import expect from 'expect';
 import mayHaveAccessibleLabel from '../../../src/util/mayHaveAccessibleLabel';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
 import JSXElementMock from '../../../__mocks__/JSXElementMock';

@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce lang attribute has a valid value.
  * @author Ethan Cohen

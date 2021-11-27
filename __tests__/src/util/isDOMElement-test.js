@@ -1,6 +1,5 @@
-/* eslint-env mocha */
-import { dom } from 'aria-query';
 import expect from 'expect';
+import { dom } from 'aria-query';
 import { elementType } from 'jsx-ast-utils';
 import isDOMElement from '../../../src/util/isDOMElement';
 import JSXElementMock from '../../../__mocks__/JSXElementMock';

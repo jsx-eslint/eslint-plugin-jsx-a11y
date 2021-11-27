@@ -1,4 +1,4 @@
-/* eslint-env jest */
+import expect from 'expect';
 import getTabIndex from '../../../src/util/getTabIndex';
 import IdentifierMock from '../../../__mocks__/IdentifierMock';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';

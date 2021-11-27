@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce explicit role property is not the
  * same as implicit default role property on element.

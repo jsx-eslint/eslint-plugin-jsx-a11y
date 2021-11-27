@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce ARIA state and property values are valid.
  * @author Ethan Cohen
@@ -10,6 +9,7 @@
 
 import { aria } from 'aria-query';
 import { RuleTester } from 'eslint';
+import expect from 'expect';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/aria-proptypes';
 

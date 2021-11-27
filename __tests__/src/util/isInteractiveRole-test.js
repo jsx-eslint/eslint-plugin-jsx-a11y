@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import expect from 'expect';
 import { elementType } from 'jsx-ast-utils';
 import isInteractiveRole from '../../../src/util/isInteractiveRole';

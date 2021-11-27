@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce iframe elements have a title attribute.
  * @author Ethan Cohen

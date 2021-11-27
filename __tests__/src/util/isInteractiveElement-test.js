@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import expect from 'expect';
 import { elementType } from 'jsx-ast-utils';
 import isInteractiveElement from '../../../src/util/isInteractiveElement';

@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Disallow inherently interactive elements to be assigned
  * non-interactive roles.

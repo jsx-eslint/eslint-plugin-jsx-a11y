@@ -1,5 +1,4 @@
-/* eslint-env jest */
-import assert from 'assert';
+import expect from 'expect';
 import getSuggestion from '../../../src/util/getSuggestion';
 
 describe('spell check suggestion API', () => {
@@ -8,7 +7,7 @@ describe('spell check suggestion API', () => {
     const expected = [];
     const actual = getSuggestion(word);
 
-    assert.deepEqual(expected, actual);
+    expect(expected).toEqual(actual);
   });
 
   it('should return no suggestions given real word and no dictionary', () => {
@@ -16,7 +15,7 @@ describe('spell check suggestion API', () => {
     const expected = [];
     const actual = getSuggestion(word);
 
-    assert.deepEqual(expected, actual);
+    expect(expected).toEqual(actual);
   });
 
   it('should return correct suggestion given real word and a dictionary', () => {
@@ -25,7 +24,7 @@ describe('spell check suggestion API', () => {
     const expected = ['foo'];
     const actual = getSuggestion(word, dictionary);
 
-    assert.deepEqual(expected, actual);
+    expect(expected).toEqual(actual);
   });
 
   it('should return multiple correct suggestions given real word and a dictionary', () => {
@@ -34,7 +33,7 @@ describe('spell check suggestion API', () => {
     const expected = ['there', 'their'];
     const actual = getSuggestion(word, dictionary);
 
-    assert.deepEqual(expected, actual);
+    expect(expected).toEqual(actual);
   });
 
   it('should return correct # of suggestions given the limit argument', () => {
@@ -44,6 +43,6 @@ describe('spell check suggestion API', () => {
     const expected = 1;
     const actual = getSuggestion(word, dictionary, limit).length;
 
-    assert.deepEqual(expected, actual);
+    expect(expected).toEqual(actual);
   });
 });

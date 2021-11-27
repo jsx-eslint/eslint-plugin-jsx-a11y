@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Disallow tabindex on static and noninteractive elements
  * @author jessebeach
