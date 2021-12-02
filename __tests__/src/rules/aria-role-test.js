@@ -40,6 +40,10 @@ const invalidTests = createTests(invalidRoles).map((test) => {
   return invalidTest;
 });
 
+const allowedInvalidRoles = [{
+  allowedInvalidRoles: ['invalid-role', 'other-invalid-role'],
+}];
+
 const ignoreNonDOMSchema = [{
   ignoreNonDOM: true,
 }];
@@ -57,6 +61,9 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role="doc-abstract" />' },
     { code: '<div role="doc-appendix doc-bibliography" />' },
     { code: '<Bar baz />' },
+    { code: '<img role="invalid-role" />', options: allowedInvalidRoles },
+    { code: '<img role="invalid-role tabpanel" />', options: allowedInvalidRoles },
+    { code: '<img role="invalid-role other-invalid-role" />', options: allowedInvalidRoles },
     { code: '<Foo role="bar" />', options: ignoreNonDOMSchema },
     { code: '<fakeDOM role="bar" />', options: ignoreNonDOMSchema },
     { code: '<img role="presentation" />', options: ignoreNonDOMSchema },
@@ -72,6 +79,7 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role="tabpanel row range"></div>', errors: [errorMessage] },
     { code: '<div role="doc-endnotes range"></div>', errors: [errorMessage] },
     { code: '<div role />', errors: [errorMessage] },
+    { code: '<div role="unknown-invalid-role" />', errors: [errorMessage], options: allowedInvalidRoles },
     { code: '<div role={null}></div>', errors: [errorMessage] },
     { code: '<Foo role="datepicker" />', errors: [errorMessage] },
     { code: '<Foo role="Button" />', errors: [errorMessage] },

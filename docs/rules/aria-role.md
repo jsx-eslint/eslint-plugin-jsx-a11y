@@ -10,11 +10,14 @@ This rule takes one optional object argument of type object:
 {
     "rules": {
         "jsx-a11y/aria-role": [ 2, {
+            "allowedInvalidRoles": ["text"],
             "ignoreNonDOM": true
         }],
     }
 }
 ```
+
+`allowedInvalidRules` is an optional string array of custom roles that should be allowed in addition to the ARIA spec, such as for cases when you [need to use a non-standard role](https://axesslab.com/text-splitting).
 
 For the `ignoreNonDOM` option, this determines if developer created components are checked.
 
