@@ -1,6 +1,6 @@
 # no-disabled
 
-Enforce that disabled prop is not used on elements. Disabling inputs remove the input from the accessibility tree and loses context. Use `aria-disabled` instead.
+Enforce that `disabled` prop is not used on elements. Disabling interactive elements removes the element from the accessibility tree. Use `aria-disabled` instead.
 
 ## Rule details
 
@@ -20,15 +20,15 @@ For the `ignoreNonDOM` option, this determines if developer created components a
 
 ### Succeed
 ```jsx
-<div />
+<input />
 ```
 
 ### Fail
 ```jsx
-<div disabled />
-<div disabled="true" />
-<div disabled="false" />
-<div disabled={undefined} />
+<input disabled />
+<input disabled="true" />
+<input disabled="false" />
+<input disabled={undefined} />
 ```
 
 ## Accessibility guidelines
