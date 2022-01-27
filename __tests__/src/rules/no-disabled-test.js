@@ -1,6 +1,6 @@
 /* eslint-env jest */
 /**
- * @fileoverview Enforce autoFocus prop is not used.
+ * @fileoverview Enforce disabled prop is not used.
  * @author Courtney Nguyen <@courtyenn>
  */
 
