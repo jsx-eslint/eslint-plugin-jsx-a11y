@@ -39,6 +39,8 @@ ruleTester.run('no-disabled', rule, {
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<input disabled />', errors: [expectedWarning] },
+    { code: '<input disabled="true" />', errors: [expectedWarning] },
+    { code: '<input disabled="false" />', errors: [expectedWarning] },
     { code: '<button disabled />', errors: [expectedWarning] },
     { code: '<select disabled />', errors: [expectedWarning] },
     { code: '<textarea disabled />', errors: [expectedWarning] },

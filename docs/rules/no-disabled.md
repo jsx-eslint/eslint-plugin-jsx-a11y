@@ -1,26 +1,19 @@
 # no-disabled
 
-Enforce that `disabled` prop is not used on elements. Disabling interactive elements removes the element from the accessibility tree. Use `aria-disabled` instead.
+Rule that `disabled` prop should be cautioned on elements. Disabling interactive elements removes the element from the accessibility tree. Consider using `aria-disabled`.
 
 ## Rule details
 
-This rule takes one optional object argument of type object:
-
-```json
-{
-    "rules": {
-        "jsx-a11y/no-disabled": [ 2, {
-            "ignoreNonDOM": true
-        }],
-    }
-}
-```
-
-For the `ignoreNonDOM` option, this determines if developer created components are checked.
+Warns usage of `disabled` property.
 
 ### Succeed
 ```jsx
+<div />
+<div disabled />
 <input />
+<select />
+<textarea />
+<button />
 ```
 
 ### Fail
@@ -36,3 +29,4 @@ General best practice (reference resources)
 
 ### Resources
 - [MDN aria-disabled](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-disabled)
+- [W3 KBD Disabled Controls](https://www.w3.org/TR/wai-aria-practices/#kbd_disabled_controls)
