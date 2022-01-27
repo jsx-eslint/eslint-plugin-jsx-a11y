@@ -26,6 +26,7 @@ module.exports = {
     'mouse-events-have-key-events': require('./rules/mouse-events-have-key-events'),
     'no-access-key': require('./rules/no-access-key'),
     'no-autofocus': require('./rules/no-autofocus'),
+    'no-disabled': require('./rules/no-disabled'),
     'no-distracting-elements': require('./rules/no-distracting-elements'),
     'no-interactive-element-to-noninteractive-role': require('./rules/no-interactive-element-to-noninteractive-role'),
     'no-noninteractive-element-interactions': require('./rules/no-noninteractive-element-interactions'),
@@ -113,6 +114,7 @@ module.exports = {
         'jsx-a11y/mouse-events-have-key-events': 'error',
         'jsx-a11y/no-access-key': 'error',
         'jsx-a11y/no-autofocus': 'error',
+        'jsx-a11y/no-disabled': 'warn',
         'jsx-a11y/no-distracting-elements': 'error',
         'jsx-a11y/no-interactive-element-to-noninteractive-role': [
           'error',
@@ -270,6 +272,7 @@ module.exports = {
         'jsx-a11y/mouse-events-have-key-events': 'error',
         'jsx-a11y/no-access-key': 'error',
         'jsx-a11y/no-autofocus': 'error',
+        'jsx-a11y/no-disabled': 'warn',
         'jsx-a11y/no-distracting-elements': 'error',
         'jsx-a11y/no-interactive-element-to-noninteractive-role': 'error',
         'jsx-a11y/no-noninteractive-element-interactions': [
