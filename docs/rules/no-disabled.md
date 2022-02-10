@@ -24,9 +24,6 @@ Warns usage of `disabled` property.
 <input disabled={undefined} />
 ```
 
-## Accessibility guidelines
-General best practice (reference resources)
-
 ### Resources
 - [MDN aria-disabled](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-disabled)
 - [W3 KBD Disabled Controls](https://www.w3.org/TR/wai-aria-practices/#kbd_disabled_controls)

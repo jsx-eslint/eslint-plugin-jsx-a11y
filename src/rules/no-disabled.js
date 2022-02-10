@@ -8,6 +8,10 @@
 // ----------------------------------------------------------------------------
 
 import { propName, elementType } from 'jsx-ast-utils';
+import {
+  enumArraySchema,
+  generateObjSchema,
+} from '../util/schemas';
 
 const warningMessage = 'The disabled prop removes the element from being detected by screen readers.';
 
@@ -23,6 +27,11 @@ const DEFAULT_ELEMENTS = [
   'input',
 ];
 
+const schema = generateObjSchema({
+  disabable: enumArraySchema(DEFAULT_ELEMENTS)
+    .filter((name) => DEFAULT_ELEMENTS.includes(name)),
+});
+
 export default {
   meta: {
     type: 'suggestion',
@@ -30,14 +39,17 @@ export default {
       recommended: false,
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-disabled.md',
     },
-    schema: [],
+    schema: [schema],
   },
 
   create: (context) => ({
     JSXAttribute: (attribute) => {
+      const disabable = (
+        context.options && context.options[0] && context.options[0].disabable
+      ) || DEFAULT_ELEMENTS;
       // Only monitor eligible elements for "disabled".
       const type = elementType(attribute.parent);
-      if (!DEFAULT_ELEMENTS.includes(type)) {
+      if (!disabable.includes(type)) {
         return;
       }
 
