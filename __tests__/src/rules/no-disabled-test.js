@@ -1,6 +1,6 @@
 /* eslint-env jest */
 /**
- * @fileoverview Enforce disabled prop is not used.
+ * @fileoverview Enforce disabled prop is not used unless specifically intended.
  * @author Courtney Nguyen <@courtyenn>
  */
 
