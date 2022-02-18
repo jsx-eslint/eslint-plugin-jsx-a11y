@@ -8,6 +8,8 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
+import semver from 'semver';
+import { version as eslintVersion } from 'eslint/package.json';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/img-redundant-alt';
 
@@ -28,7 +30,7 @@ const expectedError = {
 };
 
 ruleTester.run('img-redundant-alt', rule, {
-  valid: [
+  valid: [].concat(
     { code: '<img alt="foo" />;' },
     { code: '<img alt="picture of me taking a photo of an image" aria-hidden />' },
     { code: '<img aria-hidden alt="photo of image" />' },
@@ -52,11 +54,16 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img alt={function(e){}} />' },
     { code: '<img aria-hidden={false} alt="Doing cool things." />' },
     { code: '<UX.Layout>test</UX.Layout>' },
-    { code: '<img alt={imageAlt} />' },
     { code: '<img alt />' },
+    { code: '<img alt={imageAlt} />' },
+    { code: '<img alt={imageAlt.name} />' },
+    semver.satisfies(eslintVersion, '>= 6') ? [
+      { code: '<img alt={imageAlt?.name} />', parserOptions: { ecmaVersion: 2020 } },
+      { code: '<img alt="Doing cool things" aria-hidden={foo?.bar}/>', parserOptions: { ecmaVersion: 2020 } },
+    ] : [],
     { code: '<img alt="Photography" />;' },
     { code: '<img alt="ImageMagick" />;' },
-  ].map(parserOptionsMapper),
+  ).map(parserOptionsMapper),
   invalid: [
     { code: '<img alt="Photo of friend." />;', errors: [expectedError] },
     { code: '<img alt="Picture of friend." />;', errors: [expectedError] },
