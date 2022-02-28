@@ -19,6 +19,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-has-content.md',
+      description: 'Enforce all anchors to contain accessible content.',
     },
     schema: [schema],
   },

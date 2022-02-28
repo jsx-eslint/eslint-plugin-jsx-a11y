@@ -18,6 +18,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-access-key.md',
+      description: 'Enforce that the `accessKey` prop is not used on any element to avoid complications with keyboard commands used by a screenreader.',
     },
     schema: [schema],
   },

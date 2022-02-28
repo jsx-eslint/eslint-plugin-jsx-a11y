@@ -24,6 +24,20 @@
       },
     },
     {
+      "files": ["markdown.config.js"],
+      "parserOptions": {
+        "sourceType": "script",
+      },
+      "rules": {
+        "no-console": 0,
+        "import/no-extraneous-dependencies":  [
+           "error",
+           { "devDependencies": true },
+        ],
+        "strict": ["error", "global"],
+      },
+    },
+    {
       "files": ["__tests__/src/rules/*.js"],
       "extends": ["plugin:eslint-plugin/tests-recommended"],
     },

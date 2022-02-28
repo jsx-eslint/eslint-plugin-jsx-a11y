@@ -51,6 +51,7 @@ export default ({
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/interactive-supports-focus.md',
+      description: 'Enforce that elements with interactive handlers like `onClick` must be focusable.',
     },
     schema: [schema],
   },

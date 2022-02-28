@@ -18,6 +18,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/tabindex-no-positive.md',
+      description: 'Enforce `tabIndex` value is not greater than zero.',
     },
     schema: [schema],
   },

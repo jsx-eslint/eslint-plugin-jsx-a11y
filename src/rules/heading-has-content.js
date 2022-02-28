@@ -29,6 +29,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/heading-has-content.md',
+      description: 'Enforce heading (`h1`, `h2`, etc) elements contain accessible content.',
     },
     schema: [schema],
   },

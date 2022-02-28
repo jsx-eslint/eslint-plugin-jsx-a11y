@@ -23,6 +23,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-onchange.md',
+      description: 'Enforce usage of `onBlur` over `onChange` on select menus for accessibility.',
     },
     deprecated: true,
     schema: [schema],

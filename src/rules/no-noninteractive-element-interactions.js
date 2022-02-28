@@ -46,6 +46,8 @@ export default ({
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-noninteractive-element-interactions.md',
+      description: 'Non-interactive elements should not be assigned mouse or keyboard event listeners.',
+      errorOptions: true,
     },
     schema: [schema],
   },

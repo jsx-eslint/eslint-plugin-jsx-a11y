@@ -24,6 +24,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-autofocus.md',
+      description: 'Enforce autoFocus prop is not used.',
     },
     schema: [schema],
   },

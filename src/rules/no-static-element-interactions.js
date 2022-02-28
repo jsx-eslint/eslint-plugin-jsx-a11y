@@ -45,6 +45,8 @@ export default ({
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-static-element-interactions.md',
+      description: 'Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.',
+      errorOptions: true,
     },
     schema: [schema],
   },

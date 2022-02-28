@@ -27,6 +27,7 @@ export default ({
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-redundant-roles.md',
+      description: 'Enforce explicit role property is not the same as implicit/default role property on element.',
     },
     schema: [{
       type: 'object',

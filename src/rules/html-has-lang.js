@@ -18,6 +18,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/html-has-lang.md',
+      description: 'Enforce `<html>` element has `lang` prop.',
     },
     schema: [schema],
   },

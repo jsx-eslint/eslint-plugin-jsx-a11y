@@ -196,6 +196,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/alt-text.md',
+      description: 'Enforce all elements that require alternative text have meaningful information to relay back to end user.',
     },
     schema: [schema],
   },
