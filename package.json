@@ -66,7 +66,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.17.0",
+    "@babel/runtime": "^7.17.2",
     "aria-query": "^4.2.2",
     "array-includes": "^3.1.4",
     "ast-types-flow": "^0.0.7",
@@ -77,8 +77,8 @@
     "has": "^1.0.3",
     "jsx-ast-utils": "^3.2.1",
     "language-tags": "^1.0.5",
-    "minimatch": "^3.0.5",
-    "semver": "^6.0.0"
+    "minimatch": "^3.1.2",
+    "semver": "^6.3.0"
   },
   "peerDependencies": {
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8"
