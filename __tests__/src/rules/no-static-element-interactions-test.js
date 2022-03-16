@@ -348,8 +348,8 @@ const neverValid = [
 
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [
-    ...alwaysValid,
+  valid: [].concat(
+    alwaysValid,
     // All the possible handlers
     { code: '<div onCopy={() => {}} />;' },
     { code: '<div onCut={() => {}} />;' },
@@ -417,22 +417,22 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     // Expressions should pass in recommended mode
     { code: '<div role={ROLE_BUTTON} onClick={() => {}} />;' },
     { code: '<div  {...this.props} role={this.props.role} onKeyPress={e => this.handleKeyPress(e)}>{this.props.children}</div>' },
-  ]
+  )
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [
-    ...neverValid,
-  ]
+  invalid: [].concat(
+    neverValid,
+  )
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [
-    ...alwaysValid,
-  ].map(parserOptionsMapper),
-  invalid: [
-    ...neverValid,
+  valid: [].concat(
+    alwaysValid,
+  ).map(parserOptionsMapper),
+  invalid: [].concat(
+    neverValid,
     // All the possible handlers
     { code: '<div onContextMenu={() => {}} />;', errors: [expectedError] },
     { code: '<div onDblClick={() => {}} />;', errors: [expectedError] },
@@ -453,5 +453,5 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     // Expressions should fail in strict mode
     { code: '<div role={ROLE_BUTTON} onClick={() => {}} />;', errors: [expectedError] },
     { code: '<div  {...this.props} role={this.props.role} onKeyPress={e => this.handleKeyPress(e)}>{this.props.children}</div>', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  ).map(parserOptionsMapper),
 });

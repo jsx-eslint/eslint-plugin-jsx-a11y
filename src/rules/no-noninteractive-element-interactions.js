@@ -32,12 +32,12 @@ import isPresentationRole from '../util/isPresentationRole';
 const errorMessage = 'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
 const domElements = [...dom.keys()];
-const defaultInteractiveProps = [
-  ...eventHandlersByType.focus,
-  ...eventHandlersByType.image,
-  ...eventHandlersByType.keyboard,
-  ...eventHandlersByType.mouse,
-];
+const defaultInteractiveProps = [].concat(
+  eventHandlersByType.focus,
+  eventHandlersByType.image,
+  eventHandlersByType.keyboard,
+  eventHandlersByType.mouse,
+);
 const schema = generateObjSchema({
   handlers: arraySchema,
 });

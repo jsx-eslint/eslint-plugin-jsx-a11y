@@ -28,7 +28,7 @@ const schema = {
 };
 // Breadth-first search, assuming that HTML for forms is shallow.
 function validateNesting(node) {
-  let queue = [...node.parent.children];
+  let queue = node.parent.children.slice();
   let child;
   let opener;
   while (queue.length) {

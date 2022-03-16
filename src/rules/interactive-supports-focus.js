@@ -42,10 +42,10 @@ const schema = generateObjSchema({
 });
 const domElements = [...dom.keys()];
 
-const interactiveProps = [
-  ...eventHandlersByType.mouse,
-  ...eventHandlersByType.keyboard,
-];
+const interactiveProps = [].concat(
+  eventHandlersByType.mouse,
+  eventHandlersByType.keyboard,
+);
 
 export default ({
   meta: {

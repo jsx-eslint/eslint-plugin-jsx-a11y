@@ -16,12 +16,12 @@ function hasLabellingProp(
   openingElement: JSXOpeningElement,
   additionalLabellingProps?: Array<string> = [],
 ) {
-  const labellingProps = [
+  const labellingProps = [].concat(
     'alt', // Assume alt is used correctly on an image
     'aria-label',
     'aria-labelledby',
-    ...additionalLabellingProps,
-  ];
+    additionalLabellingProps,
+  );
   return openingElement.attributes.some((attribute): boolean => {
     // We must assume that a spread value contains a labelling prop.
     if (attribute.type !== 'JSXAttribute') {

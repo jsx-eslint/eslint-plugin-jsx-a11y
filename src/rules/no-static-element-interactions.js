@@ -32,11 +32,11 @@ import isPresentationRole from '../util/isPresentationRole';
 const errorMessage = 'Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.';
 
 const domElements = [...dom.keys()];
-const defaultInteractiveProps = [
-  ...eventHandlersByType.focus,
-  ...eventHandlersByType.keyboard,
-  ...eventHandlersByType.mouse,
-];
+const defaultInteractiveProps = [].concat(
+  eventHandlersByType.focus,
+  eventHandlersByType.keyboard,
+  eventHandlersByType.mouse,
+);
 const schema = generateObjSchema({
   handlers: arraySchema,
 });

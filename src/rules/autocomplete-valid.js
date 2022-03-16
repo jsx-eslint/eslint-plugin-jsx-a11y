@@ -27,7 +27,7 @@ export default {
     JSXOpeningElement: (node) => {
       const options = context.options[0] || {};
       const { inputComponents = [] } = options;
-      const inputTypes = ['input', ...inputComponents];
+      const inputTypes = ['input'].concat(inputComponents);
 
       const elType = elementType(node);
       const autocomplete = getLiteralPropValue(getProp(node.attributes, 'autocomplete'));

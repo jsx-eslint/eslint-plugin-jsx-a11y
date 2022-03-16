@@ -212,15 +212,15 @@ export default {
         (components, customComponentsForElement) => components.concat(customComponentsForElement || []),
         [],
       );
-    const typesToValidate = new Set([]
-      .concat(customComponents, ...elementOptions)
-      .map((type) => {
-        if (type === 'input[type="image"]') { return 'input'; }
-        return type;
-      }));
+    const typesToValidate = new Set(
+      [].concat(
+        customComponents,
+        elementOptions,
+      ).map((type) => (type === 'input[type="image"]' ? 'input' : type)),
+    );
 
     return {
-      JSXOpeningElement: (node) => {
+      JSXOpeningElement(node) {
         const nodeType = elementType(node);
         if (!typesToValidate.has(nodeType)) { return; }
 
