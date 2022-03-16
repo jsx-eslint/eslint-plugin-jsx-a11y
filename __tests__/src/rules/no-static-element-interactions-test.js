@@ -19,7 +19,7 @@ import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
 const ruleTester = new RuleTester();
 
-const errorMessage = 'Static HTML elements with event handlers require a role.';
+const errorMessage = 'Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.';
 
 const expectedError = {
   message: errorMessage,

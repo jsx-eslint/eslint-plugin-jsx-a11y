@@ -29,7 +29,7 @@ import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isNonLiteralProperty from '../util/isNonLiteralProperty';
 import isPresentationRole from '../util/isPresentationRole';
 
-const errorMessage = 'Static HTML elements with event handlers require a role.';
+const errorMessage = 'Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.';
 
 const domElements = [...dom.keys()];
 const defaultInteractiveProps = [
