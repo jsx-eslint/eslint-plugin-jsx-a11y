@@ -9,10 +9,11 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
+import { getProp, getPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
+import getElementType from '../util/getElementType';
 import mayContainChildComponent from '../util/mayContainChildComponent';
 import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 
@@ -55,6 +56,7 @@ export default ({
     const labelComponents = options.labelComponents || [];
     const assertType = options.assert || 'either';
     const componentNames = ['label'].concat(labelComponents);
+    const elementType = getElementType(context);
 
     const rule = (node: JSXElement) => {
       if (componentNames.indexOf(elementType(node.openingElement)) === -1) {
@@ -79,6 +81,7 @@ export default ({
         node,
         name,
         recursionDepth,
+        elementType,
       ));
       const hasAccessibleLabel = mayHaveAccessibleLabel(
         node,

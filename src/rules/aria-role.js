@@ -8,7 +8,8 @@
 // ----------------------------------------------------------------------------
 
 import { dom, roles } from 'aria-query';
-import { getLiteralPropValue, propName, elementType } from 'jsx-ast-utils';
+import { getLiteralPropValue, propName } from 'jsx-ast-utils';
+import getElementType from '../util/getElementType';
 import { generateObjSchema } from '../util/schemas';
 
 const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
@@ -41,6 +42,7 @@ export default {
     const ignoreNonDOM = !!options.ignoreNonDOM;
     const allowedInvalidRoles = new Set(options.allowedInvalidRoles || []);
     const validRoles = new Set([...roles.keys()].filter((role) => roles.get(role).abstract === false));
+    const elementType = getElementType(context);
 
     return ({
       JSXAttribute: (attribute) => {

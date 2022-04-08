@@ -22,12 +22,21 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      FooComponent: 'iframe',
+    },
+  },
+};
+
 ruleTester.run('html-has-lang', rule, {
   valid: [
     { code: '<div />;' },
     { code: '<iframe title="Unique title" />' },
     { code: '<iframe title={foo} />' },
     { code: '<FooComponent />' },
+    { code: '<FooComponent title="Unique title" />', settings: componentsSettings },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<iframe />', errors: [expectedError] },
@@ -40,5 +49,6 @@ ruleTester.run('html-has-lang', rule, {
     { code: '<iframe title={``} />', errors: [expectedError] },
     { code: '<iframe title={""} />', errors: [expectedError] },
     { code: '<iframe title={42} />', errors: [expectedError] },
+    { code: '<FooComponent />', errors: [expectedError], settings: componentsSettings },
   ].map(parserOptionsMapper),
 });

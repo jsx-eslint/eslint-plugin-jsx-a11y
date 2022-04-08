@@ -28,6 +28,14 @@ const inappropriateAutocomplete = [{
   type: 'JSXOpeningElement',
 }];
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Input: 'input',
+    },
+  },
+};
+
 ruleTester.run('autocomplete-valid', rule, {
   valid: [
     // INAPPLICABLE
@@ -46,6 +54,8 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: '<input type="text" autocomplete={autocompl || "foo"} />;' },
     { code: '<Foo autocomplete="bar"></Foo>;' },
     { code: '<input type={isEmail ? "email" : "text"} autocomplete="none" />;' },
+    { code: '<Input type="text" autocomplete="name" />', settings: componentsSettings },
+    { code: '<Input type="text" autocomplete="baz" />' },
 
     // PASSED "autocomplete-appropriate"
     // see also: https://github.com/dequelabs/axe-core/issues/2912
@@ -61,5 +71,6 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: '<input type="text" autocomplete="invalid name" />;', errors: invalidAutocomplete },
     { code: '<input type="text" autocomplete="home url" />;', errors: invalidAutocomplete },
     { code: '<Bar autocomplete="baz"></Bar>;', errors: invalidAutocomplete, options: [{ inputComponents: ['Bar'] }] },
+    { code: '<Input type="text" autocomplete="baz" />', errors: invalidAutocomplete, settings: componentsSettings },
   ].map(parserOptionsMapper),
 });

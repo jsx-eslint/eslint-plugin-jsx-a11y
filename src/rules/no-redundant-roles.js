@@ -9,11 +9,11 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType } from 'jsx-ast-utils';
 import includes from 'array-includes';
 import has from 'has';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
+import getElementType from '../util/getElementType';
 import getExplicitRole from '../util/getExplicitRole';
 import getImplicitRole from '../util/getImplicitRole';
 
@@ -43,6 +43,7 @@ export default ({
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const { options } = context;
+    const elementType = getElementType(context);
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
         const type = elementType(node);

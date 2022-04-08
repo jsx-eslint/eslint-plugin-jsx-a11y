@@ -7,8 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getPropValue, elementType } from 'jsx-ast-utils';
+import { getProp, getPropValue } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 
 const enumValues = ['nesting', 'id'];
@@ -51,9 +52,9 @@ const validateId = (node) => {
   return htmlForAttr !== false && !!htmlForValue;
 };
 
-const validate = (node, required, allowChildren) => {
+const validate = (node, required, allowChildren, elementType) => {
   if (allowChildren === true) {
-    return hasAccessibleChild(node.parent);
+    return hasAccessibleChild(node.parent, elementType);
   }
   if (required === 'nesting') {
     return validateNesting(node);
@@ -61,23 +62,23 @@ const validate = (node, required, allowChildren) => {
   return validateId(node);
 };
 
-const getValidityStatus = (node, required, allowChildren) => {
+const getValidityStatus = (node, required, allowChildren, elementType) => {
   if (Array.isArray(required.some)) {
-    const isValid = required.some.some((rule) => validate(node, rule, allowChildren));
+    const isValid = required.some.some((rule) => validate(node, rule, allowChildren, elementType));
     const message = !isValid
       ? `Form label must have ANY of the following types of associated control: ${required.some.join(', ')}`
       : null;
     return { isValid, message };
   }
   if (Array.isArray(required.every)) {
-    const isValid = required.every.every((rule) => validate(node, rule, allowChildren));
+    const isValid = required.every.every((rule) => validate(node, rule, allowChildren, elementType));
     const message = !isValid
       ? `Form label must have ALL of the following types of associated control: ${required.every.join(', ')}`
       : null;
     return { isValid, message };
   }
 
-  const isValid = validate(node, required, allowChildren);
+  const isValid = validate(node, required, allowChildren, elementType);
   const message = !isValid
     ? `Form label must have the following type of associated control: ${required}`
     : null;
@@ -93,28 +94,31 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const options = context.options[0] || {};
-      const componentOptions = options.components || [];
-      const typesToValidate = ['label'].concat(componentOptions);
-      const nodeType = elementType(node);
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const options = context.options[0] || {};
+        const componentOptions = options.components || [];
+        const typesToValidate = ['label'].concat(componentOptions);
+        const nodeType = elementType(node);
 
-      // Only check 'label' elements and custom types.
-      if (typesToValidate.indexOf(nodeType) === -1) {
-        return;
-      }
+        // Only check 'label' elements and custom types.
+        if (typesToValidate.indexOf(nodeType) === -1) {
+          return;
+        }
 
-      const required = options.required || { every: ['nesting', 'id'] };
-      const allowChildren = options.allowChildren || false;
+        const required = options.required || { every: ['nesting', 'id'] };
+        const allowChildren = options.allowChildren || false;
 
-      const { isValid, message } = getValidityStatus(node, required, allowChildren);
-      if (!isValid) {
-        context.report({
-          node,
-          message,
-        });
-      }
-    },
-  }),
+        const { isValid, message } = getValidityStatus(node, required, allowChildren, elementType);
+        if (!isValid) {
+          context.report({
+            node,
+            message,
+          });
+        }
+      },
+    };
+  },
 };

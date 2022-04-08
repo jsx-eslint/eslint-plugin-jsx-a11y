@@ -22,6 +22,15 @@ const expectedError = {
   type: 'JSXAttribute',
 };
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Foo: 'div',
+      TableHeader: 'th',
+    },
+  },
+};
+
 ruleTester.run('scope', rule, {
   valid: [
     { code: '<div />;' },
@@ -31,8 +40,10 @@ ruleTester.run('scope', rule, {
     { code: '<th scope={foo} />' },
     { code: '<th scope={"col"} {...props} />' },
     { code: '<Foo scope="bar" {...props} />' },
+    { code: '<TableHeader scope="row" />', settings: componentsSettings },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div scope />', errors: [expectedError] },
+    { code: '<Foo scope="bar" />', settings: componentsSettings, errors: [expectedError] },
   ].map(parserOptionsMapper),
 });

@@ -31,6 +31,11 @@ const ruleName = 'no-noninteractive-element-interactions';
 const alwaysValid = [
   { code: '<TestComponent onClick={doFoo} />' },
   { code: '<Button onClick={doFoo} />' },
+  { code: '<Image onClick={() => void 0} />;' },
+  {
+    code: '<Button onClick={() => void 0} />;',
+    settings: { 'jsx-a11y': { components: { Button: 'button' } } },
+  },
   /* All flavors of input */
   { code: '<input onClick={() => void 0} />' },
   { code: '<input type="button" onClick={() => void 0} />' },
@@ -355,6 +360,12 @@ const neverValid = [
   { code: '<div role="article" onError={() => {}} />;', errors: [expectedError] },
   { code: '<div role="article" onMouseDown={() => {}} />;', errors: [expectedError] },
   { code: '<div role="article" onMouseUp={() => {}} />;', errors: [expectedError] },
+  // Custom component
+  {
+    code: '<Image onClick={() => void 0} />;',
+    errors: [expectedError],
+    settings: { 'jsx-a11y': { components: { Image: 'img' } } },
+  },
 ];
 
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};

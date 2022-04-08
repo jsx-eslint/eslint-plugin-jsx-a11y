@@ -28,6 +28,14 @@ const ignoreNonDOMSchema = [
   },
 ];
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Button: 'button',
+    },
+  },
+};
+
 ruleTester.run('no-autofocus', rule, {
   valid: [
     { code: '<div />;' },
@@ -36,6 +44,8 @@ ruleTester.run('no-autofocus', rule, {
     { code: '<Foo bar />' },
     { code: '<Foo autoFocus />', options: ignoreNonDOMSchema },
     { code: '<div><div autofocus /></div>', options: ignoreNonDOMSchema },
+    { code: '<Button />', settings: componentsSettings },
+    { code: '<Button />', options: ignoreNonDOMSchema, settings: componentsSettings },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div autoFocus />', errors: [expectedError] },
@@ -46,5 +56,12 @@ ruleTester.run('no-autofocus', rule, {
     { code: '<div autoFocus="false" />', errors: [expectedError] },
     { code: '<input autoFocus />', errors: [expectedError] },
     { code: '<Foo autoFocus />', errors: [expectedError] },
+    { code: '<Button autoFocus />', errors: [expectedError], settings: componentsSettings },
+    {
+      code: '<Button autoFocus />',
+      errors: [expectedError],
+      options: ignoreNonDOMSchema,
+      settings: componentsSettings,
+    },
   ].map(parserOptionsMapper),
 });

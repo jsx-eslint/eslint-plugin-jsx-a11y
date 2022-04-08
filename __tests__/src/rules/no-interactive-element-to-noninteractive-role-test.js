@@ -28,6 +28,15 @@ const expectedError = {
 
 const ruleName = 'jsx-a11y/no-interactive-element-to-noninteractive-role';
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Button: 'button',
+      Link: 'a',
+    },
+  },
+};
+
 const alwaysValid = [
   { code: '<TestComponent onClick={doFoo} />' },
   { code: '<Button onClick={doFoo} />' },
@@ -289,6 +298,9 @@ const alwaysValid = [
   /* Namespaced roles are not checked */
   { code: '<div mynamespace:role="term" />' },
   { code: '<input mynamespace:role="img" />' },
+  { code: '<Link href="http://x.y.z" role="img" />' },
+  { code: '<Link href="http://x.y.z" />', settings: componentsSettings },
+  { code: '<Button onClick={doFoo} />', settings: componentsSettings },
 ];
 
 const neverValid = [
@@ -360,6 +372,8 @@ const neverValid = [
   { code: '<summary role="listitem" />;', errors: [expectedError] },
   { code: '<textarea className="foo" role="listitem" />', errors: [expectedError] },
   { code: '<tr role="listitem" />;', errors: [expectedError] },
+  /* Custom elements */
+  { code: '<Link href="http://x.y.z" role="img" />', errors: [expectedError], settings: componentsSettings },
 ];
 
 const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});

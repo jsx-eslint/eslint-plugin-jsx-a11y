@@ -22,6 +22,14 @@ const expectedError = {
   type: 'JSXAttribute',
 };
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Foo: 'html',
+    },
+  },
+};
+
 ruleTester.run('lang', rule, {
   valid: [
     { code: '<div />;' },
@@ -35,11 +43,13 @@ ruleTester.run('lang', rule, {
     { code: '<html lang="ja-Latn" />' },
     { code: '<html lang={foo} />' },
     { code: '<HTML lang="foo" />' },
-    { code: '<Foo lang="bar" />' },
+    { code: '<Foo lang={undefined} />' },
+    { code: '<Foo lang="en" />', settings: componentsSettings },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<html lang="foo" />', errors: [expectedError] },
     { code: '<html lang="zz-LL" />', errors: [expectedError] },
     { code: '<html lang={undefined} />', errors: [expectedError] },
+    { code: '<Foo lang={undefined} />', settings: componentsSettings, errors: [expectedError] },
   ].map(parserOptionsMapper),
 });

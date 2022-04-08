@@ -30,6 +30,15 @@ const expectedError = {
 
 const ruleName = 'jsx-a11y/no-noninteractive-element-to-interactive-role';
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Article: 'article',
+      Input: 'input',
+    },
+  },
+};
+
 const alwaysValid = [
   { code: '<TestComponent onClick={doFoo} />' },
   { code: '<Button onClick={doFoo} />' },
@@ -340,6 +349,9 @@ const alwaysValid = [
   { code: '<div role="timer" />;' },
   { code: '<div role="tooltip" />;' },
   { code: '<ul role="list" />;' },
+  /* Custom components */
+  { code: '<Article role="button" />' },
+  { code: '<Input role="button" />', settings: componentsSettings },
 ];
 
 const neverValid = [
@@ -424,6 +436,8 @@ const neverValid = [
   { code: '<td role="menuitem" />;', errors: [expectedError] },
   { code: '<tfoot role="menuitem" />;', errors: [expectedError] },
   { code: '<thead role="menuitem" />;', errors: [expectedError] },
+  /* Custom components */
+  { code: '<Article role="button" />', errors: [expectedError], settings: componentsSettings },
 ];
 
 const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});

@@ -7,8 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 import { runVirtualRule } from 'axe-core';
-import { elementType, getLiteralPropValue, getProp } from 'jsx-ast-utils';
+import { getLiteralPropValue, getProp } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 
 const schema = generateObjSchema({
   inputComponents: arraySchema,
@@ -23,37 +24,40 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const options = context.options[0] || {};
-      const { inputComponents = [] } = options;
-      const inputTypes = ['input'].concat(inputComponents);
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const options = context.options[0] || {};
+        const { inputComponents = [] } = options;
+        const inputTypes = ['input'].concat(inputComponents);
 
-      const elType = elementType(node);
-      const autocomplete = getLiteralPropValue(getProp(node.attributes, 'autocomplete'));
+        const elType = elementType(node);
+        const autocomplete = getLiteralPropValue(getProp(node.attributes, 'autocomplete'));
 
-      if (typeof autocomplete !== 'string' || !inputTypes.includes(elType)) {
-        return;
-      }
+        if (typeof autocomplete !== 'string' || !inputTypes.includes(elType)) {
+          return;
+        }
 
-      const type = getLiteralPropValue(getProp(node.attributes, 'type'));
-      const { violations } = runVirtualRule('autocomplete-valid', {
-        nodeName: 'input',
-        attributes: {
-          autocomplete,
-          // Which autocomplete is valid depends on the input type
-          type: type === null ? undefined : type,
-        },
-      });
+        const type = getLiteralPropValue(getProp(node.attributes, 'type'));
+        const { violations } = runVirtualRule('autocomplete-valid', {
+          nodeName: 'input',
+          attributes: {
+            autocomplete,
+            // Which autocomplete is valid depends on the input type
+            type: type === null ? undefined : type,
+          },
+        });
 
-      if (violations.length === 0) {
-        return;
-      }
-      // Since we only test one rule, with one node, return the message from first (and only) instance of each
-      context.report({
-        node,
-        message: violations[0].nodes[0].all[0].message,
-      });
-    },
-  }),
+        if (violations.length === 0) {
+          return;
+        }
+        // Since we only test one rule, with one node, return the message from first (and only) instance of each
+        context.report({
+          node,
+          message: violations[0].nodes[0].all[0].message,
+        });
+      },
+    };
+  },
 };

@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { elementType } from 'jsx-ast-utils';
 import hasAccessibleChild from '../../../src/util/hasAccessibleChild';
 import JSXElementMock from '../../../__mocks__/JSXElementMock';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
@@ -7,7 +8,7 @@ import JSXExpressionContainerMock from '../../../__mocks__/JSXExpressionContaine
 describe('hasAccessibleChild', () => {
   describe('has no children and does not set dangerouslySetInnerHTML', () => {
     it('returns false', () => {
-      expect(hasAccessibleChild(JSXElementMock('div', []))).toBe(false);
+      expect(hasAccessibleChild(JSXElementMock('div', []), elementType)).toBe(false);
     });
   });
 
@@ -15,7 +16,7 @@ describe('hasAccessibleChild', () => {
     it('Returns true', () => {
       const prop = JSXAttributeMock('dangerouslySetInnerHTML', true);
       const element = JSXElementMock('div', [prop], []);
-      expect(hasAccessibleChild(element)).toBe(true);
+      expect(hasAccessibleChild(element, elementType)).toBe(true);
     });
   });
 
@@ -26,13 +27,13 @@ describe('hasAccessibleChild', () => {
         value: 'foo',
       };
       const element = JSXElementMock('div', [], [child]);
-      expect(hasAccessibleChild(element)).toBe(true);
+      expect(hasAccessibleChild(element, elementType)).toBe(true);
     });
 
     it('Returns true for visible child JSXElement', () => {
       const child = JSXElementMock('div', []);
       const element = JSXElementMock('div', [], [child]);
-      expect(hasAccessibleChild(element)).toBe(true);
+      expect(hasAccessibleChild(element, elementType)).toBe(true);
     });
 
     it('Returns true for JSXText Element', () => {
@@ -41,14 +42,14 @@ describe('hasAccessibleChild', () => {
         value: 'foo',
       };
       const element = JSXElementMock('div', [], [child]);
-      expect(hasAccessibleChild(element)).toBe(true);
+      expect(hasAccessibleChild(element, elementType)).toBe(true);
     });
 
     it('Returns false for hidden child JSXElement', () => {
       const ariaHiddenAttr = JSXAttributeMock('aria-hidden', true);
       const child = JSXElementMock('div', [ariaHiddenAttr]);
       const element = JSXElementMock('div', [], [child]);
-      expect(hasAccessibleChild(element)).toBe(false);
+      expect(hasAccessibleChild(element, elementType)).toBe(false);
     });
 
     it('Returns true for defined JSXExpressionContainer', () => {
@@ -58,7 +59,7 @@ describe('hasAccessibleChild', () => {
       };
       const child = JSXExpressionContainerMock(expression);
       const element = JSXElementMock('div', [], [child]);
-      expect(hasAccessibleChild(element)).toBe(true);
+      expect(hasAccessibleChild(element, elementType)).toBe(true);
     });
 
     it('Returns false for undefined JSXExpressionContainer', () => {
@@ -68,7 +69,7 @@ describe('hasAccessibleChild', () => {
       };
       const child = JSXExpressionContainerMock(expression);
       const element = JSXElementMock('div', [], [child]);
-      expect(hasAccessibleChild(element)).toBe(false);
+      expect(hasAccessibleChild(element, elementType)).toBe(false);
     });
 
     it('Returns false for unknown child type', () => {
@@ -76,13 +77,31 @@ describe('hasAccessibleChild', () => {
         type: 'Unknown',
       };
       const element = JSXElementMock('div', [], [child]);
-      expect(hasAccessibleChild(element)).toBe(false);
+      expect(hasAccessibleChild(element, elementType)).toBe(false);
     });
 
     it('Returns true with children passed as a prop', () => {
       const children = JSXAttributeMock('children', true);
       const element = JSXElementMock('div', [children], []);
-      expect(hasAccessibleChild(element)).toBe(true);
+      expect(hasAccessibleChild(element, elementType)).toBe(true);
+    });
+
+    it('Returns false for hidden child input JSXElement', () => {
+      const child = JSXElementMock('input', [JSXAttributeMock('type', 'hidden')]);
+      const element = JSXElementMock('div', [], [child]);
+      expect(hasAccessibleChild(element, elementType)).toBe(false);
+    });
+
+    it('Returns true for a custom JSXElement even if type hidden', () => {
+      const child = JSXElementMock('CustomInput', [JSXAttributeMock('type', 'hidden')]);
+      const element = JSXElementMock('div', [], [child]);
+      expect(hasAccessibleChild(element, elementType)).toBe(true);
+    });
+
+    it('Returns false for a custom JSXElement mapped to input if type is hidden', () => {
+      const child = JSXElementMock('CustomInput', [JSXAttributeMock('type', 'hidden')]);
+      const element = JSXElementMock('div', [], [child]);
+      expect(hasAccessibleChild(element, () => 'input')).toBe(false);
     });
   });
 });

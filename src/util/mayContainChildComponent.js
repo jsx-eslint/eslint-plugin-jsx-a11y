@@ -7,14 +7,15 @@
  * @flow
  */
 
-import { elementType } from 'jsx-ast-utils';
-import type { Node } from 'ast-types-flow';
+import type { JSXOpeningElement, Node } from 'ast-types-flow';
+import { elementType as rawElementType } from 'jsx-ast-utils';
 import minimatch from 'minimatch';
 
 export default function mayContainChildComponent(
   root: Node,
   componentName: string,
   maxDepth: number = 1,
+  elementType: ((node: JSXOpeningElement) => string) = rawElementType,
 ): boolean {
   function traverseChildren(
     node: Node,

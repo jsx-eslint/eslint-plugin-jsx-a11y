@@ -152,4 +152,27 @@ describe('mayContainChildComponent', () => {
       });
     });
   });
+
+  describe('using a custom elementType function', () => {
+    it('should return true when the custom elementType returns the proper name', () => {
+      expect(mayContainChildComponent(
+        JSXElementMock('div', [], [
+          JSXElementMock('CustomInput'),
+        ]),
+        'input',
+        2,
+        () => 'input',
+      )).toBe(true);
+    });
+    it('should return false when the custom elementType returns a wrong name', () => {
+      expect(mayContainChildComponent(
+        JSXElementMock('div', [], [
+          JSXElementMock('CustomInput'),
+        ]),
+        'input',
+        2,
+        () => 'button',
+      )).toBe(false);
+    });
+  });
 });

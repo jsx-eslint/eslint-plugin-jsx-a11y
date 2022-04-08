@@ -47,6 +47,14 @@ const ignoreNonDOMSchema = [{
   ignoreNonDOM: true,
 }];
 
+const customDivSettings = {
+  'jsx-a11y': {
+    components: {
+      Div: 'div',
+    },
+  },
+};
+
 ruleTester.run('aria-role', rule, {
   valid: [
     // Variables should pass, as we are only testing literals.
@@ -66,6 +74,11 @@ ruleTester.run('aria-role', rule, {
     { code: '<Foo role="bar" />', options: ignoreNonDOMSchema },
     { code: '<fakeDOM role="bar" />', options: ignoreNonDOMSchema },
     { code: '<img role="presentation" />', options: ignoreNonDOMSchema },
+    {
+      code: '<Div role="button" />',
+      errors: [errorMessage],
+      settings: customDivSettings,
+    },
   ].concat(validTests).map(parserOptionsMapper),
 
   invalid: [
@@ -82,5 +95,12 @@ ruleTester.run('aria-role', rule, {
     { code: '<div role={null}></div>', errors: [errorMessage] },
     { code: '<Foo role="datepicker" />', errors: [errorMessage] },
     { code: '<Foo role="Button" />', errors: [errorMessage] },
+    { code: '<Div role="Button" />', errors: [errorMessage], settings: customDivSettings },
+    {
+      code: '<Div role="Button" />',
+      errors: [errorMessage],
+      options: ignoreNonDOMSchema,
+      settings: customDivSettings,
+    },
   ].concat(invalidTests).map(parserOptionsMapper),
 });

@@ -30,10 +30,12 @@ ruleTester.run('html-has-lang', rule, {
     { code: '<html lang={foo} />' },
     { code: '<html lang />' },
     { code: '<HTML />' },
+    { code: '<HTMLTop lang="en" />', errors: [expectedError], settings: { 'jsx-a11y': { components: { HTMLTop: 'html' } } } },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<html />', errors: [expectedError] },
     { code: '<html {...props} />', errors: [expectedError] },
     { code: '<html lang={undefined} />', errors: [expectedError] },
+    { code: '<HTMLTop />', errors: [expectedError], settings: { 'jsx-a11y': { components: { HTMLTop: 'html' } } } },
   ].map(parserOptionsMapper),
 });

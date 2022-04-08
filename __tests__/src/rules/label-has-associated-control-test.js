@@ -25,6 +25,15 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      CustomInput: 'input',
+      CustomLabel: 'label',
+    },
+  },
+};
+
 const htmlForValid = [
   { code: '<label htmlFor="js_id"><span><span><span>A label</span></span></span></label>', options: [{ depth: 4 }] },
   { code: '<label htmlFor="js_id" aria-label="A label" />' },
@@ -33,6 +42,7 @@ const htmlForValid = [
   // Custom label component.
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }] },
+  { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', settings: componentsSettings },
   // Custom label attributes.
   { code: '<label htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'] }] },
   // Glob support for controlComponents option.
@@ -57,6 +67,7 @@ const nestingValid = [
   { code: '<label>foo<textarea /></label>' },
   // Custom controlComponents.
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }] },
+  { code: '<label><span>A label<CustomInput /></span></label>', settings: componentsSettings },
   { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel><span label="A label"><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }] },
   // Glob support for controlComponents option.
@@ -72,6 +83,8 @@ const bothValid = [
   // Custom label component.
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label"><input /></CustomLabel>', options: [{ labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel htmlFor="js_id" label="A label"><input /></CustomLabel>', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }] },
+  { code: '<CustomLabel htmlFor="js_id" aria-label="A label"><input /></CustomLabel>', settings: componentsSettings },
+  { code: '<CustomLabel htmlFor="js_id" aria-label="A label"><CustomInput /></CustomLabel>', settings: componentsSettings },
   // Custom label attributes.
   { code: '<label htmlFor="js_id" label="A label"><input /></label>', options: [{ labelAttributes: ['label'] }] },
   { code: '<label htmlFor="selectInput">Some text<select id="selectInput" /></label>' },
@@ -90,6 +103,7 @@ const htmlForInvalid = [
   // Custom label component.
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }], errors: [expectedError] },
   { code: '<CustomLabel htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
+  { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', settings: componentsSettings, errors: [expectedError] },
   // Custom label attributes.
   { code: '<label htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'] }], errors: [expectedError] },
 ];
@@ -108,6 +122,8 @@ const nestingInvalid = [
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
   { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
   { code: '<CustomLabel><span label="A label"><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedError] },
+  { code: '<label><span>A label<CustomInput /></span></label>', settings: componentsSettings, errors: [expectedError] },
+  { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedError] },
 ];
 
 const neverValid = [
@@ -121,12 +137,15 @@ const neverValid = [
   // Custom label component.
   { code: '<CustomLabel aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }], errors: [expectedError] },
   { code: '<CustomLabel label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
+  { code: '<CustomLabel aria-label="A label" />', settings: componentsSettings, errors: [expectedError] },
   // Custom label attributes.
   { code: '<label label="A label" />', options: [{ labelAttributes: ['label'] }], errors: [expectedError] },
   // Custom controlComponents.
   { code: '<label><span><CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
   { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
   { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedError] },
+  { code: '<label><span><CustomInput /></span></label>', settings: componentsSettings, errors: [expectedError] },
+  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedError] },
 ];
 // htmlFor valid
 ruleTester.run(ruleName, rule, {

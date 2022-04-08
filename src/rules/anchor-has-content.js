@@ -7,7 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType } from 'jsx-ast-utils';
+import getElementType from '../util/getElementType';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 
@@ -24,25 +24,28 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const options = context.options[0] || {};
-      const componentOptions = options.components || [];
-      const typeCheck = ['a'].concat(componentOptions);
-      const nodeType = elementType(node);
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const options = context.options[0] || {};
+        const componentOptions = options.components || [];
+        const typeCheck = ['a'].concat(componentOptions);
+        const nodeType = elementType(node);
 
-      // Only check anchor elements and custom types.
-      if (typeCheck.indexOf(nodeType) === -1) {
-        return;
-      }
-      if (hasAccessibleChild(node.parent)) {
-        return;
-      }
+        // Only check anchor elements and custom types.
+        if (typeCheck.indexOf(nodeType) === -1) {
+          return;
+        }
+        if (hasAccessibleChild(node.parent, elementType)) {
+          return;
+        }
 
-      context.report({
-        node,
-        message: errorMessage,
-      });
-    },
-  }),
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      },
+    };
+  },
 };

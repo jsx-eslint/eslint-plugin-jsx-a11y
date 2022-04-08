@@ -26,6 +26,16 @@ const components = [{
   components: ['Heading', 'Title'],
 }];
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      CustomInput: 'input',
+      Title: 'h1',
+      Heading: 'h2',
+    },
+  },
+};
+
 ruleTester.run('heading-has-content', rule, {
   valid: [
     // DEFAULT ELEMENT TESTS
@@ -51,16 +61,24 @@ ruleTester.run('heading-has-content', rule, {
     { code: '<Heading dangerouslySetInnerHTML={{ __html: "foo" }} />', options: components },
     { code: '<Heading children={children} />', options: components },
     { code: '<h1 aria-hidden />' },
+    // CUSTOM ELEMENT TESTS FOR COMPONENTS SETTINGS
+    { code: '<Heading>Foo</Heading>', settings: componentsSettings },
+    { code: '<h1><CustomInput type="hidden" /></h1>' },
   ].map(parserOptionsMapper),
   invalid: [
     // DEFAULT ELEMENT TESTS
     { code: '<h1 />', errors: [expectedError] },
     { code: '<h1><Bar aria-hidden /></h1>', errors: [expectedError] },
     { code: '<h1>{undefined}</h1>', errors: [expectedError] },
+    { code: '<h1><input type="hidden" /></h1>', errors: [expectedError] },
 
     // CUSTOM ELEMENT TESTS FOR COMPONENTS OPTION
     { code: '<Heading />', errors: [expectedError], options: components },
     { code: '<Heading><Bar aria-hidden /></Heading>', errors: [expectedError], options: components },
     { code: '<Heading>{undefined}</Heading>', errors: [expectedError], options: components },
+
+    // CUSTOM ELEMENT TESTS FOR COMPONENTS SETTINGS
+    { code: '<Heading />', errors: [expectedError], settings: componentsSettings },
+    { code: '<h1><CustomInput type="hidden" /></h1>', errors: [expectedError], settings: componentsSettings },
   ].map(parserOptionsMapper),
 });

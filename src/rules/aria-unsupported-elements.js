@@ -12,8 +12,9 @@ import {
   aria,
   dom,
 } from 'aria-query';
-import { elementType, propName } from 'jsx-ast-utils';
+import { propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 
 const errorMessage = (invalidProp) => (
   `This element does not support ARIA roles, states and properties. \
@@ -31,35 +32,38 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const nodeType = elementType(node);
-      const nodeAttrs = dom.get(nodeType) || {};
-      const {
-        reserved: isReservedNodeType = false,
-      } = nodeAttrs;
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const nodeType = elementType(node);
+        const nodeAttrs = dom.get(nodeType) || {};
+        const {
+          reserved: isReservedNodeType = false,
+        } = nodeAttrs;
 
-      // If it's not reserved, then it can have aria-* roles, states, and properties
-      if (isReservedNodeType === false) {
-        return;
-      }
-
-      const invalidAttributes = [...aria.keys(), 'role'];
-
-      node.attributes.forEach((prop) => {
-        if (prop.type === 'JSXSpreadAttribute') {
+        // If it's not reserved, then it can have aria-* roles, states, and properties
+        if (isReservedNodeType === false) {
           return;
         }
 
-        const name = propName(prop).toLowerCase();
+        const invalidAttributes = [...aria.keys(), 'role'];
 
-        if (invalidAttributes.indexOf(name) > -1) {
-          context.report({
-            node,
-            message: errorMessage(name),
-          });
-        }
-      });
-    },
-  }),
+        node.attributes.forEach((prop) => {
+          if (prop.type === 'JSXSpreadAttribute') {
+            return;
+          }
+
+          const name = propName(prop).toLowerCase();
+
+          if (invalidAttributes.indexOf(name) > -1) {
+            context.report({
+              node,
+              message: errorMessage(name),
+            });
+          }
+        });
+      },
+    };
+  },
 };

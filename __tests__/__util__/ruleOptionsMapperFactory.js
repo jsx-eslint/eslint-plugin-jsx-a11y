@@ -6,7 +6,8 @@ type ESLintTestRunnerTestCase = {
   code: string,
   errors: ?Array<{ message: string, type: string }>,
   options: ?Array<mixed>,
-  parserOptions: ?Array<mixed>
+  parserOptions: ?Array<mixed>,
+  settings?: {[string]: mixed},
 };
 
 type RuleOptionsMapperFactoryType = (
@@ -15,7 +16,7 @@ type RuleOptionsMapperFactoryType = (
 
 export default function ruleOptionsMapperFactory(ruleOptions: Array<mixed> = []): RuleOptionsMapperFactoryType {
   // eslint-disable-next-line
-  return ({ code, errors, options, parserOptions }: ESLintTestRunnerTestCase): ESLintTestRunnerTestCase => {
+  return ({ code, errors, options, parserOptions, settings }: ESLintTestRunnerTestCase): ESLintTestRunnerTestCase => {
     return {
       code,
       errors,
@@ -25,6 +26,7 @@ export default function ruleOptionsMapperFactory(ruleOptions: Array<mixed> = [])
         ...item,
       }], [{}]),
       parserOptions,
+      settings,
     };
   };
 }

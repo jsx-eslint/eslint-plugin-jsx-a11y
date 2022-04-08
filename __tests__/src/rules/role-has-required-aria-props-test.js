@@ -28,6 +28,14 @@ const errorMessage = (role) => {
   };
 };
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      MyComponent: 'div',
+    },
+  },
+};
+
 // Create basic test cases using all valid role types.
 const basicValidityTests = [...roles.keys()].map((role) => {
   const {
@@ -55,6 +63,7 @@ ruleTester.run('role-has-required-aria-props', rule, {
     { code: '<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>' },
     { code: '<input role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0" {...props} type="checkbox" />' },
     { code: '<input type="checkbox" role="switch" />' },
+    { code: '<MyComponent role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0" />', settings: componentsSettings },
   ].concat(basicValidityTests).map(parserOptionsMapper),
 
   invalid: [
@@ -115,5 +124,7 @@ ruleTester.run('role-has-required-aria-props', rule, {
       code: '<div role="option" />',
       errors: [errorMessage('option')],
     },
+    // Custom element
+    { code: '<MyComponent role="combobox" />', settings: componentsSettings, errors: [errorMessage('combobox')] },
   ].map(parserOptionsMapper),
 });

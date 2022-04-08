@@ -37,6 +37,10 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
       code: '<CustomComponent aria-activedescendant={someID} tabIndex={-1} />;',
     },
     {
+      code: '<CustomComponent aria-activedescendant={someID} tabIndex={0} />;',
+      settings: { 'jsx-a11y': { components: { CustomComponent: 'div' } } },
+    },
+    {
       code: '<div />;',
     },
     {
@@ -80,6 +84,11 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
     {
       code: '<div aria-activedescendant={someID} />;',
       errors: [expectedError],
+    },
+    {
+      code: '<CustomComponent aria-activedescendant={someID} />;',
+      errors: [expectedError],
+      settings: { 'jsx-a11y': { components: { CustomComponent: 'div' } } },
     },
   ].map(parserOptionsMapper),
 });

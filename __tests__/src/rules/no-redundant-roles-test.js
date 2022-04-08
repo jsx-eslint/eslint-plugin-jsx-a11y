@@ -26,16 +26,26 @@ const expectedError = (element, implicitRole) => ({
 
 const ruleName = 'jsx-a11y/no-redundant-roles';
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Button: 'button',
+    },
+  },
+};
+
 const alwaysValid = [
   { code: '<div />;' },
   { code: '<button role="main" />' },
   { code: '<MyComponent role="button" />' },
   { code: '<button role={`${foo}button`} />' },
+  { code: '<Button role={`${foo}button`} />', settings: componentsSettings },
 ];
 
 const neverValid = [
   { code: '<button role="button" />', errors: [expectedError('button', 'button')] },
   { code: '<body role="DOCUMENT" />', errors: [expectedError('body', 'document')] },
+  { code: '<Button role="button" />', settings: componentsSettings, errors: [expectedError('button', 'button')] },
 ];
 
 ruleTester.run(`${ruleName}:recommended`, rule, {

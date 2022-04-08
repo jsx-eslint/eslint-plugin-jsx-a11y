@@ -7,8 +7,8 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
@@ -34,28 +34,31 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const options = context.options[0] || {};
-      const componentOptions = options.components || [];
-      const typeCheck = headings.concat(componentOptions);
-      const nodeType = elementType(node);
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const options = context.options[0] || {};
+        const componentOptions = options.components || [];
+        const typeCheck = headings.concat(componentOptions);
+        const nodeType = elementType(node);
 
-      // Only check 'h*' elements and custom types.
-      if (typeCheck.indexOf(nodeType) === -1) {
-        return;
-      }
-      if (hasAccessibleChild(node.parent)) {
-        return;
-      }
-      if (isHiddenFromScreenReader(nodeType, node.attributes)) {
-        return;
-      }
+        // Only check 'h*' elements and custom types.
+        if (typeCheck.indexOf(nodeType) === -1) {
+          return;
+        }
+        if (hasAccessibleChild(node.parent, elementType)) {
+          return;
+        }
+        if (isHiddenFromScreenReader(nodeType, node.attributes)) {
+          return;
+        }
 
-      context.report({
-        node,
-        message: errorMessage,
-      });
-    },
-  }),
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      },
+    };
+  },
 };

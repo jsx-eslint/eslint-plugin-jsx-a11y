@@ -54,7 +54,11 @@ const invalidRoleValidityTests = domElements
   .map((reservedElem) => ({
     code: `<${reservedElem} role {...props} />`,
     errors: [errorMessage('role')],
-  }));
+  })).concat({
+    code: '<Meta aria-hidden />',
+    errors: [errorMessage('aria-hidden')],
+    settings: { 'jsx-a11y': { components: { Meta: 'meta' } } },
+  });
 
 const invalidAriaValidityTests = domElements
   .filter((element) => Boolean(dom.get(element).reserved))

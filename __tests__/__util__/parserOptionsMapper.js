@@ -11,6 +11,7 @@ export default function parserOptionsMapper({
   errors,
   options = [],
   parserOptions = {},
+  settings,
 }) {
   return {
     code,
@@ -20,5 +21,6 @@ export default function parserOptionsMapper({
       ...defaultParserOptions,
       ...parserOptions,
     },
+    settings,
   };
 }

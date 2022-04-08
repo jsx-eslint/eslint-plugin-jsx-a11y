@@ -6,9 +6,17 @@ export type ESLintReport = {
   message: string,
 };
 
+export type ESLintSettings = {
+  [string]: mixed,
+  'jsx-a11y'?: {
+    components: {[string]: string},
+  },
+}
+
 export type ESLintContext = {
   options: Array<Object>,
   report: (ESLintReport) => void,
+  settings: ESLintSettings,
 };
 
 export type ESLintConfig = {

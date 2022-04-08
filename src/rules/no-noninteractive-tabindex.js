@@ -11,12 +11,12 @@
 import { dom } from 'aria-query';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import {
-  elementType,
   getProp,
   getLiteralPropValue,
 } from 'jsx-ast-utils';
 import includes from 'array-includes';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
+import getElementType from '../util/getElementType';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
 import isNonLiteralProperty from '../util/isNonLiteralProperty';
@@ -48,6 +48,7 @@ export default ({
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const { options } = context;
+    const elementType = getElementType(context);
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
         const type = elementType(node);

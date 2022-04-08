@@ -89,6 +89,24 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 }
 ```
 
+To enable your custom components to be checked as DOM elements, you can set global settings in your
+configuration file by mapping each custom component name to a DOM element type.
+
+```json
+{
+  "settings": {
+    "jsx-a11y": {
+      "components": {
+        "CityInput": "input",
+        "CustomButton": "button",
+        "MyButton": "button",
+        "RoundButton": "button"
+      }
+    }
+  }
+}
+```
+
 ## Supported Rules
 
 <!-- AUTO-GENERATED-CONTENT:START (LIST) -->

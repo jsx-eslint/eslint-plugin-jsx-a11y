@@ -10,7 +10,6 @@
 
 import { dom } from 'aria-query';
 import {
-  elementType,
   eventHandlersByType,
   getPropValue,
   getProp,
@@ -20,6 +19,7 @@ import type { JSXOpeningElement } from 'ast-types-flow';
 import includes from 'array-includes';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import { arraySchema, generateObjSchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 import isAbstractRole from '../util/isAbstractRole';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -53,6 +53,7 @@ export default ({
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const { options } = context;
+    const elementType = getElementType(context);
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
         const { attributes } = node;

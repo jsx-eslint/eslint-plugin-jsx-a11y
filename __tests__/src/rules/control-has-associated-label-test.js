@@ -30,6 +30,7 @@ const alwaysValid = [
   // Custom Control Components
   { code: '<CustomControl><span><span>Save</span></span></CustomControl>', options: [{ depth: 3, controlComponents: ['CustomControl'] }] },
   { code: '<CustomControl><span><span label="Save"></span></span></CustomControl>', options: [{ depth: 3, controlComponents: ['CustomControl'], labelAttributes: ['label'] }] },
+  { code: '<CustomControl>Save</CustomControl>', settings: { 'jsx-a11y': { components: { CustomControl: 'button' } } } },
   // Interactive Elements
   { code: '<button>Save</button>' },
   { code: '<button><span>Save</span></button>' },
@@ -255,6 +256,7 @@ const neverValid = [
   { code: '<button><span title="This is not a real label" /></button>', errors: [expectedError] },
   { code: '<button><span><span><span>Save</span></span></span></button>', options: [{ depth: 3 }], errors: [expectedError] },
   { code: '<CustomControl><span><span></span></span></CustomControl>', options: [{ depth: 3, controlComponents: ['CustomControl'] }], errors: [expectedError] },
+  { code: '<CustomControl></CustomControl>', errors: [expectedError], settings: { 'jsx-a11y': { components: { CustomControl: 'button' } } } },
   { code: '<a href="#" />', errors: [expectedError] },
   { code: '<area href="#" />', errors: [expectedError] },
   { code: '<menuitem />', errors: [expectedError] },

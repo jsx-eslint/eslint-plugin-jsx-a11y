@@ -1,10 +1,10 @@
 // @flow
 
-import { elementType, hasAnyProp } from 'jsx-ast-utils';
-import type { JSXElement, Node } from 'ast-types-flow';
+import { hasAnyProp } from 'jsx-ast-utils';
+import type { JSXElement, Node, JSXOpeningElement } from 'ast-types-flow';
 import isHiddenFromScreenReader from './isHiddenFromScreenReader';
 
-export default function hasAccessibleChild(node: JSXElement): boolean {
+export default function hasAccessibleChild(node: JSXElement, elementType: (JSXOpeningElement) => string): boolean {
   return node.children.some((child: Node) => {
     switch (child.type) {
       case 'Literal':

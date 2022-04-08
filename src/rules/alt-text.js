@@ -10,10 +10,10 @@
 import {
   getProp,
   getPropValue,
-  elementType,
   getLiteralPropValue,
 } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 import isPresentationRole from '../util/isPresentationRole';
 
@@ -44,8 +44,7 @@ const ariaLabelHasValue = (prop) => {
 };
 
 const ruleByElement = {
-  img(context, node) {
-    const nodeType = elementType(node);
+  img(context, node, nodeType) {
     const altProp = getProp(node.attributes, 'alt');
 
     // Missing alt prop error.
@@ -106,14 +105,14 @@ const ruleByElement = {
     });
   },
 
-  object(context, node) {
+  object(context, node, unusedNodeType, elementType) {
     const ariaLabelProp = getProp(node.attributes, 'aria-label');
     const arialLabelledByProp = getProp(node.attributes, 'aria-labelledby');
     const hasLabel = ariaLabelHasValue(ariaLabelProp) || ariaLabelHasValue(arialLabelledByProp);
     const titleProp = getLiteralPropValue(getProp(node.attributes, 'title'));
     const hasTitleAttr = !!titleProp;
 
-    if (hasLabel || hasTitleAttr || hasAccessibleChild(node.parent)) {
+    if (hasLabel || hasTitleAttr || hasAccessibleChild(node.parent, elementType)) {
       return;
     }
 
@@ -154,9 +153,8 @@ const ruleByElement = {
     });
   },
 
-  'input[type="image"]': function inputImage(context, node) {
+  'input[type="image"]': function inputImage(context, node, nodeType) {
     // Only test input[type="image"]
-    const nodeType = elementType(node);
     if (nodeType === 'input') {
       const typePropValue = getPropValue(getProp(node.attributes, 'type'));
       if (typePropValue !== 'image') { return; }
@@ -218,6 +216,7 @@ export default {
         elementOptions,
       ).map((type) => (type === 'input[type="image"]' ? 'input' : type)),
     );
+    const elementType = getElementType(context);
 
     return {
       JSXOpeningElement(node) {
@@ -237,7 +236,7 @@ export default {
           });
         }
 
-        ruleByElement[DOMElement](context, node);
+        ruleByElement[DOMElement](context, node, nodeType, elementType);
       },
     };
   },

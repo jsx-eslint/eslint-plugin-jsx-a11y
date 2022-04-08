@@ -51,6 +51,7 @@ ruleTester.run('click-events-have-key-events', rule, {
     { code: '<div onClick={() => void 0} role="none" />;' },
     { code: '<TestComponent onClick={doFoo} />' },
     { code: '<Button onClick={doFoo} />' },
+    { code: '<Footer onClick={doFoo} />' },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<div onClick={() => void 0} />;', errors: [expectedError] },
@@ -70,5 +71,6 @@ ruleTester.run('click-events-have-key-events', rule, {
     },
     { code: '<a onClick={() => void 0} />', errors: [expectedError] },
     { code: '<a tabIndex="0" onClick={() => void 0} />', errors: [expectedError] },
+    { code: '<Footer onClick={doFoo} />', errors: [expectedError], settings: { 'jsx-a11y': { components: { Footer: 'footer' } } } },
   ].map(parserOptionsMapper),
 });

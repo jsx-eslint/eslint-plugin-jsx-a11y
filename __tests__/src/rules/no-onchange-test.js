@@ -22,6 +22,15 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      CustomOption: 'option',
+      Input: 'input',
+    },
+  },
+};
+
 ruleTester.run('no-onchange', rule, {
   valid: [
     { code: '<select onBlur={() => {}} />;' },
@@ -34,11 +43,14 @@ ruleTester.run('no-onchange', rule, {
     { code: '<input />;' },
     { code: '<input onChange={() => {}} onChange={() => {}} />;' },
     { code: '<input {...props} />' },
+    { code: '<Input onChange={() => {}} />;', settings: componentsSettings },
+    { code: '<CustomOption onChange={() => {}} />' },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<select onChange={() => {}} />;', errors: [expectedError] },
     { code: '<select onChange={handleOnChange} />;', errors: [expectedError] },
     { code: '<option onChange={() => {}} />', errors: [expectedError] },
     { code: '<option onChange={() => {}} {...props} />', errors: [expectedError] },
+    { code: '<CustomOption onChange={() => {}} />;', errors: [expectedError], settings: componentsSettings },
   ].map(parserOptionsMapper),
 });

@@ -9,11 +9,12 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import includes from 'array-includes';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
+import getElementType from '../util/getElementType';
 import isDOMElement from '../util/isDOMElement';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -43,6 +44,7 @@ export default ({
   },
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
+    const elementType = getElementType(context);
     const options = context.options[0] || {};
     const {
       labelAttributes = [],

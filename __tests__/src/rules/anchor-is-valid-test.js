@@ -78,10 +78,19 @@ const componentsAndSpecialLinkAndNoHrefAspect = [{
   aspects: ['noHref'],
 }];
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Anchor: 'a',
+      Link: 'a',
+    },
+  },
+};
+
 ruleTester.run('anchor-is-valid', rule, {
   valid: [
     // DEFAULT ELEMENT 'a' TESTS
-    { code: '<Anchor />;' },
+    { code: '<Anchor />' },
     { code: '<a {...props} />' },
     { code: '<a href="foo" />' },
     { code: '<a href={foo} />' },
@@ -119,6 +128,7 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: '<Link href={`#foo`}/>', options: components },
     { code: '<Link href={"foo"}/>', options: components },
     { code: '<Link href="#foo" />', options: components },
+    { code: '<Link href="#foo" />', settings: componentsSettings },
 
     // CUSTOM PROP TESTS
     { code: '<a {...props} />', options: specialLink },
@@ -331,6 +341,11 @@ ruleTester.run('anchor-is-valid', rule, {
       code: '<Anchor href={"javascript:void(0)"} onClick={() => void 0} />',
       errors: [preferButtonexpectedError],
       options: components,
+    },
+    {
+      code: '<Link href="#" onClick={() => void 0} />',
+      errors: [preferButtonexpectedError],
+      settings: componentsSettings,
     },
 
     // CUSTOM PROP TESTS

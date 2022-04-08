@@ -7,8 +7,8 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType } from 'jsx-ast-utils';
 import { generateObjSchema, enumArraySchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 
 const errorMessage = (element) => (
   `Do not use <${element}> elements as they can create visual accessibility issues and are deprecated.`
@@ -32,19 +32,22 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const options = context.options[0] || {};
-      const elementOptions = options.elements || DEFAULT_ELEMENTS;
-      const type = elementType(node);
-      const distractingElement = elementOptions.find((element) => type === element);
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const options = context.options[0] || {};
+        const elementOptions = options.elements || DEFAULT_ELEMENTS;
+        const type = elementType(node);
+        const distractingElement = elementOptions.find((element) => type === element);
 
-      if (distractingElement) {
-        context.report({
-          node,
-          message: errorMessage(distractingElement),
-        });
-      }
-    },
-  }),
+        if (distractingElement) {
+          context.report({
+            node,
+            message: errorMessage(distractingElement),
+          });
+        }
+      },
+    };
+  },
 };

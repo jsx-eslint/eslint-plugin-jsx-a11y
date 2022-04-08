@@ -22,6 +22,14 @@ const array = [{
   words: ['Word1', 'Word2'],
 }];
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Image: 'img',
+    },
+  },
+};
+
 const ruleTester = new RuleTester();
 
 const expectedError = {
@@ -63,6 +71,8 @@ ruleTester.run('img-redundant-alt', rule, {
     ] : [],
     { code: '<img alt="Photography" />;' },
     { code: '<img alt="ImageMagick" />;' },
+    { code: '<Image alt="Photo of a friend" />' },
+    { code: '<Image alt="Foo" />', settings: componentsSettings },
   ).map(parserOptionsMapper),
   invalid: [
     { code: '<img alt="Photo of friend." />;', errors: [expectedError] },
@@ -111,6 +121,7 @@ ruleTester.run('img-redundant-alt', rule, {
       code: '<img alt={`image doing ${image}`} {...this.props} />',
       errors: [expectedError],
     },
+    { code: '<Image alt="Photo of a friend" />', errors: [expectedError], settings: componentsSettings },
 
     // TESTS FOR ARRAY OPTION TESTS
     { code: '<img alt="Word1" />;', options: array, errors: [expectedError] },

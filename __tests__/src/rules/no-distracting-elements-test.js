@@ -22,6 +22,14 @@ const expectedError = (element) => ({
   type: 'JSXOpeningElement',
 });
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Blink: 'blink',
+    },
+  },
+};
+
 ruleTester.run('no-marquee', rule, {
   valid: [
     { code: '<div />;' },
@@ -37,5 +45,6 @@ ruleTester.run('no-marquee', rule, {
     { code: '<blink />', errors: [expectedError('blink')] },
     { code: '<blink {...props} />', errors: [expectedError('blink')] },
     { code: '<blink foo={undefined} />', errors: [expectedError('blink')] },
+    { code: '<Blink />', settings: componentsSettings, errors: [expectedError('blink')] },
   ].map(parserOptionsMapper),
 });

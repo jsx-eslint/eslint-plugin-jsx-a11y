@@ -37,6 +37,11 @@ ruleTester.run('accessible-emoji', rule, {
     { code: '<span aria-hidden="true">🐼</span>' },
     { code: '<span aria-hidden>🐼</span>' },
     { code: '<div aria-hidden="true">🐼</div>' },
+    { code: '<input type="hidden">🐼</input>' },
+    {
+      code: '<CustomInput type="hidden">🐼</CustomInput>',
+      settings: { 'jsx-a11y': { components: { CustomInput: 'input' } } },
+    },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<span>🐼</span>', errors: [expectedError] },
@@ -46,5 +51,6 @@ ruleTester.run('accessible-emoji', rule, {
     { code: '<i role="img" aria-labelledby="id1">🐼</i>', errors: [expectedError] },
     { code: '<Foo>🐼</Foo>', errors: [expectedError] },
     { code: '<span aria-hidden="false">🐼</span>', errors: [expectedError] },
+    { code: '<CustomInput type="hidden">🐼</CustomInput>', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });

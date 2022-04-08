@@ -7,8 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getLiteralPropValue, elementType } from 'jsx-ast-utils';
+import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
 const REDUNDANT_WORDS = [
@@ -33,42 +34,45 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const options = context.options[0] || {};
-      const componentOptions = options.components || [];
-      const typesToValidate = ['img'].concat(componentOptions);
-      const nodeType = elementType(node);
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const options = context.options[0] || {};
+        const componentOptions = options.components || [];
+        const typesToValidate = ['img'].concat(componentOptions);
+        const nodeType = elementType(node);
 
-      // Only check 'label' elements and custom types.
-      if (typesToValidate.indexOf(nodeType) === -1) {
-        return;
-      }
-
-      const altProp = getProp(node.attributes, 'alt');
-      // Return if alt prop is not present.
-      if (altProp === undefined) {
-        return;
-      }
-
-      const value = getLiteralPropValue(altProp);
-      const isVisible = isHiddenFromScreenReader(nodeType, node.attributes) === false;
-
-      const {
-        words = [],
-      } = options;
-      const redundantWords = REDUNDANT_WORDS.concat(words);
-
-      if (typeof value === 'string' && isVisible) {
-        const hasRedundancy = new RegExp(`(?!{)\\b(${redundantWords.join('|')})\\b(?!})`, 'i').test(value);
-
-        if (hasRedundancy === true) {
-          context.report({
-            node,
-            message: errorMessage,
-          });
+        // Only check 'label' elements and custom types.
+        if (typesToValidate.indexOf(nodeType) === -1) {
+          return;
         }
-      }
-    },
-  }),
+
+        const altProp = getProp(node.attributes, 'alt');
+        // Return if alt prop is not present.
+        if (altProp === undefined) {
+          return;
+        }
+
+        const value = getLiteralPropValue(altProp);
+        const isVisible = isHiddenFromScreenReader(nodeType, node.attributes) === false;
+
+        const {
+          words = [],
+        } = options;
+        const redundantWords = REDUNDANT_WORDS.concat(words);
+
+        if (typeof value === 'string' && isVisible) {
+          const hasRedundancy = new RegExp(`(?!{)\\b(${redundantWords.join('|')})\\b(?!})`, 'i').test(value);
+
+          if (hasRedundancy === true) {
+            context.report({
+              node,
+              message: errorMessage,
+            });
+          }
+        }
+      },
+    };
+  },
 };

@@ -8,9 +8,10 @@
 // ----------------------------------------------------------------------------
 
 import { dom } from 'aria-query';
-import { getProp, hasAnyProp, elementType } from 'jsx-ast-utils';
+import { getProp, hasAnyProp } from 'jsx-ast-utils';
 import includes from 'array-includes';
 import { generateObjSchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isPresentationRole from '../util/isPresentationRole';
@@ -29,39 +30,42 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const props = node.attributes;
-      if (getProp(props, 'onclick') === undefined) {
-        return;
-      }
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const props = node.attributes;
+        if (getProp(props, 'onclick') === undefined) {
+          return;
+        }
 
-      const type = elementType(node);
-      const requiredProps = ['onkeydown', 'onkeyup', 'onkeypress'];
+        const type = elementType(node);
+        const requiredProps = ['onkeydown', 'onkeyup', 'onkeypress'];
 
-      if (!includes(domElements, type)) {
-        // Do not test higher level JSX components, as we do not know what
-        // low-level DOM element this maps to.
-        return;
-      }
-      if (
-        isHiddenFromScreenReader(type, props)
-        || isPresentationRole(type, props)
-      ) {
-        return;
-      }
-      if (isInteractiveElement(type, props)) {
-        return;
-      }
-      if (hasAnyProp(props, requiredProps)) {
-        return;
-      }
+        if (!includes(domElements, type)) {
+          // Do not test higher level JSX components, as we do not know what
+          // low-level DOM element this maps to.
+          return;
+        }
+        if (
+          isHiddenFromScreenReader(type, props)
+          || isPresentationRole(type, props)
+        ) {
+          return;
+        }
+        if (isInteractiveElement(type, props)) {
+          return;
+        }
+        if (hasAnyProp(props, requiredProps)) {
+          return;
+        }
 
-      // Visible, non-interactive elements with click handlers require one keyboard event listener.
-      context.report({
-        node,
-        message: errorMessage,
-      });
-    },
-  }),
+        // Visible, non-interactive elements with click handlers require one keyboard event listener.
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      },
+    };
+  },
 };

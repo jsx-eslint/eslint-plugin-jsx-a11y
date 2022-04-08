@@ -11,7 +11,6 @@
 
 import { dom } from 'aria-query';
 import {
-  elementType,
   getProp,
   getLiteralPropValue,
   propName,
@@ -21,6 +20,7 @@ import includes from 'array-includes';
 import has from 'has';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import type { ESLintJSXAttribute } from '../../flow/eslint-jsx';
+import getElementType from '../util/getElementType';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
@@ -50,6 +50,7 @@ export default ({
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const { options } = context;
+    const elementType = getElementType(context);
     return {
       JSXAttribute: (attribute: ESLintJSXAttribute) => {
         const attributeName: JSXIdentifier = propName(attribute);

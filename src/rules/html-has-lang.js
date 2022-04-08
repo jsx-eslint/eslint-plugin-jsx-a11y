@@ -7,8 +7,9 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { elementType, getProp, getPropValue } from 'jsx-ast-utils';
+import { getProp, getPropValue } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 
 const errorMessage = '<html> elements must have the lang prop.';
 
@@ -23,24 +24,27 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      const type = elementType(node);
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        const type = elementType(node);
 
-      if (type && type !== 'html') {
-        return;
-      }
+        if (type && type !== 'html') {
+          return;
+        }
 
-      const lang = getPropValue(getProp(node.attributes, 'lang'));
+        const lang = getPropValue(getProp(node.attributes, 'lang'));
 
-      if (lang) {
-        return;
-      }
+        if (lang) {
+          return;
+        }
 
-      context.report({
-        node,
-        message: errorMessage,
-      });
-    },
-  }),
+        context.report({
+          node,
+          message: errorMessage,
+        });
+      },
+    };
+  },
 };

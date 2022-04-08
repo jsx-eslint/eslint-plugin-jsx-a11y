@@ -42,6 +42,14 @@ const areaError = 'Each area of an image map must have a text alternative throug
 
 const inputImageError = '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.';
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Input: 'input',
+    },
+  },
+};
+
 const array = [{
   img: ['Thumbnail', 'Image'],
   object: ['Object'],
@@ -112,6 +120,7 @@ ruleTester.run('alt-text', rule, {
     { code: '<input type="image" alt="This is descriptive!" />' },
     { code: '<input type="image" alt={altText} />' },
     { code: '<InputImage />' },
+    { code: '<Input type="image" alt="" />', settings: componentsSettings },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     { code: '<Thumbnail alt="foo" />;', options: array },
@@ -263,5 +272,6 @@ ruleTester.run('alt-text', rule, {
     { code: '<InputImage alt={undefined} />', errors: [inputImageError], options: array },
     { code: '<InputImage>Foo</InputImage>', errors: [inputImageError], options: array },
     { code: '<InputImage {...this.props} />', errors: [inputImageError], options: array },
+    { code: '<Input type="image" />', errors: [inputImageError], settings: componentsSettings },
   ].map(parserOptionsMapper),
 });

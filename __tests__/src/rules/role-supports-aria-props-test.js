@@ -35,6 +35,14 @@ const errorMessage = (attr, role, tag, isImplicit) => ({
   type: 'JSXOpeningElement',
 });
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Link: 'a',
+    },
+  },
+};
+
 const nonAbstractRoles = [...roles.keys()].filter((role) => roles.get(role).abstract === false);
 
 const createTests = (rolesNames) => rolesNames.reduce((tests, role) => {
@@ -71,6 +79,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<div role />' },
     { code: '<div role="presentation" {...props} />' },
     { code: '<Foo.Bar baz={true} />' },
+    { code: '<Link href="#" aria-checked />' },
 
     // IMPLICIT ROLE TESTS
     // A TESTS - implicit role is `link`
@@ -546,6 +555,11 @@ ruleTester.run('role-supports-aria-props', rule, {
     {
       code: '<a href="#" aria-invalid />',
       errors: [errorMessage('aria-invalid', 'link', 'a', true)],
+    },
+    {
+      code: '<Link href="#" aria-checked />',
+      errors: [errorMessage('aria-checked', 'link', 'a', true)],
+      settings: componentsSettings,
     },
   ].concat(invalidTests).map(parserOptionsMapper),
 });

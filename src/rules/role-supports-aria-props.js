@@ -16,10 +16,10 @@ import {
   getProp,
   getLiteralPropValue,
   getPropValue,
-  elementType,
   propName,
 } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
+import getElementType from '../util/getElementType';
 import getImplicitRole from '../util/getImplicitRole';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
@@ -42,47 +42,50 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => ({
-    JSXOpeningElement: (node) => {
-      // If role is not explicitly defined, then try and get its implicit role.
-      const type = elementType(node);
-      const role = getProp(node.attributes, 'role');
-      const roleValue = role ? getLiteralPropValue(role) : getImplicitRole(type, node.attributes);
-      const isImplicit = roleValue && role === undefined;
+  create: (context) => {
+    const elementType = getElementType(context);
+    return {
+      JSXOpeningElement: (node) => {
+        // If role is not explicitly defined, then try and get its implicit role.
+        const type = elementType(node);
+        const role = getProp(node.attributes, 'role');
+        const roleValue = role ? getLiteralPropValue(role) : getImplicitRole(type, node.attributes);
+        const isImplicit = roleValue && role === undefined;
 
-      // If there is no explicit or implicit role, then assume that the element
-      // can handle the global set of aria-* properties.
-      // This actually isn't true - should fix in future release.
-      if (
-        typeof roleValue !== 'string'
-        || roles.get(roleValue) === undefined
-      ) {
-        return;
-      }
-
-      // Make sure it has no aria-* properties defined outside of its property set.
-      const {
-        props: propKeyValues,
-      } = roles.get(roleValue);
-      const propertySet = Object.keys(propKeyValues);
-      const invalidAriaPropsForRole = [...aria.keys()]
-        .filter((attribute) => propertySet.indexOf(attribute) === -1);
-
-      node.attributes.forEach((prop) => {
-        // Ignore the attribute if its value is null or undefined.
-        if (getPropValue(prop) == null) return;
-
-        // Ignore the attribute if it's a spread.
-        if (prop.type === 'JSXSpreadAttribute') return;
-
-        const name = propName(prop);
-        if (invalidAriaPropsForRole.indexOf(name) > -1) {
-          context.report({
-            node,
-            message: errorMessage(name, roleValue, type, isImplicit),
-          });
+        // If there is no explicit or implicit role, then assume that the element
+        // can handle the global set of aria-* properties.
+        // This actually isn't true - should fix in future release.
+        if (
+          typeof roleValue !== 'string'
+          || roles.get(roleValue) === undefined
+        ) {
+          return;
         }
-      });
-    },
-  }),
+
+        // Make sure it has no aria-* properties defined outside of its property set.
+        const {
+          props: propKeyValues,
+        } = roles.get(roleValue);
+        const propertySet = Object.keys(propKeyValues);
+        const invalidAriaPropsForRole = [...aria.keys()]
+          .filter((attribute) => propertySet.indexOf(attribute) === -1);
+
+        node.attributes.forEach((prop) => {
+          // Ignore the attribute if its value is null or undefined.
+          if (getPropValue(prop) == null) return;
+
+          // Ignore the attribute if it's a spread.
+          if (prop.type === 'JSXSpreadAttribute') return;
+
+          const name = propName(prop);
+          if (invalidAriaPropsForRole.indexOf(name) > -1) {
+            context.report({
+              node,
+              message: errorMessage(name, roleValue, type, isImplicit),
+            });
+          }
+        });
+      },
+    };
+  },
 };

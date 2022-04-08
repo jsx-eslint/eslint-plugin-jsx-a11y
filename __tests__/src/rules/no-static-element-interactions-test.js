@@ -28,9 +28,19 @@ const expectedError = {
 
 const ruleName = 'no-static-element-interactions';
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Button: 'button',
+      TestComponent: 'div',
+    },
+  },
+};
+
 const alwaysValid = [
   { code: '<TestComponent onClick={doFoo} />' },
   { code: '<Button onClick={doFoo} />' },
+  { code: '<Button onClick={doFoo} />', settings: componentsSettings },
   { code: '<div />;' },
   { code: '<div className="foo" />;' },
   { code: '<div className="foo" {...props} />;' },
@@ -344,6 +354,8 @@ const neverValid = [
   { code: '<div onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div onMouseDown={() => {}} />;', errors: [expectedError] },
   { code: '<div onMouseUp={() => {}} />;', errors: [expectedError] },
+  // Custom components
+  { code: '<TestComponent onClick={doFoo} />', settings: componentsSettings, errors: [expectedError] },
 ];
 
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};

@@ -38,6 +38,16 @@ const tabindexTemplate = template`<${0} role="${1}" ${2}={() => void 0} tabIndex
 const tabbableTemplate = template`Elements with the '${0}' interactive role must be tabbable.`;
 const focusableTemplate = template`Elements with the '${0}' interactive role must be focusable.`;
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Div: 'div',
+    },
+  },
+};
+
+const buttonError = { message: tabbableTemplate('button'), type };
+
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
 
 const strictOptions = configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {};
@@ -116,6 +126,11 @@ const alwaysValid = [
   { code: '<div role="textbox" aria-disabled="true" onClick={() => void 0} />' },
   { code: '<Foo.Bar onClick={() => void 0} aria-hidden={false} />;' },
   { code: '<Input onClick={() => void 0} type="hidden" />;' },
+  { code: '<Div onClick={() => void 0} role="button" tabIndex="0" />', settings: componentsSettings },
+];
+
+const neverValid = [
+  { code: '<Div onClick={() => void 0} role="button" />', errors: [buttonError], settings: componentsSettings },
 ];
 
 const interactiveRoles = [
@@ -209,6 +224,7 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
   invalid: [
+    ...neverValid,
     ...failReducer(recommendedRoles, triggeringHandlers, tabbableTemplate),
     ...failReducer(
       interactiveRoles.filter((role) => !includes(recommendedRoles, role)),
@@ -237,6 +253,7 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
   invalid: [
+    ...neverValid,
     ...failReducer(strictRoles, triggeringHandlers, tabbableTemplate),
     ...failReducer(
       interactiveRoles.filter((role) => !includes(strictRoles, role)),

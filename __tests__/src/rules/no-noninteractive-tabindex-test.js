@@ -26,6 +26,15 @@ const expectedError = {
   type: 'JSXAttribute',
 };
 
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Article: 'article',
+      MyButton: 'button',
+    },
+  },
+};
+
 const alwaysValid = [
   { code: '<MyButton tabIndex={0} />' },
   { code: '<button />' },
@@ -36,6 +45,8 @@ const alwaysValid = [
   { code: '<div role="button" tabIndex="0" />' },
   { code: '<div role="article" tabIndex="-1" />' },
   { code: '<article tabIndex="-1" />' },
+  { code: '<Article tabIndex="-1" />', settings: componentsSettings },
+  { code: '<MyButton tabIndex={0} />', settings: componentsSettings },
 ];
 
 const neverValid = [
@@ -43,6 +54,7 @@ const neverValid = [
   { code: '<div role="article" tabIndex="0" />', errors: [expectedError] },
   { code: '<article tabIndex="0" />', errors: [expectedError] },
   { code: '<article tabIndex={0} />', errors: [expectedError] },
+  { code: '<Article tabIndex={0} />', errors: [expectedError], settings: componentsSettings },
 ];
 
 const recommendedOptions = (

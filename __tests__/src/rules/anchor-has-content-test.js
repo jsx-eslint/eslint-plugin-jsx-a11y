@@ -31,10 +31,20 @@ ruleTester.run('anchor-has-content', rule, {
     { code: '<a>{foo.bar}</a>' },
     { code: '<a dangerouslySetInnerHTML={{ __html: "foo" }} />' },
     { code: '<a children={children} />' },
+    { code: '<Link />' },
+    {
+      code: '<Link>foo</Link>',
+      settings: { 'jsx-a11y': { components: { Link: 'a' } } },
+    },
   ].map(parserOptionsMapper),
   invalid: [
     { code: '<a />', errors: [expectedError] },
     { code: '<a><Bar aria-hidden /></a>', errors: [expectedError] },
     { code: '<a>{undefined}</a>', errors: [expectedError] },
+    {
+      code: '<Link />',
+      errors: [expectedError],
+      settings: { 'jsx-a11y': { components: { Link: 'a' } } },
+    },
   ].map(parserOptionsMapper),
 });
