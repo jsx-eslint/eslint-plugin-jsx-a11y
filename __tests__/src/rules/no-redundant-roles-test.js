@@ -77,6 +77,7 @@ ruleTester.run(`${ruleName}:recommended (valid list role override)`, rule, {
   valid: [
     { code: '<ul role="list" />' },
     { code: '<ol role="list" />' },
+    { code: '<dl role="list" />' },
   ]
     .map(ruleOptionsMapperFactory(listException))
     .map(parserOptionsMapper),

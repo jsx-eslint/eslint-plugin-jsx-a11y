@@ -433,10 +433,6 @@ ruleTester.run('role-supports-aria-props', rule, {
       errors: [errorMessage('aria-expanded', 'dialog', 'dialog', true)],
     },
     {
-      code: '<dl aria-expanded />',
-      errors: [errorMessage('aria-expanded', 'list', 'dl', true)],
-    },
-    {
       code: '<aside aria-expanded />',
       errors: [errorMessage('aria-expanded', 'complementary', 'aside', true)],
     },
