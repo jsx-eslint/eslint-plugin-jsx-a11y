@@ -12,6 +12,8 @@ import {
   roles,
 } from 'aria-query';
 import { RuleTester } from 'eslint';
+import { version as eslintVersion } from 'eslint/package.json';
+import semver from 'semver';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/role-supports-aria-props';
 
@@ -72,7 +74,7 @@ const createTests = (rolesNames) => rolesNames.reduce((tests, role) => {
 const [validTests, invalidTests] = createTests(nonAbstractRoles);
 
 ruleTester.run('role-supports-aria-props', rule, {
-  valid: [
+  valid: [].concat(
     { code: '<Foo bar />' },
     { code: '<div />' },
     { code: '<div id="main" />' },
@@ -392,7 +394,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<div role="heading" aria-level />' },
     { code: '<div role="heading" aria-level="1" />' },
 
-    {
+    semver.satisfies(eslintVersion, '>= 6') ? {
       code: `
         const HelloThere = () => (
             <Hello
@@ -408,9 +410,9 @@ ruleTester.run('role-supports-aria-props', rule, {
         
         const Hello = (props) => <div>{props.frag}</div>;
       `,
-    },
-
-  ].concat(validTests).map(parserOptionsMapper),
+    } : [],
+    validTests,
+  ).map(parserOptionsMapper),
 
   invalid: [
     // implicit basic checks
