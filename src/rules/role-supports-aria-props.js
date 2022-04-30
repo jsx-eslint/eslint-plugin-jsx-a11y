@@ -42,10 +42,10 @@ export default {
     schema: [schema],
   },
 
-  create: (context) => {
+  create(context) {
     const elementType = getElementType(context);
     return {
-      JSXOpeningElement: (node) => {
+      JSXOpeningElement(node) {
         // If role is not explicitly defined, then try and get its implicit role.
         const type = elementType(node);
         const role = getProp(node.attributes, 'role');
@@ -66,17 +66,13 @@ export default {
         const {
           props: propKeyValues,
         } = roles.get(roleValue);
-        const propertySet = Object.keys(propKeyValues);
         const invalidAriaPropsForRole = [...aria.keys()]
-          .filter((attribute) => propertySet.indexOf(attribute) === -1);
+          .filter((attribute) => !(attribute in propKeyValues));
 
-        node.attributes.forEach((prop) => {
-          // Ignore the attribute if its value is null or undefined.
-          if (getPropValue(prop) == null) return;
-
-          // Ignore the attribute if it's a spread.
-          if (prop.type === 'JSXSpreadAttribute') return;
-
+        node.attributes.filter((prop) => (
+          getPropValue(prop) != null // Ignore the attribute if its value is null or undefined.
+          && prop.type !== 'JSXSpreadAttribute' // Ignore the attribute if it's a spread.
+        )).forEach((prop) => {
           const name = propName(prop);
           if (invalidAriaPropsForRole.indexOf(name) > -1) {
             context.report({
