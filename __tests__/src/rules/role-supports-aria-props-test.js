@@ -392,6 +392,24 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<div role="heading" aria-level />' },
     { code: '<div role="heading" aria-level="1" />' },
 
+    {
+      code: `
+        const HelloThere = () => (
+            <Hello
+                role="searchbox"
+                frag={
+                    <>
+                        <div>Hello</div>
+                        <div>There</div>
+                    </>
+                }
+            />
+        );
+        
+        const Hello = (props) => <div>{props.frag}</div>;
+      `,
+    },
+
   ].concat(validTests).map(parserOptionsMapper),
 
   invalid: [
