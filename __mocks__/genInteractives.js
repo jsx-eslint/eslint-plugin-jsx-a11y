@@ -4,8 +4,11 @@
 
 import { dom, roles } from 'aria-query';
 import includes from 'array-includes';
-import JSXAttributeMock, { JSXAttributeMockType } from './JSXAttributeMock';
-import JSXElementMock, { JSXElementMockType } from './JSXElementMock';
+import JSXAttributeMock from './JSXAttributeMock';
+import JSXElementMock from './JSXElementMock';
+
+import type { JSXAttributeMockType } from './JSXAttributeMock';
+import type { JSXElementMockType } from './JSXElementMock';
 
 const domElements = [...dom.keys()];
 const roleNames = [...roles.keys()];

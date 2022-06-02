@@ -19,7 +19,7 @@
   "scripts": {
     "build": "rimraf lib && babel src --out-dir lib --copy-files",
     "create": "node ./scripts/create-rule",
-    "flow": "if [ ! -e ./.flowconfig ]; then echo \"Could not find .flowconfig\"; else flow; test $? -eq 0 -o $? -eq 2; fi",
+    "flow": "flow",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint .",
     "prepublish": "not-in-publish || npm run prepublishOnly",
