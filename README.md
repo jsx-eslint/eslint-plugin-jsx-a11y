@@ -153,7 +153,6 @@ configuration file by mapping each custom component name to a DOM element type.
 <!-- AUTO-GENERATED-CONTENT:START (TABLE) -->
 | Rule | Recommended | Strict |
 | :--- | :--- | :--- |
-| [accessible-emoji](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/accessible-emoji.md) | error | error |
 | [alt-text](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/alt-text.md) | error | error |
 | [anchor-has-content](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-has-content.md) | error | error |
 | [anchor-is-valid](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-is-valid.md) | error | error |
