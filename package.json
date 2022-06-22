@@ -33,10 +33,10 @@
     "generate-list-of-rules:check": "npm run generate-list-of-rules && git diff --exit-code README.md"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.9",
-    "@babel/eslint-parser": "^7.17.0",
-    "@babel/plugin-transform-flow-strip-types": "^7.16.7",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.18.2",
+    "@babel/plugin-transform-flow-strip-types": "^7.17.12",
     "@babel/register": "^7.17.7",
     "ast-types-flow": "^0.0.7",
     "aud": "^2.0.0",
@@ -45,7 +45,7 @@
     "babel-preset-airbnb": "^5.0.0",
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-eslint-plugin": "^4.1.0",
+    "eslint-plugin-eslint-plugin": "^4.3.0",
     "eslint-plugin-flowtype": "^5.8.0 || ^8.0.3",
     "eslint-plugin-import": "^2.26.0",
     "estraverse": "^5.3.0",
