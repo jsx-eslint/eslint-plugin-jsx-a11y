@@ -38,6 +38,7 @@
     "@babel/eslint-parser": "^7.18.2",
     "@babel/plugin-transform-flow-strip-types": "^7.17.12",
     "@babel/register": "^7.17.7",
+    "@technote-space/doctoc": "~2.4",
     "ast-types-flow": "^0.0.7",
     "aud": "^2.0.0",
     "babel-jest": "^24.9.0",
