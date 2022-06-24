@@ -38,7 +38,7 @@ This plugin does a static evaluation of the JSX to spot accessibility issues in
 
 **If you are installing this plugin via `eslint-config-airbnb`, please follow [these instructions](https://github.com/airbnb/javascript/tree/HEAD/packages/eslint-config-airbnb#eslint-config-airbnb-1).**
 
-You'll first need to install [ESLint](https://eslint.org):
+You'll first need to install [ESLint](https://eslint.org/docs/latest/user-guide/getting-started):
 
 ```sh
 # npm
