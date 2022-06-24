@@ -1,3 +1,33 @@
+6.6.0 / 2022-06-23
+==================
+- 566011b [New] `aria-role`: add `allowedInvalidRoles` option (#828)
+- 64dcac6 [New] Introduce a plugin-wide setting for custom components. (#844)
+- ce2c328 [Fix] `no-redundant-roles`, `role-supports-aria-props`: Remove implicit role from dl element (#848)
+- fb20bc4 [Refactor] `role-supports-aria-props`: clean up the logic a bit
+- 1826628 [Refactor] reduce egregious use of array spread, in favor of `[].concat` idiom
+- 0f1615a [Docs] `no-static-element-interactions`: Update error message (#843)
+- 9980d1d [Docs] Add infrastructure for auto-generating markdown table and list (#837)
+- f878d3b [Docs] Update project readme (#831)
+- aea7671 [Deps] update `@babel/runtime`, `array-includes`, `axe-core`, `jsx-ast-utils`
+- d74173a [Deps] update `jsx-ast-utils`
+- f6ba03c [Deps] update `@babel/runtime`, `jsx-ast-utils`
+- 547dab4 [Deps] update `@babel/runtime`, `axe-core`, `minimatch`
+- baaf791 [Deps] update `@babel/runtime`, `minimatch`, `semver`
+- c015fef [Deps] update `@babel/runtime`, `axe-core`, `damerau-levenshtein`
+- 832cbd6 [meta] add `export default` instead of `module.exports` (#861)
+- ee933a2 [meta] Add CONTRIBUTING.md to solicit contributions (#846)
+- fa3c869 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `aud`, `eslint-plugin-eslint-plugin`, `eslint-plugin-flowtype`, `eslint-plugin-import`
+- fb3d51e [Dev Deps] update `@babel/core`, `@babel/register`, `eslint-plugin-import`, `minimist`
+- 8c1df4d [Dev Deps] pin `@technote-space/doctoc` because v2.5 is a breaking change
+- fb071ab [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `eslint-plugin-eslint-plugin`
+- 5e966e5 [Dev Deps] update `@babel/cli`
+- f597f5b [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`
+- 287854a [Tests] Fix `npm run flow` (#856)
+- 112261c [Tests] skip fragment tests in eslint < 6
+- ea877c4 [Tests] `img-redundant-alt-test`: add passing tests (#832)
+- 685426d test: align usage of jest expect across tests (#827)
+- c460a8b [Tests] move invalid test case to valid; changed in axe-core v4.4
+
 6.5.1 / 2021-11-10
 ==================
 - 8f7d0b0 [Fix] properly build `module.exports` (#824)
