@@ -429,6 +429,11 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     // Expressions should pass in recommended mode
     { code: '<div role={ROLE_BUTTON} onClick={() => {}} />;' },
     { code: '<div  {...this.props} role={this.props.role} onKeyPress={e => this.handleKeyPress(e)}>{this.props.children}</div>' },
+    // Specific case for ternary operator with literals on both side
+    {
+      code: '<div role={isButton ? "button" : "link"} onClick={() => {}} />;',
+      options: [{ allowExpressionValues: true }],
+    },
   )
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
@@ -465,5 +470,11 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     // Expressions should fail in strict mode
     { code: '<div role={ROLE_BUTTON} onClick={() => {}} />;', errors: [expectedError] },
     { code: '<div  {...this.props} role={this.props.role} onKeyPress={e => this.handleKeyPress(e)}>{this.props.children}</div>', errors: [expectedError] },
+    // Specific case for ternary operator with literals on both side
+    {
+      code: '<div role={isButton ? "button" : "link"} onClick={() => {}} />;',
+      options: [{ allowExpressionValues: false }],
+      errors: [expectedError],
+    },
   ).map(parserOptionsMapper),
 });
