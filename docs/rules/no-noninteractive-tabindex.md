@@ -50,7 +50,7 @@ If you know that a particular element will be scrollable, you might want to add 
 
 ```jsx
 // eslint-disable-next-line no-noninteractive-tabindex
-<pre tabIndex="0"> 
+<pre tabIndex="0">
   <code>{someLongCode}</code>
 </pre>
 ```
@@ -65,8 +65,15 @@ The recommended options for this rule allow `tabIndex` on elements with the noni
   {
     tags: [],
     roles: ['tabpanel'],
+    allowExpressionValues: true,
   },
 ]
+```
+The `allowExpressionValues` option determines whether the `role` attribute is allowed to be assigned using an expression. For example, the following would pass in recommended mode if `allowExpressionValues` is set to be `true`:
+```jsx
+<div role={ROLE_BUTTON} onClick={() => {}} tabIndex="0" />;
+// In case of a conditional expression, there should be literals on both sides of ternary operator
+<div role={isButton ? "button" : "link"} onClick={() => {}} tabIndex="0" />;
 ```
 
 ### Succeed

@@ -55,7 +55,7 @@ Do not use the role `presentation` on the element: it removes the element's sema
 
 ## Rule details
 
-You may configure which handler props should be taken into account when applying this rule. The recommended configuration includes the following 6 handlers.
+You may configure which handler props should be taken into account when applying this rule. The recommended configuration includes the following 6 handlers and the `allowExpressionValues` option.
 
 ```javascript
 'jsx-a11y/no-static-element-interactions': [
@@ -69,11 +69,19 @@ You may configure which handler props should be taken into account when applying
       'onKeyDown',
       'onKeyUp',
     ],
+    allowExpressionValues: true,
   },
 ],
 ```
 
 Adjust the list of handler prop names in the handlers array to increase or decrease the coverage surface of this rule in your codebase.
+
+The `allowExpressionValues` option determines whether the `role` attribute is allowed to be assigned using an expression. For example, the following would pass in recommended mode if `allowExpressionValues` is set to be `true`:
+```jsx
+<div role={ROLE_BUTTON} onClick={() => {}} />;
+// In case of a conditional expression, there should be literals on both sides of ternary operator
+<div role={isButton ? "button" : "link"} onClick={() => {}} />;
+```
 
 ### Succeed
 
