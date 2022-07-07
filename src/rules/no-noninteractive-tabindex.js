@@ -82,6 +82,18 @@ export default ({
           allowExpressionValues === true
           && isNonLiteralProperty(attributes, 'role')
         ) {
+          // Special case if role is assigned using ternary with literals on both side
+          const roleProp = getProp(attributes, 'role');
+          if (roleProp && roleProp.type === 'JSXAttribute' && roleProp.value.type === 'JSXExpressionContainer') {
+            if (roleProp.value.expression.type === 'ConditionalExpression') {
+              if (
+                roleProp.value.expression.consequent.type === 'Literal'
+                && roleProp.value.expression.alternate.type === 'Literal'
+              ) {
+                return;
+              }
+            }
+          }
           return;
         }
         if (
