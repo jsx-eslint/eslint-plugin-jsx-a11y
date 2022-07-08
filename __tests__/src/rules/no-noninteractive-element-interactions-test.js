@@ -110,6 +110,16 @@ const alwaysValid = [
   { code: '<embed onClick={() => {}} />;' },
   { code: '<font onClick={() => {}} />;' },
   { code: '<font onSubmit={() => {}} />;' },
+  { code: '<form onSubmit={() => {}} />;' },
+  {
+    code: `
+      <form onSubmit={this.handleSubmit.bind(this)} method="POST">
+        <button type="submit">
+            Save
+        </button>
+      </form>
+    `,
+  },
   { code: '<frameset onClick={() => {}} />;' },
   { code: '<head onClick={() => {}} />;' },
   { code: '<header onClick={() => {}} />;' },
