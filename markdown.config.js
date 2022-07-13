@@ -2,17 +2,27 @@
 
 require('@babel/register');
 
-const { rules } = require('./src');
+const {
+  configs: {
+    recommended: { rules: recommended },
+    strict: { rules: strict },
+  },
+  rules,
+} = require('./src');
 
 const ruleTableRows = Object.keys(rules)
   .sort()
   .map((id) => {
     const { meta } = rules[id];
     const { url, errorOptions } = meta.docs;
+
+    const recSev = [].concat(recommended[`jsx-a11y/${id}`] || 'off')[0];
+    const strictSev = [].concat(strict[`jsx-a11y/${id}`] || 'off')[0];
+
     return [
       `[${id}](${url})`,
-      errorOptions ? 'error, with options' : 'error',
-      'error',
+      recSev === 'error' ? (errorOptions ? 'error, with options' : 'error') : recSev, // eslint-disable-line no-nested-ternary
+      strictSev,
     ].join(' | ');
   });
 
