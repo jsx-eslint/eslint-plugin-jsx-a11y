@@ -16,7 +16,7 @@ import attributesComparator from './attributesComparator';
 
 const domKeys = [...dom.keys()];
 const roleKeys = [...roles.keys()];
-const elementRoleEntries = [...elementRoles];
+const elementRoleEntries = [...elementRoles.entries()];
 
 const nonInteractiveRoles = new Set(roleKeys
   .filter((name) => {
@@ -81,7 +81,7 @@ const interactiveElementRoleSchemas = elementRoleEntries
 const interactiveAXObjects = new Set([...AXObjects.keys()]
   .filter((name) => AXObjects.get(name).type === 'widget'));
 
-const interactiveElementAXObjectSchemas = [...elementAXObjects]
+const interactiveElementAXObjectSchemas = [...elementAXObjects.entries()]
   .reduce((
     accumulator,
     [
