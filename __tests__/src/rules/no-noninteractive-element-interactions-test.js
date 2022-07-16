@@ -139,6 +139,19 @@ const alwaysValid = [
   },
   { code: '<img {...props} onError={() => {}} />;' },
   { code: '<img onLoad={() => {}} />;' },
+  { code: '<img src={currentPhoto.imageUrl} onLoad={this.handleImageLoad} alt="for review" />' },
+  {
+    code: `
+        <img
+        ref={this.ref}
+        className="c-responsive-image-placeholder__image"
+        src={src}
+        alt={alt}
+        data-test-id="test-id"
+        onLoad={this.fetchCompleteImage}
+      />
+    `,
+  },
   { code: '<ins onClick={() => {}} />;' },
   { code: '<kbd onClick={() => {}} />;' },
   { code: '<keygen onClick={() => {}} />;' },
