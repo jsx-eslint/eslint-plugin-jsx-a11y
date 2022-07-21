@@ -33,11 +33,11 @@
     "generate-list-of-rules:check": "npm run generate-list-of-rules && git diff --exit-code README.md"
   },
   "devDependencies": {
-    "@babel/cli": "^7.18.6",
-    "@babel/core": "^7.18.6",
-    "@babel/eslint-parser": "^7.18.2",
-    "@babel/plugin-transform-flow-strip-types": "^7.18.6",
-    "@babel/register": "^7.18.6",
+    "@babel/cli": "^7.18.9",
+    "@babel/core": "^7.18.9",
+    "@babel/eslint-parser": "^7.18.9",
+    "@babel/plugin-transform-flow-strip-types": "^7.18.9",
+    "@babel/register": "^7.18.9",
     "@technote-space/doctoc": "~2.4",
     "ast-types-flow": "^0.0.7",
     "aud": "^2.0.0",
