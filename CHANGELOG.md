@@ -1,3 +1,20 @@
+6.6.1 / 2022-07-21
+==================
+- 38405ad [Fix] `no-interactive-tabindex`: allow role assignments using a ternary with literals on both sides
+- 7524e0c [Fix] `no-static-element-interactions`: allow role assignments using a ternary with literals on both sides (#865)
+- 1c06306 [readme] properly describe rule settings in builtin configs
+- 0c19f02 [Docs] `no-noninteractive-tabindex`, `no-static-element-interactions`: document `allowExpressionValues` (#870)
+- 2362832 [readme] added link to redirect eslint to relevant docs (#862)
+- 2c6926c [Deps] unpin `axe-core`
+- b78f19d [Deps] pin `axe-core` to v4.4.1, due to a breaking change in a patch
+- 768910e [Deps] update `@babel/runtime`
+- f0e04ce [Deps] update `@babel/runtime`, `jsx-ast-utils`
+- 93b2a9d [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `@babel/register`
+- a962211 [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/plugin-transform-flow-strip-types`, `@babel/register`
+- 0d2bc43 [Tests] `no-noninteractive-element-interactions`: add passing test cases (#876)
+- ffefbad [Tests] `no-noninteractive-element-interactions`: add passing tests for form with onSubmit (#871)
+- e7d405d [Tests] `no-static-element-interactions`: add passing test cases
+
 6.6.0 / 2022-06-23
 ==================
 - 566011b [New] `aria-role`: add `allowedInvalidRoles` option (#828)
