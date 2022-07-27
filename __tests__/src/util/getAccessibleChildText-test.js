@@ -35,6 +35,27 @@ describe('getAccessibleChildText', () => {
     ), elementType)).toBe('bar');
   });
 
+  it('returns alt text for img child', () => {
+    expect(getAccessibleChildText(JSXElementMock(
+      'a',
+      [],
+      [JSXElementMock('img', [
+        JSXAttributeMock('src', 'some/path'),
+        JSXAttributeMock('alt', 'a sensible label'),
+      ])],
+    ), elementType)).toBe('a sensible label');
+  });
+
+  it('returns blank when alt tag is used on arbitrary element', () => {
+    expect(getAccessibleChildText(JSXElementMock(
+      'a',
+      [],
+      [JSXElementMock('span', [
+        JSXAttributeMock('alt', 'a sensible label'),
+      ])],
+    ), elementType)).toBe('');
+  });
+
   it('returns literal value for JSXText child', () => {
     expect(getAccessibleChildText(JSXElementMock(
       'a',

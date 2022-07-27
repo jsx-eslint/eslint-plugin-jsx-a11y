@@ -39,6 +39,7 @@ ruleTester.run('anchor-ambiguous-text', rule, {
     { code: '<a>${here}</a>;' },
     { code: '<a aria-label="tutorial on using eslint-plugin-jsx-a11y">click here</a>;' },
     { code: '<a><span aria-label="tutorial on using eslint-plugin-jsx-a11y">click here</span></a>;' },
+    { code: '<a><img alt="documentation" /></a>;' },
     {
       code: '<a>click here</a>',
       options: [{
@@ -48,6 +49,10 @@ ruleTester.run('anchor-ambiguous-text', rule, {
     {
       code: '<Link>documentation</Link>;',
       settings: { 'jsx-a11y': { components: { Link: 'a' } } },
+    },
+    {
+      code: '<a><Image alt="documentation" /></a>;',
+      settings: { 'jsx-a11y': { components: { Image: 'img' } } },
     },
     {
       code: '<Link>${here}</Link>;',
@@ -80,11 +85,19 @@ ruleTester.run('anchor-ambiguous-text', rule, {
     { code: '<a><span> click </span> here</a>;', errors: [expectedError] },
     { code: '<a><span aria-hidden>more text</span>learn more</a>;', errors: [expectedError] },
     { code: '<a><span aria-hidden="true">more text</span>learn more</a>;', errors: [expectedError] },
+    { code: '<a><img alt="click here"/></a>;', errors: [expectedError] },
+    { code: '<a alt="tutorial on using eslint-plugin-jsx-a11y">click here</a>;', errors: [expectedError] },
+    { code: '<a><span alt="tutorial on using eslint-plugin-jsx-a11y">click here</span></a>;', errors: [expectedError] },
     { code: '<a><CustomElement>click</CustomElement> here</a>;', errors: [expectedError] },
     {
       code: '<Link>here</Link>',
       errors: [expectedError],
       settings: { 'jsx-a11y': { components: { Link: 'a' } } },
+    },
+    {
+      code: '<a><Image alt="click here" /></a>',
+      errors: [expectedError],
+      settings: { 'jsx-a11y': { components: { Image: 'img' } } },
     },
     {
       code: '<a>a disallowed word</a>',

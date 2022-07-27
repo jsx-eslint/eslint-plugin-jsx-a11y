@@ -29,6 +29,10 @@ export default function getAccessibleChildText(node: JSXElement, elementType: (J
   // early escape-hatch when aria-label is applied
   if (ariaLabel) return standardizeSpaceAndCase(ariaLabel);
 
+  // early-return if alt prop exists and is an image
+  const altTag = getLiteralPropValue(getProp(node.openingElement.attributes, 'alt'));
+  if (elementType(node.openingElement) === 'img' && altTag) return standardizeSpaceAndCase(altTag);
+
   // skip if aria-hidden is true
   if (
     isHiddenFromScreenReader(

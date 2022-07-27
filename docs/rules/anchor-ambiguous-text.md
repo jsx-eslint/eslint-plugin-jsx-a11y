@@ -22,7 +22,13 @@ The `words` option allows users to modify the strings that can be checked for in
 const DEFAULT_AMBIGUOUS_WORDS = ['click here', 'here', 'link', 'a link', 'learn more'];
 ```
 
-If an element has the `aria-label` property, its value is used instead of the inner text. Note that the rule still disallows ambiguous `aria-label`s. This rule also skips over elements with `aria-hidden="true"`.
+The logic to calculate the inner text of an anchor is as follows:
+
+- if an element has the `aria-label` property, its value is used instead of the inner text
+- if an element has `aria-hidden="true`, it is skipped over
+- if an element is `<img />` or configured to be interpreted like one, its `alt` value is used as its inner text
+
+Note that this rule still disallows ambiguous `aria-label` or `alt` values.
 
 Note that this rule is case-insensitive and trims whitespace. It only looks for **exact matches**.
 
@@ -46,6 +52,8 @@ Note that this rule is case-insensitive and trims whitespace. It only looks for 
 <a><i></i>a link</a>
 <a><span aria-hidden="true">more text</span>learn more</a> // skips over elements with aria-hidden=true
 <a aria-label="click here">something</a> // the aria-label here is inaccessible
+<a><img alt="click here"/></a> // the alt tag is still ambiguous
+<a alt="tutorial on using eslint-plugin-jsx-a11y">click here</a> // the alt tag is only parsed on img
 ```
 
 ## Accessibility guidelines
