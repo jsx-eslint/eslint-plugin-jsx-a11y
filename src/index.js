@@ -4,6 +4,7 @@ module.exports = {
   rules: {
     'accessible-emoji': require('./rules/accessible-emoji'),
     'alt-text': require('./rules/alt-text'),
+    'alt-text-max-length': require('./rules/alt-text-max-length'),
     'anchor-ambiguous-text': require('./rules/anchor-ambiguous-text'),
     'anchor-has-content': require('./rules/anchor-has-content'),
     'anchor-is-valid': require('./rules/anchor-is-valid'),
@@ -52,6 +53,7 @@ module.exports = {
       },
       rules: {
         'jsx-a11y/alt-text': 'error',
+        'jsx-a11y/alt-text-max-length': 'error',
         'jsx-a11y/anchor-ambiguous-text': 'off', // TODO: error
         'jsx-a11y/anchor-has-content': 'error',
         'jsx-a11y/anchor-is-valid': 'error',
@@ -208,6 +210,7 @@ module.exports = {
       },
       rules: {
         'jsx-a11y/alt-text': 'error',
+        'jsx-a11y/alt-text-max-length': 'error',
         'jsx-a11y/anchor-has-content': 'error',
         'jsx-a11y/anchor-is-valid': 'error',
         'jsx-a11y/aria-activedescendant-has-tabindex': 'error',
