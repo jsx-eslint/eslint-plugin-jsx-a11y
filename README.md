@@ -143,6 +143,7 @@ configuration file by mapping each custom component name to a DOM element type.
 - [no-onchange](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-onchange.md): Enforce usage of `onBlur` over `onChange` on select menus for accessibility.
 - [no-redundant-roles](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-redundant-roles.md): Enforce explicit role property is not the same as implicit/default role property on element.
 - [no-static-element-interactions](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-static-element-interactions.md): Enforce that non-interactive, visible elements (such as `<div>`) that have click handlers use the role attribute.
+
 - [role-has-required-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-has-required-aria-props.md): Enforce that elements with ARIA roles must have all required attributes for that role.
 - [role-supports-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-supports-aria-props.md): Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.
 - [scope](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/scope.md): Enforce `scope` prop is only used on `<th>` elements.
@@ -187,6 +188,7 @@ configuration file by mapping each custom component name to a DOM element type.
 | [no-onchange](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-onchange.md) | off | off |
 | [no-redundant-roles](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-redundant-roles.md) | error | error |
 | [no-static-element-interactions](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-static-element-interactions.md) | error, with options | error |
+| [prefer-tag-over-role](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/prefer-tag-over-role.md) | off | off |
 | [role-has-required-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-has-required-aria-props.md) | error | error |
 | [role-supports-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-supports-aria-props.md) | error | error |
 | [scope](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/scope.md) | error, with options | error |
