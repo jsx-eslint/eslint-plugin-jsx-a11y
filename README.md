@@ -88,6 +88,7 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
   "extends": ["plugin:jsx-a11y/recommended"]
 }
 ```
+> As you are extending our configuration, you can omit `"plugins": ["jsx-a11y"]` from your `.eslintrc` configuration file.
 
 To enable your custom components to be checked as DOM elements, you can set global settings in your
 configuration file by mapping each custom component name to a DOM element type.
