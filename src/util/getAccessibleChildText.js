@@ -10,10 +10,14 @@ import isHiddenFromScreenReader from './isHiddenFromScreenReader';
  * Returns a new "standardized" string: all whitespace is collapsed to one space,
  * and the string is lowercase
  * @param {string} input
- * @returns lowercase, single-spaced, trimmed string
+ * @returns lowercase, single-spaced, punctuation-stripped, trimmed string
  */
 function standardizeSpaceAndCase(input: string): string {
-  return input.trim().replace(/\s\s+/g, ' ').toLowerCase();
+  return input
+    .trim()
+    .replace(/[,.?¿!‽¡;:]/g, '') // strip punctuation
+    .replace(/\s\s+/g, ' ') // collapse spaces
+    .toLowerCase();
 }
 
 /**

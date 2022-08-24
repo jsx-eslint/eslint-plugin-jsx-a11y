@@ -30,7 +30,7 @@ The logic to calculate the inner text of an anchor is as follows:
 
 Note that this rule still disallows ambiguous `aria-label` or `alt` values.
 
-Note that this rule is case-insensitive and trims whitespace. It only looks for **exact matches**.
+Note that this rule is case-insensitive, trims whitespace, and ignores certain punctuation (`[,.?¿!‽¡;:]`). It only looks for **exact matches**.
 
 ### Succeed
 ```jsx
@@ -43,8 +43,15 @@ Note that this rule is case-insensitive and trims whitespace. It only looks for 
 ```jsx
 <a>here</a>
 <a>HERE</a>
-<a>click here</a>
 <a>link</a>
+<a>click here</a>
+<a>learn more</a>
+<a>learn more.</a>
+<a>learn more,</a>
+<a>learn more?</a>
+<a>learn more!</a>
+<a>learn more:</a>
+<a>learn more;</a>
 <a>a link</a>
 <a> a link </a>
 <a><span> click </span> here</a> // goes through element children

@@ -64,6 +64,30 @@ describe('getAccessibleChildText', () => {
     ), elementType)).toBe('bar');
   });
 
+  it('returns trimmed literal value for JSXText child', () => {
+    expect(getAccessibleChildText(JSXElementMock(
+      'a',
+      [],
+      [{ type: 'Literal', value: ' bar   ' }],
+    ), elementType)).toBe('bar');
+  });
+
+  it('returns space-collapsed literal value for JSXText child', () => {
+    expect(getAccessibleChildText(JSXElementMock(
+      'a',
+      [],
+      [{ type: 'Literal', value: 'foo         bar' }],
+    ), elementType)).toBe('foo bar');
+  });
+
+  it('returns punctuation-stripped literal value for JSXText child', () => {
+    expect(getAccessibleChildText(JSXElementMock(
+      'a',
+      [],
+      [{ type: 'Literal', value: 'foo, bar. baz? foo; bar:' }],
+    ), elementType)).toBe('foo bar baz foo bar');
+  });
+
   it('returns recursive value for JSXElement child', () => {
     expect(getAccessibleChildText(JSXElementMock(
       'a',
