@@ -17,7 +17,10 @@ const schema = generateObjSchema();
 
 export default {
   meta: {
-    docs: {},
+    docs: {
+      get description() { throw new SyntaxError('do not forget to add the description!'); },
+      get url() { throw new SyntaxError('do not forget to add the URL!'); },
+    },
     schema: [schema],
   },
 

@@ -39,7 +39,10 @@ const schema = generateObjSchema({
 
 export default ({
   meta: {
-    docs: {},
+    docs: {
+      description: 'Enforce that a control (an interactive element) has a text label.',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/control-has-associated-label.md',
+    },
     schema: [schema],
   },
 
