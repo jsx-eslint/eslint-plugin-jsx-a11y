@@ -1,7 +1,12 @@
 {
+  "root": true,
   "extends": [
     "airbnb-base",
     "plugin:flowtype/recommended"
+  ],
+  "ignorePatterns": [
+    "lib/",
+    "reports/",
   ],
   "parser": "@babel/eslint-parser",
   "plugins": [
