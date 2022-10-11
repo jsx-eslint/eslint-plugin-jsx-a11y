@@ -11,6 +11,7 @@
 import { roles } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/role-has-required-aria-props';
 
 // -----------------------------------------------------------------------------
@@ -50,7 +51,7 @@ const basicValidityTests = [...roles.keys()].map((role) => {
 });
 
 ruleTester.run('role-has-required-aria-props', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<Bar baz />' },
     { code: '<MyComponent role="combobox" />' },
     // Variables should pass, as we are only testing literals.
@@ -64,9 +65,9 @@ ruleTester.run('role-has-required-aria-props', rule, {
     { code: '<input role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0" {...props} type="checkbox" />' },
     { code: '<input type="checkbox" role="switch" />' },
     { code: '<MyComponent role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0" />', settings: componentsSettings },
-  ].concat(basicValidityTests).map(parserOptionsMapper),
+  )).concat(basicValidityTests).map(parserOptionsMapper),
 
-  invalid: [
+  invalid: parsers.all([].concat(
     // SLIDER
     { code: '<div role="slider" />', errors: [errorMessage('slider')] },
     {
@@ -126,5 +127,5 @@ ruleTester.run('role-has-required-aria-props', rule, {
     },
     // Custom element
     { code: '<MyComponent role="combobox" />', settings: componentsSettings, errors: [errorMessage('combobox')] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-distracting-elements';
 
 // -----------------------------------------------------------------------------
@@ -31,14 +32,14 @@ const componentsSettings = {
 };
 
 ruleTester.run('no-marquee', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<Marquee />' },
     { code: '<div marquee />' },
     { code: '<Blink />' },
     { code: '<div blink />' },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<marquee />', errors: [expectedError('marquee')] },
     { code: '<marquee {...props} />', errors: [expectedError('marquee')] },
     { code: '<marquee lang={undefined} />', errors: [expectedError('marquee')] },
@@ -46,5 +47,5 @@ ruleTester.run('no-marquee', rule, {
     { code: '<blink {...props} />', errors: [expectedError('blink')] },
     { code: '<blink foo={undefined} />', errors: [expectedError('blink')] },
     { code: '<Blink />', settings: componentsSettings, errors: [expectedError('blink')] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

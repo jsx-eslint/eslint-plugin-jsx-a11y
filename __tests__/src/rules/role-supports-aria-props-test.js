@@ -15,6 +15,7 @@ import { RuleTester } from 'eslint';
 import { version as eslintVersion } from 'eslint/package.json';
 import semver from 'semver';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/role-supports-aria-props';
 
 // -----------------------------------------------------------------------------
@@ -74,7 +75,7 @@ const createTests = (rolesNames) => rolesNames.reduce((tests, role) => {
 const [validTests, invalidTests] = createTests(nonAbstractRoles);
 
 ruleTester.run('role-supports-aria-props', rule, {
-  valid: [].concat(
+  valid: parsers.all([].concat(
     { code: '<Foo bar />' },
     { code: '<div />' },
     { code: '<div id="main" />' },
@@ -415,9 +416,9 @@ ruleTester.run('role-supports-aria-props', rule, {
       `,
     } : [],
     validTests,
-  ).map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 
-  invalid: [
+  invalid: parsers.all([].concat(
     // implicit basic checks
     {
       code: '<a href="#" aria-checked />',
@@ -568,5 +569,5 @@ ruleTester.run('role-supports-aria-props', rule, {
       errors: [errorMessage('aria-checked', 'link', 'a', true)],
       settings: componentsSettings,
     },
-  ].concat(invalidTests).map(parserOptionsMapper),
+  )).concat(invalidTests).map(parserOptionsMapper),
 });

@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/media-has-caption';
 
 // -----------------------------------------------------------------------------
@@ -41,7 +42,7 @@ const componentsSettings = {
 };
 
 ruleTester.run('media-has-caption', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<MyDiv />;' },
     { code: '<audio><track kind="captions" /></audio>' },
@@ -143,8 +144,8 @@ ruleTester.run('media-has-caption', rule, {
       code: '<Audio muted={true}></Audio>',
       settings: componentsSettings,
     },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<audio><track /></audio>', errors: [expectedError] },
     {
       code: '<audio><track kind="subtitles" /></audio>',
@@ -205,5 +206,5 @@ ruleTester.run('media-has-caption', rule, {
       settings: componentsSettings,
       errors: [expectedError],
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/anchor-is-valid';
 
 // -----------------------------------------------------------------------------
@@ -88,7 +89,7 @@ const componentsSettings = {
 };
 
 ruleTester.run('anchor-is-valid', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     // DEFAULT ELEMENT 'a' TESTS
     { code: '<Anchor />' },
     { code: '<a {...props} />' },
@@ -279,8 +280,8 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: '<Anchor hrefLeft={undefined} />', options: componentsAndSpecialLinkAndInvalidHrefAspect },
     { code: '<Anchor hrefLeft={null} />', options: componentsAndSpecialLinkAndInvalidHrefAspect },
 
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     // DEFAULT ELEMENT 'a' TESTS
     // NO HREF
     { code: '<a />', errors: [noHrefexpectedError] },
@@ -288,8 +289,8 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: '<a href={null} />', errors: [noHrefexpectedError] },
     // INVALID HREF
     { code: '<a href="" />;', errors: [invalidHrefexpectedError] },
-    { code: '<a href="#" />', errors: [invalidHrefErrorMessage] },
-    { code: '<a href={"#"} />', errors: [invalidHrefErrorMessage] },
+    { code: '<a href="#" />', errors: [invalidHrefexpectedError] },
+    { code: '<a href={"#"} />', errors: [invalidHrefexpectedError] },
     { code: '<a href="javascript:void(0)" />', errors: [invalidHrefexpectedError] },
     { code: '<a href={"javascript:void(0)"} />', errors: [invalidHrefexpectedError] },
     // SHOULD BE BUTTON
@@ -308,13 +309,13 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: '<Link href={null} />', errors: [noHrefexpectedError], options: components },
     // INVALID HREF
     { code: '<Link href="" />', errors: [invalidHrefexpectedError], options: components },
-    { code: '<Link href="#" />', errors: [invalidHrefErrorMessage], options: components },
-    { code: '<Link href={"#"} />', errors: [invalidHrefErrorMessage], options: components },
+    { code: '<Link href="#" />', errors: [invalidHrefexpectedError], options: components },
+    { code: '<Link href={"#"} />', errors: [invalidHrefexpectedError], options: components },
     { code: '<Link href="javascript:void(0)" />', errors: [invalidHrefexpectedError], options: components },
     { code: '<Link href={"javascript:void(0)"} />', errors: [invalidHrefexpectedError], options: components },
     { code: '<Anchor href="" />', errors: [invalidHrefexpectedError], options: components },
-    { code: '<Anchor href="#" />', errors: [invalidHrefErrorMessage], options: components },
-    { code: '<Anchor href={"#"} />', errors: [invalidHrefErrorMessage], options: components },
+    { code: '<Anchor href="#" />', errors: [invalidHrefexpectedError], options: components },
+    { code: '<Anchor href={"#"} />', errors: [invalidHrefexpectedError], options: components },
     { code: '<Anchor href="javascript:void(0)" />', errors: [invalidHrefexpectedError], options: components },
     { code: '<Anchor href={"javascript:void(0)"} />', errors: [invalidHrefexpectedError], options: components },
     // SHOULD BE BUTTON
@@ -354,8 +355,8 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: '<a hrefLeft={null} />', errors: [noHrefexpectedError], options: specialLink },
     // INVALID HREF
     { code: '<a hrefLeft="" />;', errors: [invalidHrefexpectedError], options: specialLink },
-    { code: '<a hrefLeft="#" />', errors: [invalidHrefErrorMessage], options: specialLink },
-    { code: '<a hrefLeft={"#"} />', errors: [invalidHrefErrorMessage], options: specialLink },
+    { code: '<a hrefLeft="#" />', errors: [invalidHrefexpectedError], options: specialLink },
+    { code: '<a hrefLeft={"#"} />', errors: [invalidHrefexpectedError], options: specialLink },
     { code: '<a hrefLeft="javascript:void(0)" />', errors: [invalidHrefexpectedError], options: specialLink },
     { code: '<a hrefLeft={"javascript:void(0)"} />', errors: [invalidHrefexpectedError], options: specialLink },
     // SHOULD BE BUTTON
@@ -377,8 +378,8 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: '<Anchor hrefLeft={null} />', errors: [noHrefexpectedError], options: componentsAndSpecialLink },
     // INVALID HREF
     { code: '<Anchor hrefLeft="" />;', errors: [invalidHrefexpectedError], options: componentsAndSpecialLink },
-    { code: '<Anchor hrefLeft="#" />', errors: [invalidHrefErrorMessage], options: componentsAndSpecialLink },
-    { code: '<Anchor hrefLeft={"#"} />', errors: [invalidHrefErrorMessage], options: componentsAndSpecialLink },
+    { code: '<Anchor hrefLeft="#" />', errors: [invalidHrefexpectedError], options: componentsAndSpecialLink },
+    { code: '<Anchor hrefLeft={"#"} />', errors: [invalidHrefexpectedError], options: componentsAndSpecialLink },
     {
       code: '<Anchor hrefLeft="javascript:void(0)" />',
       errors: [invalidHrefexpectedError],
@@ -408,149 +409,149 @@ ruleTester.run('anchor-is-valid', rule, {
 
     // WITH ASPECTS TESTS
     // NO HREF
-    { code: '<a />', options: noHrefAspect, errors: [noHrefErrorMessage] },
-    { code: '<a />', options: noHrefPreferButtonAspect, errors: [noHrefErrorMessage] },
-    { code: '<a />', options: noHrefInvalidHrefAspect, errors: [noHrefErrorMessage] },
-    { code: '<a href={undefined} />', options: noHrefAspect, errors: [noHrefErrorMessage] },
-    { code: '<a href={undefined} />', options: noHrefPreferButtonAspect, errors: [noHrefErrorMessage] },
-    { code: '<a href={undefined} />', options: noHrefInvalidHrefAspect, errors: [noHrefErrorMessage] },
-    { code: '<a href={null} />', options: noHrefAspect, errors: [noHrefErrorMessage] },
-    { code: '<a href={null} />', options: noHrefPreferButtonAspect, errors: [noHrefErrorMessage] },
-    { code: '<a href={null} />', options: noHrefInvalidHrefAspect, errors: [noHrefErrorMessage] },
+    { code: '<a />', options: noHrefAspect, errors: [noHrefexpectedError] },
+    { code: '<a />', options: noHrefPreferButtonAspect, errors: [noHrefexpectedError] },
+    { code: '<a />', options: noHrefInvalidHrefAspect, errors: [noHrefexpectedError] },
+    { code: '<a href={undefined} />', options: noHrefAspect, errors: [noHrefexpectedError] },
+    { code: '<a href={undefined} />', options: noHrefPreferButtonAspect, errors: [noHrefexpectedError] },
+    { code: '<a href={undefined} />', options: noHrefInvalidHrefAspect, errors: [noHrefexpectedError] },
+    { code: '<a href={null} />', options: noHrefAspect, errors: [noHrefexpectedError] },
+    { code: '<a href={null} />', options: noHrefPreferButtonAspect, errors: [noHrefexpectedError] },
+    { code: '<a href={null} />', options: noHrefInvalidHrefAspect, errors: [noHrefexpectedError] },
 
     // INVALID HREF
-    { code: '<a href="" />;', options: invalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href="" />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href="" />;', options: preferButtonInvalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href="#" />;', options: invalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href="#" />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href="#" />;', options: preferButtonInvalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href={"#"} />;', options: invalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href={"#"} />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href={"#"} />;', options: preferButtonInvalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href="javascript:void(0)" />;', options: invalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href="javascript:void(0)" />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefErrorMessage] },
+    { code: '<a href="" />;', options: invalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href="" />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href="" />;', options: preferButtonInvalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href="#" />;', options: invalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href="#" />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href="#" />;', options: preferButtonInvalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href={"#"} />;', options: invalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href={"#"} />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href={"#"} />;', options: preferButtonInvalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href="javascript:void(0)" />;', options: invalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href="javascript:void(0)" />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefexpectedError] },
     {
       code: '<a href="javascript:void(0)" />;',
       options: preferButtonInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      errors: [invalidHrefexpectedError],
     },
-    { code: '<a href={"javascript:void(0)"} />;', options: invalidHrefAspect, errors: [invalidHrefErrorMessage] },
-    { code: '<a href={"javascript:void(0)"} />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefErrorMessage] },
+    { code: '<a href={"javascript:void(0)"} />;', options: invalidHrefAspect, errors: [invalidHrefexpectedError] },
+    { code: '<a href={"javascript:void(0)"} />;', options: noHrefInvalidHrefAspect, errors: [invalidHrefexpectedError] },
     {
       code: '<a href={"javascript:void(0)"} />;',
       options: preferButtonInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      errors: [invalidHrefexpectedError],
     },
 
     // SHOULD BE BUTTON
-    { code: '<a onClick={() => void 0} />', options: preferButtonAspect, errors: [preferButtonErrorMessage] },
+    { code: '<a onClick={() => void 0} />', options: preferButtonAspect, errors: [preferButtonexpectedError] },
     {
       code: '<a onClick={() => void 0} />',
       options: preferButtonInvalidHrefAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
-    { code: '<a onClick={() => void 0} />', options: noHrefPreferButtonAspect, errors: [preferButtonErrorMessage] },
-    { code: '<a onClick={() => void 0} />', options: noHrefAspect, errors: [noHrefErrorMessage] },
-    { code: '<a onClick={() => void 0} />', options: noHrefInvalidHrefAspect, errors: [noHrefErrorMessage] },
-    { code: '<a href="#" onClick={() => void 0} />', options: preferButtonAspect, errors: [preferButtonErrorMessage] },
+    { code: '<a onClick={() => void 0} />', options: noHrefPreferButtonAspect, errors: [preferButtonexpectedError] },
+    { code: '<a onClick={() => void 0} />', options: noHrefAspect, errors: [noHrefexpectedError] },
+    { code: '<a onClick={() => void 0} />', options: noHrefInvalidHrefAspect, errors: [noHrefexpectedError] },
+    { code: '<a href="#" onClick={() => void 0} />', options: preferButtonAspect, errors: [preferButtonexpectedError] },
     {
       code: '<a href="#" onClick={() => void 0} />',
       options: noHrefPreferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
     {
       code: '<a href="#" onClick={() => void 0} />',
       options: preferButtonInvalidHrefAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
-    { code: '<a href="#" onClick={() => void 0} />', options: invalidHrefAspect, errors: [invalidHrefErrorMessage] },
+    { code: '<a href="#" onClick={() => void 0} />', options: invalidHrefAspect, errors: [invalidHrefexpectedError] },
     {
       code: '<a href="#" onClick={() => void 0} />',
       options: noHrefInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      errors: [invalidHrefexpectedError],
     },
     {
       code: '<a href="javascript:void(0)" onClick={() => void 0} />',
       options: preferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
     {
       code: '<a href="javascript:void(0)" onClick={() => void 0} />',
       options: noHrefPreferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
     {
       code: '<a href="javascript:void(0)" onClick={() => void 0} />',
       options: preferButtonInvalidHrefAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
     {
       code: '<a href="javascript:void(0)" onClick={() => void 0} />',
       options: invalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      errors: [invalidHrefexpectedError],
     },
     {
       code: '<a href="javascript:void(0)" onClick={() => void 0} />',
       options: noHrefInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      errors: [invalidHrefexpectedError],
     },
     {
       code: '<a href={"javascript:void(0)"} onClick={() => void 0} />',
       options: preferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
     {
       code: '<a href={"javascript:void(0)"} onClick={() => void 0} />',
       options: noHrefPreferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
     {
       code: '<a href={"javascript:void(0)"} onClick={() => void 0} />',
       options: preferButtonInvalidHrefAspect,
-      errors: [preferButtonErrorMessage],
+      errors: [preferButtonexpectedError],
     },
     {
       code: '<a href={"javascript:void(0)"} onClick={() => void 0} />',
       options: invalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      errors: [invalidHrefexpectedError],
     },
     {
       code: '<a href={"javascript:void(0)"} onClick={() => void 0} />',
       options: noHrefInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      errors: [invalidHrefexpectedError],
     },
 
     // CUSTOM COMPONENTS AND SPECIALLINK AND ASPECT
     {
       code: '<Anchor hrefLeft={undefined} />',
       options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefErrorMessage],
+      errors: [noHrefexpectedError],
     },
     {
       code: '<Anchor hrefLeft={null} />',
       options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefErrorMessage],
+      errors: [noHrefexpectedError],
     },
     {
       code: '<Anchor hrefLeft={undefined} />',
       options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefErrorMessage],
+      errors: [noHrefexpectedError],
     },
     {
       code: '<Anchor hrefLeft={null} />',
       options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefErrorMessage],
+      errors: [noHrefexpectedError],
     },
     {
       code: '<Anchor hrefLeft={undefined} />',
       options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefErrorMessage],
+      errors: [noHrefexpectedError],
     },
     {
       code: '<Anchor hrefLeft={null} />',
       options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefErrorMessage],
+      errors: [noHrefexpectedError],
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

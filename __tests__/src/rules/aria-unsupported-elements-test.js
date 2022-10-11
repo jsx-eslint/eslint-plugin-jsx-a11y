@@ -11,6 +11,7 @@
 import { dom } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-unsupported-elements';
 
 // -----------------------------------------------------------------------------
@@ -68,7 +69,7 @@ const invalidAriaValidityTests = domElements
   }));
 
 ruleTester.run('aria-unsupported-elements', rule, {
-  valid: roleValidityTests.concat(ariaValidityTests).map(parserOptionsMapper),
-  invalid: invalidRoleValidityTests.concat(invalidAriaValidityTests)
+  valid: parsers.all([].concat(roleValidityTests.concat(ariaValidityTests))).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(invalidRoleValidityTests.concat(invalidAriaValidityTests)))
     .map(parserOptionsMapper),
 });

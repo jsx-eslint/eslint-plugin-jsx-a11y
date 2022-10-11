@@ -1,5 +1,6 @@
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/prefer-tag-over-role';
 
 const ruleTester = new RuleTester();
@@ -10,15 +11,15 @@ const expectedError = (role, tag) => ({
 });
 
 ruleTester.run('element-role', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<div role="unknown" />;' },
     { code: '<div role="also unknown" />;' },
     { code: '<other />' },
     { code: '<img role="img" />' },
     { code: '<input role="checkbox" />' },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     {
       code: '<div role="checkbox" />',
       errors: [expectedError('checkbox', '<input type="checkbox">')],
@@ -62,5 +63,5 @@ ruleTester.run('element-role', rule, {
       code: '<div role="banner" />',
       errors: [expectedError('banner', '<header>')],
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

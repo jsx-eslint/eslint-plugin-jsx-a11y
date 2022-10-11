@@ -15,6 +15,7 @@ import {
 } from 'jsx-ast-utils';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/interactive-supports-focus';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
@@ -208,7 +209,7 @@ const failReducer = (roles, handlers, messageTemplate) => (
 );
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     ...passReducer(
       interactiveRoles,
@@ -220,10 +221,10 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
       eventHandlers.filter((handler) => includes(triggeringHandlers, handler)),
       tabindexTemplate,
     ),
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
     ...failReducer(recommendedRoles, triggeringHandlers, tabbableTemplate),
     ...failReducer(
@@ -231,13 +232,13 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
       triggeringHandlers,
       focusableTemplate,
     ),
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     ...passReducer(
       interactiveRoles,
@@ -249,10 +250,10 @@ ruleTester.run(`${ruleName}:strict`, rule, {
       eventHandlers.filter((handler) => includes(triggeringHandlers, handler)),
       tabindexTemplate,
     ),
-  ]
+  ))
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
     ...failReducer(strictRoles, triggeringHandlers, tabbableTemplate),
     ...failReducer(
@@ -260,7 +261,7 @@ ruleTester.run(`${ruleName}:strict`, rule, {
       triggeringHandlers,
       focusableTemplate,
     ),
-  ]
+  ))
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
 });

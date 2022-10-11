@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/label-has-associated-control';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
@@ -149,18 +150,18 @@ const neverValid = [
 ];
 // htmlFor valid
 ruleTester.run(ruleName, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     ...htmlForValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory({
       assert: 'htmlFor',
     }))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
     ...nestingInvalid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory({
       assert: 'htmlFor',
     }))
@@ -169,18 +170,18 @@ ruleTester.run(ruleName, rule, {
 
 // nesting valid
 ruleTester.run(ruleName, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     ...nestingValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory({
       assert: 'nesting',
     }))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
     ...htmlForInvalid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory({
       assert: 'nesting',
     }))
@@ -189,31 +190,31 @@ ruleTester.run(ruleName, rule, {
 
 // either valid
 ruleTester.run(ruleName, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     ...htmlForValid,
     ...nestingValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory({
       assert: 'either',
     }))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });
 
 // both valid
 ruleTester.run(ruleName, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     ...bothValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory({
       assert: 'both',
     }))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

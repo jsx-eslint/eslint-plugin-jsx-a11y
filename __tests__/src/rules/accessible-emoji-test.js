@@ -10,6 +10,7 @@
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/accessible-emoji';
+import parsers from '../../__util__/helpers/parsers';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -23,7 +24,7 @@ const expectedError = {
 };
 
 ruleTester.run('accessible-emoji', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<span />' },
     { code: '<span>No emoji here!</span>' },
@@ -42,8 +43,8 @@ ruleTester.run('accessible-emoji', rule, {
       code: '<CustomInput type="hidden">🐼</CustomInput>',
       settings: { 'jsx-a11y': { components: { CustomInput: 'input' } } },
     },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<span>🐼</span>', errors: [expectedError] },
     { code: '<span>foo🐼bar</span>', errors: [expectedError] },
     { code: '<span>foo 🐼 bar</span>', errors: [expectedError] },
@@ -52,5 +53,5 @@ ruleTester.run('accessible-emoji', rule, {
     { code: '<Foo>🐼</Foo>', errors: [expectedError] },
     { code: '<span aria-hidden="false">🐼</span>', errors: [expectedError] },
     { code: '<CustomInput type="hidden">🐼</CustomInput>', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

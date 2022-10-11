@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/scope';
 
 // -----------------------------------------------------------------------------
@@ -32,7 +33,7 @@ const componentsSettings = {
 };
 
 ruleTester.run('scope', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<div foo />;' },
     { code: '<th scope />' },
@@ -41,9 +42,9 @@ ruleTester.run('scope', rule, {
     { code: '<th scope={"col"} {...props} />' },
     { code: '<Foo scope="bar" {...props} />' },
     { code: '<TableHeader scope="row" />', settings: componentsSettings },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<div scope />', errors: [expectedError] },
     { code: '<Foo scope="bar" />', settings: componentsSettings, errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

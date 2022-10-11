@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/tabindex-no-positive';
 
 // -----------------------------------------------------------------------------
@@ -23,7 +24,7 @@ const expectedError = {
 };
 
 ruleTester.run('tabindex-no-positive', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<div {...props} />' },
     { code: '<div id="main" />' },
@@ -42,13 +43,13 @@ ruleTester.run('tabindex-no-positive', rule, {
     { code: '<div tabIndex="-5.5" />' },
     { code: '<div tabIndex={-5.5} />' },
     { code: '<div tabIndex={-5} />' },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 
-  invalid: [
+  invalid: parsers.all([].concat(
     { code: '<div tabIndex="1" />', errors: [expectedError] },
     { code: '<div tabIndex={1} />', errors: [expectedError] },
     { code: '<div tabIndex={"1"} />', errors: [expectedError] },
     { code: '<div tabIndex={`1`} />', errors: [expectedError] },
     { code: '<div tabIndex={1.589} />', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

@@ -10,6 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/mouse-events-have-key-events';
 
 // -----------------------------------------------------------------------------
@@ -36,7 +37,7 @@ const pointerLeaveError = {
 };
 
 ruleTester.run('mouse-events-have-key-events', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div onMouseOver={() => void 0} onFocus={() => void 0} />;' },
     {
       code: '<div onMouseOver={() => void 0} onFocus={() => void 0} {...props} />;',
@@ -94,8 +95,8 @@ ruleTester.run('mouse-events-have-key-events', rule, {
       code: '<div onMouseLeave={() => {}} />',
       options: [{ hoverOutHandlers: ['onPointerLeave'] }],
     },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<div onMouseOver={() => void 0} />;', errors: [mouseOverError] },
     { code: '<div onMouseOut={() => void 0} />', errors: [mouseOutError] },
     {
@@ -149,5 +150,5 @@ ruleTester.run('mouse-events-have-key-events', rule, {
       options: [{ hoverOutHandlers: ['onPointerLeave'] }],
       errors: [pointerLeaveError],
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

@@ -10,6 +10,7 @@
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import { axeFailMessage } from '../../__util__/axeMapping';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/autocomplete-valid';
 
 // -----------------------------------------------------------------------------
@@ -37,7 +38,7 @@ const componentsSettings = {
 };
 
 ruleTester.run('autocomplete-valid', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     // INAPPLICABLE
     { code: '<input type="text" />;' },
     // // PASSED AUTOCOMPLETE
@@ -63,8 +64,8 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: '<input type="number" autocomplete="url" />;', errors: inappropriateAutocomplete },
     { code: '<input type="month" autocomplete="tel" />;', errors: inappropriateAutocomplete },
     { code: '<Foo type="month" autocomplete="tel"></Foo>;', errors: inappropriateAutocomplete, options: [{ inputComponents: ['Foo'] }] },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     // FAILED "autocomplete-valid"
     { code: '<input type="text" autocomplete="foo" />;', errors: invalidAutocomplete },
     { code: '<input type="text" autocomplete="name invalid" />;', errors: invalidAutocomplete },
@@ -72,5 +73,5 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: '<input type="text" autocomplete="home url" />;', errors: invalidAutocomplete },
     { code: '<Bar autocomplete="baz"></Bar>;', errors: invalidAutocomplete, options: [{ inputComponents: ['Bar'] }] },
     { code: '<Input type="text" autocomplete="baz" />', errors: invalidAutocomplete, settings: componentsSettings },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

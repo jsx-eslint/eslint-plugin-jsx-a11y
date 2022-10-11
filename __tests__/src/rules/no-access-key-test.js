@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-access-key';
 
 // -----------------------------------------------------------------------------
@@ -23,12 +24,12 @@ const expectedError = {
 };
 
 ruleTester.run('no-access-key', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<div {...props} />' },
     { code: '<div accessKey={undefined} />' },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<div accesskey="h" />', errors: [expectedError] },
     { code: '<div accessKey="h" />', errors: [expectedError] },
     { code: '<div accessKey="h" {...props} />', errors: [expectedError] },
@@ -43,5 +44,5 @@ ruleTester.run('no-access-key', rule, {
     { code: '<div accessKey={accessKey} />', errors: [expectedError] },
     { code: '<div accessKey={`${undefined}`} />', errors: [expectedError] },
     { code: '<div accessKey={`${undefined}${undefined}`} />', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

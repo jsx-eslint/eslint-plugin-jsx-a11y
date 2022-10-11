@@ -11,6 +11,7 @@ import { aria } from 'aria-query';
 import { RuleTester } from 'eslint';
 import expect from 'expect';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-proptypes';
 
 const { validityCheck } = rule;
@@ -29,22 +30,24 @@ const errorMessage = (name) => {
 
   switch (type) {
     case 'tristate':
-      return `The value for ${name} must be a boolean or the string "mixed".`;
+      return { message: `The value for ${name} must be a boolean or the string "mixed".` };
     case 'token':
-      return `The value for ${name} must be a single token from the following: ${permittedValues}.`;
+      return { message: `The value for ${name} must be a single token from the following: ${permittedValues}.` };
     case 'tokenlist':
-      return `The value for ${name} must be a list of one or more \
-tokens from the following: ${permittedValues}.`;
+      return {
+        message: `The value for ${name} must be a list of one or more \
+tokens from the following: ${permittedValues}.`,
+      };
     case 'idlist':
-      return `The value for ${name} must be a list of strings that represent DOM element IDs (idlist)`;
+      return { message: `The value for ${name} must be a list of strings that represent DOM element IDs (idlist)` };
     case 'id':
-      return `The value for ${name} must be a string that represents a DOM element ID`;
+      return { message: `The value for ${name} must be a string that represents a DOM element ID` };
     case 'boolean':
     case 'string':
     case 'integer':
     case 'number':
     default:
-      return `The value for ${name} must be a ${type}.`;
+      return { message: `The value for ${name} must be a ${type}.` };
   }
 };
 
@@ -58,7 +61,7 @@ describe('validityCheck', () => {
 });
 
 ruleTester.run('aria-proptypes', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     // DON'T TEST INVALID ARIA-* PROPS
     { code: '<div aria-foo="true" />' },
     { code: '<div abcaria-foo="true" />' },
@@ -211,8 +214,8 @@ ruleTester.run('aria-proptypes', rule, {
     { code: '<div aria-labelledby={foo.bar} />' },
     { code: '<div aria-labelledby={null} />' },
     { code: '<div aria-labelledby={undefined} />' },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     // BOOLEAN
     { code: '<div aria-hidden="yes" />', errors: [errorMessage('aria-hidden')] },
     { code: '<div aria-hidden="no" />', errors: [errorMessage('aria-hidden')] },
@@ -302,5 +305,5 @@ ruleTester.run('aria-proptypes', rule, {
       code: '<div aria-relevant="additions removalss " />',
       errors: [errorMessage('aria-relevant')],
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

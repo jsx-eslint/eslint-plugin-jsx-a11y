@@ -10,6 +10,7 @@
 import { RuleTester } from 'eslint';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-noninteractive-element-interactions';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
@@ -396,7 +397,7 @@ const neverValid = [
 
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     // All the possible handlers
     { code: '<div role="article" onCopy={() => {}} />;' },
@@ -459,24 +460,24 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<div role="article" onAnimationEnd={() => {}} />;' },
     { code: '<div role="article" onAnimationIteration={() => {}} />;' },
     { code: '<div role="article" onTransitionEnd={() => {}} />;' },
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 const strictOptions = configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {};
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
     // All the possible handlers
     { code: '<div role="article" onFocus={() => {}} />;', errors: [expectedError] },
@@ -497,7 +498,7 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     { code: '<div role="article" onMouseMove={() => {}} />;', errors: [expectedError] },
     { code: '<div role="article" onMouseOut={() => {}} />;', errors: [expectedError] },
     { code: '<div role="article" onMouseOver={() => {}} />;', errors: [expectedError] },
-  ]
+  ))
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
 });

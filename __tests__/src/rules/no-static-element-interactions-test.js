@@ -10,6 +10,7 @@
 import { RuleTester } from 'eslint';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-static-element-interactions';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
@@ -360,7 +361,7 @@ const neverValid = [
 
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [].concat(
+  valid: parsers.all([].concat(
     alwaysValid,
     // All the possible handlers
     { code: '<div onCopy={() => {}} />;' },
@@ -449,21 +450,21 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
       options: [{ allowExpressionValues: true }],
       errors: [expectedError],
     },
-  )
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [].concat(
+  invalid: parsers.all([].concat(
     neverValid,
-  )
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [].concat(
+  valid: parsers.all([].concat(
     alwaysValid,
-  ).map(parserOptionsMapper),
-  invalid: [].concat(
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     neverValid,
     // All the possible handlers
     { code: '<div onContextMenu={() => {}} />;', errors: [expectedError] },
@@ -497,5 +498,5 @@ ruleTester.run(`${ruleName}:strict`, rule, {
       options: [{ allowExpressionValues: false }],
       errors: [expectedError],
     },
-  ).map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

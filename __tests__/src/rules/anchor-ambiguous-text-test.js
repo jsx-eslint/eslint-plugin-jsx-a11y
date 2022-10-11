@@ -10,6 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/anchor-ambiguous-text';
 
 // -----------------------------------------------------------------------------
@@ -34,7 +35,7 @@ const expectedErrorGenerator = (words) => ({
 const expectedError = expectedErrorGenerator(DEFAULT_AMBIGUOUS_WORDS);
 
 ruleTester.run('anchor-ambiguous-text', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<a>documentation</a>;' },
     { code: '<a>${here}</a>;' },
     { code: '<a aria-label="tutorial on using eslint-plugin-jsx-a11y">click here</a>;' },
@@ -69,8 +70,8 @@ ruleTester.run('anchor-ambiguous-text', rule, {
       }],
       settings: { 'jsx-a11y': { components: { Link: 'a' } } },
     },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<a>here</a>;', errors: [expectedError] },
     { code: '<a>HERE</a>;', errors: [expectedError] },
     { code: '<a>click here</a>;', errors: [expectedError] },
@@ -113,5 +114,5 @@ ruleTester.run('anchor-ambiguous-text', rule, {
         words: ['a disallowed word'],
       }],
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

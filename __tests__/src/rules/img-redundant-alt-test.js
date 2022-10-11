@@ -11,6 +11,7 @@ import { RuleTester } from 'eslint';
 import semver from 'semver';
 import { version as eslintVersion } from 'eslint/package.json';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/img-redundant-alt';
 
 // -----------------------------------------------------------------------------
@@ -38,7 +39,7 @@ const expectedError = {
 };
 
 ruleTester.run('img-redundant-alt', rule, {
-  valid: [].concat(
+  valid: parsers.all([].concat(
     { code: '<img alt="foo" />;' },
     { code: '<img alt="picture of me taking a photo of an image" aria-hidden />' },
     { code: '<img aria-hidden alt="photo of image" />' },
@@ -73,8 +74,8 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img alt="ImageMagick" />;' },
     { code: '<Image alt="Photo of a friend" />' },
     { code: '<Image alt="Foo" />', settings: componentsSettings },
-  ).map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<img alt="Photo of friend." />;', errors: [expectedError] },
     { code: '<img alt="Picture of friend." />;', errors: [expectedError] },
     { code: '<img alt="Image of friend." />;', errors: [expectedError] },
@@ -128,5 +129,5 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img alt="Word2" />;', options: array, errors: [expectedError] },
     { code: '<Image alt="Word1" />;', options: array, errors: [expectedError] },
     { code: '<Image alt="Word2" />;', options: array, errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

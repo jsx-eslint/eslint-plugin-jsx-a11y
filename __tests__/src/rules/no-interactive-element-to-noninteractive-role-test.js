@@ -11,6 +11,7 @@
 import { RuleTester } from 'eslint';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-interactive-element-to-noninteractive-role';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
@@ -378,28 +379,28 @@ const neverValid = [
 
 const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     { code: '<tr role="presentation" />;' },
     { code: '<canvas role="img" />;' },
     { code: '<Component role="presentation" />;' },
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     ...neverValid,
     { code: '<tr role="presentation" />;', errors: [expectedError] },
     { code: '<canvas role="img" />;', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

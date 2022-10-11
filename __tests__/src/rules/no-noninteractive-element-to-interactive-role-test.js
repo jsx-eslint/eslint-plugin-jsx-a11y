@@ -12,6 +12,7 @@
 import { RuleTester } from 'eslint';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-noninteractive-element-to-interactive-role';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
@@ -440,7 +441,7 @@ const neverValid = [
 
 const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     { code: '<ul role="menu" />;' },
     { code: '<ul role="menubar" />;' },
@@ -461,21 +462,21 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<Component role="treeitem" />;' },
     { code: '<fieldset role="radiogroup" />;' },
     { code: '<fieldset role="presentation" />;' },
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     ...neverValid,
     { code: '<ul role="menu" />;', errors: [expectedError] },
     { code: '<ul role="menubar" />;', errors: [expectedError] },
@@ -493,5 +494,5 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     { code: '<li role="menuitem" />;', errors: [expectedError] },
     { code: '<li role="row" />;', errors: [expectedError] },
     { code: '<li role="treeitem" />;', errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

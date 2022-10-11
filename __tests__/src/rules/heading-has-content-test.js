@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/heading-has-content';
 
 // -----------------------------------------------------------------------------
@@ -37,7 +38,7 @@ const componentsSettings = {
 };
 
 ruleTester.run('heading-has-content', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     // DEFAULT ELEMENT TESTS
     { code: '<div />;' },
     { code: '<h1>Foo</h1>' },
@@ -64,8 +65,8 @@ ruleTester.run('heading-has-content', rule, {
     // CUSTOM ELEMENT TESTS FOR COMPONENTS SETTINGS
     { code: '<Heading>Foo</Heading>', settings: componentsSettings },
     { code: '<h1><CustomInput type="hidden" /></h1>' },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     // DEFAULT ELEMENT TESTS
     { code: '<h1 />', errors: [expectedError] },
     { code: '<h1><Bar aria-hidden /></h1>', errors: [expectedError] },
@@ -80,5 +81,5 @@ ruleTester.run('heading-has-content', rule, {
     // CUSTOM ELEMENT TESTS FOR COMPONENTS SETTINGS
     { code: '<Heading />', errors: [expectedError], settings: componentsSettings },
     { code: '<h1><CustomInput type="hidden" /></h1>', errors: [expectedError], settings: componentsSettings },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

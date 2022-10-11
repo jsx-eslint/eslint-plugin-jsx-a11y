@@ -10,6 +10,7 @@
 import { roles } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-role';
 
 // -----------------------------------------------------------------------------
@@ -56,7 +57,7 @@ const customDivSettings = {
 };
 
 ruleTester.run('aria-role', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     // Variables should pass, as we are only testing literals.
     { code: '<div />' },
     { code: '<div></div>' },
@@ -81,9 +82,9 @@ ruleTester.run('aria-role', rule, {
     {
       code: '<svg role="graphics-document document" />',
     },
-  ].concat(validTests).map(parserOptionsMapper),
+  )).concat(validTests).map(parserOptionsMapper),
 
-  invalid: [
+  invalid: parsers.all([].concat(
     { code: '<div role="foobar" />', errors: [errorMessage] },
     { code: '<div role="datepicker"></div>', errors: [errorMessage] },
     { code: '<div role="range"></div>', errors: [errorMessage] },
@@ -104,5 +105,5 @@ ruleTester.run('aria-role', rule, {
       options: ignoreNonDOMSchema,
       settings: customDivSettings,
     },
-  ].concat(invalidTests).map(parserOptionsMapper),
+  )).concat(invalidTests).map(parserOptionsMapper),
 });

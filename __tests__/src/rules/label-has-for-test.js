@@ -10,6 +10,7 @@
 import { RuleTester } from 'eslint';
 import assign from 'object.assign';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/label-has-for';
 
 // -----------------------------------------------------------------------------
@@ -50,7 +51,7 @@ const optionsChildrenAllowed = [{
 }];
 
 ruleTester.run('label-has-for', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     // DEFAULT ELEMENT 'label' TESTS
     { code: '<div />' },
     { code: '<label htmlFor="foo"><input /></label>' },
@@ -90,8 +91,8 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label htmlFor="children">{children}</label>', options: optionsChildrenAllowed },
     { code: '<label htmlFor={id}>{ labelText }<div><input id={id} type="checkbox" name={id} value={value} /></div></label>', options: optionsRequiredEvery },
     { code: '<label htmlFor={id}>{ labelText }<div><div><div><div><input id={id} type="checkbox" name={id} value={value} /></div></div></div></div></label>', options: optionsRequiredEvery },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     // DEFAULT ELEMENT 'label' TESTS
     { code: '<label id="foo" />', errors: [expectedEveryError], options: optionsRequiredEvery },
     { code: '<label htmlFor={undefined} />', errors: [expectedEveryError], options: optionsRequiredEvery },
@@ -218,5 +219,5 @@ ruleTester.run('label-has-for', rule, {
       errors: [expectedEveryError],
       options: optionsRequiredEvery,
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

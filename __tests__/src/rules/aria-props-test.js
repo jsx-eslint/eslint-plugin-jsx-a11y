@@ -10,6 +10,7 @@
 import { aria } from 'aria-query';
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-props';
 import getSuggestion from '../../../src/util/getSuggestion';
 
@@ -43,7 +44,7 @@ const basicValidityTests = ariaAttributes.map((prop) => ({
 }));
 
 ruleTester.run('aria-props', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     // Variables should pass, as we are only testing literals.
     { code: '<div />' },
     { code: '<div></div>' },
@@ -53,8 +54,8 @@ ruleTester.run('aria-props', rule, {
     { code: '<div fooaria-hidden="true"></div>' },
     { code: '<Bar baz />' },
     { code: '<input type="text" aria-errormessage="foobar" />' },
-  ].concat(basicValidityTests).map(parserOptionsMapper),
-  invalid: [
+  )).concat(basicValidityTests).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<div aria-="foobar" />', errors: [errorMessage('aria-')] },
     {
       code: '<div aria-labeledby="foobar" />',
@@ -64,5 +65,5 @@ ruleTester.run('aria-props', rule, {
       code: '<div aria-skldjfaria-klajsd="foobar" />',
       errors: [errorMessage('aria-skldjfaria-klajsd')],
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

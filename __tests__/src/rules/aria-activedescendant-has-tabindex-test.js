@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-activedescendant-has-tabindex';
 
 // -----------------------------------------------------------------------------
@@ -23,7 +24,7 @@ const expectedError = {
 };
 
 ruleTester.run('aria-activedescendant-has-tabindex', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     {
       code: '<CustomComponent />;',
     },
@@ -79,8 +80,8 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
     {
       code: '<input aria-activedescendant={someID} tabIndex={-1} />;',
     },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     {
       code: '<div aria-activedescendant={someID} />;',
       errors: [expectedError],
@@ -90,5 +91,5 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
       errors: [expectedError],
       settings: { 'jsx-a11y': { components: { CustomComponent: 'div' } } },
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

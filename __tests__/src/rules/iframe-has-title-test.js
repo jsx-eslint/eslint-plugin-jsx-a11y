@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/iframe-has-title';
 
 // -----------------------------------------------------------------------------
@@ -31,14 +32,14 @@ const componentsSettings = {
 };
 
 ruleTester.run('html-has-lang', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<iframe title="Unique title" />' },
     { code: '<iframe title={foo} />' },
     { code: '<FooComponent />' },
     { code: '<FooComponent title="Unique title" />', settings: componentsSettings },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<iframe />', errors: [expectedError] },
     { code: '<iframe {...props} />', errors: [expectedError] },
     { code: '<iframe title={undefined} />', errors: [expectedError] },
@@ -50,5 +51,5 @@ ruleTester.run('html-has-lang', rule, {
     { code: '<iframe title={""} />', errors: [expectedError] },
     { code: '<iframe title={42} />', errors: [expectedError] },
     { code: '<FooComponent />', errors: [expectedError], settings: componentsSettings },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

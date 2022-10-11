@@ -10,6 +10,7 @@
 import { RuleTester } from 'eslint';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-noninteractive-tabindex';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
@@ -62,7 +63,7 @@ const recommendedOptions = (
 );
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     { code: '<div role="tabpanel" tabIndex="0" />' },
     // Expressions should pass in recommended mode
@@ -87,21 +88,21 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
       options: [{ allowExpressionValues: true }],
       errors: [expectedError],
     },
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     ...neverValid,
     { code: '<div role="tabpanel" tabIndex="0" />', errors: [expectedError] },
     // Expressions should fail in strict mode
@@ -118,5 +119,5 @@ ruleTester.run(`${ruleName}:strict`, rule, {
       options: [{ allowExpressionValues: false }],
       errors: [expectedError],
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

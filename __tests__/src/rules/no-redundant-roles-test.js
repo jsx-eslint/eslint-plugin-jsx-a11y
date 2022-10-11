@@ -10,6 +10,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-redundant-roles';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
@@ -49,12 +50,14 @@ const neverValid = [
 ];
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
     { code: '<nav role="navigation" />' },
-  ]
+  ))
     .map(parserOptionsMapper),
-  invalid: neverValid
+  invalid: parsers.all([].concat(
+    neverValid,
+  ))
     .map(parserOptionsMapper),
 });
 
@@ -62,28 +65,30 @@ const noNavExceptionsOptions = { nav: [] };
 const listException = { ul: ['list'], ol: ['list'] };
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: alwaysValid
-    .map(ruleOptionsMapperFactory(noNavExceptionsOptions))
+  valid: parsers.all([].concat(
+    alwaysValid
+      .map(ruleOptionsMapperFactory(noNavExceptionsOptions)),
+  ))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
     { code: '<nav role="navigation" />', errors: [expectedError('nav', 'navigation')] },
-  ]
+  ))
     .map(ruleOptionsMapperFactory(noNavExceptionsOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:recommended (valid list role override)`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<ul role="list" />' },
     { code: '<ol role="list" />' },
     { code: '<dl role="list" />' },
-  ]
+  ))
     .map(ruleOptionsMapperFactory(listException))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     { code: '<ul role="list" />', errors: [expectedError('ul', 'list')] },
     { code: '<ol role="list" />', errors: [expectedError('ol', 'list')] },
-  ]
+  ))
     .map(parserOptionsMapper),
 });

@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/alt-text';
 
 // -----------------------------------------------------------------------------
@@ -28,19 +29,29 @@ Use alt="" for presentational images.`,
   type: 'JSXOpeningElement',
 });
 
-const ariaLabelValueError = 'The aria-label attribute must have a value. The alt attribute is preferred over aria-label for images.';
-const ariaLabelledbyValueError = 'The aria-labelledby attribute must have a value. The alt attribute is preferred over aria-labelledby for images.';
+const ariaLabelValueError = {
+  message: 'The aria-label attribute must have a value. The alt attribute is preferred over aria-label for images.',
+};
+const ariaLabelledbyValueError = {
+  message: 'The aria-labelledby attribute must have a value. The alt attribute is preferred over aria-labelledby for images.',
+};
 
 const preferAltError = () => ({
   message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
   type: 'JSXOpeningElement',
 });
 
-const objectError = 'Embedded <object> elements must have alternative text by providing inner text, aria-label or aria-labelledby props.';
+const objectError = {
+  message: 'Embedded <object> elements must have alternative text by providing inner text, aria-label or aria-labelledby props.',
+};
 
-const areaError = 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.';
+const areaError = {
+  message: 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+};
 
-const inputImageError = '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.';
+const inputImageError = {
+  message: '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+};
 
 const componentsSettings = {
   'jsx-a11y': {
@@ -58,7 +69,7 @@ const array = [{
 }];
 
 ruleTester.run('alt-text', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     // DEFAULT ELEMENT 'img' TESTS
     { code: '<img alt="foo" />;' },
     { code: '<img alt={"foo"} />;' },
@@ -166,8 +177,8 @@ ruleTester.run('alt-text', rule, {
     { code: '<InputImage alt="" />', options: array },
     { code: '<InputImage alt="This is descriptive!" />', options: array },
     { code: '<InputImage alt={altText} />', options: array },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     // DEFAULT ELEMENT 'img' TESTS
     { code: '<img />;', errors: [missingPropError('img')] },
     { code: '<img alt />;', errors: [altValueError('img')] },
@@ -273,5 +284,5 @@ ruleTester.run('alt-text', rule, {
     { code: '<InputImage>Foo</InputImage>', errors: [inputImageError], options: array },
     { code: '<InputImage {...this.props} />', errors: [inputImageError], options: array },
     { code: '<Input type="image" />', errors: [inputImageError], settings: componentsSettings },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

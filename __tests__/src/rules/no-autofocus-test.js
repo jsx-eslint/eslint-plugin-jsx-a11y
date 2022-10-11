@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-autofocus';
 
 // -----------------------------------------------------------------------------
@@ -37,7 +38,7 @@ const componentsSettings = {
 };
 
 ruleTester.run('no-autofocus', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<div autofocus />;' },
     { code: '<input autofocus="true" />;' },
@@ -46,8 +47,8 @@ ruleTester.run('no-autofocus', rule, {
     { code: '<div><div autofocus /></div>', options: ignoreNonDOMSchema },
     { code: '<Button />', settings: componentsSettings },
     { code: '<Button />', options: ignoreNonDOMSchema, settings: componentsSettings },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<div autoFocus />', errors: [expectedError] },
     { code: '<div autoFocus={true} />', errors: [expectedError] },
     { code: '<div autoFocus={false} />', errors: [expectedError] },
@@ -63,5 +64,5 @@ ruleTester.run('no-autofocus', rule, {
       options: ignoreNonDOMSchema,
       settings: componentsSettings,
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

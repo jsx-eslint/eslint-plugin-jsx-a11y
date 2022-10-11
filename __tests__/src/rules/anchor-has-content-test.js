@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/anchor-has-content';
 
 // -----------------------------------------------------------------------------
@@ -23,7 +24,7 @@ const expectedError = {
 };
 
 ruleTester.run('anchor-has-content', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<a>Foo</a>' },
     { code: '<a><Bar /></a>' },
@@ -39,8 +40,8 @@ ruleTester.run('anchor-has-content', rule, {
     { code: '<a title={title} />' },
     { code: '<a aria-label={ariaLabel} />' },
     { code: '<a title={title} aria-label={ariaLabel} />' },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<a />', errors: [expectedError] },
     { code: '<a><Bar aria-hidden /></a>', errors: [expectedError] },
     { code: '<a>{undefined}</a>', errors: [expectedError] },
@@ -49,5 +50,5 @@ ruleTester.run('anchor-has-content', rule, {
       errors: [expectedError],
       settings: { 'jsx-a11y': { components: { Link: 'a' } } },
     },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

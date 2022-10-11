@@ -10,6 +10,7 @@ const testBoilerplate = (name, author, description) => `/* eslint-env jest */
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/${name}';
 
 // -----------------------------------------------------------------------------
@@ -24,10 +25,12 @@ const expectedError = {
 };
 
 ruleTester.run('${name}', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
-  ].map(parserOptionsMapper),
-  invalid: [].map(parserOptionsMapper),
+  ].map(parserOptionsMapper))),
+  invalid: parsers.all([].concat(
+    
+  ).map(parserOptionsMapper)),
 });
 `;
 

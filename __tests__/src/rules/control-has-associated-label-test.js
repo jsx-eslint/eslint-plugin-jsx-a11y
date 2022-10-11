@@ -10,6 +10,7 @@
 import { RuleTester } from 'eslint';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 import rule from '../../../src/rules/control-has-associated-label';
 
@@ -287,40 +288,40 @@ const neverValid = [
 
 const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});
 ruleTester.run(`${ruleName}:recommended`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
 });
 
 const strictOptions = (configs.strict.rules[ruleName][1] || {});
 ruleTester.run(`${ruleName}:strict`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     ...alwaysValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     ...neverValid,
-  ]
+  ))
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
 });
 
 ruleTester.run(`${ruleName}:no-config`, rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<input type="hidden" />' },
     { code: '<input type="text" aria-hidden="true" />' },
-  ]
+  ))
     .map(parserOptionsMapper),
-  invalid: [
+  invalid: parsers.all([].concat(
     { code: '<input type="text" />', errors: [expectedError] },
-  ]
+  ))
     .map(parserOptionsMapper),
 });

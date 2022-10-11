@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/click-events-have-key-events';
 
 // -----------------------------------------------------------------------------
@@ -25,7 +26,7 @@ const expectedError = {
 };
 
 ruleTester.run('click-events-have-key-events', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div onClick={() => void 0} onKeyDown={foo}/>;' },
     { code: '<div onClick={() => void 0} onKeyUp={foo} />;' },
     { code: '<div onClick={() => void 0} onKeyPress={foo}/>;' },
@@ -52,8 +53,8 @@ ruleTester.run('click-events-have-key-events', rule, {
     { code: '<TestComponent onClick={doFoo} />' },
     { code: '<Button onClick={doFoo} />' },
     { code: '<Footer onClick={doFoo} />' },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<div onClick={() => void 0} />;', errors: [expectedError] },
     {
       code: '<div onClick={() => void 0} role={undefined} />;',
@@ -72,5 +73,5 @@ ruleTester.run('click-events-have-key-events', rule, {
     { code: '<a onClick={() => void 0} />', errors: [expectedError] },
     { code: '<a tabIndex="0" onClick={() => void 0} />', errors: [expectedError] },
     { code: '<Footer onClick={doFoo} />', errors: [expectedError], settings: { 'jsx-a11y': { components: { Footer: 'footer' } } } },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

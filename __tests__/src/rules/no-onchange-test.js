@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-onchange';
 
 // -----------------------------------------------------------------------------
@@ -32,7 +33,7 @@ const componentsSettings = {
 };
 
 ruleTester.run('no-onchange', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<select onBlur={() => {}} />;' },
     { code: '<select onBlur={handleOnBlur} />;' },
     { code: '<option />;' },
@@ -45,12 +46,12 @@ ruleTester.run('no-onchange', rule, {
     { code: '<input {...props} />' },
     { code: '<Input onChange={() => {}} />;', settings: componentsSettings },
     { code: '<CustomOption onChange={() => {}} />' },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<select onChange={() => {}} />;', errors: [expectedError] },
     { code: '<select onChange={handleOnChange} />;', errors: [expectedError] },
     { code: '<option onChange={() => {}} />', errors: [expectedError] },
     { code: '<option onChange={() => {}} {...props} />', errors: [expectedError] },
     { code: '<CustomOption onChange={() => {}} />;', errors: [expectedError], settings: componentsSettings },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

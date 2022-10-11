@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/lang';
 
 // -----------------------------------------------------------------------------
@@ -31,7 +32,7 @@ const componentsSettings = {
 };
 
 ruleTester.run('lang', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<div foo="bar" />;' },
     { code: '<div lang="foo" />;' },
@@ -45,11 +46,11 @@ ruleTester.run('lang', rule, {
     { code: '<HTML lang="foo" />' },
     { code: '<Foo lang={undefined} />' },
     { code: '<Foo lang="en" />', settings: componentsSettings },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<html lang="foo" />', errors: [expectedError] },
     { code: '<html lang="zz-LL" />', errors: [expectedError] },
     { code: '<html lang={undefined} />', errors: [expectedError] },
     { code: '<Foo lang={undefined} />', settings: componentsSettings, errors: [expectedError] },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });

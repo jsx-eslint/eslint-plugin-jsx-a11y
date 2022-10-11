@@ -9,6 +9,7 @@
 
 import { RuleTester } from 'eslint';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/html-has-lang';
 
 // -----------------------------------------------------------------------------
@@ -23,7 +24,7 @@ const expectedError = {
 };
 
 ruleTester.run('html-has-lang', rule, {
-  valid: [
+  valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<html lang="en" />' },
     { code: '<html lang="en-US" />' },
@@ -31,11 +32,11 @@ ruleTester.run('html-has-lang', rule, {
     { code: '<html lang />' },
     { code: '<HTML />' },
     { code: '<HTMLTop lang="en" />', errors: [expectedError], settings: { 'jsx-a11y': { components: { HTMLTop: 'html' } } } },
-  ].map(parserOptionsMapper),
-  invalid: [
+  )).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
     { code: '<html />', errors: [expectedError] },
     { code: '<html {...props} />', errors: [expectedError] },
     { code: '<html lang={undefined} />', errors: [expectedError] },
     { code: '<HTMLTop />', errors: [expectedError], settings: { 'jsx-a11y': { components: { HTMLTop: 'html' } } } },
-  ].map(parserOptionsMapper),
+  )).map(parserOptionsMapper),
 });
