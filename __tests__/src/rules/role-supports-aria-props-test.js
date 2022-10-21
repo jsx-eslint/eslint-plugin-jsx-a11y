@@ -94,6 +94,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<a href="#" aria-disabled />' },
     { code: '<a href="#" aria-dropeffect />' },
     { code: '<a href="#" aria-flowto />' },
+    { code: '<a href="#" aria-haspopup />' },
     { code: '<a href="#" aria-grabbed />' },
     { code: '<a href="#" aria-hidden />' },
     { code: '<a href="#" aria-label />' },
@@ -115,6 +116,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<area href="#" aria-dropeffect />' },
     { code: '<area href="#" aria-flowto />' },
     { code: '<area href="#" aria-grabbed />' },
+    { code: '<area href="#" aria-haspopup />' },
     { code: '<area href="#" aria-hidden />' },
     { code: '<area href="#" aria-label />' },
     { code: '<area href="#" aria-labelledby />' },
@@ -136,6 +138,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<link href="#" aria-flowto />' },
     { code: '<link href="#" aria-grabbed />' },
     { code: '<link href="#" aria-hidden />' },
+    { code: '<link href="#" aria-haspopup />' },
     { code: '<link href="#" aria-label />' },
     { code: '<link href="#" aria-labelledby />' },
     { code: '<link href="#" aria-live />' },
@@ -553,20 +556,8 @@ ruleTester.run('role-supports-aria-props', rule, {
       errors: [errorMessage('aria-invalid', 'link', 'link', true)],
     },
     {
-      code: '<link href="#" aria-haspopup />',
-      errors: [errorMessage('aria-haspopup', 'link', 'link', true)],
-    },
-    {
       code: '<area href="#" aria-invalid />',
       errors: [errorMessage('aria-invalid', 'link', 'area', true)],
-    },
-    {
-      code: '<area href="#" aria-haspopup />',
-      errors: [errorMessage('aria-haspopup', 'link', 'area', true)],
-    },
-    {
-      code: '<a href="#" aria-haspopup />',
-      errors: [errorMessage('aria-haspopup', 'link', 'a', true)],
     },
     {
       code: '<a href="#" aria-invalid />',
