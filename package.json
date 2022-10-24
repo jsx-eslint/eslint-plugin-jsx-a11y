@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.19.3",
+    "@babel/core": "^7.19.6",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-transform-flow-strip-types": "^7.19.0",
     "@babel/register": "^7.18.9",
@@ -56,7 +56,7 @@
     "jest": "^24.9.0",
     "jscodeshift": "^0.7.1",
     "markdown-magic": "^2.6.1",
-    "minimist": "^1.2.6",
+    "minimist": "^1.2.7",
     "npmignore": "^0.3.0",
     "object.assign": "^4.1.4",
     "rimraf": "^3.0.2",
