@@ -1,10 +1,14 @@
-# media-has-caption
+# jsx-a11y/media-has-caption
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Providing captions for media is essential for deaf users to follow along. Captions should be a transcription or translation of the dialogue, sound effects, relevant musical cues, and other relevant audio information. Not only is this important for accessibility, but can also be useful for all users in the case that the media is unavailable (similar to `alt` text on an image when an image is unable to load).
 
 The captions should contain all important and relevant information to understand the corresponding media. This may mean that the captions are not a 1:1 mapping of the dialogue in the media content. However, captions are *not* necessary for video components with the `muted` attribute.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

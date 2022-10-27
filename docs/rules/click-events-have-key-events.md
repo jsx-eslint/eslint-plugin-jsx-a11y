@@ -1,4 +1,8 @@
-# click-events-have-key-events
+# jsx-a11y/click-events-have-key-events
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Enforce `onClick` is accompanied by at least one of the following: `onKeyUp`, `onKeyDown`, `onKeyPress`. Coding for the keyboard is important for users with physical disabilities who cannot use a mouse, AT compatibility, and screenreader users. This does not apply for interactive or hidden elements.
 

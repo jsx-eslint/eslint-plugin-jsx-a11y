@@ -1,8 +1,12 @@
-# autocomplete-valid
+# jsx-a11y/autocomplete-valid
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Ensure the autocomplete attribute is correct and suitable for the form field it is used with.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 
@@ -22,7 +26,7 @@ This rule takes one optional object argument of type object:
 <input type="text" autocomplete="name" />
 
 <!-- Good: MyInput is not listed in inputComponents -->
-<MyInput autocomplete="incorrect" /> 
+<MyInput autocomplete="incorrect" />
 ```
 
 ### Fail
@@ -34,7 +38,7 @@ This rule takes one optional object argument of type object:
 <input type="email" autocomplete="url" />
 
 <!-- Bad: MyInput is listed in inputComponents -->
-<MyInput autocomplete="incorrect" /> 
+<MyInput autocomplete="incorrect" />
 ```
 
 ## Accessibility guidelines

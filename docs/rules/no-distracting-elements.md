@@ -1,8 +1,12 @@
-# no-distracting-elements
+# jsx-a11y/no-distracting-elements
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Enforces that no distracting elements are used. Elements that can be visually distracting can cause accessibility issues with visually impaired users. Such elements are most likely deprecated, and should be avoided. By default, the following elements are visually distracting: `<marquee>` and `<blink>`.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

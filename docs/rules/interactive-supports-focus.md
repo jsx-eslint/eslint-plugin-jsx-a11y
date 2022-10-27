@@ -1,4 +1,8 @@
-# interactive-supports-focus
+# jsx-a11y/interactive-supports-focus
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Elements with an interactive role and interaction handlers (mouse or key press) must be focusable.
 
@@ -24,7 +28,7 @@ Generally buttons, links and form elements should be reachable via tab key press
 
 ### Case: I got the error "Elements with the '${role}' interactive role must be focusable". How can I fix this?
 
-This element is part of a group of buttons, links, menu items, etc. Or this element is part of a composite widget. Composite widgets prescribe standard [keyboard interaction patterns](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav). Within a group of similar elements -- like a button bar -- or within a composite widget, elements that can be focused are given a tabindex of -1. This makes the element *focusable* but not *tabbable*. Generally one item in a group should have a tabindex of zero so that a user can tab to the component. Once an element in the component has focus, your key management behaviors will control traversal within the component's pieces. As the UI author, you will need to implement the key handling behaviors such as listening for traversal key (up/down/left/right) presses and moving the page focus between the focusable elements in your widget.
+This element is part of a group of buttons, links, menu items, etc. Or this element is part of a composite widget. Composite widgets prescribe standard [keyboard interaction patterns](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav). Within a group of similar elements -- like a button bar -- or within a composite widget, elements that can be focused are given a tabindex of -1. This makes the element _focusable_ but not _tabbable_. Generally one item in a group should have a tabindex of zero so that a user can tab to the component. Once an element in the component has focus, your key management behaviors will control traversal within the component's pieces. As the UI author, you will need to implement the key handling behaviors such as listening for traversal key (up/down/left/right) presses and moving the page focus between the focusable elements in your widget.
 
 ```jsx
 <div role="menu">
@@ -50,7 +54,7 @@ If your element is catching bubbled click or key events from descendant elements
 
 Marking an element with the role `presentation` indicates to assistive technology that this element should be ignored; it exists to support the web application and is not meant for humans to interact with directly.
 
-## Rule details
+## Rule options
 
 This rule takes an options object with the key `tabbable`. The value is an array of interactive ARIA roles that should be considered tabbable, not just focusable. Any interactive role not included in this list will be flagged as needing to be focusable (tabindex of -1).
 
@@ -117,6 +121,7 @@ The list of possible values includes:
 ```
 
 ### Succeed
+
 ```jsx
 <!-- Good: div with onClick attribute is hidden from screen reader -->
 <div aria-hidden onClick={() => void 0} />
@@ -131,6 +136,7 @@ The list of possible values includes:
 ```
 
 ### Fail
+
 ```jsx
 <!-- Bad: span with onClick attribute has no tabindex -->
 <span onclick="submitForm();" role="button">Submit</span>
@@ -139,10 +145,12 @@ The list of possible values includes:
 ```
 
 ## Accessibility guidelines
+
 - [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard)
 
 ### Resources
-- [Chrome Audit Rules, AX_FOCUS_02](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_02) 
+
+- [Chrome Audit Rules, AX_FOCUS_02](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_02)
 - [Mozilla Developer Network - ARIA Techniques](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role#Keyboard_and_focus)
 - [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)
 - [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)

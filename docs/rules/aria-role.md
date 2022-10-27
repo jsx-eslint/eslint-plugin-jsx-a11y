@@ -1,8 +1,12 @@
-# aria-role
+# jsx-a11y/aria-role
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Elements with ARIA roles must use a valid, non-abstract ARIA role. A reference to role definitions can be found at [WAI-ARIA](https://www.w3.org/TR/wai-aria/#role_definitions) site.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

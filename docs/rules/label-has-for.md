@@ -1,4 +1,10 @@
-# [Deprecated] label-has-for
+# jsx-a11y/label-has-for
+
+❌ This rule is deprecated.
+
+💼 This rule is _disabled_ in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 *This rule was deprecated in v6.1.0. It will no longer be maintained. Please use [`label-has-associated-control`](label-has-associated-control.md) instead.*
 
@@ -11,7 +17,7 @@ There are two supported ways to associate a label with a control:
 
 To fully cover 100% of assistive devices, you're encouraged to validate for both nesting and id.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

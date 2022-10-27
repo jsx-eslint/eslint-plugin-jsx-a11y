@@ -1,4 +1,8 @@
-# control-has-associated-label
+# jsx-a11y/control-has-associated-label
+
+💼 This rule is _disabled_ in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Enforce that a control (an interactive element) has a text label.
 
@@ -50,7 +54,7 @@ You can configure the rule to be aware of your custom components. Refer to the R
 <CustomInput label="Surname" type="text" value={value} />
 ```
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

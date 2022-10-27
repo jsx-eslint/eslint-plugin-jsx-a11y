@@ -1,8 +1,12 @@
-# img-redundant-alt
+# jsx-a11y/img-redundant-alt
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Enforce img alt attribute does not contain the word image, picture, or photo. Screenreaders already announce `img` elements as an image. There is no need to use words such as *image*, *photo*, and/or *picture*.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

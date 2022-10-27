@@ -1,4 +1,8 @@
-# no-static-element-interactions
+# jsx-a11y/no-static-element-interactions
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Static HTML elements do not have semantic meaning. This is clear in the case of `<div>` and `<span>`. It is less so clear in the case of elements that _seem_ semantic, but that do not have a semantic mapping in the accessibility layer. For example `<a>`, `<big>`, `<blockquote>`, `<footer>`, `<picture>`, `<strike>` and `<time>` -- to name a few -- have no semantic layer mapping. They are as void of meaning as `<div>`.
 
@@ -8,7 +12,7 @@ In order to add interactivity such as a mouse or key event listener to a static 
 
 ## How do I resolve this error?
 
-### Case: This element acts like a button, link, menuitem, etc.
+### Case: This element acts like a button, link, menuitem, etc
 
 Indicate the element's role with the `role` attribute:
 
@@ -53,7 +57,7 @@ If your element is catching bubbled click or key events from descendant elements
 
 Do not use the role `presentation` on the element: it removes the element's semantics, and may also remove its children's semantics, creating big issues with assistive technology.
 
-## Rule details
+## Rule options
 
 You may configure which handler props should be taken into account when applying this rule. The recommended configuration includes the following 6 handlers and the `allowExpressionValues` option.
 
@@ -77,6 +81,7 @@ You may configure which handler props should be taken into account when applying
 Adjust the list of handler prop names in the handlers array to increase or decrease the coverage surface of this rule in your codebase.
 
 The `allowExpressionValues` option determines whether the `role` attribute is allowed to be assigned using an expression. For example, the following would pass in recommended mode if `allowExpressionValues` is set to be `true`:
+
 ```jsx
 <div role={ROLE_BUTTON} onClick={() => {}} />;
 // In case of a conditional expression, there should be literals on both sides of ternary operator
@@ -98,9 +103,11 @@ The `allowExpressionValues` option determines whether the `role` attribute is al
 ```
 
 ## Accessibility guidelines
+
 - [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
 
 ### Resources
+
 - [WAI-ARIA `role` attribute](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
 - [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
 - [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)

@@ -1,8 +1,12 @@
-# anchor-ambiguous-text
+# jsx-a11y/anchor-ambiguous-text
+
+☑️ This rule is _disabled_ in the `recommended` config.
+
+<!-- end auto-generated rule header -->
 
 Enforces `<a>` values are not exact matches for the phrases "click here", "here", "link", "a link", or "learn more". Screenreaders announce tags as links/interactive, but rely on values for context. Ambiguous anchor descriptions do not provide sufficient context for users.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument with the parameter `words`.
 
@@ -33,6 +37,7 @@ Note that this rule still disallows ambiguous `aria-label` or `alt` values.
 Note that this rule is case-insensitive, trims whitespace, and ignores certain punctuation (`[,.?¿!‽¡;:]`). It only looks for **exact matches**.
 
 ### Succeed
+
 ```jsx
 <a>read this tutorial</a> // passes since it is not one of the disallowed words
 <a>${here}</a> // this is valid since 'here' is a variable name
@@ -40,6 +45,7 @@ Note that this rule is case-insensitive, trims whitespace, and ignores certain p
 ```
 
 ### Fail
+
 ```jsx
 <a>here</a>
 <a>HERE</a>

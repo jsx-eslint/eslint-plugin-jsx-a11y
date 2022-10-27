@@ -1,4 +1,8 @@
-# no-interactive-element-to-noninteractive-role
+# jsx-a11y/no-interactive-element-to-noninteractive-role
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Interactive HTML elements indicate _controls_ in the user interface. Interactive elements include `<a href>`, `<button>`, `<input>`, `<select>`, `<textarea>`.
 
@@ -32,7 +36,7 @@ Put the content inside your interactive element.
 </div>
 ```
 
-## Rule details
+## Rule options
 
 The recommended options for this rule allow the `tr` element to be given a role of `presentation` (or its semantic equivalent `none`). Under normal circumstances, an element with an interactive role should not be semantically neutralized with `presentation` (or `none`).
 
@@ -56,9 +60,11 @@ Under the recommended options, the following code is valid. It would be invalid 
 ```
 
 ## Accessibility guidelines
+
 - [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
 
 ### Resources
+
 - [ARIA Spec, States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties)
 - [Chrome Audit Rules, AX_ARIA_04](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_04)
 - [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)

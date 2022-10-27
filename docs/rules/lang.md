@@ -1,4 +1,6 @@
-# lang
+# jsx-a11y/lang
+
+<!-- end auto-generated rule header -->
 
 The `lang` prop on the `<html>` element must be a valid IETF's BCP 47 language tag.
 

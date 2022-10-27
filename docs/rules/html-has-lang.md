@@ -1,4 +1,8 @@
-# html-has-lang
+# jsx-a11y/html-has-lang
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 <html> elements must have the lang prop. This rule is largely superseded by the [`lang` rule](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/lang.md).
 

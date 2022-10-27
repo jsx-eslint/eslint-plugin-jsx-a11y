@@ -1,4 +1,8 @@
-# anchor-is-valid
+# jsx-a11y/anchor-is-valid
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 The HTML `<a>` element, with a valid `href` attribute, is formally defined as representing a **hyperlink**. That is, a link between one HTML document and another, or between one location inside an HTML document and another location inside the same document.
 
@@ -159,7 +163,7 @@ This button element can now also be used inline in text.
 
 Once again we stress that this is an inferior implementation and some users will encounter difficulty to use your website, however, it will allow a larger group of people to interact with your website than the alternative of ignoring the rule's warning.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

@@ -1,4 +1,8 @@
-# mouse-events-have-key-events
+# jsx-a11y/mouse-events-have-key-events
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Enforce onmouseover/onmouseout are accompanied by onfocus/onblur. Coding for the keyboard is important for users with physical disabilities who cannot use a mouse, AT compatibility, and screenreader users.
 

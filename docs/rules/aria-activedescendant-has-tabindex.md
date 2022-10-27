@@ -1,4 +1,8 @@
-# aria-activedescendant-has-tabindex
+# jsx-a11y/aria-activedescendant-has-tabindex
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 `aria-activedescendant` is used to manage focus within a [composite widget](https://www.w3.org/TR/wai-aria/#composite).
 The element with the attribute `aria-activedescendant` retains the active document

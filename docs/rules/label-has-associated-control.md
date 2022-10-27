@@ -1,4 +1,8 @@
-# label-has-associated-control
+# jsx-a11y/label-has-associated-control
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Enforce that a label tag has a text label and an associated control.
 
@@ -81,7 +85,7 @@ IDs shouldn't be generated in the browser, so that server and client rendering a
 
 To restate, **every ID needs to be deterministic**, on the server and the client, and guaranteed to be unique on the page. EG: For each input, a required ID prop can be passed down from as far up the tree as possible to guarantee uniqueness.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

@@ -1,10 +1,14 @@
-# no-noninteractive-element-interactions
+# jsx-a11y/no-noninteractive-element-interactions
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Non-interactive HTML elements and non-interactive ARIA roles indicate _content_ and _containers_ in the user interface. A non-interactive element does not support event handlers (mouse and key handlers). Non-interactive elements include `<main>`, `<area>`, `<h1>` (,`<h2>`, etc), `<p>`, `<img>`, `<li>`, `<ul>` and `<ol>`. Non-interactive [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro) include `article`, `banner`, `complementary`, `img`, `listitem`, `main`, `region` and `tooltip`.
 
 ## How do I resolve this error?
 
-### Case: This element acts like a button, link, menuitem, etc.
+### Case: This element acts like a button, link, menuitem, etc
 
 Move the event handler function to an inner element that is either a semantically interactive element (`<button>`, `<a href>`) or that has an interactive role. This leaves the _content_ or _container_ semantic value of this element intact.
 
@@ -89,7 +93,7 @@ If your user interface has a table-like layout, but is filled with interactive c
 
 You can also put the interactive content inside the grid cell. This maintains the semantic distinction between the cell and the interaction content, although a grid cell can be interactive.
 
-## Rule details
+## Rule options
 
 You may configure which handler props should be taken into account when applying this rule. The recommended configuration includes the following 6 handlers.
 
@@ -112,6 +116,7 @@ You may configure which handler props should be taken into account when applying
 Adjust the list of handler prop names in the handlers array to increase or decrease the coverage surface of this rule in your codebase.
 
 ### Succeed
+
 ```jsx
 <div onClick={() => void 0} role="button" />
 <div onClick={() => void 0} role="presentation" />
@@ -122,15 +127,18 @@ Adjust the list of handler prop names in the handlers array to increase or decre
 ```
 
 ### Fail
+
 ```jsx
 <li onClick={() => void 0} />
 <div onClick={() => void 0} role="listitem" />
 ```
 
 ## Accessibility guidelines
+
 - [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
 
 ### Resources
+
 - [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
 - [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
 - [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)

@@ -21,7 +21,6 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/scope.md',
       description: 'Enforce `scope` prop is only used on `<th>` elements.',
-      errorOptions: true,
     },
     schema: [schema],
   },

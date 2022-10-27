@@ -1,4 +1,8 @@
-# aria-proptypes
+# jsx-a11y/aria-proptypes
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 ARIA state and property values must be valid.
 

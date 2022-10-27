@@ -41,7 +41,6 @@ export default ({
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-noninteractive-tabindex.md',
       description: '`tabIndex` should only be declared on interactive elements.',
-      errorOptions: true,
     },
     schema: [schema],
   },

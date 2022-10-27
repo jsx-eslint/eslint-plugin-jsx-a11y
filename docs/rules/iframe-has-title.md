@@ -1,4 +1,8 @@
-# iframe-has-title
+# jsx-a11y/iframe-has-title
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 `<iframe>` elements must have a unique title property to indicate its content to the user.
 

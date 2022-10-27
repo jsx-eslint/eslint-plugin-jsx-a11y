@@ -13,7 +13,7 @@ import { generateObjSchema } from '../util/schemas';
 
 const errorMessage = '';
 
-const schema = generateObjSchema();
+const schema = generateObjSchema(); // TODO: remove this and use "schema: []" if no options.
 
 export default {
   meta: {

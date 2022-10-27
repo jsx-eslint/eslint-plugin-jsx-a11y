@@ -1,9 +1,12 @@
-# no-noninteractive-element-to-interactive-role
+# jsx-a11y/no-noninteractive-element-to-interactive-role
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Non-interactive HTML elements indicate _content_ and _containers_ in the user interface. Non-interactive elements include `<main>`, `<area>`, `<h1>` (,`<h2>`, etc), `<img>`, `<li>`, `<ul>` and `<ol>`.
 
 Interactive HTML elements indicate _controls_ in the user interface. Interactive elements include `<a href>`, `<button>`, `<input>`, `<select>`, `<textarea>`.
-
 
 [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro) should not be used to convert a non-interactive element to an interactive element. Interactive ARIA roles include `button`, `link`, `checkbox`, `menuitem`, `menuitemcheckbox`, `menuitemradio`, `option`, `radio`, `searchbox`, `switch` and `textbox`.
 
@@ -36,7 +39,7 @@ Or wrap the content inside your interactive element.
 </div>
 ```
 
-## Rule details
+## Rule options
 
 The recommended options for this rule allow several common interactive roles to be applied to a non-interactive element. The options are provided as an object keyed by HTML element name; the value is an array of interactive roles that are allowed on the specified element.
 
@@ -62,9 +65,11 @@ Under the recommended options, the following code is valid. It would be invalid 
 ```
 
 ## Accessibility guidelines
+
 - [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
 
 ### Resources
+
 - [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro)
 - [WAI-ARIA Authoring Practices Guide - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex)
 - [Fundamental Keyboard Navigation Conventions](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_generalnav)

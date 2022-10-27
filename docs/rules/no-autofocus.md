@@ -1,8 +1,12 @@
-# no-autofocus
+# jsx-a11y/no-autofocus
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Enforce that autoFocus prop is not used on elements. Autofocusing elements can cause usability issues for sighted and non-sighted users, alike.
 
-## Rule details
+## Rule options
 
 This rule takes one optional object argument of type object:
 

@@ -1,4 +1,8 @@
-# tabindex-no-positive
+# jsx-a11y/tabindex-no-positive
+
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
+<!-- end auto-generated rule header -->
 
 Avoid positive `tabIndex` property values to synchronize the flow of the page with keyboard tab order.
 
