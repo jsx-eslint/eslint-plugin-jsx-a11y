@@ -35,6 +35,7 @@ const getLastPropValue = (rawProp) => {
 export default {
   meta: {
     docs: {
+      description: 'Enforces using semantic DOM elements over the ARIA `role` property.',
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/prefer-tag-over-role.md',
     },
     schema: [schema],

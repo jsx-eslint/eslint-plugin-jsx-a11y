@@ -12,14 +12,13 @@ import getElementType from '../util/getElementType';
 import isFocusable from '../util/isFocusable';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = 'aria-hidden="true" must not be set on focusable elements.';
 const schema = generateObjSchema();
 
 export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-aria-hidden-on-focusable.md',
-      description: errorMessage,
+      description: 'Disallow `aria-hidden="true"` from being set on focusable elements.',
     },
     schema: [schema],
   },
@@ -35,7 +34,7 @@ export default {
         if (isAriaHidden && isFocusable(type, attributes)) {
           context.report({
             node,
-            message: errorMessage,
+            message: 'aria-hidden="true" must not be set on focusable elements.',
           });
         }
       },

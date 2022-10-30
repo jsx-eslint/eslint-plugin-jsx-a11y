@@ -1,12 +1,12 @@
 # jsx-a11y/label-has-for
 
-❌ This rule is deprecated.
+❌ This rule is deprecated. It was replaced by [`label-has-associated-control`](label-has-associated-control.md).
 
 💼 This rule is _disabled_ in the following configs: ☑️ `recommended`, 🔒 `strict`.
 
 <!-- end auto-generated rule header -->
 
-*This rule was deprecated in v6.1.0. It will no longer be maintained. Please use [`label-has-associated-control`](label-has-associated-control.md) instead.*
+_This rule was deprecated in v6.1.0. It will no longer be maintained._
 
 Enforce label tags have associated control.
 
@@ -81,6 +81,7 @@ However, if `allowChildren` is set to `true`, no error will be raised. If you wa
 Note that passing props as spread attribute without `htmlFor` explicitly defined will cause this rule to fail. Explicitly pass down `htmlFor` prop for rule to pass. The prop must have an actual value to pass. Use `Label` component above as a reference. **It is a good thing to explicitly pass props that you expect to be passed for self-documentation.** For example:
 
 #### Bad
+
 ```jsx
 function Foo(props) {
   return <label {...props} />
@@ -88,6 +89,7 @@ function Foo(props) {
 ```
 
 #### Good
+
 ```jsx
 function Foo({ htmlFor, ...props}) {
     return <label htmlFor={htmlFor} {...props} />
@@ -106,6 +108,7 @@ function Foo(props) {
 ```
 
 ### Succeed
+
 ```jsx
 <label htmlFor="firstName">
   <input type="text" id="firstName" />
@@ -114,12 +117,14 @@ function Foo(props) {
 ```
 
 ### Fail
+
 ```jsx
 <input type="text" id="firstName" />
 <label>First Name</label>
 ```
 
 ## Accessibility guidelines
+
 - [WCAG 1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships)
 - [WCAG 3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions)
 - [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
