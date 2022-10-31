@@ -28,6 +28,8 @@ const schema = generateObjSchema({
   },
 });
 
+const validRoles = new Set([...roles.keys()].filter((role) => roles.get(role).abstract === false));
+
 export default {
   meta: {
     docs: {
@@ -41,7 +43,6 @@ export default {
     const options = context.options[0] || {};
     const ignoreNonDOM = !!options.ignoreNonDOM;
     const allowedInvalidRoles = new Set(options.allowedInvalidRoles || []);
-    const validRoles = new Set([...roles.keys()].filter((role) => roles.get(role).abstract === false));
     const elementType = getElementType(context);
 
     return ({

@@ -76,8 +76,10 @@ ruleTester.run('aria-role', rule, {
     { code: '<img role="presentation" />', options: ignoreNonDOMSchema },
     {
       code: '<Div role="button" />',
-      errors: [errorMessage],
       settings: customDivSettings,
+    },
+    {
+      code: '<svg role="graphics-document document" />',
     },
   ].concat(validTests).map(parserOptionsMapper),
 
