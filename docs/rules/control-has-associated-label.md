@@ -1,6 +1,6 @@
 # jsx-a11y/control-has-associated-label
 
-💼 This rule is _disabled_ in the following configs: ☑️ `recommended`, 🔒 `strict`.
+🚫 This rule is _disabled_ in the following configs: ☑️ `recommended`, 🔒 `strict`.
 
 <!-- end auto-generated rule header -->
 
