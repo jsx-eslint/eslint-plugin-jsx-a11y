@@ -13,7 +13,7 @@ describe('getImplicitRole', () => {
   describe('lacks implicit', () => {
     it('should return null', () => {
       expect(getImplicitRole(
-        'div',
+        'custom-element',
         [],
       )).toBeNull();
     });

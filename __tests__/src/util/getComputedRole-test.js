@@ -24,7 +24,7 @@ describe('getComputedRole', () => {
       describe('lacks implicit', () => {
         it('should return null', () => {
           expect(getComputedRole(
-            'div',
+            'custom-element',
             [JSXAttributeMock('role', 'beeswax')],
           )).toBeNull();
         });
@@ -43,7 +43,7 @@ describe('getComputedRole', () => {
       describe('lacks implicit', () => {
         it('should return null', () => {
           expect(getComputedRole(
-            'div',
+            'custom-element',
             [],
           )).toBeNull();
         });
@@ -62,7 +62,7 @@ describe('getComputedRole', () => {
     describe('lacks implicit', () => {
       it('should return null', () => {
         expect(getComputedRole(
-          'div',
+          'custom-element',
           [],
         )).toBeNull();
       });

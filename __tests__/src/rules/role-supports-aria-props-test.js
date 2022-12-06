@@ -579,5 +579,13 @@ ruleTester.run('role-supports-aria-props', rule, {
       code: '<span aria-labelledby />',
       errors: [errorMessage('aria-labelledby', 'generic', 'span', true)],
     },
+    {
+      code: '<div aria-label />',
+      errors: [errorMessage('aria-label', 'generic', 'div', true)],
+    },
+    {
+      code: '<div aria-labelledby />',
+      errors: [errorMessage('aria-labelledby', 'generic', 'div', true)],
+    },
   ].concat(invalidTests).map(parserOptionsMapper),
 });

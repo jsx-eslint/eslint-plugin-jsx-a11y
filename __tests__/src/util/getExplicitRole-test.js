@@ -14,7 +14,7 @@ describe('getExplicitRole', () => {
   describe('invalid role', () => {
     it('should return null', () => {
       expect(getExplicitRole(
-        'div',
+        'custom-element',
         [JSXAttributeMock('role', 'beeswax')],
       )).toBeNull();
     });
@@ -22,7 +22,7 @@ describe('getExplicitRole', () => {
   describe('no role', () => {
     it('should return null', () => {
       expect(getExplicitRole(
-        'div',
+        'custom-element',
         [],
       )).toBeNull();
     });
