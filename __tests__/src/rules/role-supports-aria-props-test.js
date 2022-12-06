@@ -50,11 +50,14 @@ const nonAbstractRoles = [...roles.keys()].filter((role) => roles.get(role).abst
 const createTests = (rolesNames) => rolesNames.reduce((tests, role) => {
   const {
     props: propKeyValues,
+    prohibitedProps,
   } = roles.get(role);
-  const validPropsForRole = Object.keys(propKeyValues);
+  const validPropsForRole = Object.keys(propKeyValues)
+    .filter((attribute) => prohibitedProps.indexOf(attribute) === -1);
   const invalidPropsForRole = [...aria.keys()]
     .map((attribute) => attribute.toLowerCase())
-    .filter((attribute) => validPropsForRole.indexOf(attribute) === -1);
+    .filter((attribute) => validPropsForRole.indexOf(attribute) === -1)
+    .concat(prohibitedProps);
   const normalRole = role.toLowerCase();
 
   const allTests = [];
@@ -567,6 +570,14 @@ ruleTester.run('role-supports-aria-props', rule, {
       code: '<Link href="#" aria-checked />',
       errors: [errorMessage('aria-checked', 'link', 'a', true)],
       settings: componentsSettings,
+    },
+    {
+      code: '<span aria-label />',
+      errors: [errorMessage('aria-label', 'generic', 'span', true)],
+    },
+    {
+      code: '<span aria-labelledby />',
+      errors: [errorMessage('aria-labelledby', 'generic', 'span', true)],
     },
   ].concat(invalidTests).map(parserOptionsMapper),
 });

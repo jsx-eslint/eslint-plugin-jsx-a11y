@@ -65,9 +65,11 @@ export default {
         // Make sure it has no aria-* properties defined outside of its property set.
         const {
           props: propKeyValues,
+          prohibitedProps,
         } = roles.get(roleValue);
         const invalidAriaPropsForRole = [...aria.keys()]
-          .filter((attribute) => !(attribute in propKeyValues));
+          .filter((attribute) => !(attribute in propKeyValues))
+          .concat(prohibitedProps);
 
         node.attributes.filter((prop) => (
           getPropValue(prop) != null // Ignore the attribute if its value is null or undefined.

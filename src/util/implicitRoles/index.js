@@ -29,6 +29,7 @@ import output from './output';
 import progress from './progress';
 import section from './section';
 import select from './select';
+import span from './span';
 import tbody from './tbody';
 import textarea from './textarea';
 import tfoot from './tfoot';
@@ -67,6 +68,7 @@ export default {
   progress,
   section,
   select,
+  span,
   tbody,
   textarea,
   tfoot,
