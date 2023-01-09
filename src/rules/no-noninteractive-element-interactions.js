@@ -22,6 +22,7 @@ import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '.
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import isAbstractRole from '../util/isAbstractRole';
+import isContentEditable from '../util/isContentEditable';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
@@ -78,6 +79,7 @@ export default ({
         }
         if (
           !hasInteractiveProps
+          || isContentEditable(type, attributes)
           || isHiddenFromScreenReader(type, attributes)
           || isPresentationRole(type, attributes)
         ) {

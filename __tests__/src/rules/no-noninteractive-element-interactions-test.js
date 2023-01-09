@@ -337,6 +337,9 @@ const neverValid = [
   { code: '<time onClick={() => {}} />;', errors: [expectedError] },
   { code: '<ol onClick={() => {}} />;', errors: [expectedError] },
   { code: '<ul onClick={() => {}} />;', errors: [expectedError] },
+  { code: '<ul contentEditable="false" onClick={() => {}} />;', errors: [expectedError] },
+  { code: '<article contentEditable onClick={() => {}} />;', errors: [expectedError] },
+  { code: '<div contentEditable role="article" onKeyDown={() => {}} />;', errors: [expectedError] },
   /* HTML elements attributed with a non-interactive role */
   { code: '<div role="alert" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="alertdialog" onClick={() => {}} />;', errors: [expectedError] },

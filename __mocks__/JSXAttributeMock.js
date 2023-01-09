@@ -24,6 +24,8 @@ export default function JSXAttributeMock(prop: string, value: mixed, isExpressio
   let attributeValue = astValue;
   if (isExpressionContainer || astValue.type !== 'Literal') {
     attributeValue = JSXExpressionContainerMock(astValue);
+  } else if (attributeValue.type === 'Literal' && !('raw' in (attributeValue: any))) {
+    (attributeValue: any).raw = JSON.stringify((attributeValue: any).value);
   }
 
   return {
