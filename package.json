@@ -79,7 +79,7 @@
     "emoji-regex": "^9.2.2",
     "has": "^1.0.3",
     "jsx-ast-utils": "^3.3.3",
-    "language-tags": "^1.0.5",
+    "language-tags": "=1.0.5",
     "minimatch": "^3.1.2",
     "semver": "^6.3.0"
   },
