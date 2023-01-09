@@ -8,10 +8,10 @@ export default function hasAccessibleChild(node: JSXElement, elementType: (JSXOp
   return node.children.some((child: Node) => {
     switch (child.type) {
       case 'Literal':
-        return Boolean(child.value);
+        return !!child.value;
       // $FlowFixMe JSXText is missing in ast-types-flow
       case 'JSXText':
-        return Boolean(child.value);
+        return !!child.value;
       case 'JSXElement':
         return !isHiddenFromScreenReader(
           elementType(child.openingElement),

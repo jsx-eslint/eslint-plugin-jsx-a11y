@@ -3,11 +3,13 @@ import { roles as rolesMap } from 'aria-query';
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import includes from 'array-includes';
+import flatMap from 'array.prototype.flatmap';
 
 const roles = [...rolesMap.keys()];
-const interactiveRoles = roles
-  .filter((name) => !rolesMap.get(name).abstract)
-  .filter((name) => rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget')));
+const interactiveRoles = roles.filter((name) => (
+  !rolesMap.get(name).abstract
+  && rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget'))
+));
 
 // 'toolbar' does not descend from widget, but it does support
 // aria-activedescendant, thus in practice we treat it as a widget.
@@ -38,15 +40,10 @@ const isInteractiveRole = (
 
   let isInteractive = false;
   const normalizedValues = String(value).toLowerCase().split(' ');
-  const validRoles = normalizedValues.reduce((
-    accumulator: Array<string>,
-    name: string,
-  ) => {
-    if (includes(roles, name)) {
-      accumulator.push(name);
-    }
-    return accumulator;
-  }, []);
+  const validRoles = flatMap(
+    normalizedValues,
+    (name: string) => (includes(roles, name) ? [name] : []),
+  );
   if (validRoles.length > 0) {
     // The first role value is a series takes precedence.
     isInteractive = includes(interactiveRoles, validRoles[0]);

@@ -64,16 +64,12 @@ export default ({
 
         const propOptions = options.specialLink || [];
         const propsToValidate = ['href'].concat(propOptions);
-        const values = propsToValidate
-          .map((prop) => getProp(node.attributes, prop))
-          .map((prop) => getPropValue(prop));
+        const values = propsToValidate.map((prop) => getPropValue(getProp(node.attributes, prop)));
         // Checks if any actual or custom href prop is provided.
-        const hasAnyHref = values
-          .filter((value) => value === undefined || value === null).length !== values.length;
+        const hasAnyHref = values.some((value) => value != null);
         // Need to check for spread operator as props can be spread onto the element
         // leading to an incorrect validation error.
-        const hasSpreadOperator = attributes
-          .filter((prop) => prop.type === 'JSXSpreadAttribute').length > 0;
+        const hasSpreadOperator = attributes.some((prop) => prop.type === 'JSXSpreadAttribute');
         const onClick = getProp(attributes, 'onClick');
 
         // When there is no href at all, specific scenarios apply:
@@ -99,10 +95,12 @@ export default ({
 
         // Hrefs have been found, now check for validity.
         const invalidHrefValues = values
-          .filter((value) => value !== undefined && value !== null)
-          .filter((value) => (typeof value === 'string' && (
-            !value.length || value === '#' || /^\W*?javascript:/.test(value)
-          )));
+          .filter((value) => (
+            value != null
+            && (typeof value === 'string' && (
+              !value.length || value === '#' || /^\W*?javascript:/.test(value)
+            ))
+          ));
         if (invalidHrefValues.length !== 0) {
           // If an onClick is found it should be a button, otherwise it is an invalid link.
           if (onClick && activeAspects.preferButton) {

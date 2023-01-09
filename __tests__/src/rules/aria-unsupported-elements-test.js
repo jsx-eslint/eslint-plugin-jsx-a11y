@@ -50,7 +50,7 @@ const ariaValidityTests = domElements.map((element) => {
 
 // Generate invalid test cases.
 const invalidRoleValidityTests = domElements
-  .filter((element) => Boolean(dom.get(element).reserved))
+  .filter((element) => dom.get(element).reserved)
   .map((reservedElem) => ({
     code: `<${reservedElem} role {...props} />`,
     errors: [errorMessage('role')],
@@ -61,7 +61,7 @@ const invalidRoleValidityTests = domElements
   });
 
 const invalidAriaValidityTests = domElements
-  .filter((element) => Boolean(dom.get(element).reserved))
+  .filter((element) => dom.get(element).reserved)
   .map((reservedElem) => ({
     code: `<${reservedElem} aria-hidden aria-role="none" {...props} />`,
     errors: [errorMessage('aria-hidden')],

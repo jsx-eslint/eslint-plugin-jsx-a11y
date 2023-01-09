@@ -9,11 +9,13 @@ import {
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import includes from 'array-includes';
+import flatMap from 'array.prototype.flatmap';
 
 const roles = [...rolesMap.keys()];
-const nonInteractiveRoles = roles
-  .filter((name) => !rolesMap.get(name).abstract)
-  .filter((name) => !rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget')));
+const nonInteractiveRoles = roles.filter((name) => (
+  !rolesMap.get(name).abstract
+  && !rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget'))
+));
 
 /**
  * Returns boolean indicating whether the given element has a role
@@ -47,15 +49,10 @@ const isNonInteractiveRole = (
 
   let isNonInteractive = false;
   const normalizedValues = String(role).toLowerCase().split(' ');
-  const validRoles = normalizedValues.reduce((
-    accumulator: Array<string>,
-    name: string,
-  ) => {
-    if (includes(roles, name)) {
-      accumulator.push(name);
-    }
-    return accumulator;
-  }, []);
+  const validRoles = flatMap(
+    normalizedValues,
+    (name: string) => (includes(roles, name) ? [name] : []),
+  );
   if (validRoles.length > 0) {
     // The first role value is a series takes precedence.
     isNonInteractive = includes(nonInteractiveRoles, validRoles[0]);

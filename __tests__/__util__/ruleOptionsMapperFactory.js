@@ -2,6 +2,10 @@
  * @flow
  */
 
+import entries from 'object.entries';
+import flatMap from 'array.prototype.flatmap';
+import fromEntries from 'object.fromentries';
+
 type ESLintTestRunnerTestCase = {
   code: string,
   errors: ?Array<{ message: string, type: string }>,
@@ -21,10 +25,7 @@ export default function ruleOptionsMapperFactory(ruleOptions: Array<mixed> = [])
       code,
       errors,
       // Flatten the array of objects in an array of one object.
-      options: (options || []).concat(ruleOptions).reduce((acc, item) => [{
-        ...acc[0],
-        ...item,
-      }], [{}]),
+      options: [fromEntries(flatMap((options || []).concat(ruleOptions), (item) => entries(item)))],
       parserOptions,
       settings,
     };

@@ -4,6 +4,8 @@
 
 import { dom, roles } from 'aria-query';
 import includes from 'array-includes';
+import fromEntries from 'object.fromentries';
+
 import JSXAttributeMock from './JSXAttributeMock';
 import JSXElementMock from './JSXElementMock';
 
@@ -115,13 +117,7 @@ const nonInteractiveElementsMap: {[string]: Array<{[string]: string}>} = {
   ul: [],
 };
 
-const indeterminantInteractiveElementsMap = domElements.reduce(
-  (accumulator: { [key: string]: Array<any> }, name: string): { [key: string]: Array<any> } => ({
-    ...accumulator,
-    [name]: [],
-  }),
-  {},
-);
+const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = fromEntries(domElements.map((name: string) => [name, []]));
 
 Object.keys(interactiveElementsMap)
   .concat(Object.keys(nonInteractiveElementsMap))
@@ -138,22 +134,25 @@ const interactiveRoles = []
     // aria-activedescendant, thus in practice we treat it as a widget.
     'toolbar',
   )
-  .filter((role) => !roles.get(role).abstract)
-  .filter((role) => roles.get(role).superClass.some((klasses) => includes(klasses, 'widget')));
+  .filter((role) => (
+    !roles.get(role).abstract
+    && roles.get(role).superClass.some((klasses) => includes(klasses, 'widget'))
+  ));
 
 const nonInteractiveRoles = roleNames
-  .filter((role) => !roles.get(role).abstract)
-  .filter((role) => !roles.get(role).superClass.some((klasses) => includes(klasses, 'widget')))
-  // 'toolbar' does not descend from widget, but it does support
-  // aria-activedescendant, thus in practice we treat it as a widget.
-  .filter((role) => !includes(['toolbar'], role));
+  .filter((role) => (
+    !roles.get(role).abstract
+    && !roles.get(role).superClass.some((klasses) => includes(klasses, 'widget'))
+
+    // 'toolbar' does not descend from widget, but it does support
+    // aria-activedescendant, thus in practice we treat it as a widget.
+    && !includes(['toolbar'], role)
+  ));
 
 export function genElementSymbol(openingElement: Object): string {
   return (
     openingElement.name.name + (openingElement.attributes.length > 0
-      ? `${openingElement.attributes
-        .map((attr) => `[${attr.name.name}="${attr.value.value}"]`)
-        .join('')}`
+      ? `${openingElement.attributes.map((attr) => `[${attr.name.name}="${attr.value.value}"]`).join('')}`
       : ''
     )
   );
@@ -172,7 +171,7 @@ export function genInteractiveElements(): Array<JSXElementMockType> {
 }
 
 export function genInteractiveRoleElements(): Array<JSXElementMockType> {
-  return [...interactiveRoles, 'button article', 'fakerole button article'].map((value): JSXElementMockType => JSXElementMock(
+  return interactiveRoles.concat('button article', 'fakerole button article').map((value): JSXElementMockType => JSXElementMock(
     'div',
     [JSXAttributeMock('role', value)],
   ));
