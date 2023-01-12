@@ -26,6 +26,7 @@ module.exports = {
     'media-has-caption': require('./rules/media-has-caption'),
     'mouse-events-have-key-events': require('./rules/mouse-events-have-key-events'),
     'no-access-key': require('./rules/no-access-key'),
+    'no-aria-hidden-on-focusable': require('./rules/no-aria-hidden-on-focusable'),
     'no-autofocus': require('./rules/no-autofocus'),
     'no-distracting-elements': require('./rules/no-distracting-elements'),
     'no-interactive-element-to-noninteractive-role': require('./rules/no-interactive-element-to-noninteractive-role'),
