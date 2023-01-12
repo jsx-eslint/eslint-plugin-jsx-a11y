@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v6.7.1](https://github.com/ljharb/eslint-plugin-jsx-a11y/compare/v6.7.0...v6.7.1) - 2023-01-11
+
+### Commits
+
+- [Fix] `no-aria-hidden-on-focusable` rule's missing export [`b01219e`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/b01219edc2eb289c7a068b4fa195f2ac04e915fa)
+
 ## [v6.7.0](https://github.com/ljharb/eslint-plugin-jsx-a11y/compare/v6.6.1...v6.7.0) - 2023-01-09
 
 ### Merged
