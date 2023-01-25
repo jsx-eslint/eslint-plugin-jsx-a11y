@@ -12,6 +12,10 @@ import includes from 'array-includes';
 import { getPropValue, propName } from 'jsx-ast-utils';
 import type { JSXOpeningElement, Node } from 'ast-types-flow';
 
+function tryTrim(value: any) {
+  return typeof value === 'string' ? value.trim() : value;
+}
+
 function hasLabellingProp(
   openingElement: JSXOpeningElement,
   additionalLabellingProps?: Array<string> = [],
@@ -30,7 +34,7 @@ function hasLabellingProp(
     // Attribute matches.
     if (
       includes(labellingProps, propName(attribute))
-      && !!getPropValue(attribute)
+      && !!tryTrim(getPropValue(attribute))
     ) {
       return true;
     }
@@ -52,7 +56,7 @@ export default function mayHaveAccessibleLabel(
       return false;
     }
     // Check for literal text.
-    if (node.type === 'Literal' && !!node.value) {
+    if (node.type === 'Literal' && !!tryTrim(node.value)) {
       return true;
     }
     // Assume an expression container renders a label. It is the best we can
@@ -62,7 +66,7 @@ export default function mayHaveAccessibleLabel(
     }
     // Check for JSXText.
     // $FlowFixMe Remove after updating ast-types-flow
-    if (node.type === 'JSXText' && !!node.value) {
+    if (node.type === 'JSXText' && !!tryTrim(node.value)) {
       return true;
     }
     // Check for labelling props.

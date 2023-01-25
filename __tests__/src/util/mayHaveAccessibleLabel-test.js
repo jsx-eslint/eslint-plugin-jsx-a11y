@@ -41,6 +41,14 @@ describe('mayHaveAccessibleLabel', () => {
         JSXAttributeMock('aria-label', ''),
       ], []))).toBe(false);
     });
+    it('aria-label with only whitespace, should return false', () => {
+      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+        JSXAttributeMock('aria-label', ' '),
+      ], []))).toBe(false);
+      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+        JSXAttributeMock('aria-label', '\n'),
+      ], []))).toBe(false);
+    });
     it('aria-labelledby, should return true', () => {
       expect(mayHaveAccessibleLabel(JSXElementMock('div', [
         JSXAttributeMock('aria-labelledby', 'elementId'),
@@ -77,6 +85,14 @@ describe('mayHaveAccessibleLabel', () => {
       expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
         LiteralMock('A fancy label'),
       ]))).toBe(true);
+    });
+    it('Literal whitespace, should return false', () => {
+      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+        LiteralMock(' '),
+      ]))).toBe(false);
+      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+        LiteralMock('\n'),
+      ]))).toBe(false);
     });
     it('JSXText, should return true', () => {
       expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
