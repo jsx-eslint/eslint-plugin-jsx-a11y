@@ -6,9 +6,35 @@
 
 Enforce onmouseover/onmouseout are accompanied by onfocus/onblur. Coding for the keyboard is important for users with physical disabilities who cannot use a mouse, AT compatibility, and screenreader users.
 
-## Rule details
+## Rule options
 
-This rule takes no arguments.
+By default, this rule checks that `onmouseover` is paired with `onfocus` and that `onmouseout` is paired with `onblur`. This rule takes an optional argument to specify other handlers to check for "hover in" and/or "hover out" events:
+
+```json
+{
+  "rules": {
+    "jsx-a11y/mouse-events-have-key-events": [
+      "error",
+      {
+        "hoverInHandlers": [
+          "onMouseOver",
+          "onMouseEnter",
+          "onPointerOver",
+          "onPointerEnter"
+        ],
+        "hoverOutHandlers": [
+          "onMouseOut",
+          "onMouseLeave",
+          "onPointerOut",
+          "onPointerLeave"
+        ]
+      }
+    ]
+  }
+}
+```
+
+Note that while `onmouseover` and `onmouseout` are checked by default if no arguments are passed in, those are *not* included by default if you *do* provide an argument, so remember to explicitly include them if you want to check them.
 
 ### Succeed
 ```jsx
