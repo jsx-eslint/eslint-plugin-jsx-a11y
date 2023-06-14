@@ -156,7 +156,6 @@ const alwaysValid = [
   { code: '<section />' },
   { code: '<table />' },
   { code: '<tbody />' },
-  { code: '<td />' },
   { code: '<tfoot />' },
   { code: '<thead />' },
   { code: '<time />' },
@@ -261,6 +260,7 @@ const neverValid = [
   { code: '<area href="#" />', errors: [expectedError] },
   { code: '<menuitem />', errors: [expectedError] },
   { code: '<option />', errors: [expectedError] },
+  { code: '<td />', errors: [expectedError] },
   { code: '<th />', errors: [expectedError] },
   // Interactive Roles
   { code: '<div role="button" />', errors: [expectedError] },

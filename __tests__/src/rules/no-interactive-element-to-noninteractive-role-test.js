@@ -169,6 +169,7 @@ const alwaysValid = [
   { code: '<style role="button" />;' },
   { code: '<sub role="button" />;' },
   { code: '<summary role="button" />;' },
+  { code: '<summary role="listitem" />;' },
   { code: '<sup role="button" />;' },
   { code: '<th role="button" />;' },
   { code: '<time role="button" />;' },
