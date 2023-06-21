@@ -8,7 +8,7 @@ import flatMap from 'array.prototype.flatmap';
 const roles = [...rolesMap.keys()];
 const interactiveRoles = roles.filter((name) => (
   !rolesMap.get(name).abstract
-  && rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget'))
+  && rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget', `window`))
 ));
 
 // 'toolbar' does not descend from widget, but it does support
