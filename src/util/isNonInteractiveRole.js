@@ -14,7 +14,7 @@ import flatMap from 'array.prototype.flatmap';
 const roles = [...rolesMap.keys()];
 const nonInteractiveRoles = roles.filter((name) => (
   !rolesMap.get(name).abstract
-  && !rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget'))
+  && !rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget', 'window'))
 ));
 
 /**
