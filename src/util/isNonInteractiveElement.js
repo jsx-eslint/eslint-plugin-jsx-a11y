@@ -54,7 +54,7 @@ const interactiveRoles = new Set(roleKeys
         // This role is meant to have no semantic value.
         // @see https://www.w3.org/TR/wai-aria-1.2/#generic
         && name !== 'generic'
-        && role.superClass.some((classes) => includes(classes, 'widget', 'window'))
+        && role.superClass.some((classes) => includes(classes, 'widget') || includes(classes, 'window'))
     );
   }).concat(
     // 'toolbar' does not descend from widget, but it does support

@@ -27,7 +27,7 @@ const nonInteractiveRoles = new Set(roleKeys
         // 'toolbar' does not descend from widget, but it does support
         // aria-activedescendant, thus in practice we treat it as a widget.
         && name !== 'toolbar'
-        && !role.superClass.some((classes) => includes(classes, 'widget', 'window'))
+        && !role.superClass.some((classes) => includes(classes, 'widget') || includes(classes, 'window'))
     );
   }).concat(
     // The `progressbar` is descended from `widget`, but in practice, its
