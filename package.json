@@ -66,6 +66,7 @@
     "object.assign": "^4.1.4",
     "rimraf": "^3.0.2",
     "safe-publish-latest": "^2.0.0",
+    "semver": "^6.3.1",
     "to-ast": "^1.0.0"
   },
   "engines": {
@@ -87,8 +88,7 @@
     "language-tags": "=1.0.5",
     "minimatch": "^3.1.2",
     "object.entries": "^1.1.6",
-    "object.fromentries": "^2.0.6",
-    "semver": "^6.3.1"
+    "object.fromentries": "^2.0.6"
   },
   "peerDependencies": {
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8"
