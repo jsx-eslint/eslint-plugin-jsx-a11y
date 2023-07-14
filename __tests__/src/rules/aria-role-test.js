@@ -50,6 +50,7 @@ const ignoreNonDOMSchema = [{
 
 const customDivSettings = {
   'jsx-a11y': {
+    polymorphicPropName: 'asChild',
     components: {
       Div: 'div',
     },
@@ -80,6 +81,10 @@ ruleTester.run('aria-role', rule, {
       settings: customDivSettings,
     },
     {
+      code: '<Box asChild="div" role="button" />',
+      settings: customDivSettings,
+    },
+    {
       code: '<svg role="graphics-document document" />',
     },
   )).concat(validTests).map(parserOptionsMapper),
@@ -104,6 +109,11 @@ ruleTester.run('aria-role', rule, {
       errors: [errorMessage],
       options: ignoreNonDOMSchema,
       settings: customDivSettings,
+    },
+    {
+      code: '<Box asChild="div" role="Button" />',
+      settings: customDivSettings,
+      errors: [errorMessage],
     },
   )).concat(invalidTests).map(parserOptionsMapper),
 });

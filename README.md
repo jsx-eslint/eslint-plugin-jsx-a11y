@@ -89,15 +89,15 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 }
 ```
 
-> As you are extending our configuration, you can omit `"plugins": ["jsx-a11y"]` from your `.eslintrc` configuration file.
+### Configurations
 
-To enable your custom components to be checked as DOM elements, you can set global settings in your
-configuration file by mapping each custom component name to a DOM element type.
+> As you are extending our configuration, you can omit `"plugins": ["jsx-a11y"]` from your `.eslintrc` configuration file.
 
 ```json
 {
   "settings": {
     "jsx-a11y": {
+      "polymorphicPropName": "as",
       "components": {
         "CityInput": "input",
         "CustomButton": "button",
@@ -108,6 +108,23 @@ configuration file by mapping each custom component name to a DOM element type.
   }
 }
 ```
+
+#### Component Mapping
+
+To enable your custom components to be checked as DOM elements, you can set global settings in your configuration file by mapping each custom component name to a DOM element type.
+
+#### Polymorphic Components
+
+You can optionally use the `polymorphicPropName` setting to define the prop your code uses to create polymorphic components.
+This setting will be used determine the element type in rules that require semantic context.
+
+For example, if you set the `polymorphicPropName` setting to `as` then this element:
+
+`<Box as="h3">Configurations </Box>`
+
+will be evaluated as an `h3`. If no `polymorphicPropName` is set, then the component will be evaluated as `Box`.
+
+⚠️  Polymorphic components can make code harder to maintain; please use this feature with caution.
 
 ## Supported Rules
 

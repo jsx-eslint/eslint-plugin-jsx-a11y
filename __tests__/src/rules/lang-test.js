@@ -25,6 +25,7 @@ const expectedError = {
 
 const componentsSettings = {
   'jsx-a11y': {
+    polymorphicPropName: 'as',
     components: {
       Foo: 'html',
     },
@@ -46,11 +47,13 @@ ruleTester.run('lang', rule, {
     { code: '<HTML lang="foo" />' },
     { code: '<Foo lang={undefined} />' },
     { code: '<Foo lang="en" />', settings: componentsSettings },
+    { code: '<Box as="html" lang="en"  />', settings: componentsSettings },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<html lang="foo" />', errors: [expectedError] },
     { code: '<html lang="zz-LL" />', errors: [expectedError] },
     { code: '<html lang={undefined} />', errors: [expectedError] },
     { code: '<Foo lang={undefined} />', settings: componentsSettings, errors: [expectedError] },
+    { code: '<Box as="html" lang="foo" />', settings: componentsSettings, errors: [expectedError] },
   )).map(parserOptionsMapper),
 });

@@ -43,6 +43,10 @@ ruleTester.run('accessible-emoji', rule, {
       code: '<CustomInput type="hidden">🐼</CustomInput>',
       settings: { 'jsx-a11y': { components: { CustomInput: 'input' } } },
     },
+    {
+      code: '<Box as="input" type="hidden">🐼</Box>',
+      settings: { 'jsx-a11y': { polymorphicPropName: 'as' } },
+    },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<span>🐼</span>', errors: [expectedError] },
@@ -53,5 +57,10 @@ ruleTester.run('accessible-emoji', rule, {
     { code: '<Foo>🐼</Foo>', errors: [expectedError] },
     { code: '<span aria-hidden="false">🐼</span>', errors: [expectedError] },
     { code: '<CustomInput type="hidden">🐼</CustomInput>', errors: [expectedError] },
+    {
+      code: '<Box as="span">🐼</Box>',
+      settings: { 'jsx-a11y': { polymorphicPropName: 'as' } },
+      errors: [expectedError],
+    },
   )).map(parserOptionsMapper),
 });

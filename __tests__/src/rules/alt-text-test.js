@@ -55,6 +55,7 @@ const inputImageError = {
 
 const componentsSettings = {
   'jsx-a11y': {
+    polymorphicPropName: 'as',
     components: {
       Input: 'input',
     },
@@ -132,6 +133,7 @@ ruleTester.run('alt-text', rule, {
     { code: '<input type="image" alt={altText} />' },
     { code: '<InputImage />' },
     { code: '<Input type="image" alt="" />', settings: componentsSettings },
+    { code: '<SomeComponent as="input" type="image" alt="" />', settings: componentsSettings },
 
     // CUSTOM ELEMENT TESTS FOR ARRAY OPTION TESTS
     { code: '<Thumbnail alt="foo" />;', options: array },
@@ -195,6 +197,7 @@ ruleTester.run('alt-text', rule, {
     { code: '<img aria-labelledby={undefined} />', errors: [ariaLabelledbyValueError] },
     { code: '<img aria-label="" />', errors: [ariaLabelValueError] },
     { code: '<img aria-labelledby="" />', errors: [ariaLabelledbyValueError] },
+    { code: '<SomeComponent as="img" aria-label="" />', settings: componentsSettings, errors: [ariaLabelValueError] },
 
     // DEFAULT ELEMENT 'object' TESTS
     { code: '<object />', errors: [objectError] },

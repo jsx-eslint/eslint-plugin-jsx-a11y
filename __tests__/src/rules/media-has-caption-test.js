@@ -33,6 +33,7 @@ const customSchema = [
 
 const componentsSettings = {
   'jsx-a11y': {
+    polymorphicPropName: 'as',
     components: {
       Audio: 'audio',
       Video: 'video',
@@ -144,6 +145,10 @@ ruleTester.run('media-has-caption', rule, {
       code: '<Audio muted={true}></Audio>',
       settings: componentsSettings,
     },
+    {
+      code: '<Box as="audio" muted={true}></Box>',
+      settings: componentsSettings,
+    },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<audio><track /></audio>', errors: [expectedError] },
@@ -203,6 +208,11 @@ ruleTester.run('media-has-caption', rule, {
     },
     {
       code: '<Video><Track kind="subtitles" /></Video>',
+      settings: componentsSettings,
+      errors: [expectedError],
+    },
+    {
+      code: '<Box as="audio"><Track kind="subtitles" /></Box>',
       settings: componentsSettings,
       errors: [expectedError],
     },
