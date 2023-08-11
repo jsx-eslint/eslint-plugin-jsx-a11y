@@ -67,7 +67,7 @@ export default ({
 
         if (hasOnFocus === false || onFocusValue === null || onFocusValue === undefined) {
           context.report({
-            node,
+            node: getProp(attributes, firstHoverInHandlerWithValue),
             message: `${firstHoverInHandlerWithValue} must be accompanied by onFocus for accessibility.`,
           });
         }
@@ -86,7 +86,7 @@ export default ({
 
         if (hasOnBlur === false || onBlurValue === null || onBlurValue === undefined) {
           context.report({
-            node,
+            node: getProp(attributes, firstHoverOutHandlerWithValue),
             message: `${firstHoverOutHandlerWithValue} must be accompanied by onBlur for accessibility.`,
           });
         }
