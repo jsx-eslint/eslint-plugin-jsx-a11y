@@ -58,6 +58,7 @@
     "expect": "^24.9.0",
     "flow-bin": "^0.147.0",
     "in-publish": "^2.0.1",
+    "jackspeak": "=2.1.1",
     "jest": "^24.9.0",
     "jscodeshift": "^0.7.1",
     "minimist": "^1.2.7",
