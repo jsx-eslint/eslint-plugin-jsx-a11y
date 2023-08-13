@@ -9,7 +9,7 @@ import {
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
 
 function mergeTabIndex(index, attributes) {
-  return [...attributes, JSXAttributeMock('tabIndex', index)];
+  return [].concat(attributes, JSXAttributeMock('tabIndex', index));
 }
 
 describe('isFocusable', () => {

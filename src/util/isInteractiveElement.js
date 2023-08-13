@@ -13,9 +13,13 @@ import {
 } from 'axobject-query';
 import includes from 'array-includes';
 import flatMap from 'array.prototype.flatmap';
+import iterFrom from 'es-iterator-helpers/Iterator.from';
+// import iterFlatMap from 'es-iterator-helpers/Iterator.prototype.flatMap';
+import filter from 'es-iterator-helpers/Iterator.prototype.filter';
+import some from 'es-iterator-helpers/Iterator.prototype.some';
+
 import attributesComparator from './attributesComparator';
 
-const domKeys = [...dom.keys()];
 const roleKeys = [...roles.keys()];
 const elementRoleEntries = [...elementRoles];
 
@@ -51,22 +55,24 @@ const interactiveRoles = new Set(roleKeys
     'toolbar',
   ));
 
-const nonInteractiveElementRoleSchemas = flatMap(
-  elementRoleEntries,
-  ([elementSchema, roleSet]) => ([...roleSet].every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []),
-);
-
+// TODO: convert to use iterFlatMap and iterFrom
 const interactiveElementRoleSchemas = flatMap(
   elementRoleEntries,
-  ([elementSchema, roleSet]) => ([...roleSet].some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []),
+  ([elementSchema, rolesArr]) => (rolesArr.some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []),
 );
 
-const interactiveAXObjects = new Set([...AXObjects.keys()]
-  .filter((name) => AXObjects.get(name).type === 'widget'));
+// TODO: convert to use iterFlatMap and iterFrom
+const nonInteractiveElementRoleSchemas = flatMap(
+  elementRoleEntries,
+  ([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []),
+);
 
+const interactiveAXObjects = new Set(filter(iterFrom(AXObjects.keys()), (name) => AXObjects.get(name).type === 'widget'));
+
+// TODO: convert to use iterFlatMap and iterFrom
 const interactiveElementAXObjectSchemas = flatMap(
   [...elementAXObjects],
-  ([elementSchema, AXObjectSet]) => ([...AXObjectSet].every((role): boolean => interactiveAXObjects.has(role)) ? [elementSchema] : []),
+  ([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => interactiveAXObjects.has(role)) ? [elementSchema] : []),
 );
 
 function checkIsInteractiveElement(tagName, attributes): boolean {
@@ -78,18 +84,18 @@ function checkIsInteractiveElement(tagName, attributes): boolean {
   }
   // Check in elementRoles for inherent interactive role associations for
   // this element.
-  const isInherentInteractiveElement = interactiveElementRoleSchemas.some(elementSchemaMatcher);
+  const isInherentInteractiveElement = some(iterFrom(interactiveElementRoleSchemas), elementSchemaMatcher);
   if (isInherentInteractiveElement) {
     return true;
   }
   // Check in elementRoles for inherent non-interactive role associations for
   // this element.
-  const isInherentNonInteractiveElement = nonInteractiveElementRoleSchemas.some(elementSchemaMatcher);
+  const isInherentNonInteractiveElement = some(iterFrom(nonInteractiveElementRoleSchemas), elementSchemaMatcher);
   if (isInherentNonInteractiveElement) {
     return false;
   }
   // Check in elementAXObjects for AX Tree associations for this element.
-  const isInteractiveAXElement = interactiveElementAXObjectSchemas.some(elementSchemaMatcher);
+  const isInteractiveAXElement = some(iterFrom(interactiveElementAXObjectSchemas), elementSchemaMatcher);
   if (isInteractiveAXElement) {
     return true;
   }
@@ -109,7 +115,7 @@ const isInteractiveElement = (
 ): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (!includes(domKeys, tagName)) {
+  if (!dom.has(tagName)) {
     return false;
   }
 

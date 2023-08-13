@@ -18,8 +18,6 @@ const errorMessage = 'An element that manages focus with `aria-activedescendant`
 
 const schema = generateObjSchema();
 
-const domElements = [...dom.keys()];
-
 export default {
   meta: {
     docs: {
@@ -42,7 +40,7 @@ export default {
         const type = elementType(node);
         // Do not test higher level JSX components, as we do not know what
         // low-level DOM element this maps to.
-        if (domElements.indexOf(type) === -1) {
+        if (!dom.has(type)) {
           return;
         }
         const tabIndex = getTabIndex(getProp(attributes, 'tabIndex'));

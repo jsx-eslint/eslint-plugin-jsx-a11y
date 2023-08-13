@@ -10,6 +10,10 @@
 
 import { roles } from 'aria-query';
 import { RuleTester } from 'eslint';
+import iterFrom from 'es-iterator-helpers/Iterator.from';
+import map from 'es-iterator-helpers/Iterator.prototype.map';
+import toArray from 'es-iterator-helpers/Iterator.prototype.toArray';
+
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/role-has-required-aria-props';
@@ -38,7 +42,7 @@ const componentsSettings = {
 };
 
 // Create basic test cases using all valid role types.
-const basicValidityTests = [...roles.keys()].map((role) => {
+const basicValidityTests = toArray(map(iterFrom(roles.keys()), (role) => {
   const {
     requiredProps: requiredPropKeyValues,
   } = roles.get(role);
@@ -48,7 +52,7 @@ const basicValidityTests = [...roles.keys()].map((role) => {
   return {
     code: `<div role="${role.toLowerCase()}" ${propChain} />`,
   };
-});
+}));
 
 ruleTester.run('role-has-required-aria-props', rule, {
   valid: parsers.all([].concat(

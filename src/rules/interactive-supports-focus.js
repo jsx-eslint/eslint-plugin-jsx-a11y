@@ -36,12 +36,12 @@ import getTabIndex from '../util/getTabIndex';
 // ----------------------------------------------------------------------------
 
 const schema = generateObjSchema({
+  // TODO: convert to use iterFilter and iterFrom
   tabbable: enumArraySchema([...roles.keys()].filter((name) => (
     !roles.get(name).abstract
     && roles.get(name).superClass.some((klasses) => includes(klasses, 'widget'))
   ))),
 });
-const domElements = [...dom.keys()];
 
 const interactiveProps = [].concat(
   eventHandlersByType.mouse,
@@ -69,7 +69,7 @@ export default ({
         const hasInteractiveProps = hasAnyProp(attributes, interactiveProps);
         const hasTabindex = getTabIndex(getProp(attributes, 'tabIndex')) !== undefined;
 
-        if (!includes(domElements, type)) {
+        if (!dom.has(type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;

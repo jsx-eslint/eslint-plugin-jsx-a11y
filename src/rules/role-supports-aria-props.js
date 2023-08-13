@@ -18,14 +18,16 @@ import {
   getPropValue,
   propName,
 } from 'jsx-ast-utils';
+import iterFrom from 'es-iterator-helpers/Iterator.from';
+import filter from 'es-iterator-helpers/Iterator.prototype.filter';
+
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import getImplicitRole from '../util/getImplicitRole';
 
 const errorMessage = (attr, role, tag, isImplicit) => {
   if (isImplicit) {
-    return `The attribute ${attr} is not supported by the role ${role}. \
-This role is implicit on the element ${tag}.`;
+    return `The attribute ${attr} is not supported by the role ${role}. This role is implicit on the element ${tag}.`;
   }
 
   return `The attribute ${attr} is not supported by the role ${role}.`;
@@ -66,15 +68,14 @@ export default {
         const {
           props: propKeyValues,
         } = roles.get(roleValue);
-        const invalidAriaPropsForRole = [...aria.keys()]
-          .filter((attribute) => !(attribute in propKeyValues));
+        const invalidAriaPropsForRole = new Set(filter(iterFrom(aria.keys()), (attribute) => !(attribute in propKeyValues)));
 
         node.attributes.filter((prop) => (
           getPropValue(prop) != null // Ignore the attribute if its value is null or undefined.
           && prop.type !== 'JSXSpreadAttribute' // Ignore the attribute if it's a spread.
         )).forEach((prop) => {
           const name = propName(prop);
-          if (invalidAriaPropsForRole.indexOf(name) > -1) {
+          if (invalidAriaPropsForRole.has(name)) {
             context.report({
               node,
               message: errorMessage(name, roleValue, type, isImplicit),

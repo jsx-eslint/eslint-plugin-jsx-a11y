@@ -3,16 +3,17 @@ import {
   roles,
 } from 'aria-query';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import iterFrom from 'es-iterator-helpers/Iterator.from';
+import filter from 'es-iterator-helpers/Iterator.prototype.filter';
 
-const abstractRoles = new Set([...roles.keys()]
-  .filter((role) => roles.get(role).abstract));
+const abstractRoles = new Set(filter(iterFrom(roles.keys()), (role) => roles.get(role).abstract));
 
-const DOMElements = [...dom.keys()];
+const DOMElements = new Set(dom.keys());
 
 const isAbstractRole = (tagName, attributes) => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
-  if (DOMElements.indexOf(tagName) === -1) {
+  if (!DOMElements.has(tagName)) {
     return false;
   }
 

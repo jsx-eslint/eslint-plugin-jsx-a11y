@@ -11,8 +11,7 @@ import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import includes from 'array-includes';
 import flatMap from 'array.prototype.flatmap';
 
-const roles = [...rolesMap.keys()];
-const nonInteractiveRoles = roles.filter((name) => (
+const nonInteractiveRoles = [...rolesMap.keys()].filter((name) => (
   !rolesMap.get(name).abstract
   && !rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget'))
 ));
@@ -51,7 +50,7 @@ const isNonInteractiveRole = (
   const normalizedValues = String(role).toLowerCase().split(' ');
   const validRoles = flatMap(
     normalizedValues,
-    (name: string) => (includes(roles, name) ? [name] : []),
+    (name: string) => (rolesMap.has(name) ? [name] : []),
   );
   if (validRoles.length > 0) {
     // The first role value is a series takes precedence.

@@ -27,8 +27,6 @@ import isPresentationRole from '../util/isPresentationRole';
 
 const errorMessage = 'Interactive elements should not be assigned non-interactive roles.';
 
-const domElements = [...dom.keys()];
-
 export default ({
   meta: {
     docs: {
@@ -62,7 +60,7 @@ export default ({
         const type = elementType(node);
         const role = getLiteralPropValue(getProp(node.attributes, 'role'));
 
-        if (!includes(domElements, type)) {
+        if (!dom.has(type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;

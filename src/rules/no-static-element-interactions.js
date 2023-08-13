@@ -16,7 +16,6 @@ import {
   hasProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
-import includes from 'array-includes';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
@@ -31,7 +30,6 @@ import isPresentationRole from '../util/isPresentationRole';
 
 const errorMessage = 'Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.';
 
-const domElements = [...dom.keys()];
 const defaultInteractiveProps = [].concat(
   eventHandlersByType.focus,
   eventHandlersByType.keyboard,
@@ -69,7 +67,7 @@ export default ({
             && getPropValue(getProp(attributes, prop)) != null
           ));
 
-        if (!includes(domElements, type)) {
+        if (!dom.has(type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;

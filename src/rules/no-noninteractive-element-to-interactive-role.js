@@ -25,8 +25,6 @@ import isInteractiveRole from '../util/isInteractiveRole';
 
 const errorMessage = 'Non-interactive elements should not be assigned interactive roles.';
 
-const domElements = [...dom.keys()];
-
 export default ({
   meta: {
     docs: {
@@ -60,7 +58,7 @@ export default ({
         const type = elementType(node);
         const role = getExplicitRole(type, node.attributes);
 
-        if (!includes(domElements, type)) {
+        if (!dom.has(type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;

@@ -32,7 +32,6 @@ import isPresentationRole from '../util/isPresentationRole';
 
 const errorMessage = 'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
-const domElements = [...dom.keys()];
 const defaultInteractiveProps = [].concat(
   eventHandlersByType.focus,
   eventHandlersByType.image,
@@ -72,7 +71,7 @@ export default ({
             && getPropValue(getProp(attributes, prop)) != null
           ));
 
-        if (!includes(domElements, type)) {
+        if (!dom.has(type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;

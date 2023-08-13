@@ -4,11 +4,9 @@ import { elementType } from 'jsx-ast-utils';
 import isDOMElement from '../../../src/util/isDOMElement';
 import JSXElementMock from '../../../__mocks__/JSXElementMock';
 
-const domElements = [...dom.keys()];
-
 describe('isDOMElement', () => {
   describe('DOM elements', () => {
-    domElements.forEach((el) => {
+    dom.forEach((_, el) => {
       it(`should identify ${el} as a DOM element`, () => {
         const element = JSXElementMock(el);
         expect(isDOMElement(elementType(element.openingElement)))

@@ -47,7 +47,7 @@ export default {
           return;
         }
 
-        const invalidAttributes = [...aria.keys(), 'role'];
+        const invalidAttributes = new Set([...aria.keys(), 'role']);
 
         node.attributes.forEach((prop) => {
           if (prop.type === 'JSXSpreadAttribute') {
@@ -56,7 +56,7 @@ export default {
 
           const name = propName(prop).toLowerCase();
 
-          if (invalidAttributes.indexOf(name) > -1) {
+          if (invalidAttributes.has(name)) {
             context.report({
               node,
               message: errorMessage(name),

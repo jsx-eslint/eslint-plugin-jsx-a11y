@@ -9,7 +9,6 @@
 
 import { dom } from 'aria-query';
 import { getProp, hasAnyProp } from 'jsx-ast-utils';
-import includes from 'array-includes';
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
@@ -19,7 +18,6 @@ import isPresentationRole from '../util/isPresentationRole';
 const errorMessage = 'Visible, non-interactive elements with click handlers must have at least one keyboard listener.';
 
 const schema = generateObjSchema();
-const domElements = [...dom.keys()];
 
 export default {
   meta: {
@@ -42,7 +40,7 @@ export default {
         const type = elementType(node);
         const requiredProps = ['onkeydown', 'onkeyup', 'onkeypress'];
 
-        if (!includes(domElements, type)) {
+        if (!dom.has(type)) {
           // Do not test higher level JSX components, as we do not know what
           // low-level DOM element this maps to.
           return;

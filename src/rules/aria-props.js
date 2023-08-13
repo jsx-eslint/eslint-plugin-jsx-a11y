@@ -45,7 +45,7 @@ export default {
         return;
       }
 
-      const isValid = ariaAttributes.indexOf(name) > -1;
+      const isValid = aria.has(name);
 
       if (isValid === false) {
         context.report({

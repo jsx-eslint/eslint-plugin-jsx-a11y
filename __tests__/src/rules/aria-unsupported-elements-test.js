@@ -69,7 +69,7 @@ const invalidAriaValidityTests = domElements
   }));
 
 ruleTester.run('aria-unsupported-elements', rule, {
-  valid: parsers.all([].concat(roleValidityTests.concat(ariaValidityTests))).map(parserOptionsMapper),
-  invalid: parsers.all([].concat(invalidRoleValidityTests.concat(invalidAriaValidityTests)))
+  valid: parsers.all([].concat(roleValidityTests, ariaValidityTests)).map(parserOptionsMapper),
+  invalid: parsers.all([].concat(invalidRoleValidityTests, invalidAriaValidityTests))
     .map(parserOptionsMapper),
 });
