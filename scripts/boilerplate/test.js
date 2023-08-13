@@ -29,7 +29,7 @@ ruleTester.run('${name}', rule, {
     { code: '<div />;' },
   ].map(parserOptionsMapper))),
   invalid: parsers.all([].concat(
-    
+
   ).map(parserOptionsMapper)),
 });
 `;
