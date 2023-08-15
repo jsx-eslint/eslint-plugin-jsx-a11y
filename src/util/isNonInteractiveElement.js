@@ -35,7 +35,7 @@ const nonInteractiveRoles = new Set(roleKeys
         // treats them both as CellRole and since gridcell is interactive, we consider
         // cell interactive as well.
         && name !== 'cell'
-        && !role.superClass.some((classes) => includes(classes, 'widget', 'window'))
+        && !role.superClass.some((classes) => includes(classes, 'widget') || includes(classes, 'window'))
     );
   }).concat(
     // The `progressbar` is descended from `widget`, but in practice, its

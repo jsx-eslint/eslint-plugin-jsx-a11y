@@ -43,7 +43,7 @@ const interactiveRoles = new Set(roleKeys
         // The `progressbar` is descended from `widget`, but in practice, its
         // value is always `readonly`, so we treat it as a non-interactive role.
         && name !== 'progressbar'
-        && role.superClass.some((classes) => includes(classes, 'widget', 'window'))
+        && role.superClass.some((classes) => includes(classes, 'widget') || includes(classes, 'window'))
     );
   }).concat(
     // 'toolbar' does not descend from widget, but it does support
