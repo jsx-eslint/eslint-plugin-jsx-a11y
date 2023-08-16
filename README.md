@@ -60,7 +60,8 @@ yarn add eslint-plugin-jsx-a11y --dev
 
 **Note:** If you installed ESLint globally (using the `-g` flag in npm, or the `global` prefix in yarn) then you must also install `eslint-plugin-jsx-a11y` globally.
 
-## Usage
+<a id="usage"></a>
+## Usage (legacy: `.eslintrc`)
 
 Add `jsx-a11y` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
@@ -107,6 +108,124 @@ configuration file by mapping each custom component name to a DOM element type.
     }
   }
 }
+```
+
+## Usage (new: `eslint.config.js`)
+
+From [`v8.21.0`](https://github.com/eslint/eslint/releases/tag/v8.21.0), eslint announced a new config system.
+In the new system, `.eslintrc*` is no longer used. `eslint.config.js` would be the default config file name.
+
+And from [`v8.23.0`](https://github.com/eslint/eslint/releases/tag/v8.23.0), eslint CLI starts to look up `eslint.config.js`.
+**So, if your eslint is `>=8.23.0`, you're 100% ready to use the new config system.**
+
+You might want to check out the official blog posts,
+
+- <https://eslint.org/blog/2022/08/new-config-system-part-1/>
+- <https://eslint.org/blog/2022/08/new-config-system-part-2/>
+- <https://eslint.org/blog/2022/08/new-config-system-part-3/>
+
+and the [official docs](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new).
+
+The default export of `eslint-plugin-jsx-a11y` is a plugin object.
+
+```js
+const jsxA11y = require('eslint-plugin-jsx-a11y');
+
+module.exports = [
+  …
+  {
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    plugins: {
+      'jsx-a11y': jsxA11y,
+    },
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    rules: {
+      // ... any rules you want
+      'jsx-a11y/alt-text': 'error',
+    },
+    // ... others are omitted for brevity
+  },
+  …
+];
+```
+
+There're also 2 shareable configs.
+
+- `eslint-plugin-jsx-a11y/strict`
+- `eslint-plugin-jsx-a11y/recommended`
+
+If your eslint.config.js is ESM, include the `.js` extension (e.g. `eslint-plugin-jsx-a11y/recommended.js`). Note that the next semver-major will require omitting the extension for these imports.
+
+**Note**: These configurations will import `eslint-plugin-jsx-a11y` and enable JSX in [`languageOptions.parserOptions`](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#configuration-objects).
+
+In the new config system, the `plugin:` protocol(e.g. `plugin:jsx-a11y/recommended`) is no longer valid.
+As eslint does not automatically import the preset config (shareable config), you explicitly do it by yourself.
+
+```js
+const jsxA11yRecommended = require('eslint-plugin-jsx-a11y/recommended');
+
+export default [
+  …
+  jsxA11yRecommended, // This is not a plugin object, but a shareable config object
+  …
+];
+```
+
+You can of course add/override properties.
+
+**Note**: Our shareable configs does not preconfigure `files` or [`languageOptions.globals`](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#configuration-objects).
+For most of the cases, you probably want to configure some properties by yourself.
+
+```js
+const jsxA11yRecommended = require('eslint-plugin-jsx-a11y/recommended');
+const globals = require('globals');
+
+module.exports = [
+  …
+  {
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    ...jsxA11yRecommended,
+    languageOptions: {
+      ...jsxA11yRecommended.languageOptions,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+      },
+    },
+  },
+  …
+];
+```
+
+The above example is same as the example below, as the new config system is based on chaining.
+
+```js
+const jsxA11yRecommended = require('eslint-plugin-jsx-a11y/recommended');
+const globals = require('globals');
+
+module.exports = [
+  …
+  {
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    ...jsxA11yRecommended,
+  },
+  {
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+      },
+    }
+  },
+  …
+];
 ```
 
 ## Supported Rules
