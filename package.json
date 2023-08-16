@@ -85,7 +85,7 @@
     "emoji-regex": "^9.2.2",
     "has": "^1.0.3",
     "jsx-ast-utils": "^3.3.5",
-    "language-tags": "=1.0.5",
+    "language-tags": "^1.0.9",
     "minimatch": "^3.1.2",
     "object.entries": "^1.1.6",
     "object.fromentries": "^2.0.6"
