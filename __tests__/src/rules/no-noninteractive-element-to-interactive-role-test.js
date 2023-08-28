@@ -457,6 +457,8 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<ol role="treegrid" />;' },
     { code: '<li role="tab" />;' },
     { code: '<li role="menuitem" />;' },
+    { code: '<li role="menuitemcheckbox" />;' },
+    { code: '<li role="menuitemradio" />;' },
     { code: '<li role="row" />;' },
     { code: '<li role="treeitem" />;' },
     { code: '<Component role="treeitem" />;' },
