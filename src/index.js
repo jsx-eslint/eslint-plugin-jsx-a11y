@@ -29,6 +29,7 @@ module.exports = {
     'no-aria-hidden-on-focusable': require('./rules/no-aria-hidden-on-focusable'),
     'no-autofocus': require('./rules/no-autofocus'),
     'no-distracting-elements': require('./rules/no-distracting-elements'),
+    'no-duplicate-ids': require('./rules/no-duplicate-ids'),
     'no-interactive-element-to-noninteractive-role': require('./rules/no-interactive-element-to-noninteractive-role'),
     'no-noninteractive-element-interactions': require('./rules/no-noninteractive-element-interactions'),
     'no-noninteractive-element-to-interactive-role': require('./rules/no-noninteractive-element-to-interactive-role'),
@@ -116,6 +117,7 @@ module.exports = {
         'jsx-a11y/no-access-key': 'error',
         'jsx-a11y/no-autofocus': 'error',
         'jsx-a11y/no-distracting-elements': 'error',
+        'jsx-a11y/no-duplicate-ids': 'error',
         'jsx-a11y/no-interactive-element-to-noninteractive-role': [
           'error',
           {
@@ -273,6 +275,7 @@ module.exports = {
         'jsx-a11y/no-access-key': 'error',
         'jsx-a11y/no-autofocus': 'error',
         'jsx-a11y/no-distracting-elements': 'error',
+        'jsx-a11y/no-duplicate-ids': 'error',
         'jsx-a11y/no-interactive-element-to-noninteractive-role': 'error',
         'jsx-a11y/no-noninteractive-element-interactions': [
           'error',
