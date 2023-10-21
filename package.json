@@ -74,10 +74,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.22.10",
+    "@babel/runtime": "^7.23.2",
     "aria-query": "^5.3.0",
-    "array-includes": "^3.1.6",
-    "array.prototype.flatmap": "^1.3.1",
+    "array-includes": "^3.1.7",
+    "array.prototype.flatmap": "^1.3.2",
     "ast-types-flow": "^0.0.7",
     "axe-core": "=4.7.0",
     "axobject-query": "^3.2.1",
@@ -87,8 +87,8 @@
     "jsx-ast-utils": "^3.3.5",
     "language-tags": "^1.0.9",
     "minimatch": "^3.1.2",
-    "object.entries": "^1.1.6",
-    "object.fromentries": "^2.0.6"
+    "object.entries": "^1.1.7",
+    "object.fromentries": "^2.0.7"
   },
   "peerDependencies": {
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8"
