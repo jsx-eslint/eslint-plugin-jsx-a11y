@@ -17,7 +17,7 @@ import {
 } from 'jsx-ast-utils';
 import type { JSXIdentifier } from 'ast-types-flow';
 import includes from 'array-includes';
-import has from 'has';
+import hasOwn from 'hasown';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import type { ESLintJSXAttribute } from '../../flow/eslint-jsx';
 import getElementType from '../util/getElementType';
@@ -70,7 +70,7 @@ export default ({
         // Allow overrides from rule configuration for specific elements and
         // roles.
         const allowedRoles = (options[0] || {});
-        if (has(allowedRoles, type) && includes(allowedRoles[type], role)) {
+        if (hasOwn(allowedRoles, type) && includes(allowedRoles[type], role)) {
           return;
         }
         if (

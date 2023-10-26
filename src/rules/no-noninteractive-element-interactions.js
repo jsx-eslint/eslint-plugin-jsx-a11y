@@ -17,7 +17,7 @@ import {
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import includes from 'array-includes';
-import has from 'has';
+import hasOwn from 'hasown';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
@@ -62,7 +62,7 @@ export default ({
         const config = (options[0] || {});
         const interactiveProps = config.handlers || defaultInteractiveProps;
         // Allow overrides from rule configuration for specific elements and roles.
-        if (has(config, type)) {
+        if (hasOwn(config, type)) {
           attributes = attributes.filter((attr) => attr.type !== 'JSXSpreadAttribute' && !includes(config[type], propName(attr)));
         }
 
