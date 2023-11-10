@@ -13,7 +13,7 @@ jobs:
         with:
           versionsAsRoot: true
           type: 'majors'
-          preset: '>=4'
+          preset: '>=6'
 
   latest:
     needs: [matrix]
@@ -28,9 +28,6 @@ jobs:
           - 8
           - 7
           - 6
-          - 5
-          - 4
-          - 3
         exclude:
           - node-version: 15
             eslint: 8
@@ -62,30 +59,6 @@ jobs:
             eslint: 7
           - node-version: 6
             eslint: 6
-          - node-version: 5
-            eslint: 8
-          - node-version: 5
-            eslint: 7
-          - node-version: 5
-            eslint: 6
-          - node-version: 5
-            eslint: 5
-          - node-version: 5
-            eslint: 4
-          - node-version: 5 # TODO: fix
-            eslint: 3
-          - node-version: 4
-            eslint: 8
-          - node-version: 4
-            eslint: 7
-          - node-version: 4
-            eslint: 6
-          - node-version: 4
-            eslint: 5
-          - node-version: 4 # TODO: fix
-            eslint: 4
-          - node-version: 4 # TODO: fix
-            eslint: 3
 
     steps:
       - uses: actions/checkout@v3

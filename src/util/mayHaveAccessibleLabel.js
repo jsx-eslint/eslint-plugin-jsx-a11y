@@ -8,7 +8,6 @@
  * @flow
  */
 
-import includes from 'array-includes';
 import { getPropValue, propName } from 'jsx-ast-utils';
 import type { JSXOpeningElement, Node } from 'ast-types-flow';
 
@@ -33,7 +32,7 @@ function hasLabellingProp(
     }
     // Attribute matches.
     if (
-      includes(labellingProps, propName(attribute))
+      labellingProps.includes(propName(attribute))
       && !!tryTrim(getPropValue(attribute))
     ) {
       return true;
