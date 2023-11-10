@@ -62,7 +62,6 @@
     "jscodeshift": "^0.7.1",
     "minimist": "^1.2.8",
     "npmignore": "^0.3.0",
-    "object.assign": "^4.1.4",
     "rimraf": "^3.0.2",
     "safe-publish-latest": "^2.0.0",
     "semver": "^6.3.1",

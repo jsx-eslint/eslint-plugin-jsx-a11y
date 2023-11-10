@@ -8,7 +8,6 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import assign from 'object.assign';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/label-has-for';
@@ -63,18 +62,18 @@ ruleTester.run('label-has-for', rule, {
     { code: '<UX.Layout>test</UX.Layout>' },
 
     // CUSTOM ELEMENT ARRAY OPTION TESTS
-    { code: '<Label htmlFor="foo" />', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
-    { code: '<Label htmlFor={"foo"} />', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
-    { code: '<Label htmlFor={foo} />', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
-    { code: '<Label htmlFor={`${id}`} />', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Label htmlFor="foo" />', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Label htmlFor={"foo"} />', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Label htmlFor={foo} />', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Label htmlFor={`${id}`} />', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
     { code: '<div />', options: optionsComponents },
     { code: '<Label htmlFor="something"><input /></Label>', options: optionsComponents },
-    { code: '<Label htmlFor="foo">Test!</Label>', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor="foo" />', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor={"foo"} />', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor={foo} />', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor={`${id}`} />', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
-    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Label htmlFor="foo">Test!</Label>', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Descriptor htmlFor="foo" />', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Descriptor htmlFor={"foo"} />', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Descriptor htmlFor={foo} />', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Descriptor htmlFor={`${id}`} />', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
+    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [Object.assign({}, optionsComponents[0], optionsRequiredSome[0])] },
     { code: '<label htmlFor="foo" />', options: optionsRequiredSome },
     { code: '<label htmlFor={"foo"} />', options: optionsRequiredSome },
     { code: '<label htmlFor={foo} />', options: optionsRequiredSome },
@@ -84,7 +83,7 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label><input /></label>', options: optionsRequiredNesting },
     { code: '<label htmlFor="input"><input /></label>', options: optionsRequiredEvery },
     { code: '<label><input /></label>', options: optionsChildrenAllowed },
-    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [assign({}, optionsComponents, optionsChildrenAllowed)] },
+    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [Object.assign({}, optionsComponents, optionsChildrenAllowed)] },
     { code: '<label>Test!</label>', options: optionsChildrenAllowed },
     { code: '<label htmlFor="foo">Test!</label>', options: optionsChildrenAllowed },
     { code: '<label>{children}</label>', options: optionsChildrenAllowed },
