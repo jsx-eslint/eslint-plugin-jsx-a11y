@@ -8,6 +8,8 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import includes from 'array-includes';
+import stringIncludes from 'string.prototype.includes';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
@@ -24,6 +26,16 @@ const schema = generateObjSchema({
   components: arraySchema,
   words: arraySchema,
 });
+
+function containsRedundantWord(value, redundantWords) {
+  const lowercaseRedundantWords = redundantWords.map((redundantWord) => redundantWord.toLowerCase());
+  const isASCII = /[\x20-\x7F]+/.test(value);
+
+  if (isASCII) {
+    return value.split(/\s+/).some((valueWord) => includes(lowercaseRedundantWords, valueWord.toLowerCase()));
+  }
+  return lowercaseRedundantWords.some((redundantWord) => stringIncludes(value.toLowerCase(), redundantWord));
+}
 
 export default {
   meta: {
@@ -63,7 +75,7 @@ export default {
         const redundantWords = REDUNDANT_WORDS.concat(words);
 
         if (typeof value === 'string' && isVisible) {
-          const hasRedundancy = new RegExp(`(?!{)\\b(${redundantWords.join('|')})\\b(?!})`, 'i').test(value);
+          const hasRedundancy = containsRedundantWord(value, redundantWords);
 
           if (hasRedundancy === true) {
             context.report({

@@ -74,6 +74,7 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img alt="ImageMagick" />;' },
     { code: '<Image alt="Photo of a friend" />' },
     { code: '<Image alt="Foo" />', settings: componentsSettings },
+    { code: '<img alt="画像" />', options: [{ words: ['イメージ'] }] },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<img alt="Photo of friend." />;', errors: [expectedError] },
@@ -129,5 +130,8 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img alt="Word2" />;', options: array, errors: [expectedError] },
     { code: '<Image alt="Word1" />;', options: array, errors: [expectedError] },
     { code: '<Image alt="Word2" />;', options: array, errors: [expectedError] },
+
+    { code: '<img alt="イメージ" />', options: [{ words: ['イメージ'] }], errors: [expectedError] },
+    { code: '<img alt="イメージです" />', options: [{ words: ['イメージ'] }], errors: [expectedError] },
   )).map(parserOptionsMapper),
 });
