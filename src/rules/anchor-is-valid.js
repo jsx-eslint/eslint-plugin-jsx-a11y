@@ -10,6 +10,7 @@
 
 import { getProp, getPropValue } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
+import safeRegexTest from 'safe-regex-test';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
@@ -39,6 +40,8 @@ export default ({
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const elementType = getElementType(context);
+    const testJShref = safeRegexTest(/^\W*?javascript:/);
+
     return {
       JSXOpeningElement: (node: JSXOpeningElement): void => {
         const { attributes } = node;
@@ -98,7 +101,7 @@ export default ({
           .filter((value) => (
             value != null
             && (typeof value === 'string' && (
-              !value.length || value === '#' || /^\W*?javascript:/.test(value)
+              !value.length || value === '#' || testJShref(value)
             ))
           ));
         if (invalidHrefValues.length !== 0) {

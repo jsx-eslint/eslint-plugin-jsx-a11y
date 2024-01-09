@@ -89,6 +89,7 @@
     "minimatch": "^3.1.2",
     "object.entries": "^1.1.7",
     "object.fromentries": "^2.0.7",
+    "safe-regex-test": "^1.0.1",
     "string.prototype.includes": "^2.0.0"
   },
   "peerDependencies": {

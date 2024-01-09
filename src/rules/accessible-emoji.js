@@ -9,6 +9,7 @@
 
 import emojiRegex from 'emoji-regex';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
+import safeRegexTest from 'safe-regex-test';
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
@@ -29,11 +30,13 @@ export default {
 
   create: (context) => {
     const elementType = getElementType(context);
+
+    const testEmoji = safeRegexTest(emojiRegex());
     return {
       JSXOpeningElement: (node) => {
         const literalChildValue = node.parent.children.find((child) => child.type === 'Literal' || child.type === 'JSXText');
 
-        if (literalChildValue && emojiRegex().test(literalChildValue.value)) {
+        if (literalChildValue && testEmoji(literalChildValue.value)) {
           const elementIsHidden = isHiddenFromScreenReader(elementType(node), node.attributes);
           if (elementIsHidden) {
             return; // emoji is decorative

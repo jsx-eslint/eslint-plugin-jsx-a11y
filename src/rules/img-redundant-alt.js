@@ -10,6 +10,7 @@
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import includes from 'array-includes';
 import stringIncludes from 'string.prototype.includes';
+import safeRegexTest from 'safe-regex-test';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
@@ -27,11 +28,12 @@ const schema = generateObjSchema({
   words: arraySchema,
 });
 
+const isASCII = safeRegexTest(/[\x20-\x7F]+/);
+
 function containsRedundantWord(value, redundantWords) {
   const lowercaseRedundantWords = redundantWords.map((redundantWord) => redundantWord.toLowerCase());
-  const isASCII = /[\x20-\x7F]+/.test(value);
 
-  if (isASCII) {
+  if (isASCII(value)) {
     return value.split(/\s+/).some((valueWord) => includes(lowercaseRedundantWords, valueWord.toLowerCase()));
   }
   return lowercaseRedundantWords.some((redundantWord) => stringIncludes(value.toLowerCase(), redundantWord));
