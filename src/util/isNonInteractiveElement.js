@@ -39,7 +39,7 @@ const nonInteractiveRoles = new Set(roleKeys
         // treats them both as CellRole and since gridcell is interactive, we consider
         // cell interactive as well.
         && name !== 'cell'
-        && !role.superClass.some((classes) => includes(classes, 'widget'))
+        && !role.superClass.some((classes) => includes(classes, 'widget') || includes(classes, 'window'))
     );
   }).concat(
     // The `progressbar` is descended from `widget`, but in practice, its
@@ -58,7 +58,7 @@ const interactiveRoles = new Set(roleKeys
         // This role is meant to have no semantic value.
         // @see https://www.w3.org/TR/wai-aria-1.2/#generic
         && name !== 'generic'
-        && role.superClass.some((classes) => includes(classes, 'widget'))
+        && role.superClass.some((classes) => includes(classes, 'widget') || includes(classes, 'window'))
     );
   }).concat(
     // 'toolbar' does not descend from widget, but it does support
