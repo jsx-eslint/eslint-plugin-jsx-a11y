@@ -164,7 +164,7 @@ module.exports = {
               'tree',
               'treegrid',
             ],
-            li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
+            li: ['menuitem', 'menuitemradio', 'menuitemcheckbox', 'option', 'row', 'tab', 'treeitem'],
             table: ['grid'],
             td: ['gridcell'],
             fieldset: ['radiogroup', 'presentation'],
