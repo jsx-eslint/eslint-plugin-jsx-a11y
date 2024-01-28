@@ -8,8 +8,6 @@
 // -----------------------------------------------------------------------------
 
 import { RuleTester } from 'eslint';
-import semver from 'semver';
-import { version as eslintVersion } from 'eslint/package.json';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/img-redundant-alt';
@@ -66,10 +64,8 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img alt />' },
     { code: '<img alt={imageAlt} />' },
     { code: '<img alt={imageAlt.name} />' },
-    semver.satisfies(eslintVersion, '>= 6') ? [
-      { code: '<img alt={imageAlt?.name} />', languageOptions: { ecmaVersion: 2020 } },
-      { code: '<img alt="Doing cool things" aria-hidden={foo?.bar}/>', languageOptions: { ecmaVersion: 2020 } },
-    ] : [],
+    { code: '<img alt={imageAlt?.name} />', parserOptions: { ecmaVersion: 2020 } },
+    { code: '<img alt="Doing cool things" aria-hidden={foo?.bar}/>', parserOptions: { ecmaVersion: 2020 } },
     { code: '<img alt="Photography" />;' },
     { code: '<img alt="ImageMagick" />;' },
     { code: '<Image alt="Photo of a friend" />' },
