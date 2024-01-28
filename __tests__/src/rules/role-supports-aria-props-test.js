@@ -12,8 +12,6 @@ import {
   roles,
 } from 'aria-query';
 import { RuleTester } from 'eslint';
-import { version as eslintVersion } from 'eslint/package.json';
-import semver from 'semver';
 import iterFrom from 'es-iterator-helpers/Iterator.from';
 import filter from 'es-iterator-helpers/Iterator.prototype.filter';
 import map from 'es-iterator-helpers/Iterator.prototype.map';
@@ -399,8 +397,7 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<datalist aria-expanded />' },
     { code: '<div role="heading" aria-level />' },
     { code: '<div role="heading" aria-level="1" />' },
-
-    semver.satisfies(eslintVersion, '>= 6') ? {
+    {
       code: `
         const HelloThere = () => (
             <Hello
@@ -416,7 +413,7 @@ ruleTester.run('role-supports-aria-props', rule, {
         
         const Hello = (props) => <div>{props.frag}</div>;
       `,
-    } : [],
+    },
     validTests,
   )).map(parserOptionsMapper),
 
