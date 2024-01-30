@@ -2,9 +2,9 @@
  * @flow
  */
 
-import entries from 'object.entries';
 import flatMap from 'array.prototype.flatmap';
-import fromEntries from 'object.fromentries';
+
+const { fromEntries, entries } = Object;
 
 type ESLintTestRunnerTestCase = {
   code: string,

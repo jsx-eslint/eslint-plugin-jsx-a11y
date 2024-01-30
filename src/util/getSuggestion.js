@@ -1,5 +1,6 @@
 import editDistance from 'damerau-levenshtein';
-import fromEntries from 'object.fromentries';
+
+const { fromEntries } = Object;
 
 // Minimum edit distance to be considered a good suggestion.
 const THRESHOLD = 2;

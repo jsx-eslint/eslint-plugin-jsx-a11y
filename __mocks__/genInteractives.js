@@ -3,13 +3,14 @@
  */
 
 import { dom, roles } from 'aria-query';
-import fromEntries from 'object.fromentries';
 
 import JSXAttributeMock from './JSXAttributeMock';
 import JSXElementMock from './JSXElementMock';
 
 import type { JSXAttributeMockType } from './JSXAttributeMock';
 import type { JSXElementMockType } from './JSXElementMock';
+
+const { fromEntries } = Object;
 
 const domElements = [...dom.keys()];
 const roleNames = [...roles.keys()];
