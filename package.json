@@ -87,7 +87,6 @@
     "jsx-ast-utils": "^3.3.5",
     "language-tags": "^1.0.9",
     "minimatch": "^3.1.2",
-    "object.fromentries": "^2.0.8",
     "safe-regex-test": "^1.0.3"
   },
   "peerDependencies": {
