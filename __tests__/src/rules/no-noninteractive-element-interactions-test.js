@@ -124,20 +124,17 @@ const alwaysValid = [
   { code: '<header onClick={() => {}} />;' },
   { code: '<hgroup onClick={() => {}} />;' },
   { code: '<i onClick={() => {}} />;' },
-  { code: '<iframe onLoad={() => {}} />;' },
   {
     code: `
       <iframe
         name="embeddedExternalPayment"
         ref="embeddedExternalPayment"
         style={iframeStyle}
-        onLoad={this.handleLoadIframe}
       />
     `,
   },
-  { code: '<img {...props} onError={() => {}} />;' },
-  { code: '<img onLoad={() => {}} />;' },
-  { code: '<img src={currentPhoto.imageUrl} onLoad={this.handleImageLoad} alt="for review" />' },
+  { code: '<img {...props} />;' },
+  { code: '<img src={currentPhoto.imageUrl} alt="for review" />' },
   {
     code: `
         <img
@@ -146,7 +143,6 @@ const alwaysValid = [
         src={src}
         alt={alt}
         data-test-id="test-id"
-        onLoad={this.fetchCompleteImage}
       />
     `,
   },
@@ -463,6 +459,34 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     .map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     ...neverValid,
+    { code: '<iframe onLoad={() => {}} />;', errors: [expectedError] },
+    {
+      code: `
+        <iframe
+          name="embeddedExternalPayment"
+          ref="embeddedExternalPayment"
+          style={iframeStyle}
+          onLoad={this.handleLoadIframe}
+        />
+      `,
+      errors: [expectedError],
+    },
+    { code: '<img {...props} onError={() => {}} />;', errors: [expectedError] },
+    { code: '<img onLoad={() => {}} />;', errors: [expectedError] },
+    { code: '<img src={currentPhoto.imageUrl} onLoad={this.handleImageLoad} alt="for review" />', errors: [expectedError] },
+    {
+      code: `
+          <img
+          ref={this.ref}
+          className="c-responsive-image-placeholder__image"
+          src={src}
+          alt={alt}
+          data-test-id="test-id"
+          onLoad={this.fetchCompleteImage}
+        />
+      `,
+      errors: [expectedError],
+    },
   ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),
@@ -472,6 +496,33 @@ const strictOptions = configs.strict.rules[`jsx-a11y/${ruleName}`][1] || {};
 ruleTester.run(`${ruleName}:strict`, rule, {
   valid: parsers.all([].concat(
     ...alwaysValid,
+    { code: '<iframe onLoad={() => {}} />;' },
+    {
+      code: `
+        <iframe
+          name="embeddedExternalPayment"
+          ref="embeddedExternalPayment"
+          style={iframeStyle}
+          onLoad={this.handleLoadIframe}
+        />
+      `,
+      errors: [expectedError],
+    },
+    { code: '<img {...props} onError={() => {}} />;' },
+    { code: '<img onLoad={() => {}} />;' },
+    { code: '<img src={currentPhoto.imageUrl} onLoad={this.handleImageLoad} alt="for review" />' },
+    {
+      code: `
+          <img
+          ref={this.ref}
+          className="c-responsive-image-placeholder__image"
+          src={src}
+          alt={alt}
+          data-test-id="test-id"
+          onLoad={this.fetchCompleteImage}
+        />
+      `,
+    },
   ))
     .map(ruleOptionsMapperFactory(strictOptions))
     .map(parserOptionsMapper),
