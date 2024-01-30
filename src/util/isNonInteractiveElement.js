@@ -12,7 +12,6 @@ import {
   elementAXObjects,
 } from 'axobject-query';
 import type { Node } from 'ast-types-flow';
-import includes from 'array-includes';
 import flatMap from 'array.prototype.flatmap';
 
 import attributesComparator from './attributesComparator';
@@ -31,7 +30,7 @@ const nonInteractiveRoles = new Set(roleKeys
         // This role is meant to have no semantic value.
         // @see https://www.w3.org/TR/wai-aria-1.2/#generic
         && name !== 'generic'
-        && !role.superClass.some((classes) => includes(classes, 'widget'))
+        && !role.superClass.some((classes) => classes.includes('widget'))
     );
   }).concat(
     // The `progressbar` is descended from `widget`, but in practice, its
@@ -50,7 +49,7 @@ const interactiveRoles = new Set(roleKeys
         // This role is meant to have no semantic value.
         // @see https://www.w3.org/TR/wai-aria-1.2/#generic
         && name !== 'generic'
-        && role.superClass.some((classes) => includes(classes, 'widget'))
+        && role.superClass.some((classes) => classes.includes('widget'))
     );
   }).concat(
     // 'toolbar' does not descend from widget, but it does support
@@ -68,7 +67,7 @@ const nonInteractiveElementRoleSchemas = flatMap(
   ([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []),
 );
 
-const nonInteractiveAXObjects = new Set(AXObjects.keys().filter((name) => includes(['window', 'structure'], AXObjects.get(name).type)));
+const nonInteractiveAXObjects = new Set(AXObjects.keys().filter((name) => ['window', 'structure'].includes(AXObjects.get(name).type)));
 
 const nonInteractiveElementAXObjectSchemas = flatMap(
   [...elementAXObjects],

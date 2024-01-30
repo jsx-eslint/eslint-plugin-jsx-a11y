@@ -7,7 +7,6 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import includes from 'array-includes';
 import { RuleTester } from 'eslint';
 import {
   eventHandlers,
@@ -205,12 +204,12 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     ...alwaysValid,
     ...passReducer(
       interactiveRoles,
-      eventHandlers.filter((handler) => !includes(triggeringHandlers, handler)),
+      eventHandlers.filter((handler) => !triggeringHandlers.includes(handler)),
       codeTemplate,
     ),
     ...passReducer(
-      interactiveRoles.filter((role) => !includes(recommendedRoles, role)),
-      eventHandlers.filter((handler) => includes(triggeringHandlers, handler)),
+      interactiveRoles.filter((role) => !recommendedRoles.includes(role)),
+      eventHandlers.filter((handler) => triggeringHandlers.includes(handler)),
       tabindexTemplate,
     ),
   ))
@@ -220,7 +219,7 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     ...neverValid,
     ...failReducer(recommendedRoles, triggeringHandlers, tabbableTemplate),
     ...failReducer(
-      interactiveRoles.filter((role) => !includes(recommendedRoles, role)),
+      interactiveRoles.filter((role) => !recommendedRoles.includes(role)),
       triggeringHandlers,
       focusableTemplate,
     ),
@@ -234,12 +233,12 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     ...alwaysValid,
     ...passReducer(
       interactiveRoles,
-      eventHandlers.filter((handler) => !includes(triggeringHandlers, handler)),
+      eventHandlers.filter((handler) => !triggeringHandlers.includes(handler)),
       codeTemplate,
     ),
     ...passReducer(
-      interactiveRoles.filter((role) => !includes(strictRoles, role)),
-      eventHandlers.filter((handler) => includes(triggeringHandlers, handler)),
+      interactiveRoles.filter((role) => !strictRoles.includes(role)),
+      eventHandlers.filter((handler) => triggeringHandlers.includes(handler)),
       tabindexTemplate,
     ),
   ))
@@ -249,7 +248,7 @@ ruleTester.run(`${ruleName}:strict`, rule, {
     ...neverValid,
     ...failReducer(strictRoles, triggeringHandlers, tabbableTemplate),
     ...failReducer(
-      interactiveRoles.filter((role) => !includes(strictRoles, role)),
+      interactiveRoles.filter((role) => !strictRoles.includes(role)),
       triggeringHandlers,
       focusableTemplate,
     ),

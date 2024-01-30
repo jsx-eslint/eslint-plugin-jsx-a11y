@@ -11,7 +11,6 @@ import {
   AXObjects,
   elementAXObjects,
 } from 'axobject-query';
-import includes from 'array-includes';
 import flatMap from 'array.prototype.flatmap';
 
 import attributesComparator from './attributesComparator';
@@ -27,7 +26,7 @@ const nonInteractiveRoles = new Set(roleKeys
         // 'toolbar' does not descend from widget, but it does support
         // aria-activedescendant, thus in practice we treat it as a widget.
         && name !== 'toolbar'
-        && !role.superClass.some((classes) => includes(classes, 'widget'))
+        && !role.superClass.some((classes) => classes.includes('widget'))
     );
   }).concat(
     // The `progressbar` is descended from `widget`, but in practice, its
@@ -43,7 +42,7 @@ const interactiveRoles = new Set(roleKeys
         // The `progressbar` is descended from `widget`, but in practice, its
         // value is always `readonly`, so we treat it as a non-interactive role.
         && name !== 'progressbar'
-        && role.superClass.some((classes) => includes(classes, 'widget'))
+        && role.superClass.some((classes) => classes.includes('widget'))
     );
   }).concat(
     // 'toolbar' does not descend from widget, but it does support
