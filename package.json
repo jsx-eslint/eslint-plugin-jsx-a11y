@@ -63,6 +63,7 @@
     "minimist": "^1.2.8",
     "npmignore": "^0.3.1",
     "object.assign": "^4.1.5",
+    "object.entries": "^1.1.7",
     "rimraf": "^3.0.2",
     "safe-publish-latest": "^2.0.0",
     "semver": "^6.3.1",
@@ -87,7 +88,6 @@
     "jsx-ast-utils": "^3.3.5",
     "language-tags": "^1.0.9",
     "minimatch": "^3.1.2",
-    "object.entries": "^1.1.7",
     "object.fromentries": "^2.0.7",
     "safe-regex-test": "^1.0.2",
     "string.prototype.includes": "^2.0.0"
