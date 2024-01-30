@@ -1,5 +1,7 @@
 # jsx-a11y/prefer-tag-over-role
 
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
 <!-- end auto-generated rule header -->
 
 Enforces using semantic DOM elements over the ARIA `role` property.

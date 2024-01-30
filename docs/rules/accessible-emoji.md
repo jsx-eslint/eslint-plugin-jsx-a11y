@@ -2,6 +2,8 @@
 
 ❌ This rule is deprecated.
 
+🚫 This rule is _disabled_ in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
 <!-- end auto-generated rule header -->
 
 Emoji have become a common way of communicating content to the end user. To a person using a screen reader, however, they may not be aware that this content is there at all. By wrapping the emoji in a `<span>`, giving it the `role="img"`, and providing a useful description in `aria-label`, the screen reader will treat the emoji as an image in the accessibility tree with an accessible name for the end user.

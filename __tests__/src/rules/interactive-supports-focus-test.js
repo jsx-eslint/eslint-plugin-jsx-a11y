@@ -157,16 +157,6 @@ const recommendedRoles = [
   'button',
   'checkbox',
   'link',
-  'searchbox',
-  'spinbutton',
-  'switch',
-  'textbox',
-];
-
-const strictRoles = [
-  'button',
-  'checkbox',
-  'link',
   'progressbar',
   'searchbox',
   'slider',
@@ -174,6 +164,8 @@ const strictRoles = [
   'switch',
   'textbox',
 ];
+
+const strictRoles = recommendedRoles.concat();
 
 const staticElements = [
   'div',
