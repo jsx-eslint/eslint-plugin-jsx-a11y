@@ -1,6 +1,6 @@
 # jsx-a11y/anchor-ambiguous-text
 
-🚫 This rule is _disabled_ in the ☑️ `recommended` config.
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
 
 <!-- end auto-generated rule header -->
 

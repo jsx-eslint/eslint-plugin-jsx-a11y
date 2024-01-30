@@ -457,8 +457,6 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     { code: '<ol role="treegrid" />;' },
     { code: '<li role="tab" />;' },
     { code: '<li role="menuitem" />;' },
-    { code: '<li role="menuitemcheckbox" />;' },
-    { code: '<li role="menuitemradio" />;' },
     { code: '<li role="row" />;' },
     { code: '<li role="treeitem" />;' },
     { code: '<Component role="treeitem" />;' },
@@ -469,6 +467,8 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     .map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     ...neverValid,
+    { code: '<li role="menuitemcheckbox" />;', errors: [expectedError] },
+    { code: '<li role="menuitemradio" />;', errors: [expectedError] },
   ))
     .map(ruleOptionsMapperFactory(recommendedOptions))
     .map(parserOptionsMapper),

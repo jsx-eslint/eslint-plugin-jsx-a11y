@@ -1,5 +1,7 @@
 # jsx-a11y/lang
 
+💼 This rule is enabled in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
 <!-- end auto-generated rule header -->
 
 The `lang` prop on the `<html>` element must be a valid IETF's BCP 47 language tag.

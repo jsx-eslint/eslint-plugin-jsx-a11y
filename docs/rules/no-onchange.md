@@ -2,6 +2,8 @@
 
 ❌ This rule is deprecated.
 
+🚫 This rule is _disabled_ in the following configs: ☑️ `recommended`, 🔒 `strict`.
+
 <!-- end auto-generated rule header -->
 
 ⚠️ **Deprecated:** This rule is based on reports of behavior of [old browsers (eg. IE 10 and below)](https://www.quirksmode.org/dom/events/change.html#t05). In the meantime, this behavior has been corrected, both in newer versions of browsers as well as [in the DOM spec](https://bugzilla.mozilla.org/show_bug.cgi?id=969068#c2).
