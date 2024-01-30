@@ -14,7 +14,6 @@ import {
   getProp,
   getLiteralPropValue,
 } from 'jsx-ast-utils';
-import includes from 'array-includes';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import getElementType from '../util/getElementType';
 import isInteractiveElement from '../util/isInteractiveElement';
@@ -71,10 +70,10 @@ export default ({
           roles,
           allowExpressionValues,
         } = (options[0] || {});
-        if (tags && includes(tags, type)) {
+        if (tags && tags.includes(type)) {
           return;
         }
-        if (roles && includes(roles, role)) {
+        if (roles && roles.includes(role)) {
           return;
         }
         if (

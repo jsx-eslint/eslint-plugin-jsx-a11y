@@ -8,8 +8,6 @@
 // ----------------------------------------------------------------------------
 
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
-import includes from 'array-includes';
-import stringIncludes from 'string.prototype.includes';
 import safeRegexTest from 'safe-regex-test';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
@@ -34,9 +32,9 @@ function containsRedundantWord(value, redundantWords) {
   const lowercaseRedundantWords = redundantWords.map((redundantWord) => redundantWord.toLowerCase());
 
   if (isASCII(value)) {
-    return value.split(/\s+/).some((valueWord) => includes(lowercaseRedundantWords, valueWord.toLowerCase()));
+    return value.split(/\s+/).some((valueWord) => lowercaseRedundantWords.includes(valueWord.toLowerCase()));
   }
-  return lowercaseRedundantWords.some((redundantWord) => stringIncludes(value.toLowerCase(), redundantWord));
+  return lowercaseRedundantWords.some((redundantWord) => value.toLowerCase().includes(redundantWord));
 }
 
 export default {

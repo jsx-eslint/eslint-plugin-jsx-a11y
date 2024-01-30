@@ -15,7 +15,6 @@ import {
   hasAnyProp,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
-import includes from 'array-includes';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import {
   enumArraySchema,
@@ -38,7 +37,7 @@ import getTabIndex from '../util/getTabIndex';
 const schema = generateObjSchema({
   tabbable: enumArraySchema(roles.keys().filter((name) => (
     !roles.get(name).abstract
-    && roles.get(name).superClass.some((klasses) => includes(klasses, 'widget'))
+    && roles.get(name).superClass.some((klasses) => klasses.includes('widget'))
   ))),
 });
 
@@ -94,7 +93,7 @@ export default ({
           && !hasTabindex
         ) {
           const role = getLiteralPropValue(getProp(attributes, 'role'));
-          if (includes(tabbable, role)) {
+          if (tabbable.includes(role)) {
             // Always tabbable, tabIndex = 0
             context.report({
               node,
