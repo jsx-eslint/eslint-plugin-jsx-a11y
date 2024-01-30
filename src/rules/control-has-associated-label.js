@@ -11,7 +11,6 @@
 
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
-import includes from 'array-includes';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import getElementType from '../util/getElementType';
@@ -68,7 +67,7 @@ export default ({
         return;
       }
       // Ignore roles that are "interactive" but should not require a label.
-      if (includes(ignoreRoles, role)) {
+      if (ignoreRoles.includes(role)) {
         return;
       }
       const props = node.openingElement.attributes;

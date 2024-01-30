@@ -9,7 +9,6 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import includes from 'array-includes';
 import hasOwn from 'hasown';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
@@ -64,7 +63,7 @@ export default ({
             redundantRolesForElement = DEFAULT_ROLE_EXCEPTIONS[type] || [];
           }
 
-          if (includes(redundantRolesForElement, implicitRole)) {
+          if (redundantRolesForElement.includes(implicitRole)) {
             return;
           }
 
