@@ -28,6 +28,7 @@ module.exports = {
     'no-access-key': require('./rules/no-access-key'),
     'no-aria-hidden-on-focusable': require('./rules/no-aria-hidden-on-focusable'),
     'no-autofocus': require('./rules/no-autofocus'),
+    'no-disabled': require('./rules/no-disabled'),
     'no-distracting-elements': require('./rules/no-distracting-elements'),
     'no-interactive-element-to-noninteractive-role': require('./rules/no-interactive-element-to-noninteractive-role'),
     'no-noninteractive-element-interactions': require('./rules/no-noninteractive-element-interactions'),
@@ -115,6 +116,19 @@ module.exports = {
         'jsx-a11y/mouse-events-have-key-events': 'error',
         'jsx-a11y/no-access-key': 'error',
         'jsx-a11y/no-autofocus': 'error',
+        'jsx-a11y/no-disabled': ['warn', {
+          disabable: [
+            'button',
+            'command',
+            'fieldset',
+            'keygen',
+            'optgroup',
+            'option',
+            'select',
+            'textarea',
+            'input',
+          ],
+        }],
         'jsx-a11y/no-distracting-elements': 'error',
         'jsx-a11y/no-interactive-element-to-noninteractive-role': [
           'error',
@@ -272,6 +286,19 @@ module.exports = {
         'jsx-a11y/mouse-events-have-key-events': 'error',
         'jsx-a11y/no-access-key': 'error',
         'jsx-a11y/no-autofocus': 'error',
+        'jsx-a11y/no-disabled': ['warn', {
+          disabable: [
+            'button',
+            'command',
+            'fieldset',
+            'keygen',
+            'optgroup',
+            'option',
+            'select',
+            'textarea',
+            'input',
+          ],
+        }],
         'jsx-a11y/no-distracting-elements': 'error',
         'jsx-a11y/no-interactive-element-to-noninteractive-role': 'error',
         'jsx-a11y/no-noninteractive-element-interactions': [
