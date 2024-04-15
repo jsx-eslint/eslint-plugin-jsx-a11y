@@ -9,7 +9,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getPropValue } from 'jsx-ast-utils';
+import { hasProp, getProp, getPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
@@ -20,6 +20,7 @@ import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 const errorMessage = 'A form label must be associated with a control.';
 
 const schema = generateObjSchema({
+  htmlForAttributes: arraySchema,
   labelComponents: arraySchema,
   labelAttributes: arraySchema,
   controlComponents: arraySchema,
@@ -35,11 +36,18 @@ const schema = generateObjSchema({
   },
 });
 
-const validateId = (node) => {
-  const htmlForAttr = getProp(node.attributes, 'htmlFor');
-  const htmlForValue = getPropValue(htmlForAttr);
+const validateId = (node, htmlForAttributes) => {
+  for (let i = 0; i < htmlForAttributes.length; i += 1) {
+    const attribute = htmlForAttributes[i];
+    if (hasProp(node.attributes, attribute)) {
+      const htmlForAttr = getProp(node.attributes, attribute);
+      const htmlForValue = getPropValue(htmlForAttr);
 
-  return htmlForAttr !== false && !!htmlForValue;
+      return htmlForAttr !== false && !!htmlForValue;
+    }
+  }
+
+  return false;
 };
 
 export default ({
@@ -52,7 +60,9 @@ export default ({
   },
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
+    const { settings } = context;
     const options = context.options[0] || {};
+    const htmlForAttributes = options.htmlForAttributes ?? settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
     const labelComponents = options.labelComponents || [];
     const assertType = options.assert || 'either';
     const componentNames = ['label'].concat(labelComponents);
@@ -75,7 +85,7 @@ export default ({
         options.depth === undefined ? 2 : options.depth,
         25,
       );
-      const hasLabelId = validateId(node.openingElement);
+      const hasLabelId = validateId(node.openingElement, htmlForAttributes);
       // Check for multiple control components.
       const hasNestedControl = controlComponents.some((name) => mayContainChildComponent(
         node,

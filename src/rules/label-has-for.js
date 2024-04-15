@@ -7,7 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getPropValue } from 'jsx-ast-utils';
+import { hasProp, getProp, getPropValue } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import hasAccessibleChild from '../util/hasAccessibleChild';
@@ -16,6 +16,7 @@ const enumValues = ['nesting', 'id'];
 const schema = {
   type: 'object',
   properties: {
+    htmlForAttributes: arraySchema,
     components: arraySchema,
     required: {
       oneOf: [
@@ -45,40 +46,47 @@ function validateNesting(node) {
   return false;
 }
 
-const validateId = (node) => {
-  const htmlForAttr = getProp(node.attributes, 'htmlFor');
-  const htmlForValue = getPropValue(htmlForAttr);
+const validateId = (node, htmlForAttributes) => {
+  for (let i = 0; i < htmlForAttributes.length; i += 1) {
+    const attribute = htmlForAttributes[i];
+    if (hasProp(node.attributes, attribute)) {
+      const htmlForAttr = getProp(node.attributes, attribute);
+      const htmlForValue = getPropValue(htmlForAttr);
 
-  return htmlForAttr !== false && !!htmlForValue;
+      return htmlForAttr !== false && !!htmlForValue;
+    }
+  }
+
+  return false;
 };
 
-const validate = (node, required, allowChildren, elementType) => {
+const validate = (node, required, allowChildren, elementType, htmlForAttributes) => {
   if (allowChildren === true) {
     return hasAccessibleChild(node.parent, elementType);
   }
   if (required === 'nesting') {
     return validateNesting(node);
   }
-  return validateId(node);
+  return validateId(node, htmlForAttributes);
 };
 
-const getValidityStatus = (node, required, allowChildren, elementType) => {
+const getValidityStatus = (node, required, allowChildren, elementType, htmlForAttributes) => {
   if (Array.isArray(required.some)) {
-    const isValid = required.some.some((rule) => validate(node, rule, allowChildren, elementType));
+    const isValid = required.some.some((rule) => validate(node, rule, allowChildren, elementType, htmlForAttributes));
     const message = !isValid
       ? `Form label must have ANY of the following types of associated control: ${required.some.join(', ')}`
       : null;
     return { isValid, message };
   }
   if (Array.isArray(required.every)) {
-    const isValid = required.every.every((rule) => validate(node, rule, allowChildren, elementType));
+    const isValid = required.every.every((rule) => validate(node, rule, allowChildren, elementType, htmlForAttributes));
     const message = !isValid
       ? `Form label must have ALL of the following types of associated control: ${required.every.join(', ')}`
       : null;
     return { isValid, message };
   }
 
-  const isValid = validate(node, required, allowChildren, elementType);
+  const isValid = validate(node, required, allowChildren, elementType, htmlForAttributes);
   const message = !isValid
     ? `Form label must have the following type of associated control: ${required}`
     : null;
@@ -100,7 +108,9 @@ export default {
     const elementType = getElementType(context);
     return {
       JSXOpeningElement: (node) => {
+        const { settings } = context;
         const options = context.options[0] || {};
+        const htmlForAttributes = options.htmlForAttributes ?? settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
         const componentOptions = options.components || [];
         const typesToValidate = ['label'].concat(componentOptions);
         const nodeType = elementType(node);
@@ -113,7 +123,7 @@ export default {
         const required = options.required || { every: ['nesting', 'id'] };
         const allowChildren = options.allowChildren || false;
 
-        const { isValid, message } = getValidityStatus(node, required, allowChildren, elementType);
+        const { isValid, message } = getValidityStatus(node, required, allowChildren, elementType, htmlForAttributes);
         if (!isValid) {
           context.report({
             node,

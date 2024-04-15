@@ -56,10 +56,14 @@ ruleTester.run('label-has-for', rule, {
     { code: '<div />' },
     { code: '<label htmlFor="foo"><input /></label>' },
     { code: '<label htmlFor="foo"><textarea /></label>' },
+    { code: '<label for="foo"><input /></label>', options: [{ htmlForAttributes: ['htmlFor', 'for'] }] },
+    { code: '<label for="foo"><textarea /></label>', options: [{ htmlForAttributes: ['htmlFor', 'for'] }] },
     { code: '<Label />' }, // lower-case convention refers to real HTML elements.
     { code: '<Label htmlFor="foo" />' },
+    { code: '<Label for="foo" />', options: [{ htmlForAttributes: ['htmlFor', 'for'] }] },
     { code: '<Descriptor />' },
     { code: '<Descriptor htmlFor="foo">Test!</Descriptor>' },
+    { code: '<Descriptor for="foo">Test!</Descriptor>', options: [{ htmlForAttributes: ['htmlFor', 'for'] }] },
     { code: '<UX.Layout>test</UX.Layout>' },
 
     // CUSTOM ELEMENT ARRAY OPTION TESTS
