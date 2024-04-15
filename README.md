@@ -104,6 +104,9 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
         "CustomButton": "button",
         "MyButton": "button",
         "RoundButton": "button"
+      },
+      "attributes": {
+        "for": ["htmlFor", "for"]
       }
     }
   }
@@ -201,6 +204,11 @@ module.exports = [
 #### Component Mapping
 
 To enable your custom components to be checked as DOM elements, you can set global settings in your configuration file by mapping each custom component name to a DOM element type.
+
+#### Attribute Mapping
+
+To configure the JSX property to use for attribute checking, you can set global settings in your configuration file by mapping each DOM attribute to the JSX property you want to check.
+For example, you may want to allow the `for` attribute in addition to the `htmlFor` attribute for checking label associations.
 
 #### Polymorphic Components
 

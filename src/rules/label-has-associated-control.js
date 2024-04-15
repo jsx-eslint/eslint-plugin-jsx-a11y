@@ -9,7 +9,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getPropValue } from 'jsx-ast-utils';
+import { hasProp, getProp, getPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
@@ -36,12 +36,22 @@ const schema = generateObjSchema({
   },
 });
 
-const validateId = (node) => {
-  const htmlForAttr = getProp(node.attributes, 'htmlFor');
-  const htmlForValue = getPropValue(htmlForAttr);
+function validateID(node, context) {
+  const { settings } = context;
+  const htmlForAttributes = settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
 
-  return htmlForAttr !== false && !!htmlForValue;
-};
+  for (let i = 0; i < htmlForAttributes.length; i += 1) {
+    const attribute = htmlForAttributes[i];
+    if (hasProp(node.attributes, attribute)) {
+      const htmlForAttr = getProp(node.attributes, attribute);
+      const htmlForValue = getPropValue(htmlForAttr);
+
+      return htmlForAttr !== false && !!htmlForValue;
+    }
+  }
+
+  return false;
+}
 
 export default ({
   meta: {
@@ -76,7 +86,7 @@ export default ({
         options.depth === undefined ? 2 : options.depth,
         25,
       );
-      const hasLabelId = validateId(node.openingElement);
+      const hasLabelId = validateID(node.openingElement, context);
       // Check for multiple control components.
       const hasNestedControl = controlComponents.some((name) => mayContainChildComponent(
         node,

@@ -7,7 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { getProp, getPropValue } from 'jsx-ast-utils';
+import { hasProp, getProp, getPropValue } from 'jsx-ast-utils';
 import { generateObjSchema, arraySchema, enumArraySchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import hasAccessibleChild from '../util/hasAccessibleChild';
@@ -45,45 +45,55 @@ function validateNesting(node) {
   return false;
 }
 
-const validateId = (node) => {
-  const htmlForAttr = getProp(node.attributes, 'htmlFor');
-  const htmlForValue = getPropValue(htmlForAttr);
+function validateID({ attributes }, context) {
+  const { settings } = context;
+  const htmlForAttributes = settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
 
-  return htmlForAttr !== false && !!htmlForValue;
-};
+  for (let i = 0; i < htmlForAttributes.length; i += 1) {
+    const attribute = htmlForAttributes[i];
+    if (hasProp(attributes, attribute)) {
+      const htmlForAttr = getProp(attributes, attribute);
+      const htmlForValue = getPropValue(htmlForAttr);
 
-const validate = (node, required, allowChildren, elementType) => {
+      return htmlForAttr !== false && !!htmlForValue;
+    }
+  }
+
+  return false;
+}
+
+function validate(node, required, allowChildren, elementType, context) {
   if (allowChildren === true) {
     return hasAccessibleChild(node.parent, elementType);
   }
   if (required === 'nesting') {
     return validateNesting(node);
   }
-  return validateId(node);
-};
+  return validateID(node, context);
+}
 
-const getValidityStatus = (node, required, allowChildren, elementType) => {
+function getValidityStatus(node, required, allowChildren, elementType, context) {
   if (Array.isArray(required.some)) {
-    const isValid = required.some.some((rule) => validate(node, rule, allowChildren, elementType));
+    const isValid = required.some.some((rule) => validate(node, rule, allowChildren, elementType, context));
     const message = !isValid
       ? `Form label must have ANY of the following types of associated control: ${required.some.join(', ')}`
       : null;
     return { isValid, message };
   }
   if (Array.isArray(required.every)) {
-    const isValid = required.every.every((rule) => validate(node, rule, allowChildren, elementType));
+    const isValid = required.every.every((rule) => validate(node, rule, allowChildren, elementType, context));
     const message = !isValid
       ? `Form label must have ALL of the following types of associated control: ${required.every.join(', ')}`
       : null;
     return { isValid, message };
   }
 
-  const isValid = validate(node, required, allowChildren, elementType);
+  const isValid = validate(node, required, allowChildren, elementType, context);
   const message = !isValid
     ? `Form label must have the following type of associated control: ${required}`
     : null;
   return { isValid, message };
-};
+}
 
 export default {
   meta: {
@@ -99,7 +109,7 @@ export default {
   create: (context) => {
     const elementType = getElementType(context);
     return {
-      JSXOpeningElement: (node) => {
+      JSXOpeningElement(node) {
         const options = context.options[0] || {};
         const componentOptions = options.components || [];
         const typesToValidate = ['label'].concat(componentOptions);
@@ -113,7 +123,7 @@ export default {
         const required = options.required || { every: ['nesting', 'id'] };
         const allowChildren = options.allowChildren || false;
 
-        const { isValid, message } = getValidityStatus(node, required, allowChildren, elementType);
+        const { isValid, message } = getValidityStatus(node, required, allowChildren, elementType, context);
         if (!isValid) {
           context.report({
             node,

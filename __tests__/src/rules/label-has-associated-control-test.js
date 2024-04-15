@@ -40,11 +40,23 @@ const componentsSettings = {
   },
 };
 
+const attributesSettings = {
+  'jsx-a11y': {
+    attributes: {
+      for: ['htmlFor', 'for'],
+    },
+  },
+};
+
 const htmlForValid = [
   { code: '<label htmlFor="js_id"><span><span><span>A label</span></span></span></label>', options: [{ depth: 4 }] },
   { code: '<label htmlFor="js_id" aria-label="A label" />' },
   { code: '<label htmlFor="js_id" aria-labelledby="A label" />' },
   { code: '<div><label htmlFor="js_id">A label</label><input id="js_id" /></div>' },
+  { code: '<label for="js_id"><span><span><span>A label</span></span></span></label>', options: [{ depth: 4 }], settings: attributesSettings },
+  { code: '<label for="js_id" aria-label="A label" />', settings: attributesSettings },
+  { code: '<label for="js_id" aria-labelledby="A label" />', settings: attributesSettings },
+  { code: '<div><label for="js_id">A label</label><input id="js_id" /></div>', settings: attributesSettings },
   // Custom label component.
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }] },

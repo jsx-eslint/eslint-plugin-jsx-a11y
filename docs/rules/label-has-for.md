@@ -13,7 +13,7 @@ Enforce label tags have associated control.
 There are two supported ways to associate a label with a control:
 
 - nesting: by wrapping a control in a label tag
-- id: by using the prop `htmlFor` as in `htmlFor=[ID of control]`
+- id: by using the prop `htmlFor` (or any configured attribute) as in `htmlFor=[ID of control]`
 
 To fully cover 100% of assistive devices, you're encouraged to validate for both nesting and id.
 
