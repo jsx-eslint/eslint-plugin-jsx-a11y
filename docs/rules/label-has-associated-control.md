@@ -53,7 +53,6 @@ And the configuration:
 {
   "rules": {
     "jsx-a11y/label-has-associated-control": [ 2, {
-      "htmlForAttributes": ["htmlFor", "for"],
       "labelComponents": ["CustomInputLabel"],
       "labelAttributes": ["label"],
       "controlComponents": ["CustomInput"],
@@ -104,7 +103,6 @@ This rule takes one optional object argument of type object:
 }
 ```
 
-`htmlForAttributes`: is an array of strings that specify the attribute to check for an associated control. Default is `["htmlFor"]`.
 `labelComponents` is a list of custom React Component names that should be checked for an associated control.
 `labelAttributes` is a list of attributes to check on the label component and its children for a label. Use this if you have a custom component that uses a string passed on a prop to render an HTML `label`, for example.
 `controlComponents` is a list of custom React Components names that will output an input element. [Glob format](https://linuxhint.com/bash_globbing_tutorial/) is also supported for specifying names (e.g., `Label*` matches `LabelComponent` but not `CustomLabel`, `????Label` matches `LinkLabel` but not `CustomLabel`).

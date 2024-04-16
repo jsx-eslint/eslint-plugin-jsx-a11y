@@ -20,7 +20,6 @@ import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 const errorMessage = 'A form label must be associated with a control.';
 
 const schema = generateObjSchema({
-  htmlForAttributes: arraySchema,
   labelComponents: arraySchema,
   labelAttributes: arraySchema,
   controlComponents: arraySchema,
@@ -62,7 +61,7 @@ export default ({
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
     const { settings } = context;
     const options = context.options[0] || {};
-    const htmlForAttributes = options.htmlForAttributes ?? settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
+    const htmlForAttributes = settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
     const labelComponents = options.labelComponents || [];
     const assertType = options.assert || 'either';
     const componentNames = ['label'].concat(labelComponents);

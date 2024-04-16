@@ -16,7 +16,6 @@ const enumValues = ['nesting', 'id'];
 const schema = {
   type: 'object',
   properties: {
-    htmlForAttributes: arraySchema,
     components: arraySchema,
     required: {
       oneOf: [
@@ -110,7 +109,7 @@ export default {
       JSXOpeningElement: (node) => {
         const { settings } = context;
         const options = context.options[0] || {};
-        const htmlForAttributes = options.htmlForAttributes ?? settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
+        const htmlForAttributes = settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
         const componentOptions = options.components || [];
         const typesToValidate = ['label'].concat(componentOptions);
         const nodeType = elementType(node);

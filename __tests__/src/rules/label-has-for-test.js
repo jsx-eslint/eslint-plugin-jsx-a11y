@@ -50,20 +50,28 @@ const optionsChildrenAllowed = [{
   allowChildren: true,
 }];
 
+const attributesSettings = {
+  'jsx-a11y': {
+    attributes: {
+      for: ['htmlFor', 'for'],
+    },
+  },
+};
+
 ruleTester.run('label-has-for', rule, {
   valid: parsers.all([].concat(
     // DEFAULT ELEMENT 'label' TESTS
     { code: '<div />' },
     { code: '<label htmlFor="foo"><input /></label>' },
     { code: '<label htmlFor="foo"><textarea /></label>' },
-    { code: '<label for="foo"><input /></label>', options: [{ htmlForAttributes: ['htmlFor', 'for'] }] },
-    { code: '<label for="foo"><textarea /></label>', options: [{ htmlForAttributes: ['htmlFor', 'for'] }] },
+    { code: '<label for="foo"><input /></label>', settings: attributesSettings },
+    { code: '<label for="foo"><textarea /></label>', settings: attributesSettings },
     { code: '<Label />' }, // lower-case convention refers to real HTML elements.
     { code: '<Label htmlFor="foo" />' },
-    { code: '<Label for="foo" />', options: [{ htmlForAttributes: ['htmlFor', 'for'] }] },
+    { code: '<Label for="foo" />', settings: attributesSettings },
     { code: '<Descriptor />' },
     { code: '<Descriptor htmlFor="foo">Test!</Descriptor>' },
-    { code: '<Descriptor for="foo">Test!</Descriptor>', options: [{ htmlForAttributes: ['htmlFor', 'for'] }] },
+    { code: '<Descriptor for="foo">Test!</Descriptor>', settings: attributesSettings },
     { code: '<UX.Layout>test</UX.Layout>' },
 
     // CUSTOM ELEMENT ARRAY OPTION TESTS

@@ -25,7 +25,6 @@ This rule takes one optional object argument of type object:
 {
     "rules": {
         "jsx-a11y/label-has-for": [ 2, {
-            "htmlForAttributes": ["htmlFor", "for"],
             "components": [ "Label" ],
             "required": {
                 "every": [ "nesting", "id" ]
@@ -35,8 +34,6 @@ This rule takes one optional object argument of type object:
     }
 }
 ```
-
-The `htmlForAttributes` allows you to specify which prop to check for. This is useful when you want to use a different property instead of `htmlFor`, for example `for`.
 
 For the `components` option, these strings determine which JSX elements (**always including** `<label>`) should be checked for having `htmlFor` prop. This is a good use case when you have a wrapper component that simply renders a `label` element (like in React):
 
