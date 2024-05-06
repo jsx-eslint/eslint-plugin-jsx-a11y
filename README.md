@@ -221,6 +221,8 @@ For example, if you set the `polymorphicPropName` setting to `as` then this elem
 
 will be evaluated as an `h3`. If no `polymorphicPropName` is set, then the component will be evaluated as `Box`.
 
+To restrict polymorphic linting to specified components, additionally set `polymorphicAllowList` to an array of component names.
+
 ⚠️ Polymorphic components can make code harder to maintain; please use this feature with caution.
 
 ## Supported Rules
