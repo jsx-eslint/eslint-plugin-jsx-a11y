@@ -372,6 +372,7 @@ const neverValid = [
   { code: '<select className="foo" role="listitem" />', errors: [expectedError] },
   { code: '<textarea className="foo" role="listitem" />', errors: [expectedError] },
   { code: '<tr role="listitem" />;', errors: [expectedError] },
+  { code: '<summary role="listitem" />;', errors: [expectedError] },
   /* Custom elements */
   { code: '<Link href="http://x.y.z" role="img" />', errors: [expectedError], settings: componentsSettings },
 ];
