@@ -187,10 +187,12 @@ const alwaysValid = [
   { code: '<wbr onClick={() => {}} />;' },
   { code: '<xmp onClick={() => {}} />;' },
   /* HTML elements attributed with an interactive role */
+  { code: '<div role="alertdialog" onClick={() => {}} />;' },
   { code: '<div role="button" onClick={() => {}} />;' },
   { code: '<div role="checkbox" onClick={() => {}} />;' },
   { code: '<div role="columnheader" onClick={() => {}} />;' },
   { code: '<div role="combobox" onClick={() => {}} />;' },
+  { code: '<div role="dialog" onClick={() => {}} />;' },
   { code: '<div role="grid" onClick={() => {}} />;' },
   { code: '<div role="gridcell" onClick={() => {}} />;' },
   { code: '<div role="link" onClick={() => {}} />;' },
@@ -343,7 +345,6 @@ const neverValid = [
   { code: '<div contentEditable role="article" onKeyDown={() => {}} />;', errors: [expectedError] },
   /* HTML elements attributed with a non-interactive role */
   { code: '<div role="alert" onClick={() => {}} />;', errors: [expectedError] },
-  { code: '<div role="alertdialog" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="application" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="article" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="banner" onClick={() => {}} />;', errors: [expectedError] },
@@ -351,7 +352,6 @@ const neverValid = [
   { code: '<div role="complementary" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="contentinfo" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="definition" onClick={() => {}} />;', errors: [expectedError] },
-  { code: '<div role="dialog" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="directory" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="document" onClick={() => {}} />;', errors: [expectedError] },
   { code: '<div role="feed" onClick={() => {}} />;', errors: [expectedError] },

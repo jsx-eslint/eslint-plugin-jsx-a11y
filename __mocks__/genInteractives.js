@@ -22,6 +22,7 @@ const interactiveElementsMap = {
   button: [],
   canvas: [],
   datalist: [],
+  dialog: [],
   embed: [],
   input: [],
   'input[type="button"]': [{ prop: 'type', value: 'button' }],
@@ -71,7 +72,6 @@ const nonInteractiveElementsMap: {[string]: Array<{[string]: string}>} = {
   del: [],
   details: [],
   dfn: [],
-  dialog: [],
   dir: [],
   dl: [],
   dt: [],
@@ -140,13 +140,13 @@ const interactiveRoles = []
   )
   .filter((role) => (
     !roles.get(role).abstract
-    && roles.get(role).superClass.some((klasses) => includes(klasses, 'widget'))
+    && roles.get(role).superClass.some((klasses) => includes(klasses, 'widget') || includes(klasses, 'window'))
   ));
 
 const nonInteractiveRoles = roleNames
   .filter((role) => (
     !roles.get(role).abstract
-    && !roles.get(role).superClass.some((klasses) => includes(klasses, 'widget'))
+    && !roles.get(role).superClass.some((klasses) => includes(klasses, 'widget') || includes(klasses, 'window'))
 
     // 'toolbar' does not descend from widget, but it does support
     // aria-activedescendant, thus in practice we treat it as a widget.
