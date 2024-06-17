@@ -29,9 +29,14 @@
     "test": "npm run jest",
     "posttest": "aud --production",
     "test:ci": "npm run jest -- --ci --runInBand",
+    "pretest:examples": "npm run build",
+    "test:examples": "npm run test-example:legacy && npm run test-example:flat-esm && npm run test-example:flat-cjs",
+    "test-example:legacy": "cd examples/legacy && npm install && npm run lint",
+    "test-example:flat-esm": "cd examples/flat-esm && npm install && npm run lint",
+    "test-example:flat-cjs": "cd examples/flat-cjs && npm install && npm run lint",
     "jest": "jest --coverage __tests__/**/*",
     "pregenerate-list-of-rules": "npm run build",
-    "generate-list-of-rules": "eslint-doc-generator --rule-doc-title-format prefix-name --rule-doc-section-options false --config-emoji recommended,☑️",
+    "generate-list-of-rules": "eslint-doc-generator --rule-doc-title-format prefix-name --rule-doc-section-options false --config-emoji recommended,☑️ --ignore-config flat/recommended --ignore-config flat/strict",
     "generate-list-of-rules:check": "npm run generate-list-of-rules -- --check",
     "version": "auto-changelog && git add CHANGELOG.md",
     "postversion": "auto-changelog && git add CHANGELOG.md && git commit --no-edit --amend && git tag -f \"v$(node -e \"console.log(require('./package.json').version)\")\""
@@ -128,7 +133,8 @@
       "/reports",
       "/flow",
       "scripts/",
-      "CONTRIBUTING.md"
+      "CONTRIBUTING.md",
+      "/examples"
     ]
   }
 }

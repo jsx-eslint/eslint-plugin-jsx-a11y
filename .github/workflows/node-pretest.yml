@@ -38,3 +38,15 @@ jobs:
           node-version: 'lts/*'
           skip-ls-check: true
       - run: npm run posttest
+
+  examples:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ljharb/actions/node/install@main
+        name: 'nvm install lts/* && npm install'
+        with:
+          node-version: 'lts/*'
+          skip-ls-check: true
+      - run: npm run test:examples

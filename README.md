@@ -60,7 +60,8 @@ yarn add eslint-plugin-jsx-a11y --dev
 
 **Note:** If you installed ESLint globally (using the `-g` flag in npm, or the `global` prefix in yarn) then you must also install `eslint-plugin-jsx-a11y` globally.
 
-## Usage
+<a id="usage"></a>
+## Usage - Legacy Config (`.eslintrc`)
 
 Add `jsx-a11y` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
@@ -109,6 +110,94 @@ Add `plugin:jsx-a11y/recommended` or `plugin:jsx-a11y/strict` in `extends`:
 }
 ```
 
+## Usage - Flat Config (`eslint.config.js`)
+
+The default export of `eslint-plugin-jsx-a11y` is a plugin object.
+
+```js
+const jsxA11y = require('eslint-plugin-jsx-a11y');
+
+module.exports = [
+  …
+  {
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    plugins: {
+      'jsx-a11y': jsxA11y,
+    },
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    rules: {
+      // ... any rules you want
+      'jsx-a11y/alt-text': 'error',
+    },
+    // ... others are omitted for brevity
+  },
+  …
+];
+```
+
+### Shareable Configs
+
+There are two shareable configs, provided by the plugin.
+
+- `flatConfigs.recommended`
+- `flatConfigs.strict`
+
+#### CJS
+
+```js
+const jsxA11y = require('eslint-plugin-jsx-a11y');
+
+export default [
+  jsxA11y.flatConfigs.recommended,
+  {
+    // Your additional configs and overrides
+  },
+];
+```
+
+#### ESM
+
+```js
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+
+export default [
+  jsxA11y.flatConfigs.recommended,
+  {
+    // Your additional configs and overrides
+  },
+];
+```
+
+**Note**: Our shareable config do configure `files` or [`languageOptions.globals`](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#configuration-objects).
+For most of the cases, you probably want to configure some of these properties yourself.
+
+```js
+const jsxA11yRecommended = require('eslint-plugin-jsx-a11y');
+const globals = require('globals');
+
+module.exports = [
+  …
+  {
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    ...jsxA11y.flatConfigs.recommended,
+    languageOptions: {
+      ...jsxA11y.flatConfigs.recommended.languageOptions,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+      },
+    },
+  },
+  …
+];
+```
+
 #### Component Mapping
 
 To enable your custom components to be checked as DOM elements, you can set global settings in your configuration file by mapping each custom component name to a DOM element type.
@@ -124,7 +213,7 @@ For example, if you set the `polymorphicPropName` setting to `as` then this elem
 
 will be evaluated as an `h3`. If no `polymorphicPropName` is set, then the component will be evaluated as `Box`.
 
-⚠️  Polymorphic components can make code harder to maintain; please use this feature with caution.
+⚠️ Polymorphic components can make code harder to maintain; please use this feature with caution.
 
 ## Supported Rules
 
