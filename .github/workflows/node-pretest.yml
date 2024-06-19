@@ -50,3 +50,8 @@ jobs:
           node-version: 'lts/*'
           skip-ls-check: true
       - run: npm run test:examples
+
+  engines:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ljharb/actions/node/engines@main
