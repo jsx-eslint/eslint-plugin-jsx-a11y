@@ -39,7 +39,7 @@ ruleTester.run('element-role', rule, {
       errors: [
         expectedError(
           'link',
-          '<a href=...>, or <area href=...>',
+          '<a href=...>, <area href=...>, or <link href=...>',
         ),
       ],
     },

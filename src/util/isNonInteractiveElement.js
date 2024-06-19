@@ -35,10 +35,6 @@ const nonInteractiveRoles = new Set(roleKeys
         // This role is meant to have no semantic value.
         // @see https://www.w3.org/TR/wai-aria-1.2/#generic
         && name !== 'generic'
-        // Whereas ARIA makes a distinction between cell and gridcell, the AXObject
-        // treats them both as CellRole and since gridcell is interactive, we consider
-        // cell interactive as well.
-        && name !== 'cell'
         && !role.superClass.some((classes) => includes(classes, 'widget'))
     );
   }).concat(
