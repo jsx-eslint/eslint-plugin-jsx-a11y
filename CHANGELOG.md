@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v6.9.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.8.0...v6.9.0) - 2024-06-19
+
+### Fixed
+
+- [Fix] `img-redundant-alt`: fixed multibyte character support [`#969`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/969)
+- [meta] fix changelog links [`#960`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/960)
+
+### Commits
+
+- [New] add support for Flat Config [`6b5f096`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6b5f096f10b47326d68e2893152a48a79c8555b4)
+- Revert "[Fix] `isNonInteractiveElement`: Upgrade aria-query to 5.3.0 and axobject-query to 3.2.1" [`75d5dd7`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/75d5dd722bd67186d97afa7b151fd6fee5885c70)
+- [Robustness] use `safe-regex-test` [`4c7e781`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/4c7e7815c12a797587bb8e3cdced7f3003848964)
+- [actions] update actions/checkout [`51a1ca7`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/51a1ca7b4d83d4fbd1ea62888f7f2dc21ece6788)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `@babel/register`, `eslint-doc-generator`, `object.entries` [`1271ac1`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/1271ac1d6e5dcf9a2bc2c086faaf062335629171)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/register`, `aud`, `eslint-plugin-import`, `npmignore`, `object.assign` [`540cb7a`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/540cb7aefead582f237071d55a40f098d0885478)
+- [Deps] update `@babel/runtime`, `array-includes`, `es-iterator-helpers`, `hasown`, `object.fromentries`, `safe-regex-test` [`5d14408`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/5d1440825a8838ae10dc94cc3a4a7e1e967644b4)
+- [Deps] pin `aria-query` and `axobject-query`, add `ls-engines` test to CI [`32fd82c`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/32fd82c628d7f3e4ec8c06a1994f4eca1be2be4f)
+- [Dev Deps] update `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `eslint-doc-generator` [`d1b4114`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/d1b41142248a7cca45bb5f0b96ff23ee87fb9411)
+- [Fix] ensure `summary` remains non-interactive [`6a048da`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6a048dacf2b98eaa204e2a5a70dc7e3d48d9463a)
+- [Deps] remove `@babel/runtime` [`0a98ad8`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0a98ad83ffa7f4b66458cc1c39db2ef32bb2c480)
+- [New] `no-noninteractive-element-to-interactive-role`: allow `menuitemradio` and `menuitemcheckbox` on &lt;li&gt; [`c0733f9`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/c0733f94031fe3eec6b4d54176afe47929bb0a84)
+- [Deps] update `@babel/runtime`, `safe-regex-test` [`0d5321a`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0d5321a5457c5f0da0ca216053cc5b4f571b53ae)
+- [actions] pin codecov to v3.1.5 [`961817f`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/961817f61fa56cd7815c6940c27ef08469b1516b)
+- [Deps] unpin `axe-core` [`b3559cf`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/b3559cf89be6b5352cd77ffa025831b3d793d565)
+- [Deps] move `object.entries` to dev deps [`1be7b70`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/1be7b709eececd83f1d5f67a60b2c97cfe9a561d)
+- [Deps] update `@babel/runtime` [`2a48abb`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/2a48abb5effa911e7d1a8575e1c9768c947a33f1)
+- [Deps] update `@babel/runtime` [`1adec35`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/1adec3517fc2c9797212ca4d38858deed917e7be)
+
 ## [v6.8.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.7.1...v6.8.0) - 2023-11-01
 
 ### Merged
