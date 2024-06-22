@@ -97,7 +97,7 @@
     "string.prototype.includes": "^2.0.0"
   },
   "peerDependencies": {
-    "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8"
+    "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9"
   },
   "jest": {
     "coverageReporters": [
