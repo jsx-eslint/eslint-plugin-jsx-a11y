@@ -1,7 +1,7 @@
 <p align="center">
-  <a href="https://travis-ci.com/github/jsx-eslint/eslint-plugin-jsx-a11y">
-    <img src="https://travis-ci.com/jsx-eslint/eslint-plugin-jsx-a11y.svg?branch=master"
-         alt="build status">
+  <a href="https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/actions">
+    <img src="https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/jsx-eslint/eslint-plugin-jsx-a11y"
+         alt="CI status" />
   </a>
   <a href="https://npmjs.org/package/eslint-plugin-jsx-a11y">
     <img src="https://img.shields.io/npm/v/eslint-plugin-jsx-a11y.svg"
