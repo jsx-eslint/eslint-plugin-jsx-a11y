@@ -49,6 +49,7 @@ const interactiveElementsMap = {
   menuitem: [],
   option: [],
   select: [],
+  summary: [],
   // Whereas ARIA makes a distinction between cell and gridcell, the AXObject
   // treats them both as CellRole and since gridcell is interactive, we consider
   // cell interactive as well.

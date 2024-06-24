@@ -86,6 +86,7 @@ const alwaysValid = [
   { code: '<form onClick={() => {}} />;' },
   { code: '<form onSubmit={() => {}} />;' },
   { code: '<link onClick={() => {}} href="#" />;' },
+  { code: '<summary onClick={() => {}} />;' },
   /* HTML elements attributed with an interactive role */
   { code: '<div role="button" onClick={() => {}} />;' },
   { code: '<div role="checkbox" onClick={() => {}} />;' },
@@ -340,7 +341,6 @@ const neverValid = [
   { code: '<style onClick={() => {}} />;', errors: [expectedError] },
   { code: '<sub onClick={() => {}} />;', errors: [expectedError] },
   { code: '<sup onClick={() => {}} />;', errors: [expectedError] },
-  { code: '<summary onClick={() => {}} />;', errors: [expectedError] },
   { code: '<title onClick={() => {}} />;', errors: [expectedError] },
   { code: '<track onClick={() => {}} />;', errors: [expectedError] },
   { code: '<tt onClick={() => {}} />;', errors: [expectedError] },
