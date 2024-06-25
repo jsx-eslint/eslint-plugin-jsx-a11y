@@ -13,7 +13,7 @@ Enforce label tags have associated control.
 There are two supported ways to associate a label with a control:
 
 - nesting: by wrapping a control in a label tag
-- id: by using the prop `htmlFor` as in `htmlFor=[ID of control]`
+- id: by using the prop `htmlFor` (or `for`) as in `htmlFor=[ID of control]`
 
 To fully cover 100% of assistive devices, you're encouraged to validate for both nesting and id.
 
@@ -35,7 +35,7 @@ This rule takes one optional object argument of type object:
 }
 ```
 
-For the `components` option, these strings determine which JSX elements (**always including** `<label>`) should be checked for having `htmlFor` prop. This is a good use case when you have a wrapper component that simply renders a `label` element (like in React):
+For the `components` option, these strings determine which JSX elements (**always including** `<label>`) should be checked for having `htmlFor` (or `for`) prop. This is a good use case when you have a wrapper component that simply renders a `label` element (like in React):
 
 ```js
 // Label.js

@@ -46,7 +46,7 @@ function validateNesting(node) {
 }
 
 const validateId = (node) => {
-  const htmlForAttr = getProp(node.attributes, 'htmlFor');
+  const htmlForAttr = getProp(node.attributes, 'for') || getProp(node.attributes, 'htmlFor');
   const htmlForValue = getPropValue(htmlForAttr);
 
   return htmlForAttr !== false && !!htmlForValue;
@@ -90,7 +90,7 @@ export default {
     deprecated: true,
     replacedBy: ['label-has-associated-control'],
     docs: {
-      description: 'Enforce that `<label>` elements have the `htmlFor` prop.',
+      description: 'Enforce that `<label>` elements have the `htmlFor` (or `for`) prop.',
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/label-has-for.md',
     },
     schema: [schema],

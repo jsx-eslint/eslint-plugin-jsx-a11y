@@ -36,7 +36,7 @@ const schema = generateObjSchema({
 });
 
 const validateId = (node) => {
-  const htmlForAttr = getProp(node.attributes, 'htmlFor');
+  const htmlForAttr = getProp(node.attributes, 'for') || getProp(node.attributes, 'htmlFor');
   const htmlForValue = getPropValue(htmlForAttr);
 
   return htmlForAttr !== false && !!htmlForValue;
