@@ -304,7 +304,6 @@ const neverValid = [
   { code: '<content onClick={() => {}} />;', errors: [expectedError] },
   { code: '<data onClick={() => {}} />;', errors: [expectedError] },
   { code: '<del onClick={() => {}} />;', errors: [expectedError] },
-  { code: '<div onClick={() => {}} />;', errors: [expectedError] },
   { code: '<em onClick={() => {}} />;', errors: [expectedError] },
   { code: '<font onClick={() => {}} />;', errors: [expectedError] },
   { code: '<frameset onClick={() => {}} />;', errors: [expectedError] },

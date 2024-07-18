@@ -10,7 +10,7 @@ const expectedError = (role, tag) => ({
   type: 'JSXOpeningElement',
 });
 
-ruleTester.run('element-role', rule, {
+ruleTester.run('prefer-tag-over-role', rule, {
   valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<div role="unknown" />;' },
@@ -49,10 +49,6 @@ ruleTester.run('element-role', rule, {
     },
     {
       code: '<span role="checkbox" />',
-      errors: [expectedError('checkbox', '<input type="checkbox">')],
-    },
-    {
-      code: '<other role="checkbox" />',
       errors: [expectedError('checkbox', '<input type="checkbox">')],
     },
     {

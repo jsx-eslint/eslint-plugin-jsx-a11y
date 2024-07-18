@@ -272,14 +272,9 @@ ruleTester.run('anchor-is-valid', rule, {
       options: noHrefAspect,
     },
 
-    // CUSTOM COMPONENTS AND SPECIALLINK AND ASPECT
+    // CUSTOM COMPONENTS AND SPECIAL LINK AND ASPECT
     { code: '<Anchor hrefLeft={undefined} />', options: componentsAndSpecialLinkAndInvalidHrefAspect },
     { code: '<Anchor hrefLeft={null} />', options: componentsAndSpecialLinkAndInvalidHrefAspect },
-    { code: '<Anchor hrefLeft={undefined} />', options: componentsAndSpecialLinkAndInvalidHrefAspect },
-    { code: '<Anchor hrefLeft={null} />', options: componentsAndSpecialLinkAndInvalidHrefAspect },
-    { code: '<Anchor hrefLeft={undefined} />', options: componentsAndSpecialLinkAndInvalidHrefAspect },
-    { code: '<Anchor hrefLeft={null} />', options: componentsAndSpecialLinkAndInvalidHrefAspect },
-
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     // DEFAULT ELEMENT 'a' TESTS
@@ -372,7 +367,7 @@ ruleTester.run('anchor-is-valid', rule, {
       options: specialLink,
     },
 
-    // CUSTOM BOTH COMPONENTS AND SPECIALLINK TESTS
+    // CUSTOM BOTH COMPONENTS AND SPECIAL LINK TESTS
     // NO HREF
     { code: '<Anchor Anchor={undefined} />', errors: [noHrefexpectedError], options: componentsAndSpecialLink },
     { code: '<Anchor hrefLeft={null} />', errors: [noHrefexpectedError], options: componentsAndSpecialLink },
@@ -522,27 +517,7 @@ ruleTester.run('anchor-is-valid', rule, {
       errors: [invalidHrefexpectedError],
     },
 
-    // CUSTOM COMPONENTS AND SPECIALLINK AND ASPECT
-    {
-      code: '<Anchor hrefLeft={undefined} />',
-      options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefexpectedError],
-    },
-    {
-      code: '<Anchor hrefLeft={null} />',
-      options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefexpectedError],
-    },
-    {
-      code: '<Anchor hrefLeft={undefined} />',
-      options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefexpectedError],
-    },
-    {
-      code: '<Anchor hrefLeft={null} />',
-      options: componentsAndSpecialLinkAndNoHrefAspect,
-      errors: [noHrefexpectedError],
-    },
+    // CUSTOM COMPONENTS AND SPECIAL LINK AND ASPECT
     {
       code: '<Anchor hrefLeft={undefined} />',
       options: componentsAndSpecialLinkAndNoHrefAspect,

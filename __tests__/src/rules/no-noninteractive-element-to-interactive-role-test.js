@@ -360,7 +360,6 @@ const neverValid = [
    * interactive role. */
   { code: '<main role="button" />;', errors: [expectedError] },
   { code: '<article role="button" />;', errors: [expectedError] },
-  { code: '<article role="button" />;', errors: [expectedError] },
   { code: '<aside role="button" />;', errors: [expectedError] },
   { code: '<blockquote role="button" />;', errors: [expectedError] },
   { code: '<body role="button" />;', errors: [expectedError] },
@@ -411,7 +410,6 @@ const neverValid = [
   /* HTML elements with an inherent non-interactive role, assigned an
    * interactive role. */
   { code: '<main role="menuitem" />;', errors: [expectedError] },
-  { code: '<article role="menuitem" />;', errors: [expectedError] },
   { code: '<article role="menuitem" />;', errors: [expectedError] },
   { code: '<dd role="menuitem" />;', errors: [expectedError] },
   { code: '<dfn role="menuitem" />;', errors: [expectedError] },
