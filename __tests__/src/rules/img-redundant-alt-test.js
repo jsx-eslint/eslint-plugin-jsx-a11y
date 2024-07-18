@@ -67,8 +67,8 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: '<img alt={imageAlt} />' },
     { code: '<img alt={imageAlt.name} />' },
     semver.satisfies(eslintVersion, '>= 6') ? [
-      { code: '<img alt={imageAlt?.name} />', parserOptions: { ecmaVersion: 2020 } },
-      { code: '<img alt="Doing cool things" aria-hidden={foo?.bar}/>', parserOptions: { ecmaVersion: 2020 } },
+      { code: '<img alt={imageAlt?.name} />', languageOptions: { ecmaVersion: 2020 } },
+      { code: '<img alt="Doing cool things" aria-hidden={foo?.bar}/>', languageOptions: { ecmaVersion: 2020 } },
     ] : [],
     { code: '<img alt="Photography" />;' },
     { code: '<img alt="ImageMagick" />;' },

@@ -3,5 +3,6 @@
 <PROJECT_ROOT>/lib/.*
 <PROJECT_ROOT>/docs/.*
 <PROJECT_ROOT>/reports/.*
+<PROJECT_ROOT>/examples/.*
 [options]
 suppress_type=$FlowFixMe

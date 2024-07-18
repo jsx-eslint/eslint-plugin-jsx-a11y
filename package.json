@@ -22,7 +22,7 @@
     "create": "node ./scripts/create-rule",
     "flow": "flow",
     "lint:fix": "npm run lint -- --fix",
-    "lint": "eslint --ext=js,mjs,cjs,ts,tsx .",
+    "lint": "npx eslint@8 --ext=js,mjs,cjs,ts,tsx .",
     "prepublish": "not-in-publish || npm run prepublishOnly",
     "prepublishOnly": "safe-publish-latest && npm run lint && npm run flow && npm run jest",
     "pretest": "npm run lint:fix && npm run flow",
@@ -34,7 +34,7 @@
     "test-example:legacy": "cd examples/legacy && npm install && npm run lint",
     "test-example:flat-esm": "cd examples/flat-esm && npm install && npm run lint",
     "test-example:flat-cjs": "cd examples/flat-cjs && npm install && npm run lint",
-    "jest": "jest --coverage __tests__/**/*",
+    "jest": "jest --coverage __tests__",
     "pregenerate-list-of-rules": "npm run build",
     "generate-list-of-rules": "eslint-doc-generator --rule-doc-title-format prefix-name --rule-doc-section-options false --config-emoji recommended,☑️ --ignore-config flat/recommended --ignore-config flat/strict",
     "generate-list-of-rules:check": "npm run generate-list-of-rules -- --check",
@@ -51,7 +51,8 @@
     "babel-jest": "^24.9.0",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-preset-airbnb": "^5.0.0",
-    "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8",
+    "core-js": "^3.38.1",
+    "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-doc-generator": "^1.7.1",
     "eslint-plugin-eslint-plugin": "^4.3.0",
@@ -96,7 +97,7 @@
     "string.prototype.includes": "^2.0.0"
   },
   "peerDependencies": {
-    "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8"
+    "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9"
   },
   "jest": {
     "coverageReporters": [
@@ -111,7 +112,18 @@
     "testPathIgnorePatterns": [
       "__tests__/__util__/"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@eslint/config-array": "<rootDir>/node_modules/@eslint/config-array/dist/cjs/index.cjs",
+      "@eslint/object-schema": "<rootDir>/node_modules/@eslint/object-schema/dist/cjs/index.cjs",
+      "node:assert": "<rootDir>/__tests__/__util__/nodeReexports/assert.js",
+      "node:fs/promises": "<rootDir>/__tests__/__util__/nodeReexports/fs-promises.js",
+      "node:fs": "<rootDir>/__tests__/__util__/nodeReexports/fs.js",
+      "node:path": "<rootDir>/__tests__/__util__/nodeReexports/path.js",
+      "node:url": "<rootDir>/__tests__/__util__/nodeReexports/url.js",
+      "node:util": "<rootDir>/__tests__/__util__/nodeReexports/util.js"
+    },
+    "setupFilesAfterEnv": ["<rootDir>/setup.jest.js"]
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -132,7 +144,8 @@
       "/flow",
       "scripts/",
       "CONTRIBUTING.md",
-      "/examples"
+      "/examples",
+      "setup.jest.js"
     ]
   }
 }

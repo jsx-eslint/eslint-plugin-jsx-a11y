@@ -25,6 +25,7 @@ jobs:
       matrix:
         node-version: ${{ fromJson(needs.matrix.outputs.latest) }}
         eslint:
+          - 9
           - 8
           - 7
           - 6
@@ -32,6 +33,32 @@ jobs:
           - 4
           - 3
         exclude:
+          - node-version: 16
+            eslint: 9
+          - node-version: 15
+            eslint: 9
+          - node-version: 14
+            eslint: 9
+          - node-version: 13
+            eslint: 9
+          - node-version: 12
+            eslint: 9
+          - node-version: 11
+            eslint: 9
+          - node-version: 10
+            eslint: 9
+          - node-version: 9
+            eslint: 9
+          - node-version: 8
+            eslint: 9
+          - node-version: 7
+            eslint: 9
+          - node-version: 6
+            eslint: 9
+          - node-version: 5
+            eslint: 9
+          - node-version: 4
+            eslint: 9
           - node-version: 15
             eslint: 8
           - node-version: 13
@@ -90,7 +117,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-            fetch-depth: 0
+          fetch-depth: 0
       - uses: ljharb/actions/node/install@main
         name: 'nvm install ${{ matrix.node-version }} && npm install'
         env:
