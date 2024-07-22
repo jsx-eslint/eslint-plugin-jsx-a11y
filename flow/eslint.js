@@ -10,7 +10,8 @@ export type ESLintSettings = {
   [string]: mixed,
   'jsx-a11y'?: {
     polymorphicPropName?: string,
-    components?: {[string]: string},
+    components?: { [string]: string },
+    attributes?: { for?: string[] },
   },
 }
 
