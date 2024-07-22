@@ -76,4 +76,38 @@ describe('getElementType', () => {
       expect(elementType(JSXElementMock('CustomButton', [JSXAttributeMock('as', 'a')]).openingElement)).toBe('button');
     });
   });
+
+  describe('polymorphicPropName settings and explicitly defined polymorphicAllowList in context', () => {
+    const elementType = getElementType({
+      settings: {
+        'jsx-a11y': {
+          polymorphicPropName: 'asChild',
+          polymorphicAllowList: [
+            'Box',
+            'Icon',
+          ],
+          components: {
+            Box: 'div',
+            Icon: 'svg',
+          },
+        },
+      },
+    });
+
+    it('should not use the polymorphic prop if polymorphicAllowList is defined, but element is not part of polymorphicAllowList', () => {
+      expect(elementType(JSXElementMock('Spinner', [JSXAttributeMock('asChild', 'img')]).openingElement)).toBe('Spinner');
+    });
+
+    it('should use the polymorphic prop if it is in explicitly defined polymorphicAllowList', () => {
+      expect(elementType(JSXElementMock('Icon', [JSXAttributeMock('asChild', 'img')]).openingElement)).toBe('img');
+    });
+
+    it('should return the tag name provided by the polymorphic prop, "asChild", defined in the settings instead of the component mapping tag', () => {
+      expect(elementType(JSXElementMock('Box', [JSXAttributeMock('asChild', 'span')]).openingElement)).toBe('span');
+    });
+
+    it('should return the tag name provided by the component mapping if the polymorphic prop, "asChild", defined in the settings is not set', () => {
+      expect(elementType(JSXElementMock('Box', [JSXAttributeMock('as', 'a')]).openingElement)).toBe('div');
+    });
+  });
 });
