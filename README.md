@@ -174,7 +174,7 @@ export default [
 ];
 ```
 
-**Note**: Our shareable config do configure `files` or [`languageOptions.globals`](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#configuration-objects).
+**Note**: Our shareable configs do NOT configure `files` or [`languageOptions.globals`](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#configuration-objects).
 For most of the cases, you probably want to configure some of these properties yourself.
 
 ```js
