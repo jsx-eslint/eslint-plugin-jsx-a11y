@@ -102,7 +102,10 @@ function checkIsInteractiveElement(tagName, attributes): boolean {
   }
   // Check in elementAXObjects for AX Tree associations for this element.
   const isInteractiveAXElement = some(iterFrom(interactiveElementAXObjectSchemas), elementSchemaMatcher);
-  if (isInteractiveAXElement) {
+  if (
+    isInteractiveAXElement
+    || tagName === 'summary' // TODO: Remove this hard-coded addition once axobject-query is updated.
+  ) {
     return true;
   }
 
