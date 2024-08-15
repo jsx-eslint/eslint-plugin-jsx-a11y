@@ -178,7 +178,7 @@ export default [
 For most of the cases, you probably want to configure some of these properties yourself.
 
 ```js
-const jsxA11yRecommended = require('eslint-plugin-jsx-a11y');
+const jsxA11y = require('eslint-plugin-jsx-a11y');
 const globals = require('globals');
 
 module.exports = [
