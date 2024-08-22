@@ -101,6 +101,8 @@ export default ({
           node,
           recursionDepth,
           labelAttributes,
+          elementType,
+          controlComponents,
         );
       }
 

@@ -87,6 +87,8 @@ export default ({
         node,
         recursionDepth,
         options.labelAttributes,
+        elementType,
+        controlComponents,
       );
 
       if (hasAccessibleLabel) {

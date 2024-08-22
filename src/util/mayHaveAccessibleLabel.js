@@ -9,8 +9,9 @@
  */
 
 import includes from 'array-includes';
-import { getPropValue, propName } from 'jsx-ast-utils';
+import { getPropValue, propName, elementType as rawElementType } from 'jsx-ast-utils';
 import type { JSXOpeningElement, Node } from 'ast-types-flow';
+import minimatch from 'minimatch';
 
 function tryTrim(value: any) {
   return typeof value === 'string' ? value.trim() : value;
@@ -46,6 +47,8 @@ export default function mayHaveAccessibleLabel(
   root: Node,
   maxDepth: number = 1,
   additionalLabellingProps?: Array<string> = [],
+  getElementType: ((node: JSXOpeningElement) => string) = rawElementType,
+  controlComponents: Array<string> = [],
 ): boolean {
   function checkElement(
     node: Node,
@@ -77,6 +80,20 @@ export default function mayHaveAccessibleLabel(
     ) {
       return true;
     }
+
+    if (node.type === 'JSXElement' && node.children.length === 0 && node.openingElement) {
+      // $FlowFixMe `node.openingElement` has `unknown` type
+      const name = getElementType(node.openingElement);
+      const isReactComponent = name.length > 0 && name[0] === name[0].toUpperCase();
+
+      if (
+        isReactComponent
+        && !controlComponents.some((control) => minimatch(name, control))
+      ) {
+        return true;
+      }
+    }
+
     // Recurse into the child element nodes.
     if (node.children) {
       /* $FlowFixMe */

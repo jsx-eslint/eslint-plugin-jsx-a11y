@@ -49,6 +49,8 @@ const htmlForValid = [
   // Glob support for controlComponents option.
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ controlComponents: ['Custom*'] }] },
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ controlComponents: ['*Label'] }] },
+  // Rule does not error if presence of accessible label cannot be determined
+  { code: '<div><label htmlFor="js_id"><CustomText /></label><input id="js_id" /></div>' },
 ];
 const nestingValid = [
   { code: '<label>A label<input /></label>' },
@@ -74,6 +76,8 @@ const nestingValid = [
   // Glob support for controlComponents option.
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['Custom*'] }] },
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['*Input'] }] },
+  // Rule does not error if presence of accessible label cannot be determined
+  { code: '<label><CustomText /><input /></label>' },
 ];
 
 const bothValid = [
