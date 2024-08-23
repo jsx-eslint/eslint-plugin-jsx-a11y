@@ -26,6 +26,11 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
+const expectedErrorNoLabel = {
+  message: 'A form label must have accessible text.',
+  type: 'JSXOpeningElement',
+};
+
 const componentsSettings = {
   'jsx-a11y': {
     components: {
@@ -132,12 +137,12 @@ const nestingInvalid = [
 ];
 
 const neverValid = [
-  { code: '<label htmlFor="js_id" />', errors: [expectedError] },
-  { code: '<label htmlFor="js_id"><input /></label>', errors: [expectedError] },
-  { code: '<label htmlFor="js_id"><textarea /></label>', errors: [expectedError] },
-  { code: '<label></label>', errors: [expectedError] },
+  { code: '<label htmlFor="js_id" />', errors: [expectedErrorNoLabel] },
+  { code: '<label htmlFor="js_id"><input /></label>', errors: [expectedErrorNoLabel] },
+  { code: '<label htmlFor="js_id"><textarea /></label>', errors: [expectedErrorNoLabel] },
+  { code: '<label></label>', errors: [expectedErrorNoLabel] },
   { code: '<label>A label</label>', errors: [expectedError] },
-  { code: '<div><label /><input /></div>', errors: [expectedError] },
+  { code: '<div><label /><input /></div>', errors: [expectedErrorNoLabel] },
   { code: '<div><label>A label</label><input /></div>', errors: [expectedError] },
   // Custom label component.
   { code: '<CustomLabel aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }], errors: [expectedError] },
@@ -146,11 +151,11 @@ const neverValid = [
   // Custom label attributes.
   { code: '<label label="A label" />', options: [{ labelAttributes: ['label'] }], errors: [expectedError] },
   // Custom controlComponents.
-  { code: '<label><span><CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
-  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
-  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedError] },
-  { code: '<label><span><CustomInput /></span></label>', settings: componentsSettings, errors: [expectedError] },
-  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedError] },
+  { code: '<label><span><CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedErrorNoLabel] },
+  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedErrorNoLabel] },
+  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedErrorNoLabel] },
+  { code: '<label><span><CustomInput /></span></label>', settings: componentsSettings, errors: [expectedErrorNoLabel] },
+  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedErrorNoLabel] },
 ];
 // htmlFor valid
 ruleTester.run(ruleName, rule, {

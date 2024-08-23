@@ -18,6 +18,7 @@ import mayContainChildComponent from '../util/mayContainChildComponent';
 import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 
 const errorMessage = 'A form label must be associated with a control.';
+const errorMessageNoLabel = 'A form label must have accessible text.';
 
 const schema = generateObjSchema({
   labelComponents: arraySchema,
@@ -91,31 +92,37 @@ export default ({
         controlComponents,
       );
 
-      if (hasAccessibleLabel) {
-        switch (assertType) {
-          case 'htmlFor':
-            if (hasLabelId) {
-              return;
-            }
-            break;
-          case 'nesting':
-            if (hasNestedControl) {
-              return;
-            }
-            break;
-          case 'both':
-            if (hasLabelId && hasNestedControl) {
-              return;
-            }
-            break;
-          case 'either':
-            if (hasLabelId || hasNestedControl) {
-              return;
-            }
-            break;
-          default:
-            break;
-        }
+      if (!hasAccessibleLabel) {
+        context.report({
+          node: node.openingElement,
+          message: errorMessageNoLabel,
+        });
+        return;
+      }
+
+      switch (assertType) {
+        case 'htmlFor':
+          if (hasLabelId) {
+            return;
+          }
+          break;
+        case 'nesting':
+          if (hasNestedControl) {
+            return;
+          }
+          break;
+        case 'both':
+          if (hasLabelId && hasNestedControl) {
+            return;
+          }
+          break;
+        case 'either':
+          if (hasLabelId || hasNestedControl) {
+            return;
+          }
+          break;
+        default:
+          break;
       }
 
       // htmlFor case
