@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * @fileoverview Enforce `<a>` text to not exactly match "click here", "here", "link", or "a link".
  * @author Matt Wang

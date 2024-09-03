@@ -1,4 +1,5 @@
-import expect from 'expect';
+import test from 'tape';
+
 import mayHaveAccessibleLabel from '../../../src/util/mayHaveAccessibleLabel';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
 import JSXElementMock from '../../../__mocks__/JSXElementMock';
@@ -7,117 +8,165 @@ import JSXSpreadAttributeMock from '../../../__mocks__/JSXSpreadAttributeMock';
 import JSXTextMock from '../../../__mocks__/JSXTextMock';
 import LiteralMock from '../../../__mocks__/LiteralMock';
 
-describe('mayHaveAccessibleLabel', () => {
-  describe('no label', () => {
-    it('should return false', () => {
-      expect(mayHaveAccessibleLabel(
+test('mayHaveAccessibleLabel', (t) => {
+  t.equal(
+    mayHaveAccessibleLabel(
+      JSXElementMock('div', [], [
         JSXElementMock('div', [], [
-          JSXElementMock('div', [], [
+          JSXElementMock('span', [], []),
+          JSXElementMock('span', [], [
             JSXElementMock('span', [], []),
             JSXElementMock('span', [], [
               JSXElementMock('span', [], []),
-              JSXElementMock('span', [], [
-                JSXElementMock('span', [], []),
-              ]),
             ]),
           ]),
-          JSXElementMock('span', [], []),
-          JSXElementMock('img', [
-            JSXAttributeMock('src', 'some/path'),
-          ]),
         ]),
-        5,
-      )).toBe(false);
-    });
-  });
-  describe('label via attributes', () => {
-    it('aria-label, should return true', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+        JSXElementMock('span', [], []),
+        JSXElementMock('img', [
+          JSXAttributeMock('src', 'some/path'),
+        ]),
+      ]),
+      5,
+    ),
+    false,
+    'no label returns false',
+  );
+
+  t.test('label via attributes', (st) => {
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [
         JSXAttributeMock('aria-label', 'A delicate label'),
-      ], []))).toBe(true);
-    });
-    it('aria-label without content, should return false', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+      ], [])),
+      true,
+      'aria-label returns true',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [
         JSXAttributeMock('aria-label', ''),
-      ], []))).toBe(false);
-    });
-    it('aria-label with only whitespace, should return false', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+      ], [])),
+      false,
+      'aria-label without content returns false',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [
         JSXAttributeMock('aria-label', ' '),
-      ], []))).toBe(false);
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+      ], [])),
+      false,
+      'aria-label with only spaces whitespace, should return false',
+    );
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [
         JSXAttributeMock('aria-label', '\n'),
-      ], []))).toBe(false);
-    });
-    it('aria-labelledby, should return true', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+      ], [])),
+      false,
+      'aria-label with only newline whitespace, should return false',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [
         JSXAttributeMock('aria-labelledby', 'elementId'),
-      ], []))).toBe(true);
-    });
-    it('aria-labelledby without content, should return false', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+      ], [])),
+      true,
+      'aria-labelledby returns true',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [
         JSXAttributeMock('aria-labelledby', ''),
-      ], []))).toBe(false);
-    });
-    it('aria-labelledby with an expression container, should return true', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [
+      ], [])),
+      false,
+      'aria-labelledby without content returns false',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [
         JSXAttributeMock('aria-labelledby', 'elementId', true),
-      ], []))).toBe(true);
-    });
+      ], [])),
+      true,
+      'aria-labelledby with an expression container, should return true',
+    );
+
+    st.end();
   });
-  describe('label via custom label attribute', () => {
-    let customLabelProp;
-    beforeEach(() => {
-      customLabelProp = 'cowbell';
-    });
-    it('aria-label, should return true', () => {
-      expect(mayHaveAccessibleLabel(
+
+  t.test('label via custom label attribute', (st) => {
+    const customLabelProp = 'cowbell';
+
+    st.equal(
+      mayHaveAccessibleLabel(
         JSXElementMock('div', [
           JSXAttributeMock(customLabelProp, 'A delicate label'),
         ], []),
         1,
         [customLabelProp],
-      )).toBe(true);
-    });
+      ),
+      true,
+      'aria-label returns true',
+    );
+
+    st.end();
   });
-  describe('text label', () => {
-    it('Literal text, should return true', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+
+  t.test('text label', (st) => {
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
         LiteralMock('A fancy label'),
-      ]))).toBe(true);
-    });
-    it('Literal whitespace, should return false', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+      ])),
+      true,
+      'Literal text, returns true',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
         LiteralMock(' '),
-      ]))).toBe(false);
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+      ])),
+      false,
+      'Literal spaces whitespace, returns false',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
         LiteralMock('\n'),
-      ]))).toBe(false);
-    });
-    it('JSXText, should return true', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+      ])),
+      false,
+      'Literal newline whitespace, returns false',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
         JSXTextMock('A fancy label'),
-      ]))).toBe(true);
-    });
-    it('label is outside of default depth, should return false', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+      ])),
+      true,
+      'JSXText, returns true',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
         JSXElementMock('div', [], [
           JSXTextMock('A fancy label'),
         ]),
-      ]))).toBe(false);
-    });
-    it('label is inside of custom depth, should return true', () => {
-      expect(mayHaveAccessibleLabel(
+      ])),
+      false,
+      'label is outside of default depth, returns false',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(
         JSXElementMock('div', [], [
           JSXElementMock('div', [], [
             JSXTextMock('A fancy label'),
           ]),
         ]),
         2,
-      )).toBe(true);
-    });
-    it('deep nesting, should return true', () => {
-      expect(mayHaveAccessibleLabel(
+      ),
+      true,
+      'label is inside of custom depth, returns true',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(
         JSXElementMock('div', [], [
           JSXElementMock('div', [], [
             JSXElementMock('span', [], []),
@@ -138,49 +187,70 @@ describe('mayHaveAccessibleLabel', () => {
           ]),
         ]),
         6,
-      )).toBe(true);
-    });
+      ),
+      true,
+      'deep nesting, returns true',
+    );
+
+    st.end();
   });
-  describe('image content', () => {
-    it('without alt, should return true', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+
+  t.test('image content', (st) => {
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
         JSXElementMock('img', [
           JSXAttributeMock('src', 'some/path'),
         ]),
-      ]))).toBe(false);
-    });
-    it('with alt, should return true', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+      ])),
+      false,
+      'without alt, returns true',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
         JSXElementMock('img', [
           JSXAttributeMock('src', 'some/path'),
           JSXAttributeMock('alt', 'A sensible label'),
         ]),
-      ]))).toBe(true);
-    });
-    it('with aria-label, should return true', () => {
-      expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
+      ])),
+      true,
+      'with alt, returns true',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
         JSXElementMock('img', [
           JSXAttributeMock('src', 'some/path'),
           JSXAttributeMock('aria-label', 'A sensible label'),
         ]),
-      ]))).toBe(true);
-    });
+      ])),
+      true,
+      'with aria-label, returns true',
+    );
+
+    st.end();
   });
-  describe('Intederminate situations', () => {
-    describe('expression container children', () => {
-      it('should return true', () => {
-        expect(mayHaveAccessibleLabel(JSXElementMock('div', [], [
-          JSXExpressionContainerMock('mysteryBox'),
-        ]))).toBe(true);
-      });
-    });
-    describe('spread operator in attributes', () => {
-      it('should return true', () => {
-        expect(mayHaveAccessibleLabel(JSXElementMock('div', [
-          JSXAttributeMock('style', 'some-junk'),
-          JSXSpreadAttributeMock('props'),
-        ], []))).toBe(true);
-      });
-    });
+
+  t.test('Intederminate situations', (st) => {
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [], [
+        JSXExpressionContainerMock('mysteryBox'),
+      ])),
+      true,
+      'expression container children, returns true',
+    );
+
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('div', [
+        JSXAttributeMock('style', 'some-junk'),
+        JSXSpreadAttributeMock('props'),
+      ], [])),
+      true,
+      'spread operator in attributes, returns true',
+    );
+
+    st.end();
   });
+
+  t.end();
 });

@@ -1,81 +1,88 @@
-import expect from 'expect';
+import test from 'tape';
+
 import isDisabledElement from '../../../src/util/isDisabledElement';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
 
-describe('isDisabledElement', () => {
-  describe('HTML5', () => {
-    describe('disabled', () => {
-      it('should identify HTML5 disabled elements', () => {
-        const attributes = [
-          JSXAttributeMock('disabled', 'disabled'),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(true);
-      });
-    });
-    describe('not disabled', () => {
-      it('should identify HTML5 disabled elements with null as the value', () => {
-        const attributes = [
-          JSXAttributeMock('disabled', null),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(true);
-      });
-      it('should not identify HTML5 disabled elements with undefined as the value', () => {
-        const attributes = [
-          JSXAttributeMock('disabled', undefined),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(false);
-      });
-    });
+test('isDisabledElement', (t) => {
+  t.test('HTML5', (st) => {
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('disabled', 'disabled'),
+      ]),
+      true,
+      'identifies HTML5 disabled elements',
+    );
+
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('disabled', null),
+      ]),
+      true,
+      'identifies HTML5 disabled elements with null as the value',
+    );
+
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('disabled', undefined),
+      ]),
+      false,
+      'does not identify HTML5 disabled elements with undefined as the value',
+    );
+
+    st.end();
   });
-  describe('ARIA', () => {
-    describe('disabled', () => {
-      it('should not identify ARIA disabled elements', () => {
-        const attributes = [
-          JSXAttributeMock('aria-disabled', 'true'),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(true);
-      });
-      it('should not identify ARIA disabled elements', () => {
-        const attributes = [
-          JSXAttributeMock('aria-disabled', true),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(true);
-      });
-    });
-    describe('not disabled', () => {
-      it('should not identify ARIA disabled elements', () => {
-        const attributes = [
-          JSXAttributeMock('aria-disabled', 'false'),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(false);
-      });
-      it('should not identify ARIA disabled elements', () => {
-        const attributes = [
-          JSXAttributeMock('aria-disabled', false),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(false);
-      });
-      it('should not identify ARIA disabled elements with null as the value', () => {
-        const attributes = [
-          JSXAttributeMock('aria-disabled', null),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(false);
-      });
-      it('should not identify ARIA disabled elements with undefined as the value', () => {
-        const attributes = [
-          JSXAttributeMock('aria-disabled', undefined),
-        ];
-        expect(isDisabledElement(attributes))
-          .toBe(false);
-      });
-    });
+
+  t.test('ARIA', (st) => {
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('aria-disabled', 'true'),
+      ]),
+      true,
+      'does not identify ARIA disabled elements',
+    );
+
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('aria-disabled', true),
+      ]),
+      true,
+      'does not identify ARIA disabled elements',
+    );
+
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('aria-disabled', 'false'),
+      ]),
+      false,
+      'does not identify ARIA disabled elements',
+    );
+
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('aria-disabled', false),
+      ]),
+      false,
+      'does not identify ARIA disabled elements',
+    );
+
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('aria-disabled', null),
+      ]),
+      false,
+      'does not identify ARIA disabled elements with null as the value',
+    );
+
+    st.equal(
+      isDisabledElement([
+        JSXAttributeMock('aria-disabled', undefined),
+      ]),
+      false,
+      'does not identify ARIA disabled elements with undefined as the value',
+    );
+
+    st.end();
   });
+
+  t.end();
 });

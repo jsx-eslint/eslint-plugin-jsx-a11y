@@ -1,83 +1,85 @@
-import expect from 'expect';
+import test from 'tape';
+
 import getTabIndex from '../../../src/util/getTabIndex';
 import IdentifierMock from '../../../__mocks__/IdentifierMock';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
 
-describe('getTabIndex', () => {
-  describe('tabIndex is defined', () => {
-    describe('as a number ', () => {
-      describe('zero', () => {
-        it('should return zero', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', 0))).toBe(0);
-        });
-      });
-      describe('positive integer', () => {
-        it('should return the integer', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', 1))).toBe(1);
-        });
-      });
-      describe('negative integer', () => {
-        it('should return the integer', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', -1))).toBe(-1);
-        });
-      });
-      describe('float', () => {
-        it('should return undefined', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', 9.1))).toBeUndefined();
-        });
-      });
-    });
-    describe('as a string', () => {
-      describe('empty', () => {
-        it('should return undefined', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', ''))).toBeUndefined();
-        });
-      });
-      describe('which converts to a number', () => {
-        it('should return an integer', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', '0'))).toBe(0);
-        });
-      });
-      describe('which is NaN', () => {
-        it('should return undefined', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', '0a'))).toBeUndefined();
-        });
-      });
-    });
-    describe('as a boolean', () => {
-      describe('true', () => {
-        it('should return undefined', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', true))).toBeUndefined();
-        });
-      });
-      describe('false', () => {
-        it('should return undefined', () => {
-          expect(getTabIndex(JSXAttributeMock('tabIndex', false))).toBeUndefined();
-        });
-      });
-    });
-    describe('as an expression', () => {
-      describe('function expression', () => {
-        it('should return the correct type', () => {
-          const attr = function mockFn() { return 0; };
-          expect(typeof getTabIndex(JSXAttributeMock('tabIndex', attr))).toEqual('function');
-        });
-      });
-      describe('variable expression', () => {
-        it('should return the Identifier name', () => {
-          const name = 'identName';
-          expect(getTabIndex(JSXAttributeMock(
-            'tabIndex',
-            IdentifierMock(name),
-            true,
-          ))).toEqual(name);
-        });
-      });
-    });
-  });
-  describe('tabIndex is not defined', () => {
-    it('should return undefined', () => {
-      expect(getTabIndex(JSXAttributeMock('tabIndex', undefined))).toBeUndefined();
-    });
-  });
+test('getTabIndex', (t) => {
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', 0)),
+    0,
+    'tabIndex is defined as zero -> zero',
+  );
+
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', 1)),
+    1,
+    'tabIndex is defined as a positive integer -> returns it',
+  );
+
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', -1)),
+    -1,
+    'tabIndex is defined as a negative integer -> returns it',
+  );
+
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', '')),
+    undefined,
+    'tabIndex is defined as an empty string -> undefined',
+  );
+
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', 9.1)),
+    undefined,
+    'tabIndex is defined as a float -> undefined',
+  );
+
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', '0')),
+    0,
+    'tabIndex is defined as a string which converts to a number -> returns the integer',
+  );
+
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', '0a')),
+    undefined,
+    'tabIndex is defined as a string which is NaN -> returns undefined',
+  );
+
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', true)),
+    undefined,
+    'tabIndex is defined as true -> returns undefined',
+  );
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', false)),
+    undefined,
+    'tabIndex is defined as false -> returns undefined',
+  );
+
+  t.equal(
+    typeof getTabIndex(JSXAttributeMock('tabIndex', () => 0)),
+    'function',
+    'tabIndex is defined as a function expression -> returns the correct type',
+  );
+
+  const name = 'identName';
+  t.equal(
+    getTabIndex(JSXAttributeMock(
+      'tabIndex',
+      IdentifierMock(name),
+      true,
+    )),
+    name,
+    'tabIndex is defined as a variable expression -> returns the Identifier name',
+  );
+
+  t.equal(
+    getTabIndex(JSXAttributeMock('tabIndex', undefined)),
+    undefined,
+    'tabIndex is not defined -> returns undefined',
+  );
+
+  t.end();
 });

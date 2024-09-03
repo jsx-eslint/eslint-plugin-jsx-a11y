@@ -1,5 +1,4 @@
-const testBoilerplate = (name, author, description) => `/* eslint-env jest */
-/**
+const testBoilerplate = (name, author, description) => `/**
  * @fileoverview ${description}
  * @author ${author}
  */

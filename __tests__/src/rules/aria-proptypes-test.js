@@ -9,7 +9,8 @@
 
 import { aria } from 'aria-query';
 import { RuleTester } from 'eslint';
-import expect from 'expect';
+import test from 'tape';
+
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-proptypes';
@@ -51,13 +52,14 @@ tokens from the following: ${permittedValues}.`,
   }
 };
 
-describe('validityCheck', () => {
-  it('should false for an unknown expected type', () => {
-    expect(validityCheck(
-      null,
-      null,
-    )).toBe(false);
-  });
+test('validityCheck', (t) => {
+  t.equal(
+    validityCheck(null, null),
+    false,
+    'is false for an unknown expected type',
+  );
+
+  t.end();
 });
 
 ruleTester.run('aria-proptypes', rule, {

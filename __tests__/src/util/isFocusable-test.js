@@ -1,5 +1,6 @@
-import expect from 'expect';
+import test from 'tape';
 import { elementType } from 'jsx-ast-utils';
+
 import isFocusable from '../../../src/util/isFocusable';
 import {
   genElementSymbol,
@@ -12,75 +13,99 @@ function mergeTabIndex(index, attributes) {
   return [].concat(attributes, JSXAttributeMock('tabIndex', index));
 }
 
-describe('isFocusable', () => {
-  describe('interactive elements', () => {
+test('isFocusable', (t) => {
+  t.test('interactive elements', (st) => {
     genInteractiveElements().forEach(({ openingElement }) => {
-      it(`should identify \`${genElementSymbol(openingElement)}\` as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` as a focusable element`,
+      );
 
-      it(`should not identify \`${genElementSymbol(openingElement)}\` with tabIndex of -1 as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           mergeTabIndex(-1, openingElement.attributes),
-        )).toBe(false);
-      });
+        ),
+        false,
+        `does NOT identify \`${genElementSymbol(openingElement)}\` with tabIndex of -1 as a focusable element`,
+      );
 
-      it(`should identify \`${genElementSymbol(openingElement)}\` with tabIndex of 0 as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           mergeTabIndex(0, openingElement.attributes),
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` with tabIndex of 0 as a focusable element`,
+      );
 
-      it(`should identify \`${genElementSymbol(openingElement)}\` with tabIndex of 1 as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           mergeTabIndex(1, openingElement.attributes),
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` with tabIndex of 1 as a focusable element`,
+      );
     });
+
+    st.end();
   });
 
-  describe('non-interactive elements', () => {
+  t.test('non-interactive elements', (st) => {
     genNonInteractiveElements().forEach(({ openingElement }) => {
-      it(`should not identify \`${genElementSymbol(openingElement)}\` as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `does NOT identify \`${genElementSymbol(openingElement)}\` as a focusable element`,
+      );
 
-      it(`should not identify \`${genElementSymbol(openingElement)}\` with tabIndex of -1 as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           mergeTabIndex(-1, openingElement.attributes),
-        )).toBe(false);
-      });
+        ),
+        false,
+        `does NOT identify \`${genElementSymbol(openingElement)}\` with tabIndex of -1 as a focusable element`,
+      );
 
-      it(`should identify \`${genElementSymbol(openingElement)}\` with tabIndex of 0 as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           mergeTabIndex(0, openingElement.attributes),
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` with tabIndex of 0 as a focusable element`,
+      );
 
-      it(`should identify \`${genElementSymbol(openingElement)}\` with tabIndex of 1 as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           mergeTabIndex(1, openingElement.attributes),
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` with tabIndex of 1 as a focusable element`,
+      );
 
-      it(`should not identify \`${genElementSymbol(openingElement)}\` with tabIndex of 'bogus' as a focusable element`, () => {
-        expect(isFocusable(
+      st.equal(
+        isFocusable(
           elementType(openingElement),
           mergeTabIndex('bogus', openingElement.attributes),
-        )).toBe(false);
-      });
+        ),
+        false,
+        `does NOT identify \`${genElementSymbol(openingElement)}\` with tabIndex of 'bogus' as a focusable element`,
+      );
     });
+
+    st.end();
   });
+
+  t.end();
 });

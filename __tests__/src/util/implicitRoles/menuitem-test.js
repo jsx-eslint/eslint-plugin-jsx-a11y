@@ -1,21 +1,38 @@
-import expect from 'expect';
+import test from 'tape';
+
 import JSXAttributeMock from '../../../../__mocks__/JSXAttributeMock';
 import getImplicitRoleForMenuitem from '../../../../src/util/implicitRoles/menuitem';
 
-describe('isAbstractRole', () => {
-  it('works for menu items', () => {
-    expect(getImplicitRoleForMenuitem([JSXAttributeMock('type', 'command')])).toBe('menuitem');
-  });
-  it('works for menu item checkboxes', () => {
-    expect(getImplicitRoleForMenuitem([JSXAttributeMock('type', 'checkbox')])).toBe('menuitemcheckbox');
-  });
-  it('works for menu item radios', () => {
-    expect(getImplicitRoleForMenuitem([JSXAttributeMock('type', 'radio')])).toBe('menuitemradio');
-  });
-  it('works for non-toolbars', () => {
-    expect(getImplicitRoleForMenuitem([JSXAttributeMock('type', '')])).toBe('');
-  });
-  it('works for the true case', () => {
-    expect(getImplicitRoleForMenuitem([JSXAttributeMock('type', true)])).toBe('');
-  });
+test('isAbstractRole', (t) => {
+  t.equal(
+    getImplicitRoleForMenuitem([JSXAttributeMock('type', 'command')]),
+    'menuitem',
+    'works for menu items',
+  );
+
+  t.equal(
+    getImplicitRoleForMenuitem([JSXAttributeMock('type', 'checkbox')]),
+    'menuitemcheckbox',
+    'works for menu item checkboxes',
+  );
+
+  t.equal(
+    getImplicitRoleForMenuitem([JSXAttributeMock('type', 'radio')]),
+    'menuitemradio',
+    'works for menu item radios',
+  );
+
+  t.equal(
+    getImplicitRoleForMenuitem([JSXAttributeMock('type', '')]),
+    '',
+    'works for non-toolbars',
+  );
+
+  t.equal(
+    getImplicitRoleForMenuitem([JSXAttributeMock('type', true)]),
+    '',
+    'works for the true case',
+  );
+
+  t.end();
 });

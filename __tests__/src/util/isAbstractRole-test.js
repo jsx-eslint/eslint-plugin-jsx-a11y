@@ -1,5 +1,6 @@
-import expect from 'expect';
+import test from 'tape';
 import { elementType } from 'jsx-ast-utils';
+
 import isAbstractRole from '../../../src/util/isAbstractRole';
 import {
   genElementSymbol,
@@ -7,33 +8,44 @@ import {
   genNonAbstractRoleElements,
 } from '../../../__mocks__/genInteractives';
 
-describe('isAbstractRole', () => {
-  describe('JSX Components (no tagName)', () => {
-    it('should NOT identify them as abstract role elements', () => {
-      expect(isAbstractRole(undefined, []))
-        .toBe(false);
-    });
-  });
-  describe('elements with an abstract role', () => {
+test('isAbstractRole', (t) => {
+  t.equal(
+    isAbstractRole(undefined, []),
+    false,
+    'does NOT identify JSX Components (no tagName) as abstract role elements',
+  );
+
+  t.test('elements with an abstract role', (st) => {
     genAbstractRoleElements().forEach(({ openingElement }) => {
       const { attributes } = openingElement;
-      it(`should identify \`${genElementSymbol(openingElement)}\` as an abstract role element`, () => {
-        expect(isAbstractRole(
+      st.equal(
+        isAbstractRole(
           elementType(openingElement),
           attributes,
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` as an abstract role element`,
+      );
     });
+
+    st.end();
   });
-  describe('elements with a non-abstract role', () => {
+
+  t.test('elements with a non-abstract role', (st) => {
     genNonAbstractRoleElements().forEach(({ openingElement }) => {
       const { attributes } = openingElement;
-      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an abstract role element`, () => {
-        expect(isAbstractRole(
+      st.equal(
+        isAbstractRole(
           elementType(openingElement),
           attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `does NOT identify \`${genElementSymbol(openingElement)}\` as an abstract role element`,
+      );
     });
+
+    st.end();
   });
+
+  t.end();
 });

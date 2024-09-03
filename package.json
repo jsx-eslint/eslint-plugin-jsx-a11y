@@ -24,17 +24,16 @@
     "lint:fix": "npm run lint -- --fix",
     "lint": "npx eslint@8 --ext=js,mjs,cjs,ts,tsx .",
     "prepublish": "not-in-publish || npm run prepublishOnly",
-    "prepublishOnly": "safe-publish-latest && npm run lint && npm run flow && npm run jest",
+    "prepublishOnly": "safe-publish-latest && npm run lint && npm run flow && npm run tests-only",
     "pretest": "npm run lint:fix && npm run flow",
-    "test": "npm run jest",
+    "test": "npm run tests-only",
+    "tests-only": "tape --require=@babel/register '__tests__/**/*.js'",
     "posttest": "npx npm@'>=10.2' audit --production",
-    "test:ci": "npm run jest -- --ci --runInBand",
     "pretest:examples": "npm run build",
     "test:examples": "npm run test-example:legacy && npm run test-example:flat-esm && npm run test-example:flat-cjs",
     "test-example:legacy": "cd examples/legacy && npm install && npm run lint",
     "test-example:flat-esm": "cd examples/flat-esm && npm install && npm run lint",
     "test-example:flat-cjs": "cd examples/flat-cjs && npm install && npm run lint",
-    "jest": "jest --coverage __tests__",
     "pregenerate-list-of-rules": "npm run build",
     "generate-list-of-rules": "eslint-doc-generator --rule-doc-title-format prefix-name --rule-doc-section-options false --config-emoji recommended,☑️ --ignore-config flat/recommended --ignore-config flat/strict",
     "generate-list-of-rules:check": "npm run generate-list-of-rules -- --check",
@@ -51,7 +50,6 @@
     "babel-jest": "^24.9.0",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-preset-airbnb": "^5.0.0",
-    "core-js": "^3.38.1",
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-doc-generator": "^1.7.1",
@@ -59,11 +57,9 @@
     "eslint-plugin-flowtype": "^5.8.0 || ^8.0.3",
     "eslint-plugin-import": "^2.29.1",
     "estraverse": "^5.3.0",
-    "expect": "^24.9.0",
     "flow-bin": "^0.147.0",
     "in-publish": "^2.0.1",
     "jackspeak": "=2.1.1",
-    "jest": "^24.9.0",
     "jscodeshift": "^0.7.1",
     "minimist": "^1.2.8",
     "npmignore": "^0.3.1",
@@ -72,6 +68,7 @@
     "rimraf": "^3.0.2",
     "safe-publish-latest": "^2.0.0",
     "semver": "^6.3.1",
+    "tape": "^5.8.1",
     "to-ast": "^1.0.0"
   },
   "engines": {
@@ -99,32 +96,6 @@
   "peerDependencies": {
     "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9"
   },
-  "jest": {
-    "coverageReporters": [
-      "lcov",
-      "json",
-      "html"
-    ],
-    "coverageDirectory": "coverage",
-    "roots": [
-      "__tests__"
-    ],
-    "testPathIgnorePatterns": [
-      "__tests__/__util__/"
-    ],
-    "testEnvironment": "node",
-    "moduleNameMapper": {
-      "@eslint/config-array": "<rootDir>/node_modules/@eslint/config-array/dist/cjs/index.cjs",
-      "@eslint/object-schema": "<rootDir>/node_modules/@eslint/object-schema/dist/cjs/index.cjs",
-      "node:assert": "<rootDir>/__tests__/__util__/nodeReexports/assert.js",
-      "node:fs/promises": "<rootDir>/__tests__/__util__/nodeReexports/fs-promises.js",
-      "node:fs": "<rootDir>/__tests__/__util__/nodeReexports/fs.js",
-      "node:path": "<rootDir>/__tests__/__util__/nodeReexports/path.js",
-      "node:url": "<rootDir>/__tests__/__util__/nodeReexports/url.js",
-      "node:util": "<rootDir>/__tests__/__util__/nodeReexports/util.js"
-    },
-    "setupFilesAfterEnv": ["<rootDir>/setup.jest.js"]
-  },
   "auto-changelog": {
     "output": "CHANGELOG.md",
     "template": "keepachangelog",
@@ -144,8 +115,7 @@
       "/flow",
       "scripts/",
       "CONTRIBUTING.md",
-      "/examples",
-      "setup.jest.js"
+      "/examples"
     ]
   }
 }

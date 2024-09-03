@@ -1,29 +1,35 @@
-import expect from 'expect';
+import test from 'tape';
+
 import { generateObjSchema, arraySchema, enumArraySchema } from '../../../src/util/schemas';
 
-describe('schemas', () => {
-  it('should generate an object schema with correct properties', () => {
+test('schemas', (t) => {
+  t.test('should generate an object schema with correct properties', (st) => {
     const schema = generateObjSchema({
       foo: 'bar',
       baz: arraySchema,
     });
     const properties = schema.properties || {};
 
-    expect(properties.foo).toEqual(properties.foo, 'bar');
-    expect(properties.baz.type).toEqual('array');
+    st.deepEqual(properties.foo, properties.foo, 'bar');
+    st.deepEqual(properties.baz.type, 'array');
+
+    st.end();
   });
-  describe('enumArraySchema', () => {
-    it('works with no arguments', () => {
-      expect(enumArraySchema()).toEqual({
-        additionalItems: false,
-        items: {
-          enum: [],
-          type: 'string',
-        },
-        minItems: 0,
-        type: 'array',
-        uniqueItems: true,
-      });
-    });
-  });
+
+  t.deepEqual(
+    enumArraySchema(),
+    {
+      additionalItems: false,
+      items: {
+        enum: [],
+        type: 'string',
+      },
+      minItems: 0,
+      type: 'array',
+      uniqueItems: true,
+    },
+    'enumArraySchema works with no arguments',
+  );
+
+  t.end();
 });

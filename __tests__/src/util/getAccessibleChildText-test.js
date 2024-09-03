@@ -1,95 +1,116 @@
-import expect from 'expect';
+import test from 'tape';
 import { elementType } from 'jsx-ast-utils';
+
 import getAccessibleChildText from '../../../src/util/getAccessibleChildText';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
 import JSXElementMock from '../../../__mocks__/JSXElementMock';
 
-describe('getAccessibleChildText', () => {
-  it('returns the aria-label when present', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+test('getAccessibleChildText', (t) => {
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [JSXAttributeMock('aria-label', 'foo')],
-    ), elementType)).toBe('foo');
-  });
+    ), elementType),
+    'foo',
+    'returns the aria-label when present',
+  );
 
-  it('returns the aria-label instead of children', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [JSXAttributeMock('aria-label', 'foo')],
       [{ type: 'JSXText', value: 'bar' }],
-    ), elementType)).toBe('foo');
-  });
+    ), elementType),
+    'foo',
+    'returns the aria-label instead of children',
+  );
 
-  it('skips elements with aria-hidden=true', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [JSXAttributeMock('aria-hidden', 'true')],
-    ), elementType)).toBe('');
-  });
+    ), elementType),
+    '',
+    'skips elements with aria-hidden=true',
+  );
 
-  it('returns literal value for JSXText child', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [{ type: 'JSXText', value: 'bar' }],
-    ), elementType)).toBe('bar');
-  });
+    ), elementType),
+    'bar',
+    'returns literal value for JSXText child',
+  );
 
-  it('returns alt text for img child', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [JSXElementMock('img', [
         JSXAttributeMock('src', 'some/path'),
         JSXAttributeMock('alt', 'a sensible label'),
       ])],
-    ), elementType)).toBe('a sensible label');
-  });
+    ), elementType),
+    'a sensible label',
+    'returns alt text for img child',
+  );
 
-  it('returns blank when alt tag is used on arbitrary element', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [JSXElementMock('span', [
         JSXAttributeMock('alt', 'a sensible label'),
       ])],
-    ), elementType)).toBe('');
-  });
+    ), elementType),
+    '',
+    'returns blank when alt tag is used on arbitrary element',
+  );
 
-  it('returns literal value for JSXText child', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [{ type: 'Literal', value: 'bar' }],
-    ), elementType)).toBe('bar');
-  });
+    ), elementType),
+    'bar',
+    'returns literal value for JSXText child',
+  );
 
-  it('returns trimmed literal value for JSXText child', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [{ type: 'Literal', value: ' bar   ' }],
-    ), elementType)).toBe('bar');
-  });
+    ), elementType),
+    'bar',
+    'returns trimmed literal value for JSXText child',
+  );
 
-  it('returns space-collapsed literal value for JSXText child', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [{ type: 'Literal', value: 'foo         bar' }],
-    ), elementType)).toBe('foo bar');
-  });
+    ), elementType),
+    'foo bar',
+    'returns space-collapsed literal value for JSXText child',
+  );
 
-  it('returns punctuation-stripped literal value for JSXText child', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [{ type: 'Literal', value: 'foo, bar. baz? foo; bar:' }],
-    ), elementType)).toBe('foo bar baz foo bar');
-  });
+    ), elementType),
+    'foo bar baz foo bar',
+    'returns punctuation-stripped literal value for JSXText child',
+  );
 
-  it('returns recursive value for JSXElement child', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [JSXElementMock(
@@ -97,11 +118,13 @@ describe('getAccessibleChildText', () => {
         [],
         [{ type: 'Literal', value: 'bar' }],
       )],
-    ), elementType)).toBe('bar');
-  });
+    ), elementType),
+    'bar',
+    'returns recursive value for JSXElement child',
+  );
 
-  it('skips children with aria-hidden-true', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [JSXElementMock(
@@ -112,30 +135,40 @@ describe('getAccessibleChildText', () => {
           [JSXAttributeMock('aria-hidden', 'true')],
         )],
       )],
-    ), elementType)).toBe('');
-  });
+    ), elementType),
+    '',
+    'skips children with aria-hidden-true',
+  );
 
-  it('joins multiple children properly - no spacing', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [{ type: 'Literal', value: 'foo' }, { type: 'Literal', value: 'bar' }],
-    ), elementType)).toBe('foo bar');
-  });
+    ), elementType),
+    'foo bar',
+    'joins multiple children properly - no spacing',
+  );
 
-  it('joins multiple children properly - with spacing', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [{ type: 'Literal', value: ' foo ' }, { type: 'Literal', value: ' bar ' }],
-    ), elementType)).toBe('foo bar');
-  });
+    ), elementType),
+    'foo bar',
+    'joins multiple children properly - with spacing',
+  );
 
-  it('skips unknown elements', () => {
-    expect(getAccessibleChildText(JSXElementMock(
+  t.equal(
+    getAccessibleChildText(JSXElementMock(
       'a',
       [],
       [{ type: 'Literal', value: 'foo' }, { type: 'Unknown' }, { type: 'Literal', value: 'bar' }],
-    ), elementType)).toBe('foo bar');
-  });
+    ), elementType),
+    'foo bar',
+    'skips unknown elements',
+  );
+
+  t.end();
 });

@@ -128,7 +128,7 @@ jobs:
           skip-ls-check: true
       - run: rm __tests__/src/util/getComputedRole-test.js
         if: ${{ matrix.node-version < 7 }}
-      - run: npm run test:ci
+      - run: npm run tests-only
       - uses: codecov/codecov-action@v3.1.5
 
   node:

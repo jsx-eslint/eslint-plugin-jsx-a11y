@@ -1,5 +1,6 @@
-import expect from 'expect';
+import test from 'tape';
 import { elementType } from 'jsx-ast-utils';
+
 import isNonInteractiveElement from '../../../src/util/isNonInteractiveElement';
 import {
   genElementSymbol,
@@ -10,61 +11,87 @@ import {
   genNonInteractiveRoleElements,
 } from '../../../__mocks__/genInteractives';
 
-describe('isNonInteractiveElement', () => {
-  describe('JSX Components (no tagName)', () => {
-    it('should identify them as interactive elements', () => {
-      expect(isNonInteractiveElement(undefined, []))
-        .toBe(false);
-    });
-  });
-  describe('non-interactive elements', () => {
+test('isNonInteractiveElement', (t) => {
+  t.equal(
+    isNonInteractiveElement(undefined, []),
+    false,
+    'identifies JSX Components (no tagName) as non-interactive elements',
+  );
+
+  t.test('non-interactive elements', (st) => {
     genNonInteractiveElements().forEach(({ openingElement }) => {
-      it(`should identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
-        expect(isNonInteractiveElement(
+      st.equal(
+        isNonInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` as a non-interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('non-interactive role elements', () => {
+
+  t.test('non-interactive role elements', (st) => {
     genNonInteractiveRoleElements().forEach(({ openingElement }) => {
-      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
-        expect(isNonInteractiveElement(
+      st.equal(
+        isNonInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `identifies \`${genElementSymbol(openingElement)}\` as a non-interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('interactive elements', () => {
+
+  t.test('interactive elements', (st) => {
     genInteractiveElements().forEach(({ openingElement }) => {
-      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
-        expect(isNonInteractiveElement(
+      st.equal(
+        isNonInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `identifies \`${genElementSymbol(openingElement)}\` as a non-interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('interactive role elements', () => {
+
+  t.test('interactive role elements', (st) => {
     genInteractiveRoleElements().forEach(({ openingElement }) => {
-      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive element`, () => {
-        expect(isNonInteractiveElement(
+      st.equal(
+        isNonInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `identifies \`${genElementSymbol(openingElement)}\` as a non-interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('indeterminate elements', () => {
+
+  t.test('indeterminate elements', (st) => {
     genIndeterminantInteractiveElements().forEach(({ openingElement }) => {
-      it(`should NOT identify \`${openingElement.name.name}\` as a non-interactive element`, () => {
-        expect(isNonInteractiveElement(
+      st.equal(
+        isNonInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `identifies \`${genElementSymbol(openingElement)}\` as a non-interactive element`,
+      );
     });
+
+    st.end();
   });
+
+  t.end();
 });

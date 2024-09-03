@@ -1,71 +1,71 @@
-import expect from 'expect';
+import test from 'tape';
+
 import getComputedRole from '../../../src/util/getComputedRole';
 import JSXAttributeMock from '../../../__mocks__/JSXAttributeMock';
 
-describe('getComputedRole', () => {
-  describe('explicit role', () => {
-    describe('valid role', () => {
-      it('should return the role', () => {
-        expect(getComputedRole(
-          'div',
-          [JSXAttributeMock('role', 'button')],
-        )).toBe('button');
-      });
-    });
-    describe('invalid role', () => {
-      describe('has implicit', () => {
-        it('should return the implicit role', () => {
-          expect(getComputedRole(
-            'li',
-            [JSXAttributeMock('role', 'beeswax')],
-          )).toBe('listitem');
-        });
-      });
-      describe('lacks implicit', () => {
-        it('should return null', () => {
-          expect(getComputedRole(
-            'div',
-            [JSXAttributeMock('role', 'beeswax')],
-          )).toBeNull();
-        });
-      });
-    });
+test('getComputedRole', (t) => {
+  t.equal(
+    getComputedRole(
+      'div',
+      [JSXAttributeMock('role', 'button')],
+    ),
+    'button',
+    'explicit role + valid role -> returns the role',
+  );
 
-    describe('no role', () => {
-      describe('has implicit', () => {
-        it('should return the implicit role', () => {
-          expect(getComputedRole(
-            'li',
-            [],
-          )).toBe('listitem');
-        });
-      });
-      describe('lacks implicit', () => {
-        it('should return null', () => {
-          expect(getComputedRole(
-            'div',
-            [],
-          )).toBeNull();
-        });
-      });
-    });
-  });
-  describe('implicit role', () => {
-    describe('has implicit', () => {
-      it('should return the implicit role', () => {
-        expect(getComputedRole(
-          'li',
-          [JSXAttributeMock('role', 'beeswax')],
-        )).toBe('listitem');
-      });
-    });
-    describe('lacks implicit', () => {
-      it('should return null', () => {
-        expect(getComputedRole(
-          'div',
-          [],
-        )).toBeNull();
-      });
-    });
-  });
+  t.equal(
+    getComputedRole(
+      'li',
+      [JSXAttributeMock('role', 'beeswax')],
+    ),
+    'listitem',
+    'explicit role + invalid role + has implicit -> returns the implicit role',
+  );
+
+  t.equal(
+    getComputedRole(
+      'div',
+      [JSXAttributeMock('role', 'beeswax')],
+    ),
+    null,
+    'explicit role + invalid role + lacks implicit -> returns null',
+  );
+
+  t.equal(
+    getComputedRole(
+      'li',
+      [],
+    ),
+    'listitem',
+    'explicit role + no role + has implicit -> returns the implicit role',
+  );
+
+  t.equal(
+    getComputedRole(
+      'div',
+      [],
+    ),
+    null,
+    'explicit role + no role + lacks implicit -> returns null',
+  );
+
+  t.equal(
+    getComputedRole(
+      'li',
+      [JSXAttributeMock('role', 'beeswax')],
+    ),
+    'listitem',
+    'implicit role + has implicit -> returns the implicit role',
+  );
+
+  t.equal(
+    getComputedRole(
+      'div',
+      [],
+    ),
+    null,
+    'implicit role + lacks implicit -> returns null',
+  );
+
+  t.end();
 });

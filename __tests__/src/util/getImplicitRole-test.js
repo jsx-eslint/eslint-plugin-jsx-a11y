@@ -1,21 +1,25 @@
-import expect from 'expect';
+import test from 'tape';
+
 import getImplicitRole from '../../../src/util/getImplicitRole';
 
-describe('getImplicitRole', () => {
-  describe('has implicit', () => {
-    it('should return the implicit role', () => {
-      expect(getImplicitRole(
-        'li',
-        [],
-      )).toBe('listitem');
-    });
-  });
-  describe('lacks implicit', () => {
-    it('should return null', () => {
-      expect(getImplicitRole(
-        'div',
-        [],
-      )).toBeNull();
-    });
-  });
+test('getImplicitRole', (t) => {
+  t.equal(
+    getImplicitRole(
+      'li',
+      [],
+    ),
+    'listitem',
+    'has implicit, returns implicit role',
+  );
+
+  t.equal(
+    getImplicitRole(
+      'div',
+      [],
+    ),
+    null,
+    'lacks implicit, returns null',
+  );
+
+  t.end();
 });

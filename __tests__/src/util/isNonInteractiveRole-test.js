@@ -1,5 +1,6 @@
-import expect from 'expect';
+import test from 'tape';
 import { elementType } from 'jsx-ast-utils';
+
 import isNonInteractiveRole from '../../../src/util/isNonInteractiveRole';
 import {
   genElementSymbol,
@@ -7,38 +8,52 @@ import {
   genNonInteractiveRoleElements,
 } from '../../../__mocks__/genInteractives';
 
-describe('isNonInteractiveRole', () => {
-  describe('JSX Components (no tagName)', () => {
-    it('should identify them as interactive role elements', () => {
-      expect(isNonInteractiveRole(undefined, []))
-        .toBe(false);
-    });
-  });
-  describe('elements with a non-interactive role', () => {
+test('isNonInteractiveRole', (t) => {
+  t.equal(
+    isNonInteractiveRole(undefined, []),
+    false,
+    'identifies JSX Components (no tagName) as non-interactive elements',
+  );
+
+  t.test('elements with a non-interactive role', (st) => {
     genNonInteractiveRoleElements().forEach(({ openingElement }) => {
       const { attributes } = openingElement;
-      it(`should identify \`${genElementSymbol(openingElement)}\` as non-interactive role element`, () => {
-        expect(isNonInteractiveRole(
+
+      st.equal(
+        isNonInteractiveRole(
           elementType(openingElement),
           attributes,
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` as a non-interactive role element`,
+      );
     });
+
+    st.end();
   });
-  describe('elements without a role', () => {
-    it('should not identify them as non-interactive role elements', () => {
-      expect(isNonInteractiveRole('div', [])).toBe(false);
-    });
-  });
-  describe('elements with an interactive role', () => {
+
+  t.equal(
+    isNonInteractiveRole('div', []),
+    false,
+    'does NOT identify elements without a role as non-interactive role elements',
+  );
+
+  t.test('elements with an interactive role', (st) => {
     genInteractiveRoleElements().forEach(({ openingElement }) => {
       const { attributes } = openingElement;
-      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive role element`, () => {
-        expect(isNonInteractiveRole(
+
+      st.equal(
+        isNonInteractiveRole(
           elementType(openingElement),
           attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `does NOT identify \`${genElementSymbol(openingElement)}\` as a non-interactive role element`,
+      );
     });
+
+    st.end();
   });
+
+  t.end();
 });

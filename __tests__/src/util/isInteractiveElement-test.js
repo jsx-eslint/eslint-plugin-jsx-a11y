@@ -1,5 +1,6 @@
-import expect from 'expect';
+import test from 'tape';
 import { elementType } from 'jsx-ast-utils';
+
 import isInteractiveElement from '../../../src/util/isInteractiveElement';
 import JSXElementMock from '../../../__mocks__/JSXElementMock';
 import {
@@ -11,66 +12,93 @@ import {
   genNonInteractiveRoleElements,
 } from '../../../__mocks__/genInteractives';
 
-describe('isInteractiveElement', () => {
-  describe('JSX Components (no tagName)', () => {
-    it('should identify them as interactive elements', () => {
-      expect(isInteractiveElement(undefined, []))
-        .toBe(false);
-    });
-  });
-  describe('interactive elements', () => {
+test('isInteractiveElement', (t) => {
+  t.equal(
+    isInteractiveElement(undefined, []),
+    false,
+    'identifies them as interactive elements',
+  );
+
+  t.test('interactive elements', (st) => {
     genInteractiveElements().forEach(({ openingElement }) => {
-      it(`should identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
-        expect(isInteractiveElement(
+      st.equal(
+        isInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(true);
-      });
+        ),
+        true,
+        `identifies \`${genElementSymbol(openingElement)}\` as an interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('interactive role elements', () => {
+
+  t.test('interactive role elements', (st) => {
     genInteractiveRoleElements().forEach(({ openingElement }) => {
-      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
-        expect(isInteractiveElement(
+      st.equal(
+        isInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `identifies \`${genElementSymbol(openingElement)}\` as an interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('non-interactive elements', () => {
+
+  t.test('non-interactive elements', (st) => {
     genNonInteractiveElements().forEach(({ openingElement }) => {
-      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
-        expect(isInteractiveElement(
+      st.equal(
+        isInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `identifies \`${genElementSymbol(openingElement)}\` as an interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('non-interactive role elements', () => {
+
+  t.test('non-interactive role elements', (st) => {
     genNonInteractiveRoleElements().forEach(({ openingElement }) => {
-      it(`should NOT identify \`${genElementSymbol(openingElement)}\` as an interactive element`, () => {
-        expect(isInteractiveElement(
+      st.equal(
+        isInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `identifies \`${genElementSymbol(openingElement)}\` as an interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('indeterminate elements', () => {
+
+  t.test('indeterminate elements', (st) => {
     genIndeterminantInteractiveElements().forEach(({ openingElement }) => {
-      it(`should NOT identify \`${openingElement.name.name}\` as an interactive element`, () => {
-        expect(isInteractiveElement(
+      st.equal(
+        isInteractiveElement(
           elementType(openingElement),
           openingElement.attributes,
-        )).toBe(false);
-      });
+        ),
+        false,
+        `identifies \`${genElementSymbol(openingElement)}\` as an interactive element`,
+      );
     });
+
+    st.end();
   });
-  describe('JSX elements', () => {
-    it('is not interactive', () => {
-      expect(isInteractiveElement('CustomComponent', JSXElementMock())).toBe(false);
-    });
-  });
+
+  t.equal(
+    isInteractiveElement('CustomComponent', JSXElementMock()),
+    false,
+    'JSX elements are not interactive',
+  );
+
+  t.end();
 });
