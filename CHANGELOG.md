@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v6.10.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.9.0...v6.10.0) - 2024-09-03
+
+### Fixed
+
+- [New] `label-has-associated-control`: add additional error message [`#1005`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/1005)
+- [Fix] `label-has-associated-control`: ignore undetermined label text [`#966`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/966)
+
+### Commits
+
+- [Tests] switch from jest to tape [`a284cbf`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/a284cbf4eb21292c4cff87f02be0bfb82764757f)
+- [New] add eslint 9 support [`deac4fd`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/deac4fd06eff4c0f5da27611c2a44a009b7e7fda)
+- [New] add `attributes` setting [`a1ee7f8`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/a1ee7f8810efafe416eb5d7f6eb0505b52873495)
+- [New] allow polymorphic linting to be restricted [`6cd1a70`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6cd1a7011446e3925f2b49c51ff26246a21491d1)
+- [Tests] remove duplicate tests [`74d5dec`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/74d5decb6f2e42c05ce40a45630041fd695a2e7f)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types` [`6eca235`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6eca2359f5457af72dbfba265b73297c9232cb3e)
+- [readme] remove deprecated travis ci badge; add github actions badge [`0be7ea9`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0be7ea95f560c6afc6817d381054d914ebd0b2ca)
+- [Tests] use `npm audit` instead of `aud` [`05a5e49`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/05a5e4992900e0d5d61e29e13046c90797b68a7c)
+- [Deps] update `axobject-query` [`912e98c`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/912e98c425ef9fcc2d7d22b45b4f7e3b445112a5)
+- [Deps] unpin `axobject-query` [`75147aa`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/75147aa68888fc150a4efea5b99809969bdc32b2)
+- [Deps] update `axe-core` [`27ff7cb`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/27ff7cbf562bf2685fd5a6062e58eb4727cb85c6)
+- [readme] fix jsxA11y import name [`ce846e0`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/ce846e00414c41676a6a8601022059878bcc0b89)
+- [readme] fix typo in shareable config section in readme [`cca288b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/cca288b73a39fa0932a57c02a7a88de68fc971fc)
+
 ## [v6.9.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.8.0...v6.9.0) - 2024-06-19
 
 ### Fixed
