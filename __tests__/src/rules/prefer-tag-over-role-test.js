@@ -39,7 +39,7 @@ ruleTester.run('prefer-tag-over-role', rule, {
       errors: [
         expectedError(
           'link',
-          '<a href=...>, <area href=...>, or <link href=...>',
+          '<a href=...>, or <area href=...>',
         ),
       ],
     },

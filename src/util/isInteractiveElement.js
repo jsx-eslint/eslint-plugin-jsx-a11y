@@ -83,11 +83,6 @@ function checkIsInteractiveElement(tagName, attributes): boolean {
     );
   }
 
-  // TODO: remove this when aria-query and axobject-query are upgraded
-  if (tagName === 'summary') {
-    return false;
-  }
-
   // Check in elementRoles for inherent interactive role associations for
   // this element.
   const isInherentInteractiveElement = some(iterFrom(interactiveElementRoleSchemas), elementSchemaMatcher);

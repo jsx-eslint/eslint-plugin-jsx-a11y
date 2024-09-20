@@ -86,6 +86,7 @@ function checkIsNonInteractiveElement(tagName, attributes): boolean {
   function elementSchemaMatcher(elementSchema) {
     return (
       tagName === elementSchema.name
+      && tagName !== 'td' // TODO: investigate why this is needed
       && attributesComparator(elementSchema.attributes, attributes)
     );
   }

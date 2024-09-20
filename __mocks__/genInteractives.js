@@ -45,14 +45,14 @@ const interactiveElementsMap = {
   'input[type="time"]': [{ prop: 'type', value: 'time' }],
   'input[type="url"]': [{ prop: 'type', value: 'url' }],
   'input[type="week"]': [{ prop: 'type', value: 'week' }],
-  link: [{ prop: 'href', value: '#' }],
   menuitem: [],
   option: [],
   select: [],
+  summary: [],
   // Whereas ARIA makes a distinction between cell and gridcell, the AXObject
   // treats them both as CellRole and since gridcell is interactive, we consider
   // cell interactive as well.
-  // td: [],
+  td: [],
   th: [],
   tr: [],
   textarea: [],
@@ -61,25 +61,27 @@ const interactiveElementsMap = {
 
 const nonInteractiveElementsMap: {[string]: Array<{[string]: string}>} = {
   abbr: [],
-  aside: [],
+  address: [],
   article: [],
+  aside: [],
   blockquote: [],
-  body: [],
   br: [],
   caption: [],
+  code: [],
   dd: [],
+  del: [],
   details: [],
   dfn: [],
   dialog: [],
   dir: [],
   dl: [],
   dt: [],
+  em: [],
   fieldset: [],
   figcaption: [],
   figure: [],
   footer: [],
   form: [],
-  frame: [],
   h1: [],
   h2: [],
   h3: [],
@@ -87,8 +89,10 @@ const nonInteractiveElementsMap: {[string]: Array<{[string]: string}>} = {
   h5: [],
   h6: [],
   hr: [],
+  html: [],
   iframe: [],
   img: [],
+  ins: [],
   label: [],
   legend: [],
   li: [],
@@ -107,20 +111,22 @@ const nonInteractiveElementsMap: {[string]: Array<{[string]: string}>} = {
   ruby: [],
   'section[aria-label]': [{ prop: 'aria-label' }],
   'section[aria-labelledby]': [{ prop: 'aria-labelledby' }],
+  strong: [],
+  sub: [],
+  sup: [],
   table: [],
   tbody: [],
-  td: [],
   tfoot: [],
   thead: [],
   time: [],
   ul: [],
 };
 
-const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = fromEntries(domElements.map((name: string) => [name, []]));
+const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = fromEntries(domElements.map((name) => [name, []]));
 
 Object.keys(interactiveElementsMap)
   .concat(Object.keys(nonInteractiveElementsMap))
-  .forEach((name: string) => delete indeterminantInteractiveElementsMap[name]);
+  .forEach((name) => delete indeterminantInteractiveElementsMap[name]);
 
 const abstractRoles = roleNames.filter((role) => roles.get(role).abstract);
 
