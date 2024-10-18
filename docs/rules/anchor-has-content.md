@@ -57,8 +57,8 @@ return (
 <a><TextWrapper aria-hidden /></a>
 ```
 ## Accessibility guidelines
-- [WCAG 2.4.4](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context)
-- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [WCAG 2.4.4](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value)
 
 ### Resources
 - [axe-core, link-name](https://dequeuniversity.com/rules/axe/3.2/link-name)

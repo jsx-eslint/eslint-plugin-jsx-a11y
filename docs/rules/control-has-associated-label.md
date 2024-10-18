@@ -108,6 +108,6 @@ This rule takes one optional object argument of type object:
 ```
 
 ## Accessibility guidelines
-- [WCAG 1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships)
-- [WCAG 3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions)
-- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [WCAG 1.3.1](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships)
+- [WCAG 3.3.2](https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value)
