@@ -4,7 +4,7 @@
 
 <!-- end auto-generated rule header -->
 
-Enforces `<a>` values are not exact matches for the phrases "click here", "here", "link", "a link", or "learn more". Screenreaders announce tags as links/interactive, but rely on values for context. Ambiguous anchor descriptions do not provide sufficient context for users.
+Enforces `<a>` values are not exact matches for the phrases "click here", "here", "link", "a link", or "learn more". Screen readers announce tags as links/interactive, but rely on values for context. Ambiguous anchor descriptions do not provide sufficient context for users.
 
 ## Rule options
 

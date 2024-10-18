@@ -122,7 +122,7 @@ Adjust the list of handler prop names in the handlers array to increase or decre
 <div onClick={() => void 0} role="presentation" />
 <input type="text" onClick={() => void 0} /> // Interactive element does not require role.
 <button onClick={() => void 0} className="foo" /> // button is interactive.
-<div onClick={() => void 0} role="button" aria-hidden /> // This is hidden from screenreader.
+<div onClick={() => void 0} role="button" aria-hidden /> // This is hidden from screen reader.
 <Input onClick={() => void 0} type="hidden" /> // This is a higher-level DOM component
 ```
 

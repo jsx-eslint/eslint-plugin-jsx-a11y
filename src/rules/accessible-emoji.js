@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce emojis are wrapped in <span> and provide screenreader access.
+ * @fileoverview Enforce emojis are wrapped in <span> and provide screen reader access.
  * @author Ethan Cohen
  */
 
@@ -21,7 +21,7 @@ const schema = generateObjSchema();
 export default {
   meta: {
     docs: {
-      description: 'Enforce emojis are wrapped in `<span>` and provide screenreader access.',
+      description: 'Enforce emojis are wrapped in `<span>` and provide screen reader access.',
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/accessible-emoji.md',
     },
     deprecated: true,

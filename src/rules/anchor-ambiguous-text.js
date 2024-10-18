@@ -60,7 +60,7 @@ export default ({
 
         context.report({
           node,
-          message: 'Ambiguous text within anchor. Screenreader users rely on link text for context; the words "{{wordsList}}" are ambiguous and do not provide enough context.',
+          message: 'Ambiguous text within anchor. Screen reader users rely on link text for context; the words "{{wordsList}}" are ambiguous and do not provide enough context.',
           data: {
             wordsList: words.join('", "'),
           },
