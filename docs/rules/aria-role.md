@@ -43,7 +43,7 @@ For the `ignoreNonDOM` option, this determines if developer created components a
 ```
 
 ## Accessibility guidelines
-- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value)
 
 ### Resources
 - [Chrome Audit Rules, AX_ARIA_01](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_01)
