@@ -39,7 +39,7 @@ const ariaLabelHasValue = (prop) => {
   if (value === undefined) {
     return false;
   }
-  if (typeof value === 'string' && value.length === 0) {
+  if (typeof value === 'string' && value.length === 0 && value === '') {
     return false;
   }
   return true;
@@ -62,7 +62,7 @@ const ruleByElement = {
       // Don't create an error if the attribute is used correctly. But if it
       // isn't, suggest that the developer use `alt` instead.
       const ariaLabelProp = getProp(node.attributes, 'aria-label');
-      if (ariaLabelProp !== undefined) {
+      if (ariaLabelProp !== undefined || ariaLabelProp !== '') {
         if (!ariaLabelHasValue(ariaLabelProp)) {
           context.report({
             node,
@@ -134,7 +134,7 @@ const ruleByElement = {
     }
 
     const altProp = getProp(node.attributes, 'alt');
-    if (altProp === undefined) {
+    if (altProp === undefined || altProp === '') {
       context.report({
         node,
         message: 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
@@ -170,7 +170,7 @@ const ruleByElement = {
     }
 
     const altProp = getProp(node.attributes, 'alt');
-    if (altProp === undefined) {
+    if (altProp === undefined || altProp === '') {
       context.report({
         node,
         message: '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
