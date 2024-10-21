@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jsx-a11y",
-  "version": "6.10.0",
+  "version": "6.10.1",
   "description": "Static AST checker for accessibility rules on JSX elements.",
   "keywords": [
     "eslint",
@@ -41,13 +41,12 @@
     "postversion": "auto-changelog && git add CHANGELOG.md && git commit --no-edit --amend && git tag -f \"v$(node -e \"console.log(require('./package.json').version)\")\""
   },
   "devDependencies": {
-    "@babel/cli": "^7.25.6",
-    "@babel/core": "^7.25.2",
-    "@babel/eslint-parser": "^7.25.1",
-    "@babel/plugin-transform-flow-strip-types": "^7.25.2",
-    "@babel/register": "^7.24.6",
-    "auto-changelog": "^2.4.0",
-    "babel-jest": "^24.9.0",
+    "@babel/cli": "^7.25.7",
+    "@babel/core": "^7.25.8",
+    "@babel/eslint-parser": "^7.25.8",
+    "@babel/plugin-transform-flow-strip-types": "^7.25.7",
+    "@babel/register": "^7.25.7",
+    "auto-changelog": "^2.5.0",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-preset-airbnb": "^5.0.0",
     "eslint": "^8 || ^9",
@@ -55,12 +54,12 @@
     "eslint-doc-generator": "^1.7.1",
     "eslint-plugin-eslint-plugin": "^4.3.0",
     "eslint-plugin-flowtype": "^5.8.0 || ^8.0.3",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-import": "^2.31.0",
     "estraverse": "^5.3.0",
     "flow-bin": "^0.250.0",
     "in-publish": "^2.0.1",
     "jackspeak": "=2.1.1",
-    "jscodeshift": "^0.7.1",
+    "jscodeshift": "^17.0.0",
     "minimist": "^1.2.8",
     "npmignore": "^0.3.1",
     "object.assign": "^4.1.5",
@@ -68,7 +67,7 @@
     "rimraf": "^3.0.2",
     "safe-publish-latest": "^2.0.0",
     "semver": "^6.3.1",
-    "tape": "^5.8.1",
+    "tape": "^5.9.0",
     "to-ast": "^1.0.0"
   },
   "engines": {
@@ -82,11 +81,13 @@
     "axobject-query": "^4.1.0",
     "damerau-levenshtein": "^1.0.8",
     "emoji-regex": "^9.2.2",
-    "es-iterator-helpers": "^1.0.19",
     "jsx-ast-utils": "^3.3.5",
     "language-tags": "^1.0.9",
     "minimatch": "^3.1.2",
-    "safe-regex-test": "^1.0.3"
+    "safe-regex-test": "^1.0.3",
+    "es-iterator-helpers": "^1.1.0",
+    "hasown": "^2.0.2",
+    "object.fromentries": "^2.0.8"
   },
   "peerDependencies": {
     "eslint": "^8 || ^9"

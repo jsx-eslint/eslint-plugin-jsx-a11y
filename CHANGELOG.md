@@ -5,143 +5,155 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v6.10.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.9.0...v6.10.0) - 2024-09-03
-
-### Fixed
-
-- [New] `label-has-associated-control`: add additional error message [`#1005`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/1005)
-- [Fix] `label-has-associated-control`: ignore undetermined label text [`#966`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/966)
+## [v6.10.1](https://github.com/ljharb/eslint-plugin-jsx-a11y/compare/v6.10.0...v6.10.1) - 2024-10-20
 
 ### Commits
 
-- [Tests] switch from jest to tape [`a284cbf`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/a284cbf4eb21292c4cff87f02be0bfb82764757f)
-- [New] add eslint 9 support [`deac4fd`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/deac4fd06eff4c0f5da27611c2a44a009b7e7fda)
-- [New] add `attributes` setting [`a1ee7f8`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/a1ee7f8810efafe416eb5d7f6eb0505b52873495)
-- [New] allow polymorphic linting to be restricted [`6cd1a70`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6cd1a7011446e3925f2b49c51ff26246a21491d1)
-- [Tests] remove duplicate tests [`74d5dec`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/74d5decb6f2e42c05ce40a45630041fd695a2e7f)
-- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types` [`6eca235`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6eca2359f5457af72dbfba265b73297c9232cb3e)
-- [readme] remove deprecated travis ci badge; add github actions badge [`0be7ea9`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0be7ea95f560c6afc6817d381054d914ebd0b2ca)
-- [Tests] use `npm audit` instead of `aud` [`05a5e49`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/05a5e4992900e0d5d61e29e13046c90797b68a7c)
-- [Deps] update `axobject-query` [`912e98c`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/912e98c425ef9fcc2d7d22b45b4f7e3b445112a5)
-- [Deps] unpin `axobject-query` [`75147aa`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/75147aa68888fc150a4efea5b99809969bdc32b2)
-- [Deps] update `axe-core` [`27ff7cb`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/27ff7cbf562bf2685fd5a6062e58eb4727cb85c6)
-- [readme] fix jsxA11y import name [`ce846e0`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/ce846e00414c41676a6a8601022059878bcc0b89)
-- [readme] fix typo in shareable config section in readme [`cca288b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/cca288b73a39fa0932a57c02a7a88de68fc971fc)
+- [Fix] handle interactive/noninteractive changes from aria-query [`4925ba8`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/4925ba8d0bf80a4b1d8e8645d310590bf1b40b64)
+- [Docs] Use consistent spelling of 'screen reader' [`cb6788c`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/cb6788c56d7108f2faa102d041dfa37dbc0e9f59)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `@babel/register`, `auto-changelog`, `eslint-plugin-import`, `tape` [`518a77e`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/518a77e1e23fb2b1df2e8a97d14bfdd08aded797)
+- [Deps] update `es-iterator-helpers`, `string.prototype.includes` [`eed03a3`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/eed03a31f313442158cf7d702443723ad4800dec)
+- [meta] package.json - Update jscodeshift & remove babel-jest [`2ee940c`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/2ee940c5ae87bcd0d384b6dc565d630ea70e103a)
+- [Docs] Remove accidental whitespace in CONTRIBUTING.md [`a262131`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/a26213142854ffe3d931fab35f0ee4e6ae101875)
+- [Deps] unpin `aria-query` [`e517937`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/e51793729e5e366e30d2f3bf0f253f2bdb9e6523)
 
-## [v6.9.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.8.0...v6.9.0) - 2024-06-19
+## [v6.10.0](https://github.com/ljharb/eslint-plugin-jsx-a11y/compare/v6.9.0...v6.10.0) - 2024-09-03
 
 ### Fixed
 
-- [Fix] `img-redundant-alt`: fixed multibyte character support [`#969`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/969)
-- [meta] fix changelog links [`#960`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/960)
+- [New] `label-has-associated-control`: add additional error message [`#1005`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/1005)
+- [Fix] `label-has-associated-control`: ignore undetermined label text [`#966`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/966)
 
 ### Commits
 
-- [New] add support for Flat Config [`6b5f096`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6b5f096f10b47326d68e2893152a48a79c8555b4)
-- Revert "[Fix] `isNonInteractiveElement`: Upgrade aria-query to 5.3.0 and axobject-query to 3.2.1" [`75d5dd7`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/75d5dd722bd67186d97afa7b151fd6fee5885c70)
-- [Robustness] use `safe-regex-test` [`4c7e781`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/4c7e7815c12a797587bb8e3cdced7f3003848964)
-- [actions] update actions/checkout [`51a1ca7`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/51a1ca7b4d83d4fbd1ea62888f7f2dc21ece6788)
-- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `@babel/register`, `eslint-doc-generator`, `object.entries` [`1271ac1`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/1271ac1d6e5dcf9a2bc2c086faaf062335629171)
-- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/register`, `aud`, `eslint-plugin-import`, `npmignore`, `object.assign` [`540cb7a`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/540cb7aefead582f237071d55a40f098d0885478)
-- [Deps] update `@babel/runtime`, `array-includes`, `es-iterator-helpers`, `hasown`, `object.fromentries`, `safe-regex-test` [`5d14408`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/5d1440825a8838ae10dc94cc3a4a7e1e967644b4)
-- [Deps] pin `aria-query` and `axobject-query`, add `ls-engines` test to CI [`32fd82c`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/32fd82c628d7f3e4ec8c06a1994f4eca1be2be4f)
-- [Dev Deps] update `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `eslint-doc-generator` [`d1b4114`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/d1b41142248a7cca45bb5f0b96ff23ee87fb9411)
-- [Fix] ensure `summary` remains non-interactive [`6a048da`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6a048dacf2b98eaa204e2a5a70dc7e3d48d9463a)
-- [Deps] remove `@babel/runtime` [`0a98ad8`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0a98ad83ffa7f4b66458cc1c39db2ef32bb2c480)
-- [New] `no-noninteractive-element-to-interactive-role`: allow `menuitemradio` and `menuitemcheckbox` on &lt;li&gt; [`c0733f9`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/c0733f94031fe3eec6b4d54176afe47929bb0a84)
-- [Deps] update `@babel/runtime`, `safe-regex-test` [`0d5321a`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0d5321a5457c5f0da0ca216053cc5b4f571b53ae)
-- [actions] pin codecov to v3.1.5 [`961817f`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/961817f61fa56cd7815c6940c27ef08469b1516b)
-- [Deps] unpin `axe-core` [`b3559cf`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/b3559cf89be6b5352cd77ffa025831b3d793d565)
-- [Deps] move `object.entries` to dev deps [`1be7b70`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/1be7b709eececd83f1d5f67a60b2c97cfe9a561d)
-- [Deps] update `@babel/runtime` [`2a48abb`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/2a48abb5effa911e7d1a8575e1c9768c947a33f1)
-- [Deps] update `@babel/runtime` [`1adec35`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/1adec3517fc2c9797212ca4d38858deed917e7be)
+- [Tests] switch from jest to tape [`a284cbf`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/a284cbf4eb21292c4cff87f02be0bfb82764757f)
+- [New] add eslint 9 support [`deac4fd`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/deac4fd06eff4c0f5da27611c2a44a009b7e7fda)
+- [New] add `attributes` setting [`a1ee7f8`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/a1ee7f8810efafe416eb5d7f6eb0505b52873495)
+- [New] allow polymorphic linting to be restricted [`6cd1a70`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/6cd1a7011446e3925f2b49c51ff26246a21491d1)
+- [Tests] remove duplicate tests [`74d5dec`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/74d5decb6f2e42c05ce40a45630041fd695a2e7f)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types` [`6eca235`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/6eca2359f5457af72dbfba265b73297c9232cb3e)
+- [readme] remove deprecated travis ci badge; add github actions badge [`0be7ea9`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/0be7ea95f560c6afc6817d381054d914ebd0b2ca)
+- [Tests] use `npm audit` instead of `aud` [`05a5e49`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/05a5e4992900e0d5d61e29e13046c90797b68a7c)
+- [Deps] update `axobject-query` [`912e98c`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/912e98c425ef9fcc2d7d22b45b4f7e3b445112a5)
+- [Deps] unpin `axobject-query` [`75147aa`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/75147aa68888fc150a4efea5b99809969bdc32b2)
+- [Deps] update `axe-core` [`27ff7cb`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/27ff7cbf562bf2685fd5a6062e58eb4727cb85c6)
+- [readme] fix jsxA11y import name [`ce846e0`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/ce846e00414c41676a6a8601022059878bcc0b89)
+- [readme] fix typo in shareable config section in readme [`cca288b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/cca288b73a39fa0932a57c02a7a88de68fc971fc)
 
-## [v6.8.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.7.1...v6.8.0) - 2023-11-01
+## [v6.9.0](https://github.com/ljharb/eslint-plugin-jsx-a11y/compare/v6.8.0...v6.9.0) - 2024-06-19
+
+### Fixed
+
+- [Fix] `img-redundant-alt`: fixed multibyte character support [`#969`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/969)
+- [meta] fix changelog links [`#960`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/960)
+
+### Commits
+
+- [New] add support for Flat Config [`6b5f096`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/6b5f096f10b47326d68e2893152a48a79c8555b4)
+- Revert "[Fix] `isNonInteractiveElement`: Upgrade aria-query to 5.3.0 and axobject-query to 3.2.1" [`75d5dd7`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/75d5dd722bd67186d97afa7b151fd6fee5885c70)
+- [Robustness] use `safe-regex-test` [`4c7e781`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/4c7e7815c12a797587bb8e3cdced7f3003848964)
+- [actions] update actions/checkout [`51a1ca7`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/51a1ca7b4d83d4fbd1ea62888f7f2dc21ece6788)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `@babel/register`, `eslint-doc-generator`, `object.entries` [`1271ac1`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/1271ac1d6e5dcf9a2bc2c086faaf062335629171)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/register`, `aud`, `eslint-plugin-import`, `npmignore`, `object.assign` [`540cb7a`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/540cb7aefead582f237071d55a40f098d0885478)
+- [Deps] update `@babel/runtime`, `array-includes`, `es-iterator-helpers`, `hasown`, `object.fromentries`, `safe-regex-test` [`5d14408`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/5d1440825a8838ae10dc94cc3a4a7e1e967644b4)
+- [Deps] pin `aria-query` and `axobject-query`, add `ls-engines` test to CI [`32fd82c`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/32fd82c628d7f3e4ec8c06a1994f4eca1be2be4f)
+- [Dev Deps] update `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `eslint-doc-generator` [`d1b4114`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/d1b41142248a7cca45bb5f0b96ff23ee87fb9411)
+- [Fix] ensure `summary` remains non-interactive [`6a048da`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/6a048dacf2b98eaa204e2a5a70dc7e3d48d9463a)
+- [Deps] remove `@babel/runtime` [`0a98ad8`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/0a98ad83ffa7f4b66458cc1c39db2ef32bb2c480)
+- [New] `no-noninteractive-element-to-interactive-role`: allow `menuitemradio` and `menuitemcheckbox` on &lt;li&gt; [`c0733f9`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/c0733f94031fe3eec6b4d54176afe47929bb0a84)
+- [Deps] update `@babel/runtime`, `safe-regex-test` [`0d5321a`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/0d5321a5457c5f0da0ca216053cc5b4f571b53ae)
+- [actions] pin codecov to v3.1.5 [`961817f`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/961817f61fa56cd7815c6940c27ef08469b1516b)
+- [Deps] unpin `axe-core` [`b3559cf`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/b3559cf89be6b5352cd77ffa025831b3d793d565)
+- [Deps] move `object.entries` to dev deps [`1be7b70`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/1be7b709eececd83f1d5f67a60b2c97cfe9a561d)
+- [Deps] update `@babel/runtime` [`2a48abb`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/2a48abb5effa911e7d1a8575e1c9768c947a33f1)
+- [Deps] update `@babel/runtime` [`1adec35`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/1adec3517fc2c9797212ca4d38858deed917e7be)
+
+## [v6.8.0](https://github.com/ljharb/eslint-plugin-jsx-a11y/compare/v6.7.1...v6.8.0) - 2023-11-01
 
 ### Merged
 
-- Allow `title` attribute or `aria-label` attribute instead of accessible child in the "anchor-has-content" rule [`#727`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/pull/727)
+- Allow `title` attribute or `aria-label` attribute instead of accessible child in the "anchor-has-content" rule [`#727`](https://github.com/ljharb/eslint-plugin-jsx-a11y/pull/727)
 
 ### Fixed
 
-- [Docs] `aria-activedescendant-has-tabindex`: align with changes from #708 [`#924`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/924)
-- [Fix] `control-has-associated-label`: don't accept whitespace as an accessible label [`#918`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/918)
+- [Docs] `aria-activedescendant-has-tabindex`: align with changes from #708 [`#924`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/924)
+- [Fix] `control-has-associated-label`: don't accept whitespace as an accessible label [`#918`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/918)
 
 ### Commits
 
-- [Tests] migrate helper parsers function from `eslint-plugin-react` [`ce4d57f`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/ce4d57f853ce7f71bd31edaa524eeb3ff1d27cf1)
-- [Refactor] use `es-iterator-helpers` [`52de824`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/52de82403752bb2ccbcac3379925650a0112d4af)
-- [New] `mouse-events-have-key-events`: add `hoverInHandlers`/`hoverOutHandlers` config [`db64898`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/db64898fa591f17827053ad3c2ddeafdf7297dd6)
-- [New] add `polymorphicPropName` setting for polymorphic components [`fffb05b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/fffb05b38c8eee926ee758e9ceb9eae4e697fbdd)
-- [Fix] `isNonInteractiveElement`: Upgrade aria-query to 5.3.0 and axobject-query to 3.2.1 [`64bfea6`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/64bfea6352a704470a760fa6ea25cfc5a50414db)
-- [Refactor] use `hasown` instead of `has` [`9a8edde`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/9a8edde7f2e80b7d104dd576f91526c6c4cbebb9)
-- [actions] update used actions [`10c061a`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/10c061a70cac067641e3a084d0fb464960544505)
-- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `@babel/register`, `aud`, `eslint-doc-generator`, `eslint-plugin-import`, `minimist` [`6d5022d`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6d5022d4894fa88d3c15c8b858114e8b2a8a440f)
-- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/register`, `eslint-doc-generator`, `eslint-plugin-import` [`4dc7f1e`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/4dc7f1e5c611aeea2f81dc50d4ec0b206566181a)
-- [New] `anchor-has-content`: Allow title attribute OR aria-label attribute [`e6bfd5c`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/e6bfd5cb7c060fcaf54ede85a1be74ebe2f60d1e)
-- [patch] `mouse-events-have-key-events`: rport the attribute, not the node [`eadd70c`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/eadd70cb1d0478c24538ee7604cf5493a96c0715)
-- [Deps] update `@babel/runtime`, `array-includes`, `array.prototype.flatmap`, `object.entries`, `object.fromentries` [`46ffbc3`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/46ffbc38512be4ed3db2f0fcd7d21af830574f63)
-- [Deps] update `@babel/runtime`, `axobject-query`, `jsx-ast-utils`, `semver` [`5999555`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/5999555714f594c0fccfeeab2063c2658d9e4392)
-- [Fix] pin `aria-query` and `axe-core` to fix failing tests on main [`8d8f016`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/8d8f0169dbaaa28143cf936cba3046c6e53fa134)
-- [patch] move `semver` from Deps to Dev Deps [`4da13e7`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/4da13e79743ad2e1073fc2bb682197e1ba6dbea3)
-- [Deps] update `ast-types-flow` [`b755318`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/b755318e675e73a33b1bb7ee809abc88c1927408)
-- [Dev Deps] update `eslint-plugin-import` [`f1c976b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/f1c976b6af2d4f5237b481348868a5216e169296)
-- [Deps] unpin `language-tags` [`3d1d26d`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/3d1d26d89d492947cbf69f439deec9e7cfaf9867)
-- [Docs] `no-static-element-interactions`: tabIndex is written tabindex [`1271153`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/1271153653ada3f8d95b8e39f0164d5b255abea0)
-- [Deps] Upgrade ast-types-flow to mitigate Docker user namespacing problems [`f0d2ddb`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/f0d2ddb65f21278ad29be43fb167a1092287b4b1)
-- [Dev Deps] pin `jackspeak` since 2.1.2+ depends on npm aliases, which kill the install process in npm &lt; 6 [`0c278f4`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0c278f4805ec18d8ee4d3e8dfa2f603a28d7e113)
+- [Tests] migrate helper parsers function from `eslint-plugin-react` [`ce4d57f`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/ce4d57f853ce7f71bd31edaa524eeb3ff1d27cf1)
+- [Refactor] use `es-iterator-helpers` [`52de824`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/52de82403752bb2ccbcac3379925650a0112d4af)
+- [New] `mouse-events-have-key-events`: add `hoverInHandlers`/`hoverOutHandlers` config [`db64898`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/db64898fa591f17827053ad3c2ddeafdf7297dd6)
+- [New] add `polymorphicPropName` setting for polymorphic components [`fffb05b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/fffb05b38c8eee926ee758e9ceb9eae4e697fbdd)
+- [Fix] `isNonInteractiveElement`: Upgrade aria-query to 5.3.0 and axobject-query to 3.2.1 [`64bfea6`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/64bfea6352a704470a760fa6ea25cfc5a50414db)
+- [Refactor] use `hasown` instead of `has` [`9a8edde`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/9a8edde7f2e80b7d104dd576f91526c6c4cbebb9)
+- [actions] update used actions [`10c061a`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/10c061a70cac067641e3a084d0fb464960544505)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `@babel/register`, `aud`, `eslint-doc-generator`, `eslint-plugin-import`, `minimist` [`6d5022d`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/6d5022d4894fa88d3c15c8b858114e8b2a8a440f)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/register`, `eslint-doc-generator`, `eslint-plugin-import` [`4dc7f1e`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/4dc7f1e5c611aeea2f81dc50d4ec0b206566181a)
+- [New] `anchor-has-content`: Allow title attribute OR aria-label attribute [`e6bfd5c`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/e6bfd5cb7c060fcaf54ede85a1be74ebe2f60d1e)
+- [patch] `mouse-events-have-key-events`: rport the attribute, not the node [`eadd70c`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/eadd70cb1d0478c24538ee7604cf5493a96c0715)
+- [Deps] update `@babel/runtime`, `array-includes`, `array.prototype.flatmap`, `object.entries`, `object.fromentries` [`46ffbc3`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/46ffbc38512be4ed3db2f0fcd7d21af830574f63)
+- [Deps] update `@babel/runtime`, `axobject-query`, `jsx-ast-utils`, `semver` [`5999555`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/5999555714f594c0fccfeeab2063c2658d9e4392)
+- [Fix] pin `aria-query` and `axe-core` to fix failing tests on main [`8d8f016`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/8d8f0169dbaaa28143cf936cba3046c6e53fa134)
+- [patch] move `semver` from Deps to Dev Deps [`4da13e7`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/4da13e79743ad2e1073fc2bb682197e1ba6dbea3)
+- [Deps] update `ast-types-flow` [`b755318`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/b755318e675e73a33b1bb7ee809abc88c1927408)
+- [Dev Deps] update `eslint-plugin-import` [`f1c976b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/f1c976b6af2d4f5237b481348868a5216e169296)
+- [Deps] unpin `language-tags` [`3d1d26d`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/3d1d26d89d492947cbf69f439deec9e7cfaf9867)
+- [Docs] `no-static-element-interactions`: tabIndex is written tabindex [`1271153`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/1271153653ada3f8d95b8e39f0164d5b255abea0)
+- [Deps] Upgrade ast-types-flow to mitigate Docker user namespacing problems [`f0d2ddb`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/f0d2ddb65f21278ad29be43fb167a1092287b4b1)
+- [Dev Deps] pin `jackspeak` since 2.1.2+ depends on npm aliases, which kill the install process in npm &lt; 6 [`0c278f4`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/0c278f4805ec18d8ee4d3e8dfa2f603a28d7e113)
 
-## [v6.7.1](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.7.0...v6.7.1) - 2023-01-11
+## [v6.7.1](https://github.com/ljharb/eslint-plugin-jsx-a11y/compare/v6.7.0...v6.7.1) - 2023-01-11
 
 ### Commits
 
-- [Fix] `no-aria-hidden-on-focusable` rule's missing export [`b01219e`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/b01219edc2eb289c7a068b4fa195f2ac04e915fa)
+- [Fix] `no-aria-hidden-on-focusable` rule's missing export [`b01219e`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/b01219edc2eb289c7a068b4fa195f2ac04e915fa)
 
-## [v6.7.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.6.1...v6.7.0) - 2023-01-09
+## [v6.7.0](https://github.com/ljharb/eslint-plugin-jsx-a11y/compare/v6.6.1...v6.7.0) - 2023-01-09
 
 ### Merged
 
-- New rule: prefer-tag-over-role [`#833`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/pull/833)
+- New rule: prefer-tag-over-role [`#833`](https://github.com/ljharb/eslint-plugin-jsx-a11y/pull/833)
 
 ### Fixed
 
-- [Tests] `aria-role`: add now-passing test [`#756`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/756)
-- [Docs] `control-has-associated-label`: fix metadata [`#892`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/892)
-- [New] add `no-aria-hidden-on-focusable` rule [`#881`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/881)
+- [Tests] `aria-role`: add now-passing test [`#756`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/756)
+- [Docs] `control-has-associated-label`: fix metadata [`#892`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/892)
+- [New] add `no-aria-hidden-on-focusable` rule [`#881`](https://github.com/ljharb/eslint-plugin-jsx-a11y/issues/881)
 
 ### Commits
 
-- [Docs] automate docs with `eslint-doc-generator` [`6d7a857`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6d7a857eccceb58dabfa244f6a196ad1697c01a4)
-- [Refactor] use fromEntries, flatMap, etc; better use iteration methods [`3d77c84`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/3d77c845a98b6fc8cf10c810996278c02e308f35)
-- [New] add `anchor-ambiguous-text` rule [`7f6463e`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/7f6463e5cffd1faa5cf22e3b0d33465e22bd10e1)
-- [New] add `getAccessibleChildText` util [`630116b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/630116b334e22db853a95cd64e20b7df9f2b6dc8)
-- [New] Add `isFocusable` utils method [`e199d17`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/e199d17db0b6bf1d917dab13a9690876ef6f77e3)
-- [Docs] update `eslint-doc-generator` to v1.0.0 [`6b9855b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6b9855b9c3633308004960594327a10bc2551ad2)
-- [Fix] `no-noninteractive-element-interactions`: Ignore contenteditable elements in no-noninteractive-element-interactions [`9aa878b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/9aa878bc39769f6c7b31c72bd1140c1370d202f1)
-- [New] `anchor-ambiguous-text`: ignore punctuation [`bbae2c4`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/bbae2c46ab4ae94122be6c898f2ef313c6154c27)
-- [New] `anchor-ambiguous-text`, `getAccessibleChildText`: Implements check for `alt` tags on `&lt;img /&gt;` elements [`bb84abc`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/bb84abc793435a25398160242c5f2870b83b72ca)
-- [meta] use `npmignore` to autogenerate an npmignore file [`6ad2312`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/6ad23124582741385df50e98d5ed0d070f86eafe)
-- [meta] add `auto-changelog` [`283817b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/283817b82252ef4a6395c22585d8681f97305ca0)
-- [Docs] missing descriptions in some rules [`79b975a`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/79b975ab7185cc4fbf6a3adea45c78fac2162d77)
-- [Deps] update `aria-query`, `axobject-query` [`7b3cda3`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/7b3cda3854451affe20b2e4f2dd57cf317dd7d1b)
-- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `aud`, `object.assign` [`0852947`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0852947cfd57a34353a97c67f6de28dbcc8be0e3)
-- [meta] move `.eslintignore` to `ignorePatterns` [`65be35b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/65be35b0f6c6cf8b79e9a748cb657a64b78c6535)
-- [Dev Deps] update `@babel/cli`, `@babel/core`, `aud`, `eslint-doc-generator` [`60c2df5`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/60c2df5388a3f841a7780eafe1a0fbb44056743d)
-- [Deps] update `@babel/runtime`, `array-includes`, `axe-core` [`4abc751`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/4abc751d87a8491219a9a3d2dacd80ea8adcb79b)
-- [Deps] update `@babel/runtime`, `axe-core` [`89f766c`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/89f766cd40fd32ada2020856b251ad6e34a6f365)
-- [meta] run the build in prepack, not prepublish [`e411ce3`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/e411ce35cfa58181d375544ba5204c35db83678c)
-- [Dev Deps] update `@babel/core`, `minimist` [`cccdb62`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/cccdb625d6237538fb4443349870293e8df818eb)
-- [Dev Deps] update `markdown-magic` [`3382059`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/3382059feb5367c79e049943772e3a6e27e77609)
-- [Fix] expose `prefer-tag-over-role` [`38d52f8`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/38d52f856a18d444e6db7d16d373e0d18c5b287d)
-- [Docs] `label-has-for`: reran generate-list-of-rules [`9a2af01`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/9a2af0172cefad7fdce869401b2df42536812152)
-- [Deps] pin `language-tags` to `v1.0.5` [`f84bb74`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/f84bb746857cfbc075f8e7104b3a16dddb66be7c)
-- [Dev Deps] update `@babel/core` [`cf3f8d0`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/cf3f8d0a6bde6dc5ad39a96a6ed1912c1ad80e89)
-- [Deps] update `axe-core` [`0a73cf4`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0a73cf4ad0adca0bef0a383a10a14597acef5713)
-- [Deps] update `@babel/runtime` [`053f04d`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/053f04da8b60d259e4c92f214ffba07a14f3ec61)
-- [Deps] update `@babel/runtime` [`bccf0ae`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/bccf0aeab8dd337c5f134f892a6d3588fbc29bdf)
-- [Deps] update `jsx-ast-utils` [`c9687cc`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/c9687cc2a1b7f5f72c8181a9fd6a47f49c373240)
-- [readme] Preventing code repetition in user's eslint config file [`8b889bf`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/8b889bff2731c9db6988c88c0d76bdbff17bd3c5)
-- [Docs] `prefer-tag-over-role`: rename docs file [`0bdf95b`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0bdf95b41cce32c8b7916367e7c8c663411d881c)
+- [Docs] automate docs with `eslint-doc-generator` [`6d7a857`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/6d7a857eccceb58dabfa244f6a196ad1697c01a4)
+- [Refactor] use fromEntries, flatMap, etc; better use iteration methods [`3d77c84`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/3d77c845a98b6fc8cf10c810996278c02e308f35)
+- [New] add `anchor-ambiguous-text` rule [`7f6463e`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/7f6463e5cffd1faa5cf22e3b0d33465e22bd10e1)
+- [New] add `getAccessibleChildText` util [`630116b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/630116b334e22db853a95cd64e20b7df9f2b6dc8)
+- [New] Add `isFocusable` utils method [`e199d17`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/e199d17db0b6bf1d917dab13a9690876ef6f77e3)
+- [Docs] update `eslint-doc-generator` to v1.0.0 [`6b9855b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/6b9855b9c3633308004960594327a10bc2551ad2)
+- [Fix] `no-noninteractive-element-interactions`: Ignore contenteditable elements in no-noninteractive-element-interactions [`9aa878b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/9aa878bc39769f6c7b31c72bd1140c1370d202f1)
+- [New] `anchor-ambiguous-text`: ignore punctuation [`bbae2c4`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/bbae2c46ab4ae94122be6c898f2ef313c6154c27)
+- [New] `anchor-ambiguous-text`, `getAccessibleChildText`: Implements check for `alt` tags on `&lt;img /&gt;` elements [`bb84abc`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/bb84abc793435a25398160242c5f2870b83b72ca)
+- [meta] use `npmignore` to autogenerate an npmignore file [`6ad2312`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/6ad23124582741385df50e98d5ed0d070f86eafe)
+- [meta] add `auto-changelog` [`283817b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/283817b82252ef4a6395c22585d8681f97305ca0)
+- [Docs] missing descriptions in some rules [`79b975a`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/79b975ab7185cc4fbf6a3adea45c78fac2162d77)
+- [Deps] update `aria-query`, `axobject-query` [`7b3cda3`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/7b3cda3854451affe20b2e4f2dd57cf317dd7d1b)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `aud`, `object.assign` [`0852947`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/0852947cfd57a34353a97c67f6de28dbcc8be0e3)
+- [meta] move `.eslintignore` to `ignorePatterns` [`65be35b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/65be35b0f6c6cf8b79e9a748cb657a64b78c6535)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `aud`, `eslint-doc-generator` [`60c2df5`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/60c2df5388a3f841a7780eafe1a0fbb44056743d)
+- [Deps] update `@babel/runtime`, `array-includes`, `axe-core` [`4abc751`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/4abc751d87a8491219a9a3d2dacd80ea8adcb79b)
+- [Deps] update `@babel/runtime`, `axe-core` [`89f766c`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/89f766cd40fd32ada2020856b251ad6e34a6f365)
+- [meta] run the build in prepack, not prepublish [`e411ce3`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/e411ce35cfa58181d375544ba5204c35db83678c)
+- [Dev Deps] update `@babel/core`, `minimist` [`cccdb62`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/cccdb625d6237538fb4443349870293e8df818eb)
+- [Dev Deps] update `markdown-magic` [`3382059`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/3382059feb5367c79e049943772e3a6e27e77609)
+- [Fix] expose `prefer-tag-over-role` [`38d52f8`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/38d52f856a18d444e6db7d16d373e0d18c5b287d)
+- [Docs] `label-has-for`: reran generate-list-of-rules [`9a2af01`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/9a2af0172cefad7fdce869401b2df42536812152)
+- [Deps] pin `language-tags` to `v1.0.5` [`f84bb74`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/f84bb746857cfbc075f8e7104b3a16dddb66be7c)
+- [Dev Deps] update `@babel/core` [`cf3f8d0`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/cf3f8d0a6bde6dc5ad39a96a6ed1912c1ad80e89)
+- [Deps] update `axe-core` [`0a73cf4`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/0a73cf4ad0adca0bef0a383a10a14597acef5713)
+- [Deps] update `@babel/runtime` [`053f04d`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/053f04da8b60d259e4c92f214ffba07a14f3ec61)
+- [Deps] update `@babel/runtime` [`bccf0ae`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/bccf0aeab8dd337c5f134f892a6d3588fbc29bdf)
+- [Deps] update `jsx-ast-utils` [`c9687cc`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/c9687cc2a1b7f5f72c8181a9fd6a47f49c373240)
+- [readme] Preventing code repetition in user's eslint config file [`8b889bf`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/8b889bff2731c9db6988c88c0d76bdbff17bd3c5)
+- [Docs] `prefer-tag-over-role`: rename docs file [`0bdf95b`](https://github.com/ljharb/eslint-plugin-jsx-a11y/commit/0bdf95b41cce32c8b7916367e7c8c663411d881c)
 
 <!-- auto-changelog-above -->
 
