@@ -15,7 +15,7 @@
   ],
   "rules": {
     "max-len": "off",
-    "no-template-curly-in-string": "off",
+    "no-template-curly-in-string": "off"
   },
   "overrides": [
     {

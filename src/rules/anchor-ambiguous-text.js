@@ -44,7 +44,7 @@ export default ({
     const ambiguousWords = new Set(words);
 
     return {
-      JSXOpeningElement: (node) => {
+      JSXOpeningElement: (node: Object) => {
         const nodeType = elementType(node);
 
         // Only check anchor elements and custom types.

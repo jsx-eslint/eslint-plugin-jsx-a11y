@@ -3,8 +3,6 @@
  */
 
 import { dom, roles } from 'aria-query';
-import includes from 'array-includes';
-import fromEntries from 'object.fromentries';
 
 import JSXAttributeMock from './JSXAttributeMock';
 import JSXElementMock from './JSXElementMock';
@@ -122,7 +120,7 @@ const nonInteractiveElementsMap: {[string]: Array<{[string]: string}>} = {
   ul: [],
 };
 
-const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = fromEntries(domElements.map((name) => [name, []]));
+const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = Object.fromEntries(domElements.map((name) => [name, []]));
 
 Object.keys(interactiveElementsMap)
   .concat(Object.keys(nonInteractiveElementsMap))
@@ -141,17 +139,17 @@ const interactiveRoles = []
   )
   .filter((role) => (
     !roles.get(role).abstract
-    && roles.get(role).superClass.some((klasses) => includes(klasses, 'widget'))
+    && roles.get(role).superClass.some((klasses) => klasses.includes('widget'))
   ));
 
 const nonInteractiveRoles = roleNames
   .filter((role) => (
     !roles.get(role).abstract
-    && !roles.get(role).superClass.some((klasses) => includes(klasses, 'widget'))
+    && !roles.get(role).superClass.some((klasses) => klasses.includes('widget'))
 
     // 'toolbar' does not descend from widget, but it does support
     // aria-activedescendant, thus in practice we treat it as a widget.
-    && !includes(['toolbar'], role)
+    && !['toolbar'].includes(role)
   ));
 
 export function genElementSymbol(openingElement: Object): string {
@@ -164,9 +162,9 @@ export function genElementSymbol(openingElement: Object): string {
 }
 
 export function genInteractiveElements(): Array<JSXElementMockType> {
-  return Object.keys(interactiveElementsMap).map((elementSymbol: string): JSXElementMockType => {
+  return Object.keys(interactiveElementsMap).map((elementSymbol): JSXElementMockType => {
     const bracketIndex = elementSymbol.indexOf('[');
-    let name = elementSymbol;
+    let name: string = elementSymbol;
     if (bracketIndex > -1) {
       name = elementSymbol.slice(0, bracketIndex);
     }

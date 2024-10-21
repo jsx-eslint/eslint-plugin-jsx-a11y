@@ -13,7 +13,7 @@ jobs:
         with:
           versionsAsRoot: true
           type: 'majors'
-          preset: '>=4'
+          preset: '>=18'
 
   latest:
     needs: [matrix]
@@ -27,92 +27,6 @@ jobs:
         eslint:
           - 9
           - 8
-          - 7
-          - 6
-          - 5
-          - 4
-          - 3
-        exclude:
-          - node-version: 16
-            eslint: 9
-          - node-version: 15
-            eslint: 9
-          - node-version: 14
-            eslint: 9
-          - node-version: 13
-            eslint: 9
-          - node-version: 12
-            eslint: 9
-          - node-version: 11
-            eslint: 9
-          - node-version: 10
-            eslint: 9
-          - node-version: 9
-            eslint: 9
-          - node-version: 8
-            eslint: 9
-          - node-version: 7
-            eslint: 9
-          - node-version: 6
-            eslint: 9
-          - node-version: 5
-            eslint: 9
-          - node-version: 4
-            eslint: 9
-          - node-version: 15
-            eslint: 8
-          - node-version: 13
-            eslint: 8
-          - node-version: 11
-            eslint: 8
-          - node-version: 11
-            eslint: 7
-          - node-version: 10
-            eslint: 8
-          - node-version: 9
-            eslint: 8
-          - node-version: 9
-            eslint: 7
-          - node-version: 8
-            eslint: 8
-          - node-version: 8
-            eslint: 7
-          - node-version: 7
-            eslint: 8
-          - node-version: 7
-            eslint: 7
-          - node-version: 7
-            eslint: 6
-          - node-version: 6
-            eslint: 8
-          - node-version: 6
-            eslint: 7
-          - node-version: 6
-            eslint: 6
-          - node-version: 5
-            eslint: 8
-          - node-version: 5
-            eslint: 7
-          - node-version: 5
-            eslint: 6
-          - node-version: 5
-            eslint: 5
-          - node-version: 5
-            eslint: 4
-          - node-version: 5 # TODO: fix
-            eslint: 3
-          - node-version: 4
-            eslint: 8
-          - node-version: 4
-            eslint: 7
-          - node-version: 4
-            eslint: 6
-          - node-version: 4
-            eslint: 5
-          - node-version: 4 # TODO: fix
-            eslint: 4
-          - node-version: 4 # TODO: fix
-            eslint: 3
 
     steps:
       - uses: actions/checkout@v4

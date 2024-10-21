@@ -2,13 +2,11 @@
 import { roles as rolesMap } from 'aria-query';
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
-import includes from 'array-includes';
-import flatMap from 'array.prototype.flatmap';
 
 const roles = [...rolesMap.keys()];
 const interactiveRoles = roles.filter((name) => (
   !rolesMap.get(name).abstract
-  && rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget'))
+  && rolesMap.get(name).superClass.some((klasses) => klasses.includes('widget'))
 ));
 
 // 'toolbar' does not descend from widget, but it does support
@@ -40,13 +38,10 @@ const isInteractiveRole = (
 
   let isInteractive = false;
   const normalizedValues = String(value).toLowerCase().split(' ');
-  const validRoles = flatMap(
-    normalizedValues,
-    (name: string) => (includes(roles, name) ? [name] : []),
-  );
+  const validRoles = normalizedValues.flatMap((name) => (roles.includes(name) ? [name] : []));
   if (validRoles.length > 0) {
     // The first role value is a series takes precedence.
-    isInteractive = includes(interactiveRoles, validRoles[0]);
+    isInteractive = interactiveRoles.includes(validRoles[0]);
   }
 
   return isInteractive;

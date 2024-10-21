@@ -40,7 +40,7 @@ export default ({
   },
 
   create: (context: ESLintContext) => ({
-    JSXOpeningElement: (node) => {
+    JSXOpeningElement: (node: Object) => {
       const { name } = node.name;
 
       if (!dom.get(name)) {
