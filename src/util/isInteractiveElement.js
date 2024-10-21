@@ -11,7 +11,6 @@ import {
   AXObjects,
   elementAXObjects,
 } from 'axobject-query';
-import flatMap from 'array.prototype.flatmap';
 
 import attributesComparator from './attributesComparator';
 
@@ -50,22 +49,13 @@ const interactiveRoles = new Set(roleKeys
     'toolbar',
   ));
 
-const interactiveElementRoleSchemas = flatMap(
-  elementRoleEntries,
-  ([elementSchema, rolesArr]) => (rolesArr.some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []),
-);
+const interactiveElementRoleSchemas = elementRoleEntries.flatMap(([elementSchema, rolesArr]) => (rolesArr.some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []));
 
-const nonInteractiveElementRoleSchemas = flatMap(
-  elementRoleEntries,
-  ([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []),
-);
+const nonInteractiveElementRoleSchemas = elementRoleEntries.flatMap(([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []));
 
 const interactiveAXObjects = new Set(AXObjects.keys().filter((name) => AXObjects.get(name).type === 'widget'));
 
-const interactiveElementAXObjectSchemas = flatMap(
-  [...elementAXObjects],
-  ([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => interactiveAXObjects.has(role)) ? [elementSchema] : []),
-);
+const interactiveElementAXObjectSchemas = [...elementAXObjects].flatMap(([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => interactiveAXObjects.has(role)) ? [elementSchema] : []));
 
 function checkIsInteractiveElement(tagName, attributes): boolean {
   function elementSchemaMatcher(elementSchema) {
