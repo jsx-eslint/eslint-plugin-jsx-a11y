@@ -87,8 +87,7 @@
     "jsx-ast-utils": "^3.3.5",
     "language-tags": "^1.0.9",
     "minimatch": "^3.1.2",
-    "safe-regex-test": "^1.0.3",
-    "string.prototype.includes": "^2.0.0"
+    "safe-regex-test": "^1.0.3"
   },
   "peerDependencies": {
     "eslint": "^8 || ^9"
