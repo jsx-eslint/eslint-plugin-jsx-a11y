@@ -36,7 +36,7 @@ const schema = generateObjSchema({
   },
 });
 
-function validateID(node, context) {
+function validateID(node: Object, context: Object) {
   const { settings } = context;
   const htmlForAttributes = settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
 

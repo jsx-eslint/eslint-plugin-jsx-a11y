@@ -70,8 +70,8 @@ const nonInteractiveAXObjects = new Set([...AXObjects.keys()].filter((name) => [
 // TODO: convert to use iterFlatMap and iterFrom
 const nonInteractiveElementAXObjectSchemas = [...elementAXObjects].flatMap(([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => nonInteractiveAXObjects.has(role)) ? [elementSchema] : []));
 
-function checkIsNonInteractiveElement(tagName, attributes): boolean {
-  function elementSchemaMatcher(elementSchema) {
+function checkIsNonInteractiveElement(tagName: string, attributes: Object): boolean {
+  function elementSchemaMatcher(elementSchema: Object) {
     return (
       tagName === elementSchema.name
       && tagName !== 'td' // TODO: investigate why this is needed

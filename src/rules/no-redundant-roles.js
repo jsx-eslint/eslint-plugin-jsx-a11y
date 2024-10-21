@@ -9,18 +9,17 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasOwn from 'hasown';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import getElementType from '../util/getElementType';
 import getExplicitRole from '../util/getExplicitRole';
 import getImplicitRole from '../util/getImplicitRole';
 
-const errorMessage = (element, implicitRole) => (
+const errorMessage = (element: string, implicitRole: string) => (
   `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`
 );
 
-const DEFAULT_ROLE_EXCEPTIONS = { nav: ['navigation'] };
+const DEFAULT_ROLE_EXCEPTIONS: Record<string, Array<string>> = { nav: ['navigation'] };
 
 export default ({
   meta: {
@@ -57,7 +56,7 @@ export default ({
           const allowedRedundantRoles = (options[0] || {});
           let redundantRolesForElement;
 
-          if (hasOwn(allowedRedundantRoles, type)) {
+          if (Object.hasOwn(allowedRedundantRoles, type)) {
             redundantRolesForElement = allowedRedundantRoles[type];
           } else {
             redundantRolesForElement = DEFAULT_ROLE_EXCEPTIONS[type] || [];

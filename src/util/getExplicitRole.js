@@ -15,7 +15,7 @@ export default function getExplicitRole(
   tag: string,
   attributes: Array<Node>,
 ): ?string {
-  const explicitRole = (function toLowerCase(role) {
+  const explicitRole = (function toLowerCase(role: any) {
     if (typeof role === 'string') {
       return role.toLowerCase();
     }

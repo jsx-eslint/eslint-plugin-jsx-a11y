@@ -3,7 +3,6 @@
  */
 
 import type { JSXOpeningElement } from 'ast-types-flow';
-import hasOwn from 'hasown';
 import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
 import type { ESLintContext } from '../../flow/eslint';
@@ -30,7 +29,7 @@ const getElementType = (context: ESLintContext): ((node: JSXOpeningElement) => s
       return rawType;
     }
 
-    return hasOwn(componentMap, rawType) ? componentMap[rawType] : rawType;
+    return Object.hasOwn(componentMap, rawType) ? componentMap[rawType] : rawType;
   };
 };
 

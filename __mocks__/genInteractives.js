@@ -162,9 +162,9 @@ export function genElementSymbol(openingElement: Object): string {
 }
 
 export function genInteractiveElements(): Array<JSXElementMockType> {
-  return Object.keys(interactiveElementsMap).map((elementSymbol: string): JSXElementMockType => {
+  return Object.keys(interactiveElementsMap).map((elementSymbol): JSXElementMockType => {
     const bracketIndex = elementSymbol.indexOf('[');
-    let name = elementSymbol;
+    let name: string = elementSymbol;
     if (bracketIndex > -1) {
       name = elementSymbol.slice(0, bracketIndex);
     }
