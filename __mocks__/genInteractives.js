@@ -3,7 +3,6 @@
  */
 
 import { dom, roles } from 'aria-query';
-import fromEntries from 'object.fromentries';
 
 import JSXAttributeMock from './JSXAttributeMock';
 import JSXElementMock from './JSXElementMock';
@@ -121,7 +120,7 @@ const nonInteractiveElementsMap: {[string]: Array<{[string]: string}>} = {
   ul: [],
 };
 
-const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = fromEntries(domElements.map((name) => [name, []]));
+const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = Object.fromEntries(domElements.map((name) => [name, []]));
 
 Object.keys(interactiveElementsMap)
   .concat(Object.keys(nonInteractiveElementsMap))
