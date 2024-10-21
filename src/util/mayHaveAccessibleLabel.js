@@ -10,7 +10,7 @@
 
 import { getPropValue, propName, elementType as rawElementType } from 'jsx-ast-utils';
 import type { JSXOpeningElement, Node } from 'ast-types-flow';
-import minimatch from 'minimatch';
+import { minimatch } from 'minimatch';
 
 function tryTrim(value: any) {
   return typeof value === 'string' ? value.trim() : value;
