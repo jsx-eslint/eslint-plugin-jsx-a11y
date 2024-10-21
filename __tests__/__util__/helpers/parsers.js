@@ -2,7 +2,6 @@ import path from 'path';
 import semver from 'semver';
 import entries from 'object.entries';
 import { version } from 'eslint/package.json';
-import flatMap from 'array.prototype.flatmap';
 
 let tsParserVersion;
 try {
@@ -23,7 +22,7 @@ function minEcmaVersion(features, parserOptions) {
   const result = Math.max(
     ...[].concat(
       (parserOptions && parserOptions.ecmaVersion) || [],
-      flatMap(entries(minEcmaVersionForFeatures), (entry) => {
+      entries(minEcmaVersionForFeatures).flatMap((entry) => {
         const f = entry[0];
         const y = entry[1];
         return features.has(f) ? y : [];
@@ -69,7 +68,7 @@ const parsers = {
     };
   },
   all: function all(tests) {
-    const t = flatMap(tests, (test) => {
+    const t = tests.flatMap((test) => {
       /* eslint no-param-reassign: 0 */
       if (typeof test === 'string') {
         test = { code: test };

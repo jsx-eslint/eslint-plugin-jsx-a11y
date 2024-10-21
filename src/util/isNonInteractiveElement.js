@@ -12,7 +12,6 @@ import {
   elementAXObjects,
 } from 'axobject-query';
 import type { Node } from 'ast-types-flow';
-import flatMap from 'array.prototype.flatmap';
 import iterFrom from 'es-iterator-helpers/Iterator.from';
 // import iterFlatMap from 'es-iterator-helpers/Iterator.prototype.flatMap';
 import some from 'es-iterator-helpers/Iterator.prototype.some';
@@ -61,24 +60,15 @@ const interactiveRoles = new Set(roleKeys
   ));
 
 // TODO: convert to use iterFlatMap and iterFrom
-const interactiveElementRoleSchemas = flatMap(
-  elementRoleEntries,
-  ([elementSchema, rolesArr]) => (rolesArr.some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []),
-);
+const interactiveElementRoleSchemas = elementRoleEntries.flatMap(([elementSchema, rolesArr]) => (rolesArr.some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []));
 
 // TODO: convert to use iterFlatMap and iterFrom
-const nonInteractiveElementRoleSchemas = flatMap(
-  elementRoleEntries,
-  ([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []),
-);
+const nonInteractiveElementRoleSchemas = elementRoleEntries.flatMap(([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []));
 
 const nonInteractiveAXObjects = new Set([...AXObjects.keys()].filter((name) => ['window', 'structure'].includes(AXObjects.get(name).type)));
 
 // TODO: convert to use iterFlatMap and iterFrom
-const nonInteractiveElementAXObjectSchemas = flatMap(
-  [...elementAXObjects],
-  ([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => nonInteractiveAXObjects.has(role)) ? [elementSchema] : []),
-);
+const nonInteractiveElementAXObjectSchemas = [...elementAXObjects].flatMap(([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => nonInteractiveAXObjects.has(role)) ? [elementSchema] : []));
 
 function checkIsNonInteractiveElement(tagName, attributes): boolean {
   function elementSchemaMatcher(elementSchema) {

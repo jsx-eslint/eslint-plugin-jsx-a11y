@@ -11,7 +11,6 @@ import {
   AXObjects,
   elementAXObjects,
 } from 'axobject-query';
-import flatMap from 'array.prototype.flatmap';
 import iterFrom from 'es-iterator-helpers/Iterator.from';
 // import iterFlatMap from 'es-iterator-helpers/Iterator.prototype.flatMap';
 import filter from 'es-iterator-helpers/Iterator.prototype.filter';
@@ -55,24 +54,15 @@ const interactiveRoles = new Set(roleKeys
   ));
 
 // TODO: convert to use iterFlatMap and iterFrom
-const interactiveElementRoleSchemas = flatMap(
-  elementRoleEntries,
-  ([elementSchema, rolesArr]) => (rolesArr.some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []),
-);
+const interactiveElementRoleSchemas = elementRoleEntries.flatMap(([elementSchema, rolesArr]) => (rolesArr.some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []));
 
 // TODO: convert to use iterFlatMap and iterFrom
-const nonInteractiveElementRoleSchemas = flatMap(
-  elementRoleEntries,
-  ([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []),
-);
+const nonInteractiveElementRoleSchemas = elementRoleEntries.flatMap(([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []));
 
 const interactiveAXObjects = new Set(filter(iterFrom(AXObjects.keys()), (name) => AXObjects.get(name).type === 'widget'));
 
 // TODO: convert to use iterFlatMap and iterFrom
-const interactiveElementAXObjectSchemas = flatMap(
-  [...elementAXObjects],
-  ([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => interactiveAXObjects.has(role)) ? [elementSchema] : []),
-);
+const interactiveElementAXObjectSchemas = [...elementAXObjects].flatMap(([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => interactiveAXObjects.has(role)) ? [elementSchema] : []));
 
 function checkIsInteractiveElement(tagName, attributes): boolean {
   function elementSchemaMatcher(elementSchema) {

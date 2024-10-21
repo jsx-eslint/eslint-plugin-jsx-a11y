@@ -12,7 +12,6 @@ import {
   getPropValue,
   getLiteralPropValue,
 } from 'jsx-ast-utils';
-import flatMap from 'array.prototype.flatmap';
 
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
@@ -206,10 +205,8 @@ export default {
     // Elements to validate for alt text.
     const elementOptions = options.elements || DEFAULT_ELEMENTS;
     // Get custom components for just the elements that will be tested.
-    const customComponents = flatMap(
-      elementOptions,
-      (element) => options[element],
-    );
+    const customComponents = elementOptions.flatMap((element) => options[element]);
+
     const typesToValidate = new Set(
       [].concat(
         customComponents,
