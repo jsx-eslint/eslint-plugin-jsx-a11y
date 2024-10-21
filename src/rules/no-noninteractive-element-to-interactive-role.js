@@ -14,13 +14,14 @@ import {
   propName,
 } from 'jsx-ast-utils';
 import type { JSXIdentifier } from 'ast-types-flow';
-import hasOwn from 'hasown';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import type { ESLintJSXAttribute } from '../../flow/eslint-jsx';
 import getElementType from '../util/getElementType';
 import getExplicitRole from '../util/getExplicitRole';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isInteractiveRole from '../util/isInteractiveRole';
+
+const { hasOwn } = Object;
 
 const errorMessage = 'Non-interactive elements should not be assigned interactive roles.';
 

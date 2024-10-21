@@ -3,10 +3,11 @@
  */
 
 import type { JSXOpeningElement } from 'ast-types-flow';
-import hasOwn from 'hasown';
 import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
 import type { ESLintContext } from '../../flow/eslint';
+
+const { hasOwn } = Object;
 
 const getElementType = (context: ESLintContext): ((node: JSXOpeningElement) => string) => {
   const { settings } = context;

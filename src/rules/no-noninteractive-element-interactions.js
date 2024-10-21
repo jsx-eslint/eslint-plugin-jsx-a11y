@@ -16,7 +16,6 @@ import {
   propName,
 } from 'jsx-ast-utils';
 import type { JSXOpeningElement } from 'ast-types-flow';
-import hasOwn from 'hasown';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
@@ -28,6 +27,8 @@ import isInteractiveRole from '../util/isInteractiveRole';
 import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
+
+const { hasOwn } = Object;
 
 const errorMessage = 'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 

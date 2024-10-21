@@ -9,12 +9,13 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import hasOwn from 'hasown';
 import type { JSXOpeningElement } from 'ast-types-flow';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import getElementType from '../util/getElementType';
 import getExplicitRole from '../util/getExplicitRole';
 import getImplicitRole from '../util/getImplicitRole';
+
+const { hasOwn } = Object;
 
 const errorMessage = (element, implicitRole) => (
   `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`
