@@ -86,6 +86,7 @@ const nestingValid = [
   { code: '<label>foo<progress /></label>' },
   { code: '<label>foo<textarea /></label>' },
   // Custom controlComponents.
+  { code: '<label>A label<CustomInput /></label>', options: [{ controlComponents: ['CustomInput'] }] },
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }] },
   { code: '<label><span>A label<CustomInput /></span></label>', settings: componentsSettings },
   { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }] },
@@ -141,6 +142,7 @@ const nestingInvalid = [
   { code: '<label><span><span><span><span aria-label="A label" /><input /></span></span></span></label>', options: [{ depth: 5 }], errors: [expectedError] },
   { code: '<label><span><span><span><input aria-label="A label" /></span></span></span></label>', options: [{ depth: 5 }], errors: [expectedError] },
   // Custom controlComponents.
+  { code: '<label>A label<OtherCustomInput /></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
   { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
   { code: '<CustomLabel><span label="A label"><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedError] },

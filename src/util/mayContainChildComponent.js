@@ -35,7 +35,7 @@ export default function mayContainChildComponent(
         if (childNode.type === 'JSXExpressionContainer') {
           return true;
         }
-        // Check for comonents with the provided name.
+        // Check for components with the provided name.
         if (
           childNode.type === 'JSXElement'
           && childNode.openingElement
