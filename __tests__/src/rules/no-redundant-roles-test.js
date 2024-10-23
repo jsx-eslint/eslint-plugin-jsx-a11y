@@ -83,12 +83,16 @@ ruleTester.run(`${ruleName}:recommended (valid list role override)`, rule, {
     { code: '<ul role="list" />' },
     { code: '<ol role="list" />' },
     { code: '<dl role="list" />' },
+    { code: '<img src="example.svg" role="img" />' },
+    { code: '<svg role="img" />' },
   ))
     .map(ruleOptionsMapperFactory(listException))
     .map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<ul role="list" />', errors: [expectedError('ul', 'list')] },
     { code: '<ol role="list" />', errors: [expectedError('ol', 'list')] },
+    { code: '<img role="img" />', errors: [expectedError('img', 'img')] },
+    { code: '<img src={someVariable} role="img" />', errors: [expectedError('img', 'img')] },
   ))
     .map(parserOptionsMapper),
 });

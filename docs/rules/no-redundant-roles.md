@@ -43,3 +43,4 @@ General best practice (reference resources)
 ### Resources
 
 - [ARIA Spec, ARIA Adds Nothing to Default Semantics of Most HTML Elements](https://www.w3.org/TR/using-aria/#aria-does-nothing)
+- [Identifying SVG as an image](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#identifying_svg_as_an_image)
