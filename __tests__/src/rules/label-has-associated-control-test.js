@@ -61,6 +61,8 @@ const htmlForValid = [
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', settings: componentsSettings },
+  { code: '<MUILabel htmlFor="js_id" aria-label="A label" />', options: [{ labelComponents: ['*Label'] }] },
+  { code: '<LabelCustom htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['Label*'] }] },
   // Custom label attributes.
   { code: '<label htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'] }] },
   // Glob support for controlComponents option.
@@ -94,6 +96,7 @@ const nestingValid = [
   // Glob support for controlComponents option.
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['Custom*'] }] },
   { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['*Input'] }] },
+  { code: '<label><span>A label<TextInput /></span></label>', options: [{ controlComponents: ['????Input'] }] },
   // Rule does not error if presence of accessible label cannot be determined
   { code: '<label><CustomText /><input /></label>' },
 ];
@@ -106,6 +109,7 @@ const bothValid = [
   // Custom label component.
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label"><input /></CustomLabel>', options: [{ labelComponents: ['CustomLabel'] }] },
   { code: '<CustomLabel htmlFor="js_id" label="A label"><input /></CustomLabel>', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }] },
+  { code: '<CustomLabel htmlFor="js_id" label="A label"><input /></CustomLabel>', options: [{ labelAttributes: ['label'], labelComponents: ['*Label'] }] },
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label"><input /></CustomLabel>', settings: componentsSettings },
   { code: '<CustomLabel htmlFor="js_id" aria-label="A label"><CustomInput /></CustomLabel>', settings: componentsSettings },
   // Custom label attributes.
@@ -160,6 +164,7 @@ const neverValid = [
   { code: '<div><label>A label</label><input /></div>', errors: [expectedError] },
   // Custom label component.
   { code: '<CustomLabel aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }], errors: [expectedError] },
+  { code: '<MUILabel aria-label="A label" />', options: [{ labelComponents: ['???Label'] }], errors: [expectedError] },
   { code: '<CustomLabel label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
   { code: '<CustomLabel aria-label="A label" />', settings: componentsSettings, errors: [expectedError] },
   // Custom label attributes.

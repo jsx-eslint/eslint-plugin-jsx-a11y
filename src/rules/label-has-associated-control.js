@@ -11,6 +11,7 @@
 
 import { hasProp, getProp, getPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
+import minimatch from 'minimatch';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import getElementType from '../util/getElementType';
@@ -66,13 +67,15 @@ export default ({
     const options = context.options[0] || {};
     const labelComponents = options.labelComponents || [];
     const assertType = options.assert || 'either';
-    const componentNames = ['label'].concat(labelComponents);
+    const labelComponentNames = ['label'].concat(labelComponents);
     const elementType = getElementType(context);
 
     const rule = (node: JSXElement) => {
-      if (componentNames.indexOf(elementType(node.openingElement)) === -1) {
+      const isLabelComponent = labelComponentNames.some((name) => minimatch(elementType(node.openingElement), name));
+      if (!isLabelComponent) {
         return;
       }
+
       const controlComponents = [
         'input',
         'meter',
