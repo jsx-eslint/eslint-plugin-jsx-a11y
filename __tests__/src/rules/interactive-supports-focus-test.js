@@ -35,6 +35,7 @@ function template(strings, ...keys) {
 const ruleName = 'interactive-supports-focus';
 const type = 'JSXOpeningElement';
 const codeTemplate = template`<${0} role="${1}" ${2}={() => void 0} />`;
+const fixedTemplate = template`<${0} tabIndex={${1}} role="${2}" ${3}={() => void 0} />`;
 const tabindexTemplate = template`<${0} role="${1}" ${2}={() => void 0} tabIndex="0" />`;
 const tabbableTemplate = template`Elements with the '${0}' interactive role must be tabbable.`;
 const focusableTemplate = template`Elements with the '${0}' interactive role must be focusable.`;
@@ -47,7 +48,14 @@ const componentsSettings = {
   },
 };
 
-const buttonError = { message: tabbableTemplate('button'), type };
+const buttonError = {
+  message: tabbableTemplate('button'),
+  suggestions: [{
+    desc: 'Add `tabIndex={0}` to make the element focusable in sequential keyboard navigation.',
+    output: '<Div tabIndex={0} onClick={() => void 0} role="button" />',
+  }],
+  type,
+};
 
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
 
@@ -202,6 +210,13 @@ const failReducer = (roles, handlers, messageTemplate) => (
         errors: [{
           type,
           message: messageTemplate(role),
+          suggestions: [{
+            desc: 'Add `tabIndex={0}` to make the element focusable in sequential keyboard navigation.',
+            output: fixedTemplate(element, '0', role, handler),
+          }].concat(messageTemplate === focusableTemplate ? [{
+            desc: 'Add `tabIndex={-1}` to make the element focusable but not reachable via sequential keyboard navigation.',
+            output: fixedTemplate(element, '-1', role, handler),
+          }] : []),
         }],
       })))
     ), []))

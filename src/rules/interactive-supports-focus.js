@@ -53,6 +53,11 @@ export default ({
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/interactive-supports-focus.md',
       description: 'Enforce that elements with interactive handlers like `onClick` must be focusable.',
     },
+    hasSuggestions: true,
+    messages: {
+      'tabIndex=0': 'Add `tabIndex={0}` to make the element focusable in sequential keyboard navigation.',
+      'tabIndex=-1': 'Add `tabIndex={-1}` to make the element focusable but not reachable via sequential keyboard navigation.',
+    },
     schema: [schema],
   },
 
@@ -99,12 +104,34 @@ export default ({
             context.report({
               node,
               message: `Elements with the '${role}' interactive role must be tabbable.`,
+              suggest: [
+                {
+                  messageId: 'tabIndex=0',
+                  fix(fixer) {
+                    return fixer.insertTextAfter(node.name, ' tabIndex={0}');
+                  },
+                },
+              ],
             });
           } else {
             // Focusable, tabIndex = -1 or 0
             context.report({
               node,
               message: `Elements with the '${role}' interactive role must be focusable.`,
+              suggest: [
+                {
+                  messageId: 'tabIndex=0',
+                  fix(fixer) {
+                    return fixer.insertTextAfter(node.name, ' tabIndex={0}');
+                  },
+                },
+                {
+                  messageId: 'tabIndex=-1',
+                  fix(fixer) {
+                    return fixer.insertTextAfter(node.name, ' tabIndex={-1}');
+                  },
+                },
+              ],
             });
           }
         }
