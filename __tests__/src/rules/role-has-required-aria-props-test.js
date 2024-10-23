@@ -66,6 +66,8 @@ ruleTester.run('role-has-required-aria-props', rule, {
     { code: '<input role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0" {...props} type="checkbox" />' },
     { code: '<input type="checkbox" role="switch" />' },
     { code: '<MyComponent role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0" />', settings: componentsSettings },
+    { code: '<div role="heading" aria-level={2} />' },
+    { code: '<div role="heading" aria-level="3" />' },
   )).concat(basicValidityTests).map(parserOptionsMapper),
 
   invalid: parsers.all([].concat(
