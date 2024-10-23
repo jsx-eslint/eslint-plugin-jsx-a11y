@@ -84,9 +84,8 @@ ruleTester.run('aria-role', rule, {
       code: '<Box asChild="div" role="button" />',
       settings: customDivSettings,
     },
-    {
-      code: '<svg role="graphics-document document" />',
-    },
+    { code: '<svg role="graphics-document document" />' },
+    { code: '<svg role="img" />' },
   )).concat(validTests).map(parserOptionsMapper),
 
   invalid: parsers.all([].concat(
