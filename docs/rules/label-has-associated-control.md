@@ -104,9 +104,13 @@ This rule takes one optional object argument of type object:
 ```
 
 `labelComponents` is a list of custom React Component names that should be checked for an associated control.
+
 `labelAttributes` is a list of attributes to check on the label component and its children for a label. Use this if you have a custom component that uses a string passed on a prop to render an HTML `label`, for example.
+
 `controlComponents` is a list of custom React Components names that will output an input element. [Glob format](https://linuxhint.com/bash_globbing_tutorial/) is also supported for specifying names (e.g., `Label*` matches `LabelComponent` but not `CustomLabel`, `????Label` matches `LinkLabel` but not `CustomLabel`).
+
 `assert` asserts that the label has htmlFor, a nested label, both or either. Available options: `'htmlFor', 'nesting', 'both', 'either'`.
+
 `depth` (default 2, max 25) is an integer that determines how deep within a `JSXElement` label the rule should look for text content or an element with a label to determine if the `label` element will have an accessible label.
 
 ### Fail
