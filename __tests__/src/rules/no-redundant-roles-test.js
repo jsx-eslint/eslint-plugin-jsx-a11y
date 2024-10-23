@@ -41,12 +41,31 @@ const alwaysValid = [
   { code: '<MyComponent role="button" />' },
   { code: '<button role={`${foo}button`} />' },
   { code: '<Button role={`${foo}button`} />', settings: componentsSettings },
+  { code: '<select role="menu"><option>1</option><option>2</option></select>' },
+  { code: '<select role="menu" size={2}><option>1</option><option>2</option></select>' },
+  { code: '<select role="menu" multiple><option>1</option><option>2</option></select>' },
 ];
 
 const neverValid = [
-  { code: '<button role="button" />', errors: [expectedError('button', 'button')] },
   { code: '<body role="DOCUMENT" />', errors: [expectedError('body', 'document')] },
+  // button - treated as button by default
+  { code: '<button role="button" />', errors: [expectedError('button', 'button')] },
   { code: '<Button role="button" />', settings: componentsSettings, errors: [expectedError('button', 'button')] },
+  // select - treated as combobox by default
+  { code: '<select role="combobox"><option>1</option><option>2</option></select>', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" size="" />', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" size={1} />', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" size="1" />', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" size={null}></select>', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" size={undefined}></select>', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" multiple={undefined}></select>', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" multiple={false}></select>', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" multiple=""></select>', errors: [expectedError('select', 'combobox')] },
+  // select - treated as listbox when multiple OR size > 1
+  { code: '<select role="listbox" size="3" />', errors: [expectedError('select', 'listbox')] },
+  { code: '<select role="listbox" size={2} />', errors: [expectedError('select', 'listbox')] },
+  { code: '<select role="listbox" multiple><option>1</option><option>2</option></select>', errors: [expectedError('select', 'listbox')] },
+  { code: '<select role="listbox" multiple={true}></select>', errors: [expectedError('select', 'listbox')] },
 ];
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
