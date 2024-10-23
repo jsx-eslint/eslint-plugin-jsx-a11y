@@ -4,6 +4,55 @@ import JSXAttributeMock from '../../../../__mocks__/JSXAttributeMock';
 import getImplicitRoleForInput from '../../../../src/util/implicitRoles/input';
 
 test('isAbstractRole', (t) => {
+  t.test('works for inputs with no corresponding role', (st) => {
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'color')]),
+      '',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'date')]),
+      '',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'datetime-local')]),
+      '',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'file')]),
+      '',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'hidden')]),
+      '',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'month')]),
+      '',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'password')]),
+      '',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'time')]),
+      '',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([JSXAttributeMock('type', 'week')]),
+      '',
+    );
+
+    st.end();
+  });
+
   t.test('works for buttons', (st) => {
     st.equal(
       getImplicitRoleForInput([JSXAttributeMock('type', 'button')]),
@@ -46,17 +95,25 @@ test('isAbstractRole', (t) => {
     'works for ranges',
   );
 
+  t.equal(
+    getImplicitRoleForInput([JSXAttributeMock('type', 'number')]),
+    'spinbutton',
+    'works for number inputs',
+  );
+
+  t.equal(
+    getImplicitRoleForInput([JSXAttributeMock('type', 'search')]),
+    'searchbox',
+    'works for search inputs',
+  );
+
   t.test('works for textboxes', (st) => {
     st.equal(
       getImplicitRoleForInput([JSXAttributeMock('type', 'email')]),
       'textbox',
     );
     st.equal(
-      getImplicitRoleForInput([JSXAttributeMock('type', 'password')]),
-      'textbox',
-    );
-    st.equal(
-      getImplicitRoleForInput([JSXAttributeMock('type', 'search')]),
+      getImplicitRoleForInput([JSXAttributeMock('type', 'text')]),
       'textbox',
     );
     st.equal(
@@ -66,6 +123,57 @@ test('isAbstractRole', (t) => {
     st.equal(
       getImplicitRoleForInput([JSXAttributeMock('type', 'url')]),
       'textbox',
+    );
+
+    st.end();
+  });
+
+  t.test('works for inputs with list attribute', (st) => {
+    st.equal(
+      getImplicitRoleForInput([
+        JSXAttributeMock('type', 'search'),
+        JSXAttributeMock('list', 'example'),
+      ]),
+      'combobox',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([
+        JSXAttributeMock('type', 'email'),
+        JSXAttributeMock('list', 'example'),
+      ]),
+      'combobox',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([
+        JSXAttributeMock('type', 'tel'),
+        JSXAttributeMock('list', 'example'),
+      ]),
+      'combobox',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([
+        JSXAttributeMock('type', 'url'),
+        JSXAttributeMock('list', 'example'),
+      ]),
+      'combobox',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([
+        JSXAttributeMock('type', 'invalid'),
+        JSXAttributeMock('list', 'example'),
+      ]),
+      'combobox',
+    );
+
+    st.equal(
+      getImplicitRoleForInput([
+        JSXAttributeMock('list', 'example'),
+      ]),
+      'combobox',
     );
 
     st.end();

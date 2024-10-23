@@ -42,6 +42,10 @@ const alwaysValid = [
   { code: '<button role={`${foo}button`} />' },
   { code: '<Button role={`${foo}button`} />', settings: componentsSettings },
   { code: '<select role="menu"><option>1</option><option>2</option></select>' },
+  { code: '<input type="number" role="textbox" />' },
+  { code: '<input type="search" role="textbox" />' },
+  { code: '<input type="search" list="example" role="searchbox" />' },
+  { code: '<input type="email" list="example" role="textbox" />' },
 ];
 
 const neverValid = [
@@ -54,6 +58,10 @@ const neverValid = [
   { code: '<select role="listbox" size="3" />', errors: [expectedError('select', 'listbox')] },
   { code: '<select role="listbox" size={2} />', errors: [expectedError('select', 'listbox')] },
   { code: '<select role="listbox" multiple><option>1</option><option>2</option></select>', errors: [expectedError('select', 'listbox')] },
+  { code: '<input type="number" role="spinbutton" />', errors: [expectedError('input', 'spinbutton')] },
+  { code: '<input type="search" role="searchbox" />', errors: [expectedError('input', 'searchbox')] },
+  { code: '<input type="search" list="example" role="combobox" />', errors: [expectedError('input', 'combobox')] },
+  { code: '<input type="email" list="example" role="combobox" />', errors: [expectedError('input', 'combobox')] },
 ];
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
