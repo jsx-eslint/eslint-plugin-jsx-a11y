@@ -41,12 +41,19 @@ const alwaysValid = [
   { code: '<MyComponent role="button" />' },
   { code: '<button role={`${foo}button`} />' },
   { code: '<Button role={`${foo}button`} />', settings: componentsSettings },
+  { code: '<select role="menu"><option>1</option><option>2</option></select>' },
 ];
 
 const neverValid = [
   { code: '<button role="button" />', errors: [expectedError('button', 'button')] },
   { code: '<body role="DOCUMENT" />', errors: [expectedError('body', 'document')] },
   { code: '<Button role="button" />', settings: componentsSettings, errors: [expectedError('button', 'button')] },
+  { code: '<select role="combobox" size />', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox" size={1} />', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="combobox"><option>1</option><option>2</option></select>', errors: [expectedError('select', 'combobox')] },
+  { code: '<select role="listbox" size="3" />', errors: [expectedError('select', 'listbox')] },
+  { code: '<select role="listbox" size={2} />', errors: [expectedError('select', 'listbox')] },
+  { code: '<select role="listbox" multiple><option>1</option><option>2</option></select>', errors: [expectedError('select', 'listbox')] },
 ];
 
 ruleTester.run(`${ruleName}:recommended`, rule, {
