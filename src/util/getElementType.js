@@ -7,8 +7,6 @@ import { elementType, getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
 import type { ESLintContext } from '../../flow/eslint';
 
-const { hasOwn } = Object;
-
 const getElementType = (context: ESLintContext): ((node: JSXOpeningElement) => string) => {
   const { settings } = context;
   const polymorphicPropName = settings['jsx-a11y']?.polymorphicPropName;
@@ -31,7 +29,7 @@ const getElementType = (context: ESLintContext): ((node: JSXOpeningElement) => s
       return rawType;
     }
 
-    return hasOwn(componentMap, rawType) ? componentMap[rawType] : rawType;
+    return Object.hasOwn(componentMap, rawType) ? componentMap[rawType] : rawType;
   };
 };
 

@@ -10,8 +10,6 @@ import JSXElementMock from './JSXElementMock';
 import type { JSXAttributeMockType } from './JSXAttributeMock';
 import type { JSXElementMockType } from './JSXElementMock';
 
-const { fromEntries } = Object;
-
 const domElements = dom.keys();
 const roleNames = roles.keys();
 
@@ -122,7 +120,7 @@ const nonInteractiveElementsMap: {[string]: Array<{[string]: string}>} = {
   ul: [],
 };
 
-const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = fromEntries(domElements.map((name) => [name, []]));
+const indeterminantInteractiveElementsMap: { [key: string]: Array<any> } = Object.fromEntries(domElements.map((name) => [name, []]));
 
 Object.keys(interactiveElementsMap)
   .concat(Object.keys(nonInteractiveElementsMap))

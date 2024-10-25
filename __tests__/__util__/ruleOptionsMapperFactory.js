@@ -2,8 +2,6 @@
  * @flow
  */
 
-const { fromEntries, entries } = Object;
-
 type ESLintTestRunnerTestCase = {
   code: string,
   errors: ?Array<{ message: string, type: string }>,
@@ -23,7 +21,7 @@ export default function ruleOptionsMapperFactory(ruleOptions: Array<mixed> = [])
       code,
       errors,
       // Flatten the array of objects in an array of one object.
-      options: [fromEntries((options || []).concat(ruleOptions).flatMap((item) => entries((item: any))))],
+      options: [Object.fromEntries((options || []).concat(ruleOptions).flatMap((item) => Object.entries((item: any))))],
       parserOptions,
       settings,
     };

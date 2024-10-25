@@ -23,8 +23,6 @@ import isInteractiveElement from '../util/isInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 
-const { hasOwn } = Object;
-
 const errorMessage = 'Interactive elements should not be assigned non-interactive roles.';
 
 export default ({
@@ -68,7 +66,7 @@ export default ({
         // Allow overrides from rule configuration for specific elements and
         // roles.
         const allowedRoles = (options[0] || {});
-        if (hasOwn(allowedRoles, type) && allowedRoles[type].includes(role)) {
+        if (Object.hasOwn(allowedRoles, type) && allowedRoles[type].includes(role)) {
           return;
         }
         if (

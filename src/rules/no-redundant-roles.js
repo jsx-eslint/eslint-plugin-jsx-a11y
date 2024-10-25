@@ -15,8 +15,6 @@ import getElementType from '../util/getElementType';
 import getExplicitRole from '../util/getExplicitRole';
 import getImplicitRole from '../util/getImplicitRole';
 
-const { hasOwn } = Object;
-
 const errorMessage = (element: string, implicitRole: string) => (
   `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`
 );
@@ -58,7 +56,7 @@ export default ({
           const allowedRedundantRoles = (options[0] || {});
           let redundantRolesForElement;
 
-          if (hasOwn(allowedRedundantRoles, type)) {
+          if (Object.hasOwn(allowedRedundantRoles, type)) {
             redundantRolesForElement = allowedRedundantRoles[type];
           } else {
             redundantRolesForElement = DEFAULT_ROLE_EXCEPTIONS[type] || [];

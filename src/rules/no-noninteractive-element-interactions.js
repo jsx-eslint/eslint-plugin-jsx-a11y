@@ -28,8 +28,6 @@ import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isPresentationRole from '../util/isPresentationRole';
 
-const { hasOwn } = Object;
-
 const errorMessage = 'Non-interactive elements should not be assigned mouse or keyboard event listeners.';
 
 const defaultInteractiveProps = [].concat(
@@ -61,7 +59,7 @@ export default ({
         const config = (options[0] || {});
         const interactiveProps = config.handlers || defaultInteractiveProps;
         // Allow overrides from rule configuration for specific elements and roles.
-        if (hasOwn(config, type)) {
+        if (Object.hasOwn(config, type)) {
           attributes = attributes.filter((attr) => attr.type !== 'JSXSpreadAttribute' && !config[type].includes(propName(attr)));
         }
 
