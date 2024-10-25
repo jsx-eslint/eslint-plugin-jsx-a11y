@@ -3,10 +3,8 @@ import {
   roles,
 } from 'aria-query';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
-import iterFrom from 'es-iterator-helpers/Iterator.from';
-import filter from 'es-iterator-helpers/Iterator.prototype.filter';
 
-const abstractRoles = new Set(filter(iterFrom(roles.keys()), (role) => roles.get(role).abstract));
+const abstractRoles = new Set(roles.keys().filter((role) => roles.get(role).abstract));
 
 const DOMElements = new Set(dom.keys());
 

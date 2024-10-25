@@ -35,8 +35,7 @@ import getTabIndex from '../util/getTabIndex';
 // ----------------------------------------------------------------------------
 
 const schema = generateObjSchema({
-  // TODO: convert to use iterFilter and iterFrom
-  tabbable: enumArraySchema([...roles.keys()].filter((name) => (
+  tabbable: enumArraySchema(roles.keys().filter((name) => (
     !roles.get(name).abstract
     && roles.get(name).superClass.some((klasses) => klasses.includes('widget'))
   ))),

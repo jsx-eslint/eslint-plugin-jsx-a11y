@@ -18,8 +18,6 @@ import {
   getPropValue,
   propName,
 } from 'jsx-ast-utils';
-import iterFrom from 'es-iterator-helpers/Iterator.from';
-import filter from 'es-iterator-helpers/Iterator.prototype.filter';
 
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
@@ -64,11 +62,11 @@ export default {
           return;
         }
 
-        // Make sure it has no aria-* properties defined outside of its property set.
+        // Make sure it has no aria-* properties defined outside its property set.
         const {
           props: propKeyValues,
         } = roles.get(roleValue);
-        const invalidAriaPropsForRole = new Set(filter(iterFrom(aria.keys()), (attribute) => !(attribute in propKeyValues)));
+        const invalidAriaPropsForRole = new Set(aria.keys().filter((attribute) => !(attribute in propKeyValues)));
 
         node.attributes.filter((prop) => (
           getPropValue(prop) != null // Ignore the attribute if its value is null or undefined.
