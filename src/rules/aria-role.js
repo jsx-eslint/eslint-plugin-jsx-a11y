@@ -9,8 +9,6 @@
 
 import { dom, roles } from 'aria-query';
 import { getLiteralPropValue, propName } from 'jsx-ast-utils';
-import iterFrom from 'es-iterator-helpers/Iterator.from';
-import filter from 'es-iterator-helpers/Iterator.prototype.filter';
 
 import getElementType from '../util/getElementType';
 import { generateObjSchema } from '../util/schemas';
@@ -31,7 +29,7 @@ const schema = generateObjSchema({
   },
 });
 
-const validRoles = new Set(filter(iterFrom(roles.keys()), (role) => roles.get(role).abstract === false));
+const validRoles = new Set(roles.keys().filter((role) => roles.get(role).abstract === false));
 
 export default {
   meta: {

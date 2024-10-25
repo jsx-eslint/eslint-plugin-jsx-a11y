@@ -14,10 +14,6 @@ import {
 import type { Node } from 'ast-types-flow';
 import includes from 'array-includes';
 import flatMap from 'array.prototype.flatmap';
-import iterFrom from 'es-iterator-helpers/Iterator.from';
-// import iterFlatMap from 'es-iterator-helpers/Iterator.prototype.flatMap';
-import filter from 'es-iterator-helpers/Iterator.prototype.filter';
-import some from 'es-iterator-helpers/Iterator.prototype.some';
 
 import attributesComparator from './attributesComparator';
 
@@ -62,21 +58,18 @@ const interactiveRoles = new Set(roleKeys
     'toolbar',
   ));
 
-// TODO: convert to use iterFlatMap and iterFrom
 const interactiveElementRoleSchemas = flatMap(
   elementRoleEntries,
   ([elementSchema, rolesArr]) => (rolesArr.some((role): boolean => interactiveRoles.has(role)) ? [elementSchema] : []),
 );
 
-// TODO: convert to use iterFlatMap and iterFrom
 const nonInteractiveElementRoleSchemas = flatMap(
   elementRoleEntries,
   ([elementSchema, rolesArr]) => (rolesArr.every((role): boolean => nonInteractiveRoles.has(role)) ? [elementSchema] : []),
 );
 
-const nonInteractiveAXObjects = new Set(filter(iterFrom(AXObjects.keys()), (name) => includes(['window', 'structure'], AXObjects.get(name).type)));
+const nonInteractiveAXObjects = new Set(AXObjects.keys().filter((name) => includes(['window', 'structure'], AXObjects.get(name).type)));
 
-// TODO: convert to use iterFlatMap and iterFrom
 const nonInteractiveElementAXObjectSchemas = flatMap(
   [...elementAXObjects],
   ([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => nonInteractiveAXObjects.has(role)) ? [elementSchema] : []),
@@ -92,18 +85,18 @@ function checkIsNonInteractiveElement(tagName, attributes): boolean {
   }
   // Check in elementRoles for inherent non-interactive role associations for
   // this element.
-  const isInherentNonInteractiveElement = some(iterFrom(nonInteractiveElementRoleSchemas), elementSchemaMatcher);
+  const isInherentNonInteractiveElement = nonInteractiveElementRoleSchemas.some(elementSchemaMatcher);
   if (isInherentNonInteractiveElement) {
     return true;
   }
   // Check in elementRoles for inherent interactive role associations for
   // this element.
-  const isInherentInteractiveElement = some(iterFrom(interactiveElementRoleSchemas), elementSchemaMatcher);
+  const isInherentInteractiveElement = interactiveElementRoleSchemas.some(elementSchemaMatcher);
   if (isInherentInteractiveElement) {
     return false;
   }
   // Check in elementAXObjects for AX Tree associations for this element.
-  const isNonInteractiveAXElement = some(iterFrom(nonInteractiveElementAXObjectSchemas), elementSchemaMatcher);
+  const isNonInteractiveAXElement = nonInteractiveElementAXObjectSchemas.some(elementSchemaMatcher);
   if (isNonInteractiveAXElement) {
     return true;
   }

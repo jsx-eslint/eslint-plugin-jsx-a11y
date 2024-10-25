@@ -14,10 +14,6 @@ import {
 import { RuleTester } from 'eslint';
 import { version as eslintVersion } from 'eslint/package.json';
 import semver from 'semver';
-import iterFrom from 'es-iterator-helpers/Iterator.from';
-import filter from 'es-iterator-helpers/Iterator.prototype.filter';
-import map from 'es-iterator-helpers/Iterator.prototype.map';
-import toArray from 'es-iterator-helpers/Iterator.prototype.toArray';
 
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import parsers from '../../__util__/helpers/parsers';
@@ -50,27 +46,26 @@ const componentsSettings = {
   },
 };
 
-const nonAbstractRoles = toArray(filter(iterFrom(roles.keys()), (role) => roles.get(role).abstract === false));
+const nonAbstractRoles = roles.keys().filter((role) => roles.get(role).abstract === false);
 
 const createTests = (rolesNames) => rolesNames.reduce((tests, role) => {
   const {
     props: propKeyValues,
   } = roles.get(role);
   const validPropsForRole = Object.keys(propKeyValues);
-  const invalidPropsForRole = filter(
-    map(iterFrom(aria.keys()), (attribute) => attribute.toLowerCase()),
-    (attribute) => validPropsForRole.indexOf(attribute) === -1,
-  );
+  const invalidPropsForRole = aria.keys()
+    .map((attribute) => attribute.toLowerCase())
+    .filter((attribute) => validPropsForRole.indexOf(attribute) === -1);
   const normalRole = role.toLowerCase();
 
   return [
     tests[0].concat(validPropsForRole.map((prop) => ({
       code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
     }))),
-    tests[1].concat(toArray(map(invalidPropsForRole, (prop) => ({
+    tests[1].concat(invalidPropsForRole.map((prop) => ({
       code: `<div role="${normalRole}" ${prop.toLowerCase()} />`,
       errors: [errorMessage(prop.toLowerCase(), normalRole, 'div', false)],
-    })))),
+    }))),
   ];
 }, [[], []]);
 
@@ -413,7 +408,7 @@ ruleTester.run('role-supports-aria-props', rule, {
                 }
             />
         );
-        
+
         const Hello = (props) => <div>{props.frag}</div>;
       `,
     } : [],
