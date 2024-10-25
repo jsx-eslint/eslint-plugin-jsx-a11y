@@ -9,7 +9,7 @@ import {
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
-const nonInteractiveRoles = [...rolesMap.keys()].filter((name) => (
+const nonInteractiveRoles = rolesMap.keys().filter((name) => (
   !rolesMap.get(name).abstract
   && !rolesMap.get(name).superClass.some((klasses) => klasses.includes('widget'))
 ));

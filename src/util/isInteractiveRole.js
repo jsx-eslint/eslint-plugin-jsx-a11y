@@ -3,7 +3,7 @@ import { roles as rolesMap } from 'aria-query';
 import type { Node } from 'ast-types-flow';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 
-const roles = [...rolesMap.keys()];
+const roles = rolesMap.keys();
 const interactiveRoles = roles.filter((name) => (
   !rolesMap.get(name).abstract
   && rolesMap.get(name).superClass.some((klasses) => klasses.includes('widget'))

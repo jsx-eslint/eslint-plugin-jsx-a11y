@@ -20,6 +20,8 @@ import isSemanticRoleElement from '../util/isSemanticRoleElement';
 
 const schema = generateObjSchema();
 
+const roleKeys = roles.keys();
+
 export default {
   meta: {
     docs: {
@@ -59,7 +61,7 @@ export default {
 
         const normalizedValues = String(roleAttrValue).toLowerCase().split(' ');
         const validRoles = normalizedValues
-          .filter((val) => [...roles.keys()].indexOf(val) > -1);
+          .filter((val) => roleKeys.indexOf(val) > -1);
 
         // Check semantic DOM elements
         // For example, <input type="checkbox" role="switch" />

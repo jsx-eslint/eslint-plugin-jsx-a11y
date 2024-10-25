@@ -14,7 +14,7 @@ import {
 
 import attributesComparator from './attributesComparator';
 
-const roleKeys = [...roles.keys()];
+const roleKeys = roles.keys();
 const elementRoleEntries = [...elementRoles];
 
 const nonInteractiveRoles = new Set(roleKeys

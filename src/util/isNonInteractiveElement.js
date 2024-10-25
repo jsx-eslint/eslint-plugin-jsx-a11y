@@ -15,7 +15,7 @@ import type { Node } from 'ast-types-flow';
 
 import attributesComparator from './attributesComparator';
 
-const roleKeys = [...roles.keys()];
+const roleKeys = roles.keys();
 const elementRoleEntries = [...elementRoles];
 
 const nonInteractiveRoles = new Set(roleKeys
@@ -62,7 +62,7 @@ const nonInteractiveElementRoleSchemas = elementRoleEntries.flatMap(([elementSch
 
 const nonInteractiveAXObjects = new Set(AXObjects.keys().filter((name) => ['window', 'structure'].includes(AXObjects.get(name).type)));
 
-const nonInteractiveElementAXObjectSchemas = [...elementAXObjects].flatMap(([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => nonInteractiveAXObjects.has(role)) ? [elementSchema] : []));
+const nonInteractiveElementAXObjectSchemas = elementAXObjects.flatMap(([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => nonInteractiveAXObjects.has(role)) ? [elementSchema] : []));
 
 function checkIsNonInteractiveElement(tagName, attributes): boolean {
   function elementSchemaMatcher(elementSchema) {
