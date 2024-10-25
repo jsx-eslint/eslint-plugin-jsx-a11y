@@ -19,7 +19,7 @@ import getSuggestion from '../../../src/util/getSuggestion';
 // -----------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
-const ariaAttributes = [...aria.keys()];
+const ariaAttributes = aria.keys();
 
 const errorMessage = (name) => {
   const suggestions = getSuggestion(name, ariaAttributes);

@@ -12,7 +12,7 @@ import { propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import getSuggestion from '../util/getSuggestion';
 
-const ariaAttributes = [...aria.keys()];
+const ariaAttributes = aria.keys();
 
 const errorMessage = (name) => {
   const suggestions = getSuggestion(name, ariaAttributes);

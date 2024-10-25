@@ -5,7 +5,7 @@ import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import includes from 'array-includes';
 import flatMap from 'array.prototype.flatmap';
 
-const roles = [...rolesMap.keys()];
+const roles = rolesMap.keys();
 const interactiveRoles = roles.filter((name) => (
   !rolesMap.get(name).abstract
   && rolesMap.get(name).superClass.some((klasses) => includes(klasses, 'widget'))

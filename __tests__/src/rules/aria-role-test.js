@@ -24,7 +24,7 @@ const errorMessage = {
   type: 'JSXAttribute',
 };
 
-const roleKeys = [...roles.keys()];
+const roleKeys = roles.keys();
 
 const validRoles = roleKeys.filter((role) => roles.get(role).abstract === false);
 const invalidRoles = roleKeys.filter((role) => roles.get(role).abstract === true);

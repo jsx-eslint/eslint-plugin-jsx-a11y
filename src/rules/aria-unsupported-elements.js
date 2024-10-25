@@ -21,6 +21,8 @@ const errorMessage = (invalidProp) => (
 Try removing the prop '${invalidProp}'.`
 );
 
+const invalidAttributes = new Set(aria.keys().concat('role'));
+
 const schema = generateObjSchema();
 
 export default {
@@ -46,8 +48,6 @@ export default {
         if (isReservedNodeType === false) {
           return;
         }
-
-        const invalidAttributes = new Set([...aria.keys(), 'role']);
 
         node.attributes.forEach((prop) => {
           if (prop.type === 'JSXSpreadAttribute') {

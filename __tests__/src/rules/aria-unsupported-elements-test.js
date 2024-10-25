@@ -26,7 +26,7 @@ Try removing the prop '${invalidProp}'.`,
   type: 'JSXOpeningElement',
 });
 
-const domElements = [...dom.keys()];
+const domElements = dom.keys();
 // Generate valid test cases
 const roleValidityTests = domElements.map((element) => {
   const isReserved = dom.get(element).reserved || false;

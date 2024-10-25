@@ -12,8 +12,8 @@ import JSXElementMock from './JSXElementMock';
 import type { JSXAttributeMockType } from './JSXAttributeMock';
 import type { JSXElementMockType } from './JSXElementMock';
 
-const domElements = [...dom.keys()];
-const roleNames = [...roles.keys()];
+const domElements = dom.keys();
+const roleNames = roles.keys();
 
 const interactiveElementsMap = {
   a: [{ prop: 'href', value: '#' }],
