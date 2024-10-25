@@ -4,6 +4,7 @@
 export type ESLintReport = {
   node: any,
   message: string,
+  data?: any
 };
 
 export type ESLintSettings = {

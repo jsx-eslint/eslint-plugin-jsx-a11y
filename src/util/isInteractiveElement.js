@@ -57,8 +57,8 @@ const interactiveAXObjects = new Set(AXObjects.keys().filter((name) => AXObjects
 
 const interactiveElementAXObjectSchemas = [...elementAXObjects].flatMap(([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => interactiveAXObjects.has(role)) ? [elementSchema] : []));
 
-function checkIsInteractiveElement(tagName, attributes): boolean {
-  function elementSchemaMatcher(elementSchema) {
+function checkIsInteractiveElement(tagName: string, attributes: Object): boolean {
+  function elementSchemaMatcher(elementSchema: Object) {
     return (
       tagName === elementSchema.name
       && attributesComparator(elementSchema.attributes, attributes)

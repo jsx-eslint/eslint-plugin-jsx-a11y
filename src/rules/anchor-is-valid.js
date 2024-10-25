@@ -60,7 +60,7 @@ export default ({
 
         // Create active aspect flag object. Failing checks will only report
         // if the related flag is set to true.
-        const activeAspects = {};
+        const activeAspects: Object = {};
         allAspects.forEach((aspect) => {
           activeAspects[aspect] = aspects.indexOf(aspect) !== -1;
         });

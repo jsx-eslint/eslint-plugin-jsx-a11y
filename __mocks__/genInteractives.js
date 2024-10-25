@@ -170,7 +170,7 @@ export function genInteractiveElements(): Array<JSXElementMockType> {
     if (bracketIndex > -1) {
       name = elementSymbol.slice(0, bracketIndex);
     }
-    const attributes = interactiveElementsMap[elementSymbol].map(({ prop, value }) => JSXAttributeMock(prop, value));
+    const attributes = interactiveElementsMap[(elementSymbol: any)].map(({ prop, value }) => JSXAttributeMock(prop, value));
     return JSXElementMock(name, attributes);
   });
 }

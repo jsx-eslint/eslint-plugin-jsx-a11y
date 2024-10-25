@@ -7,7 +7,6 @@
 // ----------------------------------------------------------------------------
 // Rule Definition
 // ----------------------------------------------------------------------------
-
 import type { ESLintConfig, ESLintContext } from '../../flow/eslint';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import getAccessibleChildText from '../util/getAccessibleChildText';
@@ -44,7 +43,7 @@ export default ({
     const ambiguousWords = new Set(words);
 
     return {
-      JSXOpeningElement: (node) => {
+      JSXOpeningElement: (node: any) => {
         const nodeType = elementType(node);
 
         // Only check anchor elements and custom types.

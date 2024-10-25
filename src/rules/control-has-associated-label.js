@@ -12,7 +12,11 @@
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
 import { generateObjSchema, arraySchema } from '../util/schemas';
-import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
+import type {
+  ESLintConfig,
+  ESLintContext,
+  ESLintVisitorSelectorConfig,
+} from '../../flow/eslint';
 import getElementType from '../util/getElementType';
 import isDOMElement from '../util/isDOMElement';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';

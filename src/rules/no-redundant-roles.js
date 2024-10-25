@@ -17,7 +17,7 @@ import getImplicitRole from '../util/getImplicitRole';
 
 const { hasOwn } = Object;
 
-const errorMessage = (element, implicitRole) => (
+const errorMessage = (element: string, implicitRole: string) => (
   `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`
 );
 
@@ -46,7 +46,7 @@ export default ({
     const elementType = getElementType(context);
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
-        const type = elementType(node);
+        const type: any = elementType(node);
         const implicitRole = getImplicitRole(type, node.attributes);
         const explicitRole = getExplicitRole(type, node.attributes);
 
