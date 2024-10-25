@@ -1,6 +1,5 @@
 import path from 'path';
 import semver from 'semver';
-import entries from 'object.entries';
 import { version } from 'eslint/package.json';
 import flatMap from 'array.prototype.flatmap';
 
@@ -23,7 +22,7 @@ function minEcmaVersion(features, parserOptions) {
   const result = Math.max(
     ...[].concat(
       (parserOptions && parserOptions.ecmaVersion) || [],
-      flatMap(entries(minEcmaVersionForFeatures), (entry) => {
+      flatMap(Object.entries(minEcmaVersionForFeatures), (entry) => {
         const f = entry[0];
         const y = entry[1];
         return features.has(f) ? y : [];
