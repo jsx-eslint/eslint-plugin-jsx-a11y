@@ -12,8 +12,6 @@ import tags from 'language-tags';
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 
-const errorMessage = 'lang attribute must have a valid value.';
-
 const schema = generateObjSchema();
 
 export default {
@@ -21,6 +19,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/lang.md',
       description: 'Enforce lang attribute has a valid value.',
+    },
+    messages: {
+      error: 'lang attribute must have a valid value.',
     },
     schema: [schema],
   },
@@ -48,8 +49,8 @@ export default {
         }
         if (value === undefined) {
           context.report({
+            messageId: 'error',
             node,
-            message: errorMessage,
           });
 
           return;
@@ -60,8 +61,8 @@ export default {
         }
 
         context.report({
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };

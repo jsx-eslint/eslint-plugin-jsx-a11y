@@ -19,7 +19,7 @@ import rule from '../../../src/rules/lang';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'lang attribute must have a valid value.',
+  messageId: 'error',
   type: 'JSXAttribute',
 };
 

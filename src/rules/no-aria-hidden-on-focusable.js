@@ -20,6 +20,9 @@ export default {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-aria-hidden-on-focusable.md',
       description: 'Disallow `aria-hidden="true"` from being set on focusable elements.',
     },
+    messages: {
+      error: 'aria-hidden="true" must not be set on focusable elements.',
+    },
     schema: [schema],
   },
 
@@ -33,8 +36,8 @@ export default {
 
         if (isAriaHidden && isFocusable(type, attributes)) {
           context.report({
+            messageId: 'error',
             node,
-            message: 'aria-hidden="true" must not be set on focusable elements.',
           });
         }
       },

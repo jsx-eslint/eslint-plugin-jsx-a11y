@@ -18,39 +18,40 @@ import rule from '../../../src/rules/alt-text';
 
 const ruleTester = new RuleTester();
 
-const missingPropError = (type) => ({
-  message: `${type} elements must have an alt prop, either with meaningful text, or an empty string for decorative images.`,
+const missingPropError = (nodeType) => ({
+  messageId: 'img-no-alt',
+  data: { nodeType },
   type: 'JSXOpeningElement',
 });
 
-const altValueError = (type) => ({
-  message: `Invalid alt value for ${type}. \
-Use alt="" for presentational images.`,
+const altValueError = (nodeType) => ({
+  messageId: 'img-invalid-alt',
+  data: { nodeType },
   type: 'JSXOpeningElement',
 });
 
 const ariaLabelValueError = {
-  message: 'The aria-label attribute must have a value. The alt attribute is preferred over aria-label for images.',
+  messageId: 'img-no-aria-label-value',
 };
 const ariaLabelledbyValueError = {
-  message: 'The aria-labelledby attribute must have a value. The alt attribute is preferred over aria-labelledby for images.',
+  messageId: 'img-no-aria-labelledby-value',
 };
 
 const preferAltError = () => ({
-  message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
+  messageId: 'img-presentation-role',
   type: 'JSXOpeningElement',
 });
 
 const objectError = {
-  message: 'Embedded <object> elements must have alternative text by providing inner text, aria-label or aria-labelledby props.',
+  messageId: 'object',
 };
 
 const areaError = {
-  message: 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+  messageId: 'area',
 };
 
 const inputImageError = {
-  message: '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+  messageId: 'input-image',
 };
 
 const componentsSettings = {

@@ -13,8 +13,6 @@ import { getLiteralPropValue, propName } from 'jsx-ast-utils';
 import getElementType from '../util/getElementType';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = 'Elements with ARIA roles must use a valid, non-abstract ARIA role.';
-
 const schema = generateObjSchema({
   allowedInvalidRoles: {
     items: {
@@ -36,6 +34,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-role.md',
       description: 'Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role.',
+    },
+    messages: {
+      error: 'Elements with ARIA roles must use a valid, non-abstract ARIA role.',
     },
     schema: [schema],
   },
@@ -74,8 +75,8 @@ export default {
         if (isValid === true) { return; }
 
         context.report({
+          messageId: 'error',
           node: attribute,
-          message: errorMessage,
         });
       },
     });

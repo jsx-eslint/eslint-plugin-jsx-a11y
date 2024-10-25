@@ -53,8 +53,8 @@ const ruleByElement = {
     if (altProp === undefined) {
       if (isPresentationRole(nodeType, node.attributes)) {
         context.report({
+          messageId: 'img-presentation-role',
           node,
-          message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
         });
         return;
       }
@@ -65,8 +65,8 @@ const ruleByElement = {
       if (ariaLabelProp !== undefined) {
         if (!ariaLabelHasValue(ariaLabelProp)) {
           context.report({
+            messageId: 'img-no-aria-label-value',
             node,
-            message: 'The aria-label attribute must have a value. The alt attribute is preferred over aria-label for images.',
           });
         }
         return;
@@ -78,16 +78,19 @@ const ruleByElement = {
       if (ariaLabelledbyProp !== undefined) {
         if (!ariaLabelHasValue(ariaLabelledbyProp)) {
           context.report({
+            messageId: 'img-no-aria-labelledby-value',
             node,
-            message: 'The aria-labelledby attribute must have a value. The alt attribute is preferred over aria-labelledby for images.',
           });
         }
         return;
       }
 
       context.report({
+        data: {
+          nodeType,
+        },
+        messageId: 'img-no-alt',
         node,
-        message: `${nodeType} elements must have an alt prop, either with meaningful text, or an empty string for decorative images.`,
       });
       return;
     }
@@ -102,8 +105,11 @@ const ruleByElement = {
 
     // Undefined alt prop error.
     context.report({
+      data: {
+        nodeType,
+      },
+      messageId: 'img-invalid-alt',
       node,
-      message: `Invalid alt value for ${nodeType}. Use alt="" for presentational images.`,
     });
   },
 
@@ -119,8 +125,8 @@ const ruleByElement = {
     }
 
     context.report({
+      messageId: 'object',
       node,
-      message: 'Embedded <object> elements must have alternative text by providing inner text, aria-label or aria-labelledby props.',
     });
   },
 
@@ -136,8 +142,8 @@ const ruleByElement = {
     const altProp = getProp(node.attributes, 'alt');
     if (altProp === undefined) {
       context.report({
+        messageId: 'area',
         node,
-        message: 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
       });
       return;
     }
@@ -150,8 +156,8 @@ const ruleByElement = {
     }
 
     context.report({
+      messageId: 'area',
       node,
-      message: 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
     });
   },
 
@@ -172,8 +178,8 @@ const ruleByElement = {
     const altProp = getProp(node.attributes, 'alt');
     if (altProp === undefined) {
       context.report({
+        messageId: 'input-image',
         node,
-        message: '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
       });
       return;
     }
@@ -186,8 +192,8 @@ const ruleByElement = {
     }
 
     context.report({
+      messageId: 'input-image',
       node,
-      message: '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
     });
   },
 };
@@ -197,6 +203,16 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/alt-text.md',
       description: 'Enforce all elements that require alternative text have meaningful information to relay back to end user.',
+    },
+    messages: {
+      area: 'Each area of an image map must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+      'img-invalid-alt': 'Invalid alt value for {{nodeType}}. Use alt="" for presentational images.',
+      'img-presentation-role': 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
+      'img-no-alt': '{{nodeType}} elements must have an alt prop, either with meaningful text, or an empty string for decorative images.',
+      'img-no-aria-label-value': 'The aria-label attribute must have a value. The alt attribute is preferred over aria-label for images.',
+      'img-no-aria-labelledby-value': 'The aria-labelledby attribute must have a value. The alt attribute is preferred over aria-labelledby for images.',
+      'input-image': '<input> elements with type="image" must have a text alternative through the `alt`, `aria-label`, or `aria-labelledby` prop.',
+      object: 'Embedded <object> elements must have alternative text by providing inner text, aria-label or aria-labelledby props.',
     },
     schema: [schema],
   },

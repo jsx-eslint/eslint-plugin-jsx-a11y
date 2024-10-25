@@ -20,12 +20,14 @@ import rule from '../../../src/rules/autocomplete-valid';
 const ruleTester = new RuleTester();
 
 const invalidAutocomplete = [{
-  message: axeFailMessage('autocomplete-valid'),
+  messageId: 'error',
+  data: { message: axeFailMessage('autocomplete-valid') },
   type: 'JSXOpeningElement',
 }];
 
 const inappropriateAutocomplete = [{
-  message: axeFailMessage('autocomplete-appropriate'),
+  messageId: 'error',
+  data: { message: axeFailMessage('autocomplete-appropriate') },
   type: 'JSXOpeningElement',
 }];
 

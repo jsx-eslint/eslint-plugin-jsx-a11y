@@ -4,8 +4,6 @@ import { getProp, getPropValue } from 'jsx-ast-utils';
 import getElementType from '../util/getElementType';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = 'Use {{tag}} instead of the "{{role}}" role to ensure accessibility across all devices.';
-
 const schema = generateObjSchema();
 
 const formatTag = (tag) => {
@@ -37,6 +35,9 @@ export default {
     docs: {
       description: 'Enforces using semantic DOM elements over the ARIA `role` property.',
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/prefer-tag-over-role.md',
+    },
+    messages: {
+      error: 'Use {{tag}} instead of the "{{role}}" role to ensure accessibility across all devices.',
     },
     schema: [schema],
   },
@@ -79,8 +80,8 @@ export default {
                 ].join(', or '),
             role,
           },
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };

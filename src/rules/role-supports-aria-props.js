@@ -23,14 +23,6 @@ import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import getImplicitRole from '../util/getImplicitRole';
 
-const errorMessage = (attr, role, tag, isImplicit) => {
-  if (isImplicit) {
-    return `The attribute ${attr} is not supported by the role ${role}. This role is implicit on the element ${tag}.`;
-  }
-
-  return `The attribute ${attr} is not supported by the role ${role}.`;
-};
-
 const schema = generateObjSchema();
 
 export default {
@@ -38,6 +30,10 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-supports-aria-props.md',
       description: 'Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`.',
+    },
+    messages: {
+      explicit: 'The attribute {{attr}} is not supported by the role {{role}}.',
+      implicit: 'The attribute {{attr}} is not supported by the role {{role}}. This role is implicit on the element {{tag}}.',
     },
     schema: [schema],
   },
@@ -75,8 +71,13 @@ export default {
           const name = propName(prop);
           if (invalidAriaPropsForRole.has(name)) {
             context.report({
+              data: {
+                attr: name,
+                role: roleValue,
+                tag: type,
+              },
+              messageId: isImplicit ? 'implicit' : 'explicit',
               node,
-              message: errorMessage(name, roleValue, type, isImplicit),
             });
           }
         });

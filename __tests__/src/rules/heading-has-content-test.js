@@ -19,7 +19,7 @@ import rule from '../../../src/rules/heading-has-content';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'Headings must have content and the content must be accessible by a screen reader.',
+  messageId: 'error',
   type: 'JSXOpeningElement',
 };
 

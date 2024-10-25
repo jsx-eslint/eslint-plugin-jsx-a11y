@@ -11,28 +11,6 @@ import { aria } from 'aria-query';
 import { getLiteralPropValue, getPropValue, propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = (name, type, permittedValues) => {
-  switch (type) {
-    case 'tristate':
-      return `The value for ${name} must be a boolean or the string "mixed".`;
-    case 'token':
-      return `The value for ${name} must be a single token from the following: ${permittedValues}.`;
-    case 'tokenlist':
-      return `The value for ${name} must be a list of one or more \
-tokens from the following: ${permittedValues}.`;
-    case 'idlist':
-      return `The value for ${name} must be a list of strings that represent DOM element IDs (idlist)`;
-    case 'id':
-      return `The value for ${name} must be a string that represents a DOM element ID`;
-    case 'boolean':
-    case 'string':
-    case 'integer':
-    case 'number':
-    default:
-      return `The value for ${name} must be a ${type}.`;
-  }
-};
-
 const validityCheck = (value, expectedType, permittedValues) => {
   switch (expectedType) {
     case 'boolean':
@@ -68,6 +46,17 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-proptypes.md',
       description: 'Enforce ARIA state and property values are valid.',
+    },
+    messages: {
+      boolean: 'The value for {{name}} must be a boolean.',
+      id: 'The value for {{name}} must be a string that represents a DOM element ID',
+      idlist: 'The value for {{name}} must be a list of strings that represent DOM element IDs (idlist)',
+      integer: 'The value for {{name}} must be a integer.',
+      number: 'The value for {{name}} must be a number.',
+      string: 'The value for {{name}} must be a string.',
+      token: 'The value for {{name}} must be a single token from the following: {{permittedValues}}.',
+      tokenlist: 'The value for {{name}} must be a list of one or more tokens from the following: {{permittedValues}}.',
+      tristate: 'The value for {{name}} must be a boolean or the string "mixed".',
     },
     schema: [schema],
   },
@@ -105,8 +94,12 @@ export default {
       }
 
       context.report({
+        data: {
+          name,
+          permittedValues,
+        },
+        messageId: permittedType,
         node: attribute,
-        message: errorMessage(name, permittedType, permittedValues),
       });
     },
   }),

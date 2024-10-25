@@ -15,8 +15,6 @@ import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 import isInteractiveElement from '../util/isInteractiveElement';
 import isPresentationRole from '../util/isPresentationRole';
 
-const errorMessage = 'Visible, non-interactive elements with click handlers must have at least one keyboard listener.';
-
 const schema = generateObjSchema();
 
 export default {
@@ -24,6 +22,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/click-events-have-key-events.md',
       description: 'Enforce a clickable non-interactive element has at least one keyboard event listener.',
+    },
+    messages: {
+      error: 'Visible, non-interactive elements with click handlers must have at least one keyboard listener.',
     },
     schema: [schema],
   },
@@ -60,8 +61,8 @@ export default {
 
         // Visible, non-interactive elements with click handlers require one keyboard event listener.
         context.report({
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };

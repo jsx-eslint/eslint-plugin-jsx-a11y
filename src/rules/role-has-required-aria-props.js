@@ -18,10 +18,6 @@ import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 import isSemanticRoleElement from '../util/isSemanticRoleElement';
 
-const errorMessage = (role, requiredProps) => (
-  `Elements with the ARIA role "${role}" must have the following attributes defined: ${String(requiredProps).toLowerCase()}`
-);
-
 const schema = generateObjSchema();
 
 export default {
@@ -29,6 +25,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-has-required-aria-props.md',
       description: 'Enforce that elements with ARIA roles must have all required attributes for that role.',
+    },
+    messages: {
+      error: 'Elements with the ARIA role "{{role}}" must have the following attributes defined: {{requiredProps}}',
     },
     schema: [schema],
   },
@@ -79,8 +78,12 @@ export default {
               .every((prop) => getProp(attributes, prop));
             if (hasRequiredProps === false) {
               context.report({
+                data: {
+                  role: role.toLowerCase(),
+                  requiredProps: String(requiredProps).toLowerCase(),
+                },
+                messageId: 'error',
                 node: attribute,
-                message: errorMessage(role.toLowerCase(), requiredProps),
               });
             }
           }

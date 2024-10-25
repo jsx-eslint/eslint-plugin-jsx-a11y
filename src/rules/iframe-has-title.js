@@ -11,8 +11,6 @@ import { getProp, getPropValue } from 'jsx-ast-utils';
 import getElementType from '../util/getElementType';
 import { generateObjSchema } from '../util/schemas';
 
-const errorMessage = '<iframe> elements must have a unique title property.';
-
 const schema = generateObjSchema();
 
 export default {
@@ -20,6 +18,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/iframe-has-title.md',
       description: 'Enforce iframe elements have a title attribute.',
+    },
+    messages: {
+      error: '<iframe> elements must have a unique title property.',
     },
     schema: [schema],
   },
@@ -41,8 +42,8 @@ export default {
         }
 
         context.report({
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };

@@ -21,6 +21,9 @@ export default {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/autocomplete-valid.md',
       description: 'Enforce that autocomplete attributes are used correctly.',
     },
+    messages: {
+      error: '{{message}}',
+    },
     schema: [schema],
   },
 
@@ -54,8 +57,11 @@ export default {
         }
         // Since we only test one rule, with one node, return the message from first (and only) instance of each
         context.report({
+          data: {
+            message: violations[0].nodes[0].all[0].message,
+          },
+          messageId: 'error',
           node,
-          message: violations[0].nodes[0].all[0].message,
         });
       },
     };

@@ -14,8 +14,6 @@ import isInteractiveElement from '../util/isInteractiveElement';
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-const errorMessage = 'An element that manages focus with `aria-activedescendant` must have a tabindex';
-
 const schema = generateObjSchema();
 
 export default {
@@ -23,6 +21,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-activedescendant-has-tabindex.md',
       description: 'Enforce elements with aria-activedescendant are tabbable.',
+    },
+    messages: {
+      error: 'An element that manages focus with `aria-activedescendant` must have a tabindex',
     },
     schema: [schema],
   },
@@ -60,8 +61,8 @@ export default {
         }
 
         context.report({
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };

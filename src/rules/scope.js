@@ -12,8 +12,6 @@ import { propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 
-const errorMessage = 'The scope prop can only be used on <th> elements.';
-
 const schema = generateObjSchema();
 
 export default {
@@ -21,6 +19,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/scope.md',
       description: 'Enforce `scope` prop is only used on `<th>` elements.',
+    },
+    messages: {
+      error: 'The scope prop can only be used on <th> elements.',
     },
     schema: [schema],
   },
@@ -47,8 +48,8 @@ export default {
         }
 
         context.report({
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };
