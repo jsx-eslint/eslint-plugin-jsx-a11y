@@ -29,27 +29,10 @@ const errorMessage = (name) => {
     values: permittedValues,
   } = aria.get(name.toLowerCase());
 
-  switch (type) {
-    case 'tristate':
-      return { message: `The value for ${name} must be a boolean or the string "mixed".` };
-    case 'token':
-      return { message: `The value for ${name} must be a single token from the following: ${permittedValues}.` };
-    case 'tokenlist':
-      return {
-        message: `The value for ${name} must be a list of one or more \
-tokens from the following: ${permittedValues}.`,
-      };
-    case 'idlist':
-      return { message: `The value for ${name} must be a list of strings that represent DOM element IDs (idlist)` };
-    case 'id':
-      return { message: `The value for ${name} must be a string that represents a DOM element ID` };
-    case 'boolean':
-    case 'string':
-    case 'integer':
-    case 'number':
-    default:
-      return { message: `The value for ${name} must be a ${type}.` };
-  }
+  return {
+    messageId: type,
+    data: { name, permittedValues, type },
+  };
 };
 
 test('validityCheck', (t) => {

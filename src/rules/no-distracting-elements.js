@@ -10,10 +10,6 @@
 import { generateObjSchema, enumArraySchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 
-const errorMessage = (element) => (
-  `Do not use <${element}> elements as they can create visual accessibility issues and are deprecated.`
-);
-
 const DEFAULT_ELEMENTS = [
   'marquee',
   'blink',
@@ -29,6 +25,9 @@ export default {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-distracting-elements.md',
       description: 'Enforce distracting elements are not used.',
     },
+    messages: {
+      error: 'Do not use <{{element}}> elements as they can create visual accessibility issues and are deprecated.',
+    },
     schema: [schema],
   },
 
@@ -43,8 +42,11 @@ export default {
 
         if (distractingElement) {
           context.report({
+            data: {
+              element: distractingElement,
+            },
+            messageId: 'error',
             node,
-            message: errorMessage(distractingElement),
           });
         }
       },

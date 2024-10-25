@@ -19,8 +19,6 @@ const REDUNDANT_WORDS = [
   'picture',
 ];
 
-const errorMessage = 'Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop.';
-
 const schema = generateObjSchema({
   components: arraySchema,
   words: arraySchema,
@@ -42,6 +40,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/img-redundant-alt.md',
       description: 'Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".',
+    },
+    messages: {
+      error: 'Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop.',
     },
     schema: [schema],
   },
@@ -79,8 +80,8 @@ export default {
 
           if (hasRedundancy === true) {
             context.report({
+              messageId: 'error',
               node,
-              message: errorMessage,
             });
           }
         }

@@ -16,11 +16,6 @@ import { propName } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 
-const errorMessage = (invalidProp) => (
-  `This element does not support ARIA roles, states and properties. \
-Try removing the prop '${invalidProp}'.`
-);
-
 const schema = generateObjSchema();
 
 export default {
@@ -28,6 +23,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-unsupported-elements.md',
       description: 'Enforce that elements that do not support ARIA roles, states, and properties do not have those attributes.',
+    },
+    messages: {
+      error: "This element does not support ARIA roles, states and properties. Try removing the prop '{{invalidProp}}'.",
     },
     schema: [schema],
   },
@@ -58,8 +56,11 @@ export default {
 
           if (invalidAttributes.has(name)) {
             context.report({
+              data: {
+                invalidProp: name,
+              },
+              messageId: 'error',
               node,
-              message: errorMessage(name),
             });
           }
         });

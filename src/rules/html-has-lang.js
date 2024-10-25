@@ -11,8 +11,6 @@ import { getProp, getPropValue } from 'jsx-ast-utils';
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 
-const errorMessage = '<html> elements must have the lang prop.';
-
 const schema = generateObjSchema();
 
 export default {
@@ -20,6 +18,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/html-has-lang.md',
       description: 'Enforce `<html>` element has `lang` prop.',
+    },
+    messages: {
+      error: '<html> elements must have the lang prop.',
     },
     schema: [schema],
   },
@@ -41,8 +42,8 @@ export default {
         }
 
         context.report({
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };

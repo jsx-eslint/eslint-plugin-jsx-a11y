@@ -18,10 +18,8 @@ import rule from '../../../src/rules/click-events-have-key-events';
 
 const ruleTester = new RuleTester();
 
-const errorMessage = 'Visible, non-interactive elements with click handlers must have at least one keyboard listener.';
-
 const expectedError = {
-  message: errorMessage,
+  messageId: 'error',
   type: 'JSXOpeningElement',
 };
 

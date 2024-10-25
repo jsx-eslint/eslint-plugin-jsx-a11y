@@ -20,7 +20,7 @@ import rule from '../../../src/rules/aria-role';
 const ruleTester = new RuleTester();
 
 const errorMessage = {
-  message: 'Elements with ARIA roles must use a valid, non-abstract ARIA role.',
+  messageId: 'error',
   type: 'JSXAttribute',
 };
 

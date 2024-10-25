@@ -19,7 +19,7 @@ import rule from '../../../src/rules/no-autofocus';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'The autoFocus prop should not be used, as it can reduce usability and accessibility for users.',
+  messageId: 'error',
   type: 'JSXAttribute',
 };
 

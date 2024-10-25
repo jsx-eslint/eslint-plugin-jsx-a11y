@@ -19,7 +19,7 @@ import rule from '../../../src/rules/scope';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'The scope prop can only be used on <th> elements.',
+  messageId: 'error',
   type: 'JSXAttribute',
 };
 

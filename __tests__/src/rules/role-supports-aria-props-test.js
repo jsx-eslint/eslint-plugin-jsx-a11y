@@ -23,16 +23,9 @@ import rule from '../../../src/rules/role-supports-aria-props';
 
 const ruleTester = new RuleTester();
 
-const generateErrorMessage = (attr, role, tag, isImplicit) => {
-  if (isImplicit) {
-    return `The attribute ${attr} is not supported by the role ${role}. This role is implicit on the element ${tag}.`;
-  }
-
-  return `The attribute ${attr} is not supported by the role ${role}.`;
-};
-
 const errorMessage = (attr, role, tag, isImplicit) => ({
-  message: generateErrorMessage(attr, role, tag, isImplicit),
+  messageId: isImplicit ? 'implicit' : 'explicit',
+  data: { attr, role, tag },
   type: 'JSXOpeningElement',
 });
 

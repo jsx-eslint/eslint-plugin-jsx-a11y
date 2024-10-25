@@ -12,8 +12,6 @@ import { dom } from 'aria-query';
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 
-const errorMessage = 'The autoFocus prop should not be used, as it can reduce usability and accessibility for users.';
-
 const schema = generateObjSchema({
   ignoreNonDOM: {
     type: 'boolean',
@@ -26,6 +24,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-autofocus.md',
       description: 'Enforce autoFocus prop is not used.',
+    },
+    messages: {
+      error: 'The autoFocus prop should not be used, as it can reduce usability and accessibility for users.',
     },
     schema: [schema],
   },
@@ -49,8 +50,8 @@ export default {
         // Don't normalize, since React only recognizes autoFocus on low-level DOM elements.
         if (propName(attribute) === 'autoFocus') {
           context.report({
+            messageId: 'error',
             node: attribute,
-            message: errorMessage,
           });
         }
       },

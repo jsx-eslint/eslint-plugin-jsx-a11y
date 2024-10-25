@@ -23,18 +23,22 @@ const ariaAttributes = [...aria.keys()];
 
 const errorMessage = (name) => {
   const suggestions = getSuggestion(name, ariaAttributes);
-  const message = `${name}: This attribute is an invalid ARIA attribute.`;
 
   if (suggestions.length > 0) {
     return {
       type: 'JSXAttribute',
-      message: `${message} Did you mean to use ${suggestions}?`,
+      messageId: 'error-with-suggestions',
+      data: {
+        name,
+        suggestions,
+      },
     };
   }
 
   return {
     type: 'JSXAttribute',
-    message,
+    messageId: 'error',
+    data: { name },
   };
 };
 

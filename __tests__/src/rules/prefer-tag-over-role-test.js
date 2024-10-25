@@ -6,7 +6,8 @@ import rule from '../../../src/rules/prefer-tag-over-role';
 const ruleTester = new RuleTester();
 
 const expectedError = (role, tag) => ({
-  message: `Use ${tag} instead of the "${role}" role to ensure accessibility across all devices.`,
+  messageId: 'error',
+  data: { tag, role },
   type: 'JSXOpeningElement',
 });
 

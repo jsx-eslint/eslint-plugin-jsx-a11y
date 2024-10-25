@@ -12,8 +12,6 @@ import getElementType from '../util/getElementType';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 import isHiddenFromScreenReader from '../util/isHiddenFromScreenReader';
 
-const errorMessage = 'Headings must have content and the content must be accessible by a screen reader.';
-
 const headings = [
   'h1',
   'h2',
@@ -30,6 +28,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/heading-has-content.md',
       description: 'Enforce heading (`h1`, `h2`, etc) elements contain accessible content.',
+    },
+    messages: {
+      error: 'Headings must have content and the content must be accessible by a screen reader.',
     },
     schema: [schema],
   },
@@ -55,8 +56,8 @@ export default {
         }
 
         context.report({
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };

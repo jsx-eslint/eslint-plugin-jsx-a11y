@@ -19,7 +19,7 @@ import rule from '../../../src/rules/iframe-has-title';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: '<iframe> elements must have a unique title property.',
+  messageId: 'error',
   type: 'JSXOpeningElement',
 };
 

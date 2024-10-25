@@ -13,8 +13,6 @@ import getElementType from '../util/getElementType';
 import { arraySchema, generateObjSchema } from '../util/schemas';
 import hasAccessibleChild from '../util/hasAccessibleChild';
 
-const errorMessage = 'Anchors must have content and the content must be accessible by a screen reader.';
-
 const schema = generateObjSchema({ components: arraySchema });
 
 export default {
@@ -22,6 +20,9 @@ export default {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-has-content.md',
       description: 'Enforce all anchors to contain accessible content.',
+    },
+    messages: {
+      error: 'Anchors must have content and the content must be accessible by a screen reader.',
     },
     schema: [schema],
   },
@@ -47,8 +48,8 @@ export default {
         }
 
         context.report({
+          messageId: 'error',
           node,
-          message: errorMessage,
         });
       },
     };
