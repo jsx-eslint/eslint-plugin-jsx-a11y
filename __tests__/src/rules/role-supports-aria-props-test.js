@@ -362,14 +362,23 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<input type="range" aria-owns />' },
     { code: '<input type="range" aria-relevant />' },
     { code: '<input type="range" aria-valuetext />' },
+    // when `type="number"`, the implicit role is `spinbutton`
+    { code: '<input type="number" aria-valuemax={12} />' },
+    { code: '<input type="number" aria-valuemin={0} />' },
 
     // these will have role of `textbox`,
     { code: '<input type="email" aria-disabled />' },
     { code: '<input type="password" aria-disabled />' },
-    { code: '<input type="search" aria-disabled />' },
     { code: '<input type="tel" aria-disabled />' },
     { code: '<input type="url" aria-disabled />' },
     { code: '<input aria-disabled />' },
+
+    // when `type="search"`, the implicit role is `searchbox`
+    { code: '<input type="search" aria-disabled />' },
+
+    // when list attribute is present, the implicit role is `combobox`
+    { code: '<input type="search" list="example" aria-expanded />' },
+    { code: '<input type="email" list="example" aria-expanded />' },
 
     // Allow null/undefined values regardless of role
     { code: '<h2 role="presentation" aria-level={null} />' },
@@ -528,6 +537,14 @@ ruleTester.run('role-supports-aria-props', rule, {
     {
       code: '<input type="button" aria-invalid />',
       errors: [errorMessage('aria-invalid', 'button', 'input', true)],
+    },
+    {
+      code: '<input type="number" aria-autocomplete />',
+      errors: [errorMessage('aria-autocomplete', 'spinbutton', 'input', true)],
+    },
+    {
+      code: '<input type="search" aria-expanded />',
+      errors: [errorMessage('aria-expanded', 'searchbox', 'input', true)],
     },
     {
       code: '<menuitem type="command" aria-invalid />',
