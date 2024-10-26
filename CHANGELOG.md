@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v6.10.2](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.10.1...v6.10.2) - 2024-10-25
+
+### Fixed
+
+- [patch] `no-redundandant-roles`: allow `&lt;img src="*.svg" role="img" /&gt;` [`#936`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/936)
+
+### Commits
+
+- [meta] fix changelog URLs [`0d01a1a`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0d01a1aff796802bca70183b24978ffebdbef073)
+- [Refactor] remove no-longer-needed `es-iterator-helpers` [`aa075bd`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/aa075bd1897e0b0bb61683e4da68558f38511dae)
+- [Refactor] avoid spreading things that are already arrays [`d15d3ab`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/d15d3abace7afe833d0988eaf3fb7cc166c05c06)
+- [Dev Deps] update `@babel/cli`, `@babel/core`, `@babel/eslint-parser`, `@babel/plugin-transform-flow-strip-types`, `@babel/register` [`5dad7c4`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/5dad7c4fdfdc56c6e488fab54f25f602430dad30)
+- [Tests] `aria-role`: Add valid test for `&lt;svg role="img" /&gt;` [`daba189`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/daba18974473bce1301ffaafb822558a9e1738ae)
+- [Docs] `label-has-associated-control`: add line breaks for readability [`0bc6378`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/0bc63781c8f284ac6bef00321763c13c5bea6b9f)
+- [Tests] `label-has-associated-control`: add additional test cases [`30d2318`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/30d23189d0b6354750c31a622204a9dc412dc2c1)
+- [Tests] Add tests to reinforce required attributes for role="heading" [`d92446c`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/commit/d92446c6e608617a4c75173e8b0917c06be14dc6)
+
 ## [v6.10.1](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/compare/v6.10.0...v6.10.1) - 2024-10-20
 
 ### Commits
