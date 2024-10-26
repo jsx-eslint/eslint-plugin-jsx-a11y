@@ -41,11 +41,11 @@
     "postversion": "auto-changelog && git add CHANGELOG.md && git commit --no-edit --amend && git tag -f \"v$(node -e \"console.log(require('./package.json').version)\")\""
   },
   "devDependencies": {
-    "@babel/cli": "^7.25.7",
-    "@babel/core": "^7.25.8",
-    "@babel/eslint-parser": "^7.25.8",
-    "@babel/plugin-transform-flow-strip-types": "^7.25.7",
-    "@babel/register": "^7.25.7",
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/eslint-parser": "^7.25.9",
+    "@babel/plugin-transform-flow-strip-types": "^7.25.9",
+    "@babel/register": "^7.25.9",
     "auto-changelog": "^2.5.0",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-preset-airbnb": "^5.0.0",
