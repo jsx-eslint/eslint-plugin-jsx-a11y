@@ -16,7 +16,7 @@ This rule takes no arguments.
 <div onClick={() => {}} onKeyUp={this.handleKeyUp} />
 <div onClick={() => {}} onKeyPress={this.handleKeyPress} />
 <button onClick={() => {}} />
-<div onClick{() => {}} aria-hidden="true" />
+<div onClick={() => {}} aria-hidden="true" />
 ```
 
 ### Fail
