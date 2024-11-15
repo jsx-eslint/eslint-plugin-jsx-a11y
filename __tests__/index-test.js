@@ -38,3 +38,12 @@ test('schemas', (t) => {
 
   t.end();
 });
+
+test('plugin referentially equal to prevent flat config issues', (t) => {
+  const keys = Object.keys(plugin.flatConfigs);
+  for (let i = 0; i < keys.length; i += 1) {
+    const config = plugin.flatConfigs[keys[i]];
+    t.equal(plugin, config.plugins['jsx-a11y'], `${config.name}'s plugin reference is referentially equal to the top-level export`);
+  }
+  t.end();
+});

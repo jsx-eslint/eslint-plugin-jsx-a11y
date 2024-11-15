@@ -317,4 +317,4 @@ const flatConfigs = {
   strict: createConfig(strictRules, 'strict'),
 };
 
-module.exports = { ...jsxA11y, configs, flatConfigs };
+module.exports = Object.assign(jsxA11y, { configs, flatConfigs });
