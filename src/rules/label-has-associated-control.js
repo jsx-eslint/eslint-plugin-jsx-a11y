@@ -83,6 +83,7 @@ export default ({
         'progress',
         'select',
         'textarea',
+        'button',
       ].concat((options.controlComponents || []));
       // Prevent crazy recursion.
       const recursionDepth = Math.min(
