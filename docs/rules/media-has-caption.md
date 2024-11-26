@@ -40,8 +40,8 @@ For the `audio`, `video`, and `track` options, these strings determine which JSX
 ```
 
 ## Accessibility guidelines
-- [WCAG 1.2.2](https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html)
-- [WCAG 1.2.3](https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded.html)
+- [WCAG 1.2.2](https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded)
+- [WCAG 1.2.3](https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded)
 
 ### Resources
 - [axe-core, audio-caption](https://dequeuniversity.com/rules/axe/2.1/audio-caption)
