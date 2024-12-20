@@ -28,7 +28,7 @@ The simplest way to achieve an association between a label and an input is to wr
 
 All modern browsers and assistive technology will associate the label with the control.
 
-### Case: The label is a sibling of the control.
+### Case: The label is a sibling of the control
 
 In this case, use `htmlFor` and an ID to associate the controls.
 
@@ -37,7 +37,7 @@ In this case, use `htmlFor` and an ID to associate the controls.
 <input type="text" id={domId} />
 ```
 
-### Case: My label and input components are custom components.
+### Case: My label and input components are custom components
 
 You can configure the rule to be aware of your custom components.
 
@@ -49,14 +49,14 @@ You can configure the rule to be aware of your custom components.
 
 And the configuration:
 
-```json
+```js
 {
-  "rules": {
-    "jsx-a11y/label-has-associated-control": [ 2, {
-      "labelComponents": ["CustomInputLabel"],
-      "labelAttributes": ["label"],
-      "controlComponents": ["CustomInput"],
-      "depth": 3,
+  rules: {
+    'jsx-a11y/label-has-associated-control': [ 2, {
+      labelComponents: ['CustomInputLabel'],
+      labelAttributes: ['label'],
+      controlComponents: ['CustomInput'],
+      depth: 3,
     }],
   }
 }
@@ -89,15 +89,16 @@ To restate, **every ID needs to be deterministic**, on the server and the client
 
 This rule takes one optional object argument of type object:
 
-```json
+```js
 {
-  "rules": {
-    "jsx-a11y/label-has-associated-control": [ 2, {
-      "labelComponents": ["CustomLabel"],
-      "labelAttributes": ["inputLabel"],
-      "controlComponents": ["CustomInput"],
-      "assert": "both",
-      "depth": 3,
+  rules: {
+    'jsx-a11y/label-has-associated-control': [ 2, {
+      labelComponents: ['CustomLabel'],
+      labelAttributes: ['inputLabel'],
+      controlComponents: ['CustomInput'],
+      assert: 'both',
+      depth: 3,
+      shouldHtmlForMatchId: true,
     }],
   }
 }
@@ -113,7 +114,10 @@ This rule takes one optional object argument of type object:
 
 `depth` (default 2, max 25) is an integer that determines how deep within a `JSXElement` label the rule should look for text content or an element with a label to determine if the `label` element will have an accessible label.
 
+`shouldHtmlForMatchId` (default `false`) is a boolean dictating whether the `htmlFor` attribute on a label element should be validated as matching the `id` attributed on an associated control (nested or sibling as described in the cases above).
+
 ### Fail
+
 ```jsx
 function Foo(props) {
   return <label {...props} />
@@ -121,6 +125,7 @@ function Foo(props) {
 ```
 
 ### Succeed
+
 ```jsx
 function Foo(props) {
     const {
@@ -133,12 +138,14 @@ function Foo(props) {
 ```
 
 ### Fail
+
 ```jsx
 <input type="text" />
 <label>Surname</label>
 ```
 
 ### Succeed
+
 ```jsx
 <label>
   <input type="text" />
@@ -147,6 +154,7 @@ function Foo(props) {
 ```
 
 ## Accessibility guidelines
+
 - [WCAG 1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships)
 - [WCAG 3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions)
 - [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
