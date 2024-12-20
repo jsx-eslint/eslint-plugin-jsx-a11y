@@ -21,15 +21,20 @@ const ruleTester = new RuleTester();
 
 const ruleName = 'label-has-associated-control';
 
-const expectedError = {
-  message: 'A form label must be associated with a control.',
-  type: 'JSXOpeningElement',
+const errorMessages = {
+  accessibleLabel: 'A form label must have accessible text.',
+  htmlFor: 'A form label must have a valid htmlFor attribute.',
+  nesting: 'A form label must have an associated control as a descendant.',
+  either: 'A form label must either have a valid htmlFor attribute or a control as a descendant.',
+  both: 'A form label must have a valid htmlFor attribute and a control as a descendant.',
 };
-
-const expectedErrorNoLabel = {
-  message: 'A form label must have accessible text.',
-  type: 'JSXOpeningElement',
-};
+const expectedErrors = {};
+Object.keys(errorMessages).forEach((key) => {
+  expectedErrors[key] = {
+    message: errorMessages[key],
+    type: 'JSXOpeningElement',
+  };
+});
 
 const componentsSettings = {
   'jsx-a11y': {
@@ -123,59 +128,68 @@ const alwaysValid = [
   { code: '<input type="hidden" />' },
 ];
 
-const htmlForInvalid = [
-  { code: '<label htmlFor="js_id"><span><span><span>A label</span></span></span></label>', options: [{ depth: 4 }], errors: [expectedError] },
-  { code: '<label htmlFor="js_id" aria-label="A label" />', errors: [expectedError] },
-  { code: '<label htmlFor="js_id" aria-labelledby="A label" />', errors: [expectedError] },
-  // Custom label component.
-  { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }], errors: [expectedError] },
-  { code: '<CustomLabel htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
-  { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', settings: componentsSettings, errors: [expectedError] },
-  // Custom label attributes.
-  { code: '<label htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'] }], errors: [expectedError] },
-];
-const nestingInvalid = [
-  { code: '<label>A label<input /></label>', errors: [expectedError] },
-  { code: '<label>A label<textarea /></label>', errors: [expectedError] },
-  { code: '<label><img alt="A label" /><input /></label>', errors: [expectedError] },
-  { code: '<label><img aria-label="A label" /><input /></label>', errors: [expectedError] },
-  { code: '<label><span>A label<input /></span></label>', errors: [expectedError] },
-  { code: '<label><span><span>A label<input /></span></span></label>', options: [{ depth: 3 }], errors: [expectedError] },
-  { code: '<label><span><span><span>A label<input /></span></span></span></label>', options: [{ depth: 4 }], errors: [expectedError] },
-  { code: '<label><span><span><span><span>A label</span><input /></span></span></span></label>', options: [{ depth: 5 }], errors: [expectedError] },
-  { code: '<label><span><span><span><span aria-label="A label" /><input /></span></span></span></label>', options: [{ depth: 5 }], errors: [expectedError] },
-  { code: '<label><span><span><span><input aria-label="A label" /></span></span></span></label>', options: [{ depth: 5 }], errors: [expectedError] },
-  // Custom controlComponents.
-  { code: '<label>A label<OtherCustomInput /></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
-  { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
-  { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
-  { code: '<CustomLabel><span label="A label"><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedError] },
-  { code: '<label><span>A label<CustomInput /></span></label>', settings: componentsSettings, errors: [expectedError] },
-  { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedError] },
-];
+const htmlForInvalid = (assertType) => {
+  const expectedError = expectedErrors[assertType];
+  return [
+    { code: '<label htmlFor="js_id"><span><span><span>A label</span></span></span></label>', options: [{ depth: 4 }], errors: [expectedError] },
+    { code: '<label htmlFor="js_id" aria-label="A label" />', errors: [expectedError] },
+    { code: '<label htmlFor="js_id" aria-labelledby="A label" />', errors: [expectedError] },
+    // Custom label component.
+    { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }], errors: [expectedError] },
+    { code: '<CustomLabel htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
+    { code: '<CustomLabel htmlFor="js_id" aria-label="A label" />', settings: componentsSettings, errors: [expectedError] },
+    // Custom label attributes.
+    { code: '<label htmlFor="js_id" label="A label" />', options: [{ labelAttributes: ['label'] }], errors: [expectedError] },
+  ];
+};
+const nestingInvalid = (assertType) => {
+  const expectedError = expectedErrors[assertType];
+  return [
+    { code: '<label>A label<input /></label>', errors: [expectedError] },
+    { code: '<label>A label<textarea /></label>', errors: [expectedError] },
+    { code: '<label><img alt="A label" /><input /></label>', errors: [expectedError] },
+    { code: '<label><img aria-label="A label" /><input /></label>', errors: [expectedError] },
+    { code: '<label><span>A label<input /></span></label>', errors: [expectedError] },
+    { code: '<label><span><span>A label<input /></span></span></label>', options: [{ depth: 3 }], errors: [expectedError] },
+    { code: '<label><span><span><span>A label<input /></span></span></span></label>', options: [{ depth: 4 }], errors: [expectedError] },
+    { code: '<label><span><span><span><span>A label</span><input /></span></span></span></label>', options: [{ depth: 5 }], errors: [expectedError] },
+    { code: '<label><span><span><span><span aria-label="A label" /><input /></span></span></span></label>', options: [{ depth: 5 }], errors: [expectedError] },
+    { code: '<label><span><span><span><input aria-label="A label" /></span></span></span></label>', options: [{ depth: 5 }], errors: [expectedError] },
+    // Custom controlComponents.
+    { code: '<label>A label<OtherCustomInput /></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
+    { code: '<label><span>A label<CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedError] },
+    { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
+    { code: '<CustomLabel><span label="A label"><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedError] },
+    { code: '<label><span>A label<CustomInput /></span></label>', settings: componentsSettings, errors: [expectedError] },
+    { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedError] },
+  ];
+};
 
-const neverValid = [
-  { code: '<label htmlFor="js_id" />', errors: [expectedErrorNoLabel] },
-  { code: '<label htmlFor="js_id"><input /></label>', errors: [expectedErrorNoLabel] },
-  { code: '<label htmlFor="js_id"><textarea /></label>', errors: [expectedErrorNoLabel] },
-  { code: '<label></label>', errors: [expectedErrorNoLabel] },
-  { code: '<label>A label</label>', errors: [expectedError] },
-  { code: '<div><label /><input /></div>', errors: [expectedErrorNoLabel] },
-  { code: '<div><label>A label</label><input /></div>', errors: [expectedError] },
-  // Custom label component.
-  { code: '<CustomLabel aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }], errors: [expectedError] },
-  { code: '<MUILabel aria-label="A label" />', options: [{ labelComponents: ['???Label'] }], errors: [expectedError] },
-  { code: '<CustomLabel label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
-  { code: '<CustomLabel aria-label="A label" />', settings: componentsSettings, errors: [expectedError] },
-  // Custom label attributes.
-  { code: '<label label="A label" />', options: [{ labelAttributes: ['label'] }], errors: [expectedError] },
-  // Custom controlComponents.
-  { code: '<label><span><CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedErrorNoLabel] },
-  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedErrorNoLabel] },
-  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedErrorNoLabel] },
-  { code: '<label><span><CustomInput /></span></label>', settings: componentsSettings, errors: [expectedErrorNoLabel] },
-  { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedErrorNoLabel] },
-];
+const neverValid = (assertType) => {
+  const expectedError = expectedErrors[assertType];
+  return [
+    { code: '<label htmlFor="js_id" />', errors: [expectedErrors.accessibleLabel] },
+    { code: '<label htmlFor="js_id"><input /></label>', errors: [expectedErrors.accessibleLabel] },
+    { code: '<label htmlFor="js_id"><textarea /></label>', errors: [expectedErrors.accessibleLabel] },
+    { code: '<label></label>', errors: [expectedErrors.accessibleLabel] },
+    { code: '<label>A label</label>', errors: [expectedError] },
+    { code: '<div><label /><input /></div>', errors: [expectedErrors.accessibleLabel] },
+    { code: '<div><label>A label</label><input /></div>', errors: [expectedError] },
+    // Custom label component.
+    { code: '<CustomLabel aria-label="A label" />', options: [{ labelComponents: ['CustomLabel'] }], errors: [expectedError] },
+    { code: '<MUILabel aria-label="A label" />', options: [{ labelComponents: ['???Label'] }], errors: [expectedError] },
+    { code: '<CustomLabel label="A label" />', options: [{ labelAttributes: ['label'], labelComponents: ['CustomLabel'] }], errors: [expectedError] },
+    { code: '<CustomLabel aria-label="A label" />', settings: componentsSettings, errors: [expectedError] },
+    // Custom label attributes.
+    { code: '<label label="A label" />', options: [{ labelAttributes: ['label'] }], errors: [expectedError] },
+    // Custom controlComponents.
+    { code: '<label><span><CustomInput /></span></label>', options: [{ controlComponents: ['CustomInput'] }], errors: [expectedErrors.accessibleLabel] },
+    { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'] }], errors: [expectedErrors.accessibleLabel] },
+    { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', options: [{ controlComponents: ['CustomInput'], labelComponents: ['CustomLabel'], labelAttributes: ['label'] }], errors: [expectedErrors.accessibleLabel] },
+    { code: '<label><span><CustomInput /></span></label>', settings: componentsSettings, errors: [expectedErrors.accessibleLabel] },
+    { code: '<CustomLabel><span><CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedErrors.accessibleLabel] },
+  ];
+};
 // htmlFor valid
 ruleTester.run(ruleName, rule, {
   valid: parsers.all([].concat(
@@ -187,8 +201,8 @@ ruleTester.run(ruleName, rule, {
     }))
     .map(parserOptionsMapper),
   invalid: parsers.all([].concat(
-    ...neverValid,
-    ...nestingInvalid,
+    ...neverValid('htmlFor'),
+    ...nestingInvalid('htmlFor'),
   ))
     .map(ruleOptionsMapperFactory({
       assert: 'htmlFor',
@@ -207,8 +221,8 @@ ruleTester.run(ruleName, rule, {
     }))
     .map(parserOptionsMapper),
   invalid: parsers.all([].concat(
-    ...neverValid,
-    ...htmlForInvalid,
+    ...neverValid('nesting'),
+    ...htmlForInvalid('nesting'),
   ))
     .map(ruleOptionsMapperFactory({
       assert: 'nesting',
@@ -228,8 +242,10 @@ ruleTester.run(ruleName, rule, {
     }))
     .map(parserOptionsMapper),
   invalid: parsers.all([].concat(
-    ...neverValid,
-  )).map(parserOptionsMapper),
+    ...neverValid('either'),
+  )).map(ruleOptionsMapperFactory({
+    assert: 'either',
+  })).map(parserOptionsMapper),
 });
 
 // both valid
@@ -243,6 +259,10 @@ ruleTester.run(ruleName, rule, {
     }))
     .map(parserOptionsMapper),
   invalid: parsers.all([].concat(
-    ...neverValid,
-  )).map(parserOptionsMapper),
+    ...neverValid('both'),
+    ...htmlForInvalid('both'),
+    ...nestingInvalid('both'),
+  )).map(ruleOptionsMapperFactory({
+    assert: 'both',
+  })).map(parserOptionsMapper),
 });

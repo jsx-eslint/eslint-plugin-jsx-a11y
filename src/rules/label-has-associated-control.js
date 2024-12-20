@@ -18,8 +18,13 @@ import getElementType from '../util/getElementType';
 import mayContainChildComponent from '../util/mayContainChildComponent';
 import mayHaveAccessibleLabel from '../util/mayHaveAccessibleLabel';
 
-const errorMessage = 'A form label must be associated with a control.';
-const errorMessageNoLabel = 'A form label must have accessible text.';
+const errorMessages = {
+  accessibleLabel: 'A form label must have accessible text.',
+  htmlFor: 'A form label must have a valid htmlFor attribute.',
+  nesting: 'A form label must have an associated control as a descendant.',
+  either: 'A form label must either have a valid htmlFor attribute or a control as a descendant.',
+  both: 'A form label must have a valid htmlFor attribute and a control as a descendant.',
+};
 
 const schema = generateObjSchema({
   labelComponents: arraySchema,
@@ -37,7 +42,7 @@ const schema = generateObjSchema({
   },
 });
 
-function validateID(node, context) {
+const validateHtmlFor = (node, context) => {
   const { settings } = context;
   const htmlForAttributes = settings['jsx-a11y']?.attributes?.for ?? ['htmlFor'];
 
@@ -52,7 +57,7 @@ function validateID(node, context) {
   }
 
   return false;
-}
+};
 
 export default ({
   meta: {
@@ -76,20 +81,21 @@ export default ({
         return;
       }
 
-      const controlComponents = [
+      const controlComponents = [].concat(
         'input',
         'meter',
         'output',
         'progress',
         'select',
         'textarea',
-      ].concat((options.controlComponents || []));
+        options.controlComponents || [],
+      );
       // Prevent crazy recursion.
       const recursionDepth = Math.min(
         options.depth === undefined ? 2 : options.depth,
         25,
       );
-      const hasLabelId = validateID(node.openingElement, context);
+      const hasHtmlFor = validateHtmlFor(node.openingElement, context);
       // Check for multiple control components.
       const hasNestedControl = controlComponents.some((name) => mayContainChildComponent(
         node,
@@ -105,44 +111,50 @@ export default ({
         controlComponents,
       );
 
+      // Bail out immediately if we don't have an accessible label.
       if (!hasAccessibleLabel) {
         context.report({
           node: node.openingElement,
-          message: errorMessageNoLabel,
+          message: errorMessages.accessibleLabel,
         });
         return;
       }
-
       switch (assertType) {
         case 'htmlFor':
-          if (hasLabelId) {
-            return;
+          if (!hasHtmlFor) {
+            context.report({
+              node: node.openingElement,
+              message: errorMessages.htmlFor,
+            });
           }
           break;
         case 'nesting':
-          if (hasNestedControl) {
-            return;
+          if (!hasNestedControl) {
+            context.report({
+              node: node.openingElement,
+              message: errorMessages.nesting,
+            });
           }
           break;
         case 'both':
-          if (hasLabelId && hasNestedControl) {
-            return;
+          if (!hasHtmlFor || !hasNestedControl) {
+            context.report({
+              node: node.openingElement,
+              message: errorMessages.both,
+            });
           }
           break;
         case 'either':
-          if (hasLabelId || hasNestedControl) {
-            return;
+          if (!hasHtmlFor && !hasNestedControl) {
+            context.report({
+              node: node.openingElement,
+              message: errorMessages.either,
+            });
           }
           break;
         default:
           break;
       }
-
-      // htmlFor case
-      context.report({
-        node: node.openingElement,
-        message: errorMessage,
-      });
     };
 
     // Create visitor selectors.
