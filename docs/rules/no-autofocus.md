@@ -4,7 +4,7 @@
 
 <!-- end auto-generated rule header -->
 
-Enforce that autoFocus prop is not used on elements. Autofocusing elements can cause usability issues for sighted and non-sighted users, alike.
+Enforce that `autoFocus` prop is either not set at all on elements or is only set to `false`. Auto-focusing elements can cause usability issues for sighted and non-sighted users, alike.
 
 ## Rule options
 
@@ -25,13 +25,13 @@ For the `ignoreNonDOM` option, this determines if developer created components a
 ### Succeed
 ```jsx
 <div />
+<div autoFocus="false" />
 ```
 
 ### Fail
 ```jsx
 <div autoFocus />
 <div autoFocus="true" />
-<div autoFocus="false" />
 <div autoFocus={undefined} />
 ```
 

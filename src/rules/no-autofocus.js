@@ -7,12 +7,12 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import { propName } from 'jsx-ast-utils';
+import { propName, getPropValue } from 'jsx-ast-utils';
 import { dom } from 'aria-query';
 import { generateObjSchema } from '../util/schemas';
 import getElementType from '../util/getElementType';
 
-const errorMessage = 'The autoFocus prop should not be used, as it can reduce usability and accessibility for users.';
+const errorMessage = 'The autoFocus prop should not be enabled, as it can reduce usability and accessibility for users.';
 
 const schema = generateObjSchema({
   ignoreNonDOM: {
@@ -25,7 +25,7 @@ export default {
   meta: {
     docs: {
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-autofocus.md',
-      description: 'Enforce autoFocus prop is not used.',
+      description: 'Enforce autoFocus prop is not enabled.',
     },
     schema: [schema],
   },
@@ -46,8 +46,8 @@ export default {
           }
         }
 
-        // Don't normalize, since React only recognizes autoFocus on low-level DOM elements.
-        if (propName(attribute) === 'autoFocus') {
+        // Fail if autoFocus is used and the value is anything other than false (either via an expression or string literal).
+        if (propName(attribute) === 'autoFocus' && getPropValue(attribute) !== false && getPropValue(attribute) !== 'false') {
           context.report({
             node: attribute,
             message: errorMessage,

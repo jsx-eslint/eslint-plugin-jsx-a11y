@@ -19,7 +19,7 @@ import rule from '../../../src/rules/no-autofocus';
 const ruleTester = new RuleTester();
 
 const expectedError = {
-  message: 'The autoFocus prop should not be used, as it can reduce usability and accessibility for users.',
+  message: 'The autoFocus prop should not be enabled, as it can reduce usability and accessibility for users.',
   type: 'JSXAttribute',
 };
 
@@ -43,6 +43,8 @@ ruleTester.run('no-autofocus', rule, {
     { code: '<div autofocus />;' },
     { code: '<input autofocus="true" />;' },
     { code: '<Foo bar />' },
+    { code: '<div autoFocus={false} />' },
+    { code: '<div autoFocus="false" />' },
     { code: '<Foo autoFocus />', options: ignoreNonDOMSchema },
     { code: '<div><div autofocus /></div>', options: ignoreNonDOMSchema },
     { code: '<Button />', settings: componentsSettings },
@@ -51,10 +53,8 @@ ruleTester.run('no-autofocus', rule, {
   invalid: parsers.all([].concat(
     { code: '<div autoFocus />', errors: [expectedError] },
     { code: '<div autoFocus={true} />', errors: [expectedError] },
-    { code: '<div autoFocus={false} />', errors: [expectedError] },
     { code: '<div autoFocus={undefined} />', errors: [expectedError] },
     { code: '<div autoFocus="true" />', errors: [expectedError] },
-    { code: '<div autoFocus="false" />', errors: [expectedError] },
     { code: '<input autoFocus />', errors: [expectedError] },
     { code: '<Foo autoFocus />', errors: [expectedError] },
     { code: '<Button autoFocus />', errors: [expectedError], settings: componentsSettings },
