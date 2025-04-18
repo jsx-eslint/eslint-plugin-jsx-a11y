@@ -7,7 +7,7 @@
 // Rule Definition
 // ----------------------------------------------------------------------------
 
-import emojiRegex from 'emoji-regex';
+import emojiRegex from 'emoji-regex-xs';
 import { getProp, getLiteralPropValue } from 'jsx-ast-utils';
 import safeRegexTest from 'safe-regex-test';
 import { generateObjSchema } from '../util/schemas';
