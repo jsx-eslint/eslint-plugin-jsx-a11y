@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 
 import { aria } from 'aria-query';
-import { RuleTester } from 'eslint';
+import RuleTester from '../../__util__/RuleTester';
 import test from 'tape';
 
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';

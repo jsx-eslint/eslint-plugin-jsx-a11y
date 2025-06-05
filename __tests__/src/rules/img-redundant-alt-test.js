@@ -7,7 +7,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import { RuleTester } from 'eslint';
+import RuleTester from '../../__util__/RuleTester';
 import semver from 'semver';
 import { version as eslintVersion } from 'eslint/package.json';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';

@@ -11,7 +11,7 @@ import {
   aria,
   roles,
 } from 'aria-query';
-import { RuleTester } from 'eslint';
+import RuleTester from '../../__util__/RuleTester';
 import { version as eslintVersion } from 'eslint/package.json';
 import semver from 'semver';
 

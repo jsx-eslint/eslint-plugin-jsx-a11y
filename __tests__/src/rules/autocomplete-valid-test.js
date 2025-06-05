@@ -7,7 +7,7 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import { RuleTester } from 'eslint';
+import RuleTester from '../../__util__/RuleTester';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import { axeFailMessage } from '../../__util__/axeMapping';
 import parsers from '../../__util__/helpers/parsers';

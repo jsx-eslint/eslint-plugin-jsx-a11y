@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 
 import includes from 'array-includes';
-import { RuleTester } from 'eslint';
+import RuleTester from '../../__util__/RuleTester';
 import {
   eventHandlers,
   eventHandlersByType,

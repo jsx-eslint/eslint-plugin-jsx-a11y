@@ -9,7 +9,7 @@
 // -----------------------------------------------------------------------------
 
 import { roles } from 'aria-query';
-import { RuleTester } from 'eslint';
+import RuleTester from '../../__util__/RuleTester';
 
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import parsers from '../../__util__/helpers/parsers';
