@@ -8,11 +8,11 @@
 // -----------------------------------------------------------------------------
 
 import includes from 'array-includes';
-import RuleTester from '../../__util__/RuleTester';
 import {
   eventHandlers,
   eventHandlersByType,
 } from 'jsx-ast-utils';
+import RuleTester from '../../__util__/RuleTester';
 import { configs } from '../../../src/index';
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import parsers from '../../__util__/helpers/parsers';
