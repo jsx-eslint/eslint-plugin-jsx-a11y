@@ -78,12 +78,12 @@ function checkIsInteractiveElement(tagName, attributes, options = {}): boolean {
   }
 
   function isInteractiveElementWithCustomOptions() {
-    const elementConfig = options[tagName];
+    const matchingConfig = options.attributes.find((config) => config.components && config.components.includes(tagName));
 
-    if (!elementConfig) return false;
+    if (!matchingConfig) return false;
 
-    return Object.keys(elementConfig.attributes).some((standardAttr) => {
-      const customAttrs = elementConfig.attributes[standardAttr];
+    return Object.keys(matchingConfig.attributes).some((standardAttr) => {
+      const customAttrs = matchingConfig.attributes[standardAttr];
 
       const validCustomAttr = customAttrs.find((customAttr) => {
         if (customAttr === standardAttr) return false;
@@ -109,7 +109,7 @@ function checkIsInteractiveElement(tagName, attributes, options = {}): boolean {
   }
 
   // Checks if there are custom options for this element
-  if (options && Object.keys(options).length > 0) {
+  if (options && options.attributes && options.attributes.length > 0) {
     return isInteractiveElementWithCustomOptions();
   }
 

@@ -29,18 +29,24 @@ const expectedError = {
 
 const ruleName = 'no-static-element-interactions';
 
-const customOptions = [{
-  a: {
-    attributes: {
-      href: ['to', 'href'],
-    },
+const customOptions = [
+  {
+    attributes: [
+      {
+        components: ['a', 'Link'],
+        attributes: {
+          href: ['to', 'href'],
+        },
+      },
+      {
+        components: ['button', 'Button'],
+        attributes: {
+          onClick: ['onClick', 'handleClick'],
+        },
+      },
+    ],
   },
-  button: {
-    attributes: {
-      onClick: ['onClick', 'handleClick'],
-    },
-  },
-}];
+];
 
 const componentsSettings = {
   'jsx-a11y': {
