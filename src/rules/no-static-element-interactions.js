@@ -59,6 +59,7 @@ export default ({
         const {
           allowExpressionValues,
           handlers = defaultInteractiveProps,
+          ...elementOptions
         } = (options[0] || {});
 
         const hasInteractiveProps = handlers
@@ -83,7 +84,7 @@ export default ({
           return;
         }
         if (
-          isInteractiveElement(type, attributes)
+          isInteractiveElement(type, attributes, elementOptions)
           || isInteractiveRole(type, attributes)
           || isNonInteractiveElement(type, attributes)
           || isNonInteractiveRole(type, attributes)
