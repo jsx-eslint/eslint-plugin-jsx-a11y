@@ -96,7 +96,7 @@ ruleTester.run('label-has-for', rule, {
     { code: '<label><input /></label>', options: optionsRequiredNesting },
     { code: '<label htmlFor="input"><input /></label>', options: optionsRequiredEvery },
     { code: '<label><input /></label>', options: optionsChildrenAllowed },
-    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [assign({}, optionsComponents, optionsChildrenAllowed)] },
+    { code: '<Descriptor htmlFor="foo">Test!</Descriptor>', options: [assign({}, optionsComponents[0], optionsChildrenAllowed[0])] },
     { code: '<label>Test!</label>', options: optionsChildrenAllowed },
     { code: '<label htmlFor="foo">Test!</label>', options: optionsChildrenAllowed },
     { code: '<label>{children}</label>', options: optionsChildrenAllowed },
