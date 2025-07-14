@@ -34,6 +34,9 @@ const schema = generateObjSchema({
     ...arraySchema,
     description: 'An array of HTML tag names',
   },
+  allowExpressionValues: {
+    type: 'boolean',
+  },
 });
 
 export default ({
