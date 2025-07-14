@@ -48,7 +48,16 @@ export default ({
       url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-noninteractive-element-interactions.md',
       description: 'Non-interactive elements should not be assigned mouse or keyboard event listeners.',
     },
-    schema: [schema],
+    schema: [{
+      ...schema,
+      additionalProperties: {
+        type: 'array',
+        items: {
+          type: 'string',
+        },
+        uniqueItems: true,
+      },
+    }],
   },
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
