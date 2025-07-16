@@ -79,23 +79,11 @@ You may configure which handler props should be taken into account when applying
       'onKeyUp',
     ],
     allowExpressionValues: true,
-    attributes: [
-      {
-        components: ['a', 'Link'],
-        attributes: {
-          href: ['to', 'href'],
-        },
-      },
-    ],
   },
 ],
 ```
 
-### `handlers`
-
-Adjust the list of handler prop names in the `handlers` array to increase or decrease the coverage surface of this rule in your codebase.
-
-### `allowExpressionValues`
+Adjust the list of handler prop names in the handlers array to increase or decrease the coverage surface of this rule in your codebase.
 
 The `allowExpressionValues` option determines whether the `role` attribute is allowed to be assigned using an expression. For example, the following would pass in recommended mode if `allowExpressionValues` is set to be `true`:
 
@@ -103,16 +91,6 @@ The `allowExpressionValues` option determines whether the `role` attribute is al
 <div role={ROLE_BUTTON} onClick={() => {}} />;
 // In case of a conditional expression, there should be literals on both sides of ternary operator
 <div role={isButton ? "button" : "link"} onClick={() => {}} />;
-```
-
-### `attributes`
-
-The `attributes` array allows to set custom attributes for a given list of components. This is useful in cases where you are utilizing libraries that may have different prop names mapped to a native attribute (e.g., `to` being used for `href`)
-
-```jsx
-// these will be valid given the `attributes` option above
-<a onClick={() => {}} className="foo" to="some/path" />
-<Link onClick={() => {}} className="foo" to="some/path" />
 ```
 
 ### Succeed

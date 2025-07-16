@@ -27,6 +27,7 @@ import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isNonLiteralProperty from '../util/isNonLiteralProperty';
 import isPresentationRole from '../util/isPresentationRole';
+import getAttributes from '../util/getAttributes';
 
 const errorMessage = 'Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.';
 
@@ -53,13 +54,12 @@ export default ({
     const elementType = getElementType(context);
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
-        const { attributes } = node;
         const type = elementType(node);
+        const attributes = getAttributes(node, type, context);
 
         const {
           allowExpressionValues,
           handlers = defaultInteractiveProps,
-          ...elementOptions
         } = (options[0] || {});
 
         const hasInteractiveProps = handlers
@@ -84,7 +84,7 @@ export default ({
           return;
         }
         if (
-          isInteractiveElement(type, attributes, elementOptions)
+          isInteractiveElement(type, attributes)
           || isInteractiveRole(type, attributes)
           || isNonInteractiveElement(type, attributes)
           || isNonInteractiveRole(type, attributes)

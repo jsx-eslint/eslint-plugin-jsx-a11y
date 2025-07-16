@@ -14,7 +14,6 @@ import {
 import includes from 'array-includes';
 import flatMap from 'array.prototype.flatmap';
 
-import { getProp, getPropValue } from 'jsx-ast-utils';
 import attributesComparator from './attributesComparator';
 
 const roleKeys = roles.keys();
@@ -69,48 +68,12 @@ const interactiveElementAXObjectSchemas = flatMap(
   ([elementSchema, AXObjectsArr]) => (AXObjectsArr.every((role): boolean => interactiveAXObjects.has(role)) ? [elementSchema] : []),
 );
 
-function checkIsInteractiveElement(tagName, attributes, options = {}): boolean {
+function checkIsInteractiveElement(tagName, attributes): boolean {
   function elementSchemaMatcher(elementSchema) {
     return (
       tagName === elementSchema.name
       && attributesComparator(elementSchema.attributes, attributes)
     );
-  }
-
-  function isInteractiveElementWithCustomOptions() {
-    const matchingConfig = options.attributes.find((config) => config.components && config.components.includes(tagName));
-
-    if (!matchingConfig) return false;
-
-    return Object.keys(matchingConfig.attributes).some((standardAttr) => {
-      const customAttrs = matchingConfig.attributes[standardAttr];
-
-      const validCustomAttr = customAttrs.find((customAttr) => {
-        if (customAttr === standardAttr) return false;
-        const customProp = getProp(attributes, customAttr);
-        return customProp && getPropValue(customProp) != null;
-      });
-
-      if (validCustomAttr) {
-        const originalProp = getProp(attributes, validCustomAttr);
-        const standardProp = {
-          ...originalProp,
-          name: {
-            ...originalProp.name,
-            name: standardAttr,
-          },
-        };
-
-        return checkIsInteractiveElement(tagName, [...attributes, standardProp], {});
-      }
-
-      return false;
-    });
-  }
-
-  // Checks if there are custom options for this element
-  if (options && options.attributes && options.attributes.length > 0) {
-    return isInteractiveElementWithCustomOptions();
   }
 
   // Check in elementRoles for inherent interactive role associations for
@@ -143,7 +106,6 @@ function checkIsInteractiveElement(tagName, attributes, options = {}): boolean {
 const isInteractiveElement = (
   tagName: string,
   attributes: Array<Node>,
-  options: Object = {},
 ): boolean => {
   // Do not test higher level JSX components, as we do not know what
   // low-level DOM element this maps to.
@@ -151,7 +113,7 @@ const isInteractiveElement = (
     return false;
   }
 
-  return checkIsInteractiveElement(tagName, attributes, options);
+  return checkIsInteractiveElement(tagName, attributes);
 };
 
 export default isInteractiveElement;

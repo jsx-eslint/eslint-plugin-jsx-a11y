@@ -29,26 +29,22 @@ const expectedError = {
 
 const ruleName = 'no-static-element-interactions';
 
-const customOptions = [
-  {
-    attributes: [
-      {
-        components: ['a', 'Link'],
+const componentsSettings = {
+  'jsx-a11y': {
+    components: {
+      Button: 'button',
+      TestComponent: 'div',
+      Link: {
+        components: 'a',
         attributes: {
           href: ['to', 'href'],
         },
       },
-      {
-        components: ['button', 'Button'],
-        attributes: {
-          onClick: ['onClick', 'handleClick'],
-        },
-      },
-    ],
+    },
   },
-];
+};
 
-const componentsSettings = {
+const componentsSettingNoAttributes = {
   'jsx-a11y': {
     components: {
       Button: 'button',
@@ -102,10 +98,8 @@ const alwaysValid = [
   { code: '<textarea onClick={() => void 0} className="foo" />' },
   { code: '<a onClick={() => void 0} href="http://x.y.z" />' },
   { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />' },
-  { code: '<a onClick={() => void 0} to="path/to/page" />', options: customOptions },
-  { code: '<button handleClick={() => void 0} />', options: customOptions },
-  { code: '<Link onClick={() => void 0} to="path/to/page" />', settings: componentsSettings, options: customOptions },
-  { code: '<Button handleClick={() => void 0} />', settings: componentsSettings, options: customOptions },
+  { code: '<Link onClick={() => void 0} to="path/to/page" />', settings: componentsSettings },
+  { code: '<Link onClick={() => void 0} href="http://x.y.z" />', settings: componentsSettings },
   { code: '<audio onClick={() => {}} />;' },
   { code: '<form onClick={() => {}} />;' },
   { code: '<form onSubmit={() => {}} />;' },
@@ -379,10 +373,10 @@ const neverValid = [
   { code: '<div onMouseDown={() => {}} />;', errors: [expectedError] },
   { code: '<div onMouseUp={() => {}} />;', errors: [expectedError] },
   // Custom components
-  { code: '<TestComponent onClick={doFoo} />', settings: componentsSettings, errors: [expectedError] },
-  // Components without custom options
-  { code: '<a onClick={() => void 0} to="path/to/page" />', errors: [expectedError] },
   { code: '<TestComponent onClick={() => void 0} to="path/to/page" />', settings: componentsSettings, errors: [expectedError] },
+  { code: '<Link onClick={() => void 0} to="path/to/page" />', settings: componentsSettingNoAttributes, errors: [expectedError] },
+  // `a` with a `to` is not valid, only custom components listed in `components`
+  { code: '<a onClick={() => void 0} to="path/to/page" />', settings: componentsSettings, errors: [expectedError] },
 ];
 
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
