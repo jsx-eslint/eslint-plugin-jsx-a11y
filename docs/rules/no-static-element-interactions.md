@@ -21,25 +21,24 @@ Indicate the element's role with the `role` attribute:
   onClick={onClickHandler}
   onKeyPress={onKeyPressHandler}
   role="button"
-  tabindex="0"
->
+  tabindex="0">
   Save
 </div>
 ```
 
 Common interactive roles include:
 
-1. `button`
-1. `link`
-1. `checkbox`
-1. `menuitem`
-1. `menuitemcheckbox`
-1. `menuitemradio`
-1. `option`
-1. `radio`
-1. `searchbox`
-1. `switch`
-1. `textbox`
+  1. `button`
+  1. `link`
+  1. `checkbox`
+  1. `menuitem`
+  1. `menuitemcheckbox`
+  1. `menuitemradio`
+  1. `option`
+  1. `radio`
+  1. `searchbox`
+  1. `switch`
+  1. `textbox`
 
 Note: Adding a role to your element does **not** add behavior. When a semantic HTML element like `<button>` is used, then it will also respond to Enter key presses when it has focus. The developer is responsible for providing the expected behavior of an element that the role suggests it would have: focusability and key press support.
 
@@ -48,16 +47,12 @@ Note: Adding a role to your element does **not** add behavior. When a semantic H
 If your element is catching bubbled click or key events from descendant elements, there are no appropriate roles for your element: you will have to deactivate the rule. Consider explaining the reason for disabling the rule as well.
 
 ```jsx
-{
-  /* The <div> element has a child <button> element that allows keyboard interaction */
-}
-{
-  /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
-}
+{/* The <div> element has a child <button> element that allows keyboard interaction */}
+{/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
 <div onClick={this.handleButtonClick}>
   <button>Save</button>
   <button>Cancel</button>
-</div>;
+</div>
 ```
 
 Do not use the role `presentation` on the element: it removes the element's semantics, and may also remove its children's semantics, creating big issues with assistive technology.
