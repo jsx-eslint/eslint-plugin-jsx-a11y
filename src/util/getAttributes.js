@@ -1,47 +1,35 @@
-import { getProp } from 'jsx-ast-utils';
+// @flow
 
-const getAttributes = (node, type, context) => {
-  const { settings } = context;
-  const { attributes } = node;
-  const components = settings['jsx-a11y']?.components;
+import type { Node, JSXOpeningElement } from 'ast-types-flow';
+import { getProp, elementType } from 'jsx-ast-utils';
+import type { ESLintContext } from '../../flow/eslint';
 
-  if (!components || !type) {
-    return attributes;
-  }
+const getAttributes = (node: JSXOpeningElement, type: string, context: ESLintContext): Node[] => {
+  const { attributes: rawAttributes } = node;
+  const { components } = context?.settings?.['jsx-a11y'] || {};
 
-  const componentConfig = Object.entries(components).find(([, config]) => (
-    config && typeof config === 'object' && config.component === type
-  ));
+  if (!type || !components) return rawAttributes;
 
-  if (!componentConfig) {
-    return attributes;
-  }
+  const jsxElementName = elementType(node);
+  const componentConfig = components[jsxElementName];
 
-  const [, config] = componentConfig;
-  const attributeMap = config && typeof config === 'object' ? config.attributes : null;
+  if (!componentConfig || componentConfig.component !== type) return rawAttributes;
 
-  if (!attributeMap || typeof attributeMap !== 'object') {
-    return attributes;
-  }
+  const { attributes: settingsAttributes } = typeof componentConfig === 'object' ? componentConfig : {};
 
-  const mappedAttributes = [...attributes];
+  if (!settingsAttributes || typeof settingsAttributes !== 'object') return rawAttributes;
 
-  Object.entries(attributeMap).forEach(([originalAttr, mappedAttrs]) => {
-    if (Array.isArray(mappedAttrs)) {
-      mappedAttrs.forEach((mappedAttr) => {
-        const mappedProp = getProp(attributes, mappedAttr);
-        if (mappedProp) {
-          const newAttribute = {
-            ...mappedProp,
-            name: {
-              ...mappedProp.name,
-              name: originalAttr,
-            },
-          };
-          mappedAttributes.push(newAttribute);
-        }
-      });
-    }
+  const mappedAttributes = Object.entries(settingsAttributes).flatMap(([originalAttr, mappedAttrs]) => {
+    if (!Array.isArray(mappedAttrs)) return [];
+
+    const originalProp = getProp(rawAttributes, originalAttr);
+    return originalProp ? mappedAttrs.map((mappedAttr) => ({
+      ...originalProp,
+      name: {
+        ...originalProp.name,
+        name: mappedAttr,
+      },
+    })) : [];
   });
 
   return mappedAttributes;
