@@ -27,7 +27,7 @@ import isNonInteractiveElement from '../util/isNonInteractiveElement';
 import isNonInteractiveRole from '../util/isNonInteractiveRole';
 import isNonLiteralProperty from '../util/isNonLiteralProperty';
 import isPresentationRole from '../util/isPresentationRole';
-import getAttributes from '../util/getAttributes';
+import getSettingsAttributes from '../util/getSettingsAttributes';
 
 const errorMessage = 'Avoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.';
 
@@ -50,12 +50,13 @@ export default ({
   },
 
   create: (context: ESLintContext): ESLintVisitorSelectorConfig => {
-    const { options } = context;
+    const { options, settings } = context;
     const elementType = getElementType(context);
     return {
       JSXOpeningElement: (node: JSXOpeningElement) => {
         const type = elementType(node);
-        const attributes = getAttributes(node, type, context);
+        // checking global settings for attribute mappings
+        const attributes = getSettingsAttributes(node, settings);
 
         const {
           allowExpressionValues,
@@ -64,8 +65,8 @@ export default ({
 
         const hasInteractiveProps = handlers
           .some((prop) => (
-            hasProp(attributes, prop)
-            && getPropValue(getProp(attributes, prop)) != null
+            (hasProp(attributes, prop)
+            && getPropValue(getProp(attributes, prop)) != null)
           ));
 
         if (!dom.has(type)) {
