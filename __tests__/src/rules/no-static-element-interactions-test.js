@@ -35,21 +35,11 @@ const componentsSettings = {
       Button: 'button',
       TestComponent: 'div',
       Link: {
-        components: 'a',
+        component: 'a',
         attributes: {
           href: ['to', 'href'],
         },
       },
-    },
-  },
-};
-
-const componentsSettingNoAttributes = {
-  'jsx-a11y': {
-    components: {
-      Button: 'button',
-      TestComponent: 'div',
-      Link: 'a',
     },
   },
 };
@@ -373,8 +363,8 @@ const neverValid = [
   { code: '<div onMouseDown={() => {}} />;', errors: [expectedError] },
   { code: '<div onMouseUp={() => {}} />;', errors: [expectedError] },
   // Custom components
+  { code: '<Link onClick={() => void 0} to="path/to/page" />', settings: { 'jsx-a11y': { components: { Link: 'a' } } }, errors: [expectedError] },
   { code: '<TestComponent onClick={() => void 0} to="path/to/page" />', settings: componentsSettings, errors: [expectedError] },
-  { code: '<Link onClick={() => void 0} to="path/to/page" />', settings: componentsSettingNoAttributes, errors: [expectedError] },
   // `a` with a `to` is not valid, only custom components listed in `components`
   { code: '<a onClick={() => void 0} to="path/to/page" />', settings: componentsSettings, errors: [expectedError] },
 ];

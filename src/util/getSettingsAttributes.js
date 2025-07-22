@@ -1,7 +1,7 @@
 // @flow
 
 import type { Node, JSXOpeningElement } from 'ast-types-flow';
-import { elementType, getProp } from 'jsx-ast-utils';
+import { elementType, getProp, propName } from 'jsx-ast-utils';
 import type { ESLintSettings } from '../../flow/eslint';
 
 /**
@@ -37,23 +37,32 @@ const getSettingsAttributes = (node: JSXOpeningElement, settings: ESLintSettings
 
   if (!settingsAttributes || typeof settingsAttributes !== 'object') return rawAttributes;
 
+  const mappedRawAttrNames = new Set();
+
   const mappedAttributes = Object.entries(settingsAttributes).flatMap(([originalAttr, mappedAttrs]) => {
     if (!Array.isArray(mappedAttrs)) return [];
 
     return mappedAttrs.flatMap((mappedAttr) => {
       const originalProp = getProp(rawAttributes, mappedAttr);
 
-      return originalProp ? [{
-        ...originalProp,
-        name: {
-          ...originalProp.name,
-          name: originalAttr,
-        },
-      }] : [];
+      if (originalProp) {
+        mappedRawAttrNames.add(mappedAttr);
+        return [{
+          ...originalProp,
+          name: {
+            ...originalProp.name,
+            name: originalAttr,
+          },
+        }];
+      }
+      return [];
     });
   });
 
-  return mappedAttributes;
+  // raw attributes that don't have mappings
+  const unmappedAttributes = rawAttributes.filter((attr) => !mappedRawAttrNames.has(propName(attr)));
+
+  return [...unmappedAttributes, ...mappedAttributes];
 };
 
 export default getSettingsAttributes;
