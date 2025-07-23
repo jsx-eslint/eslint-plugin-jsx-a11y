@@ -33,15 +33,19 @@ const getElementType = (context: ESLintContext): ((node: JSXOpeningElement) => s
 
     const componentType = componentMap[rawType];
 
+    if (typeof componentType === 'string') {
+      return hasOwn(componentMap, rawType) ? componentType : rawType;
+    }
+
     if (typeof componentType === 'object') {
+      if (componentType.component) return componentType.component;
+
       const customComponent = Object.entries(componentType).find(([key]) => key === rawType);
 
       if (customComponent) {
         [rawType] = customComponent;
         return hasOwn(componentMap, rawType) ? rawType : rawType;
       }
-    } else if (typeof componentType === 'string') {
-      return hasOwn(componentMap, rawType) ? componentType : rawType;
     }
 
     return rawType;
