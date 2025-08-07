@@ -25,7 +25,7 @@ import type { ESLintSettings } from '../../flow/eslint';
  * <Link foo="path/to/page" /> // will be checked as if <a href="path/to/page" />
  */
 const getSettingsAttributes = (node: JSXOpeningElement, settings: ESLintSettings): Node[] => {
-  const { attributes: rawAttributes } = node;
+  const { attributes: rawAttributes = [] } = node;
   const { components } = settings?.['jsx-a11y'] || {};
 
   if (!components || typeof components !== 'object') return rawAttributes;
@@ -60,7 +60,7 @@ const getSettingsAttributes = (node: JSXOpeningElement, settings: ESLintSettings
   });
 
   // raw attributes that don't have mappings
-  const unmappedAttributes = rawAttributes.filter((attr) => !mappedRawAttrNames.has(propName(attr)));
+  const unmappedAttributes = rawAttributes.filter((attr) => attr.type !== 'JSXSpreadAttribute' && !mappedRawAttrNames.has(propName(attr)));
 
   return [...unmappedAttributes, ...mappedAttributes];
 };
