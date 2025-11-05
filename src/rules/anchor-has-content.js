@@ -42,7 +42,7 @@ export default {
         if (hasAccessibleChild(node.parent, elementType)) {
           return;
         }
-        if (hasProp(node.attributes, 'aria-label')) {
+        if (hasProp(node.attributes, 'aria-label') && !hasProp(node.attributes, 'title')) {
           return;
         }
 
