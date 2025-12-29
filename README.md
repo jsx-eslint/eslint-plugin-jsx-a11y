@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/actions">
-    <img src="https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/jsx-eslint/eslint-plugin-jsx-a11y"
+    <img src="https://img.shields.io/github/check-runs/jsx-eslint/eslint-plugin-jsx-a11y/main"
          alt="CI status" />
   </a>
   <a href="https://npmjs.org/package/eslint-plugin-jsx-a11y">
