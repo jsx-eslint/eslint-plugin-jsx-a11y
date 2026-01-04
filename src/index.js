@@ -293,7 +293,7 @@ const jsxA11y = {
 /**
  * Given a ruleset and optionally a flat config name, generate a config.
  * @param {object} rules - ruleset for this config
- * @param {string} flatConfigName - name for the config if flat
+ * @param {string} [flatConfigName] - name for the config if flat
  * @returns Config for this set of rules.
  */
 const createConfig = (rules, flatConfigName) => ({
