@@ -23,7 +23,7 @@ This rule takes no arguments.
 ```
 
 ## Accessibility guidelines
-- [WCAG 3.1.1](https://www.w3.org/WAI/WCAG21/Understanding/language-of-page)
+- [WCAG 3.1.1](https://www.w3.org/WAI/WCAG22/Understanding/language-of-page)
 
 ### Resources
 - [axe-core, valid-lang](https://dequeuniversity.com/rules/axe/3.2/valid-lang)

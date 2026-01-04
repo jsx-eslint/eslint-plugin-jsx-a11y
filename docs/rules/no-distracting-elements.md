@@ -34,7 +34,7 @@ For the `elements` option, these strings determine which JSX elements should be 
 ```
 
 ## Accessibility guidelines
-- [WCAG 2.2.2](https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide)
+- [WCAG 2.2.2](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide)
 
 ### Resources
 - [axe-core, marquee](https://dequeuniversity.com/rules/axe/3.2/marquee)

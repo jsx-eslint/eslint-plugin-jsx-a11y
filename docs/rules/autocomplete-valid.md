@@ -42,7 +42,7 @@ This rule takes one optional object argument of type object:
 ```
 
 ## Accessibility guidelines
-- [WCAG 1.3.5](https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose)
+- [WCAG 1.3.5](https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose)
 
 ### Resources
 - [axe-core, autocomplete-valid](https://dequeuniversity.com/rules/axe/3.2/autocomplete-valid)

@@ -26,4 +26,4 @@ This rule takes no arguments.
 ```
 
 ## Accessibility guidelines
-- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value)
