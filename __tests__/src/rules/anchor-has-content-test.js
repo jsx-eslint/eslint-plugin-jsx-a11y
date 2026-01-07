@@ -37,14 +37,14 @@ ruleTester.run('anchor-has-content', rule, {
       code: '<Link>foo</Link>',
       settings: { 'jsx-a11y': { components: { Link: 'a' } } },
     },
-    { code: '<a title={title} />' },
     { code: '<a aria-label={ariaLabel} />' },
-    { code: '<a title={title} aria-label={ariaLabel} />' },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<a />', errors: [expectedError] },
     { code: '<a><Bar aria-hidden /></a>', errors: [expectedError] },
     { code: '<a>{undefined}</a>', errors: [expectedError] },
+    { code: '<a title={title} />', errors: [expectedError] },
+    { code: '<a title={title} aria-label={ariaLabel} />', errors: [expectedError] },
     {
       code: '<Link />',
       errors: [expectedError],
