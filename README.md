@@ -32,7 +32,7 @@ Static AST checker for accessibility rules on JSX elements.
 
 ## Why?
 
-This plugin does a static evaluation of the JSX to spot accessibility issues in React apps. Because it only catches errors in static code, use it in combination with [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) to test the accessibility of the rendered DOM. Consider these tools just as one step of a larger a11y testing process and always test your apps with assistive technology.
+This plugin does a static evaluation of the JSX to spot accessibility issues in React apps. Because it only catches errors in static code, use it in combination with a tool that tests the accessibility of the rendered DOM, such as [Accented](https://accented.dev) or [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) (both based on the [axe-core](https://github.com/dequelabs/axe-core) engine). Consider these tools just as one step of a larger a11y testing process and always test your apps with assistive technology.
 
 ## Installation
 
