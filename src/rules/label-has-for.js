@@ -26,6 +26,7 @@ const schema = {
     },
     allowChildren: { type: 'boolean' },
   },
+  additionalProperties: false,
 };
 // Breadth-first search, assuming that HTML for forms is shallow.
 function validateNesting(node) {
