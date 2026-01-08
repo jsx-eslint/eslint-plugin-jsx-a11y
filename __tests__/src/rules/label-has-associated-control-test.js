@@ -27,6 +27,7 @@ const errorMessages = {
   nesting: 'A form label must have an associated control as a descendant.',
   either: 'A form label must either have a valid htmlFor attribute or a control as a descendant.',
   both: 'A form label must have a valid htmlFor attribute and a control as a descendant.',
+  htmlForShouldMatchId: 'A form label must have a htmlFor attribute that matches the id of the associated control.',
 };
 const expectedErrors = {};
 Object.keys(errorMessages).forEach((key) => {
@@ -58,6 +59,7 @@ const htmlForValid = [
   { code: '<label htmlFor="js_id" aria-label="A label" />' },
   { code: '<label htmlFor="js_id" aria-labelledby="A label" />' },
   { code: '<div><label htmlFor="js_id">A label</label><input id="js_id" /></div>' },
+  { code: '<div><label htmlFor={inputId}>A label</label><input id={inputId} /></div>' },
   { code: '<label for="js_id"><span><span><span>A label</span></span></span></label>', options: [{ depth: 4 }], settings: attributesSettings },
   { code: '<label for="js_id" aria-label="A label" />', settings: attributesSettings },
   { code: '<label for="js_id" aria-labelledby="A label" />', settings: attributesSettings },
@@ -128,6 +130,12 @@ const alwaysValid = [
   { code: '<input type="hidden" />' },
 ];
 
+const shouldHtmlForMatchIdValid = [
+  { code: '<label htmlFor="js_id" aria-label="A label"><span><span><input id="js_id" /></span></span></label>', options: [{ depth: 4, shouldHtmlForMatchId: true }] },
+  { code: '<div><label htmlFor="js_id">A label</label><input id="js_id" /></div>', options: [{ shouldHtmlForMatchId: true }] },
+  { code: '<div><label htmlFor={inputId} aria-label="A label" /><input id={inputId} /></div>', options: [{ shouldHtmlForMatchId: true }] },
+];
+
 const htmlForInvalid = (assertType) => {
   const expectedError = expectedErrors[assertType];
   return [
@@ -164,6 +172,13 @@ const nestingInvalid = (assertType) => {
     { code: '<CustomLabel><span>A label<CustomInput /></span></CustomLabel>', settings: componentsSettings, errors: [expectedError] },
   ];
 };
+const shouldHtmlForMatchIdInvalid = [
+  { code: '<label htmlFor="js_id" aria-label="A label"><span><span><input /></span></span></label>', options: [{ depth: 4, shouldHtmlForMatchId: true }], errors: [expectedErrors.htmlForShouldMatchId] },
+  { code: '<label htmlFor="js_id" aria-label="A label"><span><span><input name="js_id" /></span></span></label>', options: [{ depth: 4, shouldHtmlForMatchId: true }], errors: [expectedErrors.htmlForShouldMatchId] },
+  { code: '<div><label htmlFor="js_id">A label</label><input /></div>', options: [{ shouldHtmlForMatchId: true }], errors: [expectedErrors.htmlForShouldMatchId] },
+  { code: '<div><label htmlFor="js_id">A label</label><input name="js_id" /></div>', options: [{ shouldHtmlForMatchId: true }], errors: [expectedErrors.htmlForShouldMatchId] },
+  { code: '<div><label htmlFor={inputId} aria-label="A label" /><input name={inputId} /></div>', options: [{ shouldHtmlForMatchId: true }], errors: [expectedErrors.htmlForShouldMatchId] },
+];
 
 const neverValid = (assertType) => {
   const expectedError = expectedErrors[assertType];
@@ -265,4 +280,22 @@ ruleTester.run(ruleName, rule, {
   )).map(ruleOptionsMapperFactory({
     assert: 'both',
   })).map(parserOptionsMapper),
+});
+
+// shouldHtmlForMatchId
+ruleTester.run(ruleName, rule, {
+  valid: parsers.all([].concat(
+    ...shouldHtmlForMatchIdValid,
+  ))
+    .map(ruleOptionsMapperFactory({
+      assert: 'htmlFor',
+    }))
+    .map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
+    ...shouldHtmlForMatchIdInvalid,
+  ))
+    .map(ruleOptionsMapperFactory({
+      assert: 'htmlFor',
+    }))
+    .map(parserOptionsMapper),
 });

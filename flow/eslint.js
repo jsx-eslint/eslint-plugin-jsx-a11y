@@ -1,6 +1,8 @@
 /*
  * @flow
  */
+import type { Node } from 'ast-types-flow';
+
 export type ESLintReport = {
   node: any,
   message: string,
@@ -20,6 +22,10 @@ export type ESLintContext = {
   options: Array<Object>,
   report: (ESLintReport) => void,
   settings: ESLintSettings,
+  getAncestors?: () => Array<any>,
+  sourceCode?: {
+    getAncestors?: (node: Node) => Array<any>,
+  }
 };
 
 export type ESLintConfig = {
