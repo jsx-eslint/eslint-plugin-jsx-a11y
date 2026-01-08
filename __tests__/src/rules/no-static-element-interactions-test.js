@@ -34,6 +34,24 @@ const componentsSettings = {
     components: {
       Button: 'button',
       TestComponent: 'div',
+      // Custom component with mapped attributes
+      Link: {
+        component: 'a',
+        attributes: {
+          href: ['to', 'href', 'foo'],
+        },
+      },
+      // Custom component with a redundant attribute
+      TestComponent2: {
+        attributes: {
+          href: ['href'],
+        },
+        component: 'a',
+      },
+      // Custom component with empty attributes object
+      TestComponent3: {
+        component: 'a',
+      },
     },
   },
 };
@@ -82,6 +100,10 @@ const alwaysValid = [
   { code: '<textarea onClick={() => void 0} className="foo" />' },
   { code: '<a onClick={() => void 0} href="http://x.y.z" />' },
   { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />' },
+  { code: '<Link onClick={() => void 0} to="path/to/page" />', settings: componentsSettings },
+  { code: '<Link onClick={() => void 0} foo="path/to/page" />', settings: componentsSettings },
+  { code: '<Link onClick={() => void 0} href="http://x.y.z" />', settings: componentsSettings },
+  { code: '<TestComponent2 onClick={() => void 0} href="http://x.y.z" />;', settings: componentsSettings },
   { code: '<audio onClick={() => {}} />;' },
   { code: '<form onClick={() => {}} />;' },
   { code: '<form onSubmit={() => {}} />;' },
@@ -355,7 +377,14 @@ const neverValid = [
   { code: '<div onMouseDown={() => {}} />;', errors: [expectedError] },
   { code: '<div onMouseUp={() => {}} />;', errors: [expectedError] },
   // Custom components
-  { code: '<TestComponent onClick={doFoo} />', settings: componentsSettings, errors: [expectedError] },
+  { code: '<Link onClick={() => void 0} to="path/to/page" />', settings: { 'jsx-a11y': { components: { Link: 'a' } } }, errors: [expectedError] },
+  { code: '<TestComponent onClick={() => void 0} to="path/to/page" />', settings: componentsSettings, errors: [expectedError] },
+  // Custom component with a redundant attribute
+  { code: '<TestComponent2 onClick={() => void 0} to="path/to/page" />;', settings: componentsSettings, errors: [expectedError] },
+  // Custom component with empty attributes object
+  { code: '<TestComponent3 onClick={() => void 0} to="path/to/page" />;', settings: componentsSettings, errors: [expectedError] },
+  // `a` with a `to` is not valid, only custom components listed in `components`
+  { code: '<a onClick={() => void 0} to="path/to/page" />', settings: componentsSettings, errors: [expectedError] },
 ];
 
 const recommendedOptions = configs.recommended.rules[`jsx-a11y/${ruleName}`][1] || {};
