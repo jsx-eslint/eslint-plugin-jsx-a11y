@@ -26,7 +26,7 @@ This rule takes no arguments.
 ```
 
 ## Accessibility guidelines
-- [WCAG 2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order)
+- [WCAG 2.4.3](https://www.w3.org/WAI/WCAG22/Understanding/focus-order)
 
 ### Resources
 - [Chrome Audit Rules, AX_FOCUS_03](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_03)

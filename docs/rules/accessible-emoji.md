@@ -24,7 +24,7 @@ This rule takes no arguments.
 ```
 
 ## Accessibility guidelines
-- [WCAG 1.1.1](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html)
+- [WCAG 1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content)
 
 ### Resources
 - [Léonie Watson, Accessible Emoji](https://tink.uk/accessible-emoji/)

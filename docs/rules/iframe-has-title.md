@@ -30,8 +30,8 @@ This rule takes no arguments.
 ```
 
 ## Accessibility guidelines
-- [WCAG 2.4.1](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks)
-- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [WCAG 2.4.1](https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value)
 
 ### Resources
 - [axe-core, frame-title](https://dequeuniversity.com/rules/axe/3.2/frame-title)

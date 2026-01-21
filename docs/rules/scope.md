@@ -23,8 +23,8 @@ This rule takes no arguments.
 ```
 
 ## Accessibility guidelines
-- [WCAG 1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships)
-- [WCAG 4.1.1](https://www.w3.org/WAI/WCAG21/Understanding/parsing)
+- [WCAG 1.3.1](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships)
+- [WCAG 4.1.1](https://www.w3.org/WAI/WCAG22/Understanding/parsing)
 
 ### Resources
 - [axe-core, scope-attr-valid](https://dequeuniversity.com/rules/axe/3.5/scope-attr-valid)

@@ -29,7 +29,7 @@ This rule takes no arguments.
 ```
 
 ## Accessibility guidelines
-- [WCAG 3.2.2](https://www.w3.org/WAI/WCAG21/Understanding/on-input)
+- [WCAG 3.2.2](https://www.w3.org/WAI/WCAG22/Understanding/on-input)
 
 ### Resources
 - [onChange Event Accessibility Issues](https://web.archive.org/web/20191207202425/http://cita.disability.uiuc.edu/html-best-practices/auto/onchange.php)

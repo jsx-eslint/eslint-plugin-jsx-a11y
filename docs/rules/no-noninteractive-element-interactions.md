@@ -135,7 +135,7 @@ Adjust the list of handler prop names in the handlers array to increase or decre
 
 ## Accessibility guidelines
 
-- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value)
 
 ### Resources
 
