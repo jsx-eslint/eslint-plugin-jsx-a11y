@@ -357,7 +357,7 @@ The following rules have extra options when in _recommended_ mode:
 ### no-static-element-interactions
 
 ```js
-'jsx-a11y/no-noninteractive-element-interactions': [
+'jsx-a11y/no-static-element-interactions': [
   'error',
   {
     handlers: [
