@@ -442,12 +442,10 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     {
       code: '<div role={isButton ? "button" : LINK} onClick={() => {}} />;',
       options: [{ allowExpressionValues: true }],
-      errors: [expectedError],
     },
     {
       code: '<div role={isButton ? BUTTON : LINK} onClick={() => {}} />;',
       options: [{ allowExpressionValues: true }],
-      errors: [expectedError],
     },
   ))
     .map(ruleOptionsMapperFactory(recommendedOptions))

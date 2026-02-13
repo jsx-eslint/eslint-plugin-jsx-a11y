@@ -46,7 +46,6 @@ const ariaValidityTests = domElements.map((element) => {
   };
 }).concat({
   code: '<fake aria-hidden />',
-  errors: [errorMessage('aria-hidden')],
 });
 
 // Generate invalid test cases.

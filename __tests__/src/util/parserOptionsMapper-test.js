@@ -4,7 +4,9 @@ import semver from 'semver';
 
 import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
-const usingLegacy = semver.major(eslintVersion) < 9;
+const eslintMajor = semver.major(eslintVersion);
+const usingLegacy = eslintMajor < 9;
+const hasTestCaseErrorType = eslintMajor < 10;
 
 test('parserOptionsMapper', (t) => {
   const expectedResult = usingLegacy
@@ -87,6 +89,23 @@ test('parserOptionsMapper', (t) => {
     }),
     expectedResult2,
     'allows for overriding parserOptions',
+  );
+
+  const errorsWithType = [{ message: 'bad', type: 'JSXOpeningElement' }];
+  const expectedErrors = hasTestCaseErrorType
+    ? errorsWithType
+    : [{ message: 'bad' }];
+  const resultWithErrors = parserOptionsMapper({
+    code: '<div />',
+    errors: errorsWithType,
+    options: {},
+  });
+  t.deepEqual(
+    resultWithErrors.errors,
+    expectedErrors,
+    hasTestCaseErrorType
+      ? 'preserves error type for eslint < 10'
+      : 'strips error type for eslint >= 10',
   );
 
   t.end();

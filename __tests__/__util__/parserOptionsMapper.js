@@ -1,7 +1,11 @@
 import { version as eslintVersion } from 'eslint/package.json';
 import semver from 'semver';
+import fromEntries from 'object.fromentries';
+import entries from 'object.entries';
 
-const usingLegacy = semver.major(eslintVersion) < 9;
+const eslintMajor = semver.major(eslintVersion);
+const usingLegacy = eslintMajor < 9;
+const hasTestCaseErrorType = eslintMajor < 10;
 
 const defaultParserOptions = {
   ecmaFeatures: {
@@ -22,6 +26,15 @@ const defaultLanguageOptions = {
   },
 };
 
+/**
+ * Strip the `type` property from error objects.
+ * ESLint v10 removed `TestCaseError#type`; including it causes test failures.
+ */
+function stripErrorType(err) {
+  if (typeof err === 'string') return err;
+  return fromEntries(entries(err).filter(([key]) => key !== 'type'));
+}
+
 export default function parserOptionsMapper({
   code,
   errors,
@@ -29,10 +42,14 @@ export default function parserOptionsMapper({
   languageOptions = {},
   settings = {},
 }) {
+  const mappedErrors = !hasTestCaseErrorType && Array.isArray(errors)
+    ? errors.map(stripErrorType)
+    : errors;
+
   return usingLegacy
     ? {
       code,
-      errors,
+      errors: mappedErrors,
       options,
       parserOptions: {
         ...defaultLegacyParserOptions,
@@ -42,7 +59,7 @@ export default function parserOptionsMapper({
     }
     : {
       code,
-      errors,
+      errors: mappedErrors,
       options,
       languageOptions: {
         ...defaultLanguageOptions,
