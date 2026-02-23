@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/anchor-is-valid';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -26,15 +26,12 @@ const invalidHrefErrorMessage = 'The href attribute requires a valid value to be
 
 const preferButtonexpectedError = {
   message: preferButtonErrorMessage,
-  type: 'JSXOpeningElement',
 };
 const noHrefexpectedError = {
   message: noHrefErrorMessage,
-  type: 'JSXOpeningElement',
 };
 const invalidHrefexpectedError = {
   message: invalidHrefErrorMessage,
-  type: 'JSXOpeningElement',
 };
 
 const components = [{

@@ -7,12 +7,12 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
 import { configs } from '../../../src/index';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-noninteractive-element-interactions';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
+import RuleTester from '../../__util__/RuleTester';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -24,7 +24,6 @@ const errorMessage = 'Non-interactive elements should not be assigned mouse or k
 
 const expectedError = {
   message: errorMessage,
-  type: 'JSXOpeningElement',
 };
 
 const ruleName = 'no-noninteractive-element-interactions';

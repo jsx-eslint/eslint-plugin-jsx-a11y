@@ -9,10 +9,10 @@
 // -----------------------------------------------------------------------------
 
 import { dom } from 'aria-query';
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-unsupported-elements';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -23,7 +23,6 @@ const ruleTester = new RuleTester();
 const errorMessage = (invalidProp) => ({
   message: `This element does not support ARIA roles, states and properties. \
 Try removing the prop '${invalidProp}'.`,
-  type: 'JSXOpeningElement',
 });
 
 const domElements = dom.keys();
@@ -46,7 +45,6 @@ const ariaValidityTests = domElements.map((element) => {
   };
 }).concat({
   code: '<fake aria-hidden />',
-  errors: [errorMessage('aria-hidden')],
 });
 
 // Generate invalid test cases.

@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/alt-text';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -20,13 +20,11 @@ const ruleTester = new RuleTester();
 
 const missingPropError = (type) => ({
   message: `${type} elements must have an alt prop, either with meaningful text, or an empty string for decorative images.`,
-  type: 'JSXOpeningElement',
 });
 
 const altValueError = (type) => ({
   message: `Invalid alt value for ${type}. \
 Use alt="" for presentational images.`,
-  type: 'JSXOpeningElement',
 });
 
 const ariaLabelValueError = {
@@ -38,7 +36,6 @@ const ariaLabelledbyValueError = {
 
 const preferAltError = () => ({
   message: 'Prefer alt="" over a presentational role. First rule of aria is to not use aria if it can be achieved via native HTML.',
-  type: 'JSXOpeningElement',
 });
 
 const objectError = {

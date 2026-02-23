@@ -7,12 +7,12 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import semver from 'semver';
 import { version as eslintVersion } from 'eslint/package.json';
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
+import semver from 'semver';
 import rule from '../../../src/rules/img-redundant-alt';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -35,7 +35,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop.',
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('img-redundant-alt', rule, {

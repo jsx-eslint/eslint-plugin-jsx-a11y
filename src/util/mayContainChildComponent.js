@@ -9,7 +9,7 @@
 
 import type { JSXOpeningElement, Node } from 'ast-types-flow';
 import { elementType as rawElementType } from 'jsx-ast-utils';
-import minimatch from 'minimatch';
+import { minimatch } from 'minimatch';
 
 export default function mayContainChildComponent(
   root: Node,

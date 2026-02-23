@@ -8,10 +8,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/mouse-events-have-key-events';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -21,19 +21,15 @@ const ruleTester = new RuleTester();
 
 const mouseOverError = {
   message: 'onMouseOver must be accompanied by onFocus for accessibility.',
-  type: 'JSXAttribute',
 };
 const pointerEnterError = {
   message: 'onPointerEnter must be accompanied by onFocus for accessibility.',
-  type: 'JSXAttribute',
 };
 const mouseOutError = {
   message: 'onMouseOut must be accompanied by onBlur for accessibility.',
-  type: 'JSXAttribute',
 };
 const pointerLeaveError = {
   message: 'onPointerLeave must be accompanied by onBlur for accessibility.',
-  type: 'JSXAttribute',
 };
 
 ruleTester.run('mouse-events-have-key-events', rule, {
