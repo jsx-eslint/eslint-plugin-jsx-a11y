@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import rule from '../../../src/rules/accessible-emoji';
+import RuleTester from '../../__util__/RuleTester';
 import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Emojis should be wrapped in <span>, have role="img", and have an accessible description with aria-label or aria-labelledby.',
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('accessible-emoji', rule, {

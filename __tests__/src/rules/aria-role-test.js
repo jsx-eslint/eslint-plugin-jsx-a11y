@@ -8,10 +8,10 @@
 // -----------------------------------------------------------------------------
 
 import { roles } from 'aria-query';
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-role';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -21,7 +21,6 @@ const ruleTester = new RuleTester();
 
 const errorMessage = {
   message: 'Elements with ARIA roles must use a valid, non-abstract ARIA role.',
-  type: 'JSXAttribute',
 };
 
 const roleKeys = roles.keys();

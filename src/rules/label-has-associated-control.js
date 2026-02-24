@@ -11,7 +11,7 @@
 
 import { hasProp, getProp, getPropValue } from 'jsx-ast-utils';
 import type { JSXElement } from 'ast-types-flow';
-import minimatch from 'minimatch';
+import { minimatch } from 'minimatch';
 import { generateObjSchema, arraySchema } from '../util/schemas';
 import type { ESLintConfig, ESLintContext, ESLintVisitorSelectorConfig } from '../../flow/eslint';
 import getElementType from '../util/getElementType';

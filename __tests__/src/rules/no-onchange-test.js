@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-onchange';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'onBlur must be used instead of onchange, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.',
-  type: 'JSXOpeningElement',
 };
 
 const componentsSettings = {

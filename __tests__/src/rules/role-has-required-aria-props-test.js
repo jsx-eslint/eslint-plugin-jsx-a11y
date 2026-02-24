@@ -11,9 +11,9 @@
 import { roles } from 'aria-query';
 import RuleTester from '../../__util__/RuleTester';
 
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/role-has-required-aria-props';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -26,7 +26,6 @@ const errorMessage = (role) => {
 
   return {
     message: `Elements with the ARIA role "${role}" must have the following attributes defined: ${requiredProps}`,
-    type: 'JSXAttribute',
   };
 };
 

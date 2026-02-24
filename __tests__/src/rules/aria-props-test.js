@@ -8,11 +8,11 @@
 // -----------------------------------------------------------------------------
 
 import { aria } from 'aria-query';
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/aria-props';
 import getSuggestion from '../../../src/util/getSuggestion';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -27,13 +27,11 @@ const errorMessage = (name) => {
 
   if (suggestions.length > 0) {
     return {
-      type: 'JSXAttribute',
       message: `${message} Did you mean to use ${suggestions}?`,
     };
   }
 
   return {
-    type: 'JSXAttribute',
     message,
   };
 };

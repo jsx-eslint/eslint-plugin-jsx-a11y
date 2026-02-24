@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/label-has-associated-control';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 
 // -----------------------------------------------------------------------------
@@ -32,7 +32,6 @@ const expectedErrors = {};
 Object.keys(errorMessages).forEach((key) => {
   expectedErrors[key] = {
     message: errorMessages[key],
-    type: 'JSXOpeningElement',
   };
 });
 

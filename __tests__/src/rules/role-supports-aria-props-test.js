@@ -15,9 +15,9 @@ import { version as eslintVersion } from 'eslint/package.json';
 import semver from 'semver';
 import RuleTester from '../../__util__/RuleTester';
 
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/role-supports-aria-props';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -35,7 +35,6 @@ const generateErrorMessage = (attr, role, tag, isImplicit) => {
 
 const errorMessage = (attr, role, tag, isImplicit) => ({
   message: generateErrorMessage(attr, role, tag, isImplicit),
-  type: 'JSXOpeningElement',
 });
 
 const componentsSettings = {

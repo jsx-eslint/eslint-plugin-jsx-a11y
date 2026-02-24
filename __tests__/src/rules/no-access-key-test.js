@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-access-key';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'No access key attribute allowed. Inconsistencies between keyboard shortcuts and keyboard commands used by screen readers and keyboard-only users create a11y complications.',
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('no-access-key', rule, {

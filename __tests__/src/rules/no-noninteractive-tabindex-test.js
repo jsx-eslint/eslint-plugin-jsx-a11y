@@ -7,12 +7,12 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
 import { configs } from '../../../src/index';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-noninteractive-tabindex';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
+import RuleTester from '../../__util__/RuleTester';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -24,7 +24,6 @@ const ruleName = 'no-noninteractive-tabindex';
 
 const expectedError = {
   message: '`tabIndex` should only be declared on interactive elements.',
-  type: 'JSXAttribute',
 };
 
 const componentsSettings = {
@@ -81,12 +80,10 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     {
       code: '<div role={isButton ? "button" : LINK} onClick={() => {}} tabIndex="0" />;',
       options: [{ allowExpressionValues: true }],
-      errors: [expectedError],
     },
     {
       code: '<div role={isButton ? BUTTON : LINK} onClick={() => {}} tabIndex="0"/>;',
       options: [{ allowExpressionValues: true }],
-      errors: [expectedError],
     },
   ))
     .map(ruleOptionsMapperFactory(recommendedOptions))

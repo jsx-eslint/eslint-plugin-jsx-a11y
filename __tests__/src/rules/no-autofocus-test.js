@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/no-autofocus';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'The autoFocus prop should not be enabled, as it can reduce usability and accessibility for users.',
-  type: 'JSXAttribute',
 };
 
 const ignoreNonDOMSchema = [

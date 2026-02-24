@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/anchor-ambiguous-text';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -28,7 +28,6 @@ const DEFAULT_AMBIGUOUS_WORDS = [
 
 const expectedErrorGenerator = (words) => ({
   message: `Ambiguous text within anchor. Screen reader users rely on link text for context; the words "${words.join('", "')}" are ambiguous and do not provide enough context.`,
-  type: 'JSXOpeningElement',
 });
 
 const expectedError = expectedErrorGenerator(DEFAULT_AMBIGUOUS_WORDS);

@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/click-events-have-key-events';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -22,7 +22,6 @@ const errorMessage = 'Visible, non-interactive elements with click handlers must
 
 const expectedError = {
   message: errorMessage,
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('click-events-have-key-events', rule, {

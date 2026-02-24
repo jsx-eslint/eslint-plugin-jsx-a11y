@@ -8,10 +8,10 @@
 // -----------------------------------------------------------------------------
 
 import assign from 'object.assign';
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/label-has-for';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -21,17 +21,14 @@ const ruleTester = new RuleTester();
 
 const expectedNestingError = {
   message: 'Form label must have the following type of associated control: nesting',
-  type: 'JSXOpeningElement',
 };
 
 const expectedSomeError = {
   message: 'Form label must have ANY of the following types of associated control: nesting, id',
-  type: 'JSXOpeningElement',
 };
 
 const expectedEveryError = {
   message: 'Form label must have ALL of the following types of associated control: nesting, id',
-  type: 'JSXOpeningElement',
 };
 
 const optionsComponents = [{

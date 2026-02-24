@@ -1,13 +1,12 @@
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/prefer-tag-over-role';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 const ruleTester = new RuleTester();
 
 const expectedError = (role, tag) => ({
   message: `Use ${tag} instead of the "${role}" role to ensure accessibility across all devices.`,
-  type: 'JSXOpeningElement',
 });
 
 ruleTester.run('prefer-tag-over-role', rule, {

@@ -1,13 +1,15 @@
-import test from 'tape';
-import mockProperty from 'mock-property';
 import { RuleTester } from 'eslint';
+import mockProperty from 'mock-property';
+import test from 'tape';
 
 const orig = RuleTester.prototype.run;
 RuleTester.prototype.run = function (name, rule, tests) {
   test(`RuleTester: ${name}`, (t) => {
     t.teardown(mockProperty(RuleTester.describe, 't', { value: t }));
+    const other = RuleTester.prototype;
+    RuleTester.prototype.run = orig;
     orig.call(this, name, rule, tests);
-
+    RuleTester.prototype.run = other;
     t.end();
   });
 };

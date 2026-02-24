@@ -7,12 +7,12 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
 import { configs } from '../../../src/index';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
-import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
 import rule from '../../../src/rules/control-has-associated-label';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
+import ruleOptionsMapperFactory from '../../__util__/ruleOptionsMapperFactory';
+import RuleTester from '../../__util__/RuleTester';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -24,7 +24,6 @@ const ruleName = 'jsx-a11y/control-has-associated-label';
 
 const expectedError = {
   message: 'A control must be associated with a text label.',
-  type: 'JSXOpeningElement',
 };
 
 const alwaysValid = [
