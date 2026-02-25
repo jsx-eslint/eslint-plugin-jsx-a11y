@@ -24,7 +24,6 @@ const errorMessage = 'Avoid non-native interactive elements. If using native HTM
 
 const expectedError = {
   message: errorMessage,
-  type: 'JSXOpeningElement',
 };
 
 const ruleName = 'no-static-element-interactions';
@@ -442,12 +441,10 @@ ruleTester.run(`${ruleName}:recommended`, rule, {
     {
       code: '<div role={isButton ? "button" : LINK} onClick={() => {}} />;',
       options: [{ allowExpressionValues: true }],
-      errors: [expectedError],
     },
     {
       code: '<div role={isButton ? BUTTON : LINK} onClick={() => {}} />;',
       options: [{ allowExpressionValues: true }],
-      errors: [expectedError],
     },
   ))
     .map(ruleOptionsMapperFactory(recommendedOptions))

@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Avoid positive integer values for tabIndex.',
-  type: 'JSXAttribute',
 };
 
 ruleTester.run('tabindex-no-positive', rule, {

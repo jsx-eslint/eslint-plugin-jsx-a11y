@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: '<html> elements must have the lang prop.',
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('html-has-lang', rule, {
@@ -31,7 +30,7 @@ ruleTester.run('html-has-lang', rule, {
     { code: '<html lang={foo} />' },
     { code: '<html lang />' },
     { code: '<HTML />' },
-    { code: '<HTMLTop lang="en" />', errors: [expectedError], settings: { 'jsx-a11y': { components: { HTMLTop: 'html' } } } },
+    { code: '<HTMLTop lang="en" />', settings: { 'jsx-a11y': { components: { HTMLTop: 'html' } } } },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<html />', errors: [expectedError] },

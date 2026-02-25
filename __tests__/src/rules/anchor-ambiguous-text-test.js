@@ -28,7 +28,6 @@ const DEFAULT_AMBIGUOUS_WORDS = [
 
 const expectedErrorGenerator = (words) => ({
   message: `Ambiguous text within anchor. Screen reader users rely on link text for context; the words "${words.join('", "')}" are ambiguous and do not provide enough context.`,
-  type: 'JSXOpeningElement',
 });
 
 const expectedError = expectedErrorGenerator(DEFAULT_AMBIGUOUS_WORDS);

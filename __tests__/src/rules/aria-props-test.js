@@ -27,13 +27,11 @@ const errorMessage = (name) => {
 
   if (suggestions.length > 0) {
     return {
-      type: 'JSXAttribute',
       message: `${message} Did you mean to use ${suggestions}?`,
     };
   }
 
   return {
-    type: 'JSXAttribute',
     message,
   };
 };

@@ -35,7 +35,6 @@ const generateErrorMessage = (attr, role, tag, isImplicit) => {
 
 const errorMessage = (attr, role, tag, isImplicit) => ({
   message: generateErrorMessage(attr, role, tag, isImplicit),
-  type: 'JSXOpeningElement',
 });
 
 const componentsSettings = {

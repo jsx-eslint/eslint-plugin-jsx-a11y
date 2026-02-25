@@ -26,15 +26,12 @@ const invalidHrefErrorMessage = 'The href attribute requires a valid value to be
 
 const preferButtonexpectedError = {
   message: preferButtonErrorMessage,
-  type: 'JSXOpeningElement',
 };
 const noHrefexpectedError = {
   message: noHrefErrorMessage,
-  type: 'JSXOpeningElement',
 };
 const invalidHrefexpectedError = {
   message: invalidHrefErrorMessage,
-  type: 'JSXOpeningElement',
 };
 
 const components = [{

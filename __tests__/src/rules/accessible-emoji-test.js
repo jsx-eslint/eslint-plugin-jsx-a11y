@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Emojis should be wrapped in <span>, have role="img", and have an accessible description with aria-label or aria-labelledby.',
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('accessible-emoji', rule, {

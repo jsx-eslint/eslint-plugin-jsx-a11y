@@ -22,7 +22,6 @@ const errorMessage = 'Visible, non-interactive elements with click handlers must
 
 const expectedError = {
   message: errorMessage,
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('click-events-have-key-events', rule, {

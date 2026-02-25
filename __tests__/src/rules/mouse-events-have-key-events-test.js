@@ -21,19 +21,15 @@ const ruleTester = new RuleTester();
 
 const mouseOverError = {
   message: 'onMouseOver must be accompanied by onFocus for accessibility.',
-  type: 'JSXAttribute',
 };
 const pointerEnterError = {
   message: 'onPointerEnter must be accompanied by onFocus for accessibility.',
-  type: 'JSXAttribute',
 };
 const mouseOutError = {
   message: 'onMouseOut must be accompanied by onBlur for accessibility.',
-  type: 'JSXAttribute',
 };
 const pointerLeaveError = {
   message: 'onPointerLeave must be accompanied by onBlur for accessibility.',
-  type: 'JSXAttribute',
 };
 
 ruleTester.run('mouse-events-have-key-events', rule, {

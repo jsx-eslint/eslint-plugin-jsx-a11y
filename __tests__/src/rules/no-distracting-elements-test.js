@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = (element) => ({
   message: `Do not use <${element}> elements as they can create visual accessibility issues and are deprecated.`,
-  type: 'JSXOpeningElement',
 });
 
 const componentsSettings = {

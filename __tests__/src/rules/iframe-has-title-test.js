@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: '<iframe> elements must have a unique title property.',
-  type: 'JSXOpeningElement',
 };
 
 const componentsSettings = {

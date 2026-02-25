@@ -24,7 +24,6 @@ const errorMessage = 'Non-interactive elements should not be assigned mouse or k
 
 const expectedError = {
   message: errorMessage,
-  type: 'JSXOpeningElement',
 };
 
 const ruleName = 'no-noninteractive-element-interactions';

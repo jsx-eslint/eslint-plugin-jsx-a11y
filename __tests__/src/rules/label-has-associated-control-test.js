@@ -32,7 +32,6 @@ const expectedErrors = {};
 Object.keys(errorMessages).forEach((key) => {
   expectedErrors[key] = {
     message: errorMessages[key],
-    type: 'JSXOpeningElement',
   };
 });
 

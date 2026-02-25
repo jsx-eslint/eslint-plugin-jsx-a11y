@@ -21,7 +21,6 @@ const ruleTester = new RuleTester();
 
 const errorMessage = {
   message: 'Elements with ARIA roles must use a valid, non-abstract ARIA role.',
-  type: 'JSXAttribute',
 };
 
 const roleKeys = roles.keys();

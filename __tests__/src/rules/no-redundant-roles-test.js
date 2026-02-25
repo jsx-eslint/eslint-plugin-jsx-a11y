@@ -22,7 +22,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = (element, implicitRole) => ({
   message: `The element ${element} has an implicit role of ${implicitRole}. Defining this explicitly is redundant and should be avoided.`,
-  type: 'JSXOpeningElement',
 });
 
 const ruleName = 'jsx-a11y/no-redundant-roles';

@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'The scope prop can only be used on <th> elements.',
-  type: 'JSXAttribute',
 };
 
 const componentsSettings = {

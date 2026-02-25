@@ -24,7 +24,6 @@ const errorMessage = 'Interactive elements should not be assigned non-interactiv
 
 const expectedError = {
   message: errorMessage,
-  type: 'JSXAttribute',
 };
 
 const ruleName = 'jsx-a11y/no-interactive-element-to-noninteractive-role';

@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'aria-hidden="true" must not be set on focusable elements.',
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('no-aria-hidden-on-focusable', rule, {

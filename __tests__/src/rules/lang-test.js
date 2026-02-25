@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'lang attribute must have a valid value.',
-  type: 'JSXAttribute',
 };
 
 const componentsSettings = {

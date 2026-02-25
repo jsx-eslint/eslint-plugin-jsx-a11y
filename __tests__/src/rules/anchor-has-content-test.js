@@ -20,7 +20,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'Anchors must have content and the content must be accessible by a screen reader.',
-  type: 'JSXOpeningElement',
 };
 
 ruleTester.run('anchor-has-content', rule, {

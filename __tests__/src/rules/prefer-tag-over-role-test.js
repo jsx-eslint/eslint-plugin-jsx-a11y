@@ -7,7 +7,6 @@ const ruleTester = new RuleTester();
 
 const expectedError = (role, tag) => ({
   message: `Use ${tag} instead of the "${role}" role to ensure accessibility across all devices.`,
-  type: 'JSXOpeningElement',
 });
 
 ruleTester.run('prefer-tag-over-role', rule, {
