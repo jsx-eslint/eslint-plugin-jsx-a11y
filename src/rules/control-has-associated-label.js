@@ -30,6 +30,7 @@ const schema = generateObjSchema({
   controlComponents: arraySchema,
   ignoreElements: arraySchema,
   ignoreRoles: arraySchema,
+  includeRoles: arraySchema,
   depth: {
     description: 'JSX tree depth limit to check for accessible label',
     type: 'integer',
@@ -54,6 +55,7 @@ export default ({
       controlComponents = [],
       ignoreElements = [],
       ignoreRoles = [],
+      includeRoles = [],
     } = options;
 
     const newIgnoreElements = new Set([].concat(ignoreElements, ignoreList));
@@ -77,6 +79,7 @@ export default ({
       const nodeIsInteractiveElement = isInteractiveElement(tag, props);
       const nodeIsInteractiveRole = isInteractiveRole(tag, props);
       const nodeIsControlComponent = controlComponents.indexOf(tag) > -1;
+      const nodeIsIncludedRole = includes(includeRoles, role);
 
       if (nodeIsHiddenFromScreenReader) {
         return;
@@ -90,7 +93,7 @@ export default ({
           && nodeIsInteractiveRole
         )
         || nodeIsControlComponent
-
+        || nodeIsIncludedRole
       ) {
         // Prevent crazy recursion.
         const recursionDepth = Math.min(

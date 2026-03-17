@@ -161,8 +161,12 @@ const alwaysValid = [
   { code: '<thead />' },
   { code: '<time />' },
   { code: '<ul />' },
+  // includeRoles - valid when label is present
+  { code: '<div role="alert">Important message</div>' },
+  { code: '<div role="alert" aria-label="Warning" />' },
+  { code: '<div role="dialog" aria-label="Confirm action" />' },
+  { code: '<div role="dialog">Are you sure?</div>' },
   // Non-interactive Roles
-  { code: '<div role="alert" />' },
   { code: '<div role="alertdialog" />' },
   { code: '<div role="application" />' },
   { code: '<div role="article" />' },
@@ -171,7 +175,6 @@ const alwaysValid = [
   { code: '<div role="complementary" />' },
   { code: '<div role="contentinfo" />' },
   { code: '<div role="definition" />' },
-  { code: '<div role="dialog" />' },
   { code: '<div role="directory" />' },
   { code: '<div role="document" />' },
   { code: '<div role="feed" />' },
@@ -284,6 +287,9 @@ const neverValid = [
   { code: '<div role="switch" />', errors: [expectedError] },
   { code: '<div role="tab" />', errors: [expectedError] },
   { code: '<div role="textbox" />', errors: [expectedError] },
+  // includeRoles - these become invalid when includeRoles: ['alert', 'dialog'] is configured
+  { code: '<div role="alert" />', errors: [expectedError] },
+  { code: '<div role="dialog" />', errors: [expectedError] },
 ];
 
 const recommendedOptions = (configs.recommended.rules[ruleName][1] || {});
@@ -318,10 +324,31 @@ ruleTester.run(`${ruleName}:no-config`, rule, {
   valid: parsers.all([].concat(
     { code: '<input type="hidden" />' },
     { code: '<input type="text" aria-hidden="true" />' },
+    // alert and dialog are valid without config (no includeRoles)
+    { code: '<div role="alert" />' },
+    { code: '<div role="dialog" />' },
   ))
     .map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<input type="text" />', errors: [expectedError] },
+  ))
+    .map(parserOptionsMapper),
+});
+
+ruleTester.run(`${ruleName}:includeRoles`, rule, {
+  valid: parsers.all([].concat(
+    { code: '<div role="alert">Important message</div>', options: [{ includeRoles: ['alert'] }] },
+    { code: '<div role="alert" aria-label="Warning" />', options: [{ includeRoles: ['alert'] }] },
+    { code: '<div role="dialog" aria-label="Confirm" />', options: [{ includeRoles: ['dialog'] }] },
+    { code: '<div role="dialog">Content</div>', options: [{ includeRoles: ['dialog'] }] },
+    // Roles NOT in includeRoles should still pass without label
+    { code: '<div role="alert" />', options: [{ includeRoles: ['dialog'] }] },
+  ))
+    .map(parserOptionsMapper),
+  invalid: parsers.all([].concat(
+    { code: '<div role="alert" />', options: [{ includeRoles: ['alert'] }], errors: [expectedError] },
+    { code: '<div role="dialog" />', options: [{ includeRoles: ['dialog'] }], errors: [expectedError] },
+    { code: '<div role="alert"><span /></div>', options: [{ includeRoles: ['alert'] }], errors: [expectedError] },
   ))
     .map(parserOptionsMapper),
 });

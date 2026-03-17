@@ -85,6 +85,10 @@ This rule takes one optional object argument of type object:
         "tree",
         "treegrid",
       ],
+      "includeRoles": [
+        "alert",
+        "dialog",
+      ],
       "depth": 3,
     }],
   }
@@ -95,6 +99,7 @@ This rule takes one optional object argument of type object:
 - `controlComponents` is a list of custom React Components names that will render down to an interactive element.
 - `ignoreElements` is an array of elements that should not be considered control (interactive) elements and therefore they do not require a text label.
 - `ignoreRoles` is an array of ARIA roles that should not be considered control (interactive) roles and therefore they do not require a text label.
+- `includeRoles` is an array of ARIA roles that are not interactive by default but should still require an accessible text label. For example, `['alert', 'dialog']` will enforce that elements with these roles have a label. If a role appears in both `ignoreRoles` and `includeRoles`, `ignoreRoles` takes precedence.
 - `depth` (default 2, max 25) is an integer that determines how deep within a `JSXElement` the rule should look for text content or an element with a label to determine if the interactive element will have an accessible label.
 
 ### Succeed
