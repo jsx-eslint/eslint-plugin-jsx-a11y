@@ -37,6 +37,9 @@ const defaultInteractiveProps = [].concat(
 );
 const schema = generateObjSchema({
   handlers: arraySchema,
+  allowExpressionValues: {
+    type: 'boolean',
+  },
 });
 
 export default ({
