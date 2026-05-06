@@ -7,10 +7,10 @@
 // Requirements
 // -----------------------------------------------------------------------------
 
-import RuleTester from '../../__util__/RuleTester';
-import parserOptionsMapper from '../../__util__/parserOptionsMapper';
-import parsers from '../../__util__/helpers/parsers';
 import rule from '../../../src/rules/lang';
+import RuleTester from '../../__util__/RuleTester';
+import parsers from '../../__util__/helpers/parsers';
+import parserOptionsMapper from '../../__util__/parserOptionsMapper';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -20,7 +20,12 @@ const ruleTester = new RuleTester();
 
 const expectedError = {
   message: 'lang attribute must have a valid value.',
-  type: 'JSXAttribute',
+  type: 'JSXOpeningElement',
+};
+
+const expectedHtmlHasLangError = {
+  message: '<html> elements must have the lang prop.',
+  type: 'JSXOpeningElement',
 };
 
 const componentsSettings = {
@@ -46,14 +51,26 @@ ruleTester.run('lang', rule, {
     { code: '<html lang={foo} />' },
     { code: '<HTML lang="foo" />' },
     { code: '<Foo lang={undefined} />' },
+    { code: '<html lang={undefined} />' },
+    { code: '<html lang={foo} />', options: [{ htmlHasLang: true }] },
+    { code: '<Foo lang={undefined} />', settings: componentsSettings },
     { code: '<Foo lang="en" />', settings: componentsSettings },
     { code: '<Box as="html" lang="en"  />', settings: componentsSettings },
+    { code: '<html />', options: [{ htmlHasLang: false }] },
+    { code: '<Foo />', settings: componentsSettings, options: [{ htmlHasLang: false }] },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<html lang="foo" />', errors: [expectedError] },
     { code: '<html lang="zz-LL" />', errors: [expectedError] },
-    { code: '<html lang={undefined} />', errors: [expectedError] },
-    { code: '<Foo lang={undefined} />', settings: componentsSettings, errors: [expectedError] },
     { code: '<Box as="html" lang="foo" />', settings: componentsSettings, errors: [expectedError] },
+    { code: '<html />', options: [{ htmlHasLang: true }], errors: [expectedHtmlHasLangError] },
+    { code: '<html lang={undefined} />', options: [{ htmlHasLang: true }], errors: [expectedHtmlHasLangError] },
+    {
+      code: '<Foo lang={undefined} />', settings: componentsSettings, options: [{ htmlHasLang: true }], errors: [expectedHtmlHasLangError],
+    },
+    {
+      code: '<Foo />', settings: componentsSettings, options: [{ htmlHasLang: true }], errors: [expectedHtmlHasLangError],
+    },
+    { code: '<html lang="foo" />', options: [{ htmlHasLang: true }], errors: [expectedError] },
   )).map(parserOptionsMapper),
 });
