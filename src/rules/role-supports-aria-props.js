@@ -62,10 +62,15 @@ export default {
           return;
         }
 
+        // `none` is a synonym for `presentation`, so treat it identically when
+        // looking up the set of supported aria-* properties.
+        // See https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/1090
+        const propLookupRole = roleValue === 'none' ? 'presentation' : roleValue;
+
         // Make sure it has no aria-* properties defined outside its property set.
         const {
           props: propKeyValues,
-        } = roles.get(roleValue);
+        } = roles.get(propLookupRole);
         const invalidAriaPropsForRole = new Set(aria.keys().filter((attribute) => !(attribute in propKeyValues)));
 
         node.attributes.filter((prop) => (

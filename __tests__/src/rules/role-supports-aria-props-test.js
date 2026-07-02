@@ -49,9 +49,12 @@ const componentsSettings = {
 const nonAbstractRoles = roles.keys().filter((role) => roles.get(role).abstract === false);
 
 const createTests = (rolesNames) => rolesNames.reduce((tests, role) => {
+  // `none` is a synonym for `presentation`, so it supports the same aria-* properties.
+  // See https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/1090
+  const propLookupRole = role === 'none' ? 'presentation' : role;
   const {
     props: propKeyValues,
-  } = roles.get(role);
+  } = roles.get(propLookupRole);
   const validPropsForRole = Object.keys(propKeyValues);
   const invalidPropsForRole = aria.keys()
     .map((attribute) => attribute.toLowerCase())
@@ -78,6 +81,10 @@ ruleTester.run('role-supports-aria-props', rule, {
     { code: '<div id="main" />' },
     { code: '<div role />' },
     { code: '<div role="presentation" {...props} />' },
+    // `none` is a synonym for `presentation` and should behave identically.
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/1090
+    { code: '<div role="none" aria-hidden />' },
+    { code: '<div role="presentation" aria-hidden />' },
     { code: '<Foo.Bar baz={true} />' },
     { code: '<Link href="#" aria-checked />' },
 
