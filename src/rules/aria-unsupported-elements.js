@@ -23,6 +23,12 @@ Try removing the prop '${invalidProp}'.`
 
 const invalidAttributes = new Set(aria.keys().concat('role'));
 
+// `aria-query` only exposes `reserved` for these elements, but HTML-ARIA
+// permits specific attributes on some of them.
+const supportedAriaAttributesByElement = new Map([
+  ['picture', new Set(['aria-hidden'])],
+]);
+
 const schema = generateObjSchema();
 
 export default {
@@ -43,6 +49,7 @@ export default {
         const {
           reserved: isReservedNodeType = false,
         } = nodeAttrs;
+        const supportedAttributes = supportedAriaAttributesByElement.get(nodeType);
 
         // If it's not reserved, then it can have aria-* roles, states, and properties
         if (isReservedNodeType === false) {
@@ -55,8 +62,9 @@ export default {
           }
 
           const name = propName(prop).toLowerCase();
+          const isSupportedAttribute = supportedAttributes && supportedAttributes.has(name);
 
-          if (invalidAttributes.has(name)) {
+          if (invalidAttributes.has(name) && !isSupportedAttribute) {
             context.report({
               node,
               message: errorMessage(name),

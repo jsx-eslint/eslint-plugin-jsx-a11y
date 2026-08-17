@@ -44,10 +44,18 @@ const ariaValidityTests = domElements.map((element) => {
   return {
     code: `<${element} ${aria} />`,
   };
-}).concat({
-  code: '<fake aria-hidden />',
-  errors: [errorMessage('aria-hidden')],
-});
+}).concat(
+  { code: '<picture aria-hidden />' },
+  { code: '<picture aria-hidden="true" />' },
+  {
+    code: '<Picture aria-hidden />',
+    settings: { 'jsx-a11y': { components: { Picture: 'picture' } } },
+  },
+  {
+    code: '<fake aria-hidden />',
+    errors: [errorMessage('aria-hidden')],
+  },
+);
 
 // Generate invalid test cases.
 const invalidRoleValidityTests = domElements
@@ -63,10 +71,14 @@ const invalidRoleValidityTests = domElements
 
 const invalidAriaValidityTests = domElements
   .filter((element) => dom.get(element).reserved)
-  .map((reservedElem) => ({
-    code: `<${reservedElem} aria-hidden aria-role="none" {...props} />`,
-    errors: [errorMessage('aria-hidden')],
-  }));
+  .map((reservedElem) => {
+    const ariaProp = reservedElem === 'picture' ? 'aria-label' : 'aria-hidden';
+
+    return {
+      code: `<${reservedElem} ${ariaProp} aria-role="none" {...props} />`,
+      errors: [errorMessage(ariaProp)],
+    };
+  });
 
 ruleTester.run('aria-unsupported-elements', rule, {
   valid: parsers.all([].concat(roleValidityTests, ariaValidityTests)).map(parserOptionsMapper),
