@@ -13,7 +13,7 @@ jobs:
         with:
           versionsAsRoot: true
           type: 'majors'
-          preset: '^20.18 || ^22.10 || >= 23'
+          preset: '^20.19.0 || ^22.13.0 || >=24'
 
   latest:
     needs: [matrix]
