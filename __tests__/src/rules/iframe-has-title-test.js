@@ -31,13 +31,19 @@ const componentsSettings = {
   },
 };
 
-ruleTester.run('html-has-lang', rule, {
+ruleTester.run('iframe-has-title', rule, {
   valid: parsers.all([].concat(
     { code: '<div />;' },
     { code: '<iframe title="Unique title" />' },
     { code: '<iframe title={foo} />' },
+    { code: '<iframe aria-label="Unique title" />' },
+    { code: '<iframe aria-label={foo} />' },
+    { code: '<iframe aria-labelledby="titleId" />' },
+    { code: '<iframe aria-labelledby={foo} />' },
+    { code: '<iframe title="" aria-label="Unique title" />' },
     { code: '<FooComponent />' },
     { code: '<FooComponent title="Unique title" />', settings: componentsSettings },
+    { code: '<FooComponent aria-label="Unique title" />', settings: componentsSettings },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     { code: '<iframe />', errors: [expectedError] },
@@ -50,6 +56,16 @@ ruleTester.run('html-has-lang', rule, {
     { code: '<iframe title={``} />', errors: [expectedError] },
     { code: '<iframe title={""} />', errors: [expectedError] },
     { code: '<iframe title={42} />', errors: [expectedError] },
+    { code: '<iframe aria-label="" />', errors: [expectedError] },
+    { code: '<iframe aria-label={undefined} />', errors: [expectedError] },
+    { code: '<iframe aria-label={false} />', errors: [expectedError] },
+    { code: '<iframe aria-label={true} />', errors: [expectedError] },
+    { code: "<iframe aria-label={''} />", errors: [expectedError] },
+    { code: '<iframe aria-label={``} />', errors: [expectedError] },
+    { code: '<iframe aria-label={""} />', errors: [expectedError] },
+    { code: '<iframe aria-label={42} />', errors: [expectedError] },
+    { code: '<iframe aria-labelledby="" />', errors: [expectedError] },
+    { code: '<iframe aria-labelledby={undefined} />', errors: [expectedError] },
     { code: '<FooComponent />', errors: [expectedError], settings: componentsSettings },
   )).map(parserOptionsMapper),
 });

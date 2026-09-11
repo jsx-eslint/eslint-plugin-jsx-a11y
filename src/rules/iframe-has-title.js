@@ -13,6 +13,8 @@ import { generateObjSchema } from '../util/schemas';
 
 const errorMessage = '<iframe> elements must have a unique title property.';
 
+const accessibleNameProps = ['title', 'aria-label', 'aria-labelledby'];
+
 const schema = generateObjSchema();
 
 export default {
@@ -34,9 +36,12 @@ export default {
           return;
         }
 
-        const title = getPropValue(getProp(node.attributes, 'title'));
+        const hasAccessibleName = accessibleNameProps.some((name) => {
+          const value = getPropValue(getProp(node.attributes, name));
+          return value && typeof value === 'string';
+        });
 
-        if (title && typeof title === 'string') {
+        if (hasAccessibleName) {
           return;
         }
 

@@ -4,7 +4,9 @@
 
 <!-- end auto-generated rule header -->
 
-`<iframe>` elements must have a unique title property to indicate its content to the user.
+`<iframe>` elements must have an accessible name to indicate their content to the user.
+
+The HTML `title` attribute is the most common way to provide that name. `aria-label` and `aria-labelledby` are also accepted, which is useful when a `title` tooltip is undesirable.
 
 ## Rule details
 
@@ -14,6 +16,8 @@ This rule takes no arguments.
 ```jsx
 <iframe title="This is a unique title" />
 <iframe title={uniqueTitle} />
+<iframe aria-label="This is a unique title" />
+<iframe aria-labelledby="titleId" />
 ```
 
 ### Fail
@@ -27,6 +31,8 @@ This rule takes no arguments.
 <iframe title={false} />
 <iframe title={true} />
 <iframe title={42} />
+<iframe aria-label="" />
+<iframe aria-labelledby="" />
 ```
 
 ## Accessibility guidelines
