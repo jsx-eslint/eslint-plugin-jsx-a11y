@@ -49,6 +49,31 @@ ruleTester.run('media-has-caption', rule, {
     { code: '<audio><track kind="captions" /></audio>' },
     { code: '<audio><track kind="Captions" /></audio>' },
     {
+      code: '<video muted={!hasAudio}>{hasAudio && <track kind="captions" />}</video>',
+    },
+    {
+      code: '<video>{hasAudio ? <track kind="captions" /> : null}</video>',
+    },
+    {
+      code: '<video>{hasAudio && (isReady ? <track kind="captions" /> : null)}</video>',
+    },
+    {
+      code: '<video>{<track kind="captions" /> || null}</video>',
+    },
+    {
+      code: '<video>{hasAudio || <track kind="captions" />}</video>',
+    },
+    {
+      code: '<video>{<track kind="captions" /> ?? null}</video>',
+      features: ['nullish coalescing', 'no-babel-old'],
+      languageOptions: { ecmaVersion: 2020 },
+    },
+    {
+      code: '<video>{null ?? <track kind="captions" />}</video>',
+      features: ['nullish coalescing', 'no-babel-old'],
+      languageOptions: { ecmaVersion: 2020 },
+    },
+    {
       code: '<audio><track kind="Captions" /><track kind="subtitles" /></audio>',
     },
     { code: '<video><track kind="captions" /></video>' },
@@ -160,6 +185,24 @@ ruleTester.run('media-has-caption', rule, {
     { code: '<video><track /></video>', errors: [expectedError] },
     {
       code: '<video><track kind="subtitles" /></video>',
+      errors: [expectedError],
+    },
+    {
+      code: '<video>{hasAudio ? <track kind="subtitles" /> : null}</video>',
+      errors: [expectedError],
+    },
+    {
+      code: '<video>{<track kind="captions" /> && <span />}</video>',
+      errors: [expectedError],
+    },
+    {
+      code: '<video>{<span /> || <track kind="captions" />}</video>',
+      errors: [expectedError],
+    },
+    {
+      code: '<video>{<span /> ?? <track kind="captions" />}</video>',
+      features: ['nullish coalescing', 'no-babel-old'],
+      languageOptions: { ecmaVersion: 2020 },
       errors: [expectedError],
     },
     {

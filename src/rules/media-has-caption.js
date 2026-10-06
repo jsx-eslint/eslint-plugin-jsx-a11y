@@ -38,6 +38,29 @@ const isTrackType = (context, type) => {
   return ['track'].concat(options.track || []).some((typeToCheck) => typeToCheck === type);
 };
 
+function getPotentialJSXElements(node: Node): Array<JSXElement> {
+  switch (node.type) {
+    case 'JSXElement':
+      return [node];
+    case 'JSXExpressionContainer':
+      return getPotentialJSXElements(node.expression);
+    case 'LogicalExpression':
+      if (node.operator === '&&') {
+        return getPotentialJSXElements(node.right);
+      }
+
+      if (node.left.type === 'JSXElement') {
+        return getPotentialJSXElements(node.left);
+      }
+
+      return getPotentialJSXElements(node.left).concat(getPotentialJSXElements(node.right));
+    case 'ConditionalExpression':
+      return getPotentialJSXElements(node.consequent).concat(getPotentialJSXElements(node.alternate));
+    default:
+      return [];
+  }
+}
+
 export default ({
   meta: {
     docs: {
@@ -62,14 +85,8 @@ export default ({
           return;
         }
         // $FlowFixMe https://github.com/facebook/flow/issues/1414
-        const trackChildren: Array<JSXElement> = node.children.filter((child: Node) => {
-          if (child.type !== 'JSXElement') {
-            return false;
-          }
-
-          // $FlowFixMe https://github.com/facebook/flow/issues/1414
-          return isTrackType(context, elementType(child.openingElement));
-        });
+        const trackChildren: Array<JSXElement> = flatMap(node.children, (child: Node) => getPotentialJSXElements(child))
+          .filter((child: JSXElement) => isTrackType(context, elementType(child.openingElement)));
 
         if (trackChildren.length === 0) {
           context.report({
