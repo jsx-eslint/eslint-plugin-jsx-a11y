@@ -18,6 +18,9 @@ ruleTester.run('prefer-tag-over-role', rule, {
     { code: '<other />' },
     { code: '<img role="img" />' },
     { code: '<input role="checkbox" />' },
+    { code: '<div role={{ code: "admin" }} />' },
+    { code: '<Foo role={{ code: "admin" }} />' },
+    { code: '<div role={1} />' },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     {

@@ -21,8 +21,8 @@ const formatTag = (tag) => {
 
 const getLastPropValue = (rawProp) => {
   const propValue = getPropValue(rawProp);
-  if (!propValue) {
-    return propValue;
+  if (typeof propValue !== 'string') {
+    return undefined;
   }
 
   const lastSpaceIndex = propValue.lastIndexOf(' ');
