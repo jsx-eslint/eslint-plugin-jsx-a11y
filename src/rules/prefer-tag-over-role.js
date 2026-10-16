@@ -1,4 +1,4 @@
-import { roleElements } from 'aria-query';
+import { dom, roleElements } from 'aria-query';
 import { getProp, getPropValue } from 'jsx-ast-utils';
 
 import getElementType from '../util/getElementType';
@@ -21,8 +21,8 @@ const formatTag = (tag) => {
 
 const getLastPropValue = (rawProp) => {
   const propValue = getPropValue(rawProp);
-  if (!propValue) {
-    return propValue;
+  if (typeof propValue !== 'string') {
+    return undefined;
   }
 
   const lastSpaceIndex = propValue.lastIndexOf(' ');
@@ -46,6 +46,11 @@ export default {
 
     return {
       JSXOpeningElement: (node) => {
+        const type = elementType(node);
+        if (!dom.has(type)) {
+          return;
+        }
+
         const role = getLastPropValue(getProp(node.attributes, 'role'));
         if (!role) {
           return;
@@ -59,7 +64,7 @@ export default {
         const matchedTags = Array.from(matchedTagsSet);
         if (
           matchedTags.some(
-            (matchedTag) => matchedTag.name === elementType(node),
+            (matchedTag) => matchedTag.name === type,
           )
         ) {
           return;

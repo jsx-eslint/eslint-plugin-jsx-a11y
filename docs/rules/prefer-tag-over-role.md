@@ -4,6 +4,8 @@
 
 Enforces using semantic DOM elements over the ARIA `role` property.
 
+Only DOM elements are checked; custom components are skipped unless the `components` setting maps them to a DOM element.
+
 ## Rule details
 
 This rule takes no arguments.
