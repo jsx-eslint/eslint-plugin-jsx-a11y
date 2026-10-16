@@ -21,6 +21,9 @@ ruleTester.run('prefer-tag-over-role', rule, {
     { code: '<div role={{ code: "admin" }} />' },
     { code: '<Foo role={{ code: "admin" }} />' },
     { code: '<div role={1} />' },
+    { code: '<other role="checkbox" />' },
+    { code: '<Foo role="checkbox" />' },
+    { code: '<Foo.Bar role="banner" />' },
   )).map(parserOptionsMapper),
   invalid: parsers.all([].concat(
     {
@@ -55,8 +58,9 @@ ruleTester.run('prefer-tag-over-role', rule, {
       errors: [expectedError('checkbox', '<input type="checkbox">')],
     },
     {
-      code: '<other role="checkbox" />',
+      code: '<Box role="checkbox" />',
       errors: [expectedError('checkbox', '<input type="checkbox">')],
+      settings: { 'jsx-a11y': { components: { Box: 'div' } } },
     },
     {
       code: '<div role="banner" />',
