@@ -1,5 +1,8 @@
 [ignore]
 <PROJECT_ROOT>/node_modules/resolve/test/resolver/malformed_package_json/package.json
+# jscodeshift's dev-only parsers ship declarations newer than our Flow checker.
+<PROJECT_ROOT>/node_modules/flow-parser/.*
+<PROJECT_ROOT>/node_modules/flow-estree/.*
 <PROJECT_ROOT>/lib/.*
 <PROJECT_ROOT>/docs/.*
 <PROJECT_ROOT>/reports/.*
