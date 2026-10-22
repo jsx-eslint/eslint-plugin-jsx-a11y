@@ -54,6 +54,24 @@ You can configure the rule to be aware of your custom components. Refer to the R
 <CustomInput label="Surname" type="text" value={value} />
 ```
 
+### Case: I have a select with options.
+
+Option text describes the selected value, so it does not provide a label for the
+`select`. Use `aria-label`, `aria-labelledby`, a wrapping `label`, or a label with
+a matching `htmlFor` and `id` in the same JSX tree. A nonempty `title` is also
+accepted. An implicit wrapping label labels its first labelable descendant;
+`input type="hidden"` is skipped. Labels in a separate component cannot be
+resolved. Component mappings and polymorphic elements are supported.
+
+```jsx
+<label>
+  Relationship
+  <select>
+    <option value="ancestors">Ancestors</option>
+  </select>
+</label>
+```
+
 ## Rule options
 
 This rule takes one optional object argument of type object:

@@ -58,6 +58,14 @@ export default function mayHaveAccessibleLabel(
     if (depth > maxDepth) {
       return false;
     }
+    const isSelect = node.type === 'JSXElement'
+      && node.openingElement
+      /* $FlowFixMe */
+      && getElementType(node.openingElement) === 'select';
+    // A select's options describe its value, not its label or an ancestor's label.
+    if (isSelect && depth > 0) {
+      return false;
+    }
     // Check for literal text.
     if (node.type === 'Literal' && !!tryTrim(node.value)) {
       return true;
@@ -75,10 +83,17 @@ export default function mayHaveAccessibleLabel(
     // Check for labelling props.
     if (
       node.openingElement
-      /* $FlowFixMe */
-      && hasLabellingProp(node.openingElement, additionalLabellingProps)
+      && hasLabellingProp(
+        /* $FlowFixMe */
+        node.openingElement,
+        isSelect ? ['title'].concat(additionalLabellingProps || []) : additionalLabellingProps,
+      )
     ) {
       return true;
+    }
+
+    if (isSelect) {
+      return false;
     }
 
     if (node.type === 'JSXElement' && node.children.length === 0 && node.openingElement) {

@@ -231,6 +231,26 @@ test('mayHaveAccessibleLabel', (t) => {
     st.end();
   });
 
+  t.test('select content', (st) => {
+    const options = [JSXElementMock('option', [], [JSXTextMock('Ancestors')])];
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('select', [], options), 3),
+      false,
+      'option text does not label a select',
+    );
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('select', [JSXAttributeMock('aria-label', 'Relationship')], options)),
+      true,
+      'an explicit select label is accepted',
+    );
+    st.equal(
+      mayHaveAccessibleLabel(JSXElementMock('label', [], [JSXElementMock('select', [], options)]), 4),
+      false,
+      'option text does not label a surrounding label',
+    );
+    st.end();
+  });
+
   t.test('Intederminate situations', (st) => {
     st.equal(
       mayHaveAccessibleLabel(JSXElementMock('div', [], [
