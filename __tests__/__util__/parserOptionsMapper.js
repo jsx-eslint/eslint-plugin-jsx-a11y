@@ -25,6 +25,7 @@ const defaultLanguageOptions = {
 export default function parserOptionsMapper({
   code,
   errors,
+  output,
   options = [],
   languageOptions = {},
   settings = {},
@@ -33,6 +34,7 @@ export default function parserOptionsMapper({
     ? {
       code,
       errors,
+      ...(output !== undefined && { output }),
       options,
       parserOptions: {
         ...defaultLegacyParserOptions,
@@ -43,6 +45,7 @@ export default function parserOptionsMapper({
     : {
       code,
       errors,
+      ...(output !== undefined && { output }),
       options,
       languageOptions: {
         ...defaultLanguageOptions,

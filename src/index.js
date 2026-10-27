@@ -38,6 +38,7 @@ const allRules = {
   'no-onchange': require('./rules/no-onchange'),
   'no-redundant-roles': require('./rules/no-redundant-roles'),
   'no-static-element-interactions': require('./rules/no-static-element-interactions'),
+  'prefer-boolean-aria-values': require('./rules/prefer-boolean-aria-values'),
   'prefer-tag-over-role': require('./rules/prefer-tag-over-role'),
   'role-has-required-aria-props': require('./rules/role-has-required-aria-props'),
   'role-supports-aria-props': require('./rules/role-supports-aria-props'),
