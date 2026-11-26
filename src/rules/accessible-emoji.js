@@ -22,7 +22,7 @@ export default {
   meta: {
     docs: {
       description: 'Enforce emojis are wrapped in `<span>` and provide screen reader access.',
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/accessible-emoji.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/accessible-emoji.md',
     },
     deprecated: true,
     schema: [schema],

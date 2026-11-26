@@ -42,7 +42,7 @@ function containsRedundantWord(value, redundantWords) {
 export default {
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/img-redundant-alt.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/img-redundant-alt.md',
       description: 'Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo".',
     },
     schema: [schema],

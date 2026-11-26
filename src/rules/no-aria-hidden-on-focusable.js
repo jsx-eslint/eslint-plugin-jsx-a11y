@@ -17,7 +17,7 @@ const schema = generateObjSchema();
 export default {
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-aria-hidden-on-focusable.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-aria-hidden-on-focusable.md',
       description: 'Disallow `aria-hidden="true"` from being set on focusable elements.',
     },
     schema: [schema],

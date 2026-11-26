@@ -101,7 +101,7 @@ export default {
     replacedBy: ['label-has-associated-control'],
     docs: {
       description: 'Enforce that `<label>` elements have the `htmlFor` prop.',
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/label-has-for.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/label-has-for.md',
     },
     schema: [schema],
   },

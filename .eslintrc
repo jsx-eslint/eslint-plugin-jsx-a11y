@@ -25,9 +25,18 @@
         "eslint-plugin/require-meta-docs-description": ["error", { "pattern": "^(Enforce|Require|Disallow)" }],
         "eslint-plugin/require-meta-docs-url": [
           "error",
-          { "pattern": "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/{{name}}.md" },
+          { "pattern": "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/{{name}}.md" },
         ],
         "eslint-plugin/require-meta-type": "off",
+      },
+    },
+    {
+      "files": ["src/rules/control-has-associated-label.js", "src/rules/label-has-associated-control.js"],
+      "rules": {
+        "eslint-plugin/require-meta-docs-url": [
+          "error",
+          { "pattern": "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/{{name}}.md" },
+        ],
       },
     },
     {

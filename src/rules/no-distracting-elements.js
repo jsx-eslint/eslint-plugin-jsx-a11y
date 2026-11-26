@@ -26,7 +26,7 @@ const schema = generateObjSchema({
 export default {
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-distracting-elements.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/no-distracting-elements.md',
       description: 'Enforce distracting elements are not used.',
     },
     schema: [schema],

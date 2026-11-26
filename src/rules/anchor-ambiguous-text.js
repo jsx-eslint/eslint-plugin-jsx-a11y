@@ -28,7 +28,7 @@ const schema = generateObjSchema({
 export default ({
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-ambiguous-text.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-ambiguous-text.md',
       description: 'Enforce `<a>` text to not exactly match "click here", "here", "link", or "a link".',
     },
     schema: [schema],

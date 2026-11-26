@@ -41,7 +41,7 @@ const isTrackType = (context, type) => {
 export default ({
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/media-has-caption.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/media-has-caption.md',
       description: 'Enforces that `<audio>` and `<video>` elements must have a `<track>` for captions.',
     },
     schema: [schema],

@@ -66,7 +66,7 @@ export default {
   validityCheck,
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-proptypes.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/aria-proptypes.md',
       description: 'Enforce ARIA state and property values are valid.',
     },
     schema: [schema],

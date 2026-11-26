@@ -32,7 +32,7 @@ const schema = generateObjSchema({
 export default ({
   meta: {
     docs: {
-      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-is-valid.md',
+      url: 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md',
       description: 'Enforce all anchors are valid, navigable elements.',
     },
     schema: [schema],
